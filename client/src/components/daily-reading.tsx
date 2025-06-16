@@ -6,6 +6,7 @@ import OduPattern from "./odu-pattern";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface DailyReadingProps {
   reading: DailyReadingWithOdu;
@@ -14,6 +15,7 @@ interface DailyReadingProps {
 export default function DailyReading({ reading }: DailyReadingProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { t } = useLanguage();
 
   const saveReadingMutation = useMutation({
     mutationFn: async () => {
@@ -73,17 +75,17 @@ export default function DailyReading({ reading }: DailyReadingProps) {
           <div className="absolute inset-0 bg-geometric-pattern opacity-20"></div>
           <div className="relative z-10">
             <h2 className="font-crimson text-2xl font-bold mb-2">
-              {reading.odu.name}
+              {t(reading.odu.name, reading.odu.nameYoruba)}
             </h2>
-            <p className="text-blue-100 text-sm">{reading.odu.subtitle}</p>
+            <p className="text-blue-100 text-sm">{t(reading.odu.subtitle, reading.odu.subtitleYoruba)}</p>
             <div className="mt-4 flex items-center space-x-4 text-sm">
               <span className="flex items-center space-x-1">
                 <Eye className="h-4 w-4 text-sacred-gold" />
-                <span>{reading.odu.element}</span>
+                <span>{t(reading.odu.element, reading.odu.elementYoruba)}</span>
               </span>
               <span className="flex items-center space-x-1">
                 <Star className="h-4 w-4 text-sacred-gold" />
-                <span>{reading.odu.energy}</span>
+                <span>{t(reading.odu.energy, reading.odu.energyYoruba)}</span>
               </span>
             </div>
           </div>
