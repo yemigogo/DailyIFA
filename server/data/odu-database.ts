@@ -464,5 +464,122 @@ export const oduDatabase: InsertOdu[] = [
     descriptionYoruba: "Ofun Meji duro fun alaafia, ibaramu, ati ibukun Ọlọrun. O sọrọ si agbara ipinnu alaafia, ẹbun mimu ibaramu wa si rudurudu, ati ibukun ti ore-ọfẹ Ọlọrun.",
     keywords: ["peace", "harmony", "blessing", "grace", "unity"],
     keywordsYoruba: ["alaafia", "ibaramu", "ibukun", "ore-ọfẹ", "iṣọkan"]
+  },
+  // Additional Odu combinations for more comprehensive yearly coverage
+  {
+    name: "Ogbe Oyeku",
+    nameYoruba: "Ogbe Oyeku",
+    subtitle: "The Odu of Dawn Breaking",
+    subtitleYoruba: "Odu ti Alẹ n Mọ",
+    element: "Dawn",
+    elementYoruba: "Alẹ",
+    energy: "Transition",
+    energyYoruba: "Iyipada",
+    message: "The transition from darkness to light brings new understanding. What was hidden is now being revealed. Trust the process of gradual illumination in your life.",
+    messageYoruba: "Iyipada lati okunkun si imole mu oye tuntun wa. Ohun ti o pamọ ni a n ṣafihan bayi. Gbẹkẹle ilana imole diẹdiẹ ninu igbesi aye rẹ.",
+    guidance: [
+      "Be patient with gradual revelations",
+      "Prepare for positive changes ahead", 
+      "Trust your growing awareness"
+    ],
+    guidanceYoruba: [
+      "Ni suru pẹlu awọn ifihan diẹdiẹ",
+      "Mura silẹ fun awọn ayipada rere ti o nbọ",
+      "Gbẹkẹle akiyesi rẹ ti n dagba"
+    ],
+    reflection: "What new awareness is emerging in my life right now?",
+    reflectionYoruba: "Iru akiyesi tuntun wo ni o n jade ninu igbesi aye mi ni bayi?",
+    pattern: [[true, true, true, true], [false, false, false, false]],
+    description: "Ogbe Oyeku represents the sacred transition from darkness to light, mystery to clarity, and the dawning of new consciousness.",
+    descriptionYoruba: "Ogbe Oyeku duro fun iyipada mimo lati okunkun si imole, ohun ijinle si aseyori, ati alẹ ti ori-inu tuntun.",
+    keywords: ["transition", "dawn", "revelation", "awareness", "emergence"],
+    keywordsYoruba: ["iyipada", "alẹ", "ifihan", "akiyesi", "jade"]
+  },
+  {
+    name: "Oyeku Iwori",
+    nameYoruba: "Oyeku Iwori",
+    subtitle: "The Odu of Deep Wisdom",
+    subtitleYoruba: "Odu ti Ọgbọn Jinlẹ",
+    element: "Deep Waters",
+    elementYoruba: "Omi Jinlẹ",
+    energy: "Wisdom",
+    energyYoruba: "Ọgbọn",
+    message: "Ancient wisdom rises from the depths of your being. Listen to the voice of your ancestors and the knowledge within your soul. Deep understanding comes through patience and reflection.",
+    messageYoruba: "Ọgbọn atijọ dide lati ijinle ẹda rẹ. Gbọ ohun awọn baba nla rẹ ati imọ ti o wa ninu ọkan rẹ. Oye jinlẹ wa nipasẹ suru ati ìronu.",
+    guidance: [
+      "Seek wisdom from elder teachings",
+      "Trust your ancestral knowledge",
+      "Practice deep contemplation"
+    ],
+    guidanceYoruba: [
+      "Wa ọgbọn lati awọn ẹkọ agbalagba",
+      "Gbẹkẹle imọ awọn baba rẹ",
+      "Ṣe ìronu jinlẹ"
+    ],
+    reflection: "What ancient wisdom is my soul trying to share with me?",
+    reflectionYoruba: "Iru ọgbọn atijọ wo ni ọkan mi n gbiyanju lati pin pẹlu mi?",
+    pattern: [[false, false, false, false], [true, false, true, false]],
+    description: "Oyeku Iwori speaks to the depths of ancestral wisdom and the profound knowledge that emerges from inner reflection and spiritual connection.",
+    descriptionYoruba: "Oyeku Iwori sọrọ si ijinle ọgbọn awọn baba ati imọ jinlẹ ti o jade lati ìronu inu ati asopọ ẹmi.",
+    keywords: ["ancestral wisdom", "depth", "soul knowledge", "contemplation", "tradition"],
+    keywordsYoruba: ["ọgbọn baba", "ijinle", "imọ ọkan", "ìronu", "aṣa"]
+  },
+  {
+    name: "Iwori Odi",
+    nameYoruba: "Iwori Odi",
+    subtitle: "The Odu of Sacred Boundaries",
+    subtitleYoruba: "Odu ti Awọn Ala Mimo",
+    element: "Earth",
+    elementYoruba: "Ilẹ",
+    energy: "Protection",
+    energyYoruba: "Aabo",
+    message: "Sacred boundaries protect what is precious. Today calls for establishing healthy limits and protecting your energy. Know when to say yes and when to say no.",
+    messageYoruba: "Awọn ala mimo n daabobo ohun ti o ṣe pataki. Oni npe fun fifi awọn ala ilera kalẹ ati didaabobo agbara rẹ. Mọ igba ti o yẹ ki o wi bẹẹni ati igba ti o yẹ ki o wi rara.",
+    guidance: [
+      "Set clear boundaries in relationships",
+      "Protect your energy and resources",
+      "Honor your personal space"
+    ],
+    guidanceYoruba: [
+      "Ṣeto awọn ala kedere ninu awọn ibatan",
+      "Daabobo agbara ati awọn ohun ini rẹ",
+      "Bọwọ fun aaye ti ara rẹ"
+    ],
+    reflection: "Where do I need to establish healthier boundaries in my life?",
+    reflectionYoruba: "Nibo ni mo nilo lati fi awọn ala ti o ni ilera kalẹ ninu igbesi aye mi?",
+    pattern: [[true, false, true, false], [false, true, false, false]],
+    description: "Iwori Odi teaches the importance of sacred boundaries, self-protection, and the wisdom of knowing when to engage and when to withdraw.",
+    descriptionYoruba: "Iwori Odi kọ pataki awọn ala mimo, idaabobo ara ẹni, ati ọgbọn mimọ igba ti o yẹ ki o lọwọ ati igba ti o yẹ ki o yọkuro.",
+    keywords: ["boundaries", "protection", "limits", "self-care", "wisdom"],
+    keywordsYoruba: ["awọn ala", "aabo", "awọn iye", "itọju ara ẹni", "ọgbọn"]
+  },
+  {
+    name: "Odi Irosun",
+    nameYoruba: "Odi Irosun",
+    subtitle: "The Odu of Healing Waters",
+    subtitleYoruba: "Odu ti Omi Iwosan",
+    element: "Healing Water",
+    elementYoruba: "Omi Iwosan",
+    energy: "Purification",
+    energyYoruba: "Ifọmọ",
+    message: "Healing waters wash away old wounds and purify your spirit. Allow emotional cleansing to occur naturally. What has been blocking your flow is now being cleared.",
+    messageYoruba: "Omi iwosan n wẹ awọn ọgbẹ atijọ kuro ti n sọ ẹmi rẹ di mimọ. Jẹ ki ifọmọ ẹdun ṣẹlẹ ni adayeba. Ohun ti o ti n dina ṣiṣan rẹ ni a n ko kuro bayi.",
+    guidance: [
+      "Allow emotional healing to flow",
+      "Release what no longer serves you",
+      "Embrace spiritual purification"
+    ],
+    guidanceYoruba: [
+      "Jẹ ki iwosan ẹdun ṣan",
+      "Tu ohun ti ko ṣe iranwọ fun ọ mọ silẹ",
+      "Gba ifọmọ ẹmi",
+      ],
+    reflection: "What emotional wounds are ready to be healed in my life?",
+    reflectionYoruba: "Awọn ọgbẹ ẹdun wo ni o ti ṣetan lati san ninu igbesi aye mi?",
+    pattern: [[false, true, false, false], [true, true, false, true]],
+    description: "Odi Irosun represents the healing power of water, emotional purification, and the release of old traumas that block spiritual flow.",
+    descriptionYoruba: "Odi Irosun duro fun agbara iwosan ti omi, ifọmọ ẹdun, ati itusilẹ awọn ipalara atijọ ti o n dina ṣiṣan ẹmi.",
+    keywords: ["healing", "purification", "emotional release", "cleansing", "flow"],
+    keywordsYoruba: ["iwosan", "ifọmọ", "itusilẹ ẹdun", "iwẹ", "ṣiṣan"]
   }
 ];

@@ -116,33 +116,39 @@ async function initializeOduDatabase() {
 }
 
 function generateOduForDate(date: string): number {
-  // Generate a deterministic Odu ID based on the date
-  // This ensures the same date always gets the same Odu
+  // Generate a deterministic Odu ID based on the date for 365-day yearly cycle
+  // This ensures the same date always gets the same Odu throughout years
   const dateObj = new Date(date);
-  const dayOfWeek = dateObj.getDay(); // 0 = Sunday, 1 = Monday, etc.
   
-  // Map day of week to specific Odu IDs to ensure all 7 days have different readings
-  // Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6
-  const weeklyOduMapping = [
-    1,  // Sunday -> Eji Ogbe
-    2,  // Monday -> Oyeku Meji  
-    3,  // Tuesday -> Iwori Meji
-    4,  // Wednesday -> Odi Meji
-    5,  // Thursday -> Irosun Meji
-    6,  // Friday -> Owonrin Meji
-    7   // Saturday -> Obara Meji
-  ];
+  // Get day of year (1-365/366)
+  const startOfYear = new Date(dateObj.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((dateObj.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24)) + 1;
   
-  // Get base Odu for the day of week
-  const baseOduId = weeklyOduMapping[dayOfWeek];
+  // For traditional Ifa system with 256 Odu, we need to cycle through them
+  // We'll use a combination of day of year and additional factors for distribution
   
-  // Add weekly variation to prevent same Odu every week for same day
-  const weekNumber = Math.floor(dateObj.getTime() / (1000 * 60 * 60 * 24 * 7));
-  const variation = weekNumber % 2; // Alternate between two sets of Odu every other week
+  // Primary cycle: Distribute across 256 Odu
+  let oduIndex = (dayOfYear - 1) % 256;
   
-  // Calculate final Odu ID with variation
-  const finalOduId = baseOduId + (variation * 7);
+  // Add year variation to prevent same Odu on same calendar date every year
+  const yearVariation = dateObj.getFullYear() % 16; // 16-year cycle for additional variation
   
-  // Ensure we don't exceed available Odu count (wrap around if needed)
-  return ((finalOduId - 1) % oduDatabase.length) + 1;
+  // Combine day of year with year variation
+  oduIndex = (oduIndex + yearVariation) % 256;
+  
+  // For leap years, add slight adjustment for days after Feb 28
+  if (isLeapYear(dateObj.getFullYear()) && dayOfYear > 59) { // After Feb 28
+    oduIndex = (oduIndex + 1) % 256;
+  }
+  
+  // Map to our available Odu (currently 16, will expand to 256)
+  // For now, cycle through available Odu until we have all 256
+  const availableOduCount = oduDatabase.length;
+  const finalOduIndex = oduIndex % availableOduCount;
+  
+  return finalOduIndex + 1; // Odu IDs start from 1
+}
+
+function isLeapYear(year: number): boolean {
+  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }

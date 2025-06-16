@@ -24,7 +24,13 @@ export function getNextDay(date: Date): Date {
 }
 
 export function canNavigateToFuture(date: Date): boolean {
-  return !isFuture(addDays(date, 1));
+  // Allow navigation to any date in the current year for yearly Odu readings
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const dateYear = date.getFullYear();
+  
+  // Allow navigation within current year and previous years
+  return dateYear <= currentYear;
 }
 
 export function parseDate(dateString: string): Date {
