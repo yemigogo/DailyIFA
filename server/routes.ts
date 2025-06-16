@@ -113,6 +113,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/odus/search", async (req, res) => {
+    try {
+      const { problem } = req.query;
+      if (!problem || typeof problem !== 'string') {
+        return res.status(400).json({ message: "Problem parameter is required" });
+      }
+      const odus = await storage.searchOduByProblem(problem);
+      res.json(odus);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to search Odus" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

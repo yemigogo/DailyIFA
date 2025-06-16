@@ -13,6 +13,9 @@ export interface IStorage {
   createDailyReading(reading: InsertDailyReading): Promise<DailyReading>;
   getReadingHistory(limit?: number): Promise<DailyReadingWithOdu[]>;
   saveDailyReading(date: string): Promise<DailyReading | undefined>;
+  
+  // Problem search methods
+  searchOduByProblem(problem: string): Promise<Odu[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -79,6 +82,21 @@ export class DatabaseStorage implements IStorage {
       .where(eq(dailyReadings.date, date))
       .returning();
     return reading || undefined;
+  }
+
+  async searchOduByProblem(problem: string): Promise<Odu[]> {
+    // Search for Odu that contain the problem in either English or Yoruba problems arrays
+    const allOdus = await this.getAllOdus();
+    
+    return allOdus.filter(odu => {
+      const englishProblems = odu.problems || [];
+      const yorubaProblems = odu.problemsYoruba || [];
+      
+      const problemLower = problem.toLowerCase();
+      
+      return englishProblems.some(p => p.toLowerCase().includes(problemLower)) ||
+             yorubaProblems.some(p => p.toLowerCase().includes(problemLower));
+    });
   }
 }
 
