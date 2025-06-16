@@ -36,6 +36,21 @@ export const dailyReadings = pgTable("daily_readings", {
   saved: boolean("saved").default(false),
 });
 
+export const dailyPrayers = pgTable("daily_prayers", {
+  id: serial("id").primaryKey(),
+  dayOfWeek: integer("day_of_week").notNull().unique(), // 0 = Sunday, 1 = Monday, etc.
+  dayName: text("day_name").notNull(),
+  dayNameYoruba: text("day_name_yoruba").notNull(),
+  title: text("title").notNull(),
+  titleYoruba: text("title_yoruba").notNull(),
+  prayer: text("prayer").notNull(),
+  prayerYoruba: text("prayer_yoruba").notNull(),
+  meaning: text("meaning").notNull(),
+  meaningYoruba: text("meaning_yoruba").notNull(),
+  blessing: text("blessing").notNull(),
+  blessingYoruba: text("blessing_yoruba").notNull(),
+});
+
 export const insertOduSchema = createInsertSchema(odus).omit({
   id: true,
 });
@@ -44,10 +59,16 @@ export const insertDailyReadingSchema = createInsertSchema(dailyReadings).omit({
   id: true,
 });
 
+export const insertDailyPrayerSchema = createInsertSchema(dailyPrayers).omit({
+  id: true,
+});
+
 export type InsertOdu = z.infer<typeof insertOduSchema>;
 export type Odu = typeof odus.$inferSelect;
 export type InsertDailyReading = z.infer<typeof insertDailyReadingSchema>;
 export type DailyReading = typeof dailyReadings.$inferSelect;
+export type InsertDailyPrayer = z.infer<typeof insertDailyPrayerSchema>;
+export type DailyPrayer = typeof dailyPrayers.$inferSelect;
 
 // Combined type for daily reading with Odu data
 export type DailyReadingWithOdu = DailyReading & {
