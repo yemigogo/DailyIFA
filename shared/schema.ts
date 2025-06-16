@@ -23,6 +23,8 @@ export const odus = pgTable("odus", {
   descriptionYoruba: text("description_yoruba").notNull(),
   keywords: jsonb("keywords").$type<string[]>().notNull(),
   keywordsYoruba: jsonb("keywords_yoruba").$type<string[]>().notNull(),
+  problems: jsonb("problems").$type<string[]>().default([]),
+  problemsYoruba: jsonb("problems_yoruba").$type<string[]>().default([]),
 });
 
 export const dailyReadings = pgTable("daily_readings", {

@@ -1,5 +1,14 @@
 import { InsertOdu } from "@shared/schema";
 
+// Helper function to add problems to each Odu based on traditional wisdom
+function addProblemsToOdu(baseOdu: any, problems: string[], problemsYoruba: string[]): InsertOdu {
+  return {
+    ...baseOdu,
+    problems,
+    problemsYoruba
+  };
+}
+
 export const oduDatabase: InsertOdu[] = [
   {
     name: "Ogbe Meji",
@@ -28,7 +37,9 @@ export const oduDatabase: InsertOdu[] = [
     description: "Ogbe Meji represents divine light, clarity, and truth. It is the first of the major Odu and speaks to new beginnings, spiritual illumination, and the power of clear vision.",
     descriptionYoruba: "Ogbe Meji n duro fun imole Ọlọrun, aseyori, ati otitọ. O jẹ akọkọ ninu awọn Odu pataki o si sọrọ si awọn ibẹrẹ tuntun, imole ẹmi, ati agbara ti iran kedere.",
     keywords: ["clarity", "light", "truth", "new beginnings", "wisdom"],
-    keywordsYoruba: ["aseyori", "imole", "otitọ", "awọn ibẹrẹ tuntun", "ọgbọn"]
+    keywordsYoruba: ["aseyori", "imole", "otitọ", "awọn ibẹrẹ tuntun", "ọgbọn"],
+    problems: ["confusion", "lack of direction", "spiritual darkness", "uncertainty", "blocked vision"],
+    problemsYoruba: ["iporuru", "aidanimọ ọna", "okunkun ẹmi", "aidaniloju", "iran dina"]
   },
   {
     name: "Oyeku Meji",
