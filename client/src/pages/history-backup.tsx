@@ -1,0 +1,1 @@
+// Backup of original history page - now replaced with Ifá timeline
