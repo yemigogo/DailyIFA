@@ -6,6 +6,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
   t: (englishText: string | string[], yorubaText: string | string[]) => string | string[];
+  ts: (englishText: string, yorubaText: string) => string; // For strings only
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -24,8 +25,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     return language === "yoruba" ? yorubaText : englishText;
   };
 
+  const ts = (englishText: string, yorubaText: string): string => {
+    return language === "yoruba" ? yorubaText : englishText;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, ts }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -15,7 +15,7 @@ interface DailyReadingProps {
 export default function DailyReading({ reading }: DailyReadingProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { t } = useLanguage();
+  const { t, ts } = useLanguage();
 
   const saveReadingMutation = useMutation({
     mutationFn: async () => {
@@ -23,15 +23,15 @@ export default function DailyReading({ reading }: DailyReadingProps) {
     },
     onSuccess: () => {
       toast({
-        title: "Reading Saved",
-        description: "This reading has been saved to your collection.",
+        title: ts("Reading Saved", "Kika Ti Pamọ"),
+        description: ts("This reading has been saved to your collection.", "A ti fi kika yii pamọ si akojọ rẹ."),
       });
       queryClient.invalidateQueries({ queryKey: ["/api/readings"] });
     },
     onError: () => {
       toast({
-        title: "Error",
-        description: "Failed to save reading. Please try again.",
+        title: ts("Error", "Aṣiṣe"),
+        description: ts("Failed to save reading. Please try again.", "Ko le pamọ kika. Jọwọ gbiyanju lẹẹkansi."),
         variant: "destructive",
       });
     },
@@ -54,14 +54,14 @@ export default function DailyReading({ reading }: DailyReadingProps) {
           `${reading.odu.name}: ${reading.odu.message}`
         );
         toast({
-          title: "Copied to Clipboard",
-          description: "Reading has been copied to your clipboard.",
+          title: ts("Copied to Clipboard", "Ti daakọ si Clipboard"),
+          description: ts("Reading has been copied to your clipboard.", "A ti daakọ kika si clipboard rẹ."),
         });
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to share reading.",
+        title: ts("Error", "Aṣiṣe"),
+        description: ts("Failed to share reading.", "Ko le pin kika."),
         variant: "destructive",
       });
     }
