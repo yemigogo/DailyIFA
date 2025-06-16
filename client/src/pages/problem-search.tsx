@@ -16,6 +16,7 @@ export default function ProblemSearch() {
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ['/api/odus/search', searchTerm],
+    queryFn: () => fetch(`/api/odus/search?problem=${encodeURIComponent(searchTerm)}`).then(res => res.json()),
     enabled: searchTerm.length > 2,
   });
 
