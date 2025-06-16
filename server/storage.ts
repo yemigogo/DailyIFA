@@ -1,4 +1,6 @@
 import { odus, dailyReadings, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu } from "@shared/schema";
+import { db } from "./db";
+import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
   // Odu methods
@@ -13,75 +15,71 @@ export interface IStorage {
   saveDailyReading(date: string): Promise<DailyReading | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private odus: Map<number, Odu>;
-  private dailyReadings: Map<string, DailyReading>;
-  private currentOduId: number;
-  private currentReadingId: number;
-
-  constructor() {
-    this.odus = new Map();
-    this.dailyReadings = new Map();
-    this.currentOduId = 1;
-    this.currentReadingId = 1;
-  }
-
+export class DatabaseStorage implements IStorage {
   async getAllOdus(): Promise<Odu[]> {
-    return Array.from(this.odus.values());
+    return await db.select().from(odus);
   }
 
   async getOdu(id: number): Promise<Odu | undefined> {
-    return this.odus.get(id);
+    const [odu] = await db.select().from(odus).where(eq(odus.id, id));
+    return odu || undefined;
   }
 
   async createOdu(insertOdu: InsertOdu): Promise<Odu> {
-    const id = this.currentOduId++;
-    const odu: Odu = { ...insertOdu, id };
-    this.odus.set(id, odu);
+    const [odu] = await db
+      .insert(odus)
+      .values(insertOdu)
+      .returning();
     return odu;
   }
 
   async getDailyReading(date: string): Promise<DailyReadingWithOdu | undefined> {
-    const reading = this.dailyReadings.get(date);
-    if (!reading) return undefined;
+    const [result] = await db
+      .select()
+      .from(dailyReadings)
+      .leftJoin(odus, eq(dailyReadings.oduId, odus.id))
+      .where(eq(dailyReadings.date, date));
 
-    const odu = this.odus.get(reading.oduId);
-    if (!odu) return undefined;
+    if (!result || !result.odus) return undefined;
 
-    return { ...reading, odu };
+    return {
+      ...result.daily_readings,
+      odu: result.odus
+    };
   }
 
   async createDailyReading(insertReading: InsertDailyReading): Promise<DailyReading> {
-    const id = this.currentReadingId++;
-    const reading: DailyReading = { ...insertReading, id };
-    this.dailyReadings.set(reading.date, reading);
+    const [reading] = await db
+      .insert(dailyReadings)
+      .values(insertReading)
+      .returning();
     return reading;
   }
 
   async getReadingHistory(limit = 10): Promise<DailyReadingWithOdu[]> {
-    const readings = Array.from(this.dailyReadings.values())
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, limit);
+    const results = await db
+      .select()
+      .from(dailyReadings)
+      .leftJoin(odus, eq(dailyReadings.oduId, odus.id))
+      .orderBy(desc(dailyReadings.date))
+      .limit(limit);
 
-    const readingsWithOdu: DailyReadingWithOdu[] = [];
-    for (const reading of readings) {
-      const odu = this.odus.get(reading.oduId);
-      if (odu) {
-        readingsWithOdu.push({ ...reading, odu });
-      }
-    }
-
-    return readingsWithOdu;
+    return results
+      .filter(result => result.odus)
+      .map(result => ({
+        ...result.daily_readings,
+        odu: result.odus!
+      }));
   }
 
   async saveDailyReading(date: string): Promise<DailyReading | undefined> {
-    const reading = this.dailyReadings.get(date);
-    if (!reading) return undefined;
-
-    const updatedReading = { ...reading, saved: true };
-    this.dailyReadings.set(date, updatedReading);
-    return updatedReading;
+    const [reading] = await db
+      .update(dailyReadings)
+      .set({ saved: true })
+      .where(eq(dailyReadings.date, date))
+      .returning();
+    return reading || undefined;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
