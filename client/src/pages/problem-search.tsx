@@ -238,6 +238,19 @@ export default function ProblemSearch() {
                         </p>
                       </div>
 
+                      <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/40 dark:to-orange-900/40 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+                        <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
+                          <span className="text-lg">🙏</span>
+                          {ts("Spiritual Prayer (Àdúrà):", "Àdúrà Ẹ̀mí:")}
+                        </h4>
+                        <p className="text-amber-800 dark:text-amber-200 text-sm leading-relaxed italic">
+                          "{language === "english" ? odu.prayer : odu.prayerYoruba}"
+                        </p>
+                        <div className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+                          {ts("Recite this prayer with sincere intention for healing", "Kigbe àdúrà yìí pẹ̀lú ète òtítọ́ fún ìwòsàn")}
+                        </div>
+                      </div>
+
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
                           <span className="font-medium text-amber-900 dark:text-amber-100">
