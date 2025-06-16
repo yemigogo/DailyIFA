@@ -280,8 +280,87 @@ export default function IfaTimeline() {
           </div>
         </div>
 
+        {/* Reflection Section */}
+        <div className="py-8 border-t border-amber-200 dark:border-amber-800">
+          <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 p-8 rounded-lg">
+            <h3 className="text-2xl font-bold text-amber-900 dark:text-amber-100 mb-6 text-center">
+              {ts("Sacred Reflection", "Ìrònú Mímọ́")}
+            </h3>
+            
+            <div className="max-w-4xl mx-auto space-y-6">
+              <p className="text-amber-800 dark:text-amber-200 text-center font-medium mb-8">
+                {ts(
+                  "Contemplate these questions to deepen your understanding of Òrúnmìlà's eternal wisdom and your connection to Yoruba heritage:",
+                  "Rò àwọn ìbéèrè wọ̀nyí láti jín sí òye ọgbọ́n láéláé Òrúnmìlà àti ìdàpọ̀ rẹ sí ọ̀rọ̀ Yorùbá:"
+                )}
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Column 1 */}
+                <div className="space-y-4">
+                  <div className="bg-white dark:bg-amber-950/50 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                      {ts("Personal Connection", "Ìdàpọ̀ Ti Ara Ẹni")}
+                    </h4>
+                    <ul className="text-sm text-amber-800 dark:text-amber-200 space-y-2">
+                      <li>• {ts("How does Òrúnmìlà's role as Elérìípín (Witness to Destiny) speak to your understanding of personal destiny?", "Báwo ni ipò Òrúnmìlà gẹ́gẹ́ bí Elérìípín ṣe ń sọ̀rọ̀ sí òye rẹ nípa orí ti ara ẹni?")}</li>
+                      <li>• {ts("In what ways can you honor the wisdom of your Yoruba ancestors in your daily life?", "Báwo ni o ṣe lè bu ọlá fún ọgbọ́n àwọn baba ńlá Yorùbá rẹ ní ìgbé ayé ojoojúmọ́?")}</li>
+                      <li>• {ts("What aspects of Ifá philosophy resonate most deeply with your spiritual journey?", "Àwọn ẹ̀yà wo ni ìmọ̀-ọgbọ́n Ifá tó bá ìrìn àjò ẹ̀mí rẹ mu jùlọ?")}</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white dark:bg-amber-950/50 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                      {ts("Cultural Preservation", "Ìtọ́jú Àṣà")}
+                    </h4>
+                    <ul className="text-sm text-amber-800 dark:text-amber-200 space-y-2">
+                      <li>• {ts("How can you contribute to preserving Yoruba tradition for future generations?", "Báwo ni o ṣe lè ṣe ìdásí láti tọ́jú àṣà Yorùbá fún àwọn ìran tó ń bọ̀?")}</li>
+                      <li>• {ts("What role does language play in maintaining spiritual and cultural identity?", "Kí ni ipò tí èdè ń kó nínú títọ́jú ìdánimọ̀ ẹ̀mí àti àṣà?")}</li>
+                      <li>• {ts("How do the sacred Odù patterns connect you to ancient Yoruba knowledge?", "Báwo ni àwọn àpẹrẹ Odù mímọ́ ṣe ń so ọ́ pọ̀ mọ́ ìmọ̀ Yorùbá àtijọ́?")}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Column 2 */}
+                <div className="space-y-4">
+                  <div className="bg-white dark:bg-amber-950/50 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                      {ts("Spiritual Growth", "Ìdàgbàsókè Ẹ̀mí")}
+                    </h4>
+                    <ul className="text-sm text-amber-800 dark:text-amber-200 space-y-2">
+                      <li>• {ts("How has studying this timeline deepened your appreciation for Òrúnmìlà's wisdom?", "Báwo ni kíkẹ́kọ̀ọ́ àtòkọ́tàn yìí ṣe mú òye rẹ jinlẹ̀ sí ọgbọ́n Òrúnmìlà?")}</li>
+                      <li>• {ts("What lessons from the era of colonial resistance apply to modern challenges?", "Àwọn ẹ̀kọ́ wo ni láti àkókò ìtakòrọ̀ ìṣàkóso àjèjì tó ń bá àwọn nìjà ìgbàlódé mu?")}</li>
+                      <li>• {ts("How can Ifá principles guide ethical decision-making in contemporary life?", "Báwo ni àwọn ìlànà Ifá ṣe lè darí ìpinnu ìhùwàsí ní ìgbé ayé òde òní?")}</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white dark:bg-amber-950/50 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                      {ts("Global Perspective", "Ìwòye Àgbáyé")}
+                    </h4>
+                    <ul className="text-sm text-amber-800 dark:text-amber-200 space-y-2">
+                      <li>• {ts("How does Yoruba spirituality contribute to global wisdom traditions?", "Báwo ni ẹ̀mí Yorùbá ṣe ń ṣe ìdásí sí àwọn àṣà ọgbọ́n àgbáyé?")}</li>
+                      <li>• {ts("What can the world learn from Òrúnmìlà's teachings about harmony and balance?", "Kí ni àgbáyé lè kọ́ láti ẹ̀kọ́ Òrúnmìlà nípa ìwàfín àti ìdọ̀gbà?")}</li>
+                      <li>• {ts("How does understanding this history change your view of African civilizations?", "Báwo ni òye ìtàn yìí ṣe yí èrò rẹ pa nípa àwọn ọlaju Áfíríkà?")}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center mt-8 p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
+                <p className="text-amber-900 dark:text-amber-100 font-medium italic">
+                  {ts(
+                    "\"Ìwà l'ẹṣin\" - Character is the essence of religion. Let Òrúnmìlà's wisdom guide your path to wisdom and righteousness.",
+                    "\"Ìwà l'ẹṣin\" - Ìwà ni ẹ̀ṣin. Jẹ́ kí ọgbọ́n Òrúnmìlà tọ́ ọ sí ọnà ọgbọ́n àti òdodo."
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Footer */}
-        <div className="text-center py-8 border-t border-amber-200 dark:border-amber-800 space-y-4">
+        <div className="text-center py-6 space-y-4">
           <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 p-6 rounded-lg">
             <Scroll className="h-8 w-8 mx-auto mb-3 text-amber-600" />
             <h3 className="font-bold text-amber-900 dark:text-amber-100 mb-2">
