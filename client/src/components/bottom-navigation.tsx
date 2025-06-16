@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Home, Clock, Book, Settings } from "lucide-react";
+import { Home, Clock, Book, Search } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,7 +11,7 @@ export default function BottomNavigation() {
     { id: "today", label: ts("Today", "Òní"), icon: Home, path: "/" },
     { id: "history", label: ts("History", "Ìtàn"), icon: Clock, path: "/history" },
     { id: "learn", label: ts("Learn", "Kọ́"), icon: Book, path: "/learn" },
-    { id: "settings", label: ts("Settings", "Ètò"), icon: Settings, path: "/settings" },
+    { id: "problems", label: ts("Problems", "Iṣoro"), icon: Search, path: "/problems" },
   ];
 
   return (
