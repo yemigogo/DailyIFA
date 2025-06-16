@@ -5,13 +5,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function BottomNavigation() {
   const [location, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { ts } = useLanguage();
 
   const navigation = [
-    { id: "today", label: t("Today", "Òní"), icon: Home, path: "/" },
-    { id: "history", label: t("History", "Ìtàn"), icon: Clock, path: "/history" },
-    { id: "learn", label: t("Learn", "Kọ́"), icon: Book, path: "/learn" },
-    { id: "settings", label: t("Settings", "Ètò"), icon: Settings, path: "/settings" },
+    { id: "today", label: ts("Today", "Òní"), icon: Home, path: "/" },
+    { id: "history", label: ts("History", "Ìtàn"), icon: Clock, path: "/history" },
+    { id: "learn", label: ts("Learn", "Kọ́"), icon: Book, path: "/learn" },
+    { id: "settings", label: ts("Settings", "Ètò"), icon: Settings, path: "/settings" },
   ];
 
   return (
