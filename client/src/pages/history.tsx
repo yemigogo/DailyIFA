@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Calendar, Star, Scroll, Globe, Crown, TreePine, Users } from "lucide-react";
+import OduVisualization from "@/components/odu-visualization";
 
 interface IfaTimelineEvent {
   id: string;
@@ -18,6 +19,7 @@ interface IfaTimelineEvent {
   significanceYoruba: string;
   icon: any;
   category: "origins" | "revelation" | "expansion" | "preservation";
+  sacredOdu?: string; // Add Odu patterns for revelation events
 }
 
 const timelineEvents: IfaTimelineEvent[] = [
@@ -34,7 +36,8 @@ const timelineEvents: IfaTimelineEvent[] = [
     significance: "This divine appointment establishes the foundation of Yoruba spiritual tradition and Orunmila's eternal role as the keeper of wisdom and destiny for all Yoruba people.",
     significanceYoruba: "Ìyàn ọlọ́run yìí gbé ìpìlẹ̀ àṣà ẹ̀mí Yorùbá kalẹ̀ àti ipò Òrúnmìlà láéláé gẹ́gẹ́ bí aṣọ́ ọgbọ́n àti orí fún gbogbo ọmọ Yorùbá.",
     icon: Crown,
-    category: "origins"
+    category: "origins",
+    sacredOdu: "Eji Ogbe"
   },
   {
     id: "2",
@@ -64,7 +67,8 @@ const timelineEvents: IfaTimelineEvent[] = [
     significance: "This revelation creates the sacred foundation of Yoruba spiritual identity and establishes Orunmila as the eternal teacher and guide of the Yoruba nation.",
     significanceYoruba: "Ìfihàn yìí ṣẹ̀dá ìpìlẹ̀ mímọ́ ìdánimọ̀ ẹ̀mí Yorùbá ó sì fi Òrúnmìlà múlẹ̀ gẹ́gẹ́ bí olùkọ́ àti amọ̀nà láéláé ti orílẹ̀-èdè Yorùbá.",
     icon: Star,
-    category: "revelation"
+    category: "revelation",
+    sacredOdu: "Iwori Meji"
   },
   {
     id: "4",
@@ -79,7 +83,8 @@ const timelineEvents: IfaTimelineEvent[] = [
     significance: "This completes the sacred foundation of Yoruba intellectual and spiritual tradition, making Orunmila the supreme keeper of all Yoruba knowledge and wisdom.",
     significanceYoruba: "Èyí parí ìpìlẹ̀ mímọ́ àṣà ọgbọ́n àti ẹ̀mí Yorùbá, tí ó ṣe Òrúnmìlà di aṣọ́ àgbà gbogbo ìmọ̀ àti ọgbọ́n Yorùbá.",
     icon: Scroll,
-    category: "revelation"
+    category: "revelation",
+    sacredOdu: "Obara Meji"
   },
   {
     id: "5",
@@ -214,7 +219,7 @@ export default function IfaTimeline() {
                   <Card className="ml-16 bg-white dark:bg-amber-950 shadow-lg hover:shadow-xl transition-shadow">
                     <CardHeader>
                       <div className="flex items-start justify-between">
-                        <div className="space-y-2">
+                        <div className="space-y-2 flex-1">
                           <div className="flex items-center gap-2">
                             <Badge className={getCategoryColor(event.category)}>
                               {getCategoryLabel(event.category)}
@@ -229,6 +234,21 @@ export default function IfaTimeline() {
                             {language === "english" ? event.era : event.eraYoruba} • {language === "english" ? event.period : event.periodYoruba}
                           </CardDescription>
                         </div>
+                        
+                        {/* Sacred Odu Pattern Display */}
+                        {event.sacredOdu && (
+                          <div className="ml-4 flex flex-col items-center">
+                            <OduVisualization 
+                              oduName={event.sacredOdu}
+                              pattern={[]}
+                              size={64}
+                              className="mb-2"
+                            />
+                            <div className="text-xs text-amber-600 dark:text-amber-400 text-center">
+                              {ts("Sacred Odù", "Odù Mímọ́")}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </CardHeader>
                     
