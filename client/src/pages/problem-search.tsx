@@ -158,21 +158,52 @@ export default function ProblemSearch() {
                   <Card key={odu.id} className="bg-white dark:bg-amber-950">
                     <CardHeader>
                       <div className="flex items-start justify-between">
-                        <div className="space-y-1">
-                          <CardTitle className="text-amber-900 dark:text-amber-100">
-                            {language === "english" ? odu.name : odu.nameYoruba}
-                          </CardTitle>
+                        <div className="space-y-1 flex-1">
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="text-amber-900 dark:text-amber-100">
+                              {language === "english" ? odu.name : odu.nameYoruba}
+                            </CardTitle>
+                            <Badge variant="secondary" className="text-xs">
+                              {language === "english" ? "English" : "Yorùbá"}
+                            </Badge>
+                          </div>
                           <CardDescription className="text-amber-700 dark:text-amber-300">
                             {language === "english" ? odu.subtitle : odu.subtitleYoruba}
                           </CardDescription>
+                          {language !== "english" && (
+                            <p className="text-xs text-amber-600 dark:text-amber-400">
+                              {odu.name}
+                            </p>
+                          )}
+                          {language === "english" && (
+                            <p className="text-xs text-amber-600 dark:text-amber-400">
+                              {odu.nameYoruba}
+                            </p>
+                          )}
                         </div>
                         <OduPattern pattern={odu.pattern} className="w-8 h-8" />
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-amber-800 dark:text-amber-200 text-sm">
-                        {language === "english" ? odu.description : odu.descriptionYoruba}
-                      </p>
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            {ts("What this Odu represents:", "Ohun ti Odu yii duro fun:")}
+                          </h4>
+                          <p className="text-amber-800 dark:text-amber-200 text-sm">
+                            {language === "english" ? odu.description : odu.descriptionYoruba}
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            {ts("Spiritual Message:", "Ifiranṣẹ Ẹmi:")}
+                          </h4>
+                          <p className="text-amber-800 dark:text-amber-200 text-sm italic border-l-4 border-amber-300 pl-3">
+                            {language === "english" ? odu.message : odu.messageYoruba}
+                          </p>
+                        </div>
+                      </div>
                       
                       <div className="space-y-2">
                         <h4 className="font-medium text-amber-900 dark:text-amber-100">
@@ -189,13 +220,41 @@ export default function ProblemSearch() {
 
                       <div className="space-y-2">
                         <h4 className="font-medium text-amber-900 dark:text-amber-100">
-                          {ts("Guidance:", "Itọsọna:")}
+                          {ts("Guidance for healing:", "Itọsọna fun iwosan:")}
                         </h4>
                         <ul className="list-disc list-inside space-y-1 text-sm text-amber-800 dark:text-amber-200">
                           {(language === "english" ? odu.guidance : odu.guidanceYoruba).map((guide, index) => (
                             <li key={index}>{guide}</li>
                           ))}
                         </ul>
+                      </div>
+
+                      <div className="bg-amber-50 dark:bg-amber-900/30 p-3 rounded-lg">
+                        <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
+                          {ts("Reflection question:", "Ibeere ìronu:")}
+                        </h4>
+                        <p className="text-amber-800 dark:text-amber-200 text-sm italic">
+                          {language === "english" ? odu.reflection : odu.reflectionYoruba}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="font-medium text-amber-900 dark:text-amber-100">
+                            {ts("Element:", "Eroja:")}
+                          </span>
+                          <span className="ml-2 text-amber-700 dark:text-amber-300">
+                            {language === "english" ? odu.element : odu.elementYoruba}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-amber-900 dark:text-amber-100">
+                            {ts("Energy:", "Agbara:")}
+                          </span>
+                          <span className="ml-2 text-amber-700 dark:text-amber-300">
+                            {language === "english" ? odu.energy : odu.energyYoruba}
+                          </span>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
