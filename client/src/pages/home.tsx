@@ -44,6 +44,10 @@ export default function Home() {
     setCurrentDate(new Date(date));
   };
 
+  const handleDateSelect = (date: Date) => {
+    setCurrentDate(date);
+  };
+
   const handleNewReading = () => {
     setCurrentDate(new Date());
     refetchReading();
@@ -82,6 +86,7 @@ export default function Home() {
           currentDate={currentDate}
           onPreviousDay={handlePreviousDay}
           onNextDay={handleNextDay}
+          onDateSelect={handleDateSelect}
         />
 
         {/* Daily Reading */}

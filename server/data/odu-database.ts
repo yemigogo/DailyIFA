@@ -581,5 +581,180 @@ export const oduDatabase: InsertOdu[] = [
     descriptionYoruba: "Odi Irosun duro fun agbara iwosan ti omi, ifọmọ ẹdun, ati itusilẹ awọn ipalara atijọ ti o n dina ṣiṣan ẹmi.",
     keywords: ["healing", "purification", "emotional release", "cleansing", "flow"],
     keywordsYoruba: ["iwosan", "ifọmọ", "itusilẹ ẹdun", "iwẹ", "ṣiṣan"]
+  },
+  // Extended Odu combinations for comprehensive 365-day coverage
+  {
+    name: "Irosun Owonrin",
+    nameYoruba: "Irosun Owonrin",
+    subtitle: "The Odu of Flowing Change",
+    subtitleYoruba: "Odu ti Ayipada Ṣiṣan",
+    element: "Moving Water",
+    elementYoruba: "Omi Gígbe",
+    energy: "Adaptation",
+    energyYoruba: "Bamọ",
+    message: "Like water flowing around obstacles, you find new paths forward. Change is your ally today. Embrace flexibility and allow life's currents to guide you toward unexpected opportunities.",
+    messageYoruba: "Bi omi ti n ṣan yi awọn idiwọ kọja, o ri awọn ọna tuntun siwaju. Ayipada jẹ ọrẹ rẹ loni. Gba irọrun ki o si jẹ ki awọn ṣiṣan aye tọ ọ si awọn aye ti a ko nireti.",
+    guidance: [
+      "Remain flexible in your approach to challenges",
+      "Look for alternative pathways when blocked",
+      "Trust in natural timing and flow"
+    ],
+    guidanceYoruba: [
+      "Jẹ onirọrun ninu ọna rẹ si awọn italaya",
+      "Wa awọn ọna miiran nigbati o ba ni idiwọ",
+      "Gbẹkẹle akoko adayeba ati ṣiṣan"
+    ],
+    reflection: "How can I flow more gracefully with life's changes today?",
+    reflectionYoruba: "Bawo ni mo ṣe le ṣan pẹlu awọn ayipada aye ni ọna oore loni?",
+    pattern: [[true, true, false, true], [false, false, true, true]],
+    description: "Irosun Owonrin teaches the art of graceful adaptation, flowing with change like water, and finding opportunity within transition.",
+    descriptionYoruba: "Irosun Owonrin kọ iṣẹ bamọ oore, ṣiṣan pẹlu ayipada bi omi, ati wiwa aye laarin iyipada.",
+    keywords: ["flow", "adaptation", "flexibility", "change", "opportunity"],
+    keywordsYoruba: ["ṣiṣan", "bamọ", "irọrun", "ayipada", "aye"]
+  },
+  {
+    name: "Owonrin Obara",
+    nameYoruba: "Owonrin Obara",
+    subtitle: "The Odu of Creative Fire",
+    subtitleYoruba: "Odu ti Ina Ẹda",
+    element: "Creative Fire",
+    elementYoruba: "Ina Ẹda",
+    energy: "Innovation",
+    energyYoruba: "Imotuntun",
+    message: "Creative fire burns within you today. Your unique vision has the power to transform situations and inspire others. Trust your innovative spirit and express your authentic self boldly.",
+    messageYoruba: "Ina ẹda n jo ninu rẹ loni. Iran pataki rẹ ni agbara lati yi awọn ipo pada ati lati ru awọn ẹlomiran soke. Gbẹkẹle ẹmi imotuntun rẹ ki o si ṣafihan ara rẹ gangan ni igboya.",
+    guidance: [
+      "Express your creativity without fear",
+      "Share your unique perspective with others",
+      "Take bold action on innovative ideas"
+    ],
+    guidanceYoruba: [
+      "Ṣafihan ẹda rẹ laisi ẹru",
+      "Pin iran pataki rẹ pẹlu awọn ẹlomiran",
+      "Ṣe igbese igboya lori awọn imọran imotuntun"
+    ],
+    reflection: "What creative vision is seeking expression through me today?",
+    reflectionYoruba: "Iru iran ẹda wo ni o n wa ifihan nipasẹ mi loni?",
+    pattern: [[false, false, true, true], [false, true, false, false]],
+    description: "Owonrin Obara ignites the creative fire within, encouraging bold self-expression and innovative solutions to life's challenges.",
+    descriptionYoruba: "Owonrin Obara tan ina ẹda ninu, iwari ifihan ara ẹni igboya ati awọn ojutu imotuntun si awọn italaya aye.",
+    keywords: ["creativity", "innovation", "self-expression", "boldness", "vision"],
+    keywordsYoruba: ["ẹda", "imotuntun", "ifihan ara ẹni", "igboya", "iran"]
+  },
+  {
+    name: "Obara Okanran",
+    nameYoruba: "Obara Okanran",
+    subtitle: "The Odu of Inner Strength",
+    subtitleYoruba: "Odu ti Okun Inu",
+    element: "Iron",
+    elementYoruba: "Irin",
+    energy: "Fortitude",
+    energyYoruba: "Okun",
+    message: "Inner strength is your greatest asset today. Like iron forged in fire, you have been strengthened by past challenges. Stand firm in your convictions and trust in your resilience.",
+    messageYoruba: "Okun inu ni ohun ini ti o tobi julọ loni. Bi irin ti a rọ ninu ina, awọn italaya atijọ ti mu ọ le. Duro ṣinṣin ninu awọn igbagbọ rẹ ki o si gbẹkẹle agbara atunpadabọ rẹ.",
+    guidance: [
+      "Draw upon your inner reserves of strength",
+      "Stand firm in your values and beliefs",
+      "Trust in your ability to overcome obstacles"
+    ],
+    guidanceYoruba: [
+      "Fa lati awọn ipamọ okun inu rẹ",
+      "Duro ṣinṣin ninu awọn iye ati igbagbọ rẹ",
+      "Gbẹkẹle agbara rẹ lati bori awọn idiwọ"
+    ],
+    reflection: "How can I better access and trust my inner strength today?",
+    reflectionYoruba: "Bawo ni mo ṣe le wọle daradara si okun inu mi ki n si gbẹkẹle loni?",
+    pattern: [[false, true, false, false], [true, false, false, false]],
+    description: "Obara Okanran reveals the unbreakable strength that lies within, forged through experience and tempered by wisdom.",
+    descriptionYoruba: "Obara Okanran ṣafihan okun ti ko le fọ ti o wa ninu, ti a rọ nipasẹ iriri ti a si fi ọgbọn ṣe.",
+    keywords: ["inner strength", "resilience", "fortitude", "determination", "endurance"],
+    keywordsYoruba: ["okun inu", "agbara atunpadabọ", "okun", "ipinnu", "ifarada"]
+  },
+  {
+    name: "Okanran Ogunda",
+    nameYoruba: "Okanran Ogunda",
+    subtitle: "The Odu of Warrior's Wisdom",
+    subtitleYoruba: "Odu ti Ọgbọn Jagunjagun",
+    element: "Steel",
+    elementYoruba: "Irin Líle",
+    energy: "Strategic Power",
+    energyYoruba: "Agbara Eto",
+    message: "Warrior's wisdom guides your actions today. True strength lies not in conflict but in strategic thinking and measured response. Fight only battles worth winning, and choose your ground wisely.",
+    messageYoruba: "Ọgbọn jagunjagun n tọ awọn iṣe rẹ loni. Okun gangan ko wa ninu ija ṣugbọn ninu ironu eto ati idahun ti a wọn. Ja awọn ija ti o yẹ lati ṣẹgun nikan, ki o si yan ilẹ rẹ ni ọgbọn.",
+    guidance: [
+      "Think strategically before taking action",
+      "Choose your battles wisely",
+      "Use wisdom rather than force to solve problems"
+    ],
+    guidanceYoruba: [
+      "Ronu ni eto ṣaaju ṣiṣe",
+      "Yan awọn ija rẹ ni ọgbọn",
+      "Lo ọgbọn dipo agbara lati yanju awọn iṣoro"
+    ],
+    reflection: "What battles in my life are truly worth fighting?",
+    reflectionYoruba: "Awọn ija wo ninu igbesi aye mi ni o yẹ lati ja gangan?",
+    pattern: [[true, false, false, false], [true, true, false, false]],
+    description: "Okanran Ogunda embodies the wisdom of the spiritual warrior, teaching strategic action and the power of focused intent.",
+    descriptionYoruba: "Okanran Ogunda ṣe akawe ọgbọn jagunjagun ẹmi, kiko iṣe eto ati agbara ero ti o dojukọ.",
+    keywords: ["strategy", "wisdom", "warrior spirit", "focus", "calculated action"],
+    keywordsYoruba: ["eto", "ọgbọn", "ẹmi jagunjagun", "idojukọ", "iṣe iṣiro"]
+  },
+  {
+    name: "Ogunda Osa",
+    nameYoruba: "Ogunda Osa",
+    subtitle: "The Odu of Divine Victory",
+    subtitleYoruba: "Odu ti Iṣẹgun Ọlọrun",
+    element: "Lightning",
+    elementYoruba: "Mọnamọna",
+    energy: "Triumph",
+    energyYoruba: "Iṣẹgun",
+    message: "Divine victory is within your reach. The universe aligns to support your righteous endeavors. Stay true to your path and trust that justice and truth will prevail.",
+    messageYoruba: "Iṣẹgun Ọlọrun wa laarin ọwọ rẹ. Agbaiye ṣeto lati ṣe atilẹyin awọn iṣe ododo rẹ. Jẹ olootitọ si ọna rẹ ki o si gbẹkẹle pe idajọ ati otitọ yoo ṣẹgun.",
+    guidance: [
+      "Maintain integrity in all your actions",
+      "Trust in divine justice and timing",
+      "Celebrate your victories with humility"
+    ],
+    guidanceYoruba: [
+      "Ṣe iduroṣinṣin otitọ ninu gbogbo awọn iṣe rẹ",
+      "Gbẹkẹle idajọ Ọlọrun ati akoko",
+      "Ṣe ayẹyẹ awọn iṣẹgun rẹ pẹlu irẹlẹ"
+    ],
+    reflection: "How can I align my actions with divine will and justice?",
+    reflectionYoruba: "Bawo ni mo ṣe le ṣe atunto awọn iṣe mi pẹlu ife Ọlọrun ati idajọ?",
+    pattern: [[true, true, false, false], [false, false, false, true]],
+    description: "Ogunda Osa represents divine triumph over adversity, the victory of truth over falsehood, and the power of righteous action.",
+    descriptionYoruba: "Ogunda Osa duro fun iṣẹgun Ọlọrun lori wahala, iṣẹgun otitọ lori eke, ati agbara iṣe ododo.",
+    keywords: ["victory", "divine justice", "triumph", "righteousness", "truth"],
+    keywordsYoruba: ["iṣẹgun", "idajọ Ọlọrun", "iṣẹgun", "ododo", "otitọ"]
+  },
+  {
+    name: "Osa Ika",
+    nameYoruba: "Osa Ika",
+    subtitle: "The Odu of Penetrating Insight",
+    subtitleYoruba: "Odu ti Oye Gunguno",
+    element: "Sharp Wind",
+    elementYoruba: "Afẹfẹ Dimu",
+    energy: "Clarity",
+    energyYoruba: "Aseyori",
+    message: "Penetrating insight cuts through illusion today. Your ability to see beyond surface appearances reveals hidden truths. Trust your discernment and act upon your deepest knowing.",
+    messageYoruba: "Oye gunguno ge illusioni kọja loni. Agbara rẹ lati ri ju awọn irisi oju wa ifihan awọn otitọ ti o pamọ. Gbẹkẹle iyasọtọ rẹ ki o si ṣe lori imọ ti o jinlẹ julọ.",
+    guidance: [
+      "Look beyond surface appearances",
+      "Trust your intuitive insights",
+      "Use discernment in all relationships"
+    ],
+    guidanceYoruba: [
+      "Wo ju awọn irisi oju lọ",
+      "Gbẹkẹle awọn oye inu rẹ",
+      "Lo iyasọtọ ninu gbogbo awọn ibatan"
+    ],
+    reflection: "What hidden truths is my intuition revealing to me today?",
+    reflectionYoruba: "Awọn otitọ ti o pamọ wo ni oye inu mi n fi han mi loni?",
+    pattern: [[false, false, false, true], [true, false, true, false]],
+    description: "Osa Ika provides the gift of penetrating insight, allowing one to see through deception and understand the deeper currents of truth.",
+    descriptionYoruba: "Osa Ika funni ni ẹbun oye gunguno, gbigba ẹnikan laaye lati ri nipasẹ ẹtan ati oye awọn ṣiṣan otitọ ti o jinlẹ.",
+    keywords: ["insight", "discernment", "truth", "perception", "clarity"],
+    keywordsYoruba: ["oye", "iyasọtọ", "otitọ", "iyalenu", "aseyori"]
   }
 ];

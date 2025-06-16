@@ -36,3 +36,16 @@ export function canNavigateToFuture(date: Date): boolean {
 export function parseDate(dateString: string): Date {
   return new Date(dateString);
 }
+
+export function getYearStart(year: number): Date {
+  return new Date(year, 0, 1);
+}
+
+export function getYearEnd(year: number): Date {
+  return new Date(year, 11, 31);
+}
+
+export function getDayOfYear(date: Date): number {
+  const startOfYear = new Date(date.getFullYear(), 0, 1);
+  return Math.floor((date.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+}
