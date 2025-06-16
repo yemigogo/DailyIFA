@@ -212,7 +212,7 @@ export default function ProblemSearch() {
                   </p>
                 </CardContent>
               </Card>
-            )}
+            ) : null}
           </div>
         )}
 
