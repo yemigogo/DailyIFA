@@ -16,6 +16,10 @@ export interface IStorage {
   
   // Problem search methods
   searchOduByProblem(problem: string): Promise<Odu[]>;
+  
+  // Daily prayer methods
+  getDailyPrayer(dayOfWeek: number): Promise<DailyPrayer | undefined>;
+  getAllDailyPrayers(): Promise<DailyPrayer[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -97,6 +101,15 @@ export class DatabaseStorage implements IStorage {
       return englishProblems.some(p => p.toLowerCase().includes(problemLower)) ||
              yorubaProblems.some(p => p.toLowerCase().includes(problemLower));
     });
+  }
+
+  async getDailyPrayer(dayOfWeek: number): Promise<DailyPrayer | undefined> {
+    const [prayer] = await db.select().from(dailyPrayers).where(eq(dailyPrayers.dayOfWeek, dayOfWeek));
+    return prayer || undefined;
+  }
+
+  async getAllDailyPrayers(): Promise<DailyPrayer[]> {
+    return await db.select().from(dailyPrayers).orderBy(dailyPrayers.dayOfWeek);
   }
 }
 

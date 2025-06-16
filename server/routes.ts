@@ -126,6 +126,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get daily prayer by day of week (0 = Sunday, 1 = Monday, etc.)
+  app.get("/api/prayers/daily/:dayOfWeek", async (req, res) => {
+    try {
+      const dayOfWeek = parseInt(req.params.dayOfWeek);
+      if (isNaN(dayOfWeek) || dayOfWeek < 0 || dayOfWeek > 6) {
+        return res.status(400).json({ message: "Day of week must be between 0-6" });
+      }
+
+      const prayer = await storage.getDailyPrayer(dayOfWeek);
+      if (!prayer) {
+        return res.status(404).json({ message: "Prayer not found for this day" });
+      }
+
+      res.json(prayer);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get daily prayer" });
+    }
+  });
+
+  // Get all daily prayers
+  app.get("/api/prayers/all", async (req, res) => {
+    try {
+      const prayers = await storage.getAllDailyPrayers();
+      res.json(prayers);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get daily prayers" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
