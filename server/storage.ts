@@ -1,4 +1,4 @@
-import { odus, dailyReadings, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu } from "@shared/schema";
+import { odus, dailyReadings, dailyPrayers, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu, type DailyPrayer, type InsertDailyPrayer } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc } from "drizzle-orm";
 
