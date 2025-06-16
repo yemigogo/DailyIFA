@@ -5,15 +5,24 @@ import { z } from "zod";
 export const odus = pgTable("odus", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  nameYoruba: text("name_yoruba").notNull(),
   subtitle: text("subtitle").notNull(),
+  subtitleYoruba: text("subtitle_yoruba").notNull(),
   element: text("element").notNull(),
+  elementYoruba: text("element_yoruba").notNull(),
   energy: text("energy").notNull(),
+  energyYoruba: text("energy_yoruba").notNull(),
   message: text("message").notNull(),
+  messageYoruba: text("message_yoruba").notNull(),
   guidance: jsonb("guidance").$type<string[]>().notNull(),
+  guidanceYoruba: jsonb("guidance_yoruba").$type<string[]>().notNull(),
   reflection: text("reflection").notNull(),
+  reflectionYoruba: text("reflection_yoruba").notNull(),
   pattern: jsonb("pattern").$type<boolean[][]>().notNull(), // 2D array for traditional pattern
   description: text("description").notNull(),
+  descriptionYoruba: text("description_yoruba").notNull(),
   keywords: jsonb("keywords").$type<string[]>().notNull(),
+  keywordsYoruba: jsonb("keywords_yoruba").$type<string[]>().notNull(),
 });
 
 export const dailyReadings = pgTable("daily_readings", {

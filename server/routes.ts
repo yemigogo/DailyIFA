@@ -9,36 +9,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database
   await initializeOduDatabase();
 
-  // Get daily reading for a specific date
-  app.get("/api/readings/:date", async (req, res) => {
-    try {
-      const { date } = req.params;
-      
-      // Validate date format (YYYY-MM-DD)
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-        return res.status(400).json({ message: "Invalid date format. Use YYYY-MM-DD" });
-      }
-
-      let reading = await storage.getDailyReading(date);
-      
-      // If no reading exists for this date, generate one
-      if (!reading) {
-        const oduId = generateOduForDate(date);
-        const newReading = await storage.createDailyReading({
-          date,
-          oduId,
-          saved: false
-        });
-        
-        reading = await storage.getDailyReading(date);
-      }
-
-      res.json(reading);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to get daily reading" });
-    }
-  });
-
   // Get today's reading
   app.get("/api/readings/today", async (req, res) => {
     try {
@@ -71,6 +41,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(history);
     } catch (error) {
       res.status(500).json({ message: "Failed to get reading history" });
+    }
+  });
+
+  // Get daily reading for a specific date
+  app.get("/api/readings/:date", async (req, res) => {
+    try {
+      const { date } = req.params;
+      
+      // Validate date format (YYYY-MM-DD)
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return res.status(400).json({ message: "Invalid date format. Use YYYY-MM-DD" });
+      }
+
+      let reading = await storage.getDailyReading(date);
+      
+      // If no reading exists for this date, generate one
+      if (!reading) {
+        const oduId = generateOduForDate(date);
+        const newReading = await storage.createDailyReading({
+          date,
+          oduId,
+          saved: false
+        });
+        
+        reading = await storage.getDailyReading(date);
+      }
+
+      res.json(reading);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get daily reading" });
     }
   });
 
