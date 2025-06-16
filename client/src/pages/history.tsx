@@ -261,12 +261,26 @@ export default function IfaTimeline() {
         </div>
 
         {/* Footer */}
-        <div className="text-center text-sm text-amber-600 dark:text-amber-400 py-6 border-t border-amber-200 dark:border-amber-800">
-          <Scroll className="h-5 w-5 mx-auto mb-2" />
-          {ts(
-            "This sacred timeline preserves the eternal wisdom of Orunmila for all generations",
-            "Àtòkọ́tàn mímọ́ yìí tọ́jú ọgbọ́n àìnípẹ̀kun Òrúnmìlà fún gbogbo ìran"
-          )}
+        <div className="text-center py-8 border-t border-amber-200 dark:border-amber-800 space-y-4">
+          <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 p-6 rounded-lg">
+            <Scroll className="h-8 w-8 mx-auto mb-3 text-amber-600" />
+            <h3 className="font-bold text-amber-900 dark:text-amber-100 mb-2">
+              {ts("The Living Legacy of Òrúnmìlà", "Ọ̀rọ̀ Òrúnmìlà Tó Ń Gbé")}
+            </h3>
+            <p className="text-amber-800 dark:text-amber-200 text-sm leading-relaxed max-w-2xl mx-auto">
+              {ts(
+                "This sacred timeline chronicles the eternal bond between Òrúnmìlà and the Yoruba people. From his divine appointment by Olódùmarè to his global recognition today, every era proves that Yoruba tradition is not just history - it is the living foundation of one of humanity's greatest spiritual civilizations. Òrúnmìlà's wisdom continues to guide millions of people worldwide, preserving the sacred heritage of the Yoruba nation for all future generations.",
+                "Àtòkọ́tàn mímọ́ yìí ṣe àkọsílẹ̀ ìdàpọ̀ láéláé láàrin Òrúnmìlà àti àwọn ọmọ Yorùbá. Láti ìyàn rẹ̀ láti ọ̀dọ̀ Olódùmarè títí dé ìgbà mímọ̀ rẹ̀ lónìí, gbogbo àkókò ń fihàn pé àṣà Yorùbá kì í ṣe ìtàn lásán - ó jẹ́ ìpìlẹ̀ tó ń gbé ti ọ̀kan lára àwọn ọlaju ẹ̀mí tó tóbi jùlọ ti ọmọ ènìyàn. Ọgbọ́n Òrúnmìlà ń bá àwọn mílíọ̀nù ènìyàn lọ káríayé, tí ó ń tọ́jú ọ̀rọ̀ mímọ́ orílẹ̀-èdè Yorùbá fún gbogbo àwọn ìran tó ń bọ̀."
+              )}
+            </p>
+          </div>
+          
+          <div className="text-xs text-amber-600 dark:text-amber-400 font-medium">
+            {ts(
+              "Àṣẹ Òrúnmìlà • May Orunmila's Blessings Be Upon All Who Seek Wisdom",
+              "Àṣẹ Òrúnmìlà • Kí Ìbùkún Òrúnmìlà Wà Lórí Gbogbo Ẹni Tó Ń Wá Ọgbọ́n"
+            )}
+          </div>
         </div>
       </div>
     </div>
