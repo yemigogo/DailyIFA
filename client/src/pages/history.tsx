@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Calendar, Star, Scroll, Globe, Crown, TreePine, Users } from "lucide-react";
 import OduVisualization from "@/components/odu-visualization";
+import OduIfaImage from "@/components/odu-ifa-image";
 
 interface IfaTimelineEvent {
   id: string;
@@ -235,18 +236,14 @@ export default function IfaTimeline() {
                           </CardDescription>
                         </div>
                         
-                        {/* Sacred Odu Pattern Display */}
+                        {/* Sacred Odu Ifa Image Display */}
                         {event.sacredOdu && (
-                          <div className="ml-4 flex flex-col items-center">
-                            <OduVisualization 
+                          <div className="ml-4">
+                            <OduIfaImage 
                               oduName={event.sacredOdu}
-                              pattern={[]}
-                              size={64}
-                              className="mb-2"
+                              size={100}
+                              className="shrink-0"
                             />
-                            <div className="text-xs text-amber-600 dark:text-amber-400 text-center">
-                              {ts("Sacred Odù", "Odù Mímọ́")}
-                            </div>
                           </div>
                         )}
                       </div>
