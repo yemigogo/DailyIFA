@@ -118,21 +118,31 @@ async function initializeOduDatabase() {
 function generateOduForDate(date: string): number {
   // Generate a deterministic Odu ID based on the date
   // This ensures the same date always gets the same Odu
-  // Use day of week (0-6) to cycle through first 7 Odu, then use full date for others
   const dateObj = new Date(date);
   const dayOfWeek = dateObj.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  const dateNum = dateObj.getTime();
   
-  // For first week of readings, use day of week to ensure all 7 days have different Odu
-  if (dayOfWeek < 7) {
-    const baseOduIndex = dayOfWeek % 7;
-    // Add some date-based variation to avoid same Odu every week
-    const variation = Math.floor(dateNum / (1000 * 60 * 60 * 24 * 7)) % (oduDatabase.length - 7);
-    const oduIndex = (baseOduIndex + variation) % oduDatabase.length;
-    return oduIndex + 1; // Odu IDs start from 1
-  }
+  // Map day of week to specific Odu IDs to ensure all 7 days have different readings
+  // Sunday = 0, Monday = 1, Tuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6
+  const weeklyOduMapping = [
+    1,  // Sunday -> Eji Ogbe
+    2,  // Monday -> Oyeku Meji  
+    3,  // Tuesday -> Iwori Meji
+    4,  // Wednesday -> Odi Meji
+    5,  // Thursday -> Irosun Meji
+    6,  // Friday -> Owonrin Meji
+    7   // Saturday -> Obara Meji
+  ];
   
-  // Fallback to original algorithm
-  const oduIndex = Math.abs(dateNum) % oduDatabase.length;
-  return oduIndex + 1;
+  // Get base Odu for the day of week
+  const baseOduId = weeklyOduMapping[dayOfWeek];
+  
+  // Add weekly variation to prevent same Odu every week for same day
+  const weekNumber = Math.floor(dateObj.getTime() / (1000 * 60 * 60 * 24 * 7));
+  const variation = weekNumber % 2; // Alternate between two sets of Odu every other week
+  
+  // Calculate final Odu ID with variation
+  const finalOduId = baseOduId + (variation * 7);
+  
+  // Ensure we don't exceed available Odu count (wrap around if needed)
+  return ((finalOduId - 1) % oduDatabase.length) + 1;
 }

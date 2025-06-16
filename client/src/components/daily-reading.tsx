@@ -145,14 +145,14 @@ export default function DailyReading({ reading }: DailyReadingProps) {
           className="bg-sage-green text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-sage-green/90 transition-colors"
         >
           <Bookmark className="h-4 w-4" />
-          <span>{reading.saved ? "Saved" : "Save Reading"}</span>
+          <span>{reading.saved ? t("Saved", "Ti pamọ") : t("Save Reading", "Pamọ Kika")}</span>
         </Button>
         <Button
           onClick={handleShare}
           className="bg-spiritual-blue text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-spiritual-blue/90 transition-colors"
         >
           <Share className="h-4 w-4" />
-          <span>Share</span>
+          <span>{t("Share", "Pín")}</span>
         </Button>
       </div>
     </div>
