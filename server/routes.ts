@@ -59,6 +59,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // If no reading exists for this date, generate one
       if (!reading) {
         const oduId = generateOduForDate(date);
+        
+        // Verify the Odu exists before creating the reading
+        const odu = await storage.getOdu(oduId);
+        if (!odu) {
+          console.error(`Generated invalid Odu ID ${oduId} for date ${date}`);
+          return res.status(500).json({ message: "Failed to generate valid reading" });
+        }
+        
         const newReading = await storage.createDailyReading({
           date,
           oduId,
@@ -68,8 +76,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         reading = await storage.getDailyReading(date);
       }
 
+      if (!reading) {
+        return res.status(500).json({ message: "Failed to create reading" });
+      }
+
       res.json(reading);
     } catch (error) {
+      console.error("Error getting daily reading:", error);
       res.status(500).json({ message: "Failed to get daily reading" });
     }
   });
