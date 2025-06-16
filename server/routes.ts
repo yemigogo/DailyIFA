@@ -118,13 +118,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
 }
 
 async function initializeOduDatabase() {
-  // Check if Odus are already initialized
+  // Check if Odus are already initialized with the full expanded set
   const existingOdus = await storage.getAllOdus();
-  if (existingOdus.length === 0) {
-    // Initialize with the Odu database
+  const expectedCount = oduDatabase.length;
+  
+  if (existingOdus.length < expectedCount) {
+    console.log(`Initializing Odu database: ${existingOdus.length}/${expectedCount} entries found`);
+    
+    // Add missing Odu entries
     for (const oduData of oduDatabase) {
-      await storage.createOdu(oduData);
+      const existingOdu = existingOdus.find(odu => odu.name === oduData.name);
+      if (!existingOdu) {
+        await storage.createOdu(oduData);
+        console.log(`Added Odu: ${oduData.name}`);
+      }
     }
+    
+    console.log(`Odu database initialization complete: ${expectedCount} total entries`);
   }
 }
 
