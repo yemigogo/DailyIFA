@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Home, Clock, Book, Settings } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function BottomNavigation() {
   const [location, setLocation] = useLocation();

@@ -5,7 +5,7 @@ type Language = "english" | "yoruba";
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
-  t: (englishText: string, yorubaText: string) => string;
+  t: (englishText: string | string[], yorubaText: string | string[]) => string | string[];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -20,7 +20,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("ifa-language", language);
   }, [language]);
 
-  const t = (englishText: string, yorubaText: string): string => {
+  const t = (englishText: string | string[], yorubaText: string | string[]): string | string[] => {
     return language === "yoruba" ? yorubaText : englishText;
   };
 

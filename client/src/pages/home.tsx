@@ -7,13 +7,16 @@ import { RefreshCw, BookOpen, Menu } from "lucide-react";
 import DailyReading from "@/components/daily-reading";
 import DateNavigation from "@/components/date-navigation";
 import ReadingHistory from "@/components/reading-history";
+import LanguageToggle from "@/components/language-toggle";
 import { formatDate, getPreviousDay, getNextDay } from "@/lib/date-utils";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { DailyReadingWithOdu } from "@shared/schema";
 
 export default function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   const dateString = formatDate(currentDate);
 
@@ -56,16 +59,19 @@ export default function Home() {
               <RefreshCw className="h-4 w-4 text-white" />
             </div>
             <h1 className="font-crimson font-bold text-spiritual-blue text-xl">
-              Ifá Daily
+              {t("Ifá Daily", "Ifá Ojoojúmọ́")}
             </h1>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="p-2 text-spiritual-blue hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center space-x-2">
+            <LanguageToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="p-2 text-spiritual-blue hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -113,18 +119,19 @@ export default function Home() {
           <CardContent className="p-6">
             <h3 className="font-crimson text-lg font-semibold text-spiritual-blue mb-3 flex items-center space-x-2">
               <BookOpen className="h-5 w-5 text-sacred-gold" />
-              <span>Learn About Ifá</span>
+              <span>{t("Learn About Ifá", "Kọ́ nípa Ifá")}</span>
             </h3>
             <p className="text-gray-700 text-sm mb-4">
-              Discover the rich tradition of Ifá divination, its history, and the
-              wisdom of the Odu. Deepen your understanding of this ancient
-              spiritual practice.
+              {t(
+                "Discover the rich tradition of Ifá divination, its history, and the wisdom of the Odu. Deepen your understanding of this ancient spiritual practice.",
+                "Ṣàwárí àṣà ọlọ́rọ̀ ti àfọṣẹ Ifá, ìtàn rẹ̀, àti ọgbọ́n Odù. Mú òye rẹ jìn sí i nípa àṣà ẹ̀mí àtijọ́ yìí."
+              )}
             </p>
             <Button
               onClick={() => setLocation("/learn")}
               className="bg-spiritual-blue text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-spiritual-blue/90 transition-colors"
             >
-              Explore Ifá Tradition
+              {t("Explore Ifá Tradition", "Ṣàwárí Àṣà Ifá")}
             </Button>
           </CardContent>
         </Card>

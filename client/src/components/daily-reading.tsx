@@ -95,7 +95,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
         <CardContent className="p-6 bg-gradient-to-b from-cream/30 to-white">
           <div className="text-center mb-6">
             <h3 className="font-crimson text-lg font-semibold text-spiritual-blue mb-3">
-              Sacred Pattern
+              {t("Sacred Pattern", "Àwòrán Mímọ́")}
             </h3>
             <OduPattern pattern={reading.odu.pattern} />
           </div>
@@ -104,19 +104,19 @@ export default function DailyReading({ reading }: DailyReadingProps) {
           <div className="space-y-4">
             <div>
               <h4 className="font-crimson font-semibold text-spiritual-blue mb-2">
-                Today's Message
+                {t("Today's Message", "Ọ̀rọ̀ Òní")}
               </h4>
               <p className="text-gray-700 leading-relaxed font-crimson text-base">
-                {reading.odu.message}
+                {t(reading.odu.message, reading.odu.messageYoruba)}
               </p>
             </div>
 
             <div className="border-t border-gray-200 pt-4">
               <h4 className="font-crimson font-semibold text-spiritual-blue mb-2">
-                Guidance for Today
+                {t("Guidance for Today", "Ìtọ́sọ́nà fún Òní")}
               </h4>
               <ul className="space-y-2 text-gray-700">
-                {reading.odu.guidance.map((guidance, index) => (
+                {(t(reading.odu.guidance, reading.odu.guidanceYoruba) as string[]).map((guidance, index) => (
                   <li key={index} className="flex items-start space-x-2">
                     <Leaf className="h-4 w-4 text-sage-green mt-1 flex-shrink-0" />
                     <span>{guidance}</span>
@@ -127,10 +127,10 @@ export default function DailyReading({ reading }: DailyReadingProps) {
 
             <div className="border-t border-gray-200 pt-4">
               <h4 className="font-crimson font-semibold text-spiritual-blue mb-2">
-                Reflection
+                {t("Reflection", "Ìrònú")}
               </h4>
               <p className="text-gray-600 text-sm italic">
-                "{reading.odu.reflection}"
+                "{t(reading.odu.reflection, reading.odu.reflectionYoruba)}"
               </p>
             </div>
           </div>
