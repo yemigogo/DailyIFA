@@ -352,12 +352,12 @@ export default function DailyPrayers() {
 
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: What blessings come from consistent prayer practice?", "Ì: Àwọn ìbùkún wo ni ó ti ìṣe àdúrà déédéé wá?")}
+                          {ts("Q: What blessings come from consistent prayer practice?", "Ì: Àwọn ìbùkún wo ni ó ti ìṣe ìwúre déédéé wá?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Consistent prayer brings divine protection, spiritual clarity, emotional balance, and material prosperity. Most importantly, it develops your relationship with Òrúnmìlà, opening pathways for wisdom, healing, and divine favor in all endeavors.",
-                            "I: Àdúrà déédéé mú ààbò ọlọ́run, ìmọ́ ẹ̀mí, ìdọ̀gbà ẹ̀dùn, àti ọrọ̀ ayé wá. Ìpàtàkì jùlọ, ó mú ìbáṣepọ̀ rẹ pẹ̀lú Òrúnmìlà dàgbàsókè, tí ó ṣí àwọn ọnà fún ọgbọ́n, ìwòsàn, àti ojúrere ọlọ́run nínú gbogbo iṣẹ́."
+                            "I: Ìwúre déédéé mú ààbò ọlọ́run, ìmọ́ ẹ̀mí, ìdọ̀gbà ẹ̀dùn, àti ọrọ̀ ayé wá. Ìpàtàkì jùlọ, ó mú ìbáṣepọ̀ rẹ pẹ̀lú Òrúnmìlà dàgbàsókè, tí ó ṣí àwọn ọnà fún ọgbọ́n, ìwòsàn, àti ojúrere ọlọ́run nínú gbogbo iṣẹ́."
                           )}
                         </p>
                       </div>
@@ -372,7 +372,7 @@ export default function DailyPrayers() {
                     <div className="space-y-3 text-sm">
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: When is the best time to recite daily prayers?", "Ì: Ìgbà wo ni ó dára jùlọ láti ka àdúrà ojoojúmọ́?")}
+                          {ts("Q: When is the best time to recite daily prayers?", "Ì: Ìgbà wo ni ó dára jùlọ láti ka ìwúre ojoojúmọ́?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
@@ -384,7 +384,7 @@ export default function DailyPrayers() {
 
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: How should you prepare your heart for prayer?", "Ì: Báwo ni o ṣe gbọ́dọ̀ múra ọkàn rẹ sílẹ̀ fún àdúrà?")}
+                          {ts("Q: How should you prepare your heart for prayer?", "Ì: Báwo ni o ṣe gbọ́dọ̀ múra ọkàn rẹ sílẹ̀ fún ìwúre?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
@@ -401,8 +401,8 @@ export default function DailyPrayers() {
               <div className="text-center mt-8 p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
                 <p className="text-amber-900 dark:text-amber-100 font-medium italic">
                   {ts(
-                    "\"Àdúrà ní kókó ẹ̀mí\" - Prayer is the essence of spirituality. Through daily communion with Òrúnmìlà, we align our lives with divine purpose and ancestral wisdom.",
-                    "\"Àdúrà ní kókó ẹ̀mí\" - Àdúrà ni kókó ẹ̀mí. Nípasẹ̀ ìbánisọ̀rọ̀ ojoojúmọ́ pẹ̀lú Òrúnmìlà, a ṣe ìgbé ayé wa dọ́gba pẹ̀lú ète ọlọ́run àti ọgbọ́n àwọn baba ńlá."
+                    "\"Ìwúre ní kókó ẹ̀mí\" - Prayer is the essence of spirituality. Through daily communion with Òrúnmìlà, we align our lives with divine purpose and ancestral wisdom.",
+                    "\"Ìwúre ní kókó ẹ̀mí\" - Ìwúre ni kókó ẹ̀mí. Nípasẹ̀ ìbánisọ̀rọ̀ ojoojúmọ́ pẹ̀lú Òrúnmìlà, a ṣe ìgbé ayé wa dọ́gba pẹ̀lú ète ọlọ́run àti ọgbọ́n àwọn baba ńlá."
                   )}
                 </p>
               </div>
@@ -413,7 +413,7 @@ export default function DailyPrayers() {
         <div className="text-center text-sm text-amber-600 dark:text-amber-400 py-4">
           {ts(
             "Recite these prayers with sincere intention and faith for spiritual guidance and protection",
-            "Kigbe àwọn àdúrà wọ̀nyí pẹ̀lú ète òtítọ́ àti ìgbàgbọ́ fún ìtọ́nisọ́nà ẹ̀mí àti ààbò"
+            "Kigbe àwọn ìwúre wọ̀nyí pẹ̀lú ète òtítọ́ àti ìgbàgbọ́ fún ìtọ́nisọ́nà ẹ̀mí àti ààbò"
           )}
         </div>
       </div>
