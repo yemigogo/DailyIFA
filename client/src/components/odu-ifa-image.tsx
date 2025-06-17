@@ -4,7 +4,7 @@ interface OduIfaImageProps {
   className?: string;
 }
 
-// Traditional Odu Ifa visual representations with authentic patterns
+// Traditional Odu Ifa visual representations with authentic patterns and sacred symbols
 const ODU_IFA_IMAGES = {
   "Eji Ogbe": {
     pattern: [
@@ -13,6 +13,8 @@ const ODU_IFA_IMAGES = {
       [true, true], 
       [true, true]
     ],
+    symbol: "⚌", // Double solid lines representing unity and strength
+    sacredGeometry: "circle",
     meaning: "Light, Strength, Leadership",
     meaningYoruba: "Ìmọ́lẹ̀, Agbára, Aṣáájú"
   },
@@ -23,6 +25,8 @@ const ODU_IFA_IMAGES = {
       [false, true],
       [false, true]
     ],
+    symbol: "⚍", // Mixed lines representing wisdom emerging from mystery
+    sacredGeometry: "triangle",
     meaning: "Wisdom, Revelation, Knowledge",
     meaningYoruba: "Ọgbọ́n, Ìfihàn, Ìmọ̀"
   },
@@ -33,8 +37,22 @@ const ODU_IFA_IMAGES = {
       [true, true],
       [false, true]
     ],
+    symbol: "⚏", // Balanced pattern representing completion
+    sacredGeometry: "hexagon",
     meaning: "Completion, Perfection, Order",
     meaningYoruba: "Ìparí, Ìpéye, Ètò"
+  },
+  "Owonrin Meji": {
+    pattern: [
+      [true, true],
+      [false, false],
+      [true, true],
+      [false, false]
+    ],
+    symbol: "⚎", // Alternating pattern representing transformation
+    sacredGeometry: "spiral",
+    meaning: "Transformation, Change, Movement",
+    meaningYoruba: "Ìyípadà, Àyípo, Ìgbésẹ̀"
   }
 };
 
@@ -82,21 +100,81 @@ export default function OduIfaImage({
             </linearGradient>
           </defs>
           
-          {/* Odu Pattern in Center */}
-          <g transform={`translate(${size / 2 - cellSize}, ${size / 2 - cellSize * 2})`}>
+          {/* Sacred Symbol in Center */}
+          <g transform={`translate(${size / 2}, ${size / 2 - cellSize})`}>
+            {/* Central Sacred Symbol */}
+            <text
+              x={0}
+              y={0}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontSize={size / 4}
+              fill="#ffffff"
+              fontWeight="bold"
+              style={{ fontFamily: 'serif' }}
+            >
+              {oduData.symbol}
+            </text>
+            
+            {/* Sacred Geometry Pattern based on Odu */}
+            {oduData.sacredGeometry === "circle" && (
+              <circle
+                cx={0}
+                cy={cellSize}
+                r={cellSize * 0.6}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={strokeWidth}
+                opacity={0.7}
+              />
+            )}
+            
+            {oduData.sacredGeometry === "triangle" && (
+              <polygon
+                points={`0,${cellSize - cellSize * 0.6} ${cellSize * 0.6},${cellSize + cellSize * 0.3} ${-cellSize * 0.6},${cellSize + cellSize * 0.3}`}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={strokeWidth}
+                opacity={0.7}
+              />
+            )}
+            
+            {oduData.sacredGeometry === "hexagon" && (
+              <polygon
+                points={`${cellSize * 0.5},${cellSize - cellSize * 0.3} ${cellSize * 0.25},${cellSize} ${-cellSize * 0.25},${cellSize} ${-cellSize * 0.5},${cellSize + cellSize * 0.3} ${-cellSize * 0.25},${cellSize + cellSize * 0.6} ${cellSize * 0.25},${cellSize + cellSize * 0.6}`}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={strokeWidth}
+                opacity={0.7}
+              />
+            )}
+            
+            {oduData.sacredGeometry === "spiral" && (
+              <path
+                d={`M 0 ${cellSize} Q ${cellSize * 0.3} ${cellSize - cellSize * 0.3} ${cellSize * 0.6} ${cellSize} Q ${cellSize * 0.3} ${cellSize + cellSize * 0.3} 0 ${cellSize} Q ${-cellSize * 0.3} ${cellSize - cellSize * 0.3} ${-cellSize * 0.6} ${cellSize}`}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={strokeWidth}
+                opacity={0.7}
+              />
+            )}
+          </g>
+
+          {/* Traditional Odu Pattern Below Symbol */}
+          <g transform={`translate(${size / 2 - cellSize * 0.6}, ${size / 2 + cellSize * 1.2})`}>
             {oduData.pattern.map((row, rowIndex) => (
-              <g key={rowIndex} transform={`translate(0, ${rowIndex * cellSize})`}>
+              <g key={rowIndex} transform={`translate(0, ${rowIndex * (cellSize * 0.3)})`}>
                 {row.map((mark, colIndex) => (
                   <rect
                     key={colIndex}
-                    x={colIndex * cellSize}
+                    x={colIndex * (cellSize * 0.6)}
                     y={0}
-                    width={cellSize * 0.8}
-                    height={cellSize * 0.8}
-                    rx={cellSize * 0.1}
+                    width={cellSize * 0.5}
+                    height={cellSize * 0.2}
+                    rx={cellSize * 0.05}
                     fill={mark ? "#ffffff" : "url(#darkGradient)"}
                     stroke={mark ? "#d97706" : "#78716c"}
-                    strokeWidth={strokeWidth / 2}
+                    strokeWidth={strokeWidth / 3}
                   />
                 ))}
               </g>
