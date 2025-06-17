@@ -130,7 +130,7 @@ export default function DailyPrayers() {
               <div className="bg-white/50 dark:bg-amber-950/30 p-4 rounded-lg">
                 <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
                   <Heart className="h-4 w-4" />
-                  {ts("Prayer (Àdúrà):", "Àdúrà:")}
+                  {ts("Prayer (Ìwúre):", "Ìwúre:")}
                 </h4>
                 <p className="text-amber-800 dark:text-amber-200 italic leading-relaxed">
                   "{language === "english" ? todaysPrayer.prayer : todaysPrayer.prayerYoruba}"
@@ -162,7 +162,7 @@ export default function DailyPrayers() {
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-amber-900 dark:text-amber-100 flex items-center gap-2">
             <Calendar className="h-6 w-6" />
-            {ts("Weekly Prayer Guide", "Ìtọ́nisọ́nà Àdúrà Ọ̀sẹ̀")}
+            {ts("Weekly Prayer Guide", "Ìtọ́nisọ́nà Ìwúre Ọ̀sẹ̀")}
           </h2>
           
           <div className="grid gap-4">
@@ -225,7 +225,7 @@ export default function DailyPrayers() {
                   <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 p-4 rounded-lg">
                     <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
                       <Heart className="h-4 w-4" />
-                      {ts("Prayer (Àdúrà):", "Àdúrà:")}
+                      {ts("Prayer (Ìwúre):", "Ìwúre:")}
                     </h4>
                     <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed">
                       "{language === "english" ? prayer.prayer : prayer.prayerYoruba}"
@@ -251,14 +251,14 @@ export default function DailyPrayers() {
           <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 p-8 rounded-lg">
             <h3 className="text-2xl font-bold text-amber-900 dark:text-amber-100 mb-6 text-center flex items-center justify-center gap-2">
               <Star className="h-6 w-6" />
-              {ts("Prayer Reflection", "Ìrònú Àdúrà")}
+              {ts("Prayer Reflection", "Ìrònú Ìwúre")}
             </h3>
             
             <div className="max-w-4xl mx-auto space-y-6">
               <p className="text-amber-800 dark:text-amber-200 text-center font-medium mb-8">
                 {ts(
                   "Contemplate these questions to deepen your understanding of daily prayer practice and strengthen your spiritual connection:",
-                  "Rò àwọn ìbéèrè wọ̀nyí láti jín sí òye ìṣe àdúrà ojoojúmọ́ àti mú ìdàpọ̀ ẹ̀mí rẹ lágbára:"
+                  "Rò àwọn ìbéèrè wọ̀nyí láti jín sí òye ìṣe ìwúre ojoojúmọ́ àti mú ìdàpọ̀ ẹ̀mí rẹ lágbára:"
                 )}
               </p>
 
@@ -273,24 +273,24 @@ export default function DailyPrayers() {
                     <div className="space-y-3 text-sm">
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: How can daily prayer transform your spiritual life?", "Ì: Báwo ni àdúrà ojoojúmọ́ ṣe lè yí ìgbé ayé ẹ̀mí rẹ padà?")}
+                          {ts("Q: How can daily prayer transform your spiritual life?", "Ì: Báwo ni ìwúre ojoojúmọ́ ṣe lè yí ìgbé ayé ẹ̀mí rẹ padà?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Daily prayer creates a sacred rhythm that aligns your spirit with divine wisdom. Like the consistent rising of the sun, regular communication with Òrúnmìlà brings stability, guidance, and spiritual growth to every aspect of your life.",
-                            "I: Àdúrà ojoojúmọ́ ṣẹ̀dá àtẹ̀gùn mímọ́ tí ó ṣe ẹ̀mí rẹ dọ́gba pẹ̀lú ọgbọ́n ọlọ́run. Gẹ́gẹ́ bí ìyọ̀ òòrùn tí ó ń dìde déédéé, ìbánisọ̀rọ̀ déédéé pẹ̀lú Òrúnmìlà mú ìdúróṣinṣin, ìtọ́nisọ́nà, àti ìdàgbàsókè ẹ̀mí wá sí gbogbo ẹ̀yà ìgbé ayé rẹ."
+                            "I: Ìwúre ojoojúmọ́ ṣẹ̀dá àtẹ̀gùn mímọ́ tí ó ṣe ẹ̀mí rẹ dọ́gba pẹ̀lú ọgbọ́n ọlọ́run. Gẹ́gẹ́ bí ìyọ̀ òòrùn tí ó ń dìde déédéé, ìbánisọ̀rọ̀ déédéé pẹ̀lú Òrúnmìlà mú ìdúróṣinṣin, ìtọ́nisọ́nà, àti ìdàgbàsókè ẹ̀mí wá sí gbogbo ẹ̀yà ìgbé ayé rẹ."
                           )}
                         </p>
                       </div>
 
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: What is the significance of praying in Yoruba?", "Ì: Kí ni ìtumọ̀ àdúrà ní èdè Yorùbá?")}
+                          {ts("Q: What is the significance of praying in Yoruba?", "Ì: Kí ni ìtumọ̀ ìwúre ní èdè Yorùbá?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Yoruba is the sacred language that carries the ancestral power and cultural essence of Ifá tradition. Praying in Yoruba connects you directly to the spiritual vibrations of your ancestors and activates the ancient wisdom embedded in each word.",
-                            "I: Yorùbá ni èdè mímọ́ tí ó gbé agbára àwọn baba ńlá àti ẹ̀mí àṣà àṣà Ifá. Àdúrà ní èdè Yorùbá so ọ́ taara mọ́ ìgbọ̀n ẹ̀mí àwọn baba ńlá rẹ ó sì mú ọgbọ́n àtijọ́ tí ó wà nínú ọ̀rọ̀ kọ̀ọ̀kan ṣiṣẹ́."
+                            "I: Yorùbá ni èdè mímọ́ tí ó gbé agbára àwọn baba ńlá àti ẹ̀mí àṣà àṣà Ifá. Ìwúre ní èdè Yorùbá so ọ́ taara mọ́ ìgbọ̀n ẹ̀mí àwọn baba ńlá rẹ ó sì mú ọgbọ́n àtijọ́ tí ó wà nínú ọ̀rọ̀ kọ̀ọ̀kan ṣiṣẹ́."
                           )}
                         </p>
                       </div>
