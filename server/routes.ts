@@ -4,10 +4,12 @@ import { storage } from "./storage";
 import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
+import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Initialize the Odu database
+  // Initialize the Odu database and Ifa lunar calendar
   await initializeOduDatabase();
+  await initializeIfaLunarCalendar();
 
   // Get today's reading
   app.get("/api/readings/today", async (req, res) => {
@@ -155,6 +157,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get Ifa lunar prayer for specific day of year (1-365)
+  app.get("/api/ifa-lunar/:dayOfYear", async (req, res) => {
+    try {
+      const dayOfYear = parseInt(req.params.dayOfYear);
+      
+      if (isNaN(dayOfYear) || dayOfYear < 1 || dayOfYear > 365) {
+        return res.status(400).json({ message: "Invalid day of year. Must be between 1-365" });
+      }
+
+      const prayer = await storage.getIfaLunarPrayer(dayOfYear);
+      
+      if (!prayer) {
+        return res.status(404).json({ message: "Lunar prayer not found for this day" });
+      }
+
+      res.json(prayer);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get Ifa lunar prayer" });
+    }
+  });
+
+  // Get current day's Ifa lunar prayer
+  app.get("/api/ifa-lunar/today", async (req, res) => {
+    try {
+      const today = new Date();
+      const startOfYear = new Date(today.getFullYear(), 0, 1);
+      const dayOfYear = Math.ceil((today.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+      
+      // Ensure dayOfYear is within valid range
+      const validDayOfYear = Math.max(1, Math.min(365, dayOfYear));
+
+      const prayer = await storage.getIfaLunarPrayer(validDayOfYear);
+      
+      if (!prayer) {
+        return res.status(404).json({ message: "Lunar prayer not found for today" });
+      }
+
+      res.json(prayer);
+    } catch (error) {
+      console.error("Error getting today's lunar prayer:", error);
+      res.status(500).json({ message: "Failed to get today's Ifa lunar prayer" });
+    }
+  });
+
+  // Get all Ifa lunar prayers
+  app.get("/api/ifa-lunar/all", async (req, res) => {
+    try {
+      const prayers = await storage.getAllIfaLunarPrayers();
+      res.json(prayers);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get all Ifa lunar prayers" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
@@ -212,6 +268,47 @@ function generateOduForDate(date: string): number {
   const finalOduIndex = oduIndex % availableOduCount;
   
   return finalOduIndex + 1; // Odu IDs start from 1
+}
+
+async function initializeIfaLunarCalendar() {
+  // Check if Ifa lunar prayers are already initialized
+  const existingPrayers = await storage.getAllIfaLunarPrayers();
+  
+  if (existingPrayers.length < 365) {
+    console.log(`Initializing Ifa Lunar Calendar: ${existingPrayers.length}/365 prayers found`);
+    
+    // Generate the complete 365-day lunar calendar
+    const lunarCalendar = generateIfaLunarCalendar();
+    
+    // Add missing lunar prayer entries
+    for (const lunarDay of lunarCalendar) {
+      const existingPrayer = existingPrayers.find(prayer => prayer.dayOfYear === lunarDay.dayOfYear);
+      if (!existingPrayer) {
+        await storage.createIfaLunarPrayer({
+          dayOfYear: lunarDay.dayOfYear,
+          lunarMonth: lunarDay.lunarMonth,
+          lunarDay: lunarDay.lunarDay,
+          yorubaDate: lunarDay.yorubaDate,
+          sacredOdu: lunarDay.sacredOdu,
+          lunarPhase: lunarDay.lunarPhase,
+          spiritualFocus: lunarDay.spiritualFocus,
+          spiritualFocusYoruba: lunarDay.spiritualFocusYoruba,
+          prayer: lunarDay.prayer,
+          prayerYoruba: lunarDay.prayerYoruba,
+          blessing: lunarDay.blessing,
+          blessingYoruba: lunarDay.blessingYoruba,
+          significance: lunarDay.significance,
+          significanceYoruba: lunarDay.significanceYoruba
+        });
+        
+        if (lunarDay.dayOfYear % 50 === 0) {
+          console.log(`Added lunar prayers up to day ${lunarDay.dayOfYear}/365`);
+        }
+      }
+    }
+    
+    console.log(`Ifa Lunar Calendar initialization complete: 365 daily prayers`);
+  }
 }
 
 function isLeapYear(year: number): boolean {
