@@ -1,4 +1,4 @@
-import { odus, dailyReadings, dailyPrayers, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu, type DailyPrayer, type InsertDailyPrayer } from "@shared/schema";
+import { odus, dailyReadings, dailyPrayers, ifaLunarPrayers, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu, type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc } from "drizzle-orm";
 
@@ -20,6 +20,11 @@ export interface IStorage {
   // Daily prayer methods
   getDailyPrayer(dayOfWeek: number): Promise<DailyPrayer | undefined>;
   getAllDailyPrayers(): Promise<DailyPrayer[]>;
+  
+  // Ifa lunar prayer methods
+  getIfaLunarPrayer(dayOfYear: number): Promise<IfaLunarPrayer | undefined>;
+  createIfaLunarPrayer(prayer: InsertIfaLunarPrayer): Promise<IfaLunarPrayer>;
+  getAllIfaLunarPrayers(): Promise<IfaLunarPrayer[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -110,6 +115,23 @@ export class DatabaseStorage implements IStorage {
 
   async getAllDailyPrayers(): Promise<DailyPrayer[]> {
     return await db.select().from(dailyPrayers).orderBy(dailyPrayers.dayOfWeek);
+  }
+
+  async getIfaLunarPrayer(dayOfYear: number): Promise<IfaLunarPrayer | undefined> {
+    const [prayer] = await db.select().from(ifaLunarPrayers).where(eq(ifaLunarPrayers.dayOfYear, dayOfYear));
+    return prayer || undefined;
+  }
+
+  async createIfaLunarPrayer(insertPrayer: InsertIfaLunarPrayer): Promise<IfaLunarPrayer> {
+    const [prayer] = await db
+      .insert(ifaLunarPrayers)
+      .values(insertPrayer)
+      .returning();
+    return prayer;
+  }
+
+  async getAllIfaLunarPrayers(): Promise<IfaLunarPrayer[]> {
+    return await db.select().from(ifaLunarPrayers).orderBy(ifaLunarPrayers.dayOfYear);
   }
 }
 

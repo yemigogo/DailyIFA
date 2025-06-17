@@ -51,6 +51,24 @@ export const dailyPrayers = pgTable("daily_prayers", {
   blessingYoruba: text("blessing_yoruba").notNull(),
 });
 
+export const ifaLunarPrayers = pgTable("ifa_lunar_prayers", {
+  id: serial("id").primaryKey(),
+  dayOfYear: integer("day_of_year").notNull().unique(), // 1-365
+  lunarMonth: integer("lunar_month").notNull(), // 1-13
+  lunarDay: integer("lunar_day").notNull(), // 1-28
+  yorubaDate: text("yoruba_date").notNull(),
+  sacredOdu: text("sacred_odu").notNull(),
+  lunarPhase: text("lunar_phase").notNull(), // new, waxing, full, waning
+  spiritualFocus: text("spiritual_focus").notNull(),
+  spiritualFocusYoruba: text("spiritual_focus_yoruba").notNull(),
+  prayer: text("prayer").notNull(),
+  prayerYoruba: text("prayer_yoruba").notNull(),
+  blessing: text("blessing").notNull(),
+  blessingYoruba: text("blessing_yoruba").notNull(),
+  significance: text("significance").notNull(),
+  significanceYoruba: text("significance_yoruba").notNull(),
+});
+
 export const insertOduSchema = createInsertSchema(odus).omit({
   id: true,
 });
@@ -63,12 +81,18 @@ export const insertDailyPrayerSchema = createInsertSchema(dailyPrayers).omit({
   id: true,
 });
 
+export const insertIfaLunarPrayerSchema = createInsertSchema(ifaLunarPrayers).omit({
+  id: true,
+});
+
 export type InsertOdu = z.infer<typeof insertOduSchema>;
 export type Odu = typeof odus.$inferSelect;
 export type InsertDailyReading = z.infer<typeof insertDailyReadingSchema>;
 export type DailyReading = typeof dailyReadings.$inferSelect;
 export type InsertDailyPrayer = z.infer<typeof insertDailyPrayerSchema>;
 export type DailyPrayer = typeof dailyPrayers.$inferSelect;
+export type InsertIfaLunarPrayer = z.infer<typeof insertIfaLunarPrayerSchema>;
+export type IfaLunarPrayer = typeof ifaLunarPrayers.$inferSelect;
 
 // Combined type for daily reading with Odu data
 export type DailyReadingWithOdu = DailyReading & {
