@@ -27,6 +27,8 @@ export const odus = pgTable("odus", {
   problemsYoruba: jsonb("problems_yoruba").$type<string[]>().default([]),
   prayer: text("prayer").notNull().default(""),
   prayerYoruba: text("prayer_yoruba").notNull().default(""),
+  eseIfa: text("ese_ifa").notNull().default(""),
+  eseIfaYoruba: text("ese_ifa_yoruba").notNull().default(""),
 });
 
 export const dailyReadings = pgTable("daily_readings", {
