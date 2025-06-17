@@ -113,15 +113,6 @@ export default function DailyReading({ reading }: DailyReadingProps) {
 
           {/* Reading Content */}
           <div className="space-y-4">
-            <div>
-              <h4 className="font-crimson font-semibold text-spiritual-blue mb-2">
-                {t("Today's Message", "Ọ̀rọ̀ Òní")}
-              </h4>
-              <p className="text-gray-700 leading-relaxed font-crimson text-base">
-                {t(reading.odu.message, reading.odu.messageYoruba)}
-              </p>
-            </div>
-
             <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
               <h4 className="font-crimson font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
                 <Star className="h-4 w-4" />
@@ -129,6 +120,15 @@ export default function DailyReading({ reading }: DailyReadingProps) {
               </h4>
               <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
                 "{t(reading.odu.eseIfa, reading.odu.eseIfaYoruba)}"
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-crimson font-semibold text-spiritual-blue mb-2">
+                {t("Today's Message", "Ọ̀rọ̀ Òní")}
+              </h4>
+              <p className="text-gray-700 leading-relaxed font-crimson text-base">
+                {t(reading.odu.message, reading.odu.messageYoruba)}
               </p>
             </div>
 

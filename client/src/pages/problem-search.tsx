@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Search, AlertCircle, Heart, Brain, Users, DollarSign } from "lucide-react";
+import { Search, AlertCircle, Heart, Brain, Users, DollarSign, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -233,15 +233,6 @@ export default function ProblemSearch() {
                           </p>
                         </div>
 
-                        <div>
-                          <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
-                            {ts("Spiritual Message:", "Ifiranṣẹ Ẹmi:")}
-                          </h4>
-                          <p className="text-amber-800 dark:text-amber-200 text-sm italic border-l-4 border-amber-300 pl-3">
-                            {language === "english" ? odu.message : odu.messageYoruba}
-                          </p>
-                        </div>
-
                         <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
                           <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
                             <Star className="h-4 w-4" />
@@ -249,6 +240,15 @@ export default function ProblemSearch() {
                           </h4>
                           <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
                             "{language === "english" ? odu.eseIfa : odu.eseIfaYoruba}"
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            {ts("Spiritual Message:", "Ifiranṣẹ Ẹmi:")}
+                          </h4>
+                          <p className="text-amber-800 dark:text-amber-200 text-sm italic border-l-4 border-amber-300 pl-3">
+                            {language === "english" ? odu.message : odu.messageYoruba}
                           </p>
                         </div>
                       </div>
