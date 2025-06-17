@@ -148,6 +148,16 @@ export default function DailyPrayers() {
                 </p>
               </div>
 
+              <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
+                  <Star className="h-4 w-4" />
+                  {ts("Ese Ifa (Sacred Verse):", "Ese Ifá (Ọ̀rọ̀ Mímọ́):")}
+                </h4>
+                <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
+                  "{language === "english" ? todaysPrayer.eseIfa : todaysPrayer.eseIfaYoruba}"
+                </p>
+              </div>
+
               <div className="bg-amber-50 dark:bg-amber-900/30 p-3 rounded-lg">
                 <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
                   {ts("Blessing:", "Ìbùkún:")}
