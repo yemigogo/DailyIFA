@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Calendar, Clock, Heart, Star } from "lucide-react";
+import OduIfaImage from "@/components/odu-ifa-image";
+import { DailyReadingWithOdu } from "@shared/schema";
+import { formatDate } from "@/lib/date-utils";
 
 interface DailyPrayer {
   id: number;
@@ -23,6 +26,7 @@ interface DailyPrayer {
 export default function DailyPrayers() {
   const { language, ts } = useLanguage();
   const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
+  const todayDate = formatDate(new Date());
 
   const { data: prayers, isLoading } = useQuery<DailyPrayer[]>({
     queryKey: ["/api/prayers/all"],
@@ -31,6 +35,11 @@ export default function DailyPrayers() {
 
   const { data: todaysPrayer } = useQuery<DailyPrayer>({
     queryKey: ["/api/prayers/daily", today],
+    staleTime: 1000 * 60 * 60, // 1 hour
+  });
+
+  const { data: todaysReading } = useQuery<DailyReadingWithOdu>({
+    queryKey: [`/api/readings/${todayDate}`],
     staleTime: 1000 * 60 * 60, // 1 hour
   });
 
@@ -82,9 +91,29 @@ export default function DailyPrayers() {
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* Today's Sacred Odu */}
+              {todaysReading && (
+                <div className="bg-white dark:bg-amber-950/50 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                  <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 text-center">
+                    {ts("Today's Sacred Odu", "Odù Mímọ́ Òní")}
+                  </h4>
+                  <div className="flex justify-center mb-3">
+                    <OduIfaImage oduName={todaysReading.odu.name} size={120} />
+                  </div>
+                  <div className="text-center">
+                    <p className="font-bold text-amber-900 dark:text-amber-100">
+                      {todaysReading.odu.name}
+                    </p>
+                    <p className="text-xs text-amber-700 dark:text-amber-300">
+                      {language === "english" ? todaysReading.odu.subtitle : todaysReading.odu.subtitleYoruba}
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <div className="bg-white/50 dark:bg-amber-950/30 p-4 rounded-lg">
                 <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
-                  <span className="text-lg">🙏</span>
+                  <Heart className="h-4 w-4" />
                   {ts("Prayer (Àdúrà):", "Àdúrà:")}
                 </h4>
                 <p className="text-amber-800 dark:text-amber-200 italic leading-relaxed">

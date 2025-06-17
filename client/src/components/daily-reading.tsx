@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Bookmark, Share, Eye, Star, Leaf } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduPattern from "./odu-pattern";
+import OduIfaImage from "./odu-ifa-image";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -95,9 +96,19 @@ export default function DailyReading({ reading }: DailyReadingProps) {
         <CardContent className="p-6 bg-gradient-to-b from-cream/30 to-white">
           <div className="text-center mb-6">
             <h3 className="font-crimson text-lg font-semibold text-spiritual-blue mb-3">
-              {t("Sacred Pattern", "Àwòrán Mímọ́")}
+              {t("Sacred Odu Ifa", "Odù Ifá Mímọ́")}
             </h3>
-            <OduPattern pattern={reading.odu.pattern} />
+            <div className="flex justify-center mb-4">
+              <OduIfaImage oduName={reading.odu.name} size={150} />
+            </div>
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
+              <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
+                {t("Today's guiding Odu:", "Odù tí ń ṣe ìtọ́nisọ́nà òní:")} <span className="font-bold">{reading.odu.name}</span>
+              </p>
+              <p className="text-xs text-amber-600 dark:text-amber-400 mt-1">
+                {t(reading.odu.subtitle, reading.odu.subtitleYoruba)}
+              </p>
+            </div>
           </div>
 
           {/* Reading Content */}

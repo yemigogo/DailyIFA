@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import OduPattern from "@/components/odu-pattern";
-import type { Odu } from "@shared/schema";
+import OduIfaImage from "@/components/odu-ifa-image";
+import type { Odu, DailyReadingWithOdu } from "@shared/schema";
+import { formatDate } from "@/lib/date-utils";
 
 export default function ProblemSearch() {
   const { language, t, ts } = useLanguage();
