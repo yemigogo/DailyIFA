@@ -21,6 +21,8 @@ interface DailyPrayer {
   meaningYoruba: string;
   blessing: string;
   blessingYoruba: string;
+  eseIfa: string;
+  eseIfaYoruba: string;
 }
 
 // Map day of week to corresponding Odu names for each day
@@ -217,6 +219,16 @@ export default function DailyPrayers() {
                     </h4>
                     <p className="text-amber-800 dark:text-amber-200 text-sm">
                       {language === "english" ? prayer.meaning : prayer.meaningYoruba}
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                    <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
+                      <Star className="h-4 w-4" />
+                      {ts("Ese Ifa (Sacred Verse):", "Ese Ifá (Ọ̀rọ̀ Mímọ́):")}
+                    </h4>
+                    <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
+                      "{language === "english" ? prayer.eseIfa : prayer.eseIfaYoruba}"
                     </p>
                   </div>
 

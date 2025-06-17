@@ -49,6 +49,8 @@ export const dailyPrayers = pgTable("daily_prayers", {
   meaningYoruba: text("meaning_yoruba").notNull(),
   blessing: text("blessing").notNull(),
   blessingYoruba: text("blessing_yoruba").notNull(),
+  eseIfa: text("ese_ifa").notNull().default(""),
+  eseIfaYoruba: text("ese_ifa_yoruba").notNull().default(""),
 });
 
 export const ifaLunarPrayers = pgTable("ifa_lunar_prayers", {
