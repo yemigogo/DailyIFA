@@ -3,15 +3,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, BookOpen, Star, Lightbulb, Heart } from "lucide-react";
-import { Odu } from "@shared/schema";
+import { Odu, DailyReadingWithOdu } from "@shared/schema";
 import { useLocation } from "wouter";
 import OduPattern from "@/components/odu-pattern";
+import OduIfaImage from "@/components/odu-ifa-image";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { formatDate } from "@/lib/date-utils";
 
 export default function Learn() {
   const [, setLocation] = useLocation();
+  const { language, ts } = useLanguage();
+  const todayDate = formatDate(new Date());
 
   const { data: odus = [], isLoading } = useQuery<Odu[]>({
     queryKey: ["/api/odus"],
+  });
+
+  const { data: todaysReading } = useQuery<DailyReadingWithOdu>({
+    queryKey: [`/api/readings/${todayDate}`],
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
 
   return (
@@ -40,6 +50,28 @@ export default function Learn() {
 
       {/* Main Content */}
       <main className="max-w-md mx-auto px-4 py-6 space-y-6">
+        {/* Today's Sacred Odu */}
+        {todaysReading && (
+          <Card className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-300 dark:border-amber-700">
+            <CardContent className="p-4">
+              <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-3 text-center">
+                {ts("Today's Sacred Odu", "Odù Mímọ́ Òní")}
+              </h3>
+              <div className="flex items-center justify-center gap-3">
+                <OduIfaImage oduName={todaysReading.odu.name} size={80} />
+                <div className="text-left">
+                  <p className="font-bold text-amber-900 dark:text-amber-100">
+                    {todaysReading.odu.name}
+                  </p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
+                    {language === "english" ? todaysReading.odu.subtitle : todaysReading.odu.subtitleYoruba}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Introduction */}
         <Card className="bg-gradient-to-r from-sacred-gold/10 to-spiritual-blue/10 border-sacred-gold/20">
           <CardContent className="p-6">

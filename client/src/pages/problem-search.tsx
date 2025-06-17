@@ -15,11 +15,17 @@ export default function ProblemSearch() {
   const { language, t, ts } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const todayDate = formatDate(new Date());
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ['/api/odus/search', searchTerm],
     queryFn: () => fetch(`/api/odus/search?problem=${encodeURIComponent(searchTerm)}`).then(res => res.json()),
     enabled: searchTerm.length > 2,
+  });
+
+  const { data: todaysReading } = useQuery<DailyReadingWithOdu>({
+    queryKey: [`/api/readings/${todayDate}`],
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
 
   const commonProblems = [
@@ -65,7 +71,7 @@ export default function ProblemSearch() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-950 dark:to-orange-950 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="text-center space-y-2">
+        <div className="text-center space-y-4">
           <h1 className="text-3xl font-bold text-amber-900 dark:text-amber-100">
             {ts("Find Odu for Your Problems", "Wa Odu fun Awọn Iṣoro Rẹ")}
           </h1>
@@ -75,6 +81,26 @@ export default function ProblemSearch() {
               "Wa itọsọna Ifá ibile ti o da lori awọn nija aye kan pato"
             )}
           </p>
+
+          {/* Today's Sacred Odu */}
+          {todaysReading && (
+            <div className="bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20 p-4 rounded-lg max-w-md mx-auto">
+              <h3 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                {ts("Today's Guiding Odu", "Odù Ìtọ́nisọ́nà Òní")}
+              </h3>
+              <div className="flex items-center justify-center gap-3">
+                <OduIfaImage oduName={todaysReading.odu.name} size={60} />
+                <div className="text-left">
+                  <p className="font-bold text-amber-900 dark:text-amber-100 text-sm">
+                    {todaysReading.odu.name}
+                  </p>
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
+                    {language === "english" ? todaysReading.odu.subtitle : todaysReading.odu.subtitleYoruba}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Search Input */}
