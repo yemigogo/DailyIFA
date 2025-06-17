@@ -5,55 +5,39 @@ interface OduVisualizationProps {
   className?: string;
 }
 
-// Sacred Odu patterns for timeline visualization
+// Sacred Odu patterns for timeline visualization (vertical legs format)
 const SACRED_ODU_PATTERNS = {
   "Eji Ogbe": [
-    [true, true],
-    [true, true],
-    [true, true],
-    [true, true]
+    [true, true, true, true], // Right leg
+    [true, true, true, true]  // Left leg
   ],
   "Oyeku Meji": [
-    [false, false],
-    [false, false],
-    [false, false],
-    [false, false]
+    [false, false, false, false], // Right leg
+    [false, false, false, false]  // Left leg
   ],
   "Iwori Meji": [
-    [false, true],
-    [false, true],
-    [false, true],
-    [false, true]
+    [false, true, false, true], // Right leg
+    [false, true, false, true]  // Left leg
   ],
   "Odi Meji": [
-    [true, false],
-    [true, true],
-    [true, false],
-    [true, false]
+    [true, false, false, true], // Right leg
+    [true, false, false, true]  // Left leg
   ],
   "Irosun Meji": [
-    [true, false],
-    [false, false],
-    [true, false],
-    [false, true]
+    [true, true, false, false], // Right leg
+    [true, true, false, false]  // Left leg
   ],
   "Owonrin Meji": [
-    [true, true],
-    [false, false],
-    [true, true],
-    [false, false]
+    [false, false, true, true], // Right leg
+    [false, false, true, true]  // Left leg
   ],
   "Obara Meji": [
-    [false, true],
-    [true, true],
-    [true, true],
-    [false, true]
+    [true, false, true, false], // Right leg
+    [true, false, true, false]  // Left leg
   ],
   "Okanran Meji": [
-    [true, true],
-    [true, false],
-    [false, false],
-    [true, true]
+    [false, true, true, false], // Right leg
+    [false, true, true, false]  // Left leg
   ]
 };
 
@@ -67,27 +51,29 @@ export default function OduVisualization({
   const displayPattern = pattern || SACRED_ODU_PATTERNS[oduName as keyof typeof SACRED_ODU_PATTERNS] || SACRED_ODU_PATTERNS["Eji Ogbe"];
 
   return (
-    <div className={`inline-flex flex-col gap-1 ${className}`}>
-      {displayPattern.map((row, rowIndex) => (
-        <div key={rowIndex} className="flex gap-1">
-          {row.map((mark, colIndex) => (
+    <div className={`inline-flex items-center justify-center gap-2 ${className}`}>
+      {/* Traditional vertical Ifa pattern: two legs side by side */}
+      {displayPattern.map((leg, legIndex) => (
+        <div key={legIndex} className="flex flex-col gap-1">
+          {leg.map((mark, markIndex) => (
             <div
-              key={colIndex}
+              key={markIndex}
               className={`rounded-sm border ${
                 mark 
                   ? 'bg-amber-600 border-amber-700' 
                   : 'bg-amber-100 border-amber-300 dark:bg-amber-900 dark:border-amber-700'
               }`}
               style={{ 
-                width: `${size / 8}px`, 
-                height: `${size / 8}px` 
+                width: `${size / 10}px`, 
+                height: `${size / 20}px` 
               }}
+              title={`${legIndex === 0 ? 'Right' : 'Left'} leg, mark ${markIndex + 1}`}
             />
           ))}
         </div>
       ))}
       {oduName && (
-        <div className="text-xs text-center text-amber-700 dark:text-amber-300 mt-1 font-medium">
+        <div className="text-xs text-center text-amber-700 dark:text-amber-300 ml-2 font-medium">
           {oduName}
         </div>
       )}

@@ -8,10 +8,8 @@ interface OduIfaImageProps {
 const ODU_IFA_IMAGES = {
   "Eji Ogbe": {
     pattern: [
-      [true, true],
-      [true, true],
-      [true, true], 
-      [true, true]
+      [true, true, true, true], // Right leg (vertical marks)
+      [true, true, true, true]  // Left leg (vertical marks)
     ],
     symbol: "⚌", // Double solid lines representing unity and strength
     sacredGeometry: "circle",
@@ -20,10 +18,8 @@ const ODU_IFA_IMAGES = {
   },
   "Iwori Meji": {
     pattern: [
-      [false, true],
-      [false, true],
-      [false, true],
-      [false, true]
+      [false, true, false, true], // Right leg 
+      [false, true, false, true]  // Left leg
     ],
     symbol: "⚍", // Mixed lines representing wisdom emerging from mystery
     sacredGeometry: "triangle",
@@ -32,10 +28,8 @@ const ODU_IFA_IMAGES = {
   },
   "Obara Meji": {
     pattern: [
-      [false, true],
-      [true, true],
-      [true, true],
-      [false, true]
+      [true, false, true, false], // Right leg
+      [true, false, true, false]  // Left leg  
     ],
     symbol: "⚏", // Balanced pattern representing completion
     sacredGeometry: "hexagon",
@@ -44,10 +38,8 @@ const ODU_IFA_IMAGES = {
   },
   "Owonrin Meji": {
     pattern: [
-      [true, true],
-      [false, false],
-      [true, true],
-      [false, false]
+      [false, false, true, true], // Right leg
+      [false, false, true, true]  // Left leg
     ],
     symbol: "⚎", // Alternating pattern representing transformation
     sacredGeometry: "spiral",
@@ -160,18 +152,18 @@ export default function OduIfaImage({
             )}
           </g>
 
-          {/* Traditional Odu Pattern Below Symbol */}
+          {/* Traditional Vertical Odu Pattern Below Symbol */}
           <g transform={`translate(${size / 2 - cellSize * 0.6}, ${size / 2 + cellSize * 1.2})`}>
-            {oduData.pattern.map((row, rowIndex) => (
-              <g key={rowIndex} transform={`translate(0, ${rowIndex * (cellSize * 0.3)})`}>
-                {row.map((mark, colIndex) => (
+            {oduData.pattern.map((leg, legIndex) => (
+              <g key={legIndex} transform={`translate(${legIndex * (cellSize * 0.8)}, 0)`}>
+                {leg.map((mark, markIndex) => (
                   <rect
-                    key={colIndex}
-                    x={colIndex * (cellSize * 0.6)}
-                    y={0}
-                    width={cellSize * 0.5}
-                    height={cellSize * 0.2}
-                    rx={cellSize * 0.05}
+                    key={markIndex}
+                    x={0}
+                    y={markIndex * (cellSize * 0.25)}
+                    width={cellSize * 0.4}
+                    height={cellSize * 0.15}
+                    rx={cellSize * 0.02}
                     fill={mark ? "#ffffff" : "url(#darkGradient)"}
                     stroke={mark ? "#d97706" : "#78716c"}
                     strokeWidth={strokeWidth / 3}
