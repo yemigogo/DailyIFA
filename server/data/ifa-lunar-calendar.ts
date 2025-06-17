@@ -131,7 +131,7 @@ function getLunarPhaseContent(phase: string) {
         prayer: "Help us manifest our highest good and complete sacred works.",
         prayerYoruba: "Ràn wá lọ́wọ́ láti mú rere wa tó ga jùlọ ṣẹ àti parí àwọn iṣẹ́ mímọ́.",
         blessing: "May your projects reach fruition and your prayers be answered.",
-        blessingYoruba: "Kí àwọn iṣẹ́ rẹ ó máa so èso kí àwọn àdúrà rẹ sì ní ìdáhùn.",
+        blessingYoruba: "Kí àwọn iṣẹ́ rẹ ó máa so èso kí àwọn ìwúre rẹ sì ní ìdáhùn.",
         significance: "the peak of spiritual power and divine connection",
         significanceYoruba: "òkè agbára ẹ̀mí àti ìdàpọ̀ ọlọ́run"
       };

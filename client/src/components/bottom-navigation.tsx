@@ -9,7 +9,7 @@ export default function BottomNavigation() {
 
   const navigation = [
     { id: "today", label: ts("Today", "Òní"), icon: Home, path: "/" },
-    { id: "prayers", label: ts("Prayers", "Àdúrà"), icon: Heart, path: "/prayers" },
+    { id: "prayers", label: ts("Prayers", "Ìwúre"), icon: Heart, path: "/prayers" },
     { id: "problems", label: ts("Problems", "Iṣoro"), icon: Search, path: "/problems" },
     { id: "history", label: ts("Timeline", "Àtòkọ́tàn"), icon: Scroll, path: "/history" },
   ];

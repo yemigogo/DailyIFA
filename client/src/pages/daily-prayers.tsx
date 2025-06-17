@@ -66,7 +66,7 @@ export default function DailyPrayers() {
           <div className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-600 mx-auto"></div>
             <p className="mt-2 text-amber-700 dark:text-amber-300">
-              {ts("Loading daily prayers...", "Ń gbé àwọn àdúrà ojoojúmọ́...")}
+              {ts("Loading daily prayers...", "Ń gbé àwọn ìwúre ojoojúmọ́...")}
             </p>
           </div>
         </div>
@@ -310,19 +310,19 @@ export default function DailyPrayers() {
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Each day carries unique spiritual frequencies that influence our consciousness. From Sunday's divine light to Saturday's ancestral wisdom, understanding these energies helps you align your prayers with cosmic rhythms for maximum spiritual benefit.",
-                            "I: Ọjọ́ kọ̀ọ̀kan ní àwọn ìgbọ̀n ẹ̀mí àkànṣe tí ó ń ní ipa lórí àǹfààní wa. Láti ìmọ́lẹ̀ ọlọ́run ọjọ́ Àìkú dé ọgbọ́n àwọn baba ńlá ọjọ́ Àbámẹ́ta, òye àwọn agbára yìí ràn ọ́ lọ́wọ́ láti ṣe àwọn àdúrà rẹ dọ́gba pẹ̀lú àtẹ̀gùn àgbáyé fún àǹfààní ẹ̀mí tó pọ̀ jùlọ."
+                            "I: Ọjọ́ kọ̀ọ̀kan ní àwọn ìgbọ̀n ẹ̀mí àkànṣe tí ó ń ní ipa lórí àǹfààní wa. Láti ìmọ́lẹ̀ ọlọ́run ọjọ́ Àìkú dé ọgbọ́n àwọn baba ńlá ọjọ́ Àbámẹ́ta, òye àwọn agbára yìí ràn ọ́ lọ́wọ́ láti ṣe àwọn ìwúre rẹ dọ́gba pẹ̀lú àtẹ̀gùn àgbáyé fún àǹfààní ẹ̀mí tó pọ̀ jùlọ."
                           )}
                         </p>
                       </div>
 
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: What role does intention play in prayer effectiveness?", "Ì: Kí ni ipò tí ète ń kó nínú ìmúṣẹ àdúrà?")}
+                          {ts("Q: What role does intention play in prayer effectiveness?", "Ì: Kí ni ipò tí ète ń kó nínú ìmúṣẹ ìwúre?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Intention is the spiritual fuel that gives life to your prayers. When you pray with pure heart, focused mind, and sincere purpose, you create a powerful bridge between your soul and divine consciousness, allowing miracles to manifest.",
-                            "I: Ète ni epo ẹ̀mí tí ó fún àdúrà rẹ ní ẹ̀mí. Nígbà tí o bá dúró àdúrà pẹ̀lú ọkàn mímọ́, ọkàn tí ó ṣojú ọkàn, àti ète òtítọ́, o ṣẹ̀dá àkójọpọ̀ alágbára láàrin ọkàn rẹ àti àǹfààní ọlọ́run, tí ó jẹ́ kí àwọn iṣẹ́ ìyanu ṣẹ."
+                            "I: Ète ni epo ẹ̀mí tí ó fún ìwúre rẹ ní ẹ̀mí. Nígbà tí o bá dúró ìwúre pẹ̀lú ọkàn mímọ́, ọkàn tí ó ṣojú ọkàn, àti ète òtítọ́, o ṣẹ̀dá àkójọpọ̀ alágbára láàrin ọkàn rẹ àti àǹfààní ọlọ́run, tí ó jẹ́ kí àwọn iṣẹ́ ìyanu ṣẹ."
                           )}
                         </p>
                       </div>
@@ -340,7 +340,7 @@ export default function DailyPrayers() {
                     <div className="space-y-3 text-sm">
                       <div>
                         <p className="font-medium text-amber-800 dark:text-amber-200 mb-1">
-                          {ts("Q: How do daily prayers connect you to your Yoruba heritage?", "Ì: Báwo ni àdúrà ojoojúmọ́ ṣe ń so ọ́ pọ̀ mọ́ ọ̀rọ̀ Yorùbá rẹ?")}
+                          {ts("Q: How do daily prayers connect you to your Yoruba heritage?", "Ì: Báwo ni ìwúre ojoojúmọ́ ṣe ń so ọ́ pọ̀ mọ́ ọ̀rọ̀ Yorùbá rẹ?")}
                         </p>
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
