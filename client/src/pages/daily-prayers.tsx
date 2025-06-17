@@ -23,6 +23,17 @@ interface DailyPrayer {
   blessingYoruba: string;
 }
 
+// Map day of week to corresponding Odu names for each day
+const DAILY_ODU_MAPPING = {
+  0: "Eji Ogbe", // Sunday - Divine Light and Leadership
+  1: "Oyeku Meji", // Monday - Transformation and Renewal
+  2: "Iwori Meji", // Tuesday - Wisdom and Knowledge
+  3: "Odi Meji", // Wednesday - Foundation and Stability
+  4: "Irosun Meji", // Thursday - Healing and Prosperity
+  5: "Owonrin Meji", // Friday - Change and Movement
+  6: "Obara Meji" // Saturday - Completion and Order
+};
+
 export default function DailyPrayers() {
   const { language, ts } = useLanguage();
   const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
@@ -42,6 +53,11 @@ export default function DailyPrayers() {
     queryKey: [`/api/readings/${todayDate}`],
     staleTime: 1000 * 60 * 60, // 1 hour
   });
+
+  // Function to get Odu name for a specific day
+  const getOduForDay = (dayOfWeek: number): string => {
+    return DAILY_ODU_MAPPING[dayOfWeek as keyof typeof DAILY_ODU_MAPPING] || "Eji Ogbe";
+  };
 
   if (isLoading) {
     return (
@@ -64,12 +80,12 @@ export default function DailyPrayers() {
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-amber-900 dark:text-amber-100">
-            {ts("Daily Ifá Prayers", "Àwọn Àdúrà Ifá Ojoojúmọ́")}
+            {ts("Daily Ifá Prayers", "Àwọn Ìwúre Ifá Ojoojúmọ́")}
           </h1>
           <p className="text-amber-700 dark:text-amber-300">
             {ts(
               "Traditional prayers for each day of the week according to Ifá wisdom",
-              "Àwọn àdúrà ìbílẹ̀ fún ọjọ́ kọ̀ọ̀kan nínú ọ̀sẹ̀ gẹ́gẹ́ bí ọgbọ́n Ifá"
+              "Àwọn ìwúre ìbílẹ̀ fún ọjọ́ kọ̀ọ̀kan nínú ọ̀sẹ̀ gẹ́gẹ́ bí ọgbọ́n Ifá"
             )}
           </p>
         </div>
@@ -82,7 +98,7 @@ export default function DailyPrayers() {
                 <Star className="h-6 w-6 text-amber-600" />
                 <div>
                   <CardTitle className="text-amber-900 dark:text-amber-100">
-                    {ts("Today's Prayer", "Àdúrà Òní")} - {language === "english" ? todaysPrayer.dayName : todaysPrayer.dayNameYoruba}
+                    {ts("Today's Prayer", "Ìwúre Òní")} - {language === "english" ? todaysPrayer.dayName : todaysPrayer.dayNameYoruba}
                   </CardTitle>
                   <CardDescription className="text-amber-700 dark:text-amber-300">
                     {language === "english" ? todaysPrayer.title : todaysPrayer.titleYoruba}
@@ -182,6 +198,19 @@ export default function DailyPrayers() {
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
+                  {/* Sacred Odu for this day */}
+                  <div className="bg-amber-50 dark:bg-amber-900/30 p-3 rounded-lg">
+                    <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-3 text-center">
+                      {ts("Sacred Odu for this day", "Odù Mímọ́ fún ọjọ́ yìí")}
+                    </h4>
+                    <div className="flex justify-center mb-2">
+                      <OduIfaImage oduName={getOduForDay(prayer.dayOfWeek)} size={80} />
+                    </div>
+                    <p className="text-center text-xs text-amber-700 dark:text-amber-300 font-medium">
+                      {getOduForDay(prayer.dayOfWeek)}
+                    </p>
+                  </div>
+
                   <div>
                     <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
                       {ts("Spiritual Meaning:", "Ìtumọ̀ Ẹ̀mí:")}

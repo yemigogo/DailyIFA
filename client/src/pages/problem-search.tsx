@@ -209,10 +209,20 @@ export default function ProblemSearch() {
                             </p>
                           )}
                         </div>
-                        <OduPattern pattern={odu.pattern} className="w-8 h-8" />
+                        <OduIfaImage oduName={odu.name} size={50} />
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
+                      {/* Sacred Odu Visualization */}
+                      <div className="bg-amber-50 dark:bg-amber-900/30 p-3 rounded-lg text-center">
+                        <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">
+                          {ts("Sacred Pattern", "Àwòrán Mímọ́")}
+                        </h4>
+                        <div className="flex justify-center">
+                          <OduIfaImage oduName={odu.name} size={100} />
+                        </div>
+                      </div>
+
                       <div className="space-y-3">
                         <div>
                           <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-2">

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { History, ChevronRight } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import { formatShortDate, parseDate } from "@/lib/date-utils";
+import OduIfaImage from "./odu-ifa-image";
 
 interface ReadingHistoryProps {
   readings: DailyReadingWithOdu[];
@@ -35,13 +36,16 @@ export default function ReadingHistory({
                 onClick={() => onSelectReading(reading.date)}
                 className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
               >
-                <div>
-                  <p className="font-medium text-spiritual-blue">
-                    {reading.odu.name}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {formatShortDate(parseDate(reading.date))}
-                  </p>
+                <div className="flex items-center gap-3">
+                  <OduIfaImage oduName={reading.odu.name} size={40} />
+                  <div>
+                    <p className="font-medium text-spiritual-blue">
+                      {reading.odu.name}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {formatShortDate(parseDate(reading.date))}
+                    </p>
+                  </div>
                 </div>
                 <ChevronRight className="h-4 w-4 text-gray-400" />
               </div>
