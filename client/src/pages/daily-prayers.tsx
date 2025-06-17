@@ -345,7 +345,7 @@ export default function DailyPrayers() {
                         <p className="text-amber-700 dark:text-amber-300 italic">
                           {ts(
                             "A: Daily prayers are threads that weave you into the fabric of Yoruba spiritual heritage. Each prayer connects you to millions of ancestors who used these same words, creating an unbroken chain of spiritual continuity across generations.",
-                            "I: Àdúrà ojoojúmọ́ jẹ́ okùn tí ó hun ọ́ sínú aṣọ ọ̀rọ̀ ẹ̀mí Yorùbá. Àdúrà kọ̀ọ̀kan so ọ́ pọ̀ mọ́ ọ̀kẹ́ mẹ́ta àwọn baba ńlá tí wọ́n lo àwọn ọ̀rọ̀ kannáà, tí ó ṣẹ̀dá ẹ̀wọ̀n ìtẹ̀síwájú ẹ̀mí tí kò gbẹ́ ní àárín àwọn ìran."
+                            "I: Ìwúre ojoojúmọ́ jẹ́ okùn tí ó hun ọ́ sínú aṣọ ọ̀rọ̀ ẹ̀mí Yorùbá. Ìwúre kọ̀ọ̀kan so ọ́ pọ̀ mọ́ ọ̀kẹ́ mẹ́ta àwọn baba ńlá tí wọ́n lo àwọn ọ̀rọ̀ kannáà, tí ó ṣẹ̀dá ẹ̀wọ̀n ìtẹ̀síwájú ẹ̀mí tí kò gbẹ́ ní àárín àwọn ìran."
                           )}
                         </p>
                       </div>
