@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { apiService, DailyReading } from '../services/ApiService';
 import { THEME_CONFIG } from '../constants/Config';
+import OduTraditionalImage from '../components/OduTraditionalImage';
 
 export default function HistoryScreen() {
   const { data: readings, isLoading } = useQuery({
@@ -35,11 +36,23 @@ export default function HistoryScreen() {
         <Text style={styles.readingDate}>{formatDate(item.date)}</Text>
         <Ionicons name="chevron-forward" size={20} color={THEME_CONFIG.COLORS.TEXT} />
       </View>
-      <Text style={styles.oduName}>{item.odu.name}</Text>
-      <Text style={styles.oduNameYoruba}>{item.odu.nameYoruba}</Text>
-      <Text style={styles.readingPreview} numberOfLines={2}>
-        {item.odu.message}
-      </Text>
+      
+      <View style={styles.readingContent}>
+        <View style={styles.oduImageWrapper}>
+          <OduTraditionalImage
+            oduName={item.odu.name}
+            pattern={item.odu.pattern}
+            size={60}
+          />
+        </View>
+        <View style={styles.oduTextContent}>
+          <Text style={styles.oduName}>{item.odu.name}</Text>
+          <Text style={styles.oduNameYoruba}>{item.odu.nameYoruba}</Text>
+          <Text style={styles.readingPreview} numberOfLines={2}>
+            {item.odu.message}
+          </Text>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 
@@ -103,21 +116,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   readingDate: {
     fontSize: 14,
     color: THEME_CONFIG.COLORS.SECONDARY,
     fontWeight: '500',
   },
+  readingContent: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  oduImageWrapper: {
+    flexShrink: 0,
+  },
+  oduTextContent: {
+    flex: 1,
+  },
   oduName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: THEME_CONFIG.COLORS.TEXT,
     marginBottom: 4,
   },
   oduNameYoruba: {
-    fontSize: 14,
+    fontSize: 12,
     fontStyle: 'italic',
     color: THEME_CONFIG.COLORS.SECONDARY,
     marginBottom: 8,

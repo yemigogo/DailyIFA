@@ -2,8 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bookmark, Share, Eye, Star, Leaf } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
-import OduPattern from "./odu-pattern";
-import OduIfaImage from "./odu-ifa-image";
+import OduTraditionalImage from "./odu-traditional-image";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -99,7 +98,11 @@ export default function DailyReading({ reading }: DailyReadingProps) {
               {t("Sacred Odu Ifa", "Odù Ifá Mímọ́")}
             </h3>
             <div className="flex justify-center mb-4">
-              <OduIfaImage oduName={reading.odu.name} size={150} />
+              <OduTraditionalImage 
+                oduName={reading.odu.name} 
+                pattern={reading.odu.pattern}
+                size={150} 
+              />
             </div>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
               <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
