@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { apiService, Odu } from '../services/ApiService';
 import { THEME_CONFIG } from '../constants/Config';
+import OduTraditionalImage from '../components/OduTraditionalImage';
 
 const commonProblems = [
   'relationship issues',
@@ -67,13 +68,21 @@ export default function SearchScreen() {
 
   const renderOduResult = ({ item }: { item: Odu }) => (
     <TouchableOpacity style={styles.oduCard}>
-      <View style={styles.oduHeader}>
-        <Text style={styles.oduName}>{item.name}</Text>
-        <Text style={styles.oduNameYoruba}>{item.nameYoruba}</Text>
+      <View style={styles.oduCardHeader}>
+        <View style={styles.oduImageWrapper}>
+          <OduTraditionalImage
+            oduName={item.name}
+            pattern={item.pattern}
+            size={70}
+          />
+        </View>
+        <View style={styles.oduInfo}>
+          <Text style={styles.oduName}>{item.name}</Text>
+          <Text style={styles.oduNameYoruba}>{item.nameYoruba}</Text>
+          <Text style={styles.oduSubtitle}>{item.subtitle}</Text>
+          <Text style={styles.oduSubtitleYoruba}>{item.subtitleYoruba}</Text>
+        </View>
       </View>
-      
-      <Text style={styles.oduSubtitle}>{item.subtitle}</Text>
-      <Text style={styles.oduSubtitleYoruba}>{item.subtitleYoruba}</Text>
       
       <Text style={styles.oduMessage} numberOfLines={3}>
         {item.message}
@@ -273,32 +282,40 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
-  oduHeader: {
-    alignItems: 'center',
+  oduCardHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     marginBottom: 12,
+    gap: 12,
+  },
+  oduImageWrapper: {
+    flexShrink: 0,
+  },
+  oduInfo: {
+    flex: 1,
   },
   oduName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: THEME_CONFIG.COLORS.TEXT,
   },
   oduNameYoruba: {
-    fontSize: 14,
+    fontSize: 12,
     fontStyle: 'italic',
     color: THEME_CONFIG.COLORS.SECONDARY,
     marginTop: 2,
   },
   oduSubtitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
     color: THEME_CONFIG.COLORS.TEXT,
-    marginBottom: 2,
+    marginTop: 4,
   },
   oduSubtitleYoruba: {
-    fontSize: 14,
+    fontSize: 12,
     fontStyle: 'italic',
     color: THEME_CONFIG.COLORS.SECONDARY,
-    marginBottom: 12,
+    marginTop: 2,
   },
   oduMessage: {
     fontSize: 14,
