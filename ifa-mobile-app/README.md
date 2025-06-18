@@ -1,6 +1,6 @@
 # Ifá Daily Readings - React Native Mobile App
 
-A React Native mobile application built with Expo for daily Ifá spiritual readings and guidance.
+A React Native mobile application built with Expo for daily Ifá spiritual readings and guidance, designed for Google Play Store deployment.
 
 ## 🚀 Quick Start
 
@@ -243,6 +243,28 @@ Then reference in `app.json`:
 - Add privacy policy URL
 - Follow Play Store policies
 
+## 🔧 Development Commands
+
+```bash
+# Start development server
+npm start
+
+# Run on Android device/emulator
+npm run android
+
+# Run on iOS device/simulator  
+npm run ios
+
+# Run on web browser
+npm run web
+
+# Build for Android
+npm run build:android
+
+# Submit to app stores
+npm run submit:android
+```
+
 ---
 
-**Built with ❤️ for authentic Ifá spiritual guidance**
+**Ready for Google Play deployment with authentic Ifá spiritual guidance**
