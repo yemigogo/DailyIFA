@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { apiService, DailyReading } from '../services/ApiService';
 import { THEME_CONFIG } from '../constants/Config';
+import OduTraditionalImage from '../components/OduTraditionalImage';
 
 export default function HomeScreen() {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
@@ -113,21 +114,13 @@ export default function HomeScreen() {
               <Text style={styles.oduNameYoruba}>{dailyReading.odu.nameYoruba}</Text>
             </View>
 
-            {/* Odu Pattern Visualization */}
-            <View style={styles.oduPattern}>
-              {dailyReading.odu.pattern.map((leg: boolean[], legIndex: number) => (
-                <View key={legIndex} style={styles.patternLeg}>
-                  {leg.map((mark: boolean, markIndex: number) => (
-                    <View
-                      key={markIndex}
-                      style={[
-                        styles.patternMark,
-                        { backgroundColor: mark ? THEME_CONFIG.COLORS.PRIMARY : THEME_CONFIG.COLORS.BACKGROUND }
-                      ]}
-                    />
-                  ))}
-                </View>
-              ))}
+            {/* Traditional Odu Ifa Image */}
+            <View style={styles.oduImageContainer}>
+              <OduTraditionalImage 
+                oduName={dailyReading.odu.name} 
+                pattern={dailyReading.odu.pattern} 
+                size={140}
+              />
             </View>
 
             <View style={styles.messageContainer}>
@@ -238,20 +231,9 @@ const styles = StyleSheet.create({
     color: THEME_CONFIG.COLORS.SECONDARY,
     marginTop: 4,
   },
-  oduPattern: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+  oduImageContainer: {
+    alignItems: 'center',
     marginBottom: 24,
-    gap: 16,
-  },
-  patternLeg: {
-    flexDirection: 'column',
-    gap: 6,
-  },
-  patternMark: {
-    width: 24,
-    height: 6,
-    borderRadius: 3,
   },
   messageContainer: {
     marginBottom: 20,
