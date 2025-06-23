@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ifá Daily Reading{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sacred-gold': '#D4AF37',
+                        'spiritual-blue': '#1B365D',
+                        'sage-green': '#9CAF88',
+                        'earth-brown': '#8B4513'
+                    },
+                    fontFamily: {
+                        'crimson': ['Crimson Text', 'serif']
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #1B365D 100%);
+        }
+        
+        .amber-gradient {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        }
+        
+        .spiritual-card {
+            background: linear-gradient(145deg, #ffffff 0%, #fefce8 100%);
+            border: 1px solid #d4af37;
+        }
+        
+        .dark .spiritual-card {
+            background: linear-gradient(145deg, #1f2937 0%, #374151 100%);
+            border: 1px solid #6b7280;
+        }
+    </style>
+</head>
+<body class="h-full bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-sacred-gold/20">
+            <div class="max-w-md mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <h1 class="font-crimson font-bold text-spiritual-blue dark:text-sacred-gold text-xl">
+                        {% block header_title %}Ifá Daily Reading{% endblock %}
+                    </h1>
+                    
+                    <!-- Language Toggle -->
+                    <div class="flex items-center gap-2" x-data="{ language: 'english' }">
+                        <button @click="language = language === 'english' ? 'yoruba' : 'english'"
+                                class="px-3 py-1 rounded-lg border border-sacred-gold/30 text-sm hover:bg-sacred-gold/10 transition-colors">
+                            <span x-show="language === 'english'">EN</span>
+                            <span x-show="language === 'yoruba'">YO</span>
+                        </button>
+                        
+                        <!-- Dark Mode Toggle -->
+                        <button onclick="toggleDarkMode()" 
+                                class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                            </svg>
+                            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-md mx-auto w-full px-4 py-6">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bg-white dark:bg-gray-800 border-t border-sacred-gold/20 px-4 py-2 mt-auto">
+            <div class="max-w-md mx-auto">
+                <div class="flex justify-around items-center">
+                    <a href="/" class="flex flex-col items-center py-2 px-3 rounded-lg hover:bg-sacred-gold/10 transition-colors">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <span class="text-xs">Home</span>
+                    </a>
+                    
+                    <a href="/history" class="flex flex-col items-center py-2 px-3 rounded-lg hover:bg-sacred-gold/10 transition-colors">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-xs">History</span>
+                    </a>
+                    
+                    <a href="/learn" class="flex flex-col items-center py-2 px-3 rounded-lg hover:bg-sacred-gold/10 transition-colors">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <span class="text-xs">Learn</span>
+                    </a>
+                    
+                    <a href="/problem-search" class="flex flex-col items-center py-2 px-3 rounded-lg hover:bg-sacred-gold/10 transition-colors">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <span class="text-xs">Search</span>
+                    </a>
+                    
+                    <a href="/profile" class="flex flex-col items-center py-2 px-3 rounded-lg hover:bg-sacred-gold/10 transition-colors">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        <span class="text-xs">Profile</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Floating Ambient Controls -->
+        <div class="fixed bottom-20 right-4 z-50" x-data="ambientPlayer()">
+            <button @click="toggleExpanded()" 
+                    class="w-12 h-12 bg-sacred-gold hover:bg-yellow-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all">
+                <svg x-show="!isPlaying" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <svg x-show="isPlaying" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+            
+            <!-- Expanded Controls -->
+            <div x-show="expanded" 
+                 x-transition
+                 class="absolute bottom-16 right-0 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-sacred-gold/20 p-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-semibold text-sm">Ambient Sounds</h3>
+                    <button @click="expanded = false" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-2">
+                    <button @click="playTrack('blessing')" 
+                            :class="currentTrack === 'blessing' ? 'bg-sacred-gold text-white' : 'bg-gray-100 hover:bg-gray-200'"
+                            class="w-full p-2 rounded text-sm transition-colors">
+                        Ocean Blessing
+                    </button>
+                    <button @click="playTrack('forest')" 
+                            :class="currentTrack === 'forest' ? 'bg-sacred-gold text-white' : 'bg-gray-100 hover:bg-gray-200'"
+                            class="w-full p-2 rounded text-sm transition-colors">
+                        Sacred Forest
+                    </button>
+                    <button @click="playTrack('drums')" 
+                            :class="currentTrack === 'drums' ? 'bg-sacred-gold text-white' : 'bg-gray-100 hover:bg-gray-200'"
+                            class="w-full p-2 rounded text-sm transition-colors">
+                        Bata Drums
+                    </button>
+                </div>
+                
+                <!-- Volume Control -->
+                <div x-show="isPlaying" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                        </svg>
+                        <input type="range" x-model="volume" min="0" max="100" 
+                               @input="updateVolume()"
+                               class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <span x-text="volume + '%'" class="text-xs text-gray-500 w-8"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hidden Audio Element -->
+            <audio x-ref="audioPlayer" loop></audio>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+
+        // Initialize dark mode from localStorage
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Ambient player Alpine.js component
+        function ambientPlayer() {
+            return {
+                expanded: false,
+                isPlaying: false,
+                currentTrack: '',
+                volume: 30,
+                
+                toggleExpanded() {
+                    this.expanded = !this.expanded;
+                },
+                
+                playTrack(track) {
+                    const trackFiles = {
+                        blessing: '/audio/ambient/blessing_chant.mp3',
+                        forest: '/audio/ambient/forest.mp3',
+                        drums: '/audio/ambient/bata_drums.mp3'
+                    };
+                    
+                    if (this.currentTrack === track && this.isPlaying) {
+                        this.$refs.audioPlayer.pause();
+                        this.isPlaying = false;
+                        this.currentTrack = '';
+                    } else {
+                        this.$refs.audioPlayer.src = trackFiles[track];
+                        this.$refs.audioPlayer.volume = this.volume / 100;
+                        this.$refs.audioPlayer.play().catch(e => console.error('Audio play error:', e));
+                        this.isPlaying = true;
+                        this.currentTrack = track;
+                    }
+                },
+                
+                updateVolume() {
+                    if (this.$refs.audioPlayer) {
+                        this.$refs.audioPlayer.volume = this.volume / 100;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

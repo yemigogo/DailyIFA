@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}Learn About Ifá{% endblock %}
+{% block header_title %}Learn About Ifá{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="{ language: 'english' }">
+    <!-- Introduction -->
+    <div class="spiritual-card rounded-xl p-6">
+        <div class="text-center mb-6">
+            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-spiritual-blue to-blue-700 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+                <span x-show="language === 'english'">The Wisdom of Ifá</span>
+                <span x-show="language === 'yoruba'">Ọgbọ́n Ifá</span>
+            </h2>
+        </div>
+
+        <div class="prose dark:prose-invert max-w-none">
+            <div x-show="language === 'english'">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Ifá is an ancient African spiritual tradition that originated among the Yoruba people of West Africa. 
+                    It is a comprehensive system of divination, philosophy, and spiritual guidance that has been practiced 
+                    for thousands of years.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    At the heart of Ifá are the sacred verses known as Odu, which contain profound wisdom, stories, 
+                    and guidance for every aspect of human experience. Each Odu represents a unique energy pattern 
+                    and offers specific insights for personal growth and spiritual development.
+                </p>
+            </div>
+            
+            <div x-show="language === 'yoruba'">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Ifá jẹ́ ìṣe ẹ̀mí àtijọ́ Áfríkà tí ó ti bẹ̀rẹ̀ láàárín àwọn ènìyàn Yorùbá ní Ìwọ̀-Oòrùn Áfríkà. 
+                    Ó jẹ́ ètò tí ó pé fún àfọ̀mọ́, ìmọ̀-ọgbọ́n, àti ìtọ́kasí ẹ̀mí tí a ti ń ṣe fún ẹgbẹ̀rún ọdún.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                    Ní àárín Ifá ni àwọn ẹsẹ mímọ́ tí a ń pè ní Odù, tí ó ní ọgbọ́n jíjìn, àwọn ìtàn, 
+                    àti ìtọ́kasí fún gbogbo ẹ̀yà ìrírí ènìyàn. Odù kọ̀ọ̀kan dúró fún agbára àtọ̀tọ̀ kan 
+                    tí ó sì ń fún ni ní òye pàtàkì fún ìdàgbàsókè ti ara ẹni àti ẹ̀mí.
+                </p>
+            </div>
+        </div>
+
+        <!-- Key Principles -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="text-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-1">
+                    <span x-show="language === 'english'">Wisdom</span>
+                    <span x-show="language === 'yoruba'">Ọgbọ́n</span>
+                </h3>
+                <p class="text-xs text-amber-700 dark:text-amber-300">
+                    <span x-show="language === 'english'">Ancient knowledge</span>
+                    <span x-show="language === 'yoruba'">Ìmọ̀ àtijọ́</span>
+                </p>
+            </div>
+            
+            <div class="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                    <span x-show="language === 'english'">Guidance</span>
+                    <span x-show="language === 'yoruba'">Ìtọ́kasí</span>
+                </h3>
+                <p class="text-xs text-blue-700 dark:text-blue-300">
+                    <span x-show="language === 'english'">Spiritual direction</span>
+                    <span x-show="language === 'yoruba'">Ìdarí ẹ̀mí</span>
+                </p>
+            </div>
+            
+            <div class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-green-900 dark:text-green-100 mb-1">
+                    <span x-show="language === 'english'">Healing</span>
+                    <span x-show="language === 'yoruba'">Ìwòsàn</span>
+                </h3>
+                <p class="text-xs text-green-700 dark:text-green-300">
+                    <span x-show="language === 'english'">Spiritual wellness</span>
+                    <span x-show="language === 'yoruba'">Ìlera ẹ̀mí</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The 16 Major Odu -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">The 16 Major Odu</span>
+            <span x-show="language === 'yoruba'">Àwọn Odù Méjì 16</span>
+        </h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-6">
+            <span x-show="language === 'english'">
+                The Odu are the sacred verses of Ifá, containing wisdom, stories, and guidance for every aspect of life. 
+                Each Odu has its own unique energy and message.
+            </span>
+            <span x-show="language === 'yoruba'">
+                Àwọn Odù ni àwọn ẹsẹ mímọ́ ti Ifá, tí ó ní ọgbọ́n, àwọn ìtàn, àti ìtọ́kasí fún gbogbo ẹ̀yà ìgbé ayé. 
+                Odù kọ̀ọ̀kan ní agbára àti ọ̀rọ̀ tirẹ̀.
+            </span>
+        </p>
+
+        {% if odus %}
+        <div class="space-y-4">
+            {% for odu in odus %}
+            <div class="border border-amber-200 dark:border-amber-700 rounded-lg p-4 hover:border-amber-400 transition-colors">
+                <div class="flex items-start justify-between">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <!-- Odu Pattern -->
+                            <div class="flex flex-col gap-1">
+                                {% set pattern = odu.pattern | parse_pattern %}
+                                {% for row in pattern %}
+                                <div class="flex gap-1">
+                                    {% for mark in row %}
+                                    <div class="w-2 h-2 {{ 'bg-amber-600' if mark else 'bg-gray-300 dark:bg-gray-600' }} rounded-full"></div>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-amber-900 dark:text-amber-100">
+                                    <span x-show="language === 'english'">{{ odu.name }}</span>
+                                    <span x-show="language === 'yoruba'">{{ odu.name_yoruba }}</span>
+                                </h4>
+                                <p class="text-sm text-amber-600 dark:text-amber-400">
+                                    {{ odu.pronunciation }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                            <span x-show="language === 'english'">{{ odu.subtitle }}</span>
+                            <span x-show="language === 'yoruba'">{{ odu.subtitle_yoruba }}</span>
+                        </p>
+                        
+                        <!-- Audio Pronunciation -->
+                        <div class="mb-3">
+                            <audio controls preload="auto" src="/audio/odu/{{ odu.id }}.mp3" class="w-full h-8">
+                                Audio not supported
+                            </audio>
+                        </div>
+                        
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            <span x-show="language === 'english'">{{ odu.message[:150] }}{% if odu.message|length > 150 %}...{% endif %}</span>
+                            <span x-show="language === 'yoruba'">{{ odu.message_yoruba[:150] }}{% if odu.message_yoruba|length > 150 %}...{% endif %}</span>
+                        </p>
+                    </div>
+                    
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-amber-600">{{ odu.id }}</div>
+                        <div class="text-xs text-gray-500">
+                            <span x-show="language === 'english'">{{ odu.element }}</span>
+                            <span x-show="language === 'yoruba'">{{ odu.element_yoruba }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 gap-4">
+        <a href="/problem-search" class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-sacred-gold transition-colors text-center">
+            <svg class="w-8 h-8 mx-auto mb-2 text-spiritual-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <span class="text-sm font-medium">
+                <span x-show="language === 'english'">Search Problems</span>
+                <span x-show="language === 'yoruba'">Wa Àwọn Ìṣòro</span>
+            </span>
+        </a>
+        
+        <a href="/daily-prayers" class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-sacred-gold transition-colors text-center">
+            <svg class="w-8 h-8 mx-auto mb-2 text-spiritual-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 2L3 14h7l-1 8 7-12h-7l1-8z"></path>
+            </svg>
+            <span class="text-sm font-medium">
+                <span x-show="language === 'english'">Daily Prayers</span>
+                <span x-show="language === 'yoruba'">Àdúrà Ojoojúmọ́</span>
+            </span>
+        </a>
+    </div>
+</div>
+{% endblock %}

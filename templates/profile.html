@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Spiritual Preferences{% endblock %}
+{% block header_title %}Your Spiritual Profile{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="userProfile()">
+    <!-- Profile Tabs -->
+    <div class="spiritual-card rounded-xl overflow-hidden">
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-amber-200 dark:border-amber-700">
+            <button @click="activeTab = 'basic'" 
+                    :class="activeTab === 'basic' ? 'bg-amber-50 dark:bg-amber-900/20 border-b-2 border-amber-600' : 'hover:bg-amber-50 dark:hover:bg-amber-900/10'"
+                    class="flex-1 px-4 py-3 text-sm font-medium text-amber-900 dark:text-amber-100 transition-colors">
+                <span x-show="language === 'english'">Basic Info</span>
+                <span x-show="language === 'yoruba'">Àlàyé Ìpìlẹ̀</span>
+            </button>
+            <button @click="activeTab = 'assessment'" 
+                    :class="activeTab === 'assessment' ? 'bg-amber-50 dark:bg-amber-900/20 border-b-2 border-amber-600' : 'hover:bg-amber-50 dark:hover:bg-amber-900/10'"
+                    class="flex-1 px-4 py-3 text-sm font-medium text-amber-900 dark:text-amber-100 transition-colors">
+                <span x-show="language === 'english'">Orisha Assessment</span>
+                <span x-show="language === 'yoruba'">Àyẹ̀wò Òrìṣà</span>
+            </button>
+            <button @click="activeTab = 'preferences'" 
+                    :class="activeTab === 'preferences' ? 'bg-amber-50 dark:bg-amber-900/20 border-b-2 border-amber-600' : 'hover:bg-amber-50 dark:hover:bg-amber-900/10'"
+                    class="flex-1 px-4 py-3 text-sm font-medium text-amber-900 dark:text-amber-100 transition-colors">
+                <span x-show="language === 'english'">Preferences</span>
+                <span x-show="language === 'yoruba'">Àwọn Ìfẹ́</span>
+            </button>
+        </div>
+
+        <!-- Basic Info Tab -->
+        <div x-show="activeTab === 'basic'" class="p-6">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-spiritual-blue to-blue-700 rounded-full flex items-center justify-center">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                </div>
+                
+                <h2 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                    <span x-show="language === 'english'">Personal Information</span>
+                    <span x-show="language === 'yoruba'">Àlàyé Ti Ara Ẹni</span>
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Your Name</span>
+                        <span x-show="language === 'yoruba'">Orúkọ Rẹ</span>
+                    </label>
+                    <input type="text" x-model="profile.name" 
+                           :placeholder="language === 'english' ? 'Enter your name' : 'Kọ orúkọ rẹ'"
+                           class="w-full px-3 py-2 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Spiritual Path</span>
+                        <span x-show="language === 'yoruba'">Ọ̀nà Ẹ̀mí</span>
+                    </label>
+                    <select x-model="profile.spiritualPath" 
+                            class="w-full px-3 py-2 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                        <option value="beginner">
+                            <span x-show="language === 'english'">Beginner</span>
+                            <span x-show="language === 'yoruba'">Ọmọ Ẹ̀kọ́</span>
+                        </option>
+                        <option value="intermediate">
+                            <span x-show="language === 'english'">Intermediate</span>
+                            <span x-show="language === 'yoruba'">Àárín</span>
+                        </option>
+                        <option value="advanced">
+                            <span x-show="language === 'english'">Advanced</span>
+                            <span x-show="language === 'yoruba'">Gíga</span>
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orisha Assessment Tab -->
+        <div x-show="activeTab === 'assessment'" class="p-6">
+            <div x-show="!assessmentComplete">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-sacred-gold to-yellow-700 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                        <span x-show="language === 'english'">Orisha Compatibility Assessment</span>
+                        <span x-show="language === 'yoruba'">Àyẹ̀wò Ìbámu Òrìṣà</span>
+                    </h2>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        <span x-show="language === 'english'">Answer questions to discover your spiritual alignment</span>
+                        <span x-show="language === 'yoruba'">Dáhùn àwọn ìbéèrè láti ṣàwárí ìbámu ẹ̀mí rẹ</span>
+                    </p>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mb-6">
+                        <div class="flex justify-between text-sm text-amber-600 dark:text-amber-400 mb-2">
+                            <span>
+                                <span x-show="language === 'english'">Question</span>
+                                <span x-show="language === 'yoruba'">Ìbéèrè</span>
+                                <span x-text="currentQuestion + 1"></span>
+                                <span x-show="language === 'english'">of</span>
+                                <span x-show="language === 'yoruba'">nínú</span>
+                                <span x-text="assessmentQuestions.length"></span>
+                            </span>
+                            <span x-text="Math.round(((currentQuestion + 1) / assessmentQuestions.length) * 100) + '%'"></span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-amber-600 h-2 rounded-full transition-all duration-300" 
+                                 :style="`width: ${((currentQuestion + 1) / assessmentQuestions.length) * 100}%`"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Question -->
+                <div x-show="currentQuestion < assessmentQuestions.length" class="space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-lg font-semibold text-amber-900 dark:text-amber-100 mb-6" 
+                            x-text="language === 'english' ? assessmentQuestions[currentQuestion]?.question : assessmentQuestions[currentQuestion]?.questionYoruba"></h3>
+                        
+                        <div class="space-y-3">
+                            <template x-for="(answer, index) in assessmentQuestions[currentQuestion]?.answers || []" :key="index">
+                                <button @click="answerQuestion(index)"
+                                        class="w-full p-4 text-left border border-amber-300 dark:border-amber-700 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                                    <div class="flex items-start gap-3">
+                                        <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span class="text-amber-900 dark:text-amber-100" 
+                                              x-text="language === 'english' ? answer.text : answer.textYoruba"></span>
+                                    </div>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessment Results -->
+            <div x-show="assessmentComplete" class="space-y-6">
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-sacred-gold to-yellow-700 rounded-full flex items-center justify-center">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                        </svg>
+                    </div>
+                    
+                    <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2" 
+                        x-text="getPrimaryOrisha().name"></h2>
+                    
+                    <p class="text-amber-700 dark:text-amber-300 mb-2">
+                        <span x-show="language === 'english'">Your Primary Orisha Alignment</span>
+                        <span x-show="language === 'yoruba'">Ìbámu Òrìṣà Àkọ́kọ́ Rẹ</span>
+                        (<span x-text="getPrimaryOrisha().percentage + '%'"></span>)
+                    </p>
+                    
+                    <p class="text-sm text-amber-600 dark:text-amber-400" x-text="getPrimaryOrisha().description"></p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+                    <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Spiritual Guidance</span>
+                        <span x-show="language === 'yoruba'">Ìtọ́kasí Ẹ̀mí</span>
+                    </h4>
+                    <p class="text-sm text-amber-700 dark:text-amber-300">
+                        <span x-show="language === 'english'">Based on your assessment, you have a strong connection to</span>
+                        <span x-show="language === 'yoruba'">Dá lórí àyẹ̀wò rẹ, o ní àsopọ̀ tó lágbára pẹ̀lú</span>
+                        <span x-text="getPrimaryOrisha().name"></span>.
+                        <span x-show="language === 'english'">Consider incorporating their colors, elements, and values into your spiritual practice.</span>
+                        <span x-show="language === 'yoruba'">Rò láti fi àwọn àwọ̀, àwọn erún, àti àwọn ìye wọn sínú àṣà ẹ̀mí rẹ.</span>
+                    </p>
+                </div>
+
+                <button @click="resetAssessment()" 
+                        class="w-full py-2 border border-amber-300 dark:border-amber-700 text-amber-900 dark:text-amber-100 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                    <span x-show="language === 'english'">Take Assessment Again</span>
+                    <span x-show="language === 'yoruba'">Ṣe Àyẹ̀wò Lẹ́ẹ̀kan Sí i</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Preferences Tab -->
+        <div x-show="activeTab === 'preferences'" class="p-6 space-y-6">
+            <!-- Theme Selection -->
+            <div>
+                <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-4">
+                    <span x-show="language === 'english'">Theme Preference</span>
+                    <span x-show="language === 'yoruba'">Ìfẹ́ Kókó</span>
+                </h3>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <button @click="profile.theme = 'light'; applyTheme()" 
+                            :class="profile.theme === 'light' ? 'ring-2 ring-amber-500 bg-amber-50' : 'hover:bg-gray-50'"
+                            class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg text-center transition-all">
+                        <svg class="w-8 h-8 mx-auto mb-2 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <span class="font-medium">
+                            <span x-show="language === 'english'">Light</span>
+                            <span x-show="language === 'yoruba'">Ìmọ́lẹ̀</span>
+                        </span>
+                    </button>
+                    
+                    <button @click="profile.theme = 'dark'; applyTheme()" 
+                            :class="profile.theme === 'dark' ? 'ring-2 ring-amber-500 bg-amber-900/20' : 'hover:bg-gray-50 dark:hover:bg-gray-800'"
+                            class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg text-center transition-all">
+                        <svg class="w-8 h-8 mx-auto mb-2 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                        </svg>
+                        <span class="font-medium">
+                            <span x-show="language === 'english'">Dark</span>
+                            <span x-show="language === 'yoruba'">Òkùnkùn</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div>
+                <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-4">
+                    <span x-show="language === 'english'">Notifications</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ìfiránsẹ́</span>
+                </h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="font-medium text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'">Daily Ifá Readings</span>
+                                <span x-show="language === 'yoruba'">Kíka Ifá Ojoojúmọ́</span>
+                            </label>
+                            <p class="text-sm text-amber-600 dark:text-amber-400">
+                                <span x-show="language === 'english'">Get notified of your daily reading</span>
+                                <span x-show="language === 'yoruba'">Gbà ìfiránsẹ́ kíka ojoojúmọ́</span>
+                            </p>
+                        </div>
+                        <input type="checkbox" x-model="profile.notifications" 
+                               class="w-4 h-4 text-amber-600 border-amber-300 rounded focus:ring-amber-500">
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="font-medium text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'">Orisha Feast Day Alerts</span>
+                                <span x-show="language === 'yoruba'">Ìfiránsẹ́ Ọjọ́ Òrìṣà</span>
+                            </label>
+                            <p class="text-sm text-amber-600 dark:text-amber-400">
+                                <span x-show="language === 'english'">Get reminded of important Orisha festivals</span>
+                                <span x-show="language === 'yoruba'">Rántí ọjọ́ àjọ̀dún Òrìṣà pàtàkì</span>
+                            </p>
+                        </div>
+                        <input type="checkbox" x-model="profile.reminders" 
+                               class="w-4 h-4 text-amber-600 border-amber-300 rounded focus:ring-amber-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Button -->
+    <button @click="saveProfile()" 
+            class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors">
+        <span x-show="language === 'english'">Save Profile</span>
+        <span x-show="language === 'yoruba'">Fi Àkọsílẹ̀ Pamọ́</span>
+    </button>
+</div>
+
+<script>
+function userProfile() {
+    return {
+        language: 'english',
+        activeTab: 'basic',
+        assessmentComplete: false,
+        currentQuestion: 0,
+        assessmentAnswers: [],
+        assessmentResults: {},
+        
+        profile: {
+            name: '',
+            spiritualPath: 'beginner',
+            theme: 'light',
+            notifications: true,
+            reminders: true
+        },
+        
+        assessmentQuestions: [
+            {
+                question: "How do you typically handle leadership situations?",
+                questionYoruba: "Báwo ni ìwọ ti ń ṣe pẹ̀lú àwọn ìṣẹ̀lẹ̀ aṣáájú?",
+                answers: [
+                    {
+                        text: "I lead with wisdom and calm decision-making",
+                        textYoruba: "Mo ń darí pẹ̀lú ọgbọ́n àti ìpinnu ọ̀tún",
+                        scores: { obatala: 3, yemoja: 2, shango: 1 }
+                    },
+                    {
+                        text: "I take charge with passion and strength",
+                        textYoruba: "Mo ń gba ìdarí pẹ̀lú ìfẹ́kúfẹ̀ẹ́ àti agbára",
+                        scores: { shango: 3, ogun: 2, oya: 1 }
+                    },
+                    {
+                        text: "I guide with love and understanding",
+                        textYoruba: "Mo ń ṣe itọ́kasí pẹ̀lú ìfẹ́ àti òye",
+                        scores: { oshun: 3, yemoja: 2, obatala: 1 }
+                    }
+                ]
+            }
+        ],
+        
+        orishaProfiles: {
+            obatala: { name: "Ọbàtálá", description: "The Orisha of wisdom, peace, and purity" },
+            shango: { name: "Ṣàngó", description: "The Orisha of thunder, lightning, and justice" },
+            oshun: { name: "Ọ̀ṣun", description: "The Orisha of love, fertility, and rivers" },
+            yemoja: { name: "Yemọja", description: "The Orisha of the ocean and motherhood" },
+            ogun: { name: "Ògún", description: "The Orisha of iron, work, and progress" },
+            oya: { name: "Ọya", description: "The Orisha of wind, change, and the ancestors" }
+        },
+        
+        answerQuestion(answerIndex) {
+            const question = this.assessmentQuestions[this.currentQuestion];
+            const answer = question.answers[answerIndex];
+            
+            this.assessmentAnswers.push(answerIndex);
+            
+            // Add scores
+            Object.entries(answer.scores).forEach(([orisha, score]) => {
+                this.assessmentResults[orisha] = (this.assessmentResults[orisha] || 0) + score;
+            });
+            
+            if (this.currentQuestion < this.assessmentQuestions.length - 1) {
+                this.currentQuestion++;
+            } else {
+                this.assessmentComplete = true;
+            }
+        },
+        
+        getPrimaryOrisha() {
+            const sorted = Object.entries(this.assessmentResults)
+                .sort(([,a], [,b]) => b - a);
+            
+            if (sorted.length === 0) return { name: "Ọbàtálá", percentage: 100, description: "Default alignment" };
+            
+            const [orishaKey, score] = sorted[0];
+            const maxScore = Math.max(...Object.values(this.assessmentResults));
+            const percentage = Math.round((score / maxScore) * 100);
+            
+            return {
+                name: this.orishaProfiles[orishaKey]?.name || orishaKey,
+                percentage,
+                description: this.orishaProfiles[orishaKey]?.description || "Spiritual guide"
+            };
+        },
+        
+        resetAssessment() {
+            this.assessmentComplete = false;
+            this.currentQuestion = 0;
+            this.assessmentAnswers = [];
+            this.assessmentResults = {};
+        },
+        
+        applyTheme() {
+            if (this.profile.theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            localStorage.setItem('theme', this.profile.theme);
+        },
+        
+        saveProfile() {
+            localStorage.setItem('ifaProfile', JSON.stringify(this.profile));
+            // Show success message
+            console.log('Profile saved successfully');
+        },
+        
+        init() {
+            // Load saved profile
+            const saved = localStorage.getItem('ifaProfile');
+            if (saved) {
+                this.profile = { ...this.profile, ...JSON.parse(saved) };
+            }
+            
+            // Apply saved theme
+            this.applyTheme();
+        }
+    }
+}
+</script>
+{% endblock %}

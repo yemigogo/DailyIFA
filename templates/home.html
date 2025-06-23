@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}Today's Ifá Reading{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="{ language: 'english' }">
+    {% if reading %}
+    <!-- Today's Sacred Reading -->
+    <div class="spiritual-card rounded-xl p-6 shadow-lg">
+        <div class="text-center mb-6">
+            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-sacred-gold to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                <span x-show="language === 'english'">{{ reading.name }}</span>
+                <span x-show="language === 'yoruba'">{{ reading.name_yoruba }}</span>
+            </h2>
+            
+            <p class="text-amber-700 dark:text-amber-300 italic mb-1">
+                <span x-show="language === 'english'">{{ reading.subtitle }}</span>
+                <span x-show="language === 'yoruba'">{{ reading.subtitle_yoruba }}</span>
+            </p>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+                {{ reading.pronunciation }}
+            </p>
+        </div>
+
+        <!-- Audio Pronunciation -->
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 mb-6">
+            <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 14.142m-15.364-7.07a5 5 0 000 7.07M2 12a9 9 0 009-9"></path>
+                </svg>
+                <span x-show="language === 'english'">Audio Pronunciation</span>
+                <span x-show="language === 'yoruba'">Àfọhùn</span>
+            </h3>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="text-sm font-medium text-amber-700 dark:text-amber-300 block mb-2">
+                        <span x-show="language === 'english'">Yoruba Pronunciation</span>
+                        <span x-show="language === 'yoruba'">Àfọhùn Yorùbá</span>
+                    </label>
+                    <audio controls preload="auto" src="/audio/odu/{{ reading.odu_id or reading.id }}.mp3" class="w-full h-10">
+                        <span x-show="language === 'english'">Your browser does not support audio playback</span>
+                        <span x-show="language === 'yoruba'">Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn</span>
+                    </audio>
+                </div>
+                
+                <div>
+                    <label class="text-sm font-medium text-amber-700 dark:text-amber-300 block mb-2">
+                        <span x-show="language === 'english'">Phonetic Guide</span>
+                        <span x-show="language === 'yoruba'">Ìtọ́kasí Àfọhùn</span>
+                    </label>
+                    <audio controls preload="auto" src="/audio/odu/{{ reading.odu_id or reading.id }}_phonetic.mp3" class="w-full h-10">
+                        Audio guide not available
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Odu Pattern Visualization -->
+        <div class="text-center mb-6">
+            <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-3">
+                <span x-show="language === 'english'">Sacred Pattern</span>
+                <span x-show="language === 'yoruba'">Àpẹrẹ Mímọ́</span>
+            </h3>
+            
+            <div class="inline-flex flex-col gap-2 p-4 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+                {% set pattern = reading.pattern | parse_pattern %}
+                {% for row in pattern %}
+                <div class="flex gap-2">
+                    {% for mark in row %}
+                    <div class="w-4 h-4 {{ 'bg-amber-600' if mark else 'bg-gray-300 dark:bg-gray-600' }} rounded-full"></div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Daily Message -->
+        <div class="bg-gradient-to-r from-blue-50 to-amber-50 dark:from-blue-900/20 dark:to-amber-900/20 rounded-lg p-6 mb-6">
+            <h3 class="font-bold text-spiritual-blue dark:text-sacred-gold mb-4 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span x-show="language === 'english'">Today's Message</span>
+                <span x-show="language === 'yoruba'">Ọ̀rọ̀ Òní</span>
+            </h3>
+            
+            <p class="text-gray-800 dark:text-gray-200 leading-relaxed text-lg italic">
+                <span x-show="language === 'english'">"{{ reading.message }}"</span>
+                <span x-show="language === 'yoruba'">"{{ reading.message_yoruba }}"</span>
+            </p>
+        </div>
+
+        <!-- Guidance -->
+        <div class="space-y-4">
+            <h3 class="font-bold text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+                <span x-show="language === 'english'">Spiritual Guidance</span>
+                <span x-show="language === 'yoruba'">Ìtọ́kasí Ẹ̀mí</span>
+            </h3>
+            
+            <ul class="space-y-2">
+                {% for guidance in reading.guidance | split_guidance %}
+                <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                    <div class="w-2 h-2 bg-sacred-gold rounded-full mt-2 flex-shrink-0"></div>
+                    <span x-show="language === 'english'">{{ guidance.strip() }}</span>
+                </li>
+                {% endfor %}
+                
+                {% for guidance in reading.guidance_yoruba | split_guidance %}
+                <li class="flex items-start gap-3 text-gray-700 dark:text-gray-300" x-show="language === 'yoruba'">
+                    <div class="w-2 h-2 bg-sacred-gold rounded-full mt-2 flex-shrink-0"></div>
+                    <span>{{ guidance.strip() }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Reflection Question -->
+        <div class="bg-sage-green/10 dark:bg-sage-green/5 rounded-lg p-4 border-l-4 border-sage-green">
+            <h4 class="font-semibold text-sage-green dark:text-sage-green mb-2 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span x-show="language === 'english'">Reflection Question</span>
+                <span x-show="language === 'yoruba'">Ìbéèrè Ìrònú</span>
+            </h4>
+            
+            <p class="text-gray-700 dark:text-gray-300 italic">
+                <span x-show="language === 'english'">{{ reading.reflection }}</span>
+                <span x-show="language === 'yoruba'">{{ reading.reflection_yoruba }}</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 gap-4">
+        <a href="/learn" class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-sacred-gold transition-colors text-center">
+            <svg class="w-8 h-8 mx-auto mb-2 text-spiritual-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <span class="text-sm font-medium">
+                <span x-show="language === 'english'">Learn Ifá</span>
+                <span x-show="language === 'yoruba'">Kọ́ Ifá</span>
+            </span>
+        </a>
+        
+        <a href="/problem-search" class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-sacred-gold transition-colors text-center">
+            <svg class="w-8 h-8 mx-auto mb-2 text-spiritual-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <span class="text-sm font-medium">
+                <span x-show="language === 'english'">Find Guidance</span>
+                <span x-show="language === 'yoruba'">Wa Ìtọ́kasí</span>
+            </span>
+        </a>
+    </div>
+
+    {% else %}
+    <!-- No Reading Available -->
+    <div class="text-center py-12">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.08-2.33M15 17H9v-2.58a8.003 8.003 0 016 0V17z"></path>
+        </svg>
+        <h2 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
+            <span x-show="language === 'english'">No Reading Available</span>
+            <span x-show="language === 'yoruba'">Kò Sí Kíka Lọ́wọ́lọ́wọ́</span>
+        </h2>
+        <p class="text-gray-500">
+            <span x-show="language === 'english'">Please try again later</span>
+            <span x-show="language === 'yoruba'">Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan sí i lẹ́yìn</span>
+        </p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

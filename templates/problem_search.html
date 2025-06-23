@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}Problem Search - Find Guidance{% endblock %}
+{% block header_title %}Find Spiritual Guidance{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="problemSearch()">
+    <!-- Search Form -->
+    <div class="spiritual-card rounded-xl p-6">
+        <div class="text-center mb-6">
+            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-sage-green to-green-700 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                <span x-show="language === 'english'">Search for Guidance</span>
+                <span x-show="language === 'yoruba'">Wa Ìtọ́kasí</span>
+            </h2>
+            
+            <p class="text-gray-600 dark:text-gray-400">
+                <span x-show="language === 'english'">Find Odu wisdom for your specific situation</span>
+                <span x-show="language === 'yoruba'">Wa ọgbọ́n Odù fún ipo rẹ pàtàkì</span>
+            </p>
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative mb-6">
+            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-600 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" 
+                   x-model="searchQuery"
+                   @input="searchOdus()"
+                   :placeholder="language === 'english' ? 'Search for problems (e.g., headache, stress, money...)' : 'Wa awọn iṣoro (fun apẹẹrẹ: ori rirun, wahala, owo...)'"
+                   class="w-full pl-10 pr-4 py-3 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+        </div>
+
+        <!-- Problem Categories -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <template x-for="category in problemCategories" :key="category.id">
+                <button @click="selectCategory(category)"
+                        :class="selectedCategory === category.id ? 'bg-amber-600 text-white' : 'bg-amber-100 hover:bg-amber-200 text-amber-800'"
+                        class="p-3 rounded-lg text-sm font-medium transition-colors">
+                    <div class="flex items-center justify-center mb-2" x-html="category.icon"></div>
+                    <span x-text="language === 'english' ? category.name : category.nameYoruba"></span>
+                </button>
+            </template>
+        </div>
+
+        <!-- Sample Problems for Selected Category -->
+        <div x-show="selectedCategory && selectedCategory !== 'all'" class="mb-6">
+            <h3 class="font-semibold text-amber-900 dark:text-amber-100 mb-3">
+                <span x-show="language === 'english'">Common Problems:</span>
+                <span x-show="language === 'yoruba'">Àwọn Ìṣòro Tí Ó Wọ́pọ̀:</span>
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                <template x-for="problem in getProblemsForCategory()" :key="problem">
+                    <button @click="searchQuery = problem; searchOdus()"
+                            class="px-3 py-1 bg-amber-50 hover:bg-amber-100 dark:bg-amber-900/20 dark:hover:bg-amber-900/40 text-amber-700 dark:text-amber-300 rounded-full text-sm border border-amber-200 dark:border-amber-700 transition-colors">
+                        <span x-text="problem"></span>
+                    </button>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    <div x-show="searchResults.length > 0" class="space-y-4">
+        <h3 class="text-lg font-semibold text-spiritual-blue dark:text-sacred-gold">
+            <span x-show="language === 'english'">Guidance Found</span>
+            <span x-show="language === 'yoruba'">Ìtọ́kasí Tí A Rí</span>
+            (<span x-text="searchResults.length"></span>)
+        </h3>
+        
+        <template x-for="odu in searchResults" :key="odu.id">
+            <div class="spiritual-card rounded-lg p-4">
+                <div class="flex items-start gap-4">
+                    <!-- Odu Pattern -->
+                    <div class="flex flex-col gap-1 mt-1">
+                        <template x-for="(row, i) in parsePattern(odu.pattern)" :key="i">
+                            <div class="flex gap-1">
+                                <template x-for="(mark, j) in row" :key="j">
+                                    <div :class="mark ? 'bg-amber-600' : 'bg-gray-300 dark:bg-gray-600'" 
+                                         class="w-2 h-2 rounded-full"></div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-semibold text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'" x-text="odu.name"></span>
+                                <span x-show="language === 'yoruba'" x-text="odu.name_yoruba"></span>
+                            </h4>
+                            <span class="text-sm text-amber-600 dark:text-amber-400" x-text="odu.pronunciation"></span>
+                        </div>
+                        
+                        <p class="text-sm text-amber-700 dark:text-amber-300 mb-3">
+                            <span x-show="language === 'english'" x-text="odu.subtitle"></span>
+                            <span x-show="language === 'yoruba'" x-text="odu.subtitle_yoruba"></span>
+                        </p>
+                        
+                        <!-- Audio Pronunciation -->
+                        <div class="mb-3">
+                            <audio controls preload="auto" :src="`/audio/odu/${odu.id}.mp3`" class="w-full h-8">
+                                Audio not supported
+                            </audio>
+                        </div>
+                        
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg mb-3">
+                            <h5 class="font-semibold text-blue-900 dark:text-blue-100 mb-2 flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span x-show="language === 'english'">Sacred Message:</span>
+                                <span x-show="language === 'yoruba'">Ọ̀rọ̀ Mímọ́:</span>
+                            </h5>
+                            <p class="text-blue-800 dark:text-blue-200 text-sm italic">
+                                <span x-show="language === 'english'" x-text="odu.message"></span>
+                                <span x-show="language === 'yoruba'" x-text="odu.message_yoruba"></span>
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <h5 class="font-medium text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'">Guidance for healing:</span>
+                                <span x-show="language === 'yoruba'">Ìtọ́kasí fún ìwòsàn:</span>
+                            </h5>
+                            <ul class="list-disc list-inside space-y-1 text-sm text-amber-800 dark:text-amber-200">
+                                <template x-for="guide in splitGuidance(odu.guidance, odu.guidance_yoruba)" :key="guide">
+                                    <li x-text="guide"></li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <!-- No Results -->
+    <div x-show="searchQuery && searchResults.length === 0 && !isLoading" class="text-center py-8">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.08-2.33M15 17H9v-2.58a8.003 8.003 0 016 0V17z"></path>
+        </svg>
+        <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-2">
+            <span x-show="language === 'english'">No Guidance Found</span>
+            <span x-show="language === 'yoruba'">Kò Sí Ìtọ́kasí Tí A Rí</span>
+        </h3>
+        <p class="text-gray-500">
+            <span x-show="language === 'english'">Try different keywords or browse categories above</span>
+            <span x-show="language === 'yoruba'">Gbìyànjú àwọn kókó-ọ̀rọ̀ míràn tàbí wa àwọn ẹ̀ka tí ó wà lókè</span>
+        </p>
+    </div>
+</div>
+
+<script>
+function problemSearch() {
+    return {
+        language: 'english',
+        searchQuery: '',
+        searchResults: [],
+        selectedCategory: 'all',
+        isLoading: false,
+        
+        problemCategories: [
+            {
+                id: 'all',
+                name: 'All Problems',
+                nameYoruba: 'Gbogbo Ìṣòro',
+                icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>'
+            },
+            {
+                id: 'health',
+                name: 'Health',
+                nameYoruba: 'Ìlera',
+                icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>',
+                problems: ['headache', 'fever', 'stomach pain', 'fatigue', 'anxiety']
+            },
+            {
+                id: 'money',
+                name: 'Money',
+                nameYoruba: 'Owó',
+                icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path></svg>',
+                problems: ['financial problems', 'debt', 'business issues', 'poverty', 'lack of money']
+            },
+            {
+                id: 'relationships',
+                name: 'Love',
+                nameYoruba: 'Ìfẹ́',
+                icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>',
+                problems: ['relationship problems', 'marriage issues', 'divorce', 'loneliness', 'family conflicts']
+            },
+            {
+                id: 'work',
+                name: 'Career',
+                nameYoruba: 'Iṣẹ́',
+                icon: '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2M8 6v2m0 0v8a2 2 0 002 2h4a2 2 0 002-2V8M8 8v8"></path></svg>',
+                problems: ['job problems', 'unemployment', 'career change', 'workplace conflict', 'promotion']
+            }
+        ],
+        
+        selectCategory(category) {
+            this.selectedCategory = category.id;
+            if (category.id === 'all') {
+                this.searchQuery = '';
+                this.searchResults = [];
+            }
+        },
+        
+        getProblemsForCategory() {
+            const category = this.problemCategories.find(c => c.id === this.selectedCategory);
+            return category ? category.problems || [] : [];
+        },
+        
+        async searchOdus() {
+            if (!this.searchQuery.trim()) {
+                this.searchResults = [];
+                return;
+            }
+            
+            this.isLoading = true;
+            try {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(this.searchQuery)}`);
+                this.searchResults = await response.json();
+            } catch (error) {
+                console.error('Search error:', error);
+                this.searchResults = [];
+            } finally {
+                this.isLoading = false;
+            }
+        },
+        
+        parsePattern(patternStr) {
+            try {
+                return JSON.parse(patternStr || '[[true,true],[true,true]]');
+            } catch {
+                return [[true, true], [true, true]];
+            }
+        },
+        
+        splitGuidance(englishGuidance, yorubaGuidance) {
+            const guidance = this.language === 'english' ? englishGuidance : yorubaGuidance;
+            return guidance ? guidance.split('|').map(g => g.trim()) : [];
+        }
+    }
+}
+</script>
+{% endblock %}
