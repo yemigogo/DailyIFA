@@ -141,6 +141,7 @@ export default function AmbientPlayer() {
         audioRef.current.load();
         audioRef.current.play().catch(error => {
           console.error('Error playing ambient audio:', error);
+          console.log('Attempted to play:', track.file);
           setIsPlaying(false);
         });
       }
