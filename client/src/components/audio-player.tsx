@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -9,8 +9,10 @@ interface AudioPlayerProps {
   oduNameYoruba: string;
   pronunciation: string;
   audioUrl?: string;
+  phoneticAudioUrl?: string;
   meaning: string;
   meaningYoruba: string;
+  hasAudio?: boolean;
 }
 
 export default function AudioPlayer({
@@ -18,13 +20,17 @@ export default function AudioPlayer({
   oduNameYoruba,
   pronunciation,
   audioUrl,
+  phoneticAudioUrl,
   meaning,
-  meaningYoruba
+  meaningYoruba,
+  hasAudio = false
 }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState<'main' | 'phonetic'>('main');
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const phoneticAudioRef = useRef<HTMLAudioElement | null>(null);
   const { ts } = useLanguage();
 
   // For now, we'll use Text-to-Speech API as a fallback
@@ -55,13 +61,20 @@ export default function AudioPlayer({
   };
 
   const handlePlayPause = () => {
-    if (audioUrl && audioRef.current) {
-      // Use actual audio file if available
+    const activeAudioRef = currentAudio === 'main' ? audioRef : phoneticAudioRef;
+    const activeAudioUrl = currentAudio === 'main' ? audioUrl : phoneticAudioUrl;
+    
+    if (hasAudio && activeAudioUrl && activeAudioRef.current) {
+      // Use actual audio file
       if (isPlaying) {
-        audioRef.current.pause();
+        activeAudioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play();
+        // Stop other audio if playing
+        if (audioRef.current) audioRef.current.pause();
+        if (phoneticAudioRef.current) phoneticAudioRef.current.pause();
+        
+        activeAudioRef.current.play();
         setIsPlaying(true);
       }
     } else {
@@ -70,7 +83,6 @@ export default function AudioPlayer({
         speechSynthesis.cancel();
         setIsPlaying(false);
       } else {
-        // Play Yoruba pronunciation first, then English meaning
         speakText(oduNameYoruba, 'yoruba');
         setTimeout(() => {
           if (!speechSynthesis.speaking) {
@@ -78,6 +90,31 @@ export default function AudioPlayer({
           }
         }, 3000);
       }
+    }
+  };
+
+  const playPhonetic = () => {
+    if (phoneticAudioUrl && phoneticAudioRef.current) {
+      setCurrentAudio('phonetic');
+      if (audioRef.current) audioRef.current.pause();
+      if (phoneticAudioRef.current) {
+        phoneticAudioRef.current.play();
+        setIsPlaying(true);
+      }
+    } else {
+      // Fallback to slower TTS
+      speakText(pronunciation.replace(/\[.*?\]/g, ''), 'en');
+    }
+  };
+
+  const playMain = () => {
+    if (audioUrl && audioRef.current) {
+      setCurrentAudio('main');
+      if (phoneticAudioRef.current) phoneticAudioRef.current.pause();
+      audioRef.current.play();
+      setIsPlaying(true);
+    } else {
+      speakText(oduNameYoruba, 'yoruba');
     }
   };
 
@@ -120,35 +157,55 @@ export default function AudioPlayer({
             <Button
               variant="outline"
               size="sm"
-              onClick={handlePlayPause}
+              onClick={playMain}
               disabled={isLoading}
               className="bg-amber-100 hover:bg-amber-200 dark:bg-amber-900 dark:hover:bg-amber-800 border-amber-300 dark:border-amber-700"
+              title={ts("Play Yoruba pronunciation", "Gbọ́ bí a ti ń pè é ní Yorùbá")}
             >
-              {isLoading ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-2 border-amber-600 border-t-transparent" />
-              ) : isPlaying ? (
-                <Pause className="h-4 w-4 text-amber-700 dark:text-amber-300" />
-              ) : (
-                <Play className="h-4 w-4 text-amber-700 dark:text-amber-300" />
-              )}
+              <Play className="h-4 w-4 text-amber-700 dark:text-amber-300 mr-1" />
+              <span className="text-xs">{ts("Yoruba", "Yorùbá")}</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={playPhonetic}
+              disabled={isLoading}
+              className="bg-blue-100 hover:bg-blue-200 dark:bg-blue-900 dark:hover:bg-blue-800 border-blue-300 dark:border-blue-700"
+              title={ts("Play phonetic guide", "Gbọ́ ìtọ́kasí àfọhùn")}
+            >
+              <Play className="h-4 w-4 text-blue-700 dark:text-blue-300 mr-1" />
+              <span className="text-xs">{ts("Guide", "Ìtọ́kasí")}</span>
             </Button>
 
             <Button
               variant="outline"
               size="sm"
               onClick={toggleMute}
-              className="bg-amber-100 hover:bg-amber-200 dark:bg-amber-900 dark:hover:bg-amber-800 border-amber-300 dark:border-amber-700"
+              className="bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-700"
             >
               {isMuted ? (
-                <VolumeX className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                <VolumeX className="h-4 w-4 text-gray-700 dark:text-gray-300" />
               ) : (
-                <Volume2 className="h-4 w-4 text-amber-700 dark:text-amber-300" />
+                <Volume2 className="h-4 w-4 text-gray-700 dark:text-gray-300" />
               )}
             </Button>
+
+            {hasAudio && audioUrl && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.open(audioUrl, '_blank')}
+                className="bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 border-green-300 dark:border-green-700"
+                title={ts("Download audio", "Gba ohùn")}
+              >
+                <Download className="h-4 w-4 text-green-700 dark:text-green-300" />
+              </Button>
+            )}
           </div>
         </div>
 
-        {/* Hidden audio element for when actual audio files are available */}
+        {/* Hidden audio elements for actual audio files */}
         {audioUrl && (
           <audio
             ref={audioRef}
@@ -158,11 +215,23 @@ export default function AudioPlayer({
             preload="metadata"
           />
         )}
+        {phoneticAudioUrl && (
+          <audio
+            ref={phoneticAudioRef}
+            src={phoneticAudioUrl}
+            onEnded={() => setIsPlaying(false)}
+            onError={() => setIsPlaying(false)}
+            preload="metadata"
+          />
+        )}
 
         <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
-          {ts(
-            "Listen to the authentic Yoruba pronunciation and meaning of this sacred Odu",
-            "Gbọ́ bí a ti ń pè Odù mímọ́ yìí ní èdè Yorùbá àti ìtumọ̀ rẹ̀"
+          {hasAudio ? ts(
+            "🎵 Authentic Yoruba pronunciation and phonetic guide available",
+            "🎵 Àfọhùn Yorùbá gidi àti ìtọ́kasí àfọhùn wà"
+          ) : ts(
+            "🔊 Using synthetic speech - authentic audio coming soon",
+            "🔊 Lo àfọhùn arọ́pò - àfọhùn gidi ń bọ̀ láìpẹ́"
           )}
         </div>
       </CardContent>

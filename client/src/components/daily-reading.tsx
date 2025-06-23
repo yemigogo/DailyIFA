@@ -176,8 +176,10 @@ export default function DailyReading({ reading }: DailyReadingProps) {
           oduNameYoruba={audioData.oduNameYoruba}
           pronunciation={audioData.pronunciation}
           audioUrl={audioData.audioUrl}
+          phoneticAudioUrl={audioData.phoneticAudioUrl}
           meaning={audioData.meaning}
           meaningYoruba={audioData.meaningYoruba}
+          hasAudio={audioData.hasAudio}
         />
       )}
 
