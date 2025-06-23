@@ -14,6 +14,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - ✅ **Mobile-First Design**: Maintained responsive Tailwind CSS styling with sacred color scheme
 - ✅ **Learn Ifá Mode**: Added interactive Opele casting tutorial and practical Odu applications with real-world case studies
 - ✅ **Orisha Calendar System**: Implemented traditional 4-day cycle (Ọbàtálá, Ògún, Ṣàngó, Ọ̀ṣun) with daily praise names, taboos, blessings, and offerings
+- ✅ **Personalized Ancestral Connection Pathway**: Multi-step profile builder for family origins, spiritual practices, and personalized ancestral guidance
 
 ## Project Architecture
 **Backend**: Python Flask with SQLite database
@@ -31,6 +32,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Reading History**: Track spiritual journey over time
 - **Learn Ifá Mode**: Interactive Opele casting tutorial with virtual chain and practical case studies
 - **Orisha Calendar**: Traditional 4-day sacred cycle with daily Orisha guidance, praise names (Oríkì), colors, taboos, and blessings
+- **Ancestral Connection**: Personalized pathway to connect with family spiritual lineage, receive ancestral guidance, and maintain cultural heritage
 - **Mobile Responsive**: Optimized for smartphone spiritual practice
 
 ## User Preferences

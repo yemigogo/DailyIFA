@@ -1,0 +1,538 @@
+{% extends "base.html" %}
+
+{% block title %}Ancestral Connection Pathway{% endblock %}
+{% block header_title %}Ancestral Connection{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="ancestralConnection()">
+    <!-- Header -->
+    <div class="text-center">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-earth-brown to-amber-700 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM9 9a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+            <span x-show="language === 'english'">Ancestral Connection Pathway</span>
+            <span x-show="language === 'yoruba'">Ọ̀nà Àsopọ̀ Àwọn Bàbá</span>
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-400">
+            <span x-show="language === 'english'">Discover your spiritual lineage and connect with ancestral wisdom</span>
+            <span x-show="language === 'yoruba'">Ṣàwárí ìdílé ẹ̀mí rẹ kí o sì darapọ̀ mọ́ ọgbọ́n àwọn bàbá</span>
+        </p>
+    </div>
+
+    <!-- Ancestral Profile Setup -->
+    <div class="spiritual-card rounded-xl p-6" x-show="!profileComplete">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Build Your Ancestral Profile</span>
+            <span x-show="language === 'yoruba'">Kọ́ Àkọsílẹ̀ Àwọn Bàbá Rẹ</span>
+        </h3>
+
+        <div class="space-y-6">
+            <!-- Step 1: Origin Information -->
+            <div x-show="currentStep === 1">
+                <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-4">
+                    <span x-show="language === 'english'">Step 1: Family Origins</span>
+                    <span x-show="language === 'yoruba'">Ìgbésẹ̀ 1: Ìpilẹ̀ṣẹ̀ Ìdílé</span>
+                </h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            <span x-show="language === 'english'">Your Family's Region of Origin</span>
+                            <span x-show="language === 'yoruba'">Agbègbè Ìpilẹ̀ṣẹ̀ Ìdílé Rẹ</span>
+                        </label>
+                        <select x-model="ancestralProfile.origin" 
+                                class="w-full px-3 py-2 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100">
+                            <option value="">Select Region</option>
+                            <option value="yoruba-nigeria">Yorubaland (Nigeria)</option>
+                            <option value="benin">Benin Republic</option>
+                            <option value="togo">Togo</option>
+                            <option value="cuba">Cuba (Lucumí tradition)</option>
+                            <option value="brazil">Brazil (Candomblé tradition)</option>
+                            <option value="haiti">Haiti (Vodou tradition)</option>
+                            <option value="trinidad">Trinidad & Tobago</option>
+                            <option value="jamaica">Jamaica</option>
+                            <option value="usa-south">Southern United States</option>
+                            <option value="unknown">Unknown/Mixed</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            <span x-show="language === 'english'">Approximate Generation</span>
+                            <span x-show="language === 'yoruba'">Ìran Tó Tọ́</span>
+                        </label>
+                        <select x-model="ancestralProfile.generation" 
+                                class="w-full px-3 py-2 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100">
+                            <option value="">Select Generation</option>
+                            <option value="direct">1st generation (Parents from Africa/Caribbean)</option>
+                            <option value="second">2nd generation (Grandparents)</option>
+                            <option value="third">3rd generation (Great-grandparents)</option>
+                            <option value="ancient">Ancient lineage (Multiple generations)</option>
+                            <option value="adopted">Adopted into tradition</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Family Spiritual Practices (if known)</span>
+                        <span x-show="language === 'yoruba'">Àwọn Ìṣe Ẹ̀mí Ìdílé (bí o bá mọ̀)</span>
+                    </label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                        <template x-for="practice in spiritualPractices" :key="practice.id">
+                            <label class="flex items-center space-x-2 p-2 border rounded hover:bg-amber-50 dark:hover:bg-amber-900/20 cursor-pointer">
+                                <input type="checkbox" :value="practice.id" x-model="ancestralProfile.practices"
+                                       class="text-amber-600 border-amber-300 rounded focus:ring-amber-500">
+                                <span class="text-sm" x-text="language === 'english' ? practice.name : practice.nameYoruba"></span>
+                            </label>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-6">
+                    <button @click="nextStep()" :disabled="!ancestralProfile.origin || !ancestralProfile.generation"
+                            class="px-6 py-2 bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Next</span>
+                        <span x-show="language === 'yoruba'">Tókàn</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Ancestral Names -->
+            <div x-show="currentStep === 2">
+                <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-4">
+                    <span x-show="language === 'english'">Step 2: Known Ancestors</span>
+                    <span x-show="language === 'yoruba'">Ìgbésẹ̀ 2: Àwọn Bàbá Tí A Mọ̀</span>
+                </h4>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            <span x-show="language === 'english'">Ancestor Names (if known)</span>
+                            <span x-show="language === 'yoruba'">Orúkọ Àwọn Bàbá (bí o bá mọ̀)</span>
+                        </label>
+                        <textarea x-model="ancestralProfile.ancestorNames"
+                                  :placeholder="language === 'english' ? 'Enter known ancestor names, one per line' : 'Kọ orúkọ àwọn bàbá tí o mọ̀, ọ̀kọ̀ọ̀kan ní ìlà kan'"
+                                  class="w-full px-3 py-2 border border-amber-300 dark:border-amber-700 rounded-lg bg-white dark:bg-gray-800 text-amber-900 dark:text-amber-100"
+                                  rows="4"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            <span x-show="language === 'english'">Family Orisha Connections (if known)</span>
+                            <span x-show="language === 'yoruba'">Àsopọ̀ Òrìṣà Ìdílé (bí o bá mọ̀)</span>
+                        </label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                            <template x-for="orisha in familyOrishas" :key="orisha.id">
+                                <label class="flex items-center space-x-2 p-2 border rounded hover:bg-amber-50 dark:hover:bg-amber-900/20 cursor-pointer">
+                                    <input type="checkbox" :value="orisha.id" x-model="ancestralProfile.orishaConnections"
+                                           class="text-amber-600 border-amber-300 rounded focus:ring-amber-500">
+                                    <span class="text-sm" x-text="orisha.name"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-6">
+                    <button @click="previousStep()" 
+                            class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Back</span>
+                        <span x-show="language === 'yoruba'">Padà</span>
+                    </button>
+                    <button @click="nextStep()"
+                            class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Next</span>
+                        <span x-show="language === 'yoruba'">Tókàn</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Spiritual Goals -->
+            <div x-show="currentStep === 3">
+                <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-4">
+                    <span x-show="language === 'english'">Step 3: Spiritual Goals</span>
+                    <span x-show="language === 'yoruba'">Ìgbésẹ̀ 3: Àwọn Àfojúsùn Ẹ̀mí</span>
+                </h4>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-amber-900 dark:text-amber-100 mb-2">
+                            <span x-show="language === 'english'">What do you hope to achieve through ancestral connection?</span>
+                            <span x-show="language === 'yoruba'">Kín ni o fẹ́ ṣàṣeyọrí nípa àsopọ̀ àwọn bàbá?</span>
+                        </label>
+                        <div class="space-y-2">
+                            <template x-for="goal in spiritualGoals" :key="goal.id">
+                                <label class="flex items-center space-x-2 p-3 border rounded hover:bg-amber-50 dark:hover:bg-amber-900/20 cursor-pointer">
+                                    <input type="checkbox" :value="goal.id" x-model="ancestralProfile.goals"
+                                           class="text-amber-600 border-amber-300 rounded focus:ring-amber-500">
+                                    <div>
+                                        <div class="font-medium text-sm" x-text="language === 'english' ? goal.name : goal.nameYoruba"></div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400" x-text="language === 'english' ? goal.description : goal.descriptionYoruba"></div>
+                                    </div>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-6">
+                    <button @click="previousStep()" 
+                            class="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Back</span>
+                        <span x-show="language === 'yoruba'">Padà</span>
+                    </button>
+                    <button @click="completeProfile()"
+                            class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Complete Profile</span>
+                        <span x-show="language === 'yoruba'">Parí Àkọsílẹ̀</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ancestral Dashboard -->
+    <div x-show="profileComplete" class="space-y-6">
+        <!-- Personal Ancestral Overview -->
+        <div class="spiritual-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+                <span x-show="language === 'english'">Your Ancestral Profile</span>
+                <span x-show="language === 'yoruba'">Àkọsílẹ̀ Àwọn Bàbá Rẹ</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                    <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Origin</span>
+                        <span x-show="language === 'yoruba'">Ìpilẹ̀ṣẹ̀</span>
+                    </h4>
+                    <p class="text-sm text-amber-700 dark:text-amber-300" x-text="getOriginDisplay()"></p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                        <span x-show="language === 'english'">Generation</span>
+                        <span x-show="language === 'yoruba'">Ìran</span>
+                    </h4>
+                    <p class="text-sm text-blue-700 dark:text-blue-300" x-text="getGenerationDisplay()"></p>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-900 dark:text-green-100 mb-2">
+                        <span x-show="language === 'english'">Connected Orishas</span>
+                        <span x-show="language === 'yoruba'">Àwọn Òrìṣà Tí Ó Darapọ̀</span>
+                    </h4>
+                    <p class="text-sm text-green-700 dark:text-green-300" x-text="ancestralProfile.orishaConnections.length || 'None specified'"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalized Ancestral Guidance -->
+        <div class="spiritual-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+                <span x-show="language === 'english'">Today's Ancestral Guidance</span>
+                <span x-show="language === 'yoruba'">Ìtọ́kasí Àwọn Bàbá Òní</span>
+            </h3>
+
+            <div class="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 mb-6">
+                <h4 class="font-bold text-purple-900 dark:text-purple-100 mb-3">
+                    <span x-show="language === 'english'">Message from Your Ancestors</span>
+                    <span x-show="language === 'yoruba'">Ọ̀rọ̀ Láti Ọ̀dọ̀ Àwọn Bàbá Rẹ</span>
+                </h4>
+                <p class="text-purple-800 dark:text-purple-200 italic text-lg leading-relaxed" x-text="getPersonalizedMessage()"></p>
+            </div>
+
+            <!-- Ancestral Practices for Today -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-3">
+                        <span x-show="language === 'english'">Recommended Practice</span>
+                        <span x-show="language === 'yoruba'">Ìṣe Tí A Gbé Kálẹ̀</span>
+                    </h4>
+                    <div x-html="getTodaysPractice()"></div>
+                </div>
+
+                <div class="border border-green-300 dark:border-green-700 rounded-lg p-4">
+                    <h4 class="font-semibold text-green-900 dark:text-green-100 mb-3">
+                        <span x-show="language === 'english'">Ancestral Offering</span>
+                        <span x-show="language === 'yoruba'">Ẹbọ Àwọn Bàbá</span>
+                    </h4>
+                    <div x-html="getAncestralOffering()"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ancestor Veneration Calendar -->
+        <div class="spiritual-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+                <span x-show="language === 'english'">Ancestral Calendar</span>
+                <span x-show="language === 'yoruba'">Kálẹ́ndà Àwọn Bàbá</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                        <span x-show="language === 'english'">This Week's Focus</span>
+                        <span x-show="language === 'yoruba'">Ìdojúkọ Ọ̀sẹ̀ Yìí</span>
+                    </h4>
+                    <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span x-show="language === 'english'">Connect with family memories</span>
+                            <span x-show="language === 'yoruba'">Darapọ̀ mọ́ àwọn ìrántí ìdílé</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span x-show="language === 'english'">Practice gratitude rituals</span>
+                            <span x-show="language === 'yoruba'">Ṣe àwọn ìṣe ọpẹ́</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span x-show="language === 'english'">Share family stories</span>
+                            <span x-show="language === 'yoruba'">Pín àwọn ìtàn ìdílé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                        <span x-show="language === 'english'">Upcoming Observances</span>
+                        <span x-show="language === 'yoruba'">Àwọn Ìṣe Tí Ń Bọ̀</span>
+                    </h4>
+                    <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <div>
+                            <span class="font-medium">
+                                <span x-show="language === 'english'">New Moon (Jan 1)</span>
+                                <span x-show="language === 'yoruba'">Oṣù Tuntun (Ọjọ́ 1 Ṣẹ́rẹ́)</span>
+                            </span>
+                            <p class="text-xs">
+                                <span x-show="language === 'english'">Ideal for ancestor communication</span>
+                                <span x-show="language === 'yoruba'">Ó dára fún ìbánisọ̀rọ̀ àwọn bàbá</span>
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-medium">
+                                <span x-show="language === 'english'">Full Moon (Jan 15)</span>
+                                <span x-show="language === 'yoruba'">Oṣù Kíkún (Ọjọ́ 15 Ṣẹ́rẹ́)</span>
+                            </span>
+                            <p class="text-xs">
+                                <span x-show="language === 'english'">Time for gratitude offerings</span>
+                                <span x-show="language === 'yoruba'">Àkókò fún ẹbọ ọpẹ́</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Button -->
+        <div class="text-center">
+            <button @click="editProfile()" 
+                    class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-colors">
+                <span x-show="language === 'english'">Edit Ancestral Profile</span>
+                <span x-show="language === 'yoruba'">Ṣe Àtúnṣe Àkọsílẹ̀ Àwọn Bàbá</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function ancestralConnection() {
+    return {
+        language: 'english',
+        currentStep: 1,
+        profileComplete: false,
+        
+        ancestralProfile: {
+            origin: '',
+            generation: '',
+            practices: [],
+            ancestorNames: '',
+            orishaConnections: [],
+            goals: []
+        },
+        
+        spiritualPractices: [
+            { id: 'ifa', name: 'Ifá', nameYoruba: 'Ifá' },
+            { id: 'santeria', name: 'Santería/Lucumí', nameYoruba: 'Santería/Lucumí' },
+            { id: 'candomble', name: 'Candomblé', nameYoruba: 'Candomblé' },
+            { id: 'vodou', name: 'Vodou', nameYoruba: 'Vodou' },
+            { id: 'traditional', name: 'Traditional Yoruba', nameYoruba: 'Ìbílẹ̀ Yorùbá' },
+            { id: 'christianity', name: 'Christianity', nameYoruba: 'Ìgbàgbọ́ Kristi' },
+            { id: 'islam', name: 'Islam', nameYoruba: 'Ìmàlẹ̀' },
+            { id: 'none', name: 'None Known', nameYoruba: 'Kò Sí Tí A Mọ̀' }
+        ],
+        
+        familyOrishas: [
+            { id: 'obatala', name: 'Ọbàtálá' },
+            { id: 'yemoja', name: 'Yemọja' },
+            { id: 'oshun', name: 'Ọ̀ṣun' },
+            { id: 'shango', name: 'Ṣàngó' },
+            { id: 'ogun', name: 'Ògún' },
+            { id: 'oya', name: 'Ọya' },
+            { id: 'elegua', name: 'Èṣù/Elegua' },
+            { id: 'orunmila', name: 'Ọ̀rúnmìlà' }
+        ],
+        
+        spiritualGoals: [
+            {
+                id: 'healing',
+                name: 'Healing ancestral trauma',
+                nameYoruba: 'Ìwòsàn ọgbẹ́ àwọn bàbá',
+                description: 'Address inherited patterns and wounds',
+                descriptionYoruba: 'Mójútó àwọn ìlànà àti ọgbẹ́ tí a jogún'
+            },
+            {
+                id: 'guidance',
+                name: 'Receive ancestral guidance',
+                nameYoruba: 'Gba ìtọ́kasí àwọn bàbá',
+                description: 'Connect with ancestral wisdom for life decisions',
+                descriptionYoruba: 'Darapọ̀ mọ́ ọgbọ́n àwọn bàbá fún àwọn ìpinnu ayé'
+            },
+            {
+                id: 'protection',
+                name: 'Ancestral protection',
+                nameYoruba: 'Ààbò àwọn bàbá',
+                description: 'Seek protection and blessings from ancestors',
+                descriptionYoruba: 'Wa ààbò àti ìbùkún láti ọ̀dọ̀ àwọn bàbá'
+            },
+            {
+                id: 'family',
+                name: 'Strengthen family bonds',
+                nameYoruba: 'Mú àsopọ̀ ìdílé lágbára',
+                description: 'Improve relationships with living family members',
+                descriptionYoruba: 'Mu ìbáṣepọ̀ pẹ̀lú àwọn ìdílé tí ó wà láyé dára si'
+            },
+            {
+                id: 'culture',
+                name: 'Preserve cultural heritage',
+                nameYoruba: 'Tọ́jú ìnira aṣà',
+                description: 'Learn and maintain ancestral traditions',
+                descriptionYoruba: 'Kọ́ àti tọ́jú àwọn àṣà àwọn bàbá'
+            }
+        ],
+        
+        nextStep() {
+            if (this.currentStep < 3) {
+                this.currentStep++;
+            }
+        },
+        
+        previousStep() {
+            if (this.currentStep > 1) {
+                this.currentStep--;
+            }
+        },
+        
+        completeProfile() {
+            this.profileComplete = true;
+            this.saveProfile();
+        },
+        
+        editProfile() {
+            this.profileComplete = false;
+            this.currentStep = 1;
+        },
+        
+        saveProfile() {
+            localStorage.setItem('ancestralProfile', JSON.stringify(this.ancestralProfile));
+        },
+        
+        loadProfile() {
+            const saved = localStorage.getItem('ancestralProfile');
+            if (saved) {
+                this.ancestralProfile = { ...this.ancestralProfile, ...JSON.parse(saved) };
+                this.profileComplete = true;
+            }
+        },
+        
+        getOriginDisplay() {
+            const origins = {
+                'yoruba-nigeria': 'Yorubaland, Nigeria',
+                'benin': 'Benin Republic',
+                'togo': 'Togo',
+                'cuba': 'Cuba (Lucumí)',
+                'brazil': 'Brazil (Candomblé)',
+                'haiti': 'Haiti (Vodou)',
+                'trinidad': 'Trinidad & Tobago',
+                'jamaica': 'Jamaica',
+                'usa-south': 'Southern United States',
+                'unknown': 'Unknown/Mixed'
+            };
+            return origins[this.ancestralProfile.origin] || 'Not specified';
+        },
+        
+        getGenerationDisplay() {
+            const generations = {
+                'direct': '1st Generation',
+                'second': '2nd Generation',
+                'third': '3rd Generation',
+                'ancient': 'Ancient Lineage',
+                'adopted': 'Adopted into Tradition'
+            };
+            return generations[this.ancestralProfile.generation] || 'Not specified';
+        },
+        
+        getPersonalizedMessage() {
+            const messages = {
+                'yoruba-nigeria': this.language === 'english' ? 
+                    'Your ancestors from the sacred lands of Yorubaland whisper: "Walk with pride in your heritage, for you carry the wisdom of kings and queens. Let their strength flow through you today."' :
+                    'Àwọn bàbá rẹ láti ilẹ̀ mímọ́ Yorùbáland ń sọ pé: "Máa rìn pẹ̀lú ìgbéraga nínú ohun ìní rẹ, nítorí o gbé ọgbọ́n àwọn ọba àti ayaba. Jẹ́ kí agbára wọn san gba ara rẹ lónìí."',
+                'cuba': this.language === 'english' ? 
+                    'The spirits of your Cuban ancestors speak: "Though oceans separated us, the bonds of tradition remain unbroken. Honor the old ways in your new world."' :
+                    'Àwọn ẹ̀mí àwọn bàbá rẹ ní Cuba ń sọ pé: "Bí òkun tilẹ̀ ya wa, àsopọ̀ àṣà kò tíì já. Bọ̀wọ̀ fún àwọn ọ̀nà àtijọ́ nínú ayé tuntun rẹ."',
+                'unknown': this.language === 'english' ? 
+                    'Your ancestors, though their names may be lost to time, surround you with love: "We are not forgotten while you remember to honor the spirit of family and tradition."' :
+                    'Àwọn bàbá rẹ, bí orúkọ wọn tilẹ̀ ti sọnù sí àkókò, wọ́n yí ọ ká pẹ̀lú ìfẹ́: "A kò gbàgbé nígbà tí o rántí láti bọ̀wọ̀ fún ẹ̀mí ìdílé àti àṣà."'
+            };
+            
+            return messages[this.ancestralProfile.origin] || messages['unknown'];
+        },
+        
+        getTodaysPractice() {
+            const practices = [
+                this.language === 'english' ? 
+                    '<div class="text-sm text-amber-700 dark:text-amber-300"><strong>Light a white candle</strong><br>Place it near a photo of family members or ancestors. Speak their names and ask for guidance.</div>' :
+                    '<div class="text-sm text-amber-700 dark:text-amber-300"><strong>Tan fìtílà funfun</strong><br>Gbé e sí ẹ̀gbẹ́ àwòrán àwọn ìdílé tàbí àwọn bàbá. Sọ orúkọ wọn kí o sì béèrè ìtọ́kasí.</div>',
+                
+                this.language === 'english' ? 
+                    '<div class="text-sm text-amber-700 dark:text-amber-300"><strong>Water offering</strong><br>Pour clean water in a glass and place it on your altar. This connects you to the flow of ancestral wisdom.</div>' :
+                    '<div class="text-sm text-amber-700 dark:text-amber-300"><strong>Ẹbọ omi</strong><br>Da omi mímọ́ sínú gilasi kí o gbé e lórí pẹpẹ rẹ. Èyí ń so ọ́ mọ́ ṣíṣàn ọgbọ́n àwọn bàbá.</div>'
+            ];
+            
+            return practices[Math.floor(Math.random() * practices.length)];
+        },
+        
+        getAncestralOffering() {
+            const offerings = [
+                this.language === 'english' ? 
+                    '<div class="text-sm text-green-700 dark:text-green-300"><strong>Coffee and bread</strong><br>Offer a cup of black coffee and a piece of bread. Traditional foods connect us to our ancestors.</div>' :
+                    '<div class="text-sm text-green-700 dark:text-green-300"><strong>Kọfi àti àkàrà</strong><br>Pèsè ago kọfi dúdú àti àkàrà kan. Àwọn oúnjẹ ìbílẹ̀ ń so wa mọ́ àwọn bàbá wa.</div>',
+                
+                this.language === 'english' ? 
+                    '<div class="text-sm text-green-700 dark:text-green-300"><strong>Fresh flowers</strong><br>Place white or yellow flowers on your ancestor altar. Beauty honors their memory.</div>' :
+                    '<div class="text-sm text-green-700 dark:text-green-300"><strong>Òdòdó tuntun</strong><br>Gbé òdòdó funfun tàbí pupa sí pẹpẹ àwọn bàbá rẹ. Ẹwà ń bu ọlá fún ìrántí wọn.</div>'
+            ];
+            
+            return offerings[Math.floor(Math.random() * offerings.length)];
+        },
+        
+        init() {
+            this.loadProfile();
+        }
+    }
+}
+</script>
+{% endblock %}
