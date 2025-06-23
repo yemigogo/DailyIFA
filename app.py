@@ -212,6 +212,11 @@ def wisdom_archive():
                          archive_readings=archive_readings,
                          unique_odus=unique_odus)
 
+@app.route('/diaspora')
+def diaspora():
+    """Diaspora guidance page"""
+    return render_template('diaspora.html')
+
 @app.route('/api/learn/opele-tutorial')
 def api_opele_tutorial():
     """API endpoint for Opele casting tutorial data"""
