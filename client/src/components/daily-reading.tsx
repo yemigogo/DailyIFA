@@ -5,6 +5,8 @@ import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
 import AudioPlayer from "./audio-player";
 import EboRecommendations from "./ebo-recommendations";
+import HerbsMaterials from "./herbs-materials";
+import AffirmationGenerator from "./affirmation-generator";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { apiRequest, getQueryFn } from "@/lib/queryClient";
@@ -183,12 +185,18 @@ export default function DailyReading({ reading }: DailyReadingProps) {
         />
       )}
 
+      {/* Traditional Herbs & Materials */}
+      <HerbsMaterials oduId={reading.odu.id} oduName={reading.odu.name} />
+
       {/* Ẹbọ Recommendations */}
       <Card className="border-amber-200 dark:border-amber-800">
         <CardContent className="p-6">
           <EboRecommendations oduId={reading.odu.id} showFilters={false} />
         </CardContent>
       </Card>
+
+      {/* Personal Affirmation Generator */}
+      <AffirmationGenerator currentOdu={reading.odu} />
 
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-4">
