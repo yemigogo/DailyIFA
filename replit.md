@@ -12,6 +12,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - ✅ **Complete UI Conversion**: All components now use Python Flask with Alpine.js for interactivity
 - ✅ **SQLite Database**: Implemented proper database structure for Odu data and daily readings
 - ✅ **Mobile-First Design**: Maintained responsive Tailwind CSS styling with sacred color scheme
+- ✅ **Learn Ifá Mode**: Added interactive Opele casting tutorial and practical Odu applications with real-world case studies
 
 ## Project Architecture
 **Backend**: Python Flask with SQLite database
@@ -27,6 +28,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Orisha Assessment**: Personality-based spiritual alignment testing
 - **Problem Search**: Find specific Odu guidance for life challenges
 - **Reading History**: Track spiritual journey over time
+- **Learn Ifá Mode**: Interactive Opele casting tutorial with virtual chain and practical case studies
 - **Mobile Responsive**: Optimized for smartphone spiritual practice
 
 ## User Preferences

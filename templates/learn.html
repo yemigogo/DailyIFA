@@ -4,7 +4,7 @@
 {% block header_title %}Learn About Ifá{% endblock %}
 
 {% block content %}
-<div class="space-y-6" x-data="{ language: 'english' }">
+<div class="space-y-6" x-data="learnIfaMode()">
     <!-- Introduction -->
     <div class="spiritual-card rounded-xl p-6">
         <div class="text-center mb-6">
@@ -181,6 +181,224 @@
         {% endif %}
     </div>
 
+    <!-- Interactive Learning Modes -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">Interactive Learning</span>
+            <span x-show="language === 'yoruba'">Ẹ̀kọ́ Ìbáṣepọ̀</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button @click="activeLearnMode = 'opele'" 
+                    :class="activeLearnMode === 'opele' ? 'bg-amber-600 text-white' : 'bg-amber-100 hover:bg-amber-200 text-amber-800'"
+                    class="p-4 rounded-lg transition-colors text-center">
+                <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z"></path>
+                </svg>
+                <span class="font-medium">
+                    <span x-show="language === 'english'">Learn Opele Casting</span>
+                    <span x-show="language === 'yoruba'">Kọ́ Sísọ Opele</span>
+                </span>
+            </button>
+            
+            <button @click="activeLearnMode = 'practical'" 
+                    :class="activeLearnMode === 'practical' ? 'bg-amber-600 text-white' : 'bg-amber-100 hover:bg-amber-200 text-amber-800'"
+                    class="p-4 rounded-lg transition-colors text-center">
+                <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+                <span class="font-medium">
+                    <span x-show="language === 'english'">Practical Applications</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ìlò Gidi</span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Opele Casting Tutorial -->
+    <div x-show="activeLearnMode === 'opele'" class="spiritual-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Learn Opele Casting</span>
+            <span x-show="language === 'yoruba'">Kọ́ Sísọ Opele</span>
+        </h3>
+
+        <!-- Virtual Opele Chain -->
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-6 mb-6">
+            <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-4 text-center">
+                <span x-show="language === 'english'">Virtual Opele Chain</span>
+                <span x-show="language === 'yoruba'">Ẹ̀wọ̀n Opele Fọ́tò</span>
+            </h4>
+            
+            <div class="flex justify-center mb-6">
+                <div class="grid grid-cols-1 gap-2">
+                    <template x-for="(chain, index) in opeleChain" :key="index">
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="text-sm font-medium text-amber-700 dark:text-amber-300 w-12">
+                                <span x-text="index + 1"></span>
+                            </div>
+                            <button @click="flipOpele(index)"
+                                    :class="chain.open ? 'bg-green-600' : 'bg-amber-600'"
+                                    class="w-12 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold transition-colors hover:opacity-80">
+                                <span x-show="chain.open">II</span>
+                                <span x-show="!chain.open">I</span>
+                            </button>
+                            <div class="text-xs text-gray-600 dark:text-gray-400 w-16">
+                                <span x-show="language === 'english'" x-text="chain.open ? 'Open' : 'Closed'"></span>
+                                <span x-show="language === 'yoruba'" x-text="chain.open ? 'Ṣíṣí' : 'Títì'"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            
+            <div class="text-center space-y-4">
+                <button @click="castOpele()" 
+                        class="px-6 py-3 bg-spiritual-blue hover:bg-blue-700 text-white rounded-lg transition-colors">
+                    <span x-show="language === 'english'">Cast Opele</span>
+                    <span x-show="language === 'yoruba'">Sọ Opele</span>
+                </button>
+                
+                <div x-show="currentCast.odu" class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-amber-300">
+                    <h5 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Result:</span>
+                        <span x-show="language === 'yoruba'">Èsì:</span>
+                        <span x-text="currentCast.odu"></span>
+                    </h5>
+                    <p class="text-sm text-gray-700 dark:text-gray-300" x-text="currentCast.meaning"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opele Basics -->
+        <div class="space-y-6">
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                    <span x-show="language === 'english'">What is Opele?</span>
+                    <span x-show="language === 'yoruba'">Kí ni Opele?</span>
+                </h4>
+                <p class="text-sm text-blue-800 dark:text-blue-200">
+                    <span x-show="language === 'english'">
+                        Opele is a divination chain consisting of 8 half-seed shells connected by a chain or string. 
+                        Each shell can fall in two positions: open (convex side up) or closed (concave side up), 
+                        creating 256 possible combinations that correspond to the Odu Ifá.
+                    </span>
+                    <span x-show="language === 'yoruba'">
+                        Opele jẹ́ ẹ̀wọ̀n àfọ̀mọ́ tí ó ní àwọn epo òkúta mẹ́jọ tí ẹ̀wọ̀n tàbí okùn kan so pọ̀. 
+                        Epo kọ̀ọ̀kan le ṣubú sí ipò méjì: ṣíṣí (ìhà tí ó gòkè) tàbí títì (ìhà tí ó jinlẹ̀), 
+                        èyí tí ó ṣẹ̀dá àwọn àkópọ̀ 256 tí ó bá àwọn Odù Ifá mu.
+                    </span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <h5 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">How to Hold Opele</span>
+                        <span x-show="language === 'yoruba'">Báwo Ni A Ṣe Mú Opele</span>
+                    </h5>
+                    <ul class="text-sm text-amber-700 dark:text-amber-300 space-y-1">
+                        <li x-show="language === 'english'">• Hold chain in dominant hand</li>
+                        <li x-show="language === 'english'">• Let shells hang naturally</li>
+                        <li x-show="language === 'english'">• Cast with gentle swing motion</li>
+                        <li x-show="language === 'yoruba'">• Mú ẹ̀wọ̀n náà ní ọwọ́ àgbára</li>
+                        <li x-show="language === 'yoruba'">• Jẹ́ kí àwọn epo rọ̀ láìfọwọ́kan</li>
+                        <li x-show="language === 'yoruba'">• Sọ pẹ̀lú ìṣípayà rọrọ</li>
+                    </ul>
+                </div>
+                
+                <div class="border border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <h5 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                        <span x-show="language === 'english'">Reading the Pattern</span>
+                        <span x-show="language === 'yoruba'">Kíka Àpẹrẹ</span>
+                    </h5>
+                    <ul class="text-sm text-amber-700 dark:text-amber-300 space-y-1">
+                        <li x-show="language === 'english'">• Read from right to left</li>
+                        <li x-show="language === 'english'">• Open = II (double line)</li>
+                        <li x-show="language === 'english'">• Closed = I (single line)</li>
+                        <li x-show="language === 'yoruba'">• Ka láti ọtún sí òsì</li>
+                        <li x-show="language === 'yoruba'">• Ṣíṣí = II (ìlà ìlọ́po méjì)</li>
+                        <li x-show="language === 'yoruba'">• Títì = I (ìlà kan ṣoṣo)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practical Applications -->
+    <div x-show="activeLearnMode === 'practical'" class="spiritual-card rounded-xl p-6">
+        <h3 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Practical Odu Applications</span>
+            <span x-show="language === 'yoruba'">Àwọn Ìlò Odù Gidi</span>
+        </h3>
+
+        <!-- Odu Case Studies -->
+        <div class="space-y-6">
+            <template x-for="caseStudy in practicalCases" :key="caseStudy.id">
+                <div class="border border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h4 class="font-semibold text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'" x-text="caseStudy.odu"></span>
+                                <span x-show="language === 'yoruba'" x-text="caseStudy.oduYoruba"></span>
+                            </h4>
+                            <p class="text-sm text-amber-600 dark:text-amber-400">
+                                <span x-show="language === 'english'" x-text="caseStudy.scenario"></span>
+                                <span x-show="language === 'yoruba'" x-text="caseStudy.scenarioYoruba"></span>
+                            </p>
+                        </div>
+                        
+                        <!-- Odu Pattern Display -->
+                        <div class="flex flex-col gap-1">
+                            <template x-for="(row, i) in caseStudy.pattern" :key="i">
+                                <div class="flex gap-1">
+                                    <template x-for="(mark, j) in row" :key="j">
+                                        <div :class="mark ? 'bg-amber-600' : 'bg-gray-300 dark:bg-gray-600'" 
+                                             class="w-2 h-2 rounded-full"></div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded">
+                            <h5 class="font-medium text-blue-900 dark:text-blue-100 mb-1">
+                                <span x-show="language === 'english'">Traditional Guidance:</span>
+                                <span x-show="language === 'yoruba'">Ìtọ́kasí Ìbílẹ̀:</span>
+                            </h5>
+                            <p class="text-sm text-blue-800 dark:text-blue-200">
+                                <span x-show="language === 'english'" x-text="caseStudy.guidance"></span>
+                                <span x-show="language === 'yoruba'" x-text="caseStudy.guidanceYoruba"></span>
+                            </p>
+                        </div>
+                        
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded">
+                            <h5 class="font-medium text-green-900 dark:text-green-100 mb-1">
+                                <span x-show="language === 'english'">Modern Application:</span>
+                                <span x-show="language === 'yoruba'">Ìlò Òde Òní:</span>
+                            </h5>
+                            <p class="text-sm text-green-800 dark:text-green-200">
+                                <span x-show="language === 'english'" x-text="caseStudy.modern"></span>
+                                <span x-show="language === 'yoruba'" x-text="caseStudy.modernYoruba"></span>
+                            </p>
+                        </div>
+                        
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded">
+                            <h5 class="font-medium text-amber-900 dark:text-amber-100 mb-1">
+                                <span x-show="language === 'english'">Recommended Ebo:</span>
+                                <span x-show="language === 'yoruba'">Ebo Tí A Gbé Kálẹ̀:</span>
+                            </h5>
+                            <p class="text-sm text-amber-800 dark:text-amber-200">
+                                <span x-show="language === 'english'" x-text="caseStudy.ebo"></span>
+                                <span x-show="language === 'yoruba'" x-text="caseStudy.eboYoruba"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
     <!-- Quick Actions -->
     <div class="grid grid-cols-2 gap-4">
         <a href="/problem-search" class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-sacred-gold transition-colors text-center">
@@ -204,4 +422,107 @@
         </a>
     </div>
 </div>
+
+<script>
+function learnIfaMode() {
+    return {
+        language: 'english',
+        activeLearnMode: '',
+        opeleChain: [
+            { open: false },
+            { open: true },
+            { open: false },
+            { open: false },
+            { open: true },
+            { open: false },
+            { open: true },
+            { open: true }
+        ],
+        currentCast: { odu: '', meaning: '' },
+        
+        practicalCases: [
+            {
+                id: 1,
+                odu: 'Ìká Méjì',
+                oduYoruba: 'Ìká Méjì',
+                scenario: 'Business Partnership Conflict',
+                scenarioYoruba: 'Ìjà Àjọ-iṣẹ́ Òwò',
+                pattern: [[false, true], [false, true]],
+                guidance: 'Ìká warns against deception and encourages honest communication. This Odu teaches that conflicts arise from misunderstandings and hidden agendas.',
+                guidanceYoruba: 'Ìká kìlọ̀ nípa ẹ̀tàn ó sì gba ìbánisọ̀rọ̀ òtítọ́ nínú. Odù yìí kọ́ wa pé ìjà máa ń wá láti àìlóye àti àwọn ète ìkọ̀kọ̀.',
+                modern: 'In modern business, this applies to being transparent in negotiations, clearly defining roles and responsibilities, and addressing issues directly rather than avoiding them.',
+                modernYoruba: 'Nínú òwò òde òní, èyí kan sí jíjẹ́ kedere nínú àdúnni, ṣíṣe àlàyé ipò àti àwọn ojúṣe kedere, àti mímójútó àwọn ìṣòro tààrà ju kíkọ́ wọn lọ.',
+                ebo: 'Offer white kola nut, honey, and white cloth to Obatala for clarity and peace. Perform this ebo on a Friday morning.',
+                eboYoruba: 'Fi obì funfun, oyin, àti aṣọ funfun bọ Ọbàtálá fún àṣírí àti àlàáfíà. Ṣe ebo yìí ní òwúrọ̀ ọjọ́ Ẹtì.'
+            },
+            {
+                id: 2,
+                odu: 'Ògúndá Méjì',
+                oduYoruba: 'Ògúndá Méjì',
+                scenario: 'Career Advancement Blocked',
+                scenarioYoruba: 'Ìdènà Ìlọsíwájú Iṣẹ́',
+                pattern: [[true, false], [true, false]],
+                guidance: 'Ògúndá speaks of obstacles that require strategic action and persistence. This Odu emphasizes the need for both spiritual preparation and practical effort.',
+                guidanceYoruba: 'Ògúndá sọ̀rọ̀ nípa àwọn ìdènà tí ó nílò ìgbésẹ̀ ọgbọ́n àti ìfaradà. Odù yìí tẹnumọ́ ìnílò ìgbasilẹ̀ ẹ̀mí àti ìṣiṣẹ́ gidi.',
+                modern: 'Focus on skill development, networking, and demonstrating value to employers. Remove obstacles through both practical action and spiritual cleansing.',
+                modernYoruba: 'Dojúkọ ìdàgbàsókè ọgbọ́n, ìṣọ̀pọ̀, àti fífihàn iye si àwọn olùgbẹ́. Yọ àwọn ìdènà kúrò nípa ìgbésẹ̀ gidi àti ìwẹ̀nù ẹ̀mí.',
+                ebo: 'Make offerings to Ogun with palm wine, kola nut, and iron objects. Perform at dawn on Tuesday.',
+                eboYoruba: 'Ṣe ẹbọ sí Ògún pẹ̀lú emu, obì, àti àwọn ohun irin. Ṣe ní àfẹ̀mọ́júmọ́ ọjọ́ Ìṣẹ́gun.'
+            },
+            {
+                id: 3,
+                odu: 'Òfún Méjì',
+                oduYoruba: 'Òfún Méjì',
+                scenario: 'Health and Wellness Issues',
+                scenarioYoruba: 'Àwọn Ìṣòro Ìlera àti Ìlera',
+                pattern: [[true, true], [false, false]],
+                guidance: 'Òfún represents renewal, healing, and spiritual cleansing. This Odu calls for both physical and spiritual purification.',
+                guidanceYoruba: 'Òfún dúró fún ìṣọtún, ìwòsàn, àti ìwẹ̀nù ẹ̀mí. Odù yìí pè fún ìwẹ̀nù ara àti ẹ̀mí.',
+                modern: 'Adopt holistic health practices combining medical treatment with spiritual wellness. Focus on detoxification, meditation, and lifestyle changes.',
+                modernYoruba: 'Gba àwọn ìṣe ìlera tí ó ni gbogbo rẹ̀ tí ó da ìtọ́jú ìṣègùn àti ìlera ẹ̀mí pọ̀. Dojúkọ ìyọkúrò majèlé, ìṣàrò, àti àwọn àyípadà ìgbé ayé.',
+                ebo: 'Perform spiritual bath with white flowers, coconut water, and blessed water. Offer white dove to Obatala.',
+                eboYoruba: 'Ṣe ìwẹ̀ ẹ̀mí pẹ̀lú àwọn òdòdó funfun, omi agbọn, àti omi ìbùkún. Fi àdàbà funfun bọ Ọbàtálá.'
+            }
+        ],
+        
+        flipOpele(index) {
+            this.opeleChain[index].open = !this.opeleChain[index].open;
+            this.interpretCast();
+        },
+        
+        castOpele() {
+            // Randomly set each shell
+            this.opeleChain.forEach(shell => {
+                shell.open = Math.random() > 0.5;
+            });
+            this.interpretCast();
+        },
+        
+        interpretCast() {
+            // Simple interpretation based on pattern
+            const pattern = this.opeleChain.map(shell => shell.open);
+            const openCount = pattern.filter(p => p).length;
+            
+            const interpretations = [
+                { range: [0, 1], odu: 'Òyẹ́kú', meaning: 'Time for reflection and inner work' },
+                { range: [2, 3], odu: 'Ìwòrì', meaning: 'Challenges that lead to growth' },
+                { range: [4, 5], odu: 'Òdí', meaning: 'Patience and steady progress needed' },
+                { range: [6, 7], odu: 'Ìrosùn', meaning: 'Good fortune and positive changes' },
+                { range: [8, 8], odu: 'Ògbè', meaning: 'Success and divine blessings' }
+            ];
+            
+            const interpretation = interpretations.find(i => 
+                openCount >= i.range[0] && openCount <= i.range[1]
+            );
+            
+            if (interpretation) {
+                this.currentCast = {
+                    odu: interpretation.odu,
+                    meaning: interpretation.meaning
+                };
+            }
+        }
+    }
+}
+</script>
 {% endblock %}

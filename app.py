@@ -153,11 +153,54 @@ def daily_prayers():
 
 @app.route('/learn')
 def learn():
-    """Learn about Ifá page"""
+    """Learn about Ifá page with interactive features"""
     conn = get_db_connection()
     odus = conn.execute('SELECT * FROM odus ORDER BY id').fetchall()
     conn.close()
     return render_template('learn.html', odus=odus)
+
+@app.route('/api/learn/opele-tutorial')
+def api_opele_tutorial():
+    """API endpoint for Opele casting tutorial data"""
+    tutorial_data = {
+        'basics': {
+            'description': 'Opele is the traditional Ifá divination chain consisting of 8 half-seed shells',
+            'descriptionYoruba': 'Opele ni ẹ̀wọ̀n àfọ̀mọ́ Ifá ìbílẹ̀ tí ó ní epo òkúta ìdajì mẹ́jọ',
+            'materials': ['8 half-seed shells', 'Chain or string', 'Clean cloth', 'Blessed water'],
+            'materialsYoruba': ['Epo òkúta ìdajì mẹ́jọ', 'Ẹ̀wọ̀n tàbí okùn', 'Aṣọ mímọ́', 'Omi ìbùkún']
+        },
+        'casting_steps': [
+            {
+                'step': 1,
+                'action': 'Prepare sacred space',
+                'actionYoruba': 'Múra ààyè mímọ́',
+                'details': 'Cleanse area and lay white cloth',
+                'detailsYoruba': 'Wẹ àgbègbè náà kí o sì tẹ́ aṣọ funfun'
+            },
+            {
+                'step': 2,
+                'action': 'Hold Opele correctly',
+                'actionYoruba': 'Mú Opele dáadáa',
+                'details': 'Grip middle of chain with dominant hand',
+                'detailsYoruba': 'Di àárín ẹ̀wọ̀n mú pẹ̀lú ọwọ́ àgbára'
+            },
+            {
+                'step': 3,
+                'action': 'State your question',
+                'actionYoruba': 'Sọ ìbéèrè rẹ',
+                'details': 'Ask clearly and specifically',
+                'detailsYoruba': 'Béèrè ní kedere àti pàtó'
+            },
+            {
+                'step': 4,
+                'action': 'Cast with intention',
+                'actionYoruba': 'Sọ pẹ̀lú èrò',
+                'details': 'Gentle swing allowing shells to fall naturally',
+                'detailsYoruba': 'Ìṣípayà rọrọ tí ó jẹ́ kí àwọn epo ṣubú láìfọwọ́kan'
+            }
+        ]
+    }
+    return jsonify(tutorial_data)
 
 @app.route('/problem-search')
 def problem_search():
