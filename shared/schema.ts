@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, date, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, date, jsonb, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -73,6 +73,46 @@ export const ifaLunarPrayers = pgTable("ifa_lunar_prayers", {
   significanceYoruba: text("significance_yoruba").notNull(),
 });
 
+// Divination logs for users to save and review past readings
+export const divinationLogs = pgTable("divination_logs", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id"), // Optional user identification
+  date: text("date").notNull(),
+  oduId: integer("odu_id").references(() => odus.id).notNull(),
+  question: text("question"), // What the user asked about
+  context: text("context"), // Life situation context
+  interpretation: text("interpretation"), // Personal interpretation notes
+  outcome: text("outcome"), // What actually happened
+  saved: boolean("saved").default(false),
+  starred: boolean("starred").default(false),
+  tags: text("tags").array(), // User-defined tags
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Ẹbọ (offerings/rituals) recommendations based on Odu
+export const eboRecommendations = pgTable("ebo_recommendations", {
+  id: serial("id").primaryKey(),
+  oduId: integer("odu_id").references(() => odus.id).notNull(),
+  category: text("category").notNull(), // "healing", "protection", "prosperity", etc.
+  title: text("title").notNull(),
+  titleYoruba: text("title_yoruba").notNull(),
+  description: text("description").notNull(),
+  descriptionYoruba: text("description_yoruba").notNull(),
+  materials: text("materials").array().notNull(), // Required materials
+  materialsYoruba: text("materials_yoruba").array().notNull(),
+  herbs: text("herbs").array(), // Traditional herbs
+  herbsYoruba: text("herbs_yoruba").array(),
+  procedure: text("procedure").notNull(), // Step-by-step procedure
+  procedureYoruba: text("procedure_yoruba").notNull(),
+  timing: text("timing"), // Best time to perform
+  timingYoruba: text("timing_yoruba"),
+  precautions: text("precautions").array(), // Important precautions
+  precautionsYoruba: text("precautions_yoruba").array(),
+  difficulty: text("difficulty").notNull(), // "beginner", "intermediate", "advanced"
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertOduSchema = createInsertSchema(odus).omit({
   id: true,
 });
@@ -89,6 +129,17 @@ export const insertIfaLunarPrayerSchema = createInsertSchema(ifaLunarPrayers).om
   id: true,
 });
 
+export const insertDivinationLogSchema = createInsertSchema(divinationLogs).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertEboRecommendationSchema = createInsertSchema(eboRecommendations).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertOdu = z.infer<typeof insertOduSchema>;
 export type Odu = typeof odus.$inferSelect;
 export type InsertDailyReading = z.infer<typeof insertDailyReadingSchema>;
@@ -97,6 +148,10 @@ export type InsertDailyPrayer = z.infer<typeof insertDailyPrayerSchema>;
 export type DailyPrayer = typeof dailyPrayers.$inferSelect;
 export type InsertIfaLunarPrayer = z.infer<typeof insertIfaLunarPrayerSchema>;
 export type IfaLunarPrayer = typeof ifaLunarPrayers.$inferSelect;
+export type InsertDivinationLog = z.infer<typeof insertDivinationLogSchema>;
+export type DivinationLog = typeof divinationLogs.$inferSelect;
+export type InsertEboRecommendation = z.infer<typeof insertEboRecommendationSchema>;
+export type EboRecommendation = typeof eboRecommendations.$inferSelect;
 
 // Combined type for daily reading with Odu data
 export type DailyReadingWithOdu = DailyReading & {

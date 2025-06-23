@@ -1,4 +1,10 @@
-import { odus, dailyReadings, dailyPrayers, ifaLunarPrayers, type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu, type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer } from "@shared/schema";
+import { 
+  odus, dailyReadings, dailyPrayers, ifaLunarPrayers, divinationLogs, eboRecommendations,
+  type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu,
+  type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer,
+  type DivinationLog, type InsertDivinationLog, type DivinationLogWithOdu,
+  type EboRecommendation, type InsertEboRecommendation, type EboRecommendationWithOdu
+} from "@shared/schema";
 import { db } from "./db";
 import { eq, desc } from "drizzle-orm";
 

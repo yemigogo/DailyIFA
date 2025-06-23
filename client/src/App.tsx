@@ -9,6 +9,7 @@ import History from "@/pages/history";
 import Learn from "@/pages/learn";
 import ProblemSearch from "@/pages/problem-search";
 import DailyPrayers from "@/pages/daily-prayers";
+import DivinationLogsPage from "@/pages/divination-logs";
 import BottomNavigation from "@/components/bottom-navigation";
 import NotFound from "@/pages/not-found";
 
@@ -18,8 +19,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
-      <Route path="/problems" component={ProblemSearch} />
+      <Route path="/search" component={ProblemSearch} />
       <Route path="/prayers" component={DailyPrayers} />
+      <Route path="/logs" component={DivinationLogsPage} />
       <Route component={NotFound} />
     </Switch>
   );
