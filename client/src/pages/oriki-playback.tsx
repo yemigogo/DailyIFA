@@ -239,7 +239,7 @@ export default function OrikiPlayback() {
                     {ts(
                       category.charAt(0).toUpperCase() + category.slice(1),
                       category === "praise" ? "Ìyìn" :
-                      category === "invocation" ? "Ìgbè" :
+                      category === "invocation" ? "Ìwúre" :
                       category === "blessing" ? "Ìbùkún" : "Ìtàn"
                     )}
                   </option>
@@ -276,7 +276,7 @@ export default function OrikiPlayback() {
                   {ts(
                     oriki.category.charAt(0).toUpperCase() + oriki.category.slice(1),
                     oriki.category === "praise" ? "Ìyìn" :
-                    oriki.category === "invocation" ? "Ìgbè" :
+                    oriki.category === "invocation" ? "Ìwúre" :
                     oriki.category === "blessing" ? "Ìbùkún" : "Ìtàn"
                   )}
                 </CardDescription>

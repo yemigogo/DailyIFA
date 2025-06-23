@@ -42,6 +42,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 
 ## User Preferences
 - **Language Support**: Full English/Yoruba bilingual interface
+- **Yoruba Terminology**: Use "Ìwúre" for prayers (not "Àdúrà"), maintaining authentic traditional terms
 - **Audio Quality**: High-quality Yoruba pronunciation with phonetic guides
 - **Cultural Authenticity**: Maintaining traditional Yoruba terminology and sacred practices
 - **Mobile-First**: Primary focus on smartphone accessibility
