@@ -13,7 +13,7 @@ export default function BottomNavigation() {
     { id: "history", label: ts("History", "Ìtàn"), icon: Scroll, path: "/history" },
     { id: "learn", label: ts("Learn", "Kọ́"), icon: BookOpen, path: "/learn" },
     { id: "search", label: ts("Search", "Wá"), icon: Search, path: "/search" },
-    { id: "diaspora", label: ts("Diaspora", "Ìtúká"), icon: ScrollText, path: "/diaspora" },
+    { id: "oriki", label: ts("Oríkì", "Oríkì"), icon: ScrollText, path: "/oriki" },
     { id: "profile", label: ts("Profile", "Àkọsílẹ̀"), icon: User, path: "/profile" },
   ];
 

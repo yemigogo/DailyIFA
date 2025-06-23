@@ -37,6 +37,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Ancestral Connection**: Personalized pathway to connect with family spiritual lineage, receive ancestral guidance, and maintain cultural heritage
 - **Wisdom Archive**: Searchable repository of past readings, AI insights, sacred verses (Ẹsẹ), and personal notes for continued spiritual learning
 - **Smart Practice Reminders**: Personalized notification system for maintaining consistent spiritual practices with habit tracking, mood monitoring, and adaptive scheduling
+- **Oríkì Playback**: Traditional Yoruba praise poetry for Orishas with authentic verses, meanings, and audio pronunciation guidance
 - **Mobile Responsive**: Optimized for smartphone spiritual practice
 
 ## User Preferences

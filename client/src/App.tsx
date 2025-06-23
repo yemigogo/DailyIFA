@@ -11,6 +11,7 @@ import ProblemSearch from "@/pages/problem-search";
 import DailyPrayers from "@/pages/daily-prayers";
 import DivinationLogsPage from "@/pages/divination-logs";
 import ProfilePage from "@/pages/profile";
+import OrikiPlayback from "@/pages/oriki-playback";
 import BottomNavigation from "@/components/bottom-navigation";
 import FloatingAmbientControls from "@/components/floating-ambient-controls";
 import NotFound from "@/pages/not-found";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/learn" component={Learn} />
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
+      <Route path="/oriki" component={OrikiPlayback} />
       <Route path="/search" component={ProblemSearch} />
       <Route path="/prayers" component={DailyPrayers} />
       <Route path="/logs" component={DivinationLogsPage} />
