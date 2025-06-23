@@ -102,3 +102,11 @@ export type IfaLunarPrayer = typeof ifaLunarPrayers.$inferSelect;
 export type DailyReadingWithOdu = DailyReading & {
   odu: Odu;
 };
+
+export type DivinationLogWithOdu = DivinationLog & {
+  odu: Odu;
+};
+
+export type EboRecommendationWithOdu = EboRecommendation & {
+  odu: Odu;
+};

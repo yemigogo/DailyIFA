@@ -1,11 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Bookmark, Share, Eye, Star, Leaf } from "lucide-react";
+import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
+import AudioPlayer from "./audio-player";
+import EboRecommendations from "./ebo-recommendations";
 import { useToast } from "@/hooks/use-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { apiRequest, getQueryFn } from "@/lib/queryClient";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface DailyReadingProps {
@@ -16,6 +18,12 @@ export default function DailyReading({ reading }: DailyReadingProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const { t, ts } = useLanguage();
+
+  // Fetch audio data for the Odu
+  const { data: audioData } = useQuery({
+    queryKey: [`/api/odu/${reading.odu.id}/audio`],
+    queryFn: getQueryFn({ on401: "returnNull" }),
+  });
 
   const saveReadingMutation = useMutation({
     mutationFn: async () => {
@@ -158,6 +166,25 @@ export default function DailyReading({ reading }: DailyReadingProps) {
               </p>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Audio Pronunciation */}
+      {audioData && (
+        <AudioPlayer
+          oduName={audioData.oduName}
+          oduNameYoruba={audioData.oduNameYoruba}
+          pronunciation={audioData.pronunciation}
+          audioUrl={audioData.audioUrl}
+          meaning={audioData.meaning}
+          meaningYoruba={audioData.meaningYoruba}
+        />
+      )}
+
+      {/* Ẹbọ Recommendations */}
+      <Card className="border-amber-200 dark:border-amber-800">
+        <CardContent className="p-6">
+          <EboRecommendations oduId={reading.odu.id} showFilters={false} />
         </CardContent>
       </Card>
 

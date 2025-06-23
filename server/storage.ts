@@ -25,6 +25,17 @@ export interface IStorage {
   getIfaLunarPrayer(dayOfYear: number): Promise<IfaLunarPrayer | undefined>;
   createIfaLunarPrayer(prayer: InsertIfaLunarPrayer): Promise<IfaLunarPrayer>;
   getAllIfaLunarPrayers(): Promise<IfaLunarPrayer[]>;
+  
+  // Divination log methods
+  getDivinationLogs(userId?: string, limit?: number): Promise<DivinationLogWithOdu[]>;
+  createDivinationLog(log: InsertDivinationLog): Promise<DivinationLog>;
+  updateDivinationLog(id: number, updates: Partial<DivinationLog>): Promise<DivinationLog>;
+  deleteDivinationLog(id: number): Promise<void>;
+  
+  // Ebo recommendation methods
+  getEboRecommendations(oduId: number): Promise<EboRecommendation[]>;
+  createEboRecommendation(ebo: InsertEboRecommendation): Promise<EboRecommendation>;
+  getAllEboRecommendations(): Promise<EboRecommendationWithOdu[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -132,6 +143,104 @@ export class DatabaseStorage implements IStorage {
 
   async getAllIfaLunarPrayers(): Promise<IfaLunarPrayer[]> {
     return await db.select().from(ifaLunarPrayers).orderBy(ifaLunarPrayers.dayOfYear);
+  }
+
+  // Divination log methods
+  async getDivinationLogs(userId?: string, limit = 20): Promise<DivinationLogWithOdu[]> {
+    const query = db
+      .select({
+        id: divinationLogs.id,
+        userId: divinationLogs.userId,
+        date: divinationLogs.date,
+        oduId: divinationLogs.oduId,
+        question: divinationLogs.question,
+        context: divinationLogs.context,
+        interpretation: divinationLogs.interpretation,
+        outcome: divinationLogs.outcome,
+        saved: divinationLogs.saved,
+        starred: divinationLogs.starred,
+        tags: divinationLogs.tags,
+        createdAt: divinationLogs.createdAt,
+        updatedAt: divinationLogs.updatedAt,
+        odu: odus
+      })
+      .from(divinationLogs)
+      .innerJoin(odus, eq(divinationLogs.oduId, odus.id))
+      .orderBy(desc(divinationLogs.createdAt))
+      .limit(limit);
+
+    if (userId) {
+      query.where(eq(divinationLogs.userId, userId));
+    }
+
+    return await query;
+  }
+
+  async createDivinationLog(insertLog: InsertDivinationLog): Promise<DivinationLog> {
+    const [log] = await db
+      .insert(divinationLogs)
+      .values(insertLog)
+      .returning();
+    return log;
+  }
+
+  async updateDivinationLog(id: number, updates: Partial<DivinationLog>): Promise<DivinationLog> {
+    const [log] = await db
+      .update(divinationLogs)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(divinationLogs.id, id))
+      .returning();
+    return log;
+  }
+
+  async deleteDivinationLog(id: number): Promise<void> {
+    await db.delete(divinationLogs).where(eq(divinationLogs.id, id));
+  }
+
+  // Ebo recommendation methods
+  async getEboRecommendations(oduId: number): Promise<EboRecommendation[]> {
+    return await db
+      .select()
+      .from(eboRecommendations)
+      .where(eq(eboRecommendations.oduId, oduId))
+      .orderBy(eboRecommendations.category, eboRecommendations.difficulty);
+  }
+
+  async createEboRecommendation(insertEbo: InsertEboRecommendation): Promise<EboRecommendation> {
+    const [ebo] = await db
+      .insert(eboRecommendations)
+      .values(insertEbo)
+      .returning();
+    return ebo;
+  }
+
+  async getAllEboRecommendations(): Promise<EboRecommendationWithOdu[]> {
+    return await db
+      .select({
+        id: eboRecommendations.id,
+        oduId: eboRecommendations.oduId,
+        category: eboRecommendations.category,
+        title: eboRecommendations.title,
+        titleYoruba: eboRecommendations.titleYoruba,
+        description: eboRecommendations.description,
+        descriptionYoruba: eboRecommendations.descriptionYoruba,
+        materials: eboRecommendations.materials,
+        materialsYoruba: eboRecommendations.materialsYoruba,
+        herbs: eboRecommendations.herbs,
+        herbsYoruba: eboRecommendations.herbsYoruba,
+        procedure: eboRecommendations.procedure,
+        procedureYoruba: eboRecommendations.procedureYoruba,
+        timing: eboRecommendations.timing,
+        timingYoruba: eboRecommendations.timingYoruba,
+        precautions: eboRecommendations.precautions,
+        precautionsYoruba: eboRecommendations.precautionsYoruba,
+        difficulty: eboRecommendations.difficulty,
+        createdAt: eboRecommendations.createdAt,
+        odu: odus
+      })
+      .from(eboRecommendations)
+      .innerJoin(odus, eq(eboRecommendations.oduId, odus.id))
+      .orderBy(eboRecommendations.category, eboRecommendations.difficulty);
   }
 }
 

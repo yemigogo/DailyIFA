@@ -5,6 +5,7 @@ import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
+import { eboRecommendations } from "./data/ebo-recommendations";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database and Ifa lunar calendar
