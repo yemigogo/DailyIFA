@@ -66,6 +66,24 @@ def init_db():
         )
     ''')
     
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS wisdom_entries (
+            id INTEGER PRIMARY KEY,
+            reading_id INTEGER,
+            odu_id INTEGER,
+            date TEXT,
+            ai_insight TEXT,
+            ai_insight_yoruba TEXT,
+            ese_verse TEXT,
+            ese_verse_yoruba TEXT,
+            personal_notes TEXT,
+            tags TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (reading_id) REFERENCES daily_readings (id),
+            FOREIGN KEY (odu_id) REFERENCES odus (id)
+        )
+    ''')
+    
     # Insert sample Odu data if table is empty
     cursor.execute('SELECT COUNT(*) FROM odus')
     if cursor.fetchone()[0] == 0:
@@ -158,6 +176,41 @@ def learn():
     odus = conn.execute('SELECT * FROM odus ORDER BY id').fetchall()
     conn.close()
     return render_template('learn.html', odus=odus)
+
+@app.route('/ancestral')
+def ancestral():
+    """Ancestral connection pathway page"""
+    return render_template('ancestral.html')
+
+@app.route('/wisdom-archive')
+def wisdom_archive():
+    """Ifá wisdom archive page"""
+    conn = get_db_connection()
+    
+    # Get all readings with Odu details, ordered by date desc
+    archive_readings = conn.execute('''
+        SELECT dr.*, o.name, o.name_yoruba, o.subtitle, o.subtitle_yoruba,
+               o.message, o.message_yoruba, o.guidance, o.guidance_yoruba,
+               o.reflection, o.reflection_yoruba, o.pronunciation, o.pattern
+        FROM daily_readings dr
+        JOIN odus o ON dr.odu_id = o.id
+        ORDER BY dr.date DESC
+        LIMIT 100
+    ''').fetchall()
+    
+    # Get unique Odus for filtering
+    unique_odus = conn.execute('''
+        SELECT DISTINCT o.id, o.name, o.name_yoruba
+        FROM odus o
+        JOIN daily_readings dr ON o.id = dr.odu_id
+        ORDER BY o.name
+    ''').fetchall()
+    
+    conn.close()
+    
+    return render_template('wisdom_archive.html', 
+                         archive_readings=archive_readings,
+                         unique_odus=unique_odus)
 
 @app.route('/api/learn/opele-tutorial')
 def api_opele_tutorial():
