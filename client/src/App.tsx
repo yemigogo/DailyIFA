@@ -39,6 +39,7 @@ function App() {
           <div className="min-h-screen">
             <Router />
             <BottomNavigation />
+            <FloatingAmbientControls />
           </div>
         </TooltipProvider>
       </LanguageProvider>
