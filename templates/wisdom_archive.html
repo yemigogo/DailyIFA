@@ -1,0 +1,474 @@
+{% extends "base.html" %}
+
+{% block title %}Ifá Wisdom Archive{% endblock %}
+{% block header_title %}Wisdom Archive{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="wisdomArchive()">
+    <!-- Header -->
+    <div class="text-center">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+            <span x-show="language === 'english'">Ifá Wisdom Archive</span>
+            <span x-show="language === 'yoruba'">Àkójọ Ọgbọ́n Ifá</span>
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-400">
+            <span x-show="language === 'english'">Browse past readings, insights, and sacred verses for continued learning</span>
+            <span x-show="language === 'yoruba'">Wo àwọn kíka àtẹ́yìnwá, òye, àti àwọn ẹsẹ mímọ́ fún ìkẹ́kọ̀ tókàn</span>
+        </p>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">Search & Filter Archive</span>
+            <span x-show="language === 'yoruba'">Wa & Ṣe Àyẹ̀wò Àkójọ</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <!-- Search Query -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <span x-show="language === 'english'">Search</span>
+                    <span x-show="language === 'yoruba'">Wá</span>
+                </label>
+                <input type="text" x-model="filters.search" @input="searchArchive()"
+                       :placeholder="language === 'english' ? 'Search wisdom, insights...' : 'Wa ọgbọ́n, òye...'"
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+            </div>
+
+            <!-- Odu Filter -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <span x-show="language === 'english'">Filter by Odu</span>
+                    <span x-show="language === 'yoruba'">Ṣe Àyẹ̀wò Nípa Odù</span>
+                </label>
+                <select x-model="filters.odu" @change="searchArchive()"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+                    <option value="">All Odus</option>
+                    {% for odu in unique_odus %}
+                    <option value="{{ odu.id }}">{{ odu.name }} ({{ odu.name_yoruba }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Date From -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <span x-show="language === 'english'">From Date</span>
+                    <span x-show="language === 'yoruba'">Láti Ọjọ́</span>
+                </label>
+                <input type="date" x-model="filters.dateFrom" @change="searchArchive()"
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+            </div>
+
+            <!-- Date To -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <span x-show="language === 'english'">To Date</span>
+                    <span x-show="language === 'yoruba'">Títí Di Ọjọ́</span>
+                </label>
+                <input type="date" x-model="filters.dateTo" @change="searchArchive()"
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+            </div>
+        </div>
+
+        <!-- Quick Filter Tags -->
+        <div class="flex flex-wrap gap-2">
+            <template x-for="tag in quickTags" :key="tag.id">
+                <button @click="applyQuickFilter(tag.filter)"
+                        :class="isActiveFilter(tag.filter) ? 'bg-purple-600 text-white' : 'bg-purple-100 hover:bg-purple-200 text-purple-800'"
+                        class="px-3 py-1 rounded-full text-sm transition-colors">
+                    <span x-show="language === 'english'" x-text="tag.name"></span>
+                    <span x-show="language === 'yoruba'" x-text="tag.nameYoruba"></span>
+                </button>
+            </template>
+        </div>
+    </div>
+
+    <!-- Archive Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+            <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" x-text="archiveStats.totalReadings"></div>
+            <div class="text-sm text-purple-800 dark:text-purple-300">
+                <span x-show="language === 'english'">Total Readings</span>
+                <span x-show="language === 'yoruba'">Àpapọ̀ Kíka</span>
+            </div>
+        </div>
+
+        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg text-center">
+            <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400" x-text="archiveStats.uniqueOdus"></div>
+            <div class="text-sm text-indigo-800 dark:text-indigo-300">
+                <span x-show="language === 'english'">Unique Odus</span>
+                <span x-show="language === 'yoruba'">Àwọn Odù Ọ̀tọ̀ọ̀tọ̀</span>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+            <div class="text-2xl font-bold text-blue-600 dark:text-blue-400" x-text="archiveStats.withInsights"></div>
+            <div class="text-sm text-blue-800 dark:text-blue-300">
+                <span x-show="language === 'english'">With Insights</span>
+                <span x-show="language === 'yoruba'">Pẹ̀lú Òye</span>
+            </div>
+        </div>
+
+        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400" x-text="getDateRange()"></div>
+            <div class="text-sm text-green-800 dark:text-green-300">
+                <span x-show="language === 'english'">Days Span</span>
+                <span x-show="language === 'yoruba'">Àwọn Ọjọ́ Tí Ó Gun</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archive Entries -->
+    <div class="space-y-4">
+        <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold">
+                <span x-show="language === 'english'">Archive Entries</span>
+                <span x-show="language === 'yoruba'">Àwọn Ẹ̀rọ Àkójọ</span>
+                (<span x-text="filteredReadings.length"></span>)
+            </h3>
+
+            <div class="flex items-center gap-2">
+                <label class="text-sm text-gray-600 dark:text-gray-400">
+                    <span x-show="language === 'english'">View:</span>
+                    <span x-show="language === 'yoruba'">Wò:</span>
+                </label>
+                <select x-model="viewMode" class="px-2 py-1 border rounded text-sm">
+                    <option value="compact">Compact</option>
+                    <option value="detailed">Detailed</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div x-show="isLoading" class="text-center py-8">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+            <p class="mt-4 text-gray-600 dark:text-gray-400">
+                <span x-show="language === 'english'">Loading wisdom archive...</span>
+                <span x-show="language === 'yoruba'">Ń gbé àkójọ ọgbọ́n...</span>
+            </p>
+        </div>
+
+        <!-- Archive Items -->
+        <template x-for="reading in filteredReadings" :key="reading.id">
+            <div class="spiritual-card rounded-lg p-4 hover:shadow-md transition-shadow">
+                <!-- Compact View -->
+                <div x-show="viewMode === 'compact'">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <!-- Odu Pattern -->
+                                <div class="flex flex-col gap-1">
+                                    <template x-for="(row, i) in parsePattern(reading.pattern)" :key="i">
+                                        <div class="flex gap-1">
+                                            <template x-for="(mark, j) in row" :key="j">
+                                                <div :class="mark ? 'bg-purple-600' : 'bg-gray-300 dark:bg-gray-600'" 
+                                                     class="w-2 h-2 rounded-full"></div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-semibold text-purple-900 dark:text-purple-100">
+                                        <span x-show="language === 'english'" x-text="reading.name"></span>
+                                        <span x-show="language === 'yoruba'" x-text="reading.name_yoruba"></span>
+                                    </h4>
+                                    <p class="text-sm text-purple-600 dark:text-purple-400">
+                                        <span x-show="language === 'english'" x-text="reading.subtitle"></span>
+                                        <span x-show="language === 'yoruba'" x-text="reading.subtitle_yoruba"></span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                                <span x-show="language === 'english'" x-text="truncateText(reading.message, 100)"></span>
+                                <span x-show="language === 'yoruba'" x-text="truncateText(reading.message_yoruba, 100)"></span>
+                            </p>
+
+                            <!-- Tags if available -->
+                            <div x-show="reading.tags" class="flex flex-wrap gap-1 mb-2">
+                                <template x-for="tag in splitTags(reading.tags)" :key="tag">
+                                    <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 text-xs rounded-full" x-text="tag"></span>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <div class="text-sm font-medium text-gray-900 dark:text-gray-100" x-text="formatDate(reading.date)"></div>
+                            <button @click="toggleExpanded(reading.id)" 
+                                    class="text-sm text-purple-600 hover:text-purple-800 transition-colors">
+                                <span x-show="language === 'english'">View Details</span>
+                                <span x-show="language === 'yoruba'">Wo Àlàyé</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed View -->
+                <div x-show="viewMode === 'detailed' || expandedItems.includes(reading.id)">
+                    <div class="space-y-4">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between border-b pb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-purple-900 dark:text-purple-100">
+                                    <span x-show="language === 'english'" x-text="reading.name"></span>
+                                    <span x-show="language === 'yoruba'" x-text="reading.name_yoruba"></span>
+                                </h4>
+                                <p class="text-purple-600 dark:text-purple-400">
+                                    <span x-show="language === 'english'" x-text="reading.subtitle"></span>
+                                    <span x-show="language === 'yoruba'" x-text="reading.subtitle_yoruba"></span>
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm font-medium" x-text="formatDate(reading.date)"></div>
+                                <div class="text-xs text-gray-500" x-text="reading.pronunciation"></div>
+                            </div>
+                        </div>
+
+                        <!-- Original Message -->
+                        <div class="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-4 rounded-lg">
+                            <h5 class="font-semibold text-purple-900 dark:text-purple-100 mb-2">
+                                <span x-show="language === 'english'">Sacred Message</span>
+                                <span x-show="language === 'yoruba'">Ọ̀rọ̀ Mímọ́</span>
+                            </h5>
+                            <p class="text-purple-800 dark:text-purple-200 italic">
+                                <span x-show="language === 'english'" x-text="reading.message"></span>
+                                <span x-show="language === 'yoruba'" x-text="reading.message_yoruba"></span>
+                            </p>
+                        </div>
+
+                        <!-- AI Insight (if available) -->
+                        <div x-show="reading.ai_insight" class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                            <h5 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                                <span x-show="language === 'english'">Modern Insight</span>
+                                <span x-show="language === 'yoruba'">Òye Òde Òní</span>
+                            </h5>
+                            <p class="text-blue-800 dark:text-blue-200 text-sm">
+                                <span x-show="language === 'english'" x-text="reading.ai_insight"></span>
+                                <span x-show="language === 'yoruba'" x-text="reading.ai_insight_yoruba"></span>
+                            </p>
+                        </div>
+
+                        <!-- Ẹsẹ Verse (if available) -->
+                        <div x-show="reading.ese_verse" class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                            <h5 class="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                                <span x-show="language === 'english'">Sacred Verse (Ẹsẹ)</span>
+                                <span x-show="language === 'yoruba'">Ẹsẹ Mímọ́</span>
+                            </h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div x-show="reading.ese_verse">
+                                    <h6 class="font-medium text-amber-800 dark:text-amber-200 mb-1">Yorùbá</h6>
+                                    <p class="text-amber-700 dark:text-amber-300 italic" x-text="reading.ese_verse"></p>
+                                </div>
+                                <div x-show="reading.ese_verse_yoruba">
+                                    <h6 class="font-medium text-amber-800 dark:text-amber-200 mb-1">English</h6>
+                                    <p class="text-amber-700 dark:text-amber-300" x-text="reading.ese_verse_yoruba"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Notes (if available) -->
+                        <div x-show="reading.personal_notes" class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                            <h5 class="font-semibold text-green-900 dark:text-green-100 mb-2">
+                                <span x-show="language === 'english'">Personal Notes</span>
+                                <span x-show="language === 'yoruba'">Àwọn Àkọsílẹ̀ Ti Ara Ẹni</span>
+                            </h5>
+                            <p class="text-green-800 dark:text-green-200 text-sm" x-text="reading.personal_notes"></p>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex justify-between items-center pt-4 border-t">
+                            <div class="flex gap-2">
+                                <button @click="addToFavorites(reading)" 
+                                        class="px-3 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 text-sm rounded transition-colors">
+                                    <span x-show="language === 'english'">Favorite</span>
+                                    <span x-show="language === 'yoruba'">Àyànfẹ́</span>
+                                </button>
+                                <button @click="shareReading(reading)" 
+                                        class="px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm rounded transition-colors">
+                                    <span x-show="language === 'english'">Share</span>
+                                    <span x-show="language === 'yoruba'">Pín</span>
+                                </button>
+                            </div>
+                            
+                            <button x-show="viewMode === 'compact'" @click="toggleExpanded(reading.id)" 
+                                    class="text-sm text-gray-600 hover:text-gray-800 transition-colors">
+                                <span x-show="language === 'english'">Collapse</span>
+                                <span x-show="language === 'yoruba'">Pàdé</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <div x-show="!isLoading && filteredReadings.length === 0" class="text-center py-12">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.08-2.33M15 17H9v-2.58a8.003 8.003 0 016 0V17z"></path>
+            </svg>
+            <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-2">
+                <span x-show="language === 'english'">No Wisdom Entries Found</span>
+                <span x-show="language === 'yoruba'">Kò Sí Ẹ̀rọ Ọgbọ́n Tí A Rí</span>
+            </h3>
+            <p class="text-gray-500">
+                <span x-show="language === 'english'">Try adjusting your filters or start your daily reading journey</span>
+                <span x-show="language === 'yoruba'">Gbìyànjú láti ṣe àyípadà àwọn àyẹ̀wò rẹ tàbí bẹ̀rẹ̀ ìrìnàjò kíka ojoojúmọ́ rẹ</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+function wisdomArchive() {
+    return {
+        language: 'english',
+        isLoading: false,
+        viewMode: 'compact',
+        expandedItems: [],
+        
+        filters: {
+            search: '',
+            odu: '',
+            dateFrom: '',
+            dateTo: ''
+        },
+        
+        filteredReadings: {{ archive_readings | tojson }},
+        allReadings: {{ archive_readings | tojson }},
+        
+        archiveStats: {
+            totalReadings: {{ archive_readings | length }},
+            uniqueOdus: {{ unique_odus | length }},
+            withInsights: 0,
+            dateRange: 0
+        },
+        
+        quickTags: [
+            { id: 'recent', name: 'Recent (7 days)', nameYoruba: 'Àìpẹ́ (Ọjọ́ 7)', filter: { days: 7 } },
+            { id: 'month', name: 'This Month', nameYoruba: 'Oṣù Yìí', filter: { month: true } },
+            { id: 'favorites', name: 'Favorites', nameYoruba: 'Àwọn Àyànfẹ́', filter: { favorites: true } },
+            { id: 'insights', name: 'With Insights', nameYoruba: 'Pẹ̀lú Òye', filter: { insights: true } }
+        ],
+        
+        async searchArchive() {
+            this.isLoading = true;
+            
+            try {
+                const params = new URLSearchParams();
+                if (this.filters.search) params.append('q', this.filters.search);
+                if (this.filters.odu) params.append('odu', this.filters.odu);
+                if (this.filters.dateFrom) params.append('from', this.filters.dateFrom);
+                if (this.filters.dateTo) params.append('to', this.filters.dateTo);
+                
+                const response = await fetch(`/api/wisdom-archive?${params}`);
+                this.filteredReadings = await response.json();
+            } catch (error) {
+                console.error('Search error:', error);
+                this.filteredReadings = this.allReadings;
+            } finally {
+                this.isLoading = false;
+            }
+        },
+        
+        applyQuickFilter(filter) {
+            if (filter.days) {
+                const date = new Date();
+                date.setDate(date.getDate() - filter.days);
+                this.filters.dateFrom = date.toISOString().split('T')[0];
+                this.filters.dateTo = '';
+            } else if (filter.month) {
+                const date = new Date();
+                this.filters.dateFrom = new Date(date.getFullYear(), date.getMonth(), 1).toISOString().split('T')[0];
+                this.filters.dateTo = '';
+            }
+            
+            this.searchArchive();
+        },
+        
+        isActiveFilter(filter) {
+            return false; // Simplified for now
+        },
+        
+        toggleExpanded(readingId) {
+            const index = this.expandedItems.indexOf(readingId);
+            if (index > -1) {
+                this.expandedItems.splice(index, 1);
+            } else {
+                this.expandedItems.push(readingId);
+            }
+        },
+        
+        parsePattern(patternStr) {
+            try {
+                return JSON.parse(patternStr || '[[true,true],[true,true]]');
+            } catch {
+                return [[true, true], [true, true]];
+            }
+        },
+        
+        formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        },
+        
+        truncateText(text, length) {
+            if (!text) return '';
+            return text.length > length ? text.substring(0, length) + '...' : text;
+        },
+        
+        splitTags(tags) {
+            return tags ? tags.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+        },
+        
+        getDateRange() {
+            if (this.allReadings.length === 0) return '0';
+            const dates = this.allReadings.map(r => new Date(r.date));
+            const earliest = Math.min(...dates);
+            const latest = Math.max(...dates);
+            const diffTime = Math.abs(latest - earliest);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        },
+        
+        addToFavorites(reading) {
+            // Implementation for favorites
+            console.log('Added to favorites:', reading.name);
+        },
+        
+        shareReading(reading) {
+            const text = `${reading.name}: "${reading.message}" - Ifá Daily Reading App`;
+            if (navigator.share) {
+                navigator.share({
+                    title: reading.name,
+                    text: text
+                });
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Reading copied to clipboard');
+                });
+            }
+        },
+        
+        init() {
+            // Calculate stats
+            this.archiveStats.withInsights = this.allReadings.filter(r => r.ai_insight).length;
+            this.archiveStats.dateRange = this.getDateRange();
+        }
+    }
+}
+</script>
+{% endblock %}

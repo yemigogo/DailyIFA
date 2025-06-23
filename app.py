@@ -289,6 +289,116 @@ def api_orisha_by_date(date):
     except ValueError:
         return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD'}), 400
 
+@app.route('/api/wisdom-archive')
+def api_wisdom_archive():
+    """API endpoint for wisdom archive with filtering"""
+    odu_filter = request.args.get('odu')
+    date_from = request.args.get('from')
+    date_to = request.args.get('to')
+    search_query = request.args.get('q', '').lower()
+    limit = min(int(request.args.get('limit', 50)), 100)
+    
+    conn = get_db_connection()
+    
+    # Build dynamic query
+    query = '''
+        SELECT dr.*, o.name, o.name_yoruba, o.subtitle, o.subtitle_yoruba,
+               o.message, o.message_yoruba, o.guidance, o.guidance_yoruba,
+               o.reflection, o.reflection_yoruba, o.pronunciation, o.pattern,
+               we.ai_insight, we.ai_insight_yoruba, we.ese_verse, we.ese_verse_yoruba,
+               we.personal_notes, we.tags
+        FROM daily_readings dr
+        JOIN odus o ON dr.odu_id = o.id
+        LEFT JOIN wisdom_entries we ON dr.id = we.reading_id
+        WHERE 1=1
+    '''
+    params = []
+    
+    if odu_filter:
+        query += ' AND o.id = ?'
+        params.append(odu_filter)
+    
+    if date_from:
+        query += ' AND dr.date >= ?'
+        params.append(date_from)
+    
+    if date_to:
+        query += ' AND dr.date <= ?'
+        params.append(date_to)
+    
+    if search_query:
+        query += ''' AND (LOWER(o.name) LIKE ? OR LOWER(o.message) LIKE ? 
+                        OR LOWER(we.ai_insight) LIKE ? OR LOWER(we.tags) LIKE ?)'''
+        search_param = f'%{search_query}%'
+        params.extend([search_param, search_param, search_param, search_param])
+    
+    query += ' ORDER BY dr.date DESC LIMIT ?'
+    params.append(limit)
+    
+    results = conn.execute(query, params).fetchall()
+    conn.close()
+    
+    return jsonify([dict(row) for row in results])
+
+@app.route('/api/wisdom-entry', methods=['POST'])
+def api_create_wisdom_entry():
+    """Create or update wisdom entry for a reading"""
+    data = request.get_json()
+    
+    required_fields = ['reading_id', 'odu_id', 'date']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
+    conn = get_db_connection()
+    
+    # Check if entry already exists
+    existing = conn.execute('''
+        SELECT id FROM wisdom_entries WHERE reading_id = ?
+    ''', (data['reading_id'],)).fetchone()
+    
+    if existing:
+        # Update existing entry
+        conn.execute('''
+            UPDATE wisdom_entries 
+            SET ai_insight = ?, ai_insight_yoruba = ?, ese_verse = ?, 
+                ese_verse_yoruba = ?, personal_notes = ?, tags = ?
+            WHERE reading_id = ?
+        ''', (
+            data.get('ai_insight', ''),
+            data.get('ai_insight_yoruba', ''),
+            data.get('ese_verse', ''),
+            data.get('ese_verse_yoruba', ''),
+            data.get('personal_notes', ''),
+            data.get('tags', ''),
+            data['reading_id']
+        ))
+        entry_id = existing['id']
+    else:
+        # Create new entry
+        cursor = conn.execute('''
+            INSERT INTO wisdom_entries 
+            (reading_id, odu_id, date, ai_insight, ai_insight_yoruba, 
+             ese_verse, ese_verse_yoruba, personal_notes, tags)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data['reading_id'],
+            data['odu_id'], 
+            data['date'],
+            data.get('ai_insight', ''),
+            data.get('ai_insight_yoruba', ''),
+            data.get('ese_verse', ''),
+            data.get('ese_verse_yoruba', ''),
+            data.get('personal_notes', ''),
+            data.get('tags', '')
+        ))
+        entry_id = cursor.lastrowid
+    
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'success': True, 'entry_id': entry_id})
+
 # Static file serving
 @app.route('/audio/<path:filename>')
 def serve_audio(filename):
