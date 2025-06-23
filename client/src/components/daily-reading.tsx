@@ -4,6 +4,7 @@ import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
 import SimpleAudioPlayer from "./simple-audio-player";
+import AmbientPlayer from "./ambient-player";
 import EboRecommendations from "./ebo-recommendations";
 import HerbsMaterials from "./herbs-materials";
 import AffirmationGenerator from "./affirmation-generator";
@@ -203,6 +204,9 @@ export default function DailyReading({ reading }: DailyReadingProps) {
 
       {/* Personal Affirmation Generator */}
       <AffirmationGenerator currentOdu={reading.odu} />
+
+      {/* Ambient Soundscapes */}
+      <AmbientPlayer />
 
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-4">
