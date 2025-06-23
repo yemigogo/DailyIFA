@@ -94,32 +94,46 @@ export default function AudioPlayer({
   };
 
   const playPhonetic = () => {
+    console.log('playPhonetic called', { phoneticAudioUrl, hasPhoneticRef: !!phoneticAudioRef.current });
+    
     if (phoneticAudioUrl && phoneticAudioRef.current) {
       setCurrentAudio('phonetic');
+      setIsPlaying(true);
       if (audioRef.current) audioRef.current.pause();
-      phoneticAudioRef.current.play().catch(error => {
+      
+      phoneticAudioRef.current.play().then(() => {
+        console.log('Phonetic audio playing successfully');
+      }).catch(error => {
         console.error('Error playing phonetic audio:', error);
+        setIsPlaying(false);
         // Fallback to TTS
         speakText(pronunciation.replace(/\[.*?\]/g, ''), 'en');
       });
-      setIsPlaying(true);
     } else {
+      console.log('No phonetic audio URL or ref, using TTS');
       // Fallback to slower TTS
       speakText(pronunciation.replace(/\[.*?\]/g, ''), 'en');
     }
   };
 
   const playMain = () => {
+    console.log('playMain called', { audioUrl, hasAudioRef: !!audioRef.current });
+    
     if (audioUrl && audioRef.current) {
       setCurrentAudio('main');
+      setIsPlaying(true);
       if (phoneticAudioRef.current) phoneticAudioRef.current.pause();
-      audioRef.current.play().catch(error => {
+      
+      audioRef.current.play().then(() => {
+        console.log('Audio playing successfully');
+      }).catch(error => {
         console.error('Error playing main audio:', error);
+        setIsPlaying(false);
         // Fallback to TTS
         speakText(oduNameYoruba, 'yoruba');
       });
-      setIsPlaying(true);
     } else {
+      console.log('No audio URL or ref, using TTS');
       speakText(oduNameYoruba, 'yoruba');
     }
   };
@@ -211,40 +225,68 @@ export default function AudioPlayer({
           </div>
         </div>
 
+        {/* Debug info */}
+        <div className="mt-2 text-xs text-gray-500">
+          <p>Audio URL: {audioUrl || 'none'}</p>
+          <p>Phonetic URL: {phoneticAudioUrl || 'none'}</p>
+          <p>Has Audio: {hasAudio ? 'yes' : 'no'}</p>
+        </div>
+
         {/* Hidden audio elements for actual audio files */}
         {audioUrl && (
           <audio
             ref={audioRef}
             src={audioUrl}
-            onEnded={() => setIsPlaying(false)}
+            onEnded={() => {
+              console.log('Audio ended');
+              setIsPlaying(false);
+            }}
             onError={(e) => {
               console.error('Audio error:', e);
               setIsPlaying(false);
             }}
             onLoadStart={() => console.log('Loading audio:', audioUrl)}
             onCanPlay={() => console.log('Audio can play:', audioUrl)}
-            preload="metadata"
+            onLoadedData={() => console.log('Audio loaded:', audioUrl)}
+            preload="auto"
+            controls={false}
           />
         )}
         {phoneticAudioUrl && (
           <audio
             ref={phoneticAudioRef}
             src={phoneticAudioUrl}
-            onEnded={() => setIsPlaying(false)}
+            onEnded={() => {
+              console.log('Phonetic audio ended');
+              setIsPlaying(false);
+            }}
             onError={(e) => {
               console.error('Phonetic audio error:', e);
               setIsPlaying(false);
             }}
             onLoadStart={() => console.log('Loading phonetic audio:', phoneticAudioUrl)}
             onCanPlay={() => console.log('Phonetic audio can play:', phoneticAudioUrl)}
-            preload="metadata"
+            onLoadedData={() => console.log('Phonetic audio loaded:', phoneticAudioUrl)}
+            preload="auto"
+            controls={false}
           />
         )}
 
         <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
-          {hasAudio && audioUrl ? ts(
-            "Click Yoruba button for pronunciation, Guide for phonetic breakdown",
-            "Tẹ bọ́tìnì Yorùbá fún àfọhùn, Ìtọ́kasí fún ìpín àfọhùn"
+          {hasAudio && audioUrl ? (
+            <div>
+              <p>{ts("Audio files loaded - click buttons to play", "Àwọn fáìlì ohùn ti wa - tẹ bọ́tìnì láti gbọ́")}</p>
+              <div className="flex gap-2 mt-2">
+                <audio controls preload="auto" src={audioUrl} className="h-8">
+                  Your browser does not support audio.
+                </audio>
+                {phoneticAudioUrl && (
+                  <audio controls preload="auto" src={phoneticAudioUrl} className="h-8">
+                    Your browser does not support audio.
+                  </audio>
+                )}
+              </div>
+            </div>
           ) : ts(
             "Using text-to-speech for pronunciation guidance",
             "Lo ìmọ̀ ẹ̀rọ text-to-speech fún ìtọ́kasí àfọhùn"
