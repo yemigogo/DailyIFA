@@ -272,6 +272,23 @@ def api_search():
     conn.close()
     return jsonify([dict(odu) for odu in odus])
 
+@app.route('/api/orisha/today')
+def api_today_orisha():
+    """API endpoint for today's Orisha"""
+    today = datetime.now()
+    orisha = get_daily_orisha(today)
+    return jsonify(orisha)
+
+@app.route('/api/orisha/<date>')
+def api_orisha_by_date(date):
+    """API endpoint for Orisha by specific date"""
+    try:
+        target_date = datetime.strptime(date, '%Y-%m-%d')
+        orisha = get_daily_orisha(target_date)
+        return jsonify(orisha)
+    except ValueError:
+        return jsonify({'error': 'Invalid date format. Use YYYY-MM-DD'}), 400
+
 # Static file serving
 @app.route('/audio/<path:filename>')
 def serve_audio(filename):
@@ -296,6 +313,215 @@ def parse_pattern(pattern_text):
         return json.loads(pattern_text) if pattern_text else [[True, True], [True, True]]
     except:
         return [[True, True], [True, True]]
+
+def get_daily_orisha(date):
+    """Get the Orisha for a specific date based on traditional 4-day cycle"""
+    # Traditional Yoruba 4-day cycle starting from a reference date
+    # Day 1: Ọbàtálá (Sunday equivalent), Day 2: Ògún (Monday), Day 3: Ṣàngó (Tuesday), Day 4: Ọ̀ṣun (Wednesday)
+    reference_date = datetime(2025, 1, 1)  # Starting point
+    days_since_reference = (date - reference_date).days
+    cycle_day = days_since_reference % 4
+    
+    orisha_data = {
+        0: {  # Ọbàtálá Day
+            'name': 'Ọbàtálá',
+            'nameEnglish': 'Obatala',
+            'dayName': 'Ọjọ́ Ọbàtálá',
+            'dayNameEnglish': 'Day of Obatala',
+            'oriki': [
+                'Ọbàtálá òrìṣà ọba',
+                'Bàbá àgbébó inú àkùn',
+                'Òrìṣàńlá ọṣẹrẹ mọgbọ́ njẹ́',
+                'Àlàbálàṣẹ ọba àtéwọ̀'
+            ],
+            'orikiEnglish': [
+                'Obatala, divine king of the Orisha',
+                'Father who carries wisdom in silence',
+                'Great Orisha who knows all secrets',
+                'King who creates with his hands'
+            ],
+            'colors': ['White', 'Silver', 'Pearl'],
+            'colorsYoruba': ['Funfun', 'Fàdákà', 'Iyùn òkun'],
+            'taboos': [
+                'No palm wine or alcohol',
+                'Avoid red palm oil',
+                'No red clothing',
+                'No violent actions or words'
+            ],
+            'taboosYoruba': [
+                'Má mu emu tàbí ọtí líle',
+                'Má lo epo pupa',
+                'Má wọ aṣọ pupa', 
+                'Má ṣe ohun ìwà-ọ̀tẹ̀ tàbí sọ̀rọ̀ ìwà-ọ̀tẹ̀'
+            ],
+            'blessings': [
+                'Peace and clarity of mind',
+                'Wisdom in all decisions',
+                'Spiritual purity and protection',
+                'Leadership and authority'
+            ],
+            'blessingsYoruba': [
+                'Àlàáfíà àti àṣírí ọkàn',
+                'Ọgbọ́n nínú gbogbo ìpinnu',
+                'Mímọ́ ẹ̀mí àti ààbò',
+                'Aṣáájú àti àṣẹ'
+            ],
+            'offerings': ['White kola nut', 'White flowers', 'Coconut water', 'White cloth'],
+            'offeringsYoruba': ['Obì funfun', 'Òdòdó funfun', 'Omi agbọn', 'Aṣọ funfun'],
+            'element': 'Air/Sky',
+            'elementYoruba': 'Afẹ́fẹ́/Ọ̀run',
+            'symbol': '☁️'
+        },
+        1: {  # Ògún Day
+            'name': 'Ògún',
+            'nameEnglish': 'Ogun',
+            'dayName': 'Ọjọ́ Ògún',
+            'dayNameEnglish': 'Day of Ogun',
+            'oriki': [
+                'Ògún ọ̀nílé oko',
+                'Ológun ológun, elérí ìjà',
+                'Ọba aládé irin',
+                'Oṣínimálẹ̀ òkè òrì'
+            ],
+            'orikiEnglish': [
+                'Ogun, master of the farm and forge',
+                'Warrior of warriors, witness of battle',
+                'King crowned with iron',
+                'Mountain climber who never tires'
+            ],
+            'colors': ['Green', 'Black', 'Red'],
+            'colorsYoruba': ['Ewé', 'Dúdú', 'Pupa'],
+            'taboos': [
+                'No lies or dishonesty',
+                'Avoid laziness',
+                'No breaking of oaths',
+                'Respect all iron tools'
+            ],
+            'taboosYoruba': [
+                'Má purọ́ tàbí jẹ́ aláìlótítọ́',
+                'Má jẹ́ ọ̀lẹ',
+                'Má ru ìbúra',
+                'Bọ̀wọ̀ fún gbogbo ohun èlò irin'
+            ],
+            'blessings': [
+                'Success in work and technology',
+                'Protection during travel',
+                'Strength and perseverance',
+                'Victory over obstacles'
+            ],
+            'blessingsYoruba': [
+                'Àṣeyọrí nínú iṣẹ́ àti ìmọ̀-ẹ̀rọ',
+                'Ààbò nígbà ìrìnàjò',
+                'Agbára àti ìfaradà',
+                'Ìṣẹ́gun lórí àwọn ìdènà'
+            ],
+            'offerings': ['Palm wine', 'Kola nut', 'Iron objects', 'Dog meat (traditional)'],
+            'offeringsYoruba': ['Emu', 'Obì', 'Àwọn ohun irin', 'Ẹran ajá (ìbílẹ̀)'],
+            'element': 'Iron/Metal',
+            'elementYoruba': 'Irin/Irin',
+            'symbol': '⚔️'
+        },
+        2: {  # Ṣàngó Day
+            'name': 'Ṣàngó',
+            'nameEnglish': 'Shango',
+            'dayName': 'Ọjọ́ Ṣàngó',
+            'dayNameEnglish': 'Day of Shango',
+            'oriki': [
+                'Ṣàngó ọba kòso',
+                'Aláàfin òyó ọba ìjà',
+                'Ọba tí ó ya iná láti ẹnu',
+                'Jákúta tí ó pa òkúta'
+            ],
+            'orikiEnglish': [
+                'Shango, the king who did not hang',
+                'King of Oyo, lord of battle',
+                'King who spits fire from his mouth',
+                'Stone thrower who splits rocks'
+            ],
+            'colors': ['Red', 'White', 'Brown'],
+            'colorsYoruba': ['Pupa', 'Funfun', 'Ìtakùn'],
+            'taboos': [
+                'No bitter kola on his day',
+                'Avoid sheep meat',
+                'No lies or injustice',
+                'Respect elders and authority'
+            ],
+            'taboosYoruba': [
+                'Má jẹ orógbó lọ́jọ́ rẹ̀',
+                'Má jẹ ẹran àgùntàn',
+                'Má purọ́ tàbí ṣe àìtọ́',
+                'Bọ̀wọ̀ fún àwọn àgbà àti àṣẹ'
+            ],
+            'blessings': [
+                'Leadership and charisma',
+                'Justice and fairness',
+                'Protection from enemies',
+                'Power and authority'
+            ],
+            'blessingsYoruba': [
+                'Aṣáájú àti ẹni ìfẹ́',
+                'Òdodo àti àìṣègbé',
+                'Ààbò lọ́wọ́ àwọn ọ̀tá',
+                'Agbára àti àṣẹ'
+            ],
+            'offerings': ['Red palm oil', 'Bitter kola', 'Ram meat', 'Red wine'],
+            'offeringsYoruba': ['Epo pupa', 'Orógbó', 'Ẹran àgbò', 'Ọtí pupa'],
+            'element': 'Fire/Thunder',
+            'elementYoruba': 'Iná/Àrá',
+            'symbol': '⚡'
+        },
+        3: {  # Ọ̀ṣun Day
+            'name': 'Ọ̀ṣun',
+            'nameEnglish': 'Oshun',
+            'dayName': 'Ọjọ́ Ọ̀ṣun',
+            'dayNameEnglish': 'Day of Oshun',
+            'oriki': [
+                'Ọ̀ṣun Ṣẹ̀ẹ́gbẹ̀rì olómi wèrẹ wèrẹ',
+                'Ìyálọ́ja àyàbá',
+                'Olódò òrìṣà omi',
+                'Yèyé kárí ọmọ bí bí'
+            ],
+            'orikiEnglish': [
+                'Oshun of the brass, owner of fresh flowing waters',
+                'Mother of the market, queen mother',
+                'River goddess, deity of waters',
+                'Mother who carries and protects children'
+            ],
+            'colors': ['Yellow', 'Gold', 'Orange', 'Green'],
+            'colorsYoruba': ['Ọ̀fẹ̀', 'Wúrà', 'Ọsàn', 'Ewé'],
+            'taboos': [
+                'No disrespect to pregnant women',
+                'Avoid pollution of water sources',
+                'No neglect of personal hygiene',
+                'Respect all mothers and children'
+            ],
+            'taboosYoruba': [
+                'Má gàn obìnrin oyún',
+                'Má sọ odò àti omi di àìmọ́',
+                'Má gbàgbé ìmọ́tótó ara',
+                'Bọ̀wọ̀ fún gbogbo ìyá àti ọmọ'
+            ],
+            'blessings': [
+                'Fertility and childbearing',
+                'Love and relationships',
+                'Prosperity and abundance',
+                'Healing and sweetness in life'
+            ],
+            'blessingsYoruba': [
+                'Ìbímọ àti ọmọ bíbí',
+                'Ìfẹ́ àti ìbáṣepọ̀',
+                'Ọrọ̀ àti ọ̀pọ̀lọpọ̀',
+                'Ìwòsàn àti adùn ayé'
+            ],
+            'offerings': ['Honey', 'Yellow flowers', 'Gold jewelry', 'River water'],
+            'offeringsYoruba': ['Oyin', 'Òdòdó ọ̀fẹ̀', 'Ohun ọ̀ṣọ́ wúrà', 'Omi odò'],
+            'element': 'Fresh Water',
+            'elementYoruba': 'Omi Òkun',
+            'symbol': '💧'
+        }
+    }
+    
+    return orisha_data.get(cycle_day, orisha_data[0])
 
 if __name__ == '__main__':
     # Create directories

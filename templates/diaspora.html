@@ -1,0 +1,514 @@
+{% extends "base.html" %}
+
+{% block title %}Diaspora Guidance - Living Ifá Worldwide{% endblock %}
+{% block header_title %}Diaspora Guidance{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="diasporaGuide()">
+    <!-- Header -->
+    <div class="text-center">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-sage-green to-green-700 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+            <span x-show="language === 'english'">Living Ifá in the Diaspora</span>
+            <span x-show="language === 'yoruba'">Ìgbé Ifá Ní Ìlú Àjèjì</span>
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-400">
+            <span x-show="language === 'english'">Practical guidance for maintaining authentic Ifá practices worldwide</span>
+            <span x-show="language === 'yoruba'">Ìtọ́kasí gidi fún ìṣe Ifá òtítọ́ káàkiri ayé</span>
+        </p>
+    </div>
+
+    <!-- Location Selection -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">Your Location</span>
+            <span x-show="language === 'yoruba'">Ibi Tí O Wà</span>
+        </h3>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <template x-for="location in commonLocations" :key="location.id">
+                <button @click="selectLocation(location)" 
+                        :class="selectedLocation?.id === location.id ? 'bg-amber-600 text-white' : 'bg-amber-100 hover:bg-amber-200 text-amber-800'"
+                        class="p-3 rounded-lg text-sm font-medium transition-colors">
+                    <div class="text-lg mb-1" x-text="location.flag"></div>
+                    <div x-text="location.name"></div>
+                </button>
+            </template>
+        </div>
+        
+        <div x-show="selectedLocation" class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                <span x-show="language === 'english'">Location-Specific Guidance</span>
+                <span x-show="language === 'yoruba'">Ìtọ́kasí Pàtó Ibi</span>
+            </h4>
+            <p class="text-sm text-blue-800 dark:text-blue-200" x-text="selectedLocation?.guidance"></p>
+        </div>
+    </div>
+
+    <!-- Daily Practice Guide -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Simple Daily Practices</span>
+            <span x-show="language === 'yoruba'">Àwọn Ìṣe Ojoojúmọ́ Rọrùn</span>
+        </h3>
+
+        <div class="space-y-6">
+            <!-- Morning Practices -->
+            <div class="border border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Morning Rituals (5-10 minutes)</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ìṣe Òwúrọ̀ (Ìṣẹ́jú 5-10)</span>
+                </h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white text-xs font-bold">1</span>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-amber-900 dark:text-amber-100">
+                                    <span x-show="language === 'english'">Greet the Dawn</span>
+                                    <span x-show="language === 'yoruba'">Kí Òwúrọ̀</span>
+                                </h5>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <span x-show="language === 'english'">Face east and say: "Orunmila, guide my day with wisdom"</span>
+                                    <span x-show="language === 'yoruba'">Kọjú sí ìlà-oòrùn kí o sì sọ: "Ọ̀rúnmìlà, fi ọgbọ́n ṣe ìtọ́kasí ọjọ́ mi"</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white text-xs font-bold">2</span>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-amber-900 dark:text-amber-100">
+                                    <span x-show="language === 'english'">Water Blessing</span>
+                                    <span x-show="language === 'yoruba'">Ìbùkún Omi</span>
+                                </h5>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <span x-show="language === 'english'">Bless your drinking water: "May this water bring clarity and health"</span>
+                                    <span x-show="language === 'yoruba'">Bùkún omi mímu: "Kí omi yìí mú àṣírí àti ìlera wá"</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white text-xs font-bold">3</span>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-amber-900 dark:text-amber-100">
+                                    <span x-show="language === 'english'">Daily Intentions</span>
+                                    <span x-show="language === 'yoruba'">Èrò Ojoojúmọ́</span>
+                                </h5>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <span x-show="language === 'english'">Set 3 positive intentions for the day ahead</span>
+                                    <span x-show="language === 'yoruba'">Ṣeto èrò rere mẹ́ta fún ọjọ́ tí ń bọ̀</span>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <span class="text-white text-xs font-bold">4</span>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-amber-900 dark:text-amber-100">
+                                    <span x-show="language === 'english'">Check Daily Reading</span>
+                                    <span x-show="language === 'yoruba'">Wo Kíka Ojoojúmọ́</span>
+                                </h5>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <span x-show="language === 'english'">Open this app for your daily Odu guidance</span>
+                                    <span x-show="language === 'yoruba'">Ṣí àpẹ̀rẹ̀ yìí fún ìtọ́kasí Odù ojoojúmọ́</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evening Practices -->
+            <div class="border border-blue-300 dark:border-blue-700 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Evening Reflection (5-10 minutes)</span>
+                    <span x-show="language === 'yoruba'">Ìrònú Àṣálẹ́ (Ìṣẹ́jú 5-10)</span>
+                </h4>
+                
+                <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-blue-800 dark:text-blue-200">
+                                <span x-show="language === 'english'">Review the day: What went well? What challenges did you face? How did your Odu guidance help?</span>
+                                <span x-show="language === 'yoruba'">Ṣe àtúnyẹ̀wò ọjọ́: Kín ni ó dára? Àwọn ìdojúkọ wo ni o kojú? Báwo ni ìtọ́kasí Odù ṣe ràn ọ́ lọ́wọ́?</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-sm text-blue-800 dark:text-blue-200">
+                                <span x-show="language === 'english'">Express gratitude for lessons learned and opportunities to grow</span>
+                                <span x-show="language === 'yoruba'">Fi ọpẹ́ hàn fún àwọn ẹ̀kọ́ tí a kọ́ àti àwọn àǹfààní láti dàgbà</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Altar Setup -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Simple Home Altar</span>
+            <span x-show="language === 'yoruba'">Pẹpẹ Ilé Rọrùn</span>
+        </h3>
+
+        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 mb-6">
+            <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-3">
+                <span x-show="language === 'english'">Basic Setup (Apartment/Home Friendly)</span>
+                <span x-show="language === 'yoruba'">Ìlàná Ìpìlẹ̀ (Rọrùn Fún Ilé)</span>
+            </h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h5 class="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                        <span x-show="language === 'english'">Essential Items:</span>
+                        <span x-show="language === 'yoruba'">Àwọn Ohun Pàtàkì:</span>
+                    </h5>
+                    <ul class="text-sm text-amber-700 dark:text-amber-300 space-y-1">
+                        <li x-show="language === 'english'">• White cloth or scarf</li>
+                        <li x-show="language === 'english'">• Glass of clean water (change weekly)</li>
+                        <li x-show="language === 'english'">• White candle (battery LED acceptable)</li>
+                        <li x-show="language === 'english'">• Fresh flowers when possible</li>
+                        <li x-show="language === 'english'">• Small bowl for offerings</li>
+                        
+                        <li x-show="language === 'yoruba'">• Aṣọ funfun tàbí gèlè</li>
+                        <li x-show="language === 'yoruba'">• Gilasi omi mímọ́ (pààrọ̀ lọ́sẹ̀)</li>
+                        <li x-show="language === 'yoruba'">• Fìtílà funfun (LED gbà)</li>
+                        <li x-show="language === 'yoruba'">• Òdòdó tuntun bí ó ṣe ṣeé ṣe</li>
+                        <li x-show="language === 'yoruba'">• Àwo kékeré fún ẹbọ</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                        <span x-show="language === 'english'">Optional Additions:</span>
+                        <span x-show="language === 'yoruba'">Àwọn Àfikún:</span>
+                    </h5>
+                    <ul class="text-sm text-amber-700 dark:text-amber-300 space-y-1">
+                        <li x-show="language === 'english'">• Cowrie shells (if available)</li>
+                        <li x-show="language === 'english'">• Photos of ancestors</li>
+                        <li x-show="language === 'english'">• Natural items (stones, shells)</li>
+                        <li x-show="language === 'english'">• Incense or sage</li>
+                        
+                        <li x-show="language === 'yoruba'">• Àwọn owó cowrie (bí ó bá wà)</li>
+                        <li x-show="language === 'yoruba'">• Àwòrán àwọn bàbá</li>
+                        <li x-show="language === 'yoruba'">• Àwọn ohun adayé (òkúta, owó)</li>
+                        <li x-show="language === 'yoruba'">• Tùràrí tàbí ewe sage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+            <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                <span x-show="language === 'english'">Weekly Maintenance</span>
+                <span x-show="language === 'yoruba'">Ìtọ́jú Ọ̀sẹ̀</span>
+            </h4>
+            
+            <div class="space-y-2 text-sm text-blue-800 dark:text-blue-200">
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Monday: Change water, clean altar surface</span>
+                    <span x-show="language === 'yoruba'">Ọjọ́ Ajé: Pààrọ̀ omi, nu pẹpẹ</span>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Friday: Add fresh flowers if available</span>
+                    <span x-show="language === 'yoruba'">Ọjọ́ Ẹtì: Fi òdòdó tuntun sí bí ó bá wà</span>
+                </div>
+                
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Sunday: Light candle, say weekly prayers</span>
+                    <span x-show="language === 'yoruba'">Ọjọ́ Àìkú: Tan fìtílà, sọ àdúrà ọ̀sẹ̀</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cultural Adaptation -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Adapting to Your Environment</span>
+            <span x-show="language === 'yoruba'">Bíbámu Àyíká Rẹ</span>
+        </h3>
+
+        <div class="space-y-4">
+            <div class="border border-sage-green rounded-lg p-4">
+                <h4 class="font-semibold text-sage-green mb-3">
+                    <span x-show="language === 'english'">Finding Local Substitutes</span>
+                    <span x-show="language === 'yoruba'">Wíwa Àwọn Arọ́pò Àgbègbè</span>
+                </h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <div class="mb-3">
+                            <h5 class="font-medium text-sage-green">
+                                <span x-show="language === 'english'">Traditional → Local Alternative</span>
+                                <span x-show="language === 'yoruba'">Ìbílẹ̀ → Arọ́pò Àgbègbè</span>
+                            </h5>
+                        </div>
+                        
+                        <div class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <div class="flex justify-between">
+                                <span x-show="language === 'english'">Kola nut</span>
+                                <span x-show="language === 'yoruba'">Obì</span>
+                                <span>→</span>
+                                <span x-show="language === 'english'">Walnuts</span>
+                                <span x-show="language === 'yoruba'">Èso walnut</span>
+                            </div>
+                            
+                            <div class="flex justify-between">
+                                <span x-show="language === 'english'">Palm wine</span>
+                                <span x-show="language === 'yoruba'">Emu</span>
+                                <span>→</span>
+                                <span x-show="language === 'english'">Coconut water</span>
+                                <span x-show="language === 'yoruba'">Omi agbọn</span>
+                            </div>
+                            
+                            <div class="flex justify-between">
+                                <span x-show="language === 'english'">Bitter kola</span>
+                                <span x-show="language === 'yoruba'">Orógbó</span>
+                                <span>→</span>
+                                <span x-show="language === 'english'">Ginger root</span>
+                                <span x-show="language === 'yoruba'">Gbẹ̀rù atare</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-3">
+                            <h5 class="font-medium text-sage-green">
+                                <span x-show="language === 'english'">Where to Find Items</span>
+                                <span x-show="language === 'yoruba'">Ibi Tí A Ti Lè Rí Àwọn Ohun</span>
+                            </h5>
+                        </div>
+                        
+                        <div class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <div x-show="language === 'english'">• African/Caribbean markets</div>
+                            <div x-show="language === 'english'">• Health food stores</div>
+                            <div x-show="language === 'english'">• Online spiritual suppliers</div>
+                            <div x-show="language === 'english'">• Local botanicas</div>
+                            
+                            <div x-show="language === 'yoruba'">• Ọjà Áfríkà/Caribbean</div>
+                            <div x-show="language === 'yoruba'">• Ilé títa oúnjẹ ìlera</div>
+                            <div x-show="language === 'yoruba'">• Àwọn olùpèsè ẹ̀mí lórí ayélujára</div>
+                            <div x-show="language === 'yoruba'">• Àwọn botanica àgbègbè</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-blue-300 dark:border-blue-700 rounded-lg p-4">
+                <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                    <span x-show="language === 'english'">Building Community</span>
+                    <span x-show="language === 'yoruba'">Kíkọ́ Àwùjọ</span>
+                </h4>
+                
+                <div class="space-y-3 text-sm text-blue-800 dark:text-blue-200">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM9 9a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <div>
+                            <h5 class="font-medium text-blue-900 dark:text-blue-100">
+                                <span x-show="language === 'english'">Online Communities</span>
+                                <span x-show="language === 'yoruba'">Àwùjọ Lórí Ayélujára</span>
+                            </h5>
+                            <p x-show="language === 'english'">Join respectful Ifá study groups on social media platforms</p>
+                            <p x-show="language === 'yoruba'">Darapọ̀ mọ́ àwọn ẹgbẹ́ ìkẹ́kọ̀ Ifá tí ó ní ìbọ̀wọ̀ lórí àwọn pẹpẹ àwùjọ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        <div>
+                            <h5 class="font-medium text-blue-900 dark:text-blue-100">
+                                <span x-show="language === 'english'">Local Spiritual Centers</span>
+                                <span x-show="language === 'yoruba'">Àwọn Ilé-Ẹ̀mí Àgbègbè</span>
+                            </h5>
+                            <p x-show="language === 'english'">Look for Yoruba cultural centers, African spiritual bookstores</p>
+                            <p x-show="language === 'yoruba'">Wa àwọn ile-aṣà Yorùbá, àwọn ilé títa ìwé ẹ̀mí Áfríkà</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Spiritual Care -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">When You Need Immediate Guidance</span>
+            <span x-show="language === 'yoruba'">Nígbà Tí O Nílò Ìtọ́kasí Lẹ́sẹ̀kẹsẹ̀</span>
+        </h3>
+
+        <div class="space-y-4">
+            <div class="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg p-4">
+                <h4 class="font-semibold text-red-900 dark:text-red-100 mb-3">
+                    <span x-show="language === 'english'">Quick Centering Practice</span>
+                    <span x-show="language === 'yoruba'">Ìṣe Ìdákẹ́ Yára</span>
+                </h4>
+                
+                <div class="text-sm text-red-800 dark:text-red-200 space-y-2">
+                    <p>
+                        <span x-show="language === 'english'">1. Find a quiet moment, even if just in a bathroom</span>
+                        <span x-show="language === 'yoruba'">1. Wa àkókò ìdákẹ́, kódà bí ó bá jẹ́ nínú baluwe</span>
+                    </p>
+                    <p>
+                        <span x-show="language === 'english'">2. Take 7 deep breaths</span>
+                        <span x-show="language === 'yoruba'">2. Mí sínú jinlẹ̀ ní ìgbà méje</span>
+                    </p>
+                    <p>
+                        <span x-show="language === 'english'">3. Say: "Orunmila, show me the way" (3 times)</span>
+                        <span x-show="language === 'yoruba'">3. Sọ: "Ọ̀rúnmìlà, fi ọ̀nà hàn mí" (ní ìgbà mẹ́ta)</span>
+                    </p>
+                    <p>
+                        <span x-show="language === 'english'">4. Trust your intuition for the next step</span>
+                        <span x-show="language === 'yoruba'">4. Gbẹ́kẹ̀lé òye inú rẹ fún ìgbésẹ̀ tókàn</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded-lg p-4">
+                <h4 class="font-semibold text-green-900 dark:text-green-100 mb-3">
+                    <span x-show="language === 'english'">Digital Divination</span>
+                    <span x-show="language === 'yoruba'">Àfọ̀mọ́ Ilé-Iṣẹ́</span>
+                </h4>
+                
+                <p class="text-sm text-green-800 dark:text-green-200 mb-3">
+                    <span x-show="language === 'english'">When traditional tools aren't available, use this app's reading feature as a digital Opele</span>
+                    <span x-show="language === 'yoruba'">Nígbà tí àwọn ohun èlò ìbílẹ̀ kò bá sí, lo ẹ̀yà kíka àpẹ̀rẹ̀ yìí gẹ́gẹ́ bí Opele ilé-iṣẹ́</span>
+                </p>
+                
+                <button @click="emergencyReading()" 
+                        class="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+                    <span x-show="language === 'english'">Get Emergency Guidance</span>
+                    <span x-show="language === 'yoruba'">Gba Ìtọ́kasí Ìpamọ́ra</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function diasporaGuide() {
+    return {
+        language: 'english',
+        selectedLocation: null,
+        
+        commonLocations: [
+            {
+                id: 'usa',
+                name: 'United States',
+                flag: '🇺🇸',
+                guidance: 'Focus on adapting practices to apartment living. Many African markets in major cities. Consider joining online Ifá study groups for community support.'
+            },
+            {
+                id: 'uk',
+                name: 'United Kingdom',
+                flag: '🇬🇧',
+                guidance: 'Strong Yoruba community in London and Birmingham. Look for African cultural centers. Weather may affect outdoor practices - adapt to indoor alternatives.'
+            },
+            {
+                id: 'canada',
+                name: 'Canada',
+                flag: '🇨🇦',
+                guidance: 'Toronto and Montreal have active Yoruba communities. Cold winters - focus on indoor practices. Many universities have African student associations.'
+            },
+            {
+                id: 'brazil',
+                name: 'Brazil',
+                flag: '🇧🇷',
+                guidance: 'Rich Candomblé tradition blends well with Ifá. Salvador and Rio have strong Yoruba presence. Many traditional items available locally.'
+            },
+            {
+                id: 'caribbean',
+                name: 'Caribbean',
+                flag: '🏝️',
+                guidance: 'Strong African traditions preserved. Trinidad, Jamaica, Cuba have active communities. Traditional plants and herbs more readily available.'
+            },
+            {
+                id: 'europe',
+                name: 'Europe',
+                flag: '🇪🇺',
+                guidance: 'Growing African diaspora communities. Major cities have African cultural centers. Online ordering may be needed for traditional items.'
+            },
+            {
+                id: 'australia',
+                name: 'Australia',
+                flag: '🇦🇺',
+                guidance: 'Smaller but dedicated community. Melbourne and Sydney have African cultural groups. Time zone differences for online community participation.'
+            },
+            {
+                id: 'other',
+                name: 'Other',
+                flag: '🌍',
+                guidance: 'Adapt practices to local customs and available resources. Build connections through online communities. Focus on universal spiritual principles.'
+            }
+        ],
+        
+        selectLocation(location) {
+            this.selectedLocation = location;
+            localStorage.setItem('diasporaLocation', JSON.stringify(location));
+        },
+        
+        emergencyReading() {
+            // Redirect to today's reading for immediate guidance
+            window.location.href = '/';
+        },
+        
+        init() {
+            // Load saved location
+            const saved = localStorage.getItem('diasporaLocation');
+            if (saved) {
+                this.selectedLocation = JSON.parse(saved);
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

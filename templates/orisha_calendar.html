@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}Orisha Calendar - Daily Sacred Cycles{% endblock %}
+{% block header_title %}Orisha Calendar{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="orishaCalendar()">
+    <!-- Today's Orisha -->
+    <div class="spiritual-card rounded-xl p-6">
+        <div class="text-center mb-6">
+            <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-sacred-gold to-yellow-700 rounded-full flex items-center justify-center text-3xl">
+                <span x-text="currentOrisha.symbol"></span>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                <span x-show="language === 'english'" x-text="currentOrisha.dayNameEnglish"></span>
+                <span x-show="language === 'yoruba'" x-text="currentOrisha.dayName"></span>
+            </h2>
+            
+            <p class="text-lg font-semibold text-amber-700 dark:text-amber-300">
+                <span x-show="language === 'english'" x-text="currentOrisha.nameEnglish"></span>
+                <span x-show="language === 'yoruba'" x-text="currentOrisha.name"></span>
+            </p>
+            
+            <p class="text-sm text-gray-600 dark:text-gray-400" x-text="today"></p>
+        </div>
+
+        <!-- Orisha Colors -->
+        <div class="flex justify-center mb-6">
+            <div class="flex gap-2">
+                <template x-for="(color, index) in currentOrisha.colors" :key="index">
+                    <div class="w-8 h-8 rounded-full border-2 border-white shadow-md"
+                         :style="getColorStyle(color)"
+                         :title="language === 'english' ? color : currentOrisha.colorsYoruba[index]"></div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Sacred Praise Names (Oríkì) -->
+        <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-bold text-amber-900 dark:text-amber-100 mb-4 text-center">
+                <span x-show="language === 'english'">Sacred Praise Names (Oríkì)</span>
+                <span x-show="language === 'yoruba'">Oríkì Mímọ́</span>
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div x-show="language === 'yoruba'" class="text-center">
+                    <h4 class="font-semibold text-amber-800 dark:text-amber-200 mb-3">Yorùbá</h4>
+                    <div class="space-y-2">
+                        <template x-for="(praise, index) in currentOrisha.oriki" :key="index">
+                            <p class="text-amber-700 dark:text-amber-300 italic text-lg leading-relaxed" x-text="praise"></p>
+                        </template>
+                    </div>
+                </div>
+                
+                <div x-show="language === 'english'" class="text-center">
+                    <h4 class="font-semibold text-amber-800 dark:text-amber-200 mb-3">English Translation</h4>
+                    <div class="space-y-2">
+                        <template x-for="(praise, index) in currentOrisha.orikiEnglish" :key="index">
+                            <p class="text-amber-700 dark:text-amber-300 italic text-lg leading-relaxed" x-text="praise"></p>
+                        </template>
+                    </div>
+                </div>
+                
+                <!-- Both languages side by side when showing both -->
+                <div x-show="showBothLanguages" class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="text-center">
+                        <h4 class="font-semibold text-amber-800 dark:text-amber-200 mb-3">Yorùbá</h4>
+                        <div class="space-y-2">
+                            <template x-for="(praise, index) in currentOrisha.oriki" :key="index">
+                                <p class="text-amber-700 dark:text-amber-300 italic leading-relaxed" x-text="praise"></p>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h4 class="font-semibold text-amber-800 dark:text-amber-200 mb-3">English</h4>
+                        <div class="space-y-2">
+                            <template x-for="(praise, index) in currentOrisha.orikiEnglish" :key="index">
+                                <p class="text-amber-700 dark:text-amber-300 italic leading-relaxed" x-text="praise"></p>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button @click="showBothLanguages = !showBothLanguages" 
+                        class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm rounded-lg transition-colors">
+                    <span x-show="!showBothLanguages">
+                        <span x-show="language === 'english'">Show Both Languages</span>
+                        <span x-show="language === 'yoruba'">Fi Àwọn Èdè Méjì Hàn</span>
+                    </span>
+                    <span x-show="showBothLanguages">
+                        <span x-show="language === 'english'">Show Single Language</span>
+                        <span x-show="language === 'yoruba'">Fi Èdè Kan Hàn</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Daily Information Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Taboos -->
+            <div class="border border-red-300 dark:border-red-700 rounded-lg p-4">
+                <h4 class="font-bold text-red-900 dark:text-red-100 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Taboos to Avoid Today</span>
+                    <span x-show="language === 'yoruba'">Àwọn Èèwọ̀ Tí A Má Ṣe Lónìí</span>
+                </h4>
+                
+                <ul class="space-y-2">
+                    <template x-for="(taboo, index) in (language === 'english' ? currentOrisha.taboos : currentOrisha.taboosYoruba)" :key="index">
+                        <li class="flex items-start gap-2 text-sm text-red-800 dark:text-red-200">
+                            <span class="text-red-600 mt-1">•</span>
+                            <span x-text="taboo"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <!-- Blessings -->
+            <div class="border border-green-300 dark:border-green-700 rounded-lg p-4">
+                <h4 class="font-bold text-green-900 dark:text-green-100 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Blessings Available Today</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ìbùkún Tí Ó Wà Lónìí</span>
+                </h4>
+                
+                <ul class="space-y-2">
+                    <template x-for="(blessing, index) in (language === 'english' ? currentOrisha.blessings : currentOrisha.blessingsYoruba)" :key="index">
+                        <li class="flex items-start gap-2 text-sm text-green-800 dark:text-green-200">
+                            <span class="text-green-600 mt-1">•</span>
+                            <span x-text="blessing"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <!-- Offerings -->
+            <div class="border border-blue-300 dark:border-blue-700 rounded-lg p-4">
+                <h4 class="font-bold text-blue-900 dark:text-blue-100 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Preferred Offerings</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ẹbọ Tí Ó Wù</span>
+                </h4>
+                
+                <ul class="space-y-2">
+                    <template x-for="(offering, index) in (language === 'english' ? currentOrisha.offerings : currentOrisha.offeringsYoruba)" :key="index">
+                        <li class="flex items-start gap-2 text-sm text-blue-800 dark:text-blue-200">
+                            <span class="text-blue-600 mt-1">•</span>
+                            <span x-text="offering"></span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <!-- Element -->
+            <div class="border border-purple-300 dark:border-purple-700 rounded-lg p-4">
+                <h4 class="font-bold text-purple-900 dark:text-purple-100 mb-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    <span x-show="language === 'english'">Sacred Element</span>
+                    <span x-show="language === 'yoruba'">Erún Mímọ́</span>
+                </h4>
+                
+                <div class="text-center">
+                    <div class="text-2xl mb-2" x-text="currentOrisha.symbol"></div>
+                    <p class="text-lg font-semibold text-purple-800 dark:text-purple-200">
+                        <span x-show="language === 'english'" x-text="currentOrisha.element"></span>
+                        <span x-show="language === 'yoruba'" x-text="currentOrisha.elementYoruba"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weekly Cycle Overview -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">4-Day Sacred Cycle</span>
+            <span x-show="language === 'yoruba'">Àjọ Mímọ́ Ọjọ́ Mẹ́rin</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <template x-for="(orisha, index) in cycleDays" :key="index">
+                <div :class="index === getCurrentCycleDay() ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-400' : 'border-gray-200 dark:border-gray-700'"
+                     class="border rounded-lg p-4 text-center hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors cursor-pointer"
+                     @click="selectDay(index)">
+                    <div class="text-3xl mb-2" x-text="orisha.symbol"></div>
+                    <h4 class="font-semibold text-amber-900 dark:text-amber-100 mb-1">
+                        <span x-show="language === 'english'" x-text="orisha.nameEnglish"></span>
+                        <span x-show="language === 'yoruba'" x-text="orisha.name"></span>
+                    </h4>
+                    <p class="text-xs text-amber-600 dark:text-amber-400">
+                        <span x-show="language === 'english'" x-text="`Day ${index + 1}`"></span>
+                        <span x-show="language === 'yoruba'" x-text="`Ọjọ́ ${index + 1}`"></span>
+                    </p>
+                    <div x-show="index === getCurrentCycleDay()" class="mt-2">
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-amber-600 text-white">
+                            <span x-show="language === 'english'">Today</span>
+                            <span x-show="language === 'yoruba'">Òní</span>
+                        </span>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Daily Practice Suggestions -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Today's Spiritual Practice</span>
+            <span x-show="language === 'yoruba'">Ìṣe Ẹ̀mí Òní</span>
+        </h3>
+        
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+            <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                <span x-show="language === 'english'">Morning Prayer Suggestion</span>
+                <span x-show="language === 'yoruba'">Ìmọ̀ràn Àdúrà Òwúrọ̀</span>
+            </h4>
+            <p class="text-blue-800 dark:text-blue-200 italic mb-4" x-text="getMorningPrayer()"></p>
+            
+            <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                <span x-show="language === 'english'">Daily Focus</span>
+                <span x-show="language === 'yoruba'">Ìdojúkọ Ojoojúmọ́</span>
+            </h4>
+            <p class="text-blue-800 dark:text-blue-200" x-text="getDailyFocus()"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+function orishaCalendar() {
+    return {
+        language: 'english',
+        showBothLanguages: false,
+        currentOrisha: {{ current_orisha | tojson }},
+        today: '{{ today.strftime("%B %d, %Y") }}',
+        selectedDay: null,
+        
+        cycleDays: [
+            { name: 'Ọbàtálá', nameEnglish: 'Obatala', symbol: '☁️', colors: ['White'] },
+            { name: 'Ògún', nameEnglish: 'Ogun', symbol: '⚔️', colors: ['Green', 'Black'] },
+            { name: 'Ṣàngó', nameEnglish: 'Shango', symbol: '⚡', colors: ['Red', 'White'] },
+            { name: 'Ọ̀ṣun', nameEnglish: 'Oshun', symbol: '💧', colors: ['Yellow', 'Gold'] }
+        ],
+        
+        getColorStyle(colorName) {
+            const colorMap = {
+                'White': 'background-color: #ffffff',
+                'Funfun': 'background-color: #ffffff',
+                'Silver': 'background-color: #c0c0c0',
+                'Fàdákà': 'background-color: #c0c0c0',
+                'Pearl': 'background-color: #f8f8ff',
+                'Green': 'background-color: #228B22',
+                'Ewé': 'background-color: #228B22',
+                'Black': 'background-color: #000000',
+                'Dúdú': 'background-color: #000000',
+                'Red': 'background-color: #DC143C',
+                'Pupa': 'background-color: #DC143C',
+                'Brown': 'background-color: #8B4513',
+                'Ìtakùn': 'background-color: #8B4513',
+                'Yellow': 'background-color: #FFD700',
+                'Ọ̀fẹ̀': 'background-color: #FFD700',
+                'Gold': 'background-color: #FFD700',
+                'Wúrà': 'background-color: #FFD700',
+                'Orange': 'background-color: #FFA500',
+                'Ọsàn': 'background-color: #FFA500'
+            };
+            return colorMap[colorName] || 'background-color: #888888';
+        },
+        
+        getCurrentCycleDay() {
+            // Calculate current day in 4-day cycle
+            const referenceDate = new Date('2025-01-01');
+            const today = new Date();
+            const daysSinceReference = Math.floor((today - referenceDate) / (1000 * 60 * 60 * 24));
+            return daysSinceReference % 4;
+        },
+        
+        selectDay(dayIndex) {
+            this.selectedDay = dayIndex;
+            // Could fetch specific orisha data for that day
+        },
+        
+        getMorningPrayer() {
+            const prayers = {
+                'Obatala': this.language === 'english' ? 
+                    'Divine Father Obatala, grant me wisdom and clarity for this day. Guide my thoughts and actions with your pure white light.' :
+                    'Bàbá Ọlọ́run Ọbàtálá, fún mi ní ọgbọ́n àti àṣírí fún ọjọ́ yìí. Fi ìmọ́lẹ̀ funfun rẹ ṣe ìtọ́kasí èrò àti ìṣe mi.',
+                'Ogun': this.language === 'english' ? 
+                    'Mighty Ogun, forge my path with determination. Give me strength to overcome all obstacles in my way.' :
+                    'Ògún alágbára, fi ìpinnu rọ ọ̀nà mi. Fún mi ní agbára láti ṣẹ́gun gbogbo ìdènà tí ó wà lọ́nà mi.',
+                'Shango': this.language === 'english' ? 
+                    'Powerful Shango, king of justice, let your fire burn within me. Grant me leadership and righteous authority.' :
+                    'Ṣàngó alágbára, ọba òdodo, jẹ́ kí iná rẹ jó nínú mi. Fún mi ní aṣáájú àti àṣẹ òdodo.',
+                'Oshun': this.language === 'english' ? 
+                    'Sweet Oshun, mother of rivers, flow your love and abundance into my life. Bring healing and joy to all I touch.' :
+                    'Ọ̀ṣun adùn, ìyá àwọn odò, mú ìfẹ́ àti ọ̀pọ̀lọpọ̀ rẹ wá sínú ìgbé ayé mi. Mú ìwòsàn àti ayọ̀ wá sí gbogbo ohun tí mo fọwọ́ kàn.'
+            };
+            return prayers[this.currentOrisha.nameEnglish] || prayers['Obatala'];
+        },
+        
+        getDailyFocus() {
+            const focuses = {
+                'Obatala': this.language === 'english' ? 
+                    'Focus on peace, meditation, and clear thinking. Wear white if possible. Practice patience and wisdom in all interactions.' :
+                    'Dojúkọ àlàáfíà, ìṣàrò, àti èrò tí ó kedere. Wọ aṣọ funfun bí ó ṣe ṣeé ṣe. Ṣe ìfaradà àti ọgbọ́n nínú gbogbo ìbáṣepọ̀.',
+                'Ogun': this.language === 'english' ? 
+                    'Focus on work, technology, and progress. Take action on delayed projects. Honor all tools and machinery.' :
+                    'Dojúkọ iṣẹ́, ìmọ̀-ẹ̀rọ, àti ìlọsíwájú. Ṣe ìgbésẹ̀ lórí àwọn iṣẹ́ akin tí ó ti pẹ́. Bọ̀wọ̀ fún gbogbo ohun èlò àti ẹ̀rọ.',
+                'Shango': this.language === 'english' ? 
+                    'Focus on leadership, justice, and truth. Stand up for what is right. Express your authentic power and charisma.' :
+                    'Dojúkọ aṣáájú, òdodo, àti òtítọ́. Dúró fún ohun tí ó tọ́. Fi agbára àti ẹni ìfẹ́ òtítọ́ rẹ hàn.',
+                'Oshun': this.language === 'english' ? 
+                    'Focus on love, relationships, and healing. Practice self-care and nurture others. Connect with water and nature.' :
+                    'Dojúkọ ìfẹ́, ìbáṣepọ̀, àti ìwòsàn. Ṣe ìtọ́jú ara àti tọ́jú àwọn ẹlòmíràn. Darapọ̀ mọ́ omi àti àyíká.'
+            };
+            return focuses[this.currentOrisha.nameEnglish] || focuses['Obatala'];
+        }
+    }
+}
+</script>
+{% endblock %}
