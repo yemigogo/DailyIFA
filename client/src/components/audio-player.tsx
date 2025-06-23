@@ -227,11 +227,11 @@ export default function AudioPlayer({
 
         <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
           {hasAudio ? ts(
-            "🎵 Authentic Yoruba pronunciation and phonetic guide available",
-            "🎵 Àfọhùn Yorùbá gidi àti ìtọ́kasí àfọhùn wà"
+            "Audio files available - click Yoruba button for pronunciation, Guide for phonetic breakdown",
+            "Àwọn fáìlì ohùn wà - tẹ bọ́tìnì Yorùbá fún àfọhùn, Ìtọ́kasí fún ìpín àfọhùn"
           ) : ts(
-            "🔊 Using synthetic speech - authentic audio coming soon",
-            "🔊 Lo àfọhùn arọ́pò - àfọhùn gidi ń bọ̀ láìpẹ́"
+            "Using text-to-speech technology for pronunciation guidance",
+            "Lo ìmọ̀ ẹ̀rọ text-to-speech fún ìtọ́kasí àfọhùn"
           )}
         </div>
       </CardContent>
