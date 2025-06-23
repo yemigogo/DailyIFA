@@ -97,10 +97,12 @@ export default function AudioPlayer({
     if (phoneticAudioUrl && phoneticAudioRef.current) {
       setCurrentAudio('phonetic');
       if (audioRef.current) audioRef.current.pause();
-      if (phoneticAudioRef.current) {
-        phoneticAudioRef.current.play();
-        setIsPlaying(true);
-      }
+      phoneticAudioRef.current.play().catch(error => {
+        console.error('Error playing phonetic audio:', error);
+        // Fallback to TTS
+        speakText(pronunciation.replace(/\[.*?\]/g, ''), 'en');
+      });
+      setIsPlaying(true);
     } else {
       // Fallback to slower TTS
       speakText(pronunciation.replace(/\[.*?\]/g, ''), 'en');
@@ -111,7 +113,11 @@ export default function AudioPlayer({
     if (audioUrl && audioRef.current) {
       setCurrentAudio('main');
       if (phoneticAudioRef.current) phoneticAudioRef.current.pause();
-      audioRef.current.play();
+      audioRef.current.play().catch(error => {
+        console.error('Error playing main audio:', error);
+        // Fallback to TTS
+        speakText(oduNameYoruba, 'yoruba');
+      });
       setIsPlaying(true);
     } else {
       speakText(oduNameYoruba, 'yoruba');
@@ -211,7 +217,12 @@ export default function AudioPlayer({
             ref={audioRef}
             src={audioUrl}
             onEnded={() => setIsPlaying(false)}
-            onError={() => setIsPlaying(false)}
+            onError={(e) => {
+              console.error('Audio error:', e);
+              setIsPlaying(false);
+            }}
+            onLoadStart={() => console.log('Loading audio:', audioUrl)}
+            onCanPlay={() => console.log('Audio can play:', audioUrl)}
             preload="metadata"
           />
         )}
@@ -220,17 +231,22 @@ export default function AudioPlayer({
             ref={phoneticAudioRef}
             src={phoneticAudioUrl}
             onEnded={() => setIsPlaying(false)}
-            onError={() => setIsPlaying(false)}
+            onError={(e) => {
+              console.error('Phonetic audio error:', e);
+              setIsPlaying(false);
+            }}
+            onLoadStart={() => console.log('Loading phonetic audio:', phoneticAudioUrl)}
+            onCanPlay={() => console.log('Phonetic audio can play:', phoneticAudioUrl)}
             preload="metadata"
           />
         )}
 
         <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
-          {hasAudio ? ts(
-            "Audio files available - click Yoruba button for pronunciation, Guide for phonetic breakdown",
-            "Àwọn fáìlì ohùn wà - tẹ bọ́tìnì Yorùbá fún àfọhùn, Ìtọ́kasí fún ìpín àfọhùn"
+          {hasAudio && audioUrl ? ts(
+            "Click Yoruba button for pronunciation, Guide for phonetic breakdown",
+            "Tẹ bọ́tìnì Yorùbá fún àfọhùn, Ìtọ́kasí fún ìpín àfọhùn"
           ) : ts(
-            "Using text-to-speech technology for pronunciation guidance",
+            "Using text-to-speech for pronunciation guidance",
             "Lo ìmọ̀ ẹ̀rọ text-to-speech fún ìtọ́kasí àfọhùn"
           )}
         </div>
