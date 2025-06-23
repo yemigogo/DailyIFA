@@ -323,6 +323,297 @@
             </div>
         </div>
     </div>
+
+    <!-- Smart Practice Reminders -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-6">
+            <span x-show="language === 'english'">Smart Practice Reminders</span>
+            <span x-show="language === 'yoruba'">Àwọn Ìránkísí Ìṣe Ọlọ́gbọ́n</span>
+        </h3>
+
+        <div class="space-y-6">
+            <!-- Reminder Setup -->
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-700">
+                <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-4">
+                    <span x-show="language === 'english'">Set Practice Reminders</span>
+                    <span x-show="language === 'yoruba'">Ṣàgbékalẹ̀ Àwọn Ìránkísí Ìṣe</span>
+                </h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <!-- Practice Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                            <span x-show="language === 'english'">Practice Type</span>
+                            <span x-show="language === 'yoruba'">Irú Ìṣe</span>
+                        </label>
+                        <select x-model="reminderForm.practice_type" 
+                                class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg bg-white dark:bg-gray-800">
+                            <option value="morning_connection">
+                                <span x-show="language === 'english'">Morning Connection</span>
+                                <span x-show="language === 'yoruba'">Àsopọ̀ Òwúrọ̀</span>
+                            </option>
+                            <option value="evening_reflection">
+                                <span x-show="language === 'english'">Evening Reflection</span>
+                                <span x-show="language === 'yoruba'">Ìṣàrò Àṣálẹ́</span>
+                            </option>
+                            <option value="odu_study">
+                                <span x-show="language === 'english'">Odu Study</span>
+                                <span x-show="language === 'yoruba'">Ìkẹ́kọ̀ Odù</span>
+                            </option>
+                            <option value="ancestor_honoring">
+                                <span x-show="language === 'english'">Ancestor Honoring</span>
+                                <span x-show="language === 'yoruba'">Ìbọ̀wọ̀ Àwọn Bàbá</span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Reminder Time -->
+                    <div>
+                        <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                            <span x-show="language === 'english'">Reminder Time</span>
+                            <span x-show="language === 'yoruba'">Àkókò Ìránkísí</span>
+                        </label>
+                        <input type="time" x-model="reminderForm.reminder_time"
+                               class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg bg-white dark:bg-gray-800">
+                    </div>
+
+                    <!-- Frequency -->
+                    <div>
+                        <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                            <span x-show="language === 'english'">Frequency</span>
+                            <span x-show="language === 'yoruba'">Bí Ó Ṣe Máa Ń Wáyé</span>
+                        </label>
+                        <select x-model="reminderForm.frequency" 
+                                class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg bg-white dark:bg-gray-800">
+                            <option value="daily">
+                                <span x-show="language === 'english'">Daily</span>
+                                <span x-show="language === 'yoruba'">Ojoojúmọ́</span>
+                            </option>
+                            <option value="weekdays">
+                                <span x-show="language === 'english'">Weekdays Only</span>
+                                <span x-show="language === 'yoruba'">Àwọn Ọjọ́ Iṣẹ́ Nìkan</span>
+                            </option>
+                            <option value="weekends">
+                                <span x-show="language === 'english'">Weekends Only</span>
+                                <span x-show="language === 'yoruba'">Àwọn Ọjọ́ Ìsinmi Nìkan</span>
+                            </option>
+                            <option value="custom">
+                                <span x-show="language === 'english'">Custom Days</span>
+                                <span x-show="language === 'yoruba'">Àwọn Ọjọ́ Àtọ̀tọ̀</span>
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Timezone -->
+                    <div>
+                        <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                            <span x-show="language === 'english'">Your Timezone</span>
+                            <span x-show="language === 'yoruba'">Àkókò Àgbègbè Rẹ</span>
+                        </label>
+                        <select x-model="reminderForm.timezone" 
+                                class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg bg-white dark:bg-gray-800">
+                            <option value="America/New_York">Eastern Time (US)</option>
+                            <option value="America/Chicago">Central Time (US)</option>
+                            <option value="America/Denver">Mountain Time (US)</option>
+                            <option value="America/Los_Angeles">Pacific Time (US)</option>
+                            <option value="Europe/London">London Time</option>
+                            <option value="Europe/Paris">Central European Time</option>
+                            <option value="Africa/Lagos">West Africa Time</option>
+                            <option value="Australia/Sydney">Australian Eastern Time</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Custom Message -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                        <span x-show="language === 'english'">Custom Reminder Message (Optional)</span>
+                        <span x-show="language === 'yoruba'">Ọ̀rọ̀ Ìránkísí Àkànṣe (Àṣàṣe)</span>
+                    </label>
+                    <textarea x-model="reminderForm.custom_message"
+                              :placeholder="language === 'english' ? 'e.g., Time for your daily spiritual connection...' : 'bí àpẹẹrẹ, Àkókò fún àsopọ̀ ẹ̀mí ojoojúmọ́ rẹ...'"
+                              class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg bg-white dark:bg-gray-800"
+                              rows="2"></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <button @click="saveReminder()" 
+                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Save Reminder</span>
+                        <span x-show="language === 'yoruba'">Fi Ìránkísí Pamọ́</span>
+                    </button>
+                    
+                    <button @click="testNotification()" 
+                            class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Test Notification</span>
+                        <span x-show="language === 'yoruba'">Dán Ìránkísí Wò</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Reminders -->
+            <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border border-green-200 dark:border-green-700">
+                <h4 class="font-semibold text-green-900 dark:text-green-100 mb-4">
+                    <span x-show="language === 'english'">Active Reminders</span>
+                    <span x-show="language === 'yoruba'">Àwọn Ìránkísí Tí Ó Ń Ṣiṣẹ́</span>
+                </h4>
+
+                <div x-show="activeReminders.length === 0" class="text-center text-green-700 dark:text-green-300 py-4">
+                    <span x-show="language === 'english'">No active reminders. Set one above to get started!</span>
+                    <span x-show="language === 'yoruba'">Kò sí ìránkísí tí ó ń ṣiṣẹ́. Ṣàgbékalẹ̀ ọ̀kan ní òkè láti bẹ̀rẹ̀!</span>
+                </div>
+
+                <div class="space-y-3">
+                    <template x-for="reminder in activeReminders" :key="reminder.id">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h5 class="font-medium text-green-900 dark:text-green-100" x-text="getPracticeTypeDisplay(reminder.practice_type)"></h5>
+                                    <p class="text-sm text-green-700 dark:text-green-300">
+                                        <span x-text="reminder.reminder_time"></span> • 
+                                        <span x-text="reminder.frequency"></span> • 
+                                        <span x-text="reminder.timezone"></span>
+                                    </p>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <button @click="toggleReminder(reminder)" 
+                                            :class="reminder.is_enabled ? 'bg-green-600' : 'bg-gray-400'"
+                                            class="px-3 py-1 text-white text-sm rounded transition-colors">
+                                        <span x-show="reminder.is_enabled">
+                                            <span x-show="language === 'english'">Enabled</span>
+                                            <span x-show="language === 'yoruba'">Ṣí</span>
+                                        </span>
+                                        <span x-show="!reminder.is_enabled">
+                                            <span x-show="language === 'english'">Disabled</span>
+                                            <span x-show="language === 'yoruba'">Padé</span>
+                                        </span>
+                                    </button>
+                                    
+                                    <button @click="deleteReminder(reminder)" 
+                                            class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded transition-colors">
+                                        <span x-show="language === 'english'">Delete</span>
+                                        <span x-show="language === 'yoruba'">Pajẹ</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Practice Tracking -->
+            <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border border-purple-200 dark:border-purple-700">
+                <h4 class="font-semibold text-purple-900 dark:text-purple-100 mb-4">
+                    <span x-show="language === 'english'">Practice Tracking</span>
+                    <span x-show="language === 'yoruba'">Ìtọ́pa Ìṣe</span>
+                </h4>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" x-text="practiceStats.current_streak"></div>
+                        <div class="text-sm text-purple-800 dark:text-purple-300">
+                            <span x-show="language === 'english'">Day Streak</span>
+                            <span x-show="language === 'yoruba'">Ọjọ́ Léralé</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" x-text="practiceStats.total_sessions"></div>
+                        <div class="text-sm text-purple-800 dark:text-purple-300">
+                            <span x-show="language === 'english'">Total Sessions</span>
+                            <span x-show="language === 'yoruba'">Àpapọ̀ Ìṣe</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" x-text="Math.floor(practiceStats.total_minutes / 60)"></div>
+                        <div class="text-sm text-purple-800 dark:text-purple-300">
+                            <span x-show="language === 'english'">Hours Practiced</span>
+                            <span x-show="language === 'yoruba'">Àwọn Wákàtí Ìṣe</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400" x-text="practiceStats.mood_improvement > 0 ? '+' + practiceStats.mood_improvement : practiceStats.mood_improvement"></div>
+                        <div class="text-sm text-purple-800 dark:text-purple-300">
+                            <span x-show="language === 'english'">Mood Change</span>
+                            <span x-show="language === 'yoruba'">Ìyípadà Ìrò</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Practice Log -->
+                <div class="mt-4">
+                    <button @click="showPracticeLog = !showPracticeLog" 
+                            class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+                        <span x-show="language === 'english'">Log Practice Session</span>
+                        <span x-show="language === 'yoruba'">Kọ Ìṣe Sílẹ̀</span>
+                    </button>
+                </div>
+
+                <!-- Practice Logging Form -->
+                <div x-show="showPracticeLog" class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-purple-200 dark:border-purple-700">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span x-show="language === 'english'">Practice Type</span>
+                                <span x-show="language === 'yoruba'">Irú Ìṣe</span>
+                            </label>
+                            <select x-model="practiceLog.practice_type" class="w-full px-3 py-2 border rounded-lg">
+                                <option value="morning_connection">Morning Connection</option>
+                                <option value="evening_reflection">Evening Reflection</option>
+                                <option value="odu_study">Odu Study</option>
+                                <option value="ancestor_honoring">Ancestor Honoring</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span x-show="language === 'english'">Duration (minutes)</span>
+                                <span x-show="language === 'yoruba'">Ìgbà (ìṣẹ́jú)</span>
+                            </label>
+                            <input type="number" x-model="practiceLog.completion_time" min="1" max="120" 
+                                   class="w-full px-3 py-2 border rounded-lg">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">
+                                <span x-show="language === 'english'">Mood After (1-10)</span>
+                                <span x-show="language === 'yoruba'">Ìrò Lẹ́yìn (1-10)</span>
+                            </label>
+                            <input type="number" x-model="practiceLog.mood_after" min="1" max="10" 
+                                   class="w-full px-3 py-2 border rounded-lg">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-2">
+                            <span x-show="language === 'english'">Notes (Optional)</span>
+                            <span x-show="language === 'yoruba'">Àwọn Àkọsílẹ̀ (Àṣàṣe)</span>
+                        </label>
+                        <textarea x-model="practiceLog.notes" rows="2" 
+                                  class="w-full px-3 py-2 border rounded-lg"></textarea>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button @click="savePracticeSession()" 
+                                class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+                            <span x-show="language === 'english'">Save Session</span>
+                            <span x-show="language === 'yoruba'">Fi Ìṣe Pamọ́</span>
+                        </button>
+                        
+                        <button @click="showPracticeLog = false" 
+                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                            <span x-show="language === 'english'">Cancel</span>
+                            <span x-show="language === 'yoruba'">Fagilee</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -330,6 +621,35 @@ function diasporaGuidance() {
     return {
         language: 'english',
         selectedRegion: null,
+        
+        // Practice Reminders
+        reminderForm: {
+            practice_type: 'morning_connection',
+            reminder_time: '07:00',
+            frequency: 'daily',
+            timezone: 'America/New_York',
+            custom_message: '',
+            is_enabled: true
+        },
+        
+        activeReminders: [],
+        
+        // Practice Tracking
+        practiceStats: {
+            current_streak: 0,
+            total_sessions: 0,
+            total_minutes: 0,
+            mood_improvement: 0
+        },
+        
+        practiceLog: {
+            practice_type: 'morning_connection',
+            completion_time: 10,
+            mood_after: 7,
+            notes: ''
+        },
+        
+        showPracticeLog: false,
         
         regions: [
             {
@@ -525,8 +845,174 @@ function diasporaGuidance() {
             }
         },
         
+        async saveReminder() {
+            try {
+                this.reminderForm.region = this.selectedRegion?.id || '';
+                
+                const response = await fetch('/api/practice-reminders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.reminderForm)
+                });
+                
+                if (response.ok) {
+                    this.showSuccess(this.language === 'english' ? 'Reminder saved successfully!' : 'Ìránkísí ti pamọ́ dáadáa!');
+                    this.loadActiveReminders();
+                    this.requestNotificationPermission();
+                } else {
+                    this.showError(this.language === 'english' ? 'Failed to save reminder' : 'Kuna láti fi ìránkísí pamọ́');
+                }
+            } catch (error) {
+                console.error('Error saving reminder:', error);
+                this.showError(this.language === 'english' ? 'Error saving reminder' : 'Àṣìṣe nínú fífi ìránkísí pamọ́');
+            }
+        },
+        
+        async loadActiveReminders() {
+            try {
+                const response = await fetch('/api/practice-reminders');
+                if (response.ok) {
+                    this.activeReminders = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading reminders:', error);
+            }
+        },
+        
+        async toggleReminder(reminder) {
+            try {
+                reminder.is_enabled = !reminder.is_enabled;
+                
+                const response = await fetch('/api/practice-reminders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(reminder)
+                });
+                
+                if (!response.ok) {
+                    reminder.is_enabled = !reminder.is_enabled; // Revert on error
+                    this.showError(this.language === 'english' ? 'Failed to update reminder' : 'Kuna láti ṣe àyípadà ìránkísí');
+                }
+            } catch (error) {
+                console.error('Error toggling reminder:', error);
+                reminder.is_enabled = !reminder.is_enabled; // Revert on error
+            }
+        },
+        
+        async deleteReminder(reminder) {
+            if (confirm(this.language === 'english' ? 'Delete this reminder?' : 'Pa ìránkísí yìí jẹ?')) {
+                // For now, we'll disable it (could implement actual deletion later)
+                reminder.is_enabled = false;
+                await this.toggleReminder(reminder);
+                this.loadActiveReminders();
+            }
+        },
+        
+        async savePracticeSession() {
+            try {
+                this.practiceLog.session_date = new Date().toISOString().split('T')[0];
+                this.practiceLog.mood_before = this.practiceLog.mood_after - 1; // Simple default
+                
+                const response = await fetch('/api/practice-sessions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.practiceLog)
+                });
+                
+                if (response.ok) {
+                    this.showSuccess(this.language === 'english' ? 'Practice session logged!' : 'Ìṣe ti kọ sílẹ̀!');
+                    this.showPracticeLog = false;
+                    this.loadPracticeStats();
+                    
+                    // Reset form
+                    this.practiceLog = {
+                        practice_type: 'morning_connection',
+                        completion_time: 10,
+                        mood_after: 7,
+                        notes: ''
+                    };
+                } else {
+                    this.showError(this.language === 'english' ? 'Failed to log session' : 'Kuna láti kọ ìṣe sílẹ̀');
+                }
+            } catch (error) {
+                console.error('Error logging practice session:', error);
+                this.showError(this.language === 'english' ? 'Error logging session' : 'Àṣìṣe nínú kíkọ ìṣe sílẹ̀');
+            }
+        },
+        
+        async loadPracticeStats() {
+            try {
+                const response = await fetch('/api/practice-stats?days=30');
+                if (response.ok) {
+                    this.practiceStats = await response.json();
+                }
+            } catch (error) {
+                console.error('Error loading practice stats:', error);
+            }
+        },
+        
+        testNotification() {
+            if (Notification.permission === 'granted') {
+                const message = this.reminderForm.custom_message || 
+                               (this.language === 'english' ? 
+                                'Time for your spiritual practice! 🕯️' : 
+                                'Àkókò fún ìṣe ẹ̀mí rẹ! 🕯️');
+                
+                new Notification('Ifá Daily Reading', {
+                    body: message,
+                    icon: '/static/icon-192.png',
+                    badge: '/static/icon-192.png'
+                });
+            } else {
+                this.requestNotificationPermission();
+            }
+        },
+        
+        requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        this.showSuccess(this.language === 'english' ? 
+                                       'Notifications enabled!' : 
+                                       'Àwọn ìránkísí ti ṣí!');
+                    }
+                });
+            }
+        },
+        
+        getPracticeTypeDisplay(type) {
+            const displays = {
+                'morning_connection': this.language === 'english' ? 'Morning Connection' : 'Àsopọ̀ Òwúrọ̀',
+                'evening_reflection': this.language === 'english' ? 'Evening Reflection' : 'Ìṣàrò Àṣálẹ́',
+                'odu_study': this.language === 'english' ? 'Odu Study' : 'Ìkẹ́kọ̀ Odù',
+                'ancestor_honoring': this.language === 'english' ? 'Ancestor Honoring' : 'Ìbọ̀wọ̀ Àwọn Bàbá'
+            };
+            return displays[type] || type;
+        },
+        
+        showSuccess(message) {
+            // Simple success feedback - could be enhanced with a proper toast system
+            alert(message);
+        },
+        
+        showError(message) {
+            // Simple error feedback - could be enhanced with a proper toast system
+            alert(message);
+        },
+        
         init() {
             this.loadRegionPreference();
+            this.loadActiveReminders();
+            this.loadPracticeStats();
+            
+            // Set user's timezone automatically
+            this.reminderForm.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         }
     }
 }

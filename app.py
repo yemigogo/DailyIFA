@@ -84,6 +84,38 @@ def init_db():
         )
     ''')
     
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS practice_reminders (
+            id INTEGER PRIMARY KEY,
+            user_id TEXT DEFAULT 'default',
+            region TEXT,
+            practice_type TEXT,
+            reminder_time TEXT,
+            timezone TEXT,
+            frequency TEXT,
+            is_enabled BOOLEAN DEFAULT 1,
+            last_sent TIMESTAMP,
+            custom_message TEXT,
+            custom_message_yoruba TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS practice_sessions (
+            id INTEGER PRIMARY KEY,
+            user_id TEXT DEFAULT 'default',
+            practice_type TEXT,
+            session_date TEXT,
+            completion_time INTEGER,
+            notes TEXT,
+            mood_before INTEGER,
+            mood_after INTEGER,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
     # Insert sample Odu data if table is empty
     cursor.execute('SELECT COUNT(*) FROM odus')
     if cursor.fetchone()[0] == 0:
@@ -456,6 +488,170 @@ def api_create_wisdom_entry():
     conn.close()
     
     return jsonify({'success': True, 'entry_id': entry_id})
+
+@app.route('/api/practice-reminders', methods=['GET'])
+def api_get_practice_reminders():
+    """Get all practice reminders for user"""
+    user_id = request.args.get('user_id', 'default')
+    
+    conn = get_db_connection()
+    reminders = conn.execute('''
+        SELECT * FROM practice_reminders 
+        WHERE user_id = ? 
+        ORDER BY reminder_time
+    ''', (user_id,)).fetchall()
+    conn.close()
+    
+    return jsonify([dict(reminder) for reminder in reminders])
+
+@app.route('/api/practice-reminders', methods=['POST'])
+def api_create_practice_reminder():
+    """Create or update practice reminder"""
+    data = request.get_json()
+    
+    required_fields = ['practice_type', 'reminder_time', 'frequency']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
+    conn = get_db_connection()
+    
+    # Check if reminder already exists for this practice type
+    existing = conn.execute('''
+        SELECT id FROM practice_reminders 
+        WHERE user_id = ? AND practice_type = ?
+    ''', (data.get('user_id', 'default'), data['practice_type'])).fetchone()
+    
+    if existing:
+        # Update existing reminder
+        conn.execute('''
+            UPDATE practice_reminders 
+            SET region = ?, reminder_time = ?, timezone = ?, frequency = ?, 
+                is_enabled = ?, custom_message = ?, custom_message_yoruba = ?,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        ''', (
+            data.get('region', ''),
+            data['reminder_time'],
+            data.get('timezone', 'UTC'),
+            data['frequency'],
+            data.get('is_enabled', True),
+            data.get('custom_message', ''),
+            data.get('custom_message_yoruba', ''),
+            existing['id']
+        ))
+        reminder_id = existing['id']
+    else:
+        # Create new reminder
+        cursor = conn.execute('''
+            INSERT INTO practice_reminders 
+            (user_id, region, practice_type, reminder_time, timezone, frequency, 
+             is_enabled, custom_message, custom_message_yoruba)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data.get('user_id', 'default'),
+            data.get('region', ''),
+            data['practice_type'],
+            data['reminder_time'],
+            data.get('timezone', 'UTC'),
+            data['frequency'],
+            data.get('is_enabled', True),
+            data.get('custom_message', ''),
+            data.get('custom_message_yoruba', '')
+        ))
+        reminder_id = cursor.lastrowid
+    
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'success': True, 'reminder_id': reminder_id})
+
+@app.route('/api/practice-sessions', methods=['POST'])
+def api_log_practice_session():
+    """Log a completed practice session"""
+    data = request.get_json()
+    
+    required_fields = ['practice_type', 'session_date']
+    for field in required_fields:
+        if field not in data:
+            return jsonify({'error': f'Missing required field: {field}'}), 400
+    
+    conn = get_db_connection()
+    
+    cursor = conn.execute('''
+        INSERT INTO practice_sessions 
+        (user_id, practice_type, session_date, completion_time, notes, mood_before, mood_after)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (
+        data.get('user_id', 'default'),
+        data['practice_type'],
+        data['session_date'],
+        data.get('completion_time', 0),
+        data.get('notes', ''),
+        data.get('mood_before', 0),
+        data.get('mood_after', 0)
+    ))
+    
+    session_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'success': True, 'session_id': session_id})
+
+@app.route('/api/practice-stats')
+def api_practice_stats():
+    """Get practice statistics and streaks"""
+    user_id = request.args.get('user_id', 'default')
+    days = int(request.args.get('days', 30))
+    
+    conn = get_db_connection()
+    
+    # Get recent sessions
+    sessions = conn.execute('''
+        SELECT practice_type, session_date, completion_time, mood_before, mood_after
+        FROM practice_sessions 
+        WHERE user_id = ? AND session_date >= date('now', '-{} days')
+        ORDER BY session_date DESC
+    '''.format(days), (user_id,)).fetchall()
+    
+    # Calculate statistics
+    stats = {
+        'total_sessions': len(sessions),
+        'total_minutes': sum(s['completion_time'] for s in sessions),
+        'current_streak': 0,
+        'longest_streak': 0,
+        'practice_frequency': {},
+        'mood_improvement': 0,
+        'recent_sessions': [dict(s) for s in sessions[:10]]
+    }
+    
+    # Calculate streaks and frequency
+    if sessions:
+        practice_dates = set(s['session_date'] for s in sessions)
+        current_date = datetime.now().date()
+        current_streak = 0
+        
+        # Check current streak
+        check_date = current_date
+        while check_date.isoformat() in practice_dates:
+            current_streak += 1
+            check_date -= timedelta(days=1)
+        
+        stats['current_streak'] = current_streak
+        
+        # Practice frequency by type
+        for session in sessions:
+            practice_type = session['practice_type']
+            stats['practice_frequency'][practice_type] = stats['practice_frequency'].get(practice_type, 0) + 1
+        
+        # Mood improvement
+        mood_sessions = [s for s in sessions if s['mood_before'] and s['mood_after']]
+        if mood_sessions:
+            avg_improvement = sum(s['mood_after'] - s['mood_before'] for s in mood_sessions) / len(mood_sessions)
+            stats['mood_improvement'] = round(avg_improvement, 1)
+    
+    conn.close()
+    return jsonify(stats)
 
 # Static file serving
 @app.route('/audio/<path:filename>')
