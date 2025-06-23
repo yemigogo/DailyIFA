@@ -11,6 +11,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database and Ifa lunar calendar
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();
+  await initializeEboRecommendations();
 
   // Get today's reading
   app.get("/api/readings/today", async (req, res) => {
@@ -314,4 +315,21 @@ async function initializeIfaLunarCalendar() {
 
 function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+
+async function initializeEboRecommendations() {
+  try {
+    const existingEbos = await storage.getAllEboRecommendations();
+    if (existingEbos.length === 0) {
+      console.log("Initializing Ebo recommendations...");
+      
+      for (const ebo of eboRecommendations) {
+        await storage.createEboRecommendation(ebo);
+      }
+      
+      console.log("Ebo recommendations initialized successfully");
+    }
+  } catch (error) {
+    console.error("Error initializing Ebo recommendations:", error);
+  }
 }
