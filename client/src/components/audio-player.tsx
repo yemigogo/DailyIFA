@@ -25,6 +25,17 @@ export default function AudioPlayer({
   meaningYoruba,
   hasAudio = false
 }: AudioPlayerProps) {
+  
+  // Extract Odu number from name for direct file access
+  const getOduNumber = () => {
+    const oduMap: { [key: string]: number } = {
+      "Ogbe Meji": 1, "Oyeku Meji": 2, "Iwori Meji": 3, "Odi Meji": 4,
+      "Irosun Meji": 5, "Owonrin Meji": 6, "Obara Meji": 7, "Okanran Meji": 8,
+      "Ogunda Meji": 9, "Osa Meji": 10, "Ika Meji": 11, "Oturupon Meji": 12,
+      "Otura Meji": 13, "Irete Meji": 14, "Ose Meji": 15, "Ofun Meji": 16
+    };
+    return oduMap[oduName] || 1;
+  };
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -225,72 +236,37 @@ export default function AudioPlayer({
           </div>
         </div>
 
-        {/* Debug info */}
-        <div className="mt-2 text-xs text-gray-500">
-          <p>Audio URL: {audioUrl || 'none'}</p>
-          <p>Phonetic URL: {phoneticAudioUrl || 'none'}</p>
-          <p>Has Audio: {hasAudio ? 'yes' : 'no'}</p>
-        </div>
 
-        {/* Hidden audio elements for actual audio files */}
-        {audioUrl && (
-          <audio
-            ref={audioRef}
-            src={audioUrl}
-            onEnded={() => {
-              console.log('Audio ended');
-              setIsPlaying(false);
-            }}
-            onError={(e) => {
-              console.error('Audio error:', e);
-              setIsPlaying(false);
-            }}
-            onLoadStart={() => console.log('Loading audio:', audioUrl)}
-            onCanPlay={() => console.log('Audio can play:', audioUrl)}
-            onLoadedData={() => console.log('Audio loaded:', audioUrl)}
-            preload="auto"
-            controls={false}
-          />
-        )}
-        {phoneticAudioUrl && (
-          <audio
-            ref={phoneticAudioRef}
-            src={phoneticAudioUrl}
-            onEnded={() => {
-              console.log('Phonetic audio ended');
-              setIsPlaying(false);
-            }}
-            onError={(e) => {
-              console.error('Phonetic audio error:', e);
-              setIsPlaying(false);
-            }}
-            onLoadStart={() => console.log('Loading phonetic audio:', phoneticAudioUrl)}
-            onCanPlay={() => console.log('Phonetic audio can play:', phoneticAudioUrl)}
-            onLoadedData={() => console.log('Phonetic audio loaded:', phoneticAudioUrl)}
-            preload="auto"
-            controls={false}
-          />
-        )}
 
-        <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
-          {hasAudio && audioUrl ? (
+        {/* Direct Audio Controls - Bypassing API */}
+        <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-700">
+          <h4 className="font-medium text-amber-900 dark:text-amber-100 mb-3">
+            {ts("Listen to Pronunciation", "Gbọ́ Àfọhùn")}
+          </h4>
+          
+          <div className="space-y-3">
             <div>
-              <p>{ts("Audio files loaded - click buttons to play", "Àwọn fáìlì ohùn ti wa - tẹ bọ́tìnì láti gbọ́")}</p>
-              <div className="flex gap-2 mt-2">
-                <audio controls preload="auto" src={audioUrl} className="h-8">
-                  Your browser does not support audio.
-                </audio>
-                {phoneticAudioUrl && (
-                  <audio controls preload="auto" src={phoneticAudioUrl} className="h-8">
-                    Your browser does not support audio.
-                  </audio>
-                )}
-              </div>
+              <label className="text-sm font-medium text-amber-700 dark:text-amber-300 block mb-1">
+                {ts("Yoruba Pronunciation", "Àfọhùn Yorùbá")}
+              </label>
+              <audio controls preload="auto" src={`/audio/odu/${getOduNumber()}.mp3`} className="w-full">
+                {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
+              </audio>
             </div>
-          ) : ts(
-            "Using text-to-speech for pronunciation guidance",
-            "Lo ìmọ̀ ẹ̀rọ text-to-speech fún ìtọ́kasí àfọhùn"
-          )}
+            
+            <div>
+              <label className="text-sm font-medium text-amber-700 dark:text-amber-300 block mb-1">
+                {ts("Phonetic Guide", "Ìtọ́kasí Àfọhùn")}
+              </label>
+              <audio controls preload="auto" src={`/audio/odu/${getOduNumber()}_phonetic.mp3`} className="w-full">
+                {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
+              </audio>
+            </div>
+          </div>
+          
+          <div className="mt-3 text-xs text-amber-600 dark:text-amber-400">
+            {ts("Click play button to hear authentic Yoruba pronunciation", "Tẹ bọ́tìnì ìbẹ̀rẹ̀ láti gbọ́ àfọhùn Yorùbá gidi")}
+          </div>
         </div>
       </CardContent>
     </Card>
