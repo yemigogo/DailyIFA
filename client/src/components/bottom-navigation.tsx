@@ -25,19 +25,18 @@ export default function BottomNavigation() {
           const isActive = location === item.path;
 
           return (
-            <Button
+            <button
               key={item.id}
-              variant="ghost"
               onClick={() => setLocation(item.path)}
-              className={`flex flex-col items-center py-1 px-2 ${
+              className={`flex flex-col items-center py-1 px-2 rounded-lg ${
                 isActive
-                  ? "text-spiritual-blue"
-                  : "text-gray-400 hover:text-spiritual-blue"
+                  ? "text-spiritual-blue bg-spiritual-blue/10"
+                  : "text-gray-400 hover:text-spiritual-blue hover:bg-spiritual-blue/5"
               } transition-colors`}
             >
               <Icon className="h-4 w-4 mb-1" />
               <span className="text-xs font-medium">{item.label}</span>
-            </Button>
+            </button>
           );
         })}
       </div>

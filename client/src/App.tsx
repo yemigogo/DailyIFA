@@ -12,6 +12,7 @@ import DailyPrayers from "@/pages/daily-prayers";
 import DivinationLogsPage from "@/pages/divination-logs";
 import ProfilePage from "@/pages/profile";
 import OrikiPlayback from "@/pages/oriki-playback";
+import { Link } from "wouter";
 import BottomNavigation from "@/components/bottom-navigation";
 import FloatingAmbientControls from "@/components/floating-ambient-controls";
 import NotFound from "@/pages/not-found";
