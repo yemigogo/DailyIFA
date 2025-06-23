@@ -145,6 +145,56 @@ const orikiData: OrikiVerse[] = [
     meaningYoruba: "Èyí ń bu ọlá fún Ọ̀ṣun gẹ́gẹ́ bí òrìṣà odò olùtọ́jú, orísun ìbísí, ìfẹ́, àti ọ̀pọ̀lọpọ̀, tí a ń ṣe àjọyọ̀ rẹ̀ fún omi ìwòsàn àti ìyáni aṣáàbò.",
     category: "blessing",
     difficulty: "beginner"
+  },
+  {
+    id: "oya-1",
+    orisha: "Oya",
+    orishaYoruba: "Ọya",
+    title: "Oya, Lady of the Winds",
+    titleYoruba: "Ọya, Ìyálọ́ja Àfẹ́fẹ́",
+    verses: [
+      "Oya, fierce guardian of the marketplace",
+      "Lady of winds and storms",
+      "She who dances with lightning",
+      "Mother of nine, keeper of the cemetery gates",
+      "Warrior queen with the power of tornadoes"
+    ],
+    versesYoruba: [
+      "Ọya, aṣáàbò líle ti ọjà",
+      "Ìyálọ́ja àfẹ́fẹ́ àti ìjì",
+      "Ẹni tí ó ń jó pẹ̀lú mọ̀nàmọ́ná",
+      "Ìyá mẹ́sàn-án, aṣọ́ ẹnu-ọ̀nà isà òkú",
+      "Ayaba jagunjagun pẹ̀lú agbára ìjì líle"
+    ],
+    meaning: "This honors Oya as the powerful Orisha of winds, storms, and transformation, guardian of the marketplace and cemetery gates, known for her fierce protection and warrior spirit.",
+    meaningYoruba: "Èyí ń bu ọlá fún Ọya gẹ́gẹ́ bí òrìṣà alágbára ti àfẹ́fẹ́, ìjì, àti ìyípadà, aṣáàbò ọjà àti ẹnu-ọ̀nà isà òkú, tí a mọ̀ fún àgbérò líle àti ẹ̀mí jagunjagun rẹ̀.",
+    category: "invocation",
+    difficulty: "advanced"
+  },
+  {
+    id: "yemoja-1",
+    orisha: "Yemoja",
+    orishaYoruba: "Yemọja",
+    title: "Yemoja, Mother of Waters",
+    titleYoruba: "Yemọja, Ìyá Omi",
+    verses: [
+      "Yemoja, mother of all waters",
+      "She whose children are fish",
+      "Ocean mother with flowing breasts",
+      "Protector of women and children",
+      "Great mother who gives life to the world"
+    ],
+    versesYoruba: [
+      "Yemọja, ìyá gbogbo omi",
+      "Ẹni tí àwọn ọmọ rẹ̀ jẹ́ ẹja",
+      "Ìyá òkun pẹ̀lú ọmú tí ń sàn",
+      "Aṣáàbò àwọn obìnrin àti ọmọdé",
+      "Ìyá ńlá tí ó ń fún ayé ní ẹ̀mí"
+    ],
+    meaning: "This celebrates Yemoja as the great mother of all waters, the ocean goddess who nurtures all life, especially protecting women and children with her infinite maternal love.",
+    meaningYoruba: "Èyí ń ṣe àjọyọ̀ Yemọja gẹ́gẹ́ bí ìyá ńlá gbogbo omi, òrìṣà òkun tí ó ń tọ́jú gbogbo ẹ̀mí, pàápàá láti dáàbò bo àwọn obìnrin àti ọmọdé pẹ̀lú ìfẹ́ ìyá àìlopin rẹ̀.",
+    category: "blessing",
+    difficulty: "intermediate"
   }
 ];
 
