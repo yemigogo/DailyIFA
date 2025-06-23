@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Crown, Palette, Bell, Moon, Sun } from "lucide-react";
+import { User, Crown, Palette, Bell, Moon, Sun, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
+import OrishaAssessment from "./orisha-assessment";
 
 interface UserProfileProps {
   onThemeChange?: (theme: string) => void;
@@ -95,162 +97,185 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
 
   return (
     <div className="space-y-6">
-      {/* Profile Basic Info */}
-      <Card className="border-amber-200 dark:border-amber-800">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-            <User className="h-5 w-5" />
-            {ts("User Profile", "Àkọsílẹ̀ Olùmúlò")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <Label htmlFor="name">{ts("Your Name", "Orúkọ Rẹ")}</Label>
-            <Input
-              id="name"
-              value={profile.name}
-              onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
-              placeholder={ts("Enter your name", "Kọ orúkọ rẹ")}
-            />
-          </div>
-        </CardContent>
-      </Card>
+      <Tabs defaultValue="basic" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="basic">
+            {ts("Basic Info", "Àlàyé Ìpìlẹ̀")}
+          </TabsTrigger>
+          <TabsTrigger value="assessment">
+            {ts("Orisha Assessment", "Àyẹ̀wò Òrìṣà")}
+          </TabsTrigger>
+          <TabsTrigger value="settings">
+            {ts("Preferences", "Àwọn Ìfẹ́")}
+          </TabsTrigger>
+        </TabsList>
 
-      {/* Orisha Alignment */}
-      <Card className="border-amber-200 dark:border-amber-800">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-            <Crown className="h-5 w-5" />
-            {ts("Orisha Alignment", "Ìbámu Òrìṣà")}
-          </CardTitle>
-          <p className="text-sm text-amber-700 dark:text-amber-300">
-            {ts("Choose the Orisha that resonates most with your personality", "Yan Òrìṣà tí ó bá ìwà rẹ mu jù")}
-          </p>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-3">
-            {orishaAlignments.map((orisha) => (
-              <div
-                key={orisha.name}
-                className={`p-4 rounded-lg border cursor-pointer transition-all ${
-                  profile.orishaAlignment === orisha.name 
-                    ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30' 
-                    : 'border-gray-200 dark:border-gray-700 hover:border-amber-300'
-                }`}
-                onClick={() => setProfile(prev => ({ ...prev, orishaAlignment: orisha.name }))}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-amber-900 dark:text-amber-100">
-                      {orisha.name}
-                    </h4>
-                    <p className="text-sm text-amber-700 dark:text-amber-300 mb-2">
-                      {orisha.description}
-                    </p>
-                    <p className="text-xs text-amber-600 dark:text-amber-400 italic mb-3">
-                      {orisha.yoruba}
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      {orisha.traits.map((trait, index) => (
-                        <Badge key={index} variant="secondary" className={getOrishaColor(orisha)}>
-                          {trait}
-                        </Badge>
-                      ))}
+        <TabsContent value="basic" className="space-y-6">
+          {/* Profile Basic Info */}
+          <Card className="border-amber-200 dark:border-amber-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                <User className="h-5 w-5" />
+                {ts("User Profile", "Àkọsílẹ̀ Olùmúlò")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="name">{ts("Your Name", "Orúkọ Rẹ")}</Label>
+                <Input
+                  id="name"
+                  value={profile.name}
+                  onChange={(e) => setProfile(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder={ts("Enter your name", "Kọ orúkọ rẹ")}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Manual Orisha Selection */}
+          <Card className="border-amber-200 dark:border-amber-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                <Crown className="h-5 w-5" />
+                {ts("Manual Orisha Selection", "Ìyàn Òrìṣà Fúnrarẹ")}
+              </CardTitle>
+              <p className="text-sm text-amber-700 dark:text-amber-300">
+                {ts("Or choose your Orisha manually if you already know your alignment", "Tàbí yan Òrìṣà rẹ fúnrarẹ tí o bá ti mọ ìbámu rẹ")}
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-3">
+                {orishaAlignments.map((orisha) => (
+                  <div
+                    key={orisha.name}
+                    className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                      profile.orishaAlignment === orisha.name 
+                        ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30' 
+                        : 'border-gray-200 dark:border-gray-700 hover:border-amber-300'
+                    }`}
+                    onClick={() => setProfile(prev => ({ ...prev, orishaAlignment: orisha.name }))}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-amber-900 dark:text-amber-100">
+                          {orisha.name}
+                        </h4>
+                        <p className="text-sm text-amber-700 dark:text-amber-300 mb-2">
+                          {orisha.description}
+                        </p>
+                        <p className="text-xs text-amber-600 dark:text-amber-400 italic mb-3">
+                          {orisha.yoruba}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {orisha.traits.map((trait, index) => (
+                            <Badge key={index} variant="secondary" className={getOrishaColor(orisha)}>
+                              {trait}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      <div className={`w-4 h-4 rounded-full ${getOrishaColor(orisha).split(' ')[0]} border-2`}></div>
                     </div>
                   </div>
-                  <div className={`w-4 h-4 rounded-full ${getOrishaColor(orisha).split(' ')[0]} border-2`}></div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
 
-      {/* Theme Customization */}
-      <Card className="border-amber-200 dark:border-amber-800">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-            <Palette className="h-5 w-5" />
-            {ts("Theme Customization", "Ìṣètò Àwọ̀")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            {themes.map((theme) => {
-              const Icon = theme.icon || Palette;
-              return (
-                <div
-                  key={theme.id}
-                  className={`p-4 rounded-lg border cursor-pointer transition-all ${
-                    profile.theme === theme.id
-                      ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-amber-300'
-                  }`}
-                  onClick={() => handleThemeChange(theme.id)}
-                >
-                  <div className="text-center space-y-2">
-                    <Icon className="h-6 w-6 mx-auto text-amber-600" />
-                    <h4 className="font-medium text-amber-900 dark:text-amber-100">
-                      {theme.name}
-                    </h4>
-                    <p className="text-xs text-amber-600 dark:text-amber-400">
-                      {theme.yoruba}
-                    </p>
-                    {theme.description && (
-                      <p className="text-xs text-amber-500 dark:text-amber-500">
-                        {theme.description}
-                      </p>
-                    )}
-                  </div>
+        </TabsContent>
+
+        <TabsContent value="assessment" className="space-y-6">
+          <OrishaAssessment />
+        </TabsContent>
+
+        <TabsContent value="settings" className="space-y-6">
+          {/* Theme Customization */}
+          <Card className="border-amber-200 dark:border-amber-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                <Palette className="h-5 w-5" />
+                {ts("Theme Customization", "Ìṣètò Àwọ̀")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                {themes.map((theme) => {
+                  const Icon = theme.icon || Palette;
+                  return (
+                    <div
+                      key={theme.id}
+                      className={`p-4 rounded-lg border cursor-pointer transition-all ${
+                        profile.theme === theme.id
+                          ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-amber-300'
+                      }`}
+                      onClick={() => handleThemeChange(theme.id)}
+                    >
+                      <div className="text-center space-y-2">
+                        <Icon className="h-6 w-6 mx-auto text-amber-600" />
+                        <h4 className="font-medium text-amber-900 dark:text-amber-100">
+                          {theme.name}
+                        </h4>
+                        <p className="text-xs text-amber-600 dark:text-amber-400">
+                          {theme.yoruba}
+                        </p>
+                        {theme.description && (
+                          <p className="text-xs text-amber-500 dark:text-amber-500">
+                            {theme.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Notification Settings */}
+          <Card className="border-amber-200 dark:border-amber-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+                <Bell className="h-5 w-5" />
+                {ts("Notifications", "Àwọn Ìfiránsẹ́")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="notifications">
+                    {ts("Daily Ifá Readings", "Kíka Ifá Ojoojúmọ́")}
+                  </Label>
+                  <p className="text-sm text-amber-600 dark:text-amber-400">
+                    {ts("Get notified of your daily reading", "Gbà ìfiránsẹ́ kíka ojoojúmọ́")}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
+                <Switch
+                  id="notifications"
+                  checked={profile.notifications}
+                  onCheckedChange={(checked) => setProfile(prev => ({ ...prev, notifications: checked }))}
+                />
+              </div>
 
-      {/* Notification Settings */}
-      <Card className="border-amber-200 dark:border-amber-800">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-            <Bell className="h-5 w-5" />
-            {ts("Notifications", "Àwọn Ìfiránsẹ́")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="notifications">
-                {ts("Daily Ifá Readings", "Kíka Ifá Ojoojúmọ́")}
-              </Label>
-              <p className="text-sm text-amber-600 dark:text-amber-400">
-                {ts("Get notified of your daily reading", "Gbà ìfiránsẹ́ kíka ojoojúmọ́")}
-              </p>
-            </div>
-            <Switch
-              id="notifications"
-              checked={profile.notifications}
-              onCheckedChange={(checked) => setProfile(prev => ({ ...prev, notifications: checked }))}
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div>
-              <Label htmlFor="reminders">
-                {ts("Orisha Feast Day Alerts", "Ìfiránsẹ́ Ọjọ́ Òrìṣà")}
-              </Label>
-              <p className="text-sm text-amber-600 dark:text-amber-400">
-                {ts("Get reminded of important Orisha festivals", "Rántí ọjọ́ àjọ̀dún Òrìṣà pàtàkì")}
-              </p>
-            </div>
-            <Switch
-              id="reminders"
-              checked={profile.dailyReminders}
-              onCheckedChange={(checked) => setProfile(prev => ({ ...prev, dailyReminders: checked }))}
-            />
-          </div>
-        </CardContent>
-      </Card>
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label htmlFor="reminders">
+                    {ts("Orisha Feast Day Alerts", "Ìfiránsẹ́ Ọjọ́ Òrìṣà")}
+                  </Label>
+                  <p className="text-sm text-amber-600 dark:text-amber-400">
+                    {ts("Get reminded of important Orisha festivals", "Rántí ọjọ́ àjọ̀dún Òrìṣà pàtàkì")}
+                  </p>
+                </div>
+                <Switch
+                  id="reminders"
+                  checked={profile.dailyReminders}
+                  onCheckedChange={(checked) => setProfile(prev => ({ ...prev, dailyReminders: checked }))}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
 
       {/* Save Profile */}
       <div className="flex justify-end">

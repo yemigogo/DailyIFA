@@ -4,7 +4,6 @@ import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
 import SimpleAudioPlayer from "./simple-audio-player";
-import TestAudio from "./test-audio";
 import EboRecommendations from "./ebo-recommendations";
 import HerbsMaterials from "./herbs-materials";
 import AffirmationGenerator from "./affirmation-generator";
@@ -186,9 +185,6 @@ export default function DailyReading({ reading }: DailyReadingProps) {
         />
       )}
 
-      {/* Audio Player Test */}
-      <TestAudio />
-      
       {/* Audio Player */}
       <SimpleAudioPlayer 
         oduName={reading.odu.name} 
