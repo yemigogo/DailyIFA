@@ -21,6 +21,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
+      <Route path="/orisha-calendar" component={Learn} />
+      <Route path="/diaspora" component={Learn} />
       <Route path="/search" component={ProblemSearch} />
       <Route path="/prayers" component={DailyPrayers} />
       <Route path="/logs" component={DivinationLogsPage} />
