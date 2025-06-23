@@ -21,12 +21,12 @@ interface AmbientTrack {
 const ambientTracks: AmbientTrack[] = [
   {
     id: "blessing",
-    name: "Sacred Blessing Chant",
-    nameYoruba: "Orin Ìbùkún Mímọ́",
-    description: "Peaceful Yoruba blessings for meditation",
-    descriptionYoruba: "Àwọn ìbùkún Yorùbá àlàáfíà fún ìṣàró",
+    name: "Ocean Blessing Waves",
+    nameYoruba: "Ìgbì Ìbùkún Òkun",
+    description: "Calming ocean waves with sacred blessings",
+    descriptionYoruba: "Ìgbì òkun àlàáfíà pẹ̀lú ìbùkún mímọ́",
     file: "/audio/ambient/blessing_chant.mp3",
-    icon: Crown,
+    icon: Waves,
     category: "chants"
   },
   {

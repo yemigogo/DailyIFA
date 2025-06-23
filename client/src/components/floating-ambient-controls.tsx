@@ -12,8 +12,8 @@ interface FloatingAmbientControlsProps {
 const quickTracks = [
   {
     id: "blessing",
-    name: "Blessing",
-    nameYoruba: "Ìbùkún",
+    name: "Ocean Waves",
+    nameYoruba: "Ìgbì Òkun",
     file: "/audio/ambient/blessing_chant.mp3"
   },
   {
@@ -24,8 +24,8 @@ const quickTracks = [
   },
   {
     id: "drums",
-    name: "Drums",
-    nameYoruba: "Ìlù",
+    name: "Sacred Drums",
+    nameYoruba: "Ìlù Mímọ́",
     file: "/audio/ambient/bata_drums.mp3"
   }
 ];
