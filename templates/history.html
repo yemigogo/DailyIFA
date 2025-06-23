@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Reading History{% endblock %}
+{% block header_title %}Your Reading History{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="{ language: 'english' }">
+    <!-- Header -->
+    <div class="text-center">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-spiritual-blue to-blue-700 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+            <span x-show="language === 'english'">Your Reading History</span>
+            <span x-show="language === 'yoruba'">Ìtàn Kíka Rẹ</span>
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-400">
+            <span x-show="language === 'english'">Review your past spiritual guidance</span>
+            <span x-show="language === 'yoruba'">Ṣe àyẹ̀wò ìtọ́kasí ẹ̀mí rẹ tẹ́lẹ̀</span>
+        </p>
+    </div>
+
+    {% if readings %}
+    <!-- Reading History List -->
+    <div class="space-y-4">
+        {% for reading in readings %}
+        <div class="spiritual-card rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-amber-900 dark:text-amber-100">
+                            <span x-show="language === 'english'">{{ reading.name }}</span>
+                            <span x-show="language === 'yoruba'">{{ reading.name_yoruba }}</span>
+                        </h3>
+                        <p class="text-sm text-amber-600 dark:text-amber-400">
+                            <span x-show="language === 'english'">{{ reading.subtitle }}</span>
+                            <span x-show="language === 'yoruba'">{{ reading.subtitle_yoruba }}</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="text-right">
+                    <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                        {{ reading.date }}
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        {% set date_obj = reading.date | strptime('%Y-%m-%d') %}
+                        {{ date_obj.strftime('%B %d, %Y') }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-amber-200 dark:border-amber-700 pt-3">
+                <button onclick="viewReading('{{ reading.date }}')" 
+                        class="w-full text-left text-sm text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors">
+                    <span x-show="language === 'english'">View full reading →</span>
+                    <span x-show="language === 'yoruba'">Wo kíka kíkún →</span>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-12">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.08-2.33M15 17H9v-2.58a8.003 8.003 0 016 0V17z"></path>
+        </svg>
+        <h3 class="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-2">
+            <span x-show="language === 'english'">No Reading History</span>
+            <span x-show="language === 'yoruba'">Kò Sí Ìtàn Kíka</span>
+        </h3>
+        <p class="text-gray-500 mb-4">
+            <span x-show="language === 'english'">Start your spiritual journey today</span>
+            <span x-show="language === 'yoruba'">Bẹ̀rẹ̀ ìrìnàjò ẹ̀mí rẹ lónìí</span>
+        </p>
+        <a href="/" class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-colors">
+            <span x-show="language === 'english'">Get Today's Reading</span>
+            <span x-show="language === 'yoruba'">Gba Kíka Òní</span>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function viewReading(date) {
+    // Navigate to specific reading
+    window.location.href = `/api/readings/${date}`;
+}
+</script>
+{% endblock %}

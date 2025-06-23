@@ -261,8 +261,21 @@ if __name__ == '__main__':
     os.makedirs('static/images', exist_ok=True)
     os.makedirs('templates', exist_ok=True)
     
+    # Copy audio files from client if they exist
+    import shutil
+    if os.path.exists('client/public/audio'):
+        try:
+            shutil.copytree('client/public/audio', 'static/audio', dirs_exist_ok=True)
+            print("Audio files copied successfully")
+        except Exception as e:
+            print(f"Could not copy audio files: {e}")
+    
     # Initialize database
     init_db()
     
+    print("🎵 Ifá Daily Reading App - Python Flask Version")
+    print("✨ Starting server with ambient Yoruba soundscapes...")
+    print("🌟 Bilingual spiritual guidance ready!")
+    
     # Run development server
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)

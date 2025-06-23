@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block title %}Daily Prayers{% endblock %}
+{% block header_title %}Daily Prayers{% endblock %}
+
+{% block content %}
+<div class="space-y-6" x-data="dailyPrayers()">
+    <!-- Header -->
+    <div class="text-center">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-sacred-gold to-yellow-700 rounded-full flex items-center justify-center">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 2L3 14h7l-1 8 7-12h-7l1-8z"></path>
+            </svg>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+            <span x-show="language === 'english'">Daily Prayers & Blessings</span>
+            <span x-show="language === 'yoruba'">Àdúrà àti Ìbùkún Ojoojúmọ́</span>
+        </h2>
+        
+        <p class="text-gray-600 dark:text-gray-400">
+            <span x-show="language === 'english'">Connect with divine energy through sacred prayers</span>
+            <span x-show="language === 'yoruba'">Darapọ̀ mọ́ agbára ọlọ́run nípa àdúrà mímọ́</span>
+        </p>
+    </div>
+
+    <!-- Today's Prayer -->
+    <div class="spiritual-card rounded-xl p-6">
+        <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-spiritual-blue dark:text-sacred-gold mb-2">
+                <span x-show="language === 'english'">Today's Sacred Prayer</span>
+                <span x-show="language === 'yoruba'">Àdúrà Mímọ́ Òní</span>
+            </h3>
+            <p class="text-amber-600 dark:text-amber-400" x-text="getCurrentDay()"></p>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-amber-50 dark:from-blue-900/20 dark:to-amber-900/20 rounded-lg p-6 mb-6">
+            <div class="text-center space-y-4">
+                <h4 class="font-bold text-lg text-spiritual-blue dark:text-sacred-gold">
+                    <span x-show="language === 'english'" x-text="getTodaysPrayer().title"></span>
+                    <span x-show="language === 'yoruba'" x-text="getTodaysPrayer().titleYoruba"></span>
+                </h4>
+                
+                <div class="prose dark:prose-invert max-w-none text-center">
+                    <p class="text-gray-800 dark:text-gray-200 leading-relaxed text-lg italic">
+                        <span x-show="language === 'english'" x-text="getTodaysPrayer().prayer"></span>
+                        <span x-show="language === 'yoruba'" x-text="getTodaysPrayer().prayerYoruba"></span>
+                    </p>
+                </div>
+                
+                <div class="pt-4 border-t border-amber-200 dark:border-amber-700">
+                    <p class="text-sm text-amber-700 dark:text-amber-300">
+                        <span x-show="language === 'english'">Intention:</span>
+                        <span x-show="language === 'yoruba'">Èrò:</span>
+                        <span x-show="language === 'english'" x-text="getTodaysPrayer().intention"></span>
+                        <span x-show="language === 'yoruba'" x-text="getTodaysPrayer().intentionYoruba"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prayer Actions -->
+        <div class="grid grid-cols-2 gap-4">
+            <button @click="playPrayer()" 
+                    :class="isPlaying ? 'bg-amber-600 text-white' : 'bg-amber-100 hover:bg-amber-200 text-amber-800'"
+                    class="flex items-center justify-center gap-2 py-3 rounded-lg transition-colors">
+                <svg x-show="!isPlaying" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg x-show="isPlaying" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <span x-show="language === 'english'" x-text="isPlaying ? 'Stop Audio' : 'Listen'"></span>
+                <span x-show="language === 'yoruba'" x-text="isPlaying ? 'Dá Ohùn Dúró' : 'Gbọ́'"></span>
+            </button>
+            
+            <button @click="sharePrayer()" 
+                    class="flex items-center justify-center gap-2 py-3 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-lg transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                </svg>
+                <span x-show="language === 'english'">Share</span>
+                <span x-show="language === 'yoruba'">Pín</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Weekly Prayer Schedule -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">Weekly Prayer Schedule</span>
+            <span x-show="language === 'yoruba'">Àtòjọ Àdúrà Ọ̀sẹ̀</span>
+        </h3>
+        
+        <div class="space-y-3">
+            <template x-for="(prayer, index) in weeklyPrayers" :key="index">
+                <div :class="index === getCurrentDayIndex() ? 'bg-amber-50 dark:bg-amber-900/20 border-amber-300' : 'border-gray-200 dark:border-gray-700'"
+                     class="p-4 border rounded-lg cursor-pointer hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-amber-900 dark:text-amber-100">
+                                <span x-show="language === 'english'" x-text="prayer.day"></span>
+                                <span x-show="language === 'yoruba'" x-text="prayer.dayYoruba"></span>
+                            </h4>
+                            <p class="text-sm text-amber-600 dark:text-amber-400">
+                                <span x-show="language === 'english'" x-text="prayer.focus"></span>
+                                <span x-show="language === 'yoruba'" x-text="prayer.focusYoruba"></span>
+                            </p>
+                        </div>
+                        
+                        <div x-show="index === getCurrentDayIndex()" class="flex items-center text-amber-600">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Meditation Guide -->
+    <div class="spiritual-card rounded-xl p-6">
+        <h3 class="text-lg font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            <span x-show="language === 'english'">How to Pray with Ifá</span>
+            <span x-show="language === 'yoruba'">Báwo Ni A Ṣe Gbàdúrà Pẹ̀lú Ifá</span>
+        </h3>
+        
+        <div class="space-y-4 text-sm text-gray-700 dark:text-gray-300">
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span class="text-white text-xs font-bold">1</span>
+                </div>
+                <div>
+                    <p class="font-medium text-amber-900 dark:text-amber-100">
+                        <span x-show="language === 'english'">Find a quiet space</span>
+                        <span x-show="language === 'yoruba'">Wa ààyè tí ó dákẹ́</span>
+                    </p>
+                    <p x-show="language === 'english'">Create a peaceful environment free from distractions</p>
+                    <p x-show="language === 'yoruba'">Ṣẹ̀dá àyíká àlàáfíà tí kò ní ìdàrúdàpọ̀</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span class="text-white text-xs font-bold">2</span>
+                </div>
+                <div>
+                    <p class="font-medium text-amber-900 dark:text-amber-100">
+                        <span x-show="language === 'english'">Center yourself</span>
+                        <span x-show="language === 'yoruba'">Gbé ara rẹ sí àárín</span>
+                    </p>
+                    <p x-show="language === 'english'">Take three deep breaths and connect with your inner spirit</p>
+                    <p x-show="language === 'yoruba'">Mí sínú jinlẹ̀ lẹ́ẹ̀mẹ́ta kí o sì darapọ̀ mọ́ ẹ̀mí inú rẹ</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span class="text-white text-xs font-bold">3</span>
+                </div>
+                <div>
+                    <p class="font-medium text-amber-900 dark:text-amber-100">
+                        <span x-show="language === 'english'">Speak with intention</span>
+                        <span x-show="language === 'yoruba'">Sọ̀rọ̀ pẹ̀lú èrò</span>
+                    </p>
+                    <p x-show="language === 'english'">Recite the prayer with sincere heart and clear intention</p>
+                    <p x-show="language === 'yoruba'">Ka àdúrà pẹ̀lú ọkàn òtítọ́ àti èrò tí ó kedere</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio x-ref="prayerAudio" @ended="isPlaying = false"></audio>
+</div>
+
+<script>
+function dailyPrayers() {
+    return {
+        language: 'english',
+        isPlaying: false,
+        
+        weeklyPrayers: [
+            {
+                day: 'Sunday',
+                dayYoruba: 'Ọjọ́ Àìkú',
+                focus: 'Divine Light & Renewal',
+                focusYoruba: 'Ìmọ́lẹ̀ Ọlọ́run & Ìsọtún',
+                title: 'Prayer for Divine Light',
+                titleYoruba: 'Àdúrà fún Ìmọ́lẹ̀ Ọlọ́run',
+                prayer: 'Orunmila, source of all wisdom, illuminate my path with your divine light. Guide me through this new week with clarity and purpose.',
+                prayerYoruba: 'Ọ̀rúnmìlà, orísun gbogbo ọgbọ́n, fi ìmọ́lẹ̀ rẹ ọlọ́run tan ọ̀nà mi. Ṣe ìtọ́kasí mi gba ọ̀sẹ̀ tuntun yìí pẹ̀lú àṣírí àti ète.',
+                intention: 'New beginnings and spiritual awakening',
+                intentionYoruba: 'Ìbẹ̀rẹ̀ tuntun àti ìjí ẹ̀mí'
+            },
+            {
+                day: 'Monday',
+                dayYoruba: 'Ọjọ́ Ajé',
+                focus: 'Strength & Determination',
+                focusYoruba: 'Agbára & Ìpinnu',
+                title: 'Prayer for Inner Strength',
+                titleYoruba: 'Àdúrà fún Agbára Inú',
+                prayer: 'Ogun, divine warrior, grant me the strength to overcome challenges. Fill me with determination to pursue my goals with courage.',
+                prayerYoruba: 'Ògún, jagunjagun ọlọ́run, fún mi ní agbára láti ṣẹ́gun àwọn ìdojúkọ. Kún mi pẹ̀lú ìpinnu láti lépa àwọn àfojúsùn mi pẹ̀lú ìgboyà.',
+                intention: 'Courage and perseverance',
+                intentionYoruba: 'Ìgboyà àti ìfaradà'
+            },
+            {
+                day: 'Tuesday',
+                dayYoruba: 'Ọjọ́ Ìṣẹ́gun',
+                focus: 'Love & Compassion',
+                focusYoruba: 'Ìfẹ́ & Àánú',
+                title: 'Prayer for Love and Healing',
+                titleYoruba: 'Àdúrà fún Ìfẹ́ àti Ìwòsàn',
+                prayer: 'Oshun, goddess of love and healing, open my heart to give and receive love freely. Heal all wounds and bring sweetness to my relationships.',
+                prayerYoruba: 'Ọ̀ṣun, òrìṣà ìfẹ́ àti ìwòsàn, ṣí ọkàn mi láti fún àti gbà ìfẹ́ láìléwu. Wo gbogbo ọgbẹ́ sàn kí o sì mú adùn wá sí àwọn ìbáṣepọ̀ mi.',
+                intention: 'Emotional healing and connection',
+                intentionYoruba: 'Ìwòsàn ẹ̀dùn àti àsopọ̀'
+            },
+            {
+                day: 'Wednesday',
+                dayYoruba: 'Ọjọ́rú',
+                focus: 'Wisdom & Knowledge',
+                focusYoruba: 'Ọgbọ́n & Ìmọ̀',
+                title: 'Prayer for Divine Wisdom',
+                titleYoruba: 'Àdúrà fún Ọgbọ́n Ọlọ́run',
+                prayer: 'Obatala, father of wisdom, grant me clear thinking and sound judgment. Help me make decisions that align with divine will.',
+                prayerYoruba: 'Ọbàtálá, bàbá ọgbọ́n, fún mi ní ìrònú tí ó kedere àti ìdájọ́ tí ó dára. Ràn mí lọ́wọ́ láti ṣe àwọn ìpinnu tí ó bá ìfẹ́ ọlọ́run mu.',
+                intention: 'Clear thinking and good decisions',
+                intentionYoruba: 'Ìrònú tí ó kedere àti àwọn ìpinnu tí ó dára'
+            },
+            {
+                day: 'Thursday',
+                dayYoruba: 'Ọjọ́bọ',
+                focus: 'Power & Justice',
+                focusYoruba: 'Agbára & Òdodo',
+                title: 'Prayer for Divine Justice',
+                titleYoruba: 'Àdúrà fún Òdodo Ọlọ́run',
+                prayer: 'Shango, king of justice, bring balance to my life. Grant me the power to stand for what is right and protect those who cannot protect themselves.',
+                prayerYoruba: 'Ṣàngó, ọba òdodo, mú ìwọntúnwọnsí wá sí ìgbé ayé mi. Fún mi ní agbára láti dúró fún ohun tí ó tọ́ àti láti dáàbò bo àwọn tí kò le dáàbò bo ara wọn.',
+                intention: 'Justice and righteous action',
+                intentionYoruba: 'Òdodo àti ìṣe òdodo'
+            },
+            {
+                day: 'Friday',
+                dayYoruba: 'Ọjọ́ Ẹtì',
+                focus: 'Transformation & Change',
+                focusYoruba: 'Àyípadà & Ìyípo',
+                title: 'Prayer for Positive Change',
+                titleYoruba: 'Àdúrà fún Àyípadà Rere',
+                prayer: 'Oya, goddess of transformation, help me embrace necessary changes. Give me courage to release what no longer serves me.',
+                prayerYoruba: 'Ọya, òrìṣà àyípadà, ràn mí lọ́wọ́ láti gbà àwọn àyípadà tí ó yẹ. Fún mi ní ìgboyà láti tu ohun tí kò bá mi lọ́ mọ́ sílẹ̀.',
+                intention: 'Growth through change',
+                intentionYoruba: 'Ìdàgbàsókè nípasẹ̀ àyípadà'
+            },
+            {
+                day: 'Saturday',
+                dayYoruba: 'Ọjọ́ Àbámẹ́ta',
+                focus: 'Protection & Nurturing',
+                focusYoruba: 'Ààbò & Ìtọ́jú',
+                title: 'Prayer for Divine Protection',
+                titleYoruba: 'Àdúrà fún Ààbò Ọlọ́run',
+                prayer: 'Yemoja, great mother, wrap me in your protective embrace. Nurture my spirit and guide me to safe harbor through all storms.',
+                prayerYoruba: 'Yemọja, ìyá ńlá, fi ìgbà ààbò rẹ di mi mọ́. Tọ́jú ẹ̀mí mi kí o sì ṣe ìtọ́kasí mi sí ibi ààbò gba gbogbo ìjì.',
+                intention: 'Safety and spiritual nourishment',
+                intentionYoruba: 'Ààbò àti oúnjẹ ẹ̀mí'
+            }
+        ],
+        
+        getCurrentDayIndex() {
+            return new Date().getDay();
+        },
+        
+        getCurrentDay() {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const daysYoruba = ['Ọjọ́ Àìkú', 'Ọjọ́ Ajé', 'Ọjọ́ Ìṣẹ́gun', 'Ọjọ́rú', 'Ọjọ́bọ', 'Ọjọ́ Ẹtì', 'Ọjọ́ Àbámẹ́ta'];
+            
+            const today = new Date().getDay();
+            return this.language === 'english' ? days[today] : daysYoruba[today];
+        },
+        
+        getTodaysPrayer() {
+            return this.weeklyPrayers[this.getCurrentDayIndex()];
+        },
+        
+        playPrayer() {
+            if (this.isPlaying) {
+                this.$refs.prayerAudio.pause();
+                this.isPlaying = false;
+            } else {
+                // For now, just toggle playing state
+                // In production, you would load actual audio file
+                this.isPlaying = true;
+                setTimeout(() => {
+                    this.isPlaying = false;
+                }, 30000); // Simulate 30 second prayer
+            }
+        },
+        
+        sharePrayer() {
+            const prayer = this.getTodaysPrayer();
+            const text = `Today's Prayer: ${prayer.title}\n\n"${prayer.prayer}"\n\n- Ifá Daily Reading App`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: prayer.title,
+                    text: text
+                });
+            } else {
+                // Fallback to clipboard
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Prayer copied to clipboard');
+                });
+            }
+        }
+    }
+}
+</script>
+{% endblock %}
