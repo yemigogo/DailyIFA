@@ -630,48 +630,43 @@ export default function AmbientSoundscapes() {
 
       {/* Mood-Based Playlists */}
       <div className="mt-12 p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl">
-        <h3 className="text-xl font-bold text-amber-700 dark:text-amber-400 mb-4">
-          🎼 {ts("Mood-Based Playlists", "Àtòjọ Orin Ìpinnu")}
-        </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
-          {ts(
-            "Choose a spiritual mood and let curated soundscapes guide your practice automatically.",
-            "Yan ìpinnu ẹ̀mí kan kí àwọn ohùn àyíká tí a yan tọ́ ọ sí iṣẹ rẹ láìfọwọ́si."
-          )}
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          {Object.entries(moodDescriptions).map(([mood, info]) => (
-            <Card key={mood} className={`cursor-pointer transition-all hover:shadow-lg ${
-              activeMood === mood ? 'ring-2 ring-amber-500 bg-amber-50 dark:bg-amber-900/30' : ''
-            }`}>
-              <CardContent className="p-4">
-                <h4 className="font-semibold text-amber-700 dark:text-amber-400 mb-2">
-                  {info.name}
-                </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
-                  {info.description}
-                </p>
-                <div className="text-xs text-amber-600 dark:text-amber-500 mb-3">
-                  {playlists[mood].length} {ts("tracks", "orin")}
-                </div>
-                <Button
-                  onClick={() => playMoodPlaylist(mood)}
-                  className="w-full bg-amber-600 hover:bg-amber-700"
-                  disabled={activeMood === mood}
-                >
-                  {activeMood === mood ? (
-                    ts("Playing", "Tí Ń Ṣe")
-                  ) : (
-                    <>
-                      <Play className="w-4 h-4 mr-2" />
-                      {ts("Play Playlist", "Ṣe Àtòjọ")}
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+        <h2 className="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4">
+          🌀 {ts("Select a Mood Playlist:", "Yan Àtòjọ Ìpinnu:")}
+        </h2>
+        
+        <div className="flex flex-wrap gap-3 mb-6">
+          <Button
+            onClick={() => playMoodPlaylist('meditation')}
+            className={`px-6 py-3 rounded text-white font-medium transition-all ${
+              activeMood === 'meditation' 
+                ? 'bg-blue-700 ring-2 ring-blue-300' 
+                : 'bg-blue-600 hover:bg-blue-700'
+            }`}
+          >
+            {ts("Meditation", "Ìjímọ̀")}
+          </Button>
+          
+          <Button
+            onClick={() => playMoodPlaylist('ritual')}
+            className={`px-6 py-3 rounded text-white font-medium transition-all ${
+              activeMood === 'ritual' 
+                ? 'bg-red-700 ring-2 ring-red-300' 
+                : 'bg-red-600 hover:bg-red-700'
+            }`}
+          >
+            {ts("Ritual", "Àjọ̀dún")}
+          </Button>
+          
+          <Button
+            onClick={() => playMoodPlaylist('healing')}
+            className={`px-6 py-3 rounded text-white font-medium transition-all ${
+              activeMood === 'healing' 
+                ? 'bg-green-700 ring-2 ring-green-300' 
+                : 'bg-green-600 hover:bg-green-700'
+            }`}
+          >
+            {ts("Healing", "Ìwòsàn")}
+          </Button>
         </div>
 
         {/* Playlist Player */}
