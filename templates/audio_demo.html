@@ -250,6 +250,24 @@
             sacred_ceremony: "/static/audio/soundscapes/sacred_ceremony.mp3"
         };
 
+        const backgroundMap = {
+            ifa_wisdom_chant: "/static/images/backgrounds/chant_background.jpg",
+            ifa_prosperity_chant: "/static/images/backgrounds/prosperity_background.jpg",
+            talking_drum_loop: "/static/images/backgrounds/drum_background.jpg",
+            bata_drums_loop: "/static/images/backgrounds/drum_background.jpg",
+            ocean_blessing_waves: "/static/images/backgrounds/ocean_background.jpg",
+            sacred_forest: "/static/images/backgrounds/chant_background.jpg",
+            temple_peace: "/static/images/backgrounds/chant_background.jpg",
+            sacred_ceremony: "/static/images/backgrounds/prosperity_background.jpg"
+        };
+
+        function setBackgroundImage(soundKey) {
+            const imageUrl = backgroundMap[soundKey];
+            if (imageUrl) {
+                document.body.style.backgroundImage = `url('${imageUrl}')`;
+            }
+        }
+
         function playLayeredChant() {
             const chantKey = document.getElementById("chantSelect").value;
             const ambKey = document.getElementById("ambienceSelect").value;
@@ -266,6 +284,9 @@
             
             // Set ambience to loop for continuous background
             amb.loop = true;
+
+            // Set background based on chant selection
+            setBackgroundImage(chantKey);
 
             chant.play().catch(e => console.log("Chant playback failed:", e));
             amb.play().catch(e => console.log("Ambience playback failed:", e));
@@ -297,6 +318,11 @@
             button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
         }
         
+        // Add background change on selection change
+        document.getElementById('chantSelect').addEventListener('change', function() {
+            setBackgroundImage(this.value);
+        });
+
         // Add keyboard shortcuts
         document.addEventListener('keydown', function(e) {
             if (e.code === 'Space') {

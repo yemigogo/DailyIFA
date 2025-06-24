@@ -4,7 +4,7 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["espeak-ng", "ffmpeg", "libxcrypt", "pkg-config", "sox", "xsimd"]
+packages = ["espeak-ng", "ffmpeg", "freetype", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "pkg-config", "sox", "tcl", "tk", "xsimd", "zlib"]
 
 [deployment]
 deploymentTarget = "autoscale"
