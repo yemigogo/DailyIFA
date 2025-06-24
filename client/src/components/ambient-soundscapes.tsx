@@ -75,7 +75,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ẹgbẹ́ Ìlù Dùndún",
     description: "Full ensemble of Dundun drums in ceremonial rhythm",
     descriptionYoruba: "Ẹgbẹ́ kíkún ìlù Dùndún ní ìlù àjọ̀dún",
-    file: "/static/ambient/dundun.mp3",
+    file: "/static/ambient/talking_drum.mp3",
     category: "drums",
     duration: 840
   },
@@ -87,7 +87,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Igbó Mímọ́",
     description: "Forest sounds with birds, frogs, and forest animals",
     descriptionYoruba: "Ohùn igbó pẹ̀lú ẹyẹ, ọ̀pọ̀lọ́ àti ẹranko igbó",
-    file: "/static/ambient/forest.mp3",
+    file: "/static/ambient/sacred_forest.mp3",
     category: "nature",
     duration: 900
   },
