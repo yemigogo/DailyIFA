@@ -459,28 +459,6 @@ export default function AmbientSoundscapes() {
           </div>
         )}
       </div>
-        {currentTrack && (
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleMute}
-              className="text-teal-600 hover:text-teal-700"
-            >
-              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-            </Button>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.1"
-              value={volume}
-              onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
-              className="w-20 accent-teal-600"
-            />
-          </div>
-        )}
-      </div>
 
       {/* Sleep Timer */}
       <div className="mb-6 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
