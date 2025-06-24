@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ifá Layered Audio Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #f59e0b;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .audio-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #f59e0b;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 16px;
+        }
+        
+        select option {
+            background: #1e293b;
+            color: white;
+        }
+        
+        .play-button {
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .play-button:hover {
+            background: linear-gradient(45deg, #d97706, #b45309);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .prayer-text {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        .yoruba {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .translation {
+            font-size: 0.95em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Ifá Layered Audio Experience</h1>
+        
+        <div class="prayer-text">
+            <div class="yoruba">
+                <strong>Orí mi dá mi lórí,</strong><br>
+                <strong>Ọ̀runmìlà, jọ̀wọ́ dá mi lórí.</strong><br>
+                <strong>Mo bẹ̀ Ifá,</strong><br>
+                <strong>Kí ọjọ́ mi dáa lónìí.</strong>
+            </div>
+            <div class="translation">
+                <em>My head blesses me,<br>
+                Ọ̀runmìlà, please guide me.<br>
+                I call on Ifá,<br>
+                That my day be good today.</em>
+            </div>
+        </div>
+        
+        <div class="audio-controls">
+            <div class="control-group">
+                <label for="chantSelect">🎤 Select Chant (Orin)</label>
+                <select id="chantSelect">
+                    <option value="ifa_wisdom_chant">Ifá Wisdom Chant</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="ambienceSelect">🌊 Select Ambience (Àyíká)</label>
+                <select id="ambienceSelect">
+                    <option value="ocean_blessing_waves">Ocean Blessing Waves</option>
+                    <option value="flowing_river">Flowing River</option>
+                    <option value="sacred_forest">Sacred Forest</option>
+                    <option value="temple_peace">Temple Peace</option>
+                    <option value="sacred_ceremony">Sacred Ceremony</option>
+                </select>
+            </div>
+        </div>
+        
+        <button class="play-button" onclick="playLayeredChant()">
+            🎵 Play Chant + Ambience
+        </button>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <label>Chant Audio:</label>
+                <audio id="chantAudio" controls class="audio-player"></audio>
+            </div>
+            <div>
+                <label>Ambience Audio:</label>
+                <audio id="ambienceAudio" controls class="audio-player"></audio>
+            </div>
+        </div>
+        
+        <div class="status">
+            <p>✨ Experience the spiritual harmony of traditional Yoruba chants combined with authentic soundscapes</p>
+        </div>
+    </div>
+
+    <script>
+        const audioMap = {
+            ifa_wisdom_chant: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+            talking_drum_loop: "/static/audio/soundscapes/talking_drum_loop.mp3",
+            bata_drums_loop: "/static/audio/soundscapes/bata_drums_loop.mp3",
+            flowing_river: "/static/audio/soundscapes/flowing_river.mp3",
+            ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
+            sacred_forest: "/static/audio/soundscapes/sacred_forest.mp3",
+            temple_peace: "/static/audio/soundscapes/temple_peace.mp3",
+            sacred_ceremony: "/static/audio/soundscapes/sacred_ceremony.mp3"
+        };
+
+        function playLayeredChant() {
+            const chantKey = document.getElementById("chantSelect").value;
+            const ambKey = document.getElementById("ambienceSelect").value;
+
+            const chant = document.getElementById("chantAudio");
+            const amb = document.getElementById("ambienceAudio");
+
+            chant.src = audioMap[chantKey];
+            amb.src = audioMap[ambKey];
+
+            // Set volume levels for better balance
+            chant.volume = 0.7;  // Chant slightly louder
+            amb.volume = 0.5;    // Ambience as background
+            
+            // Set ambience to loop for continuous background
+            amb.loop = true;
+
+            chant.play().catch(e => console.log("Chant playback failed:", e));
+            amb.play().catch(e => console.log("Ambience playback failed:", e));
+            
+            // Update button text
+            const button = document.querySelector('.play-button');
+            button.textContent = '🎵 Playing Layered Audio...';
+            button.style.background = 'linear-gradient(45deg, #22c55e, #16a34a)';
+            
+            // Reset button after chant finishes
+            chant.onended = function() {
+                button.textContent = '🎵 Play Chant + Ambience';
+                button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
+            };
+        }
+
+        // Add stop functionality
+        function stopAll() {
+            const chant = document.getElementById("chantAudio");
+            const amb = document.getElementById("ambienceAudio");
+            
+            chant.pause();
+            amb.pause();
+            chant.currentTime = 0;
+            amb.currentTime = 0;
+            
+            const button = document.querySelector('.play-button');
+            button.textContent = '🎵 Play Chant + Ambience';
+            button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
+        }
+        
+        // Add keyboard shortcut
+        document.addEventListener('keydown', function(e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                playLayeredChant();
+            }
+            if (e.code === 'Escape') {
+                stopAll();
+            }
+        });
+    </script>
+</body>
+</html>
