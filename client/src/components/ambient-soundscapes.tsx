@@ -163,6 +163,7 @@ export default function AmbientSoundscapes() {
   const [volume, setVolume] = useState(0.7);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const categories = [
     { id: "all", name: "All Sounds", nameYoruba: "Gbogbo Ohùn" },
@@ -183,9 +184,12 @@ export default function AmbientSoundscapes() {
       setCurrentTrack(defaultTrack);
       if (audioRef.current) {
         audioRef.current.src = defaultTrack.file;
-        audioRef.current.volume = volume;
-        // Auto-play the default track
-        audioRef.current.play().catch(() => {
+        audioRef.current.volume = 0;
+        // Auto-play the default track with fade in
+        audioRef.current.play().then(() => {
+          fadeIn(audioRef.current!);
+          setIsPlaying(true);
+        }).catch(() => {
           // Handle autoplay restrictions - user interaction required
           setIsPlaying(false);
         });
@@ -193,19 +197,69 @@ export default function AmbientSoundscapes() {
     }
   }, []);
 
+  const fadeOut = (audio: HTMLAudioElement, callback: () => void) => {
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+    }
+    
+    fadeIntervalRef.current = setInterval(() => {
+      if (audio.volume > 0.1) {
+        audio.volume = Math.max(0, audio.volume - 0.1);
+      } else {
+        clearInterval(fadeIntervalRef.current!);
+        audio.pause();
+        callback();
+      }
+    }, 100);
+  };
+
+  const fadeIn = (audio: HTMLAudioElement) => {
+    audio.volume = 0;
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+    }
+    
+    fadeIntervalRef.current = setInterval(() => {
+      if (audio.volume < (isMuted ? 0 : volume - 0.1)) {
+        audio.volume = Math.min(isMuted ? 0 : volume, audio.volume + 0.1);
+      } else {
+        clearInterval(fadeIntervalRef.current!);
+        audio.volume = isMuted ? 0 : volume;
+      }
+    }, 100);
+  };
+
+  const loadNewTrack = (track: AmbientTrack) => {
+    if (audioRef.current) {
+      audioRef.current.src = track.file;
+      audioRef.current.play().then(() => {
+        fadeIn(audioRef.current!);
+        setIsPlaying(true);
+      }).catch(() => {
+        setIsPlaying(false);
+      });
+      setCurrentTrack(track);
+    }
+  };
+
   const playTrack = (track: AmbientTrack) => {
     if (currentTrack?.id === track.id && isPlaying) {
-      // Pause current track
-      audioRef.current?.pause();
-      setIsPlaying(false);
+      // Pause current track with fade out
+      if (audioRef.current) {
+        fadeOut(audioRef.current, () => {
+          setIsPlaying(false);
+        });
+      }
     } else {
       // Play new track
-      setCurrentTrack(track);
-      setIsPlaying(true);
-      if (audioRef.current) {
-        audioRef.current.src = track.file;
-        audioRef.current.volume = isMuted ? 0 : volume;
-        audioRef.current.play();
+      if (currentTrack && isPlaying && audioRef.current) {
+        // Fade out current track, then load new one
+        fadeOut(audioRef.current, () => {
+          loadNewTrack(track);
+        });
+      } else {
+        // No current track or not playing, load immediately
+        loadNewTrack(track);
       }
     }
   };
@@ -224,6 +278,15 @@ export default function AmbientSoundscapes() {
       audioRef.current.volume = newVolume;
     }
   };
+
+  // Cleanup fade intervals on component unmount
+  useEffect(() => {
+    return () => {
+      if (fadeIntervalRef.current) {
+        clearInterval(fadeIntervalRef.current);
+      }
+    };
+  }, []);
 
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
