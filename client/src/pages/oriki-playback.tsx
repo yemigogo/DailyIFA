@@ -110,11 +110,17 @@ export default function OrikiPlayback() {
 
   const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
 
+  // Get week number using accurate calculation
+  const getWeekNumber = (date: Date): number => {
+    const firstJan = new Date(date.getFullYear(), 0, 1);
+    const days = Math.floor((date.getTime() - firstJan.getTime()) / (24 * 60 * 60 * 1000));
+    return Math.ceil((days + firstJan.getDay() + 1) / 7);
+  };
+
   // Get Oríkì of the Week based on current week number
   const getWeeklyOriki = () => {
-    const now = new Date();
-    const weekNumber = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 1).getTime()) / (7 * 24 * 60 * 60 * 1000));
-    const index = weekNumber % orikiData.length;
+    const currentWeek = getWeekNumber(new Date());
+    const index = currentWeek % orikiData.length;
     return orikiData[index];
   };
 
