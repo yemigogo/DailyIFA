@@ -117,7 +117,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Afẹ́fẹ́ Láàrín Ọ̀pẹ",
     description: "Gentle wind through sacred palm trees",
     descriptionYoruba: "Afẹ́fẹ́ tútù láàrín igi ọ̀pẹ mímọ́",
-    file: "/static/ambient/forest_new.mp3",
+    file: "/static/ambient/forest_real.mp3",
     category: "nature",
     duration: 720
   },
@@ -129,7 +129,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àlàáfíà Tẹ́ńpílì",
     description: "Serene atmosphere of a peaceful Yoruba temple",
     descriptionYoruba: "Àyíká tútù ti tẹ́ńpílì Yorùbá aláàfíà",
-    file: "/static/ambient/forest_new.mp3",
+    file: "/static/ambient/forest_real.mp3",
     category: "mixed",
     duration: 1200
   },
@@ -139,7 +139,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àjọ̀dún Mímọ́",
     description: "Sounds of a traditional Yoruba spiritual ceremony",
     descriptionYoruba: "Ohùn àjọ̀dún ẹ̀mí Yorùbá ìbílẹ̀",
-    file: "/static/ambient/bata_new.mp3",
+    file: "/static/ambient/bata_real.mp3",
     category: "mixed",
     duration: 960
   },
