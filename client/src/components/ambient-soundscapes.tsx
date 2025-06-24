@@ -377,6 +377,14 @@ export default function AmbientSoundscapes() {
     }
   };
 
+  const initSoundscape = () => {
+    // Start with Ocean Blessing Waves as default
+    const defaultTrack = ambientTracks.find(track => track.id === "ocean_blessing_waves");
+    if (defaultTrack) {
+      playTrack(defaultTrack);
+    }
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 mt-8 p-6 rounded-xl shadow-md">
       <div className="flex items-center justify-between mb-6">
@@ -384,7 +392,36 @@ export default function AmbientSoundscapes() {
           🌊 {ts("Ambient Yoruba Soundscapes", "Ohùn Àyíká Yorùbá")}
         </h2>
         
+        <Button
+          onClick={initSoundscape}
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
+        >
+          🎧 {ts("Start Soundscape", "Bẹ̀rẹ̀ Ohùn Àyíká")}
+        </Button>
+        
         {/* Volume Controls */}
+        {currentTrack && (
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMute}
+              className="text-teal-600 hover:text-teal-700"
+            >
+              {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+            </Button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              value={volume}
+              onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+              className="w-20 accent-teal-600"
+            />
+          </div>
+        )}
+      </div>
         {currentTrack && (
           <div className="flex items-center gap-2">
             <Button
