@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
@@ -175,6 +175,23 @@ export default function AmbientSoundscapes() {
   const filteredTracks = ambientTracks.filter(track => 
     selectedCategory === "all" || track.category === selectedCategory
   );
+
+  // Auto-load Ocean Blessing Waves on component mount
+  useEffect(() => {
+    const defaultTrack = ambientTracks.find(track => track.id === "ocean_blessing_waves");
+    if (defaultTrack) {
+      setCurrentTrack(defaultTrack);
+      if (audioRef.current) {
+        audioRef.current.src = defaultTrack.file;
+        audioRef.current.volume = volume;
+        // Auto-play the default track
+        audioRef.current.play().catch(() => {
+          // Handle autoplay restrictions - user interaction required
+          setIsPlaying(false);
+        });
+      }
+    }
+  }, []);
 
   const playTrack = (track: AmbientTrack) => {
     if (currentTrack?.id === track.id && isPlaying) {
