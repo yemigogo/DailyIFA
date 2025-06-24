@@ -65,7 +65,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Dùndún",
     description: "Traditional talking drum conveying ancient messages",
     descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
-    file: "/static/ambient/talking_drum.mp3",
+    file: "/static/audio/soundscapes/talking_drum.mp3",
     category: "drums",
     duration: 600
   },
@@ -87,7 +87,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Igbó Mímọ́",
     description: "Forest sounds with birds, frogs, and forest animals",
     descriptionYoruba: "Ohùn igbó pẹ̀lú ẹyẹ, ọ̀pọ̀lọ́ àti ẹranko igbó",
-    file: "/static/ambient/sacred_forest.mp3",
+    file: "/static/audio/soundscapes/sacred_forest.mp3",
     category: "nature",
     duration: 900
   },
@@ -117,7 +117,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Afẹ́fẹ́ Láàrín Ọ̀pẹ",
     description: "Gentle wind through sacred palm trees",
     descriptionYoruba: "Afẹ́fẹ́ tútù láàrín igi ọ̀pẹ mímọ́",
-    file: "/static/ambient/sacred_forest.mp3",
+    file: "/static/audio/soundscapes/sacred_forest.mp3",
     category: "nature",
     duration: 720
   },
