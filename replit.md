@@ -12,7 +12,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - ✅ **Seamless Audio Loops**: Created optimized loop versions of talking_drum_loop.mp3 and bata_drums_loop.mp3 with proper fade edges for continuous playback without gaps or clicks, organized all soundscapes in /static/audio/soundscapes/ directory structure
 - ✅ **Authentic Ifá Wisdom Chant**: Created extended traditional Yoruba prayer chant incorporating both prayer texts with emotional tonal variations (reverent, pleading, joyful, blessing, triumphant, prophetic), enhanced harmonics, and 2-minute spiritual journey with meditation pauses and ritual elements
 - ✅ **Ifá Prosperity Chant**: Created dedicated prosperity and wealth attraction chant using traditional Yoruba prayers for abundance (Ọ̀ṣun owó, àjẹ, ẹ̀rè) with golden ratio frequencies, wealth-attracting harmonics, and prosperity-focused tonal patterns including coin rhythm effects
-- ✅ **Layered Audio Playback System**: Implemented JavaScript function for combining chants with ambient soundscapes, created demo page at /static/layered-audio-demo.html with volume balancing, looping controls, and keyboard shortcuts for immersive spiritual experiences
+- ✅ **Layered Audio Playback System**: Implemented JavaScript function for combining chants with ambient soundscapes, integrated audio demo into main Flask app at /audio-demo route with proper navigation, volume balancing, looping controls, and keyboard shortcuts for immersive spiritual experiences
 
 **June 23, 2025**
 - ✅ **Major Architecture Change**: Successfully converted from React/Node.js to Python Flask with Jinja2 templates
