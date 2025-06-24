@@ -172,6 +172,12 @@ export default function AmbientSoundscapes() {
   const [layer2Playing, setLayer2Playing] = useState(false);
   const layer1AudioRef = useRef<HTMLAudioElement>(null);
   const layer2AudioRef = useRef<HTMLAudioElement>(null);
+  
+  // Playlist functionality
+  const [currentPlaylist, setCurrentPlaylist] = useState<string[]>([]);
+  const [playlistIndex, setPlaylistIndex] = useState(0);
+  const [activeMood, setActiveMood] = useState<string | null>(null);
+  const playlistAudioRef = useRef<HTMLAudioElement>(null);
 
   const categories = [
     { id: "all", name: "All Sounds", nameYoruba: "Gbogbo Ohùn" },
@@ -308,6 +314,34 @@ export default function AmbientSoundscapes() {
     bata_drums: "/static/audio/soundscapes/bata_drums.mp3",
     flowing_river: "/static/audio/soundscapes/flowing_river.mp3",
     ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3"
+  };
+
+  // Mood-based playlists
+  const playlists: { [key: string]: string[] } = {
+    meditation: ["temple_peace", "flowing_river", "ocean_blessing_waves"],
+    ritual: ["sacred_ceremony", "ifa_wisdom_chant", "bata_drums"],
+    healing: ["sacred_forest", "talking_drum", "flowing_river"]
+  };
+
+  const moodDescriptions = {
+    meditation: {
+      name: ts("Meditation", "Ìjímọ̀"),
+      description: ts("Peaceful sounds for deep contemplation", "Ohùn àlàáfíà fún ìrònú jinlẹ̀"),
+      nameYoruba: "Ìjímọ̀",
+      descriptionYoruba: "Ohùn àlàáfíà fún ìrònú jinlẹ̀"
+    },
+    ritual: {
+      name: ts("Ritual", "Àjọ̀dún"),
+      description: ts("Sacred ceremony sounds for spiritual practice", "Ohùn àjọ̀dún mímọ́ fún iṣẹ ẹ̀mí"),
+      nameYoruba: "Àjọ̀dún",
+      descriptionYoruba: "Ohùn àjọ̀dún mímọ́ fún iṣẹ ẹ̀mí"
+    },
+    healing: {
+      name: ts("Healing", "Ìwòsàn"),
+      description: ts("Restorative sounds for spiritual renewal", "Ohùn ìmúpadà fún ìsọdọ̀tun ẹ̀mí"),
+      nameYoruba: "Ìwòsàn",
+      descriptionYoruba: "Ohùn ìmúpadà fún ìsọdọ̀tun ẹ̀mí"
+    }
   };
 
   const playLayeredSound = () => {
@@ -589,6 +623,100 @@ export default function AmbientSoundscapes() {
               >
                 {ts("Stop All Layers", "Dá Gbogbo Ipele Dúró")}
               </Button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Mood-Based Playlists */}
+      <div className="mt-12 p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl">
+        <h3 className="text-xl font-bold text-amber-700 dark:text-amber-400 mb-4">
+          🎼 {ts("Mood-Based Playlists", "Àtòjọ Orin Ìpinnu")}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+          {ts(
+            "Choose a spiritual mood and let curated soundscapes guide your practice automatically.",
+            "Yan ìpinnu ẹ̀mí kan kí àwọn ohùn àyíká tí a yan tọ́ ọ sí iṣẹ rẹ láìfọwọ́si."
+          )}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {Object.entries(moodDescriptions).map(([mood, info]) => (
+            <Card key={mood} className={`cursor-pointer transition-all hover:shadow-lg ${
+              activeMood === mood ? 'ring-2 ring-amber-500 bg-amber-50 dark:bg-amber-900/30' : ''
+            }`}>
+              <CardContent className="p-4">
+                <h4 className="font-semibold text-amber-700 dark:text-amber-400 mb-2">
+                  {info.name}
+                </h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                  {info.description}
+                </p>
+                <div className="text-xs text-amber-600 dark:text-amber-500 mb-3">
+                  {playlists[mood].length} {ts("tracks", "orin")}
+                </div>
+                <Button
+                  onClick={() => playMoodPlaylist(mood)}
+                  className="w-full bg-amber-600 hover:bg-amber-700"
+                  disabled={activeMood === mood}
+                >
+                  {activeMood === mood ? (
+                    ts("Playing", "Tí Ń Ṣe")
+                  ) : (
+                    <>
+                      <Play className="w-4 h-4 mr-2" />
+                      {ts("Play Playlist", "Ṣe Àtòjọ")}
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Playlist Player */}
+        {activeMood && (
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h4 className="font-semibold text-amber-700 dark:text-amber-400">
+                  {ts("Now Playing:", "Tí Ń Ṣe Nísinsin:")} {moodDescriptions[activeMood].name}
+                </h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  {ts("Track", "Orin")} {playlistIndex + 1} {ts("of", "nínú")} {currentPlaylist.length}
+                </p>
+              </div>
+              <Button
+                onClick={stopPlaylist}
+                variant="outline"
+                size="sm"
+                className="text-red-600 border-red-300 hover:bg-red-50"
+              >
+                <Pause className="w-4 h-4 mr-2" />
+                {ts("Stop Playlist", "Dá Àtòjọ Dúró")}
+              </Button>
+            </div>
+            
+            <audio
+              ref={playlistAudioRef}
+              controls
+              className="w-full"
+            />
+            
+            {/* Playlist Progress */}
+            <div className="mt-3">
+              <div className="flex justify-between text-xs text-gray-500 mb-1">
+                <span>{ts("Playlist Progress", "Ìlọsíwájú Àtòjọ")}</span>
+                <span>{Math.round(((playlistIndex + 1) / currentPlaylist.length) * 100)}%</span>
+              </div>
+              <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                <div
+                  className="bg-amber-600 h-2 rounded-full transition-all duration-300"
+                  style={{
+                    width: `${((playlistIndex + 1) / currentPlaylist.length) * 100}%`
+                  }}
+                />
+              </div>
             </div>
           </div>
         )}
