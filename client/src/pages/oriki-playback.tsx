@@ -320,6 +320,19 @@ export default function OrikiPlayback() {
           ))}
           </div>
         </div>
+
+        {/* Ambient Soundscapes */}
+        <AmbientSoundscapes />
+
+        {/* Closing Message */}
+        <div className="text-center mt-12 max-w-md mx-auto">
+          <p className="text-gray-600 dark:text-gray-400">
+            {ts(
+              "May the wisdom of the Orishas guide your path. Àṣẹ!",
+              "Kí ọgbọ́n àwọn Òrìṣà tọ́ ọ sí ọ̀nà rẹ. Àṣẹ!"
+            )}
+          </p>
+        </div>
       </div>
     </div>
   );
