@@ -55,7 +55,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Sacred Bata drums speaking the language of the Orishas",
     descriptionYoruba: "Ìlù Bàtá mímọ́ tí ń sọ èdè àwọn Òrìṣà",
-    file: "/static/ambient/bata_real.mp3",
+    file: "/static/ambient/bata_drums.mp3",
     category: "drums",
     duration: 720
   },
