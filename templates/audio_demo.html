@@ -10,9 +10,25 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #1e293b, #334155);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background-image 1s ease-in-out;
             color: white;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+            pointer-events: none;
         }
         
         .container {
@@ -212,6 +228,16 @@
     </div>
 
     <script>
+        // Set spiritual background for audio demo
+        document.addEventListener('DOMContentLoaded', function() {
+            const spiritualBackgrounds = [
+                '/static/images/backgrounds/temple_peace.jpg',
+                '/static/images/backgrounds/forest_sacred.jpg'
+            ];
+            const randomBg = spiritualBackgrounds[Math.floor(Math.random() * spiritualBackgrounds.length)];
+            document.body.style.backgroundImage = `url('${randomBg}')`;
+        });
+
         const audioMap = {
             ifa_wisdom_chant: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
             ifa_prosperity_chant: "/static/audio/soundscapes/ifa_prosperity_chant.mp3",
