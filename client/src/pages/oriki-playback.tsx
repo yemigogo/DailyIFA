@@ -8,200 +8,58 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface OrikiVerse {
   id: string;
   orisha: string;
-  orishaYoruba: string;
-  title: string;
-  titleYoruba: string;
-  verses: string[];
-  versesYoruba: string[];
-  meaning: string;
-  meaningYoruba: string;
+  text: string;
   audioUrl: string;
-  category: 'praise' | 'invocation' | 'blessing' | 'story';
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
 }
 
 const orikiData: OrikiVerse[] = [
   {
-    id: "orunmila-1",
+    id: "orunmila",
     orisha: "Òrúnmìlà",
-    orishaYoruba: "Òrúnmìlà",
-    title: "Òrúnmìlà, Witness of Destiny",
-    titleYoruba: "Òrúnmìlà, Ẹlẹ́rìí Ìpín",
-    verses: [
-      "Òrúnmìlà, witness of destiny",
-      "Ajana who knows the day of birth",
-      "Ọpá Ìwòrì, staff of wisdom",
-      "Akọni lẹ́sẹ̀ọtá, teacher of mysteries",
-      "Baba who sees tomorrow today"
-    ],
-    versesYoruba: [
-      "Òrúnmìlà, ẹlẹ́rìí ìpín",
-      "Ajana tí ó mọ ọjọ́ ìbí",
-      "Ọpá Ìwòrì, ọ̀pá ọgbọ́n",
-      "Akọni lẹ́sẹ̀ọtá, olùkọ́ àwọn àṣírí",
-      "Bàbá tí ó rí ọ̀la lónìí"
-    ],
-    meaning: "This praise acknowledges Òrúnmìlà as the divine witness of all destiny, the sage who knows the mysteries of birth and death, and the wise teacher who guides humanity through the wisdom of Ifá.",
-    meaningYoruba: "Oríkì yìí ń jẹ́wọ́ Òrúnmìlà gẹ́gẹ́ bí ẹlẹ́rìí ọrun fún gbogbo ìpín, ọlọ́gbọ́n tí ó mọ àṣírí ìbí àti ikú, àti olùkọ́ ọlọ́gbọ́n tí ó ń darí ẹ̀dá ènìyàn nípasẹ̀ ọgbọ́n Ifá.",
-    audioUrl: "/static/audio/orunmila.mp3",
-    category: "praise",
-    difficulty: "intermediate"
+    text: "Ẹlẹ́rìí ìpín, agbani nímọ̀ràn, alábáyọ̀. \nThe witness to destiny, provider of wise counsel, bringer of joy.",
+    audioUrl: "/static/audio/orunmila.mp3"
   },
   {
-    id: "sango-1", 
-    orisha: "Ṣàngó",
-    orishaYoruba: "Ṣàngó",
-    title: "Ṣàngó, Lord of Thunder",
-    titleYoruba: "Ṣàngó, Ọba Àrá",
-    verses: [
-      "Ṣàngó, king who hangs in the sky",
-      "Ọba kòso, the king did not hang",
-      "Lord of thunder and lightning",
-      "Fire spitter, stone thrower",
-      "Justice bringer with flaming eyes"
-    ],
-    versesYoruba: [
-      "Ṣàngó, ọba tí ó rọ̀ sókè",
-      "Ọba kòso, ọba kò gbe",
-      "Olúwa àrá àti mọ̀nàmọ́ná",
-      "Atutù iná, asọ òkúta",
-      "Amudájú pẹ̀lú ojú iná"
-    ],
-    meaning: "This praises Ṣàngó as the mighty king of thunder, emphasizing his power over fire and lightning, his role as a bringer of divine justice, and his eternal sovereignty.",
-    meaningYoruba: "Èyí ń yin Ṣàngó gẹ́gẹ́ bí alágbára ọba àrá, tí ń tẹnumọ́ agbára rẹ̀ lórí iná àti mọ̀nàmọ́ná, ipò rẹ̀ gẹ́gẹ́ bí amudájú ọ̀run, àti ọbaláṣẹ rẹ̀ láéláé.",
-    audioUrl: "/static/audio/sango.mp3",
-    category: "invocation",
-    difficulty: "beginner"
-  },
-  {
-    id: "obatala-1",
-    orisha: "Ọbàtálá",
-    orishaYoruba: "Ọbàtálá",
-    title: "Ọbàtálá, Creator of Human Forms",
-    titleYoruba: "Ọbàtálá, Ẹlẹ́dá Ẹni",
-    verses: [
-      "Ọbàtálá, king of white cloth",
-      "Creator who molds human forms",
-      "Pure one dressed in white",
-      "Father of coolness and wisdom",
-      "Protector of those who cannot speak"
-    ],
-    versesYoruba: [
-      "Ọbàtálá, ọba aṣọ funfun",
-      "Ẹlẹ́dá tí ó ń mọ ara ènìyàn",
-      "Ọ̀tọ́tọ́ tí ó wọ aṣọ funfun",
-      "Bàbá ìtura àti ọgbọ́n",
-      "Aṣábò àwọn tí kò lè sọ̀rọ̀"
-    ],
-    meaning: "This honors Ọbàtálá as the pure creator deity who shapes human bodies, emphasizing his wisdom, compassion, and special care for those with disabilities.",
-    meaningYoruba: "Èyí ń bu ọlá fún Ọbàtálá gẹ́gẹ́ bí òrìṣà ẹlẹ́dá mímọ́ tí ó ń ṣe ara ènìyàn, tí ń tẹnumọ́ ọgbọ́n rẹ̀, àánú, àti àbójútó pàtàkì fún àwọn tí ó ní àìlágbára.",
-    audioUrl: "/static/audio/obatala.mp3",
-    category: "blessing",
-    difficulty: "intermediate"
-  },
-  {
-    id: "ogun-1",
+    id: "ogun",
     orisha: "Ògún",
-    orishaYoruba: "Ògún", 
-    title: "Ògún, Master of Iron",
-    titleYoruba: "Ògún, Ọga Irin",
-    verses: [
-      "Ògún, owner of iron and steel",
-      "Path clearer, road opener",
-      "Warrior who fights for justice",
-      "Blacksmith of the divine forge",
-      "Guardian of those who work with tools"
-    ],
-    versesYoruba: [
-      "Ògún, olóhun irin àti irin",
-      "Atúná, ẹni tí ń ṣí ọ̀nà",
-      "Jagunjagun tí ó jà fún òdodo",
-      "Agbẹ́dẹ inú ìlé-iṣẹ́ ọ̀run",
-      "Aṣábò àwọn tí ó ń ṣiṣẹ́ pẹ̀lú irinṣẹ́"
-    ],
-    meaning: "This celebrates Ògún as the divine blacksmith and warrior, master of technology and industry, who clears obstacles and protects workers and travelers.",
-    meaningYoruba: "Èyí ń ṣe àjọyọ̀ Ògún gẹ́gẹ́ bí agbẹ́dẹ ọ̀run àti jagunjagun, ọga ìmọ̀-ẹrọ àti iṣẹ́-ọnà, tí ó ń mú àwọn ìdènà kúrò tí ó sì ń dáàbò bo àwọn òṣiṣẹ́ àti arìnrìn-àjò.",
-    audioUrl: "/static/audio/ogun.mp3",
-    category: "invocation", 
-    difficulty: "advanced"
+    text: "Alágbède méjì, onírin tí ngbé orí lẹ̀sẹ̀. \nBlacksmith of iron, warrior who carries iron on his head.",
+    audioUrl: "/static/audio/ogun.mp3"
   },
   {
-    id: "oshun-1",
-    orisha: "Ọ̀ṣun",
-    orishaYoruba: "Ọ̀ṣun",
-    title: "Ọ̀ṣun, River of Honey",
-    titleYoruba: "Ọ̀ṣun, Odò Oyin",
-    verses: [
-      "Ọ̀ṣun, sweet water that heals",
-      "Mother of flowing rivers",
-      "Goddess of love and fertility", 
-      "She who dances with brass bangles",
-      "Provider of children and abundance"
-    ],
-    versesYoruba: [
-      "Ọ̀ṣun, omi dídùn tí ó ń wòsàn",
-      "Ìyá àwọn odò tí ń sàn",
-      "Òrìṣà ìfẹ́ àti ìbísí",
-      "Ẹni tí ó ń jó pẹ̀lú ègé idẹ",
-      "Olùpèsè ọmọ àti ọ̀pọ̀lọpọ̀"
-    ],
-    meaning: "This honors Ọ̀ṣun as the nurturing river goddess, source of fertility, love, and abundance, celebrated for her healing waters and protective motherhood.",
-    meaningYoruba: "Èyí ń bu ọlá fún Ọ̀ṣun gẹ́gẹ́ bí òrìṣà odò olùtọ́jú, orísun ìbísí, ìfẹ́, àti ọ̀pọ̀lọpọ̀, tí a ń ṣe àjọyọ̀ rẹ̀ fún omi ìwòsàn àti ìyáni aṣáàbò.",
-    audioUrl: "/static/audio/oshun.mp3",
-    category: "blessing",
-    difficulty: "beginner"
+    id: "obatala",
+    orisha: "Ọbàtálá",
+    text: "Baba funfun, alágba fún-fún tí ń bọ̀ láti ọ̀run. \nThe white-robed father, the elder in pure white from heaven.",
+    audioUrl: "/static/audio/obatala.mp3"
   },
   {
-    id: "oya-1",
-    orisha: "Oya",
-    orishaYoruba: "Ọya",
-    title: "Oya, Lady of the Winds",
-    titleYoruba: "Ọya, Ìyálọ́ja Àfẹ́fẹ́",
-    verses: [
-      "Oya, fierce guardian of the marketplace",
-      "Lady of winds and storms",
-      "She who dances with lightning",
-      "Mother of nine, keeper of the cemetery gates",
-      "Warrior queen with the power of tornadoes"
-    ],
-    versesYoruba: [
-      "Ọya, aṣáàbò líle ti ọjà",
-      "Ìyálọ́ja àfẹ́fẹ́ àti ìjì",
-      "Ẹni tí ó ń jó pẹ̀lú mọ̀nàmọ́ná",
-      "Ìyá mẹ́sàn-án, aṣọ́ ẹnu-ọ̀nà isà òkú",
-      "Ayaba jagunjagun pẹ̀lú agbára ìjì líle"
-    ],
-    meaning: "This honors Oya as the powerful Orisha of winds, storms, and transformation, guardian of the marketplace and cemetery gates, known for her fierce protection and warrior spirit.",
-    meaningYoruba: "Èyí ń bu ọlá fún Ọya gẹ́gẹ́ bí òrìṣà alágbára ti àfẹ́fẹ́, ìjì, àti ìyípadà, aṣáàbò ọjà àti ẹnu-ọ̀nà isà òkú, tí a mọ̀ fún àgbérò líle àti ẹ̀mí jagunjagun rẹ̀.",
-    audioUrl: "/static/audio/oya.mp3",
-    category: "invocation",
-    difficulty: "advanced"
+    id: "sango",
+    orisha: "Ṣàngó",
+    text: "Ọba koso! Aláàfin tó mọ̀ràn ogun, kabiyesi Olú Ayé. \nThe king did not hang! Thunder lord, ruler of war and the world.",
+    audioUrl: "/static/audio/sango.mp3"
   },
   {
-    id: "yemoja-1",
+    id: "yemaya",
     orisha: "Yemoja",
-    orishaYoruba: "Yemọja",
-    title: "Yemoja, Mother of Waters",
-    titleYoruba: "Yemọja, Ìyá Omi",
-    verses: [
-      "Yemoja, mother of all waters",
-      "She whose children are fish",
-      "Ocean mother with flowing breasts",
-      "Protector of women and children",
-      "Great mother who gives life to the world"
-    ],
-    versesYoruba: [
-      "Yemọja, ìyá gbogbo omi",
-      "Ẹni tí àwọn ọmọ rẹ̀ jẹ́ ẹja",
-      "Ìyá òkun pẹ̀lú ọmú tí ń sàn",
-      "Aṣáàbò àwọn obìnrin àti ọmọdé",
-      "Ìyá ńlá tí ó ń fún ayé ní ẹ̀mí"
-    ],
-    meaning: "This celebrates Yemoja as the great mother of all waters, the ocean goddess who nurtures all life, especially protecting women and children with her infinite maternal love.",
-    meaningYoruba: "Èyí ń ṣe àjọyọ̀ Yemọja gẹ́gẹ́ bí ìyá ńlá gbogbo omi, òrìṣà òkun tí ó ń tọ́jú gbogbo ẹ̀mí, pàápàá láti dáàbò bo àwọn obìnrin àti ọmọdé pẹ̀lú ìfẹ́ ìyá àìlopin rẹ̀.",
-    audioUrl: "/static/audio/yemoja.mp3",
-    category: "blessing",
-    difficulty: "intermediate"
+    text: "Ìyá omi, ọmọ yemoja. Tí ngbe omi gangan. \nMother of the ocean, bearer of life, the water nurturer.",
+    audioUrl: "/static/audio/yemaya.mp3"
+  },
+  {
+    id: "oshun",
+    orisha: "Ọ̀ṣun",
+    text: "Ọṣun Ọṣogbo, ayaba omi, alaroye. \nGoddess of sweetness, wealth, and fertility.",
+    audioUrl: "/static/audio/oshun.mp3"
+  },
+  {
+    id: "elegba",
+    orisha: "Ẹlégbára",
+    text: "Ẹlẹ́gbára, onílẹ̀ kúrò. Alágbára orírun ọ̀nà. \nKeeper of the crossroads, opener of doors.",
+    audioUrl: "/static/audio/elegba.mp3"
+  },
+  {
+    id: "oya",
+    orisha: "Ọya",
+    text: "Oya Ìyá, alágbára afẹ́fẹ́. Ọya tó fẹ̀ ẹ̀mí sẹ̀yìn. \nMother of wind, fierce one who sweeps souls to the ancestors.",
+    audioUrl: "/static/audio/oya.mp3"
   }
 ];
 
@@ -215,45 +73,19 @@ export default function OrikiPlayback() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const filteredOrikis = orikiData.filter(oriki => {
-    const orishaMatch = selectedOrisha === "" || oriki.orisha === selectedOrisha;
-    const categoryMatch = selectedCategory === "all" || oriki.category === selectedCategory;
-    return orishaMatch && categoryMatch;
+    return selectedOrisha === "" || oriki.orisha === selectedOrisha;
   });
 
   const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
-  const categories = ["praise", "invocation", "blessing", "story"];
-
-  const loadOriki = () => {
-    const selectedData = orikiData.find(oriki => oriki.orisha === selectedOrisha);
-    if (selectedData) {
-      setSelectedOriki(selectedData);
-      setCurrentVerseIndex(0);
-      setIsPlaying(false);
-    }
-  };
 
   const playOriki = (oriki: OrikiVerse) => {
     setSelectedOriki(oriki);
     setCurrentVerseIndex(0);
-    setIsPlaying(true);
+    setIsPlaying(false);
   };
 
   const pauseOriki = () => {
     setIsPlaying(false);
-  };
-
-  const resetOriki = () => {
-    setIsPlaying(false);
-    setCurrentVerseIndex(0);
-  };
-
-  const nextVerse = () => {
-    if (selectedOriki && currentVerseIndex < selectedOriki.verses.length - 1) {
-      setCurrentVerseIndex(currentVerseIndex + 1);
-    } else {
-      setIsPlaying(false);
-      setCurrentVerseIndex(0);
-    }
   };
 
   return (
@@ -311,27 +143,10 @@ export default function OrikiPlayback() {
             <div className="mb-4">
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold">
-                  {language === 'english' ? selectedOriki.title : selectedOriki.titleYoruba}
+                  Oríkì {selectedOriki.orisha}
                 </h3>
-                <div className="space-y-2">
-                  {(language === 'english' ? selectedOriki.verses : selectedOriki.versesYoruba).map((verse, index) => (
-                    <div
-                      key={index}
-                      className={`transition-all duration-300 ${
-                        currentVerseIndex === index 
-                          ? 'text-spiritual-blue dark:text-sacred-gold font-semibold text-lg' 
-                          : 'text-gray-600 dark:text-gray-400'
-                      }`}
-                    >
-                      {verse}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-                  <strong>{ts("Meaning:", "Ìtumọ̀:")}</strong>
-                  <p className="mt-1">
-                    {language === 'english' ? selectedOriki.meaning : selectedOriki.meaningYoruba}
-                  </p>
+                <div className="whitespace-pre-line text-base leading-relaxed">
+                  {selectedOriki.text}
                 </div>
               </div>
             </div>
@@ -352,15 +167,6 @@ export default function OrikiPlayback() {
               
               <div className="flex items-center justify-center gap-4 mb-4">
                 <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentVerseIndex(Math.max(0, currentVerseIndex - 1))}
-                  disabled={currentVerseIndex === 0}
-                >
-                  ←
-                </Button>
-                
-                <Button
                   onClick={() => {
                     if (audioRef.current) {
                       if (isPlaying) {
@@ -377,61 +183,12 @@ export default function OrikiPlayback() {
                     {isPlaying ? ts("Pause", "Dúró") : ts("Play Audio", "Ṣe Ohùn")}
                   </span>
                 </Button>
-                
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={nextVerse}
-                  disabled={currentVerseIndex === selectedOriki.verses.length - 1}
-                >
-                  →
-                </Button>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
-                <div
-                  className="bg-spiritual-blue h-2 rounded-full transition-all duration-300"
-                  style={{
-                    width: `${((currentVerseIndex + 1) / selectedOriki.verses.length) * 100}%`
-                  }}
-                />
-              </div>
-
-              <div className="text-center text-sm text-gray-500">
-                {ts("Verse", "Ẹsẹ")} {currentVerseIndex + 1} {ts("of", "nínú")} {selectedOriki.verses.length}
               </div>
             </div>
           )}
         </div>
 
-        {/* Additional Filters */}
-        <div className="mb-8 max-w-md mx-auto">
-          <div className="flex flex-wrap gap-4 justify-center">
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                {ts("Filter by Category", "Ṣàjọ Ìrú")}
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-              >
-                <option value="all">{ts("All Categories", "Gbogbo Ìrú")}</option>
-                {categories.map(category => (
-                  <option key={category} value={category}>
-                    {ts(
-                      category.charAt(0).toUpperCase() + category.slice(1),
-                      category === "praise" ? "Ìyìn" :
-                      category === "invocation" ? "Ìwúre" :
-                      category === "blessing" ? "Ìbùkún" : "Ìtàn"
-                    )}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
+
 
         {/* Browse All Orikis */}
         <div className="mb-8">
@@ -442,36 +199,13 @@ export default function OrikiPlayback() {
           {filteredOrikis.map((oriki) => (
             <Card key={oriki.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <Badge variant="secondary" className="bg-spiritual-blue/10 text-spiritual-blue">
-                    {language === 'english' ? oriki.orisha : oriki.orishaYoruba}
-                  </Badge>
-                  <Badge variant="outline" className={`
-                    ${oriki.difficulty === 'beginner' ? 'border-green-500 text-green-600' :
-                      oriki.difficulty === 'intermediate' ? 'border-yellow-500 text-yellow-600' :
-                      'border-red-500 text-red-600'}
-                  `}>
-                    {ts(oriki.difficulty, 
-                      oriki.difficulty === 'beginner' ? 'Ìbẹ̀rẹ̀' :
-                      oriki.difficulty === 'intermediate' ? 'Àrin' : 'Gíga'
-                    )}
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg">
-                  {language === 'english' ? oriki.title : oriki.titleYoruba}
+                <CardTitle className="text-lg text-spiritual-blue dark:text-sacred-gold">
+                  {oriki.orisha}
                 </CardTitle>
-                <CardDescription>
-                  {ts(
-                    oriki.category.charAt(0).toUpperCase() + oriki.category.slice(1),
-                    oriki.category === "praise" ? "Ìyìn" :
-                    oriki.category === "invocation" ? "Ìwúre" :
-                    oriki.category === "blessing" ? "Ìbùkún" : "Ìtàn"
-                  )}
-                </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                  {language === 'english' ? oriki.meaning : oriki.meaningYoruba}
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-4 whitespace-pre-line">
+                  {oriki.text}
                 </p>
                 <Button
                   onClick={() => playOriki(oriki)}
