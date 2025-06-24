@@ -23,7 +23,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Orin Ọgbọ́n Ifá",
     description: "Traditional Ifá chanting for wisdom and guidance",
     descriptionYoruba: "Orin Ifá ìbílẹ̀ fún ọgbọ́n àti ìtọ́sọ́nà",
-    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+    file: "/static/ambient/wisdom_chant.mp3",
     category: "chants",
     duration: 600
   },
@@ -33,7 +33,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Orin Ìyìn Òrìṣà",
     description: "Devotional chanting to honor the Orishas",
     descriptionYoruba: "Orin ìsìn láti bu ọlá fún àwọn Òrìṣà",
-    file: "/static/audio/soundscapes/orisha_praise_chant.mp3",
+    file: "/static/ambient/blessing_chant.mp3",
     category: "chants",
     duration: 480
   },
@@ -43,7 +43,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìpè Àwọn Bàbá",
     description: "Sacred chants to connect with ancestors",
     descriptionYoruba: "Orin mímọ́ láti dá sí àwọn bàbá wa",
-    file: "/static/audio/soundscapes/ancestral_calling.mp3",
+    file: "/static/ambient/wisdom_chant.mp3",
     category: "chants",
     duration: 540
   },
@@ -55,7 +55,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Sacred Bata drums speaking the language of the Orishas",
     descriptionYoruba: "Ìlù Bàtá mímọ́ tí ń sọ èdè àwọn Òrìṣà",
-    file: "/static/audio/soundscapes/bata_drums.mp3",
+    file: "/static/ambient/bata_new.mp3",
     category: "drums",
     duration: 720
   },
@@ -65,7 +65,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Dùndún",
     description: "Traditional talking drum conveying ancient messages",
     descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
-    file: "/static/audio/soundscapes/talking_drum.mp3",
+    file: "/static/ambient/talking_new.mp3",
     category: "drums",
     duration: 600
   },
@@ -75,7 +75,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ẹgbẹ́ Ìlù Dùndún",
     description: "Full ensemble of Dundun drums in ceremonial rhythm",
     descriptionYoruba: "Ẹgbẹ́ kíkún ìlù Dùndún ní ìlù àjọ̀dún",
-    file: "/static/audio/soundscapes/dundun_ensemble.mp3",
+    file: "/static/ambient/talking_new.mp3",
     category: "drums",
     duration: 840
   },
@@ -87,7 +87,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Igbó Mímọ́",
     description: "Peaceful sounds of the sacred Yoruba forest",
     descriptionYoruba: "Ohùn àlàáfíà igbó mímọ́ Yorùbá",
-    file: "/static/audio/soundscapes/sacred_forest.mp3",
+    file: "/static/ambient/forest_new.mp3",
     category: "nature",
     duration: 900
   },
@@ -97,7 +97,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Odò Tí Ń Sàn",
     description: "Gentle river sounds for Oshun meditation",
     descriptionYoruba: "Ohùn odò tútù fún ìjímọ̀ Ọ̀ṣun",
-    file: "/static/audio/soundscapes/flowing_river.mp3",
+    file: "/static/ambient/river_new.mp3",
     category: "nature",
     duration: 780
   },
@@ -107,7 +107,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìgbì Ìbùkún Òkun",
     description: "Ocean waves carrying Yemoja's blessings",
     descriptionYoruba: "Ìgbì òkun tí ń gbé ìbùkún Yemọja",
-    file: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
+    file: "/static/ambient/ocean_new.mp3",
     category: "nature",
     duration: 660
   },
@@ -117,7 +117,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Afẹ́fẹ́ Láàrín Ọ̀pẹ",
     description: "Gentle wind through sacred palm trees",
     descriptionYoruba: "Afẹ́fẹ́ tútù láàrín igi ọ̀pẹ mímọ́",
-    file: "/static/audio/soundscapes/wind_through_palms.mp3",
+    file: "/static/ambient/forest_new.mp3",
     category: "nature",
     duration: 720
   },
@@ -129,7 +129,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àlàáfíà Tẹ́ńpílì",
     description: "Serene atmosphere of a peaceful Yoruba temple",
     descriptionYoruba: "Àyíká tútù ti tẹ́ńpílì Yorùbá aláàfíà",
-    file: "/static/audio/soundscapes/temple_peace.mp3",
+    file: "/static/ambient/forest_new.mp3",
     category: "mixed",
     duration: 1200
   },
@@ -139,7 +139,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àjọ̀dún Mímọ́",
     description: "Sounds of a traditional Yoruba spiritual ceremony",
     descriptionYoruba: "Ohùn àjọ̀dún ẹ̀mí Yorùbá ìbílẹ̀",
-    file: "/static/audio/soundscapes/sacred_ceremony.mp3",
+    file: "/static/ambient/bata_new.mp3",
     category: "mixed",
     duration: 960
   },
@@ -149,7 +149,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìwúre Òwúrọ̀",
     description: "Early morning prayers with birds and gentle chanting",
     descriptionYoruba: "Ìwúre kùtùkùtù pẹ̀lú ẹyẹ àti orin dídùn",
-    file: "/static/audio/soundscapes/dawn_prayers.mp3",
+    file: "/static/ambient/blessing_chant.mp3",
     category: "mixed",
     duration: 840
   }
