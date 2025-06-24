@@ -55,9 +55,9 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Sacred Bata drums speaking the language of the Orishas",
     descriptionYoruba: "Ìlù Bàtá mímọ́ tí ń sọ èdè àwọn Òrìṣà",
-    file: "/static/audio/soundscapes/bata_drums.mp3",
+    file: "/static/audio/soundscapes/bata_drums_loop.mp3",
     category: "drums",
-    duration: 720
+    duration: 32
   },
   {
     id: "talking_drum",
@@ -65,9 +65,9 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Dùndún",
     description: "Traditional talking drum conveying ancient messages",
     descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
-    file: "/static/audio/soundscapes/talking_drum.mp3",
+    file: "/static/audio/soundscapes/talking_drum_loop.mp3",
     category: "drums",
-    duration: 600
+    duration: 30
   },
   {
     id: "dundun_ensemble",
