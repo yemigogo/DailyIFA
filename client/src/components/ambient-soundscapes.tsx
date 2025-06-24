@@ -65,7 +65,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Dùndún",
     description: "Traditional talking drum conveying ancient messages",
     descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
-    file: "/static/ambient/dundun.mp3",
+    file: "/static/ambient/talking_drum.mp3",
     category: "drums",
     duration: 600
   },
@@ -107,7 +107,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìgbì Ìbùkún Òkun",
     description: "Ocean waves carrying Yemoja's blessings",
     descriptionYoruba: "Ìgbì òkun tí ń gbé ìbùkún Yemọja",
-    file: "/static/ambient/ocean_waves.mp3",
+    file: "/static/ambient/ocean_blessing_waves.mp3",
     category: "nature",
     duration: 660
   },
@@ -117,7 +117,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Afẹ́fẹ́ Láàrín Ọ̀pẹ",
     description: "Gentle wind through sacred palm trees",
     descriptionYoruba: "Afẹ́fẹ́ tútù láàrín igi ọ̀pẹ mímọ́",
-    file: "/static/ambient/forest.mp3",
+    file: "/static/ambient/sacred_forest.mp3",
     category: "nature",
     duration: 720
   },
@@ -129,7 +129,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àlàáfíà Tẹ́ńpílì",
     description: "Serene atmosphere of a peaceful Yoruba temple",
     descriptionYoruba: "Àyíká tútù ti tẹ́ńpílì Yorùbá aláàfíà",
-    file: "/static/ambient/forest.mp3",
+    file: "/static/ambient/temple_peace.mp3",
     category: "mixed",
     duration: 1200
   },
@@ -139,7 +139,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àjọ̀dún Mímọ́",
     description: "Sounds of a traditional Yoruba spiritual ceremony",
     descriptionYoruba: "Ohùn àjọ̀dún ẹ̀mí Yorùbá ìbílẹ̀",
-    file: "/static/ambient/bata_drums.mp3",
+    file: "/static/ambient/sacred_ceremony.mp3",
     category: "mixed",
     duration: 960
   },
