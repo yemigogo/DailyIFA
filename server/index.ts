@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve audio files statically
 app.use('/audio', express.static(path.join(process.cwd(), 'client/public/audio')));
+// Serve ambient soundscapes
+app.use('/static', express.static(path.join(process.cwd(), 'static')));
 
 app.use((req, res, next) => {
   const start = Date.now();
