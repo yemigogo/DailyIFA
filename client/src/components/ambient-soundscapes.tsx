@@ -55,7 +55,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Sacred Bata drums speaking the language of the Orishas",
     descriptionYoruba: "Ìlù Bàtá mímọ́ tí ń sọ èdè àwọn Òrìṣà",
-    file: "/static/ambient/bata_new.mp3",
+    file: "/static/ambient/bata_real.mp3",
     category: "drums",
     duration: 720
   },
@@ -65,7 +65,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Dùndún",
     description: "Traditional talking drum conveying ancient messages",
     descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
-    file: "/static/ambient/talking_new.mp3",
+    file: "/static/ambient/talking_real.mp3",
     category: "drums",
     duration: 600
   },
@@ -75,7 +75,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ẹgbẹ́ Ìlù Dùndún",
     description: "Full ensemble of Dundun drums in ceremonial rhythm",
     descriptionYoruba: "Ẹgbẹ́ kíkún ìlù Dùndún ní ìlù àjọ̀dún",
-    file: "/static/ambient/talking_new.mp3",
+    file: "/static/ambient/talking_real.mp3",
     category: "drums",
     duration: 840
   },
@@ -85,9 +85,9 @@ const ambientTracks: AmbientTrack[] = [
     id: "sacred_forest",
     name: "Sacred Forest",
     nameYoruba: "Igbó Mímọ́",
-    description: "Peaceful sounds of the sacred Yoruba forest",
-    descriptionYoruba: "Ohùn àlàáfíà igbó mímọ́ Yorùbá",
-    file: "/static/ambient/forest_new.mp3",
+    description: "Forest sounds with birds, frogs, and forest animals",
+    descriptionYoruba: "Ohùn igbó pẹ̀lú ẹyẹ, ọ̀pọ̀lọ́ àti ẹranko igbó",
+    file: "/static/ambient/forest_real.mp3",
     category: "nature",
     duration: 900
   },
@@ -107,7 +107,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìgbì Ìbùkún Òkun",
     description: "Ocean waves carrying Yemoja's blessings",
     descriptionYoruba: "Ìgbì òkun tí ń gbé ìbùkún Yemọja",
-    file: "/static/ambient/ocean_new.mp3",
+    file: "/static/ambient/ocean_real.mp3",
     category: "nature",
     duration: 660
   },
