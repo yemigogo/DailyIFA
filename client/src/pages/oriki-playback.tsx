@@ -203,18 +203,27 @@ export default function OrikiPlayback() {
   const [selectedOriki, setSelectedOriki] = useState<OrikiVerse | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVerseIndex, setCurrentVerseIndex] = useState(0);
-  const [selectedOrisha, setSelectedOrisha] = useState<string>("all");
+  const [selectedOrisha, setSelectedOrisha] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const filteredOrikis = orikiData.filter(oriki => {
-    const orishaMatch = selectedOrisha === "all" || oriki.orisha === selectedOrisha;
+    const orishaMatch = selectedOrisha === "" || oriki.orisha === selectedOrisha;
     const categoryMatch = selectedCategory === "all" || oriki.category === selectedCategory;
     return orishaMatch && categoryMatch;
   });
 
   const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
   const categories = ["praise", "invocation", "blessing", "story"];
+
+  const loadOriki = () => {
+    const selectedData = orikiData.find(oriki => oriki.orisha === selectedOrisha);
+    if (selectedData) {
+      setSelectedOriki(selectedData);
+      setCurrentVerseIndex(0);
+      setIsPlaying(false);
+    }
+  };
 
   const playOriki = (oriki: OrikiVerse) => {
     setSelectedOriki(oriki);
@@ -255,33 +264,133 @@ export default function OrikiPlayback() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="mb-8 space-y-4">
+        {/* Main Orisha Selector */}
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-8 max-w-2xl mx-auto">
+          <h2 className="text-xl font-bold mb-4 text-red-700 dark:text-red-400 flex items-center">
+            🎤 {ts("Oríkì Playback", "Oríkì Ẹ̀rọ-orin")}
+          </h2>
+          
+          <div className="mb-4">
+            <label htmlFor="orishaSelect" className="block mb-2 font-semibold text-gray-700 dark:text-gray-300">
+              {ts("Choose an Orisha:", "Yan Òrìṣà kan:")}
+            </label>
+            <select
+              id="orishaSelect"
+              value={selectedOrisha}
+              onChange={(e) => {
+                setSelectedOrisha(e.target.value);
+                if (e.target.value) {
+                  const selectedData = orikiData.find(oriki => oriki.orisha === e.target.value);
+                  if (selectedData) {
+                    setSelectedOriki(selectedData);
+                    setCurrentVerseIndex(0);
+                    setIsPlaying(false);
+                  }
+                } else {
+                  setSelectedOriki(null);
+                }
+              }}
+              className="w-full border border-gray-300 dark:border-gray-600 p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+            >
+              <option value="">{ts("-- Select --", "-- Yan --")}</option>
+              {uniqueOrishas.map(orisha => (
+                <option key={orisha} value={orisha}>{orisha}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Oriki Display */}
+          {selectedOriki && (
+            <div className="mb-4">
+              <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold">
+                  {language === 'english' ? selectedOriki.title : selectedOriki.titleYoruba}
+                </h3>
+                <div className="space-y-2">
+                  {(language === 'english' ? selectedOriki.verses : selectedOriki.versesYoruba).map((verse, index) => (
+                    <div
+                      key={index}
+                      className={`transition-all duration-300 ${
+                        currentVerseIndex === index 
+                          ? 'text-spiritual-blue dark:text-sacred-gold font-semibold text-lg' 
+                          : 'text-gray-600 dark:text-gray-400'
+                      }`}
+                    >
+                      {verse}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                  <strong>{ts("Meaning:", "Ìtumọ̀:")}</strong>
+                  <p className="mt-1">
+                    {language === 'english' ? selectedOriki.meaning : selectedOriki.meaningYoruba}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Audio Player */}
+          {selectedOriki && (
+            <div className="mb-4">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setCurrentVerseIndex(Math.max(0, currentVerseIndex - 1))}
+                  disabled={currentVerseIndex === 0}
+                >
+                  ←
+                </Button>
+                
+                <Button
+                  onClick={isPlaying ? pauseOriki : () => setIsPlaying(true)}
+                  className="bg-spiritual-blue hover:bg-spiritual-blue/90"
+                >
+                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  <span className="ml-2">
+                    {isPlaying ? ts("Pause", "Dúró") : ts("Play", "Ṣe")}
+                  </span>
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={nextVerse}
+                  disabled={currentVerseIndex === selectedOriki.verses.length - 1}
+                >
+                  →
+                </Button>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-4">
+                <div
+                  className="bg-spiritual-blue h-2 rounded-full transition-all duration-300"
+                  style={{
+                    width: `${((currentVerseIndex + 1) / selectedOriki.verses.length) * 100}%`
+                  }}
+                />
+              </div>
+
+              <div className="text-center text-sm text-gray-500">
+                {ts("Verse", "Ẹsẹ")} {currentVerseIndex + 1} {ts("of", "nínú")} {selectedOriki.verses.length}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Additional Filters */}
+        <div className="mb-8 max-w-md mx-auto">
           <div className="flex flex-wrap gap-4 justify-center">
             <div>
-              <label className="block text-sm font-medium mb-2">
-                {ts("Select Orisha", "Yan Òrìṣà")}
-              </label>
-              <select
-                value={selectedOrisha}
-                onChange={(e) => setSelectedOrisha(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-800"
-              >
-                <option value="all">{ts("All Orishas", "Gbogbo Òrìṣà")}</option>
-                {uniqueOrishas.map(orisha => (
-                  <option key={orisha} value={orisha}>{orisha}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                {ts("Category", "Ìrú")}
+              <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                {ts("Filter by Category", "Ṣàjọ Ìrú")}
               </label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg bg-white dark:bg-gray-800"
+                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
               >
                 <option value="all">{ts("All Categories", "Gbogbo Ìrú")}</option>
                 {categories.map(category => (
@@ -299,8 +408,12 @@ export default function OrikiPlayback() {
           </div>
         </div>
 
-        {/* Oriki List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {/* Browse All Orikis */}
+        <div className="mb-8">
+          <h3 className="text-2xl font-bold text-center mb-6 text-spiritual-blue dark:text-sacred-gold">
+            {ts("Browse All Oríkì", "Wá Gbogbo Oríkì")}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {filteredOrikis.map((oriki) => (
             <Card key={oriki.id} className="hover:shadow-lg transition-shadow">
               <CardHeader>
@@ -345,110 +458,8 @@ export default function OrikiPlayback() {
               </CardContent>
             </Card>
           ))}
+          </div>
         </div>
-
-        {/* Playback Interface */}
-        {selectedOriki && (
-          <Card className="fixed bottom-24 left-4 right-4 md:left-8 md:right-8 z-40 shadow-2xl">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="text-lg">
-                    {language === 'english' ? selectedOriki.title : selectedOriki.titleYoruba}
-                  </CardTitle>
-                  <CardDescription>
-                    {language === 'english' ? selectedOriki.orisha : selectedOriki.orishaYoruba}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={resetOriki}
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setSelectedOriki(null)}
-                  >
-                    ×
-                  </Button>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {/* Current Verse Display */}
-              <div className="mb-4 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
-                <div className="text-center">
-                  <div className="text-sm text-gray-500 mb-2">
-                    {ts("Verse", "Ẹsẹ")} {currentVerseIndex + 1} {ts("of", "nínú")} {selectedOriki.verses.length}
-                  </div>
-                  <div className="text-lg font-medium mb-2">
-                    {language === 'english' 
-                      ? selectedOriki.verses[currentVerseIndex]
-                      : selectedOriki.versesYoruba[currentVerseIndex]
-                    }
-                  </div>
-                  {language === 'english' && (
-                    <div className="text-sm text-gray-600 italic">
-                      {selectedOriki.versesYoruba[currentVerseIndex]}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Playback Controls */}
-              <div className="flex items-center justify-center gap-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentVerseIndex(Math.max(0, currentVerseIndex - 1))}
-                  disabled={currentVerseIndex === 0}
-                >
-                  ←
-                </Button>
-                
-                <Button
-                  onClick={isPlaying ? pauseOriki : () => setIsPlaying(true)}
-                  className="bg-spiritual-blue hover:bg-spiritual-blue/90"
-                >
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                </Button>
-                
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={nextVerse}
-                  disabled={currentVerseIndex === selectedOriki.verses.length - 1}
-                >
-                  →
-                </Button>
-              </div>
-
-              {/* Progress Bar */}
-              <div className="mt-4">
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div
-                    className="bg-spiritual-blue h-2 rounded-full transition-all duration-300"
-                    style={{
-                      width: `${((currentVerseIndex + 1) / selectedOriki.verses.length) * 100}%`
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Meaning */}
-              <div className="mt-4 text-sm text-gray-600 dark:text-gray-300">
-                <strong>{ts("Meaning:", "Ìtumọ̀:")}</strong>
-                <p className="mt-1">
-                  {language === 'english' ? selectedOriki.meaning : selectedOriki.meaningYoruba}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        )}
       </div>
     </div>
   );
