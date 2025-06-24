@@ -7,7 +7,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 **June 24, 2025**
 - ✅ **Oríkì of the Week Feature**: Added rotating weekly showcase of traditional praise poetry with automatic selection based on week number
 - ✅ **Expanded Orisha Collection**: Complete 13 Orishas including Ọ̀ṣọ́ọ̀sì, Olókun, Òrìṣà Òkò, Ọ̀sányìn, and Ayé-là-là
-- ✅ **Ambient Yoruba Soundscapes**: Added comprehensive meditation soundscape system with 12 tracks across 4 categories - Chants (Ifá wisdom, Orisha praise, ancestral calling), Drums (Bata, talking drum, Dundun ensemble), Nature (sacred forest, flowing river, ocean waves, wind through palms), and Mixed (temple peace, sacred ceremony, dawn prayers)
+- ✅ **Ambient Yoruba Soundscapes**: Added comprehensive meditation soundscape system with 12 tracks across 4 categories - Chants (Ifá wisdom, Orisha praise, ancestral calling), Drums (Bata, talking drum, Dundun ensemble), Nature (sacred forest, flowing river, ocean waves, wind through palms), and Mixed (temple peace, sacred ceremony, dawn prayers). Includes layered mixing feature for combining spiritual and nature sounds simultaneously with smooth fade transitions
 
 **June 23, 2025**
 - ✅ **Major Architecture Change**: Successfully converted from React/Node.js to Python Flask with Jinja2 templates
@@ -43,7 +43,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Wisdom Archive**: Searchable repository of past readings, AI insights, sacred verses (Ẹsẹ), and personal notes for continued spiritual learning
 - **Smart Practice Reminders**: Personalized notification system for maintaining consistent spiritual practices with habit tracking, mood monitoring, and adaptive scheduling
 - **Oríkì Playback**: Traditional Yoruba praise poetry for 13 Orishas (Òrúnmìlà, Ṣàngó, Ọbàtálá, Ògún, Ọ̀ṣun, Ọya, Yemọja, Èṣù Ẹlẹ́gbára, Ọ̀ṣọ́ọ̀sì, Olókun, Òrìṣà Òkò, Ọ̀sányìn, Ayé-là-là) with authentic verses and audio pronunciation
-- **Ambient Yoruba Soundscapes**: 12 traditional sound environments across 4 categories (Chants, Drums, Nature, Mixed) for meditation and spiritual practice
+- **Ambient Yoruba Soundscapes**: 12 traditional sound environments across 4 categories (Chants, Drums, Nature, Mixed) with layered mixing capabilities for enhanced meditation and spiritual practice
 - **Mobile Responsive**: Optimized for smartphone spiritual practice
 
 ## User Preferences

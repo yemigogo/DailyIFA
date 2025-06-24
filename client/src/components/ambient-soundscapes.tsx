@@ -164,6 +164,14 @@ export default function AmbientSoundscapes() {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Layered soundscape state
+  const [layer1Track, setLayer1Track] = useState<AmbientTrack | null>(null);
+  const [layer2Track, setLayer2Track] = useState<AmbientTrack | null>(null);
+  const [layer1Playing, setLayer1Playing] = useState(false);
+  const [layer2Playing, setLayer2Playing] = useState(false);
+  const layer1AudioRef = useRef<HTMLAudioElement>(null);
+  const layer2AudioRef = useRef<HTMLAudioElement>(null);
 
   const categories = [
     { id: "all", name: "All Sounds", nameYoruba: "Gbogbo Ohùn" },
@@ -293,6 +301,41 @@ export default function AmbientSoundscapes() {
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
+
+  // Layered soundscape functions
+  const playLayeredTrack = (track: AmbientTrack, layer: 1 | 2) => {
+    const audioRef = layer === 1 ? layer1AudioRef : layer2AudioRef;
+    const setTrack = layer === 1 ? setLayer1Track : setLayer2Track;
+    const setPlaying = layer === 1 ? setLayer1Playing : setLayer2Playing;
+    
+    if (audioRef.current) {
+      audioRef.current.src = track.file;
+      audioRef.current.volume = 0.5; // Lower volume for layering
+      audioRef.current.play().then(() => {
+        setTrack(track);
+        setPlaying(true);
+      }).catch(() => {
+        setPlaying(false);
+      });
+    }
+  };
+
+  const stopLayeredTrack = (layer: 1 | 2) => {
+    const audioRef = layer === 1 ? layer1AudioRef : layer2AudioRef;
+    const setTrack = layer === 1 ? setLayer1Track : setLayer2Track;
+    const setPlaying = layer === 1 ? setLayer1Playing : setLayer2Playing;
+    
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setTrack(null);
+      setPlaying(false);
+    }
+  };
+
+  // Categorized tracks for layering
+  const chantTracks = ambientTracks.filter(track => track.category === "chants");
+  const drumTracks = ambientTracks.filter(track => track.category === "drums");
+  const natureTracks = ambientTracks.filter(track => track.category === "nature");
 
   return (
     <div className="bg-white dark:bg-gray-800 mt-8 p-6 rounded-xl shadow-md">
@@ -437,6 +480,127 @@ export default function AmbientSoundscapes() {
           {ts("No soundscapes found in this category.", "Kò sí ohùn àyíká nínú ìrú yìí.")}
         </div>
       )}
+
+      {/* Layered Soundscape Section */}
+      <div className="mt-12 p-6 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-xl">
+        <h3 className="text-xl font-bold text-purple-700 dark:text-purple-400 mb-4">
+          🎵 {ts("Layered Soundscape Mixer", "Apò Ohùn Àyíká")}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+          {ts(
+            "Mix multiple soundscapes together for a deeper meditation experience. Combine chants with nature sounds or drums with flowing water.",
+            "Da àwọn ohùn àyíká pọ̀ fún ìrírí ìjímọ̀ tó jinlẹ̀. So orin pẹ̀lú ohùn àdáyébá tàbí ìlù pẹ̀lú omi tí ń sàn."
+          )}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Layer 1 - Chants & Drums */}
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg">
+            <label className="block font-semibold mb-2 text-purple-700 dark:text-purple-300">
+              {ts("Spiritual Layer:", "Ipele Ẹ̀mí:")}
+            </label>
+            <select
+              onChange={(e) => {
+                if (e.target.value) {
+                  const track = [...chantTracks, ...drumTracks].find(t => t.id === e.target.value);
+                  if (track) playLayeredTrack(track, 1);
+                } else {
+                  stopLayeredTrack(1);
+                }
+              }}
+              className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mb-3 bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-200"
+            >
+              <option value="">{ts("-- Select --", "-- Yan --")}</option>
+              <optgroup label={ts("Chants", "Orin")}>
+                {chantTracks.map(track => (
+                  <option key={track.id} value={track.id}>
+                    {language === 'english' ? track.name : track.nameYoruba}
+                  </option>
+                ))}
+              </optgroup>
+              <optgroup label={ts("Drums", "Ìlù")}>
+                {drumTracks.map(track => (
+                  <option key={track.id} value={track.id}>
+                    {language === 'english' ? track.name : track.nameYoruba}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+            {layer1Track && (
+              <div className="text-sm text-purple-600 dark:text-purple-400 mb-2">
+                {ts("Playing:", "Tí Ń Ṣe:")} {language === 'english' ? layer1Track.name : layer1Track.nameYoruba}
+              </div>
+            )}
+            <audio
+              ref={layer1AudioRef}
+              controls
+              loop
+              className="w-full"
+              onPlay={() => setLayer1Playing(true)}
+              onPause={() => setLayer1Playing(false)}
+            />
+          </div>
+
+          {/* Layer 2 - Nature */}
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-lg">
+            <label className="block font-semibold mb-2 text-green-700 dark:text-green-400">
+              {ts("Nature Layer:", "Ipele Àdáyébá:")}
+            </label>
+            <select
+              onChange={(e) => {
+                if (e.target.value) {
+                  const track = natureTracks.find(t => t.id === e.target.value);
+                  if (track) playLayeredTrack(track, 2);
+                } else {
+                  stopLayeredTrack(2);
+                }
+              }}
+              className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mb-3 bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-200"
+            >
+              <option value="">{ts("-- Select --", "-- Yan --")}</option>
+              {natureTracks.map(track => (
+                <option key={track.id} value={track.id}>
+                  {language === 'english' ? track.name : track.nameYoruba}
+                </option>
+              ))}
+            </select>
+            {layer2Track && (
+              <div className="text-sm text-green-600 dark:text-green-400 mb-2">
+                {ts("Playing:", "Tí Ń Ṣe:")} {language === 'english' ? layer2Track.name : layer2Track.nameYoruba}
+              </div>
+            )}
+            <audio
+              ref={layer2AudioRef}
+              controls
+              loop
+              className="w-full"
+              onPlay={() => setLayer2Playing(true)}
+              onPause={() => setLayer2Playing(false)}
+            />
+          </div>
+        </div>
+
+        {(layer1Playing || layer2Playing) && (
+          <div className="mt-4 p-3 bg-white dark:bg-gray-700 rounded-lg">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {ts("Layered Experience Active", "Ìrírí Apò Ń Ṣiṣẹ́")}
+              </span>
+              <Button
+                onClick={() => {
+                  stopLayeredTrack(1);
+                  stopLayeredTrack(2);
+                }}
+                variant="outline"
+                size="sm"
+                className="text-red-600 border-red-300 hover:bg-red-50"
+              >
+                {ts("Stop All Layers", "Dá Gbogbo Ipele Dúró")}
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
