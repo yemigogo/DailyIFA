@@ -302,40 +302,46 @@ export default function AmbientSoundscapes() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Layered soundscape functions
-  const playLayeredTrack = (track: AmbientTrack, layer: 1 | 2) => {
-    const audioRef = layer === 1 ? layer1AudioRef : layer2AudioRef;
-    const setTrack = layer === 1 ? setLayer1Track : setLayer2Track;
-    const setPlaying = layer === 1 ? setLayer1Playing : setLayer2Playing;
-    
-    if (audioRef.current) {
-      audioRef.current.src = track.file;
-      audioRef.current.volume = 0.5; // Lower volume for layering
-      audioRef.current.play().then(() => {
-        setTrack(track);
-        setPlaying(true);
-      }).catch(() => {
-        setPlaying(false);
-      });
-    }
+  // Audio file mapping for layered soundscapes
+  const layeredAudioMap: { [key: string]: string } = {
+    ifa_wisdom_chant: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+    bata_drums: "/static/audio/soundscapes/bata_drums.mp3",
+    flowing_river: "/static/audio/soundscapes/flowing_river.mp3",
+    ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3"
   };
 
-  const stopLayeredTrack = (layer: 1 | 2) => {
-    const audioRef = layer === 1 ? layer1AudioRef : layer2AudioRef;
-    const setTrack = layer === 1 ? setLayer1Track : setLayer2Track;
-    const setPlaying = layer === 1 ? setLayer1Playing : setLayer2Playing;
-    
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setTrack(null);
-      setPlaying(false);
+  const playLayeredSound = () => {
+    const layer1Value = (document.getElementById("layer1Select") as HTMLSelectElement)?.value;
+    const layer2Value = (document.getElementById("layer2Select") as HTMLSelectElement)?.value;
+
+    if (layer1AudioRef.current) {
+      layer1AudioRef.current.src = layeredAudioMap[layer1Value] || "";
+      if (layer1Value) {
+        layer1AudioRef.current.volume = 0.6;
+        layer1AudioRef.current.play();
+        setLayer1Track(ambientTracks.find(t => t.id === layer1Value) || null);
+        setLayer1Playing(true);
+      } else {
+        layer1AudioRef.current.pause();
+        setLayer1Track(null);
+        setLayer1Playing(false);
+      }
+    }
+
+    if (layer2AudioRef.current) {
+      layer2AudioRef.current.src = layeredAudioMap[layer2Value] || "";
+      if (layer2Value) {
+        layer2AudioRef.current.volume = 0.6;
+        layer2AudioRef.current.play();
+        setLayer2Track(ambientTracks.find(t => t.id === layer2Value) || null);
+        setLayer2Playing(true);
+      } else {
+        layer2AudioRef.current.pause();
+        setLayer2Track(null);
+        setLayer2Playing(false);
+      }
     }
   };
-
-  // Categorized tracks for layering
-  const chantTracks = ambientTracks.filter(track => track.category === "chants");
-  const drumTracks = ambientTracks.filter(track => track.category === "drums");
-  const natureTracks = ambientTracks.filter(track => track.category === "nature");
 
   return (
     <div className="bg-white dark:bg-gray-800 mt-8 p-6 rounded-xl shadow-md">
@@ -500,31 +506,13 @@ export default function AmbientSoundscapes() {
               {ts("Spiritual Layer:", "Ipele Ẹ̀mí:")}
             </label>
             <select
-              onChange={(e) => {
-                if (e.target.value) {
-                  const track = [...chantTracks, ...drumTracks].find(t => t.id === e.target.value);
-                  if (track) playLayeredTrack(track, 1);
-                } else {
-                  stopLayeredTrack(1);
-                }
-              }}
+              id="layer1Select"
+              onChange={playLayeredSound}
               className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mb-3 bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-200"
             >
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
-              <optgroup label={ts("Chants", "Orin")}>
-                {chantTracks.map(track => (
-                  <option key={track.id} value={track.id}>
-                    {language === 'english' ? track.name : track.nameYoruba}
-                  </option>
-                ))}
-              </optgroup>
-              <optgroup label={ts("Drums", "Ìlù")}>
-                {drumTracks.map(track => (
-                  <option key={track.id} value={track.id}>
-                    {language === 'english' ? track.name : track.nameYoruba}
-                  </option>
-                ))}
-              </optgroup>
+              <option value="ifa_wisdom_chant">{ts("Ifá Wisdom Chant", "Orin Ọgbọ́n Ifá")}</option>
+              <option value="bata_drums">{ts("Bata Drums", "Ìlù Bàtá")}</option>
             </select>
             {layer1Track && (
               <div className="text-sm text-purple-600 dark:text-purple-400 mb-2">
@@ -547,22 +535,13 @@ export default function AmbientSoundscapes() {
               {ts("Nature Layer:", "Ipele Àdáyébá:")}
             </label>
             <select
-              onChange={(e) => {
-                if (e.target.value) {
-                  const track = natureTracks.find(t => t.id === e.target.value);
-                  if (track) playLayeredTrack(track, 2);
-                } else {
-                  stopLayeredTrack(2);
-                }
-              }}
+              id="layer2Select"
+              onChange={playLayeredSound}
               className="w-full border border-gray-300 dark:border-gray-600 p-2 rounded mb-3 bg-white dark:bg-gray-600 text-gray-800 dark:text-gray-200"
             >
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
-              {natureTracks.map(track => (
-                <option key={track.id} value={track.id}>
-                  {language === 'english' ? track.name : track.nameYoruba}
-                </option>
-              ))}
+              <option value="flowing_river">{ts("Flowing River", "Odò Tí Ń Sàn")}</option>
+              <option value="ocean_blessing_waves">{ts("Ocean Blessing Waves", "Ìgbì Ìbùkún Òkun")}</option>
             </select>
             {layer2Track && (
               <div className="text-sm text-green-600 dark:text-green-400 mb-2">
@@ -588,8 +567,21 @@ export default function AmbientSoundscapes() {
               </span>
               <Button
                 onClick={() => {
-                  stopLayeredTrack(1);
-                  stopLayeredTrack(2);
+                  if (layer1AudioRef.current) {
+                    layer1AudioRef.current.pause();
+                    setLayer1Track(null);
+                    setLayer1Playing(false);
+                  }
+                  if (layer2AudioRef.current) {
+                    layer2AudioRef.current.pause();
+                    setLayer2Track(null);
+                    setLayer2Playing(false);
+                  }
+                  // Reset selects
+                  const layer1Select = document.getElementById("layer1Select") as HTMLSelectElement;
+                  const layer2Select = document.getElementById("layer2Select") as HTMLSelectElement;
+                  if (layer1Select) layer1Select.value = "";
+                  if (layer2Select) layer2Select.value = "";
                 }}
                 variant="outline"
                 size="sm"
