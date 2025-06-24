@@ -60,6 +60,36 @@ const orikiData: OrikiVerse[] = [
     orisha: "Ọya",
     text: "Oya Ìyá, alágbára afẹ́fẹ́. Ọya tó fẹ̀ ẹ̀mí sẹ̀yìn. \nMother of wind, fierce one who sweeps souls to the ancestors.",
     audioUrl: "/static/audio/oya.mp3"
+  },
+  {
+    id: "oshosi",
+    orisha: "Ọ̀ṣọ́ọ̀sì",
+    text: "Ọ̀ṣọ́ọ̀sì agbani ni 'gba ogun, ọmọ ọdẹ tí í mu ẹyẹ lẹ́sẹ̀. \nỌ̀ṣọ́ọ̀sì, the rescuer in battle, hunter-child who catches birds with his feet.",
+    audioUrl: "/static/audio/oshosi.mp3"
+  },
+  {
+    id: "olokun",
+    orisha: "Olókun",
+    text: "Olókun fi ayé ṣe 'bùkún, oní agbára omi tó jinlẹ̀. \nOlókun, who blesses the world, ruler of the deep ocean's power.",
+    audioUrl: "/static/audio/olokun.mp3"
+  },
+  {
+    id: "orishaoko",
+    orisha: "Òrìṣà Òkò",
+    text: "Òrìṣà Òkò, aláṣẹ ilẹ̀, oní irúgbìn àti àlàfíà. \nDeity of the farm, master of the land, giver of peace and seed.",
+    audioUrl: "/static/audio/orishaoko.mp3"
+  },
+  {
+    id: "osanyin",
+    orisha: "Ọ̀sányìn",
+    text: "Ọ̀sányìn, ọlọ́gbò tí kò leè dá, ọba ewe àti egbo. \nMaster of all herbs, one-legged yet all-seeing, king of healing plants.",
+    audioUrl: "/static/audio/osanyin.mp3"
+  },
+  {
+    id: "ayelala",
+    orisha: "Ayé-là-là",
+    text: "Ayé-là-là, apẹẹrẹ òtítọ́, agbára ajé lórùn. \nThe mighty judge, symbol of truth, spiritual enforcer of justice.",
+    audioUrl: "/static/audio/ayelala.mp3"
   }
 ];
 
@@ -140,6 +170,11 @@ export default function OrikiPlayback() {
               <option value="oshun">Ọ̀ṣun</option>
               <option value="elegba">Èṣù Ẹlẹ́gbára</option>
               <option value="oya">Ọya</option>
+              <option value="oshosi">Ọ̀ṣọ́ọ̀sì</option>
+              <option value="olokun">Olókun</option>
+              <option value="orishaoko">Òrìṣà Òkò</option>
+              <option value="osanyin">Ọ̀sányìn</option>
+              <option value="ayelala">Ayé-là-là</option>
             </select>
           </div>
 
