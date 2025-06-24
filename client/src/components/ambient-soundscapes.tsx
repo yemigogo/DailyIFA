@@ -55,7 +55,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Sacred Bata drums speaking the language of the Orishas",
     descriptionYoruba: "Ìlù Bàtá mímọ́ tí ń sọ èdè àwọn Òrìṣà",
-    file: "/static/ambient/bata_drums.mp3",
+    file: "/static/audio/soundscapes/bata_drums.mp3",
     category: "drums",
     duration: 720
   },
@@ -97,7 +97,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Odò Tí Ń Sàn",
     description: "Gentle river sounds for Oshun meditation",
     descriptionYoruba: "Ohùn odò tútù fún ìjímọ̀ Ọ̀ṣun",
-    file: "/static/ambient/river_new.mp3",
+    file: "/static/audio/soundscapes/flowing_river.mp3",
     category: "nature",
     duration: 780
   },
@@ -107,7 +107,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìgbì Ìbùkún Òkun",
     description: "Ocean waves carrying Yemoja's blessings",
     descriptionYoruba: "Ìgbì òkun tí ń gbé ìbùkún Yemọja",
-    file: "/static/ambient/ocean_blessing_waves.mp3",
+    file: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
     category: "nature",
     duration: 660
   },
@@ -129,7 +129,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àlàáfíà Tẹ́ńpílì",
     description: "Serene atmosphere of a peaceful Yoruba temple",
     descriptionYoruba: "Àyíká tútù ti tẹ́ńpílì Yorùbá aláàfíà",
-    file: "/static/ambient/temple_peace.mp3",
+    file: "/static/audio/soundscapes/temple_peace.mp3",
     category: "mixed",
     duration: 1200
   },
@@ -139,7 +139,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Àjọ̀dún Mímọ́",
     description: "Sounds of a traditional Yoruba spiritual ceremony",
     descriptionYoruba: "Ohùn àjọ̀dún ẹ̀mí Yorùbá ìbílẹ̀",
-    file: "/static/ambient/sacred_ceremony.mp3",
+    file: "/static/audio/soundscapes/sacred_ceremony.mp3",
     category: "mixed",
     duration: 960
   },
