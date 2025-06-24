@@ -178,6 +178,7 @@ export default function AmbientSoundscapes() {
   const [playlistIndex, setPlaylistIndex] = useState(0);
   const [activeMood, setActiveMood] = useState<string | null>(null);
   const playlistAudioRef = useRef<HTMLAudioElement>(null);
+  const sleepTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const categories = [
     { id: "all", name: "All Sounds", nameYoruba: "Gbogbo Ohùn" },
@@ -385,6 +386,42 @@ export default function AmbientSoundscapes() {
     }
   };
 
+  const setSleepTimer = () => {
+    if (sleepTimerRef.current) {
+      clearTimeout(sleepTimerRef.current);
+    }
+    
+    const sleepMinutesInput = document.getElementById("sleepMinutes") as HTMLInputElement;
+    const mins = parseInt(sleepMinutesInput?.value || "0");
+    
+    if (isNaN(mins) || mins <= 0) {
+      alert(ts("Enter a valid number of minutes", "Fi nọ́mbà ìṣẹ́jú tó tọ̀nà"));
+      return;
+    }
+
+    const ms = mins * 60 * 1000;
+    sleepTimerRef.current = setTimeout(() => {
+      // Stop all audio players
+      if (audioRef.current) audioRef.current.pause();
+      if (layer1AudioRef.current) layer1AudioRef.current.pause();
+      if (layer2AudioRef.current) layer2AudioRef.current.pause();
+      if (playlistAudioRef.current) playlistAudioRef.current.pause();
+      
+      // Reset all states
+      setIsPlaying(false);
+      setLayer1Playing(false);
+      setLayer2Playing(false);
+      setActiveMood(null);
+      setCurrentTrack(null);
+      setLayer1Track(null);
+      setLayer2Track(null);
+      
+      alert(ts("🛏 Soundscape has stopped. Sleep well.", "🛏 Ohùn àyíká ti dáwọ́. Sun dáradára."));
+    }, ms);
+
+    alert(ts(`Sleep timer set for ${mins} minutes`, `Àkókò oorun ti yan fún ìṣẹ́jú ${mins}`));
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 mt-8 p-6 rounded-xl shadow-md">
       <div className="flex items-center justify-between mb-6">
@@ -443,6 +480,32 @@ export default function AmbientSoundscapes() {
             />
           </div>
         )}
+      </div>
+
+      {/* Sleep Timer */}
+      <div className="mb-6 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+        <h3 className="font-semibold text-purple-700 dark:text-purple-400 mb-3">
+          🛏 {ts("Sleep Timer", "Àkókò Oorun")}
+        </h3>
+        <div className="flex items-center gap-3">
+          <input
+            id="sleepMinutes"
+            type="number"
+            min="1"
+            max="180"
+            placeholder={ts("Minutes", "Ìṣẹ́jú")}
+            className="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+          />
+          <Button
+            onClick={setSleepTimer}
+            className="bg-purple-600 hover:bg-purple-700 text-white"
+          >
+            {ts("Set Timer", "Yan Àkókò")}
+          </Button>
+        </div>
+        <p className="text-xs text-purple-600 dark:text-purple-400 mt-2">
+          {ts("All soundscapes will stop automatically after the set time", "Gbogbo ohùn àyíká yóò dáwọ́ láìfọwọ́si lẹ́yìn àkókò tí a yan")}
+        </p>
       </div>
 
       {/* Category Filter */}
