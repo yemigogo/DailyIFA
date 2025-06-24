@@ -295,10 +295,12 @@ export default function AmbientSoundscapes() {
       {/* Audio Element */}
       <audio
         ref={audioRef}
+        controls
+        loop
+        className="w-full mt-4"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
-        loop
       />
 
       {/* Soundscape Grid */}
