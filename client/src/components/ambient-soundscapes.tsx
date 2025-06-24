@@ -23,7 +23,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Orin Ọgbọ́n Ifá",
     description: "Traditional Ifá chanting for wisdom and guidance",
     descriptionYoruba: "Orin Ifá ìbílẹ̀ fún ọgbọ́n àti ìtọ́sọ́nà",
-    file: "/static/ambient/wisdom_chant.mp3",
+    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
     category: "chants",
     duration: 600
   },
@@ -33,7 +33,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Orin Ìyìn Òrìṣà",
     description: "Devotional chanting to honor the Orishas",
     descriptionYoruba: "Orin ìsìn láti bu ọlá fún àwọn Òrìṣà",
-    file: "/static/ambient/blessing_chant.mp3",
+    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
     category: "chants",
     duration: 480
   },
@@ -43,7 +43,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìpè Àwọn Bàbá",
     description: "Sacred chants to connect with ancestors",
     descriptionYoruba: "Orin mímọ́ láti dá sí àwọn bàbá wa",
-    file: "/static/ambient/wisdom_chant.mp3",
+    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
     category: "chants",
     duration: 540
   },
@@ -75,7 +75,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ẹgbẹ́ Ìlù Dùndún",
     description: "Full ensemble of Dundun drums in ceremonial rhythm",
     descriptionYoruba: "Ẹgbẹ́ kíkún ìlù Dùndún ní ìlù àjọ̀dún",
-    file: "/static/ambient/talking_drum.mp3",
+    file: "/static/audio/soundscapes/talking_drum_loop.mp3",
     category: "drums",
     duration: 840
   },
@@ -149,7 +149,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìwúre Òwúrọ̀",
     description: "Early morning prayers with birds and gentle chanting",
     descriptionYoruba: "Ìwúre kùtùkùtù pẹ̀lú ẹyẹ àti orin dídùn",
-    file: "/static/ambient/blessing_chant.mp3",
+    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
     category: "mixed",
     duration: 840
   }
