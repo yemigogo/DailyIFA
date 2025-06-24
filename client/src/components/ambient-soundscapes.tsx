@@ -566,6 +566,72 @@ export default function AmbientSoundscapes() {
         onEnded={() => setIsPlaying(false)}
       />
 
+      {/* Audio Element */}
+      <audio
+        ref={audioRef}
+        controls
+        loop
+        className="w-full mt-4"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => setIsPlaying(false)}
+      />
+
+      {/* Soundscape Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filteredTracks.map((track) => (
+          <Card key={track.id} className="hover:shadow-lg transition-shadow">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base text-teal-700 dark:text-teal-400">
+                {language === 'english' ? track.name : track.nameYoruba}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                {language === 'english' ? track.description : track.descriptionYoruba}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500 capitalize bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                  {ts(
+                    track.category,
+                    track.category === "chants" ? "Orin" :
+                    track.category === "drums" ? "Ìlù" :
+                    track.category === "nature" ? "Àdáyébá" : "Àpọ̀pọ̀"
+                  )}
+                </span>
+                {track.duration && (
+                  <span className="text-xs text-gray-500">
+                    {formatDuration(track.duration)}
+                  </span>
+                )}
+              </div>
+              <Button
+                onClick={() => playTrack(track)}
+                className="w-full mt-3 bg-teal-600 hover:bg-teal-700"
+              >
+                {currentTrack?.id === track.id && isPlaying ? (
+                  <>
+                    <Pause className="w-4 h-4 mr-2" />
+                    {ts("Pause", "Dúró")}
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-4 h-4 mr-2" />
+                    {ts("Play", "Ṣe")}
+                  </>
+                )}
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {filteredTracks.length === 0 && (
+        <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+          {ts("No soundscapes found in this category.", "Kò sí ohùn àyíká nínú ìrú yìí.")}
+        </div>
+      )}
+
       {/* Soundscape Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredTracks.map((track) => (
@@ -815,6 +881,53 @@ export default function AmbientSoundscapes() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Custom Playlist Saver */}
+      <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+        <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-3">
+          💾 {ts("Save Custom Playlist", "Fi Àtòjọ Aládàáṣe Pamọ́")}
+        </h3>
+        <div className="flex items-center gap-3 mb-3">
+          <input
+            id="playlistName"
+            type="text"
+            placeholder={ts("Playlist name", "Orúkọ àtòjọ")}
+            className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+          />
+          <Button
+            onClick={() => {
+              const nameInput = document.getElementById("playlistName") as HTMLInputElement;
+              const name = nameInput?.value?.trim();
+              if (!name) {
+                alert(ts("Enter a playlist name", "Fi orúkọ àtòjọ sí"));
+                return;
+              }
+              
+              const tracks = currentPlaylist.length > 0 ? currentPlaylist : 
+                           currentTrack ? [currentTrack.id] : [];
+              
+              if (tracks.length === 0) {
+                alert(ts("No tracks to save", "Kò sí orin tí a ó pamọ́"));
+                return;
+              }
+
+              // Save to localStorage for now
+              const savedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists") || "{}");
+              savedPlaylists[name] = tracks;
+              localStorage.setItem("savedPlaylists", JSON.stringify(savedPlaylists));
+              
+              alert(ts(`Playlist "${name}" saved!`, `Àtòjọ "${name}" ti pamọ́!`));
+              nameInput.value = "";
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            {ts("Save", "Pamọ́")}
+          </Button>
+        </div>
+        <p className="text-xs text-blue-600 dark:text-blue-400">
+          {ts("Saves currently playing tracks or mood playlist", "Ń pamọ́ àwọn orin tí ń ṣe tàbí àtòjọ ìpinnu")}
+        </p>
       </div>
     </div>
   );
