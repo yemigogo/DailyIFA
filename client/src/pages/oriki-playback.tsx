@@ -101,12 +101,24 @@ export default function OrikiPlayback() {
   const [selectedOrisha, setSelectedOrisha] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const audioRef = useRef<HTMLAudioElement>(null);
+  const weeklyAudioRef = useRef<HTMLAudioElement>(null);
+  const [weeklyIsPlaying, setWeeklyIsPlaying] = useState(false);
 
   const filteredOrikis = orikiData.filter(oriki => {
     return selectedOrisha === "" || oriki.id === selectedOrisha;
   });
 
   const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
+
+  // Get Oríkì of the Week based on current week number
+  const getWeeklyOriki = () => {
+    const now = new Date();
+    const weekNumber = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 1).getTime()) / (7 * 24 * 60 * 60 * 1000));
+    const index = weekNumber % orikiData.length;
+    return orikiData[index];
+  };
+
+  const weeklyOriki = getWeeklyOriki();
 
   const playOriki = (oriki: OrikiVerse) => {
     setSelectedOriki(oriki);
@@ -131,6 +143,48 @@ export default function OrikiPlayback() {
               "Gbọ́ àwọn ewì ìyìn Yorùbá ìbílẹ̀ fún àwọn Òrìṣà. Oríkì kọ̀ọ̀kan ní ìtumọ̀ ẹ̀mí jinlẹ̀ tí ó sì ń so wá pọ̀ mọ́ ọgbọ́n àwọn bàbá wa."
             )}
           </p>
+        </div>
+
+        {/* Oríkì of the Week */}
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl shadow-md mb-8 max-w-2xl mx-auto">
+          <h2 className="text-lg font-bold mb-4 text-indigo-800 dark:text-indigo-400 flex items-center">
+            🌟 {ts("Oríkì of the Week", "Oríkì Ọ̀sẹ̀ yìí")}
+          </h2>
+          <div className="mb-4">
+            <h3 className="font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+              {weeklyOriki.orisha}
+            </h3>
+            <p className="italic text-gray-700 dark:text-gray-300 mb-4 whitespace-pre-line">
+              {weeklyOriki.text}
+            </p>
+            <audio
+              ref={weeklyAudioRef}
+              src={weeklyOriki.audioUrl}
+              controls
+              className="w-full rounded-lg"
+              onPlay={() => setWeeklyIsPlaying(true)}
+              onPause={() => setWeeklyIsPlaying(false)}
+              onEnded={() => setWeeklyIsPlaying(false)}
+            />
+          </div>
+          <div className="flex justify-center">
+            <Button
+              onClick={() => {
+                if (weeklyAudioRef.current) {
+                  if (weeklyIsPlaying) {
+                    weeklyAudioRef.current.pause();
+                  } else {
+                    weeklyAudioRef.current.play();
+                  }
+                }
+              }}
+              variant="outline"
+              className="border-indigo-500 text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:border-indigo-400"
+            >
+              {weeklyIsPlaying ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
+              {weeklyIsPlaying ? ts("Pause", "Dúró") : ts("Play Weekly Oríkì", "Ṣe Oríkì Ọ̀sẹ̀")}
+            </Button>
+          </div>
         </div>
 
         {/* Main Orisha Selector */}

@@ -4,6 +4,10 @@
 A comprehensive bilingual Yoruba spiritual guidance application providing authentic Ifá readings, Odu wisdom, and traditional spiritual practices. The app serves as a bridge between ancient Yoruba wisdom and modern digital accessibility.
 
 ## Recent Changes
+**June 24, 2025**
+- ✅ **Oríkì of the Week Feature**: Added rotating weekly showcase of traditional praise poetry with automatic selection based on week number
+- ✅ **Expanded Orisha Collection**: Complete 13 Orishas including Ọ̀ṣọ́ọ̀sì, Olókun, Òrìṣà Òkò, Ọ̀sányìn, and Ayé-là-là
+
 **June 23, 2025**
 - ✅ **Major Architecture Change**: Successfully converted from React/Node.js to Python Flask with Jinja2 templates
 - ✅ **Bilingual Template System**: Implemented comprehensive English/Yoruba language support throughout
