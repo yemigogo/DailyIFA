@@ -15,7 +15,7 @@ interface OrikiVerse {
   versesYoruba: string[];
   meaning: string;
   meaningYoruba: string;
-  audioUrl?: string;
+  audioUrl: string;
   category: 'praise' | 'invocation' | 'blessing' | 'story';
   difficulty: 'beginner' | 'intermediate' | 'advanced';
 }
@@ -43,6 +43,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This praise acknowledges Òrúnmìlà as the divine witness of all destiny, the sage who knows the mysteries of birth and death, and the wise teacher who guides humanity through the wisdom of Ifá.",
     meaningYoruba: "Oríkì yìí ń jẹ́wọ́ Òrúnmìlà gẹ́gẹ́ bí ẹlẹ́rìí ọrun fún gbogbo ìpín, ọlọ́gbọ́n tí ó mọ àṣírí ìbí àti ikú, àti olùkọ́ ọlọ́gbọ́n tí ó ń darí ẹ̀dá ènìyàn nípasẹ̀ ọgbọ́n Ifá.",
+    audioUrl: "/static/audio/orunmila.mp3",
     category: "praise",
     difficulty: "intermediate"
   },
@@ -68,6 +69,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This praises Ṣàngó as the mighty king of thunder, emphasizing his power over fire and lightning, his role as a bringer of divine justice, and his eternal sovereignty.",
     meaningYoruba: "Èyí ń yin Ṣàngó gẹ́gẹ́ bí alágbára ọba àrá, tí ń tẹnumọ́ agbára rẹ̀ lórí iná àti mọ̀nàmọ́ná, ipò rẹ̀ gẹ́gẹ́ bí amudájú ọ̀run, àti ọbaláṣẹ rẹ̀ láéláé.",
+    audioUrl: "/static/audio/sango.mp3",
     category: "invocation",
     difficulty: "beginner"
   },
@@ -93,6 +95,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This honors Ọbàtálá as the pure creator deity who shapes human bodies, emphasizing his wisdom, compassion, and special care for those with disabilities.",
     meaningYoruba: "Èyí ń bu ọlá fún Ọbàtálá gẹ́gẹ́ bí òrìṣà ẹlẹ́dá mímọ́ tí ó ń ṣe ara ènìyàn, tí ń tẹnumọ́ ọgbọ́n rẹ̀, àánú, àti àbójútó pàtàkì fún àwọn tí ó ní àìlágbára.",
+    audioUrl: "/static/audio/obatala.mp3",
     category: "blessing",
     difficulty: "intermediate"
   },
@@ -118,6 +121,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This celebrates Ògún as the divine blacksmith and warrior, master of technology and industry, who clears obstacles and protects workers and travelers.",
     meaningYoruba: "Èyí ń ṣe àjọyọ̀ Ògún gẹ́gẹ́ bí agbẹ́dẹ ọ̀run àti jagunjagun, ọga ìmọ̀-ẹrọ àti iṣẹ́-ọnà, tí ó ń mú àwọn ìdènà kúrò tí ó sì ń dáàbò bo àwọn òṣiṣẹ́ àti arìnrìn-àjò.",
+    audioUrl: "/static/audio/ogun.mp3",
     category: "invocation", 
     difficulty: "advanced"
   },
@@ -143,6 +147,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This honors Ọ̀ṣun as the nurturing river goddess, source of fertility, love, and abundance, celebrated for her healing waters and protective motherhood.",
     meaningYoruba: "Èyí ń bu ọlá fún Ọ̀ṣun gẹ́gẹ́ bí òrìṣà odò olùtọ́jú, orísun ìbísí, ìfẹ́, àti ọ̀pọ̀lọpọ̀, tí a ń ṣe àjọyọ̀ rẹ̀ fún omi ìwòsàn àti ìyáni aṣáàbò.",
+    audioUrl: "/static/audio/oshun.mp3",
     category: "blessing",
     difficulty: "beginner"
   },
@@ -168,6 +173,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This honors Oya as the powerful Orisha of winds, storms, and transformation, guardian of the marketplace and cemetery gates, known for her fierce protection and warrior spirit.",
     meaningYoruba: "Èyí ń bu ọlá fún Ọya gẹ́gẹ́ bí òrìṣà alágbára ti àfẹ́fẹ́, ìjì, àti ìyípadà, aṣáàbò ọjà àti ẹnu-ọ̀nà isà òkú, tí a mọ̀ fún àgbérò líle àti ẹ̀mí jagunjagun rẹ̀.",
+    audioUrl: "/static/audio/oya.mp3",
     category: "invocation",
     difficulty: "advanced"
   },
@@ -193,6 +199,7 @@ const orikiData: OrikiVerse[] = [
     ],
     meaning: "This celebrates Yemoja as the great mother of all waters, the ocean goddess who nurtures all life, especially protecting women and children with her infinite maternal love.",
     meaningYoruba: "Èyí ń ṣe àjọyọ̀ Yemọja gẹ́gẹ́ bí ìyá ńlá gbogbo omi, òrìṣà òkun tí ó ń tọ́jú gbogbo ẹ̀mí, pàápàá láti dáàbò bo àwọn obìnrin àti ọmọdé pẹ̀lú ìfẹ́ ìyá àìlopin rẹ̀.",
+    audioUrl: "/static/audio/yemoja.mp3",
     category: "blessing",
     difficulty: "intermediate"
   }
@@ -333,6 +340,16 @@ export default function OrikiPlayback() {
           {/* Audio Player */}
           {selectedOriki && (
             <div className="mb-4">
+              <audio
+                ref={audioRef}
+                src={selectedOriki.audioUrl}
+                controls
+                className="w-full mb-4 rounded-lg"
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={() => setIsPlaying(false)}
+              />
+              
               <div className="flex items-center justify-center gap-4 mb-4">
                 <Button
                   variant="outline"
@@ -344,12 +361,20 @@ export default function OrikiPlayback() {
                 </Button>
                 
                 <Button
-                  onClick={isPlaying ? pauseOriki : () => setIsPlaying(true)}
+                  onClick={() => {
+                    if (audioRef.current) {
+                      if (isPlaying) {
+                        audioRef.current.pause();
+                      } else {
+                        audioRef.current.play();
+                      }
+                    }
+                  }}
                   className="bg-spiritual-blue hover:bg-spiritual-blue/90"
                 >
                   {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                   <span className="ml-2">
-                    {isPlaying ? ts("Pause", "Dúró") : ts("Play", "Ṣe")}
+                    {isPlaying ? ts("Pause", "Dúró") : ts("Play Audio", "Ṣe Ohùn")}
                   </span>
                 </Button>
                 
