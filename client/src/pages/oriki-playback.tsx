@@ -51,7 +51,7 @@ const orikiData: OrikiVerse[] = [
   },
   {
     id: "elegba",
-    orisha: "Ẹlégbára",
+    orisha: "Èṣù Ẹlẹ́gbára",
     text: "Ẹlẹ́gbára, onílẹ̀ kúrò. Alágbára orírun ọ̀nà. \nKeeper of the crossroads, opener of doors.",
     audioUrl: "/static/audio/elegba.mp3"
   },
@@ -73,7 +73,7 @@ export default function OrikiPlayback() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const filteredOrikis = orikiData.filter(oriki => {
-    return selectedOrisha === "" || oriki.orisha === selectedOrisha;
+    return selectedOrisha === "" || oriki.id === selectedOrisha;
   });
 
   const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
@@ -119,7 +119,7 @@ export default function OrikiPlayback() {
               onChange={(e) => {
                 setSelectedOrisha(e.target.value);
                 if (e.target.value) {
-                  const selectedData = orikiData.find(oriki => oriki.orisha === e.target.value);
+                  const selectedData = orikiData.find(oriki => oriki.id === e.target.value);
                   if (selectedData) {
                     setSelectedOriki(selectedData);
                     setCurrentVerseIndex(0);
@@ -132,9 +132,14 @@ export default function OrikiPlayback() {
               className="w-full border border-gray-300 dark:border-gray-600 p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             >
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
-              {uniqueOrishas.map(orisha => (
-                <option key={orisha} value={orisha}>{orisha}</option>
-              ))}
+              <option value="orunmila">Òrúnmìlà</option>
+              <option value="ogun">Ògún</option>
+              <option value="obatala">Ọbàtálá</option>
+              <option value="sango">Ṣàngó</option>
+              <option value="yemaya">Yemọja</option>
+              <option value="oshun">Ọ̀ṣun</option>
+              <option value="elegba">Èṣù Ẹlẹ́gbára</option>
+              <option value="oya">Ọya</option>
             </select>
           </div>
 
