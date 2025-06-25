@@ -213,6 +213,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // AI-powered rhythm recommendation endpoint
+  app.post("/api/rhythm-recommendation", async (req, res) => {
+    try {
+      const { intent, customIntent, currentMood, language } = req.body;
+      
+      if (!process.env.ANTHROPIC_API_KEY) {
+        return res.status(500).json({ error: "ANTHROPIC_API_KEY not configured" });
+      }
+
+      // Import Anthropic SDK
+      const Anthropic = require('@anthropic-ai/sdk');
+      const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+
+      const intentDescription = customIntent || intent;
+      const prompt = `As an expert in traditional Yoruba spiritual practices and Batá drumming, provide a personalized rhythm recommendation based on the following:
+
+Spiritual Intent: ${intentDescription}
+Current Emotional State: ${currentMood || 'not specified'}
+Language: ${language || 'english'}
+
+Please provide a JSON response with the following structure:
+{
+  "primaryPattern": "Name of the recommended Batá rhythm pattern (e.g., Egungun Ceremonial, Orisha Calling, Ifa Invocation)",
+  "tempo": "BPM between 60-120 based on intent",
+  "duration": "Recommended session duration in minutes",
+  "ambientSoundscape": "Recommended background sound (Ocean Blessing Waves, Sacred Forest, etc.)",
+  "spiritualFocus": "Brief description of what to focus on during the session",
+  "guidance": "Spiritual guidance and intentions to hold during the rhythm session",
+  "guidanceYoruba": "Same guidance translated to Yoruba",
+  "chantSuggestion": "Optional traditional Yoruba phrase or chant to accompany the rhythm",
+  "ritualTiming": "Best time of day or conditions for this practice",
+  "energyAlignment": "How this rhythm aligns with the user's spiritual energy"
+}
+
+Base your recommendations on authentic Yoruba spiritual traditions, the healing properties of specific drum patterns, and the energetic qualities of different rhythms. Consider the user's emotional state when selecting tempo and pattern complexity.`;
+
+      const message = await anthropic.messages.create({
+        max_tokens: 1024,
+        messages: [{ role: 'user', content: prompt }],
+        model: "claude-sonnet-4-20250514",
+      });
+
+      let recommendation;
+      try {
+        recommendation = JSON.parse(message.content[0].text);
+      } catch (parseError) {
+        // Fallback if AI doesn't return valid JSON
+        recommendation = {
+          primaryPattern: "Egungun Ceremonial",
+          tempo: intent === "healing" ? 70 : intent === "protection" ? 90 : 80,
+          duration: 15,
+          ambientSoundscape: intent === "healing" ? "Ocean Blessing Waves" : "Sacred Forest",
+          spiritualFocus: `Focus on ${intentDescription}`,
+          guidance: "Allow the rhythm to guide your spiritual journey and open your heart to divine wisdom.",
+          guidanceYoruba: "Jẹ́ kí ìlù tọ́ ọ sínú ìrìnàjò ẹ̀mí rẹ kí o sì ṣí ọkàn rẹ sí ọgbọ́n òrun.",
+          ritualTiming: "Early morning or evening during quiet reflection time",
+          energyAlignment: "This rhythm will help balance and harmonize your spiritual energy"
+        };
+      }
+      
+      res.json({ recommendation });
+    } catch (error) {
+      console.error("Error generating rhythm recommendation:", error);
+      res.status(500).json({ error: "Failed to generate recommendation" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

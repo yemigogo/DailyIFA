@@ -149,12 +149,12 @@ export default function RhythmRecommendation() {
                   className={`
                     p-3 rounded-lg border-2 transition-all duration-200
                     ${isSelected 
-                      ? `border-${intent.color}-500 bg-${intent.color}-100 dark:bg-${intent.color}-900/30` 
+                      ? 'border-purple-500 bg-purple-100 dark:bg-purple-900/30' 
                       : 'border-gray-200 dark:border-gray-600 hover:border-purple-300 dark:hover:border-purple-500'
                     }
                   `}
                 >
-                  <IconComponent className={`w-6 h-6 mx-auto mb-2 ${isSelected ? `text-${intent.color}-600` : 'text-gray-500'}`} />
+                  <IconComponent className={`w-6 h-6 mx-auto mb-2 ${isSelected ? 'text-purple-600' : 'text-gray-500'}`} />
                   <div className="text-sm font-medium text-center">
                     {language === "yoruba" ? intent.nameYoruba : intent.name}
                   </div>

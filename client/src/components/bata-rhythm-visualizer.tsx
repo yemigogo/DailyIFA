@@ -77,15 +77,28 @@ export default function BataRhythmVisualizer() {
   };
 
   useEffect(() => {
-    // Initialize Web Audio API
-    if (typeof window !== 'undefined' && !audioContextRef.current) {
-      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-    }
+    // Listen for AI rhythm recommendations
+    const handleRecommendation = (event: CustomEvent) => {
+      const recommendation = event.detail;
+      if (recommendation.tempo) {
+        setTempo(recommendation.tempo);
+      }
+      if (recommendation.primaryPattern) {
+        // Map AI recommendation to our pattern keys
+        const patternKey = recommendation.primaryPattern.toLowerCase().replace(/[^a-z]/g, '_');
+        if (rhythmPatterns[patternKey]) {
+          setSelectedPattern(patternKey);
+        }
+      }
+    };
+
+    window.addEventListener('applyRhythmRecommendation', handleRecommendation as EventListener);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      window.removeEventListener('applyRhythmRecommendation', handleRecommendation as EventListener);
     };
   }, []);
 
