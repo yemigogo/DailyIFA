@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import BataRhythmVisualizer from "./bata-rhythm-visualizer";
 
 interface AmbientTrack {
   id: string;
