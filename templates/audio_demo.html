@@ -317,6 +317,7 @@
         };
 
         let bataPlayer = null;
+        let oceanPlayer = null;
 
         function startBataLoop(volume = 0.8) {
             console.log("AUTHENTIC EGUNGUN BATA: startBataLoop called with volume:", volume);
@@ -327,7 +328,7 @@
             }
             
             console.log("Creating new AUTHENTIC EGUNGUN BATA player");
-            bataPlayer = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
+            bataPlayer = new Audio(audioMap.bata_egungun_abida);
             bataPlayer.loop = true;
             bataPlayer.volume = volume;
             
@@ -352,6 +353,21 @@
                 bataPlayer.pause();
                 bataPlayer.currentTime = 0;
                 bataPlayer = null;
+            }
+        }
+
+        function startOceanLoop(volume = 0.5) {
+            if (oceanPlayer && !oceanPlayer.paused) return;        // already playing
+            oceanPlayer        = new Audio(audioMap.ocean_blessing_waves);
+            oceanPlayer.loop   = true;
+            oceanPlayer.volume = volume;   // 0–1
+            oceanPlayer.play().catch(err => console.error("Ocean audio error:", err));
+        }
+
+        function stopOceanLoop() {
+            if (oceanPlayer) {
+                oceanPlayer.pause();
+                oceanPlayer.currentTime = 0;
             }
         }
 
@@ -493,6 +509,16 @@
                 a1.play().catch(e => console.log("Layer 1 failed:", e));
             }
             
+            // If the user picked Ocean Waves for layer 2, use proper loop management
+            if (l2 === "ocean_blessing_waves") {
+                console.log("User selected OCEAN BLESSING WAVES - starting loop");
+                startOceanLoop(0.5 * intensityMultiplier);
+            } else if (l2.includes('bata') || l2.includes('drum')) {
+                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
+            } else {
+                a2.play().catch(e => console.log("Layer 2 failed:", e));
+            }
+            
             // Apply drum offset timing for layer 2
             if (l2.includes('bata') || l2.includes('drum')) {
                 setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
@@ -605,6 +631,10 @@
                 audio.pause();
                 audio.currentTime = 0;
             });
+            
+            // Stop all specialized loops
+            stopBataLoop();
+            stopOceanLoop();
             
             if (sleepTimer) {
                 clearTimeout(sleepTimer);

@@ -133,6 +133,7 @@ export default function BataRhythmVisualizer() {
   // Global bataPlayer reference following user's pattern
   const [isLooping, setIsLooping] = useState(false);
   const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
+  const oceanPlayerRef = useRef<HTMLAudioElement | null>(null);
 
   const startBataLoop = (volume: number = 0.8) => {
     console.log("startBataLoop called with volume:", volume);
@@ -177,6 +178,21 @@ export default function BataRhythmVisualizer() {
       bataPlayerRef.current.currentTime = 0;
     }
     setIsLooping(false);
+  };
+
+  const startOceanLoop = (volume: number = 0.5) => {
+    if (oceanPlayerRef.current && !oceanPlayerRef.current.paused) return;        // already playing
+    oceanPlayerRef.current = new Audio("/static/audio/soundscapes/ocean_blessing_waves.mp3");
+    oceanPlayerRef.current.loop = true;
+    oceanPlayerRef.current.volume = volume;   // 0–1
+    oceanPlayerRef.current.play().catch(err => console.error("Ocean audio error:", err));
+  };
+
+  const stopOceanLoop = () => {
+    if (oceanPlayerRef.current) {
+      oceanPlayerRef.current.pause();
+      oceanPlayerRef.current.currentTime = 0;
+    }
   };
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
