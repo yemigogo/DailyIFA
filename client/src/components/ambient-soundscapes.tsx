@@ -67,7 +67,7 @@ const ambientTracks: AmbientTrack[] = [
     descriptionYoruba: "Ìlù àjọ̀dún ìbílẹ̀ fún ìbọrí àwọn bàbá",
     file: "/static/audio/soundscapes/bata_egungun_abida.mp3",
     category: "drums",
-    duration: 180
+    duration: 60
   },
   {
     id: "talking_drum",
@@ -260,7 +260,7 @@ export default function AmbientSoundscapes() {
     talking_drum_loop: "/static/audio/soundscapes/talking_drum_loop.mp3",
     ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
     bata_egungun_abida: "/static/audio/soundscapes/bata_egungun_abida.mp3",
-    bata_drums_loop: "/static/audio/soundscapes/bata_drums_loop.mp3",
+    bata_drums: "/static/audio/soundscapes/bata_drums_loop.mp3",
     flowing_river: "/static/audio/soundscapes/flowing_river.mp3",
     sacred_forest: "/static/audio/soundscapes/sacred_forest.mp3",
     temple_peace: "/static/audio/soundscapes/temple_peace.mp3",
