@@ -111,6 +111,14 @@ export default function RhythmRecommendation() {
       detail: recommendation
     });
     window.dispatchEvent(event);
+    
+    // Also trigger ambient soundscape change if specified
+    if (recommendation.ambientSoundscape) {
+      const ambientEvent = new CustomEvent('changeAmbientSoundscape', {
+        detail: { soundscape: recommendation.ambientSoundscape }
+      });
+      window.dispatchEvent(ambientEvent);
+    }
   };
 
   return (

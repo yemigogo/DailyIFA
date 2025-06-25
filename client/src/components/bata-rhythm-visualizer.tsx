@@ -98,18 +98,32 @@ export default function BataRhythmVisualizer() {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      // Clean up audio reference
+      if (bataPlayerRef.current) {
+        bataPlayerRef.current.pause();
+        bataPlayerRef.current = null;
+      }
       window.removeEventListener('applyRhythmRecommendation', handleRecommendation as EventListener);
     };
   }, []);
 
+  // Global reference for better audio control
+  const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
+
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
-    // Use authentic Bata drum recording instead of synthetic Web Audio API
-    const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+    // Use authentic Bata drum recording with global reference
+    if (!bataPlayerRef.current) {
+      bataPlayerRef.current = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+      bataPlayerRef.current.volume = 0.4;
+      bataPlayerRef.current.preload = 'auto';
+    }
+    
+    const audio = bataPlayerRef.current.cloneNode() as HTMLAudioElement;
     audio.volume = 0.4;
     
     // Map frequency to different starting positions for variation
     const startPosition = (frequency / 300) * 2; // Map 80-280 Hz to 0-2 seconds
-    audio.currentTime = startPosition % 3 || 0; // Ensure we don't exceed file length
+    audio.currentTime = startPosition % 3 || 0;
     
     audio.play().catch(e => console.log("Audio playback failed:", e));
     
