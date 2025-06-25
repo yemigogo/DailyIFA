@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocean Audio Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f8ff; }
+        .container { max-width: 600px; margin: 0 auto; }
+        button { margin: 10px; padding: 15px 25px; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; }
+        .ocean-btn { background: #4682b4; color: white; }
+        .stop-btn { background: #dc143c; color: white; }
+        .results { margin-top: 20px; padding: 15px; background: #e6f3ff; border-radius: 8px; }
+        .wave { font-size: 2em; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌊 Ocean Blessing Waves Test</h1>
+        <div class="wave">🌊 Testing Authentic Ocean Sounds 🌊</div>
+        
+        <div>
+            <button class="ocean-btn" onclick="testNewOcean()">🌊 Play NEW Ocean Waves</button>
+            <button class="ocean-btn" onclick="testOldOcean()">🔊 Play OLD Ocean (for comparison)</button>
+            <button class="stop-btn" onclick="stopAll()">⏹️ Stop All</button>
+        </div>
+        
+        <div id="results" class="results">
+            <strong>🌊 Ocean Audio Test Results:</strong><br>
+            Click the buttons above to test the ocean blessing waves.
+        </div>
+    </div>
+
+    <script>
+        let currentAudio = null;
+
+        function log(message) {
+            const results = document.getElementById('results');
+            results.innerHTML += '<br>🌊 ' + message;
+            console.log(message);
+        }
+
+        function testNewOcean() {
+            log("Testing NEW authentic ocean blessing waves...");
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            currentAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves.mp3');
+            currentAudio.loop = true;
+            currentAudio.volume = 0.7;
+            currentAudio.play().then(() => {
+                log("✓ SUCCESS: NEW Ocean waves are playing - should sound like real ocean!");
+            }).catch(e => {
+                log("✗ NEW Ocean failed: " + e.message);
+            });
+        }
+
+        function testOldOcean() {
+            log("Testing OLD ocean audio (for comparison)...");
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            currentAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves_old.mp3');
+            currentAudio.loop = true;
+            currentAudio.volume = 0.7;
+            currentAudio.play().then(() => {
+                log("✓ OLD Ocean playing (this might sound like human voices)");
+            }).catch(e => {
+                log("✗ OLD Ocean failed: " + e.message);
+            });
+        }
+
+        function stopAll() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+            log("🛑 All ocean audio stopped");
+        }
+    </script>
+</body>
+</html>
