@@ -715,6 +715,7 @@ export default function AmbientSoundscapes() {
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
               <option value="ifa_wisdom_chant">{ts("Ifá Wisdom Chant", "Orin Ọgbọ́n Ifá")}</option>
               <option value="bata_drums">{ts("Bata Drums", "Ìlù Bàtá")}</option>
+              <option value="bata_egungun_abida">👻 {ts("Bata Egungun Abida (Ancestral)", "Bàtá Egúngún Àbídà (Àwọn Bàbá)")}</option>
             </select>
             {layer1Track && (
               <div className="text-sm text-purple-600 dark:text-purple-400 mb-2">
@@ -744,6 +745,7 @@ export default function AmbientSoundscapes() {
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
               <option value="flowing_river">{ts("Flowing River", "Odò Tí Ń Sàn")}</option>
               <option value="ocean_blessing_waves">{ts("Ocean Blessing Waves", "Ìgbì Ìbùkún Òkun")}</option>
+              <option value="bata_egungun_abida">👻 {ts("Bata Egungun Abida (Ancestral)", "Bàtá Egúngún Àbídà (Àwọn Bàbá)")}</option>
             </select>
             {layer2Track && (
               <div className="text-sm text-green-600 dark:text-green-400 mb-2">
