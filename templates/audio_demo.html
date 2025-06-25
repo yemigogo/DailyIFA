@@ -357,17 +357,34 @@
         }
 
         function startOceanLoop(volume = 0.5) {
-            if (oceanPlayer && !oceanPlayer.paused) return;        // already playing
-            oceanPlayer        = new Audio(audioMap.ocean_blessing_waves);
-            oceanPlayer.loop   = true;
+            console.log("OCEAN BLESSING WAVES: startOceanLoop called with volume:", volume);
+            if (oceanPlayer && !oceanPlayer.paused) {
+                console.log("Ocean waves already playing");
+                return;        // already playing
+            }
+            
+            console.log("Creating new OCEAN BLESSING WAVES player");
+            oceanPlayer = new Audio(audioMap.ocean_blessing_waves);
+            oceanPlayer.loop = true;
             oceanPlayer.volume = volume;   // 0–1
-            oceanPlayer.play().catch(err => console.error("Ocean audio error:", err));
+            
+            oceanPlayer.addEventListener('playing', () => console.log("SUCCESS: OCEAN BLESSING WAVES IS PLAYING!"));
+            oceanPlayer.addEventListener('error', (e) => console.error("OCEAN WAVES ERROR:", e.target.error));
+            
+            oceanPlayer.play().then(() => {
+                console.log("CONFIRMED: Ocean blessing waves are playing!");
+            }).catch(err => {
+                console.error("Ocean audio error:", err);
+            });
         }
 
         function stopOceanLoop() {
+            console.log("OCEAN BLESSING WAVES: stopOceanLoop called");
             if (oceanPlayer) {
+                console.log("Stopping OCEAN BLESSING WAVES player");
                 oceanPlayer.pause();
                 oceanPlayer.currentTime = 0;
+                oceanPlayer = null;
             }
         }
 
@@ -519,15 +536,17 @@
                 a2.play().catch(e => console.log("Layer 2 failed:", e));
             }
             
-            // Apply drum offset timing for layer 2
-            if (l2.includes('bata') || l2.includes('drum')) {
-                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
-            } else {
-                a2.play().catch(e => console.log("Layer 2 failed:", e));
-            }
+            // Don't play a2 if using specialized loops - they handle their own playback
             
             if (l3) {
                 setTimeout(() => a3.play().catch(e => console.log("Layer 3 failed:", e)), 2000);
+            }
+            
+            // Handle regular audio files for non-specialized sounds
+            if (l2 !== "ocean_blessing_waves" && !l2.includes('bata') && !l2.includes('drum') && l2) {
+                a2.play().catch(e => console.log("Layer 2 failed:", e));
+            } else if (l2.includes('bata') || l2.includes('drum')) {
+                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
             }
 
             // Update display
