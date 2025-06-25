@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocean Test - Simple</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f0f8ff; }
+        button { margin: 10px; padding: 15px 25px; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; }
+        .ocean-btn { background: #4682b4; color: white; }
+        .stop-btn { background: #dc143c; color: white; }
+        .results { margin-top: 20px; padding: 15px; background: #e6f3ff; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Ocean Audio Comparison</h1>
+    
+    <div>
+        <button class="ocean-btn" onclick="testOriginal()">Play ORIGINAL Ocean (might sound like human)</button>
+        <button class="ocean-btn" onclick="testNew()">Play NEW Generated Ocean Waves</button>
+        <button class="stop-btn" onclick="stopAll()">Stop All</button>
+    </div>
+    
+    <div id="results" class="results">
+        <strong>Test Results:</strong><br>
+        Compare the two ocean sounds to hear the difference.
+    </div>
+
+    <script>
+        let currentAudio = null;
+
+        function log(message) {
+            const results = document.getElementById('results');
+            results.innerHTML += '<br>' + message;
+        }
+
+        function testOriginal() {
+            log("Testing ORIGINAL ocean (the one that sounds like human)...");
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            currentAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves.mp3');
+            currentAudio.loop = true;
+            currentAudio.volume = 0.7;
+            currentAudio.play().then(() => {
+                log("✓ Original ocean playing - does this sound like human voices?");
+            }).catch(e => {
+                log("✗ Original ocean failed: " + e.message);
+            });
+        }
+
+        function testNew() {
+            log("Testing NEW generated ocean waves...");
+            
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            currentAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves_real.mp3');
+            currentAudio.loop = true;
+            currentAudio.volume = 0.7;
+            currentAudio.play().then(() => {
+                log("✓ NEW ocean waves playing - should sound like actual ocean waves");
+            }).catch(e => {
+                log("✗ NEW ocean failed: " + e.message);
+            });
+        }
+
+        function stopAll() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+            log("All audio stopped");
+        }
+    </script>
+</body>
+</html>
