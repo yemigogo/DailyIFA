@@ -225,6 +225,16 @@
                 <label for="sleepMinutes">⏲️ Sleep Timer (minutes):</label>
                 <input type="number" id="sleepMinutes" min="1" max="120" style="width: 80px; padding: 5px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);" />
                 <button onclick="setSleepTimer()" style="margin-left: 10px; padding: 5px 10px; background: #374151; color: white; border: none; border-radius: 4px;">Set Timer</button>
+                <span id="timerStatus" style="margin-left: 10px; color: #22c55e; font-size: 0.9em;"></span>
+            </div>
+            
+            <div class="control-group">
+                <label>🎭 Sacred Preset Combinations:</label>
+                <div style="display: flex; gap: 10px; margin-top: 5px;">
+                    <button onclick="loadPreset('ancestral')" style="padding: 8px 12px; background: #7c3aed; color: white; border: none; border-radius: 4px; font-size: 0.85em;">👻 Ancestral</button>
+                    <button onclick="loadPreset('healing')" style="padding: 8px 12px; background: #0ea5e9; color: white; border: none; border-radius: 4px; font-size: 0.85em;">🌊 Healing</button>
+                    <button onclick="loadPreset('prosperity')" style="padding: 8px 12px; background: #059669; color: white; border: none; border-radius: 4px; font-size: 0.85em;">💰 Prosperity</button>
+                </div>
             </div>
         </div>
         
@@ -254,9 +264,10 @@
         
         <div id="infoPanel" style="background: rgba(245, 158, 11, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0; display: none; border-left: 4px solid #f59e0b;">
             <h3 id="infoTitle" style="color: #f59e0b; margin-bottom: 10px; font-weight: bold;"></h3>
-            <p><strong>Role:</strong> <span id="infoRole"></span></p>
-            <p><strong>Use:</strong> <span id="infoUse"></span></p>
-            <p><strong>Energy:</strong> <span id="infoEnergy"></span></p>
+            <p><strong>Spiritual Role:</strong> <span id="infoRole"></span></p>
+            <p><strong>Traditional Use:</strong> <span id="infoUse"></span></p>
+            <p><strong>Energy Quality:</strong> <span id="infoEnergy"></span></p>
+            <p><strong>Cultural Context:</strong> <span id="infoContext"></span></p>
         </div>
         
         <div class="status">
@@ -325,7 +336,47 @@
                 title: "Sacred Forest",
                 role: "Connection to earth spirits and natural forces",
                 use: "Meditation, herb gathering, nature-based healing",
-                energy: "Grounding, mystical, peaceful"
+                energy: "Grounding, mystical, peaceful",
+                context: "The sacred groves where Orishas dwell and spiritual initiations take place"
+            },
+            flowing_river: {
+                title: "Flowing River",
+                role: "Channeling Oshun's flowing abundance energy",
+                use: "Prosperity rituals, emotional flow, fertility ceremonies",
+                energy: "Flowing, abundant, joyful",
+                context: "The sacred waters of Oshun, goddess of rivers, love, and prosperity"
+            },
+            temple_peace: {
+                title: "Temple Peace",
+                role: "Creating sacred space for spiritual practice",
+                use: "Meditation, prayer, spiritual preparation",
+                energy: "Serene, sacred, contemplative",
+                context: "The peaceful atmosphere of traditional Yoruba temples and shrines"
+            }
+        };
+
+        // Preset combinations for sacred practices
+        const presets = {
+            ancestral: {
+                layer1: "bata_egungun_abida",
+                layer2: "sacred_forest",
+                layer3: "",
+                offset: 1.5,
+                name: "Ancestral Communion"
+            },
+            healing: {
+                layer1: "ifa_wisdom_chant",
+                layer2: "ocean_blessing_waves", 
+                layer3: "",
+                offset: 0,
+                name: "Divine Healing"
+            },
+            prosperity: {
+                layer1: "ifa_prosperity_chant",
+                layer2: "flowing_river",
+                layer3: "",
+                offset: 0,
+                name: "Prosperity Ritual"
             }
         };
 
@@ -406,6 +457,7 @@
                 document.getElementById('infoRole').textContent = info.role;
                 document.getElementById('infoUse').textContent = info.use;
                 document.getElementById('infoEnergy').textContent = info.energy;
+                document.getElementById('infoContext').textContent = info.context || 'Traditional Yoruba spiritual practice';
                 document.getElementById('infoPanel').style.display = 'block';
             }
         }
@@ -425,9 +477,33 @@
                 sleepTimer = setTimeout(() => {
                     stopAll();
                     document.getElementById('nowPlaying').textContent = '😴 Sleep timer activated - all audio stopped';
+                    document.getElementById('timerStatus').textContent = '';
                 }, minutes * 60 * 1000);
                 
-                document.getElementById('nowPlaying').textContent = `⏲️ Sleep timer set for ${minutes} minutes`;
+                document.getElementById('timerStatus').textContent = `Timer set for ${minutes} minutes`;
+                setTimeout(() => {
+                    if (document.getElementById('timerStatus').textContent.includes('Timer set')) {
+                        document.getElementById('timerStatus').textContent = '';
+                    }
+                }, 3000);
+            }
+        }
+
+        function loadPreset(presetName) {
+            const preset = presets[presetName];
+            if (preset) {
+                document.getElementById('layer1Select').value = preset.layer1;
+                document.getElementById('layer2Select').value = preset.layer2;
+                document.getElementById('orikiSelect').value = preset.layer3;
+                document.getElementById('bataOffset').value = preset.offset;
+                
+                // Show preset info
+                document.getElementById('nowPlaying').textContent = `🎭 Loading ${preset.name} preset...`;
+                
+                // Auto-play the preset after brief delay
+                setTimeout(() => {
+                    playLayeredSound();
+                }, 800);
             }
         }
 
@@ -452,6 +528,7 @@
             button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
             
             document.getElementById('nowPlaying').textContent = '';
+            document.getElementById('timerStatus').textContent = '';
             document.getElementById('infoPanel').style.display = 'none';
         }
         
