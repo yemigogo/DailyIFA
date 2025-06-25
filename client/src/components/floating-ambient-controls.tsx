@@ -26,7 +26,7 @@ const quickTracks = [
     id: "drums",
     name: "Sacred Drums",
     nameYoruba: "Ìlù Mímọ́",
-    file: "/audio/ambient/bata_drums.mp3"
+    file: "/static/audio/soundscapes/bata_egungun_abida.mp3"
   }
 ];
 

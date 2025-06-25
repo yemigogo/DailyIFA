@@ -53,7 +53,7 @@ export default function BataRhythmVisualizer() {
   const [selectedPattern, setSelectedPattern] = useState<string>("egungun");
   const [intensity, setIntensity] = useState(50);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
+  // Removed audioContextRef - using ONLY authentic audio files
 
   // Traditional Batá rhythm patterns
   const rhythmPatterns = {
@@ -157,25 +157,28 @@ export default function BataRhythmVisualizer() {
   };
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
-    // For individual drum hits, use separate audio instances
+    // ALWAYS use authentic Bata drum recording - NO SYNTHETIC SOUNDS
     const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
     
-    // Modulate volume based on intensity (20% to 80% range)
-    const baseVolume = 0.2 + (intensity / 100) * 0.6;
+    // Modulate volume based on intensity
+    const baseVolume = 0.3 + (intensity / 100) * 0.5;
     audio.volume = baseVolume;
     
-    // Map frequency to different starting positions for variation
-    const startPosition = (frequency / 300) * 2; // Map 80-280 Hz to 0-2 seconds
-    audio.currentTime = startPosition % 3 || 0;
+    // Use different starting positions for drum variation based on frequency
+    // Map different frequencies to different parts of the authentic recording
+    let startPosition = 0;
+    if (frequency <= 100) startPosition = 0.5; // Iya (low)
+    else if (frequency <= 200) startPosition = 1.0; // Itotele (medium) 
+    else startPosition = 1.5; // Okonkolo (high)
     
-    audio.play().catch(e => console.log("Audio playback failed:", e));
+    audio.currentTime = startPosition;
+    audio.play().catch(e => console.log("Authentic Bata playback failed:", e));
     
-    // Intensity affects duration - higher intensity = longer sustain
-    const intensityDuration = duration * (0.5 + (intensity / 100) * 1.5);
+    // Stop after brief duration for individual hits
     setTimeout(() => {
       audio.pause();
       audio.currentTime = 0;
-    }, intensityDuration * 1000);
+    }, 300);
   };
 
   const startVisualization = () => {
@@ -186,24 +189,28 @@ export default function BataRhythmVisualizer() {
     setIsPlaying(true);
     setCurrentBeat(0);
 
-    // Start continuous Bata loop for full immersive experience
-    startBataLoop(0.6);
+    // Start continuous authentic Bata loop - NO SYNTHETIC SOUNDS
+    const intensityVolume = 0.4 + (intensity / 100) * 0.4;
+    startBataLoop(intensityVolume);
+
+    // Tempo modulation based on spiritual intensity
+    const modulatedTempo = tempo * (0.7 + (intensity / 100) * 0.6);
 
     intervalRef.current = setInterval(() => {
       setCurrentBeat(prevBeat => {
         const nextBeat = (prevBeat + 1) % 12;
         
-        // Visual beats sync with the continuous loop
+        // Play authentic drum hits synchronized with continuous loop
         bataDrumPatterns.forEach(drum => {
           if (drum.pattern[prevBeat] === 1) {
-            // Subtle additional hits for emphasis
+            // Only use authentic Bata recording for all drum sounds
             playDrumSound(drum.frequency, 0.1);
           }
         });
 
         return nextBeat;
       });
-    }, (60 / tempo) * 1000 / 3); // 12/8 time signature
+    }, (60 / modulatedTempo) * 1000 / 3);
   };
 
   const stopVisualization = () => {

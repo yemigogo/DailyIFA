@@ -45,7 +45,7 @@ const ambientTracks: AmbientTrack[] = [
     nameYoruba: "Ìlù Bàtá",
     description: "Traditional sacred drum rhythms",
     descriptionYoruba: "Àwọn ilu mímọ́ ìbílẹ̀",
-    file: "/audio/ambient/bata_drums.mp3",
+    file: "/static/audio/soundscapes/bata_egungun_abida.mp3",
     icon: Music,
     category: "drums"
   },
