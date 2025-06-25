@@ -125,7 +125,6 @@ export default function BataRhythmVisualizer() {
     if (bataPlayerRef.current) {
       bataPlayerRef.current.pause();
       bataPlayerRef.current.currentTime = 0;
-      bataPlayerRef.current = null;
     }
     setIsLooping(false);
   };
@@ -153,11 +152,25 @@ export default function BataRhythmVisualizer() {
       clearInterval(intervalRef.current);
     }
 
-    const beatDuration = (60 / tempo / 3) * 1000; // 12/8 time subdivision
+    setIsPlaying(true);
+    setCurrentBeat(0);
+
+    // Start continuous Bata loop for full immersive experience
+    startBataLoop(0.6);
 
     intervalRef.current = setInterval(() => {
-      setCurrentBeat((prev) => {
-        const nextBeat = (prev + 1) % 12;
+      setCurrentBeat(prevBeat => {
+        const nextBeat = (prevBeat + 1) % 12;
+        
+        // Visual beats sync with the continuous loop
+        bataDrumPatterns.forEach(drum => {
+          if (drum.pattern[prevBeat] === 1) {
+            // Subtle additional hits for emphasis
+            playDrumSound(drum.frequency, 0.1);
+          }
+        });
+
+        return nextBeat;
         
         // Play drum sounds for active beats
         bataDrumPatterns.forEach((drum) => {
@@ -168,9 +181,7 @@ export default function BataRhythmVisualizer() {
         
         return nextBeat;
       });
-    }, beatDuration);
-
-    setIsPlaying(true);
+    }, (60 / tempo) * 1000 / 3); // 12/8 time signature
   };
 
   const stopVisualization = () => {
