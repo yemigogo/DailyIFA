@@ -29,22 +29,12 @@ const ambientTracks: AmbientTrack[] = [
     duration: 600
   },
   {
-    id: "orisha_praise_chant",
-    name: "Orisha Praise Chant",
-    nameYoruba: "Orin Ìyìn Òrìṣà",
-    description: "Devotional chanting to honor the Orishas",
-    descriptionYoruba: "Orin ìsìn láti bu ọlá fún àwọn Òrìṣà",
-    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
-    category: "chants",
-    duration: 480
-  },
-  {
-    id: "ancestral_calling",
-    name: "Ancestral Calling",
-    nameYoruba: "Ìpè Àwọn Bàbá",
-    description: "Sacred chants to connect with ancestors",
-    descriptionYoruba: "Orin mímọ́ láti dá sí àwọn bàbá wa",
-    file: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+    id: "ifa_prosperity_chant",
+    name: "Ifá Prosperity Chant",
+    nameYoruba: "Orin Ọrọ̀ Ifá",
+    description: "Traditional wealth and abundance prayers",
+    descriptionYoruba: "Àdúrà ọrọ̀ àti ọ̀pọ̀lọpọ̀ ìbílẹ̀",
+    file: "/static/audio/soundscapes/ifa_prosperity_chant.mp3",
     category: "chants",
     duration: 540
   },
