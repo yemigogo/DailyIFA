@@ -934,6 +934,13 @@ export default function AmbientSoundscapes() {
           {ts("Saves currently playing tracks or mood playlist", "Ń pamọ́ àwọn orin tí ń ṣe tàbí àtòjọ ìpinnu")}
         </p>
       </div>
+      
+      {/* Batá Rhythm Visualizer - Show when Batá drums are selected */}
+      {(currentTrack?.id === "bata_egungun_abida" || currentTrack?.id === "bata_drums") && (
+        <div className="mt-8">
+          <BataRhythmVisualizer />
+        </div>
+      )}
     </div>
   );
 }
