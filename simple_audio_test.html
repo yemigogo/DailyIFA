@@ -47,47 +47,75 @@
         }
 
         function testBata() {
-            log("Testing Bata drums...");
+            log("Testing authentic Egungun Bata drums (15.8MB)...");
             
             if (bataAudio) {
                 bataAudio.pause();
                 bataAudio = null;
             }
             
-            bataAudio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+            // Create audio with enhanced settings
+            bataAudio = new Audio();
+            bataAudio.src = '/static/audio/soundscapes/bata_egungun_abida.mp3';
             bataAudio.volume = 0.7;
+            bataAudio.preload = 'auto';
             
+            bataAudio.addEventListener('loadstart', () => log('✓ Bata: Loading started'));
+            bataAudio.addEventListener('loadeddata', () => log('✓ Bata: Data loaded, duration: ' + bataAudio.duration + 's'));
             bataAudio.addEventListener('canplay', () => log('✓ Bata: Ready to play'));
-            bataAudio.addEventListener('playing', () => log('✓ SUCCESS: Bata drums are playing!'));
-            bataAudio.addEventListener('error', (e) => log('✗ Bata Error: ' + (e.target.error?.message || 'Unknown error')));
-            
-            bataAudio.play().then(() => {
-                log('✓ Bata play() promise resolved');
-            }).catch(err => {
-                log('✗ Bata play() failed: ' + err.message);
+            bataAudio.addEventListener('playing', () => log('✓ SUCCESS: Authentic Bata drums are playing!'));
+            bataAudio.addEventListener('error', (e) => {
+                log('✗ Bata Error: ' + (e.target.error?.message || 'Unknown error'));
+                log('✗ Error code: ' + (e.target.error?.code || 'None'));
             });
+            
+            // Start loading and play
+            bataAudio.load();
+            
+            setTimeout(() => {
+                bataAudio.play().then(() => {
+                    log('✓ Bata play() promise resolved - audio is playing');
+                }).catch(err => {
+                    log('✗ Bata play() failed: ' + err.message);
+                    log('✗ Error name: ' + err.name);
+                });
+            }, 200);
         }
 
         function testOcean() {
-            log("Testing Ocean waves...");
+            log("Testing ocean blessing waves (7.9MB)...");
             
             if (oceanAudio) {
                 oceanAudio.pause();
                 oceanAudio = null;
             }
             
-            oceanAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves.mp3');
+            // Create audio with enhanced settings
+            oceanAudio = new Audio();
+            oceanAudio.src = '/static/audio/soundscapes/ocean_blessing_waves.mp3';
             oceanAudio.volume = 0.5;
+            oceanAudio.preload = 'auto';
             
+            oceanAudio.addEventListener('loadstart', () => log('✓ Ocean: Loading started'));
+            oceanAudio.addEventListener('loadeddata', () => log('✓ Ocean: Data loaded, duration: ' + oceanAudio.duration + 's'));
             oceanAudio.addEventListener('canplay', () => log('✓ Ocean: Ready to play'));
-            oceanAudio.addEventListener('playing', () => log('✓ SUCCESS: Ocean waves are playing!'));
-            oceanAudio.addEventListener('error', (e) => log('✗ Ocean Error: ' + (e.target.error?.message || 'Unknown error')));
-            
-            oceanAudio.play().then(() => {
-                log('✓ Ocean play() promise resolved');
-            }).catch(err => {
-                log('✗ Ocean play() failed: ' + err.message);
+            oceanAudio.addEventListener('playing', () => log('✓ SUCCESS: Ocean blessing waves are playing!'));
+            oceanAudio.addEventListener('error', (e) => {
+                log('✗ Ocean Error: ' + (e.target.error?.message || 'Unknown error'));
+                log('✗ Error code: ' + (e.target.error?.code || 'None'));
             });
+            
+            // Start loading and play
+            oceanAudio.load();
+            
+            setTimeout(() => {
+                oceanAudio.play().then(() => {
+                    log('✓ Ocean play() promise resolved - audio is playing');
+                }).catch(err => {
+                    log('✗ Ocean play() failed: ' + err.message);
+                    log('✗ Error name: ' + err.name);
+                });
+            }, 200);
         }
 
         function stopAll() {
