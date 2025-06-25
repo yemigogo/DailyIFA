@@ -320,112 +320,45 @@
         let oceanPlayer = null;
 
         function startBataLoop(volume = 0.8) {
-            console.log("AUTHENTIC EGUNGUN BATA: startBataLoop called with volume:", volume);
-            
             if (bataPlayer && !bataPlayer.paused) {
-                console.log("Authentic Egungun Bata already playing");
-                bataPlayer.volume = volume; // Update volume if already playing
+                bataPlayer.volume = volume;
                 return;
             }
             
-            console.log("Creating new AUTHENTIC EGUNGUN BATA player with path:", audioMap.bata_egungun_abida);
-            bataPlayer = new Audio();
-            bataPlayer.src = audioMap.bata_egungun_abida;
+            bataPlayer = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
             bataPlayer.loop = true;
             bataPlayer.volume = volume;
-            bataPlayer.preload = "auto";
-            
-            bataPlayer.addEventListener('loadstart', () => console.log("AUTHENTIC EGUNGUN BATA: loadstart"));
-            bataPlayer.addEventListener('loadeddata', () => console.log("AUTHENTIC EGUNGUN BATA: loadeddata - duration:", bataPlayer.duration));
-            bataPlayer.addEventListener('canplay', () => console.log("AUTHENTIC EGUNGUN BATA: canplay"));
-            bataPlayer.addEventListener('canplaythrough', () => console.log("AUTHENTIC EGUNGUN BATA: canplaythrough"));
-            bataPlayer.addEventListener('playing', () => console.log("SUCCESS: AUTHENTIC EGUNGUN BATA IS PLAYING!"));
-            bataPlayer.addEventListener('error', (e) => {
-                console.error("AUTHENTIC EGUNGUN BATA ERROR:", e);
-                console.error("Error details:", e.target.error);
-                console.error("Network state:", e.target.networkState);
-                console.error("Ready state:", e.target.readyState);
-            });
-            
-            console.log("Loading and playing AUTHENTIC EGUNGUN BATA...");
-            bataPlayer.load();
-            
-            // Wait for some loading before attempting play
-            setTimeout(() => {
-                bataPlayer.play().then(() => {
-                    console.log("CONFIRMED: Authentic Egungun Bata drums are playing!");
-                }).catch(err => {
-                    console.error("FAILED: Authentic Egungun Bata error:", err);
-                    console.error("Error name:", err.name);
-                    console.error("Error message:", err.message);
-                });
-            }, 100);
+            bataPlayer.play().catch(e => console.error("Bata audio failed:", e));
         }
 
         function stopBataLoop() {
-            console.log("AUTHENTIC EGUNGUN BATA: stopBataLoop called");
             if (bataPlayer) {
-                console.log("Stopping AUTHENTIC EGUNGUN BATA player");
                 bataPlayer.pause();
                 bataPlayer.currentTime = 0;
-                bataPlayer = null;
             }
         }
 
         function startOceanLoop(volume = 0.5) {
-            console.log("OCEAN BLESSING WAVES: startOceanLoop called with volume:", volume);
             if (oceanPlayer && !oceanPlayer.paused) {
-                console.log("Ocean waves already playing");
-                oceanPlayer.volume = volume; // Update volume if already playing
-                return;        // already playing
+                oceanPlayer.volume = volume;
+                return;
             }
             
-            console.log("Creating new OCEAN BLESSING WAVES player with path:", audioMap.ocean_blessing_waves);
-            oceanPlayer = new Audio();
-            oceanPlayer.src = audioMap.ocean_blessing_waves;
+            oceanPlayer = new Audio("/static/audio/soundscapes/ocean_blessing_waves.mp3");
             oceanPlayer.loop = true;
-            oceanPlayer.volume = volume;   // 0–1
-            oceanPlayer.preload = "auto";
-            
-            oceanPlayer.addEventListener('loadstart', () => console.log("OCEAN BLESSING WAVES: loadstart"));
-            oceanPlayer.addEventListener('loadeddata', () => console.log("OCEAN BLESSING WAVES: loadeddata - duration:", oceanPlayer.duration));
-            oceanPlayer.addEventListener('canplay', () => console.log("OCEAN BLESSING WAVES: canplay"));
-            oceanPlayer.addEventListener('canplaythrough', () => console.log("OCEAN BLESSING WAVES: canplaythrough"));
-            oceanPlayer.addEventListener('playing', () => console.log("SUCCESS: OCEAN BLESSING WAVES IS PLAYING!"));
-            oceanPlayer.addEventListener('error', (e) => {
-                console.error("OCEAN WAVES ERROR:", e);
-                console.error("Error details:", e.target.error);
-                console.error("Network state:", e.target.networkState);
-                console.error("Ready state:", e.target.readyState);
-            });
-            
-            console.log("Loading and playing OCEAN BLESSING WAVES...");
-            oceanPlayer.load();
-            
-            // Wait for some loading before attempting play
-            setTimeout(() => {
-                oceanPlayer.play().then(() => {
-                    console.log("CONFIRMED: Ocean blessing waves are playing!");
-                }).catch(err => {
-                    console.error("Ocean audio error:", err);
-                    console.error("Error name:", err.name);
-                    console.error("Error message:", err.message);
-                });
-            }, 100);
+            oceanPlayer.volume = volume;
+            oceanPlayer.play().catch(e => console.error("Ocean audio failed:", e));
         }
 
         function stopOceanLoop() {
-            console.log("OCEAN BLESSING WAVES: stopOceanLoop called");
             if (oceanPlayer) {
-                console.log("Stopping OCEAN BLESSING WAVES player");
                 oceanPlayer.pause();
                 oceanPlayer.currentTime = 0;
-                oceanPlayer = null;
             }
         }
 
         function fadeInOcean(step = 0.05, interval = 100) {
-            startOceanLoop(0);                          // start muted
+            startOceanLoop(0);
             const id = setInterval(() => {
                 if (oceanPlayer && oceanPlayer.volume < 0.5) {
                     oceanPlayer.volume += step;

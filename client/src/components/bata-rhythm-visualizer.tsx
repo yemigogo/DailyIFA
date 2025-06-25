@@ -181,11 +181,15 @@ export default function BataRhythmVisualizer() {
   };
 
   const startOceanLoop = (volume: number = 0.5) => {
-    if (oceanPlayerRef.current && !oceanPlayerRef.current.paused) return;        // already playing
+    if (oceanPlayerRef.current && !oceanPlayerRef.current.paused) {
+      oceanPlayerRef.current.volume = volume;
+      return;
+    }
+    
     oceanPlayerRef.current = new Audio("/static/audio/soundscapes/ocean_blessing_waves.mp3");
     oceanPlayerRef.current.loop = true;
-    oceanPlayerRef.current.volume = volume;   // 0–1
-    oceanPlayerRef.current.play().catch(err => console.error("Ocean audio error:", err));
+    oceanPlayerRef.current.volume = volume;
+    oceanPlayerRef.current.play().catch(e => console.error("Ocean audio failed:", e));
   };
 
   const stopOceanLoop = () => {
@@ -196,7 +200,7 @@ export default function BataRhythmVisualizer() {
   };
 
   const fadeInOcean = (step: number = 0.05, interval: number = 100) => {
-    startOceanLoop(0);                          // start muted
+    startOceanLoop(0);
     const id = setInterval(() => {
       if (oceanPlayerRef.current && oceanPlayerRef.current.volume < 0.5) {
         oceanPlayerRef.current.volume += step;
