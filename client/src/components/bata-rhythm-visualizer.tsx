@@ -90,6 +90,11 @@ export default function BataRhythmVisualizer() {
           setSelectedPattern(patternKey);
         }
       }
+      // Set intensity based on spiritual intent
+      if (recommendation.energyAlignment) {
+        const energyIntensity = getIntensityFromIntent(recommendation);
+        setIntensity(energyIntensity);
+      }
     };
 
     window.addEventListener('applyRhythmRecommendation', handleRecommendation as EventListener);
@@ -104,6 +109,26 @@ export default function BataRhythmVisualizer() {
     };
   }, []);
 
+  const getIntensityFromIntent = (recommendation: any) => {
+    // Map spiritual intentions to intensity levels
+    const intent = recommendation.spiritualFocus?.toLowerCase() || '';
+    if (intent.includes('healing') || intent.includes('peace')) return 30;
+    if (intent.includes('protection') || intent.includes('strength')) return 70;
+    if (intent.includes('prosperity') || intent.includes('success')) return 60;
+    if (intent.includes('wisdom') || intent.includes('meditation')) return 40;
+    if (intent.includes('ancestral') || intent.includes('spirit')) return 80;
+    if (intent.includes('cleansing') || intent.includes('purification')) return 50;
+    return 50; // Default
+  };
+
+  const getIntensityDescription = () => {
+    if (intensity < 20) return ts("Gentle & Contemplative", "Jẹ́jẹ́ àti Ìrònú");
+    if (intensity < 40) return ts("Calm & Healing", "Ìdákẹ́jẹ́ àti Ìwòsàn");
+    if (intensity < 60) return ts("Balanced & Focused", "Ìmudójúkọ");
+    if (intensity < 80) return ts("Dynamic & Energizing", "Agbára àti Ìmúlágbára");
+    return ts("Powerful & Transformative", "Agbára àti Ìyípadà");
+  };
+
   // Global reference for better audio control
   const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
   const [isLooping, setIsLooping] = useState(false);
@@ -114,7 +139,11 @@ export default function BataRhythmVisualizer() {
 
     bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
     bataPlayerRef.current.loop = true;
-    bataPlayerRef.current.volume = volume;
+    
+    // Modulate volume based on intensity
+    const intensityVolume = (intensity / 100) * volume;
+    bataPlayerRef.current.volume = Math.max(0.1, intensityVolume);
+    
     bataPlayerRef.current.play().catch(err => {
       console.error("Batá audio failed:", err);
     });
@@ -132,7 +161,10 @@ export default function BataRhythmVisualizer() {
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
     // For individual drum hits, use separate audio instances
     const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
-    audio.volume = 0.4;
+    
+    // Modulate volume based on intensity (20% to 80% range)
+    const baseVolume = 0.2 + (intensity / 100) * 0.6;
+    audio.volume = baseVolume;
     
     // Map frequency to different starting positions for variation
     const startPosition = (frequency / 300) * 2; // Map 80-280 Hz to 0-2 seconds
@@ -140,11 +172,12 @@ export default function BataRhythmVisualizer() {
     
     audio.play().catch(e => console.log("Audio playback failed:", e));
     
-    // Stop after duration to prevent overlap
+    // Intensity affects duration - higher intensity = longer sustain
+    const intensityDuration = duration * (0.5 + (intensity / 100) * 1.5);
     setTimeout(() => {
       audio.pause();
       audio.currentTime = 0;
-    }, duration * 1000);
+    }, intensityDuration * 1000);
   };
 
   const startVisualization = () => {
@@ -294,6 +327,66 @@ export default function BataRhythmVisualizer() {
           </div>
         </div>
 
+        {/* Spiritual Energy Intensity Slider */}
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+          <div className="flex items-center justify-between mb-3">
+            <label className="text-sm font-medium text-purple-700 dark:text-purple-300 flex items-center gap-2">
+              <span className="text-lg">⚡</span>
+              {ts("Spiritual Energy Intensity", "Agbára Ẹ̀mí")}
+            </label>
+            <span className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+              {intensity}% - {getIntensityDescription()}
+            </span>
+          </div>
+          
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={intensity}
+            onChange={(e) => {
+              const newIntensity = Number(e.target.value);
+              setIntensity(newIntensity);
+              
+              // Update continuous loop volume if playing
+              if (bataPlayerRef.current && !bataPlayerRef.current.paused) {
+                const intensityVolume = (newIntensity / 100) * 0.8;
+                bataPlayerRef.current.volume = Math.max(0.1, intensityVolume);
+              }
+            }}
+            className="w-full h-2 bg-gradient-to-r from-blue-200 via-purple-300 to-red-300 rounded-lg appearance-none cursor-pointer slider-thumb"
+            style={{
+              background: `linear-gradient(to right, 
+                #dbeafe 0%, 
+                #a5b4fc ${intensity * 0.3}%, 
+                #c084fc ${intensity * 0.6}%, 
+                #f87171 ${intensity}%, 
+                #fee2e2 100%)`
+            }}
+          />
+          
+          <div className="flex justify-between text-xs text-purple-600 dark:text-purple-400 mt-2">
+            <span>{ts("Meditative", "Ìjímọ̀")}</span>
+            <span>{ts("Balanced", "Ìmudójúkọ")}</span>
+            <span>{ts("Ecstatic", "Ìdùnnú Púpọ̀")}</span>
+          </div>
+          
+          <p className="text-xs text-purple-600 dark:text-purple-400 mt-3 italic">
+            {intensity < 30 && ts(
+              "Gentle rhythms for healing and contemplation", 
+              "Ìlù jẹ́jẹ́ fún ìwòsàn àti ìrònú"
+            )}
+            {intensity >= 30 && intensity < 70 && ts(
+              "Balanced energy for focused spiritual practice", 
+              "Agbára ìmudójúkọ fún ìjọsìn ẹ̀mí"
+            )}
+            {intensity >= 70 && ts(
+              "Powerful rhythms for transformation and ecstasy", 
+              "Ìlù agbára fún ìyípadà àti ìdùnnú"
+            )}
+          </p>
+        </div>
+
         {/* Drum Visualizations */}
         <div className="space-y-4">
           {bataDrumPatterns.map((drum, drumIndex) => (
@@ -336,7 +429,8 @@ export default function BataRhythmVisualizer() {
                       }
                     `}
                     style={{
-                      backgroundColor: currentBeat === beatIndex && beat === 1 ? drum.color : undefined
+                      backgroundColor: currentBeat === beatIndex && beat === 1 ? drum.color : undefined,
+                      opacity: beat === 1 ? 0.6 + (intensity / 100) * 0.4 : undefined // Intensity affects visual prominence
                     }}
                   >
                     {beatIndex + 1}
