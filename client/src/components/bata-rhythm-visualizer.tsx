@@ -220,13 +220,18 @@ export default function BataRhythmVisualizer() {
       setCurrentBeat(prevBeat => {
         const nextBeat = (prevBeat + 1) % 12;
         
-        // Play authentic drum hits synchronized with continuous loop
-        bataDrumPatterns.forEach(drum => {
-          if (drum.pattern[prevBeat] === 1) {
-            // Only use authentic Bata recording for all drum sounds
-            playDrumSound(drum.frequency, 0.1);
-          }
-        });
+        // Only play individual hits if intensity is high enough for complexity
+        if (intensity > 30) {
+          bataDrumPatterns.forEach(drum => {
+            if (drum.pattern[prevBeat] === 1) {
+              // Use authentic Bata recording for individual emphasis hits
+              const hitProbability = (intensity / 100) * 0.5; // Max 50% chance
+              if (Math.random() < hitProbability) {
+                playDrumSound(drum.frequency, 0.1);
+              }
+            }
+          });
+        }
 
         return nextBeat;
       });
