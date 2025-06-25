@@ -1,0 +1,117 @@
+import os
+import zipfile
+
+# Define the enhanced full feature set
+enhanced_features_dir = "/mnt/data/ifa_soundscape_advanced_template"
+os.makedirs(f"{enhanced_features_dir}/templates", exist_ok=True)
+os.makedirs(f"{enhanced_features_dir}/static/audio/soundscapes", exist_ok=True)
+
+# Enhanced index.html including:
+# - Dual audio layering
+# - Sleep timer
+# - Timing offset
+# - Oriki third layer
+# - Info panel
+index_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ifá Soundscape – Full Experience</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 p-6 font-sans">
+  <div class="max-w-2xl mx-auto bg-white p-6 rounded-xl shadow">
+    <h1 class="text-2xl font-bold text-center mb-4 text-green-700">🌿 Ifá Soundscape – Full Experience</h1>
+
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Layer 1 (Chant/Drum):</label>
+      <select id="layer1Select" class="w-full border p-2 rounded">
+        <option value="ifa_wisdom_chant">Ifá Wisdom Chant</option>
+        <option value="ifa_prosperity_chant">Ifá Prosperity Chant</option>
+        <option value="talking_drum_loop">Talking Drum</option>
+        <option value="bata_egungun_abida">Batá Drum – Egungun Ceremony</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Layer 2 (Nature Ambience):</label>
+      <select id="layer2Select" class="w-full border p-2 rounded">
+        <option value="ocean_blessing_waves">Ocean Blessing Waves</option>
+        <option value="sacred_forest">Sacred Forest</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block mb-1 font-semibold">Optional Oríkì Overlay (Layer 3):</label>
+      <select id="orikiSelect" class="w-full border p-2 rounded">
+        <option value="">None</option>
+        <option value="oriki_sango">Oríkì Ṣàngó</option>
+        <option value="oriki_orunmila">Oríkì Òrúnmìlà</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block font-semibold">Drum Sync Offset (sec):</label>
+      <input type="number" id="bataOffset" class="p-2 border rounded w-32" value="0" step="0.1" />
+    </div>
+
+    <button onclick="playLayeredSound()" class="bg-green-600 text-white px-4 py-2 rounded mb-4">▶️ Play Layers</button>
+
+    <audio id="layer1Audio" controls class="w-full mb-2"></audio>
+    <audio id="layer2Audio" controls class="w-full mb-2"></audio>
+    <audio id="orikiAudio" controls class="w-full mb-4"></audio>
+
+    <div class="mt-4">
+      <label class="block text-sm font-semibold mb-1">⏲️ Sleep Timer (minutes):</label>
+      <input id="sleepMinutes" type="number" min="1" class="w-24 p-2 border rounded" />
+      <button onclick="setSleepTimer()" class="ml-2 bg-gray-700 text-white px-3 py-2 rounded">Set</button>
+    </div>
+
+    <p id="nowPlaying" class="text-sm italic text-gray-700 mt-4"></p>
+
+    <div id="infoPanel" class="bg-gray-200 mt-4 p-3 rounded hidden">
+      <h2 class="font-bold mb-1" id="infoTitle"></h2>
+      <p><strong>Role:</strong> <span id="infoRole"></span></p>
+      <p><strong>Use:</strong> <span id="infoUse"></span></p>
+      <p><strong>Energy:</strong> <span id="infoEnergy"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const audioMap = {
+      ifa_wisdom_chant: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+      ifa_prosperity_chant: "/static/audio/soundscapes/ifa_prosperity_chant.mp3",
+      talking_drum_loop: "/static/audio/soundscapes/talking_drum_loop.mp3",
+      ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
+      sacred_forest: "/static/audio/soundscapes/sacred_forest.mp3",
+      bata_egungun_abida: "/static/audio/soundscapes/bata_egungun_abida.mp3",
+      oriki_sango: "/static/audio/soundscapes/oriki_sango.mp3",
+      oriki_orunmila: "/static/audio/soundscapes/oriki_orunmila.mp3"
+    };
+
+    const soundDetails = {
+      bata_egungun_abida: {
+        title: "Batá Drum – Egungun",
+        role: "Calls ancestral spirits in traditional Yoruba ceremonies.",
+        use: "Used in Egungun festivals and sacred processions.",
+        energy: "Deep, rhythmic, ceremonial grounding."
+      },
+      ifa_wisdom_chant: {
+        title: "Ifá Wisdom Chant",
+        role: "Spiritual invocation of clarity and divine knowledge.",
+        use: "Recited during early morning prayer or divination.",
+        energy: "Reflective, uplifting, mentally awakening."
+      }
+    };
+
+    function setBackgroundImage(soundKey) {
+      const imageMap = {
+        ifa_wis

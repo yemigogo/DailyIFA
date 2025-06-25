@@ -188,38 +188,75 @@
         
         <div class="audio-controls">
             <div class="control-group">
-                <label for="chantSelect">🎤 Select Chant (Orin)</label>
-                <select id="chantSelect">
+                <label for="layer1Select">🎵 Layer 1 (Chant/Drum)</label>
+                <select id="layer1Select">
                     <option value="ifa_wisdom_chant">Ifá Wisdom Chant</option>
                     <option value="ifa_prosperity_chant">Ifá Prosperity Chant</option>
+                    <option value="talking_drum_loop">Talking Drum</option>
+                    <option value="bata_egungun_abida">Batá Drum – Egungun Ceremony</option>
                 </select>
             </div>
             
             <div class="control-group">
-                <label for="ambienceSelect">🌊 Select Ambience (Àyíká)</label>
-                <select id="ambienceSelect">
+                <label for="layer2Select">🌊 Layer 2 (Nature Ambience)</label>
+                <select id="layer2Select">
                     <option value="ocean_blessing_waves">Ocean Blessing Waves</option>
-                    <option value="flowing_river">Flowing River</option>
                     <option value="sacred_forest">Sacred Forest</option>
+                    <option value="flowing_river">Flowing River</option>
                     <option value="temple_peace">Temple Peace</option>
-                    <option value="sacred_ceremony">Sacred Ceremony</option>
                 </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="orikiSelect">👑 Layer 3 (Optional Oríkì Overlay)</label>
+                <select id="orikiSelect">
+                    <option value="">None</option>
+                    <option value="oriki_sango">Oríkì Ṣàngó</option>
+                    <option value="oriki_orunmila">Oríkì Òrúnmìlà</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="bataOffset">⏱ Drum Sync Offset (sec):</label>
+                <input type="number" id="bataOffset" value="0" step="0.1" min="0" max="5" style="width: 80px; padding: 5px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);" />
+            </div>
+            
+            <div class="control-group">
+                <label for="sleepMinutes">⏲️ Sleep Timer (minutes):</label>
+                <input type="number" id="sleepMinutes" min="1" max="120" style="width: 80px; padding: 5px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3);" />
+                <button onclick="setSleepTimer()" style="margin-left: 10px; padding: 5px 10px; background: #374151; color: white; border: none; border-radius: 4px;">Set Timer</button>
             </div>
         </div>
         
-        <button class="play-button" onclick="playLayeredChant()">
-            🎵 Play Chant + Ambience
+        <button class="play-button" onclick="playLayeredSound()">
+            🎵 Play Layered Experience
+        </button>
+        <button onclick="stopAll()" style="margin-left: 10px; padding: 12px 24px; background: #dc2626; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            ⏹ Stop All
         </button>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 20px 0;">
             <div>
-                <label>Chant Audio:</label>
-                <audio id="chantAudio" controls class="audio-player"></audio>
+                <label>Layer 1 Audio:</label>
+                <audio id="layer1Audio" controls class="audio-player"></audio>
             </div>
             <div>
-                <label>Ambience Audio:</label>
-                <audio id="ambienceAudio" controls class="audio-player"></audio>
+                <label>Layer 2 Audio:</label>
+                <audio id="layer2Audio" controls class="audio-player"></audio>
             </div>
+            <div>
+                <label>Layer 3 Audio:</label>
+                <audio id="orikiAudio" controls class="audio-player"></audio>
+            </div>
+        </div>
+        
+        <div id="nowPlaying" style="text-align: center; font-style: italic; color: #d97706; margin: 15px 0;"></div>
+        
+        <div id="infoPanel" style="background: rgba(245, 158, 11, 0.1); padding: 20px; border-radius: 10px; margin: 20px 0; display: none; border-left: 4px solid #f59e0b;">
+            <h3 id="infoTitle" style="color: #f59e0b; margin-bottom: 10px; font-weight: bold;"></h3>
+            <p><strong>Role:</strong> <span id="infoRole"></span></p>
+            <p><strong>Use:</strong> <span id="infoUse"></span></p>
+            <p><strong>Energy:</strong> <span id="infoEnergy"></span></p>
         </div>
         
         <div class="status">
@@ -248,7 +285,48 @@
             ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3?v=" + Date.now(),
             sacred_forest: "/static/audio/soundscapes/sacred_forest.mp3?v=" + Date.now(),
             temple_peace: "/static/audio/soundscapes/temple_peace.mp3?v=" + Date.now(),
-            sacred_ceremony: "/static/audio/soundscapes/sacred_ceremony.mp3?v=" + Date.now()
+            sacred_ceremony: "/static/audio/soundscapes/sacred_ceremony.mp3?v=" + Date.now(),
+            oriki_sango: "/static/audio/soundscapes/ifa_wisdom_chant.mp3?v=" + Date.now(),
+            oriki_orunmila: "/static/audio/soundscapes/ifa_prosperity_chant.mp3?v=" + Date.now()
+        };
+
+        const soundDetails = {
+            bata_egungun_abida: {
+                title: "Batá Drum – Egungun Ceremony",
+                role: "Calls ancestral spirits in traditional Yoruba ceremonies",
+                use: "Used in Egungun festivals and sacred processions",
+                energy: "Deep, rhythmic, ceremonial grounding"
+            },
+            ifa_wisdom_chant: {
+                title: "Ifá Wisdom Chant",
+                role: "Spiritual invocation of clarity and divine knowledge",
+                use: "Recited during early morning prayer or divination",
+                energy: "Reflective, uplifting, mentally awakening"
+            },
+            ifa_prosperity_chant: {
+                title: "Ifá Prosperity Chant",
+                role: "Invocation for abundance and material blessings",
+                use: "Chanted during wealth attraction rituals",
+                energy: "Empowering, manifesting, abundant"
+            },
+            talking_drum_loop: {
+                title: "Talking Drum",
+                role: "Traditional communication and rhythm keeper",
+                use: "Storytelling, ceremonies, and spiritual communication",
+                energy: "Melodic, conversational, connecting"
+            },
+            ocean_blessing_waves: {
+                title: "Ocean Blessing Waves",
+                role: "Channeling Yemoja's maternal divine energy",
+                use: "Healing ceremonies, emotional cleansing, fertility rituals",
+                energy: "Nurturing, flowing, cleansing"
+            },
+            sacred_forest: {
+                title: "Sacred Forest",
+                role: "Connection to earth spirits and natural forces",
+                use: "Meditation, herb gathering, nature-based healing",
+                energy: "Grounding, mystical, peaceful"
+            }
         };
 
         const backgroundMap = {
@@ -270,70 +348,138 @@
             }
         }
 
-        function playLayeredChant() {
-            const chantKey = document.getElementById("chantSelect").value;
-            const ambKey = document.getElementById("ambienceSelect").value;
+        let sleepTimer = null;
 
-            const chant = document.getElementById("chantAudio");
-            const amb = document.getElementById("ambienceAudio");
+        function playLayeredSound() {
+            const l1 = document.getElementById("layer1Select").value;
+            const l2 = document.getElementById("layer2Select").value;
+            const l3 = document.getElementById("orikiSelect").value;
+            const offset = parseFloat(document.getElementById("bataOffset").value || "0");
 
-            chant.src = audioMap[chantKey];
-            amb.src = audioMap[ambKey];
+            const a1 = document.getElementById("layer1Audio");
+            const a2 = document.getElementById("layer2Audio");
+            const a3 = document.getElementById("orikiAudio");
 
-            // Set volume levels for better balance
-            chant.volume = 0.7;  // Chant slightly louder
-            amb.volume = 0.5;    // Ambience as background
+            // Set audio sources
+            a1.src = audioMap[l1];
+            a2.src = audioMap[l2];
+            if (l3) a3.src = audioMap[l3];
+
+            // Set volume levels for balanced mix
+            a1.volume = 0.8;  // Primary layer
+            a2.volume = 0.5;  // Background ambience
+            if (l3) a3.volume = 0.6;  // Overlay
+
+            // Set looping for continuous experience
+            a2.loop = true;
+            if (l3) a3.loop = true;
+
+            // Play layers with timing
+            a1.play().catch(e => console.log("Layer 1 failed:", e));
             
-            // Set ambience to loop for continuous background
-            amb.loop = true;
-
-            // Set background based on chant selection
-            setBackgroundImage(chantKey);
-
-            chant.play().catch(e => console.log("Chant playback failed:", e));
-            amb.play().catch(e => console.log("Ambience playback failed:", e));
+            // Apply drum offset timing
+            if (l2.includes('bata') || l2.includes('drum')) {
+                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
+            } else {
+                a2.play().catch(e => console.log("Layer 2 failed:", e));
+            }
             
-            // Update button text
+            if (l3) {
+                setTimeout(() => a3.play().catch(e => console.log("Layer 3 failed:", e)), 2000);
+            }
+
+            // Update display
+            setBackgroundImage(l1);
+            showSoundInfo(l1);
+            updateNowPlaying(l1, l2, l3, offset);
+            
+            // Update button
             const button = document.querySelector('.play-button');
-            button.textContent = '🎵 Playing Layered Audio...';
+            button.textContent = '🎵 Playing Layered Experience...';
             button.style.background = 'linear-gradient(45deg, #22c55e, #16a34a)';
-            
-            // Reset button after chant finishes
-            chant.onended = function() {
-                button.textContent = '🎵 Play Chant + Ambience';
-                button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
-            };
         }
 
-        // Add stop functionality
+        function showSoundInfo(soundKey) {
+            const info = soundDetails[soundKey];
+            if (info) {
+                document.getElementById('infoTitle').textContent = info.title;
+                document.getElementById('infoRole').textContent = info.role;
+                document.getElementById('infoUse').textContent = info.use;
+                document.getElementById('infoEnergy').textContent = info.energy;
+                document.getElementById('infoPanel').style.display = 'block';
+            }
+        }
+
+        function updateNowPlaying(l1, l2, l3, offset) {
+            let text = `🎵 Playing: ${l1} + ${l2}`;
+            if (l3) text += ` + ${l3}`;
+            if (offset > 0) text += ` (${offset}s offset)`;
+            document.getElementById('nowPlaying').textContent = text;
+        }
+
+        function setSleepTimer() {
+            const minutes = parseInt(document.getElementById('sleepMinutes').value);
+            if (minutes && minutes > 0) {
+                if (sleepTimer) clearTimeout(sleepTimer);
+                
+                sleepTimer = setTimeout(() => {
+                    stopAll();
+                    document.getElementById('nowPlaying').textContent = '😴 Sleep timer activated - all audio stopped';
+                }, minutes * 60 * 1000);
+                
+                document.getElementById('nowPlaying').textContent = `⏲️ Sleep timer set for ${minutes} minutes`;
+            }
+        }
+
+        // Enhanced stop functionality
         function stopAll() {
-            const chant = document.getElementById("chantAudio");
-            const amb = document.getElementById("ambienceAudio");
+            const a1 = document.getElementById("layer1Audio");
+            const a2 = document.getElementById("layer2Audio");
+            const a3 = document.getElementById("orikiAudio");
             
-            chant.pause();
-            amb.pause();
-            chant.currentTime = 0;
-            amb.currentTime = 0;
+            [a1, a2, a3].forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            
+            if (sleepTimer) {
+                clearTimeout(sleepTimer);
+                sleepTimer = null;
+            }
             
             const button = document.querySelector('.play-button');
-            button.textContent = '🎵 Play Chant + Ambience';
+            button.textContent = '🎵 Play Layered Experience';
             button.style.background = 'linear-gradient(45deg, #f59e0b, #d97706)';
+            
+            document.getElementById('nowPlaying').textContent = '';
+            document.getElementById('infoPanel').style.display = 'none';
         }
         
-        // Add background change on selection change
-        document.getElementById('chantSelect').addEventListener('change', function() {
+        // Enhanced event listeners
+        document.getElementById('layer1Select').addEventListener('change', function() {
             setBackgroundImage(this.value);
+            showSoundInfo(this.value);
         });
 
-        // Add keyboard shortcuts
+        // Enhanced keyboard shortcuts
         document.addEventListener('keydown', function(e) {
             if (e.code === 'Space') {
                 e.preventDefault();
-                playLayeredChant();
+                playLayeredSound();
             }
             if (e.code === 'Escape') {
                 stopAll();
             }
+            if (e.code === 'KeyS' && e.ctrlKey) {
+                e.preventDefault();
+                setSleepTimer();
+            }
+        });
+
+        // Initialize with first sound info
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSound = document.getElementById('layer1Select').value;
+            showSoundInfo(firstSound);
         });
     </script>
 </body>
