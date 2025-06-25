@@ -60,6 +60,16 @@ const ambientTracks: AmbientTrack[] = [
     duration: 32
   },
   {
+    id: "bata_egungun_abida",
+    name: "Bata Egungun Abida",
+    nameYoruba: "Bàtá Egúngún Àbídà",
+    description: "Traditional ceremonial drumming for ancestral worship",
+    descriptionYoruba: "Ìlù àjọ̀dún ìbílẹ̀ fún ìbọrí àwọn bàbá",
+    file: "/static/audio/soundscapes/bata_egungun_abida.mp3",
+    category: "drums",
+    duration: 180
+  },
+  {
     id: "talking_drum",
     name: "Talking Drum",
     nameYoruba: "Ìlù Dùndún",
