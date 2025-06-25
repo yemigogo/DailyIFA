@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import RhythmRecommendation from "./rhythm-recommendation";
 
 interface DrumPattern {
   name: string;
@@ -153,7 +154,10 @@ export default function BataRhythmVisualizer() {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-200 dark:border-amber-700">
+    <div className="space-y-6">
+      <RhythmRecommendation />
+      
+      <Card className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-amber-200 dark:border-amber-700">
       <CardHeader>
         <CardTitle className="text-amber-700 dark:text-amber-300 flex items-center gap-3">
           <span className="text-2xl">🥁</span>
@@ -358,5 +362,6 @@ export default function BataRhythmVisualizer() {
         </div>
       </CardContent>
     </Card>
+    </div>
   );
 }
