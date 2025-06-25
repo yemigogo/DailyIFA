@@ -316,12 +316,52 @@
             oriki_orunmila: "/static/audio/soundscapes/ifa_prosperity_chant.mp3?v=" + Date.now()
         };
 
+        let bataPlayer = null;
+
+        function startBataLoop(volume = 0.8) {
+            console.log("AUTHENTIC EGUNGUN BATA: startBataLoop called with volume:", volume);
+            
+            if (bataPlayer && !bataPlayer.paused) {
+                console.log("Authentic Egungun Bata already playing");
+                return;
+            }
+            
+            console.log("Creating new AUTHENTIC EGUNGUN BATA player");
+            bataPlayer = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
+            bataPlayer.loop = true;
+            bataPlayer.volume = volume;
+            
+            bataPlayer.addEventListener('loadstart', () => console.log("AUTHENTIC EGUNGUN BATA: loadstart"));
+            bataPlayer.addEventListener('loadeddata', () => console.log("AUTHENTIC EGUNGUN BATA: loadeddata"));
+            bataPlayer.addEventListener('canplay', () => console.log("AUTHENTIC EGUNGUN BATA: canplay"));
+            bataPlayer.addEventListener('playing', () => console.log("SUCCESS: AUTHENTIC EGUNGUN BATA IS PLAYING!"));
+            bataPlayer.addEventListener('error', (e) => console.error("AUTHENTIC EGUNGUN BATA ERROR:", e.target.error));
+            
+            console.log("Playing AUTHENTIC EGUNGUN BATA...");
+            bataPlayer.play().then(() => {
+                console.log("CONFIRMED: Authentic Egungun Bata drums are playing!");
+            }).catch(err => {
+                console.error("FAILED: Authentic Egungun Bata error:", err);
+            });
+        }
+
+        function stopBataLoop() {
+            console.log("AUTHENTIC EGUNGUN BATA: stopBataLoop called");
+            if (bataPlayer) {
+                console.log("Stopping AUTHENTIC EGUNGUN BATA player");
+                bataPlayer.pause();
+                bataPlayer.currentTime = 0;
+                bataPlayer = null;
+            }
+        }
+
         const soundDetails = {
             bata_egungun_abida: {
                 title: "Batá Drum – Egungun Ceremony",
                 role: "Calls ancestral spirits in traditional Yoruba ceremonies",
                 use: "Used in Egungun festivals and sacred processions",
-                energy: "Deep, rhythmic, ceremonial grounding"
+                energy: "Deep, rhythmic, ceremonial grounding",
+                note: "Your authentic 15MB Egungun Bata recording"
             },
             ifa_wisdom_chant: {
                 title: "Ifá Wisdom Chant",
@@ -601,8 +641,19 @@
             }
         });
 
-        // Initialize with first sound info
+        // Test audio accessibility and initialize
         document.addEventListener('DOMContentLoaded', function() {
+            console.log("Testing audio file accessibility...");
+            
+            // Test key audio files
+            const testFiles = ['bata_egungun_abida', 'ocean_blessing_waves'];
+            testFiles.forEach(file => {
+                const audio = new Audio(audioMap[file]);
+                audio.addEventListener('loadstart', () => console.log(`✓ ${file}: accessible`));
+                audio.addEventListener('error', (e) => console.error(`✗ ${file}: error`, e.target.error));
+                audio.load();
+            });
+            
             const firstSound = document.getElementById('layer1Select').value;
             showSoundInfo(firstSound);
             updateIntensityDisplay();
