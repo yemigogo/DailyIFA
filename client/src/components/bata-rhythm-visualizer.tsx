@@ -89,69 +89,21 @@ export default function BataRhythmVisualizer() {
   }, []);
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
-    if (!audioContextRef.current) return;
-
-    // Create more realistic drum sound using noise and filters
-    const audioContext = audioContextRef.current;
-    const now = audioContext.currentTime;
+    // Use authentic Bata drum recording instead of synthetic Web Audio API
+    const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+    audio.volume = 0.4;
     
-    // Create white noise for drum body
-    const bufferSize = audioContext.sampleRate * duration;
-    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-    const data = buffer.getChannelData(0);
+    // Map frequency to different starting positions for variation
+    const startPosition = (frequency / 300) * 2; // Map 80-280 Hz to 0-2 seconds
+    audio.currentTime = startPosition % 3 || 0; // Ensure we don't exceed file length
     
-    // Generate noise with exponential decay
-    for (let i = 0; i < bufferSize; i++) {
-      const decay = Math.exp(-i / (bufferSize * 0.1));
-      data[i] = (Math.random() * 2 - 1) * decay * 0.3;
-    }
+    audio.play().catch(e => console.log("Audio playback failed:", e));
     
-    const noiseSource = audioContext.createBufferSource();
-    noiseSource.buffer = buffer;
-    
-    // Create low-pass filter for drum tone
-    const filter = audioContext.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(frequency * 2, now);
-    filter.frequency.exponentialRampToValueAtTime(frequency * 0.5, now + duration);
-    filter.Q.setValueAtTime(8, now);
-    
-    // Create oscillator for fundamental tone
-    const oscillator = audioContext.createOscillator();
-    oscillator.type = 'triangle';
-    oscillator.frequency.setValueAtTime(frequency, now);
-    oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.3, now + duration * 0.1);
-    
-    // Create gain nodes
-    const noiseGain = audioContext.createGain();
-    const oscGain = audioContext.createGain();
-    const masterGain = audioContext.createGain();
-    
-    // Set envelope for more drum-like attack
-    noiseGain.gain.setValueAtTime(0.4, now);
-    noiseGain.gain.exponentialRampToValueAtTime(0.01, now + duration);
-    
-    oscGain.gain.setValueAtTime(0.2, now);
-    oscGain.gain.exponentialRampToValueAtTime(0.01, now + duration * 0.3);
-    
-    masterGain.gain.setValueAtTime(0.6, now);
-    masterGain.gain.exponentialRampToValueAtTime(0.01, now + duration);
-    
-    // Connect audio graph
-    noiseSource.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(masterGain);
-    
-    oscillator.connect(oscGain);
-    oscGain.connect(masterGain);
-    
-    masterGain.connect(audioContext.destination);
-    
-    // Start and stop
-    noiseSource.start(now);
-    oscillator.start(now);
-    noiseSource.stop(now + duration);
-    oscillator.stop(now + duration);
+    // Stop after duration to prevent overlap
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, duration * 1000);
   };
 
   const startVisualization = () => {
