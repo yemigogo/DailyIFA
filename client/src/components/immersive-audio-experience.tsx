@@ -127,6 +127,7 @@ export default function ImmersiveAudioExperience() {
   const [showCulturalInfo, setShowCulturalInfo] = useState<string | null>(null);
   const [masterVolume, setMasterVolume] = useState(0.8);
   const [isGlobalMuted, setIsGlobalMuted] = useState(false);
+  const [timingOffsets, setTimingOffsets] = useState<{ [key: string]: number }>({});
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
 
   useEffect(() => {
@@ -167,7 +168,14 @@ export default function ImmersiveAudioExperience() {
       if (layer.id === layerId) {
         const newIsPlaying = !layer.isPlaying;
         if (newIsPlaying) {
-          audio.play().catch(console.error);
+          const offset = timingOffsets[layerId] || 0;
+          if (offset > 0) {
+            setTimeout(() => {
+              audio.play().catch(console.error);
+            }, offset * 1000);
+          } else {
+            audio.play().catch(console.error);
+          }
         } else {
           audio.pause();
         }
@@ -188,6 +196,13 @@ export default function ImmersiveAudioExperience() {
     ));
   };
 
+  const updateTimingOffset = (layerId: string, offset: number) => {
+    setTimingOffsets(prev => ({
+      ...prev,
+      [layerId]: offset
+    }));
+  };
+
   const applyCombination = (combination: typeof spiritualCombinations[0]) => {
     // Stop all current layers
     layers.forEach(layer => {
@@ -197,13 +212,16 @@ export default function ImmersiveAudioExperience() {
       }
     });
 
-    // Start selected combination layers
+    // Start selected combination layers with timing offsets
     setLayers(prev => prev.map(layer => {
       const shouldPlay = combination.layers.includes(layer.id);
       const audio = audioRefs.current[layer.id];
       
       if (shouldPlay && audio) {
-        setTimeout(() => audio.play().catch(console.error), 300);
+        const baseDelay = 300;
+        const offset = timingOffsets[layer.id] || 0;
+        const totalDelay = baseDelay + (offset * 1000);
+        setTimeout(() => audio.play().catch(console.error), totalDelay);
       }
       
       return { ...layer, isPlaying: shouldPlay };
@@ -427,6 +445,27 @@ export default function ImmersiveAudioExperience() {
                     {Math.round(layer.volume * 100)}%
                   </span>
                 </div>
+
+                {/* Timing Offset Control - Show for drum layers */}
+                {layer.category === "ceremonial" && (
+                  <div className="flex items-center gap-4 mb-3">
+                    <label className="text-sm text-gray-600 dark:text-gray-400">
+                      {ts("Timing Offset (sec):", "Ìgbà Ìdádúró (ìṣẹ́jú):")}
+                    </label>
+                    <input
+                      type="number"
+                      value={timingOffsets[layer.id] || 0}
+                      onChange={(e) => updateTimingOffset(layer.id, parseFloat(e.target.value) || 0)}
+                      step="0.1"
+                      min="0"
+                      max="5"
+                      className="w-20 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                    />
+                    <span className="text-xs text-gray-500">
+                      {ts("sec", "ìṣẹ́jú")}
+                    </span>
+                  </div>
+                )}
 
                 {/* Cultural Information */}
                 {showCulturalInfo === layer.id && (
