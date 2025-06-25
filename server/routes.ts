@@ -6,12 +6,19 @@ import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 import { eboRecommendations } from "./data/ebo-recommendations";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database and Ifa lunar calendar
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();
   await initializeEboRecommendations();
+
+  // Test pages
+  app.get('/test_ambient_simple.html', (req, res) => {
+    res.sendFile(join(process.cwd(), 'test_ambient_simple.html'));
+  });
 
   // Get today's reading
   app.get("/api/readings/today", async (req, res) => {

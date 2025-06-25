@@ -52,20 +52,20 @@ const ambientTracks: AmbientTrack[] = [
   },
   {
     id: "bata_egungun_abida",
-    name: "Bata Egungun Abida",
-    nameYoruba: "Bàtá Egúngún Àbídà",
-    description: "Traditional ceremonial drumming for ancestral worship",
-    descriptionYoruba: "Ìlù àjọ̀dún ìbílẹ̀ fún ìbọrí àwọn bàbá",
+    name: "Batá Egungun Ceremony",
+    nameYoruba: "Àyẹyẹ Batá Egungun",
+    description: "Authentic ceremonial drumming for ancestral calling",
+    descriptionYoruba: "Ìlù àyẹyẹ òtítọ́ fún ìpè àwọn egungun",
     file: "/static/audio/soundscapes/bata_egungun_abida.mp3",
     category: "drums",
     duration: 60
   },
   {
-    id: "talking_drum",
-    name: "Talking Drum",
-    nameYoruba: "Ìlù Dùndún",
-    description: "Traditional talking drum conveying ancient messages",
-    descriptionYoruba: "Ìlù Dùndún ìbílẹ̀ tí ń gbé àwọn ọ̀rọ̀ àtijọ́",
+    id: "talking_drums",
+    name: "Talking Drums",
+    nameYoruba: "Dùndún",
+    description: "Traditional pitch-bending drums that speak Yoruba tones",
+    descriptionYoruba: "Ìlù àtẹnudun tí ń sọ̀rọ̀ ní èdè Yorùbá",
     file: "/static/audio/soundscapes/talking_drum_loop.mp3",
     category: "drums",
     duration: 30
@@ -274,24 +274,31 @@ export default function AmbientSoundscapes() {
 
   const playTrack = (track: AmbientTrack) => {
     if (currentTrack?.id === track.id && isPlaying) {
-      // Pause current track with fade out
       if (audioRef.current) {
-        fadeOut(audioRef.current, () => {
-          setIsPlaying(false);
-        });
+        audioRef.current.pause();
+        setIsPlaying(false);
       }
-    } else {
-      // Play new track
-      if (currentTrack && isPlaying && audioRef.current) {
-        // Fade out current track, then load new one
-        fadeOut(audioRef.current, () => {
-          loadNewTrack(track);
-        });
-      } else {
-        // No current track or not playing, load immediately
-        loadNewTrack(track);
-      }
+      return;
     }
+
+    // Stop current audio if playing
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
+    // Create new audio with direct pattern
+    const audio = new Audio(track.file);
+    audio.loop = true;
+    audio.volume = isMuted ? 0 : volume;
+    audio.play().then(() => {
+      audioRef.current = audio;
+      setCurrentTrack(track);
+      setIsPlaying(true);
+    }).catch(e => {
+      console.error(`${track.name} audio failed:`, e);
+      setIsPlaying(false);
+    });
   };
 
   const toggleMute = () => {
