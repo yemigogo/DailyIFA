@@ -144,8 +144,8 @@ export default function BataRhythmVisualizer() {
       bataPlayerRef.current.currentTime = 0;
     }
     
-    // Create fresh audio instance for authentic Bata drums
-    console.log("Creating new Audio instance");
+    // Create fresh audio instance for AUTHENTIC EGUNGUN BATA drums
+    console.log("Creating new AUTHENTIC EGUNGUN BATA Audio instance");
     bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
     bataPlayerRef.current.loop = true;
     
