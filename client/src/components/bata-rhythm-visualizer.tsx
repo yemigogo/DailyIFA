@@ -202,15 +202,6 @@ export default function BataRhythmVisualizer() {
         });
 
         return nextBeat;
-        
-        // Play drum sounds for active beats
-        bataDrumPatterns.forEach((drum) => {
-          if (drum.pattern[nextBeat] === 1) {
-            playDrumSound(drum.frequency);
-          }
-        });
-        
-        return nextBeat;
       });
     }, (60 / tempo) * 1000 / 3); // 12/8 time signature
   };
