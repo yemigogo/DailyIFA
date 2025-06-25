@@ -49,8 +49,9 @@ export default function BataRhythmVisualizer() {
   const { language, ts } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentBeat, setCurrentBeat] = useState(0);
-  const [tempo, setTempo] = useState(120); // BPM
+  const [tempo, setTempo] = useState(90);
   const [selectedPattern, setSelectedPattern] = useState<string>("egungun");
+  const [intensity, setIntensity] = useState(50);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -129,14 +130,13 @@ export default function BataRhythmVisualizer() {
     return ts("Powerful & Transformative", "Agbára àti Ìyípadà");
   };
 
-  // Global reference for better audio control
-  const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
+  // Global bataPlayer reference following user's pattern
   const [isLooping, setIsLooping] = useState(false);
+  const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
 
   const startBataLoop = (volume: number = 0.8) => {
-    // If already playing, just return
     if (bataPlayerRef.current && !bataPlayerRef.current.paused) return;
-
+    
     bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
     bataPlayerRef.current.loop = true;
     
@@ -144,9 +144,7 @@ export default function BataRhythmVisualizer() {
     const intensityVolume = (intensity / 100) * volume;
     bataPlayerRef.current.volume = Math.max(0.1, intensityVolume);
     
-    bataPlayerRef.current.play().catch(err => {
-      console.error("Batá audio failed:", err);
-    });
+    bataPlayerRef.current.play().catch(err => console.error("Batá error:", err));
     setIsLooping(true);
   };
 
@@ -218,24 +216,19 @@ export default function BataRhythmVisualizer() {
   };
 
   const stopVisualization = () => {
+    setIsPlaying(false);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    setIsPlaying(false);
+    
+    // Stop the continuous Bata loop
+    stopBataLoop();
   };
 
   const resetVisualization = () => {
     stopVisualization();
     setCurrentBeat(0);
-  };
-
-  const togglePlayback = () => {
-    if (isPlaying) {
-      stopVisualization();
-    } else {
-      startVisualization();
-    }
   };
 
   return (
@@ -284,21 +277,42 @@ export default function BataRhythmVisualizer() {
         {/* Controls */}
         <div className="flex items-center gap-4">
           <Button
-            onClick={togglePlayback}
+            onClick={isPlaying ? stopVisualization : startVisualization}
             className="bg-amber-600 hover:bg-amber-700 text-white"
           >
             {isPlaying ? (
               <>
                 <Pause className="w-4 h-4 mr-2" />
-                {ts("Pause", "Dúró")}
+                {ts("Stop", "Dúró")}
               </>
             ) : (
               <>
                 <Play className="w-4 h-4 mr-2" />
-                {ts("Play", "Ṣe")}
+                {ts("Play Pattern", "Ṣe Ìlù")}
               </>
             )}
           </Button>
+          
+          {!isPlaying && (
+            <Button 
+              onClick={() => startBataLoop(0.8)}
+              disabled={isLooping}
+              className="bg-purple-600 hover:bg-purple-700 text-white"
+            >
+              <span className="text-lg mr-2">🔄</span>
+              {ts("Loop", "Ìlù Láilái")}
+            </Button>
+          )}
+          
+          {isLooping && !isPlaying && (
+            <Button 
+              onClick={stopBataLoop}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              <span className="text-lg mr-2">⏹</span>
+              {ts("Stop", "Dúró")}
+            </Button>
+          )}
           
           <Button
             onClick={resetVisualization}
