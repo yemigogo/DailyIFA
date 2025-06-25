@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct Bata Test</title>
+</head>
+<body>
+    <h1>Direct Authentic Bata Test</h1>
+    <p>This tests your authentic bata_egungun_abida.mp3 file directly</p>
+    
+    <button onclick="playDirectBata()">Play Authentic Egungun Bata</button>
+    <button onclick="stopDirectBata()">Stop</button>
+    
+    <br><br>
+    <audio id="directBata" controls>
+        <source src="/static/audio/soundscapes/bata_egungun_abida.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div id="status"></div>
+    
+    <script>
+        let player = null;
+        
+        function playDirectBata() {
+            console.log("🥁 Playing DIRECT authentic Egungun Bata");
+            
+            if (player) {
+                player.pause();
+                player.currentTime = 0;
+            }
+            
+            player = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+            player.loop = true;
+            player.volume = 0.8;
+            
+            player.addEventListener('playing', () => {
+                console.log("🎉 DIRECT BATA IS PLAYING!");
+                document.getElementById('status').innerHTML = '🎉 AUTHENTIC EGUNGUN BATA PLAYING!';
+            });
+            
+            player.addEventListener('error', (e) => {
+                console.error("❌ Direct Bata error:", e.target.error);
+                document.getElementById('status').innerHTML = '❌ Error: ' + (e.target.error?.message || 'Unknown error');
+            });
+            
+            player.play().catch(err => {
+                console.error("Failed to play:", err);
+                document.getElementById('status').innerHTML = '❌ Failed: ' + err.message;
+            });
+        }
+        
+        function stopDirectBata() {
+            if (player) {
+                player.pause();
+                player.currentTime = 0;
+                player = null;
+                document.getElementById('status').innerHTML = '🛑 Stopped';
+            }
+        }
+    </script>
+</body>
+</html>
