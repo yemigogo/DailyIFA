@@ -135,30 +135,39 @@ export default function BataRhythmVisualizer() {
   const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
 
   const startBataLoop = (volume: number = 0.8) => {
+    console.log("startBataLoop called with volume:", volume);
+    
     // Stop any existing audio first
     if (bataPlayerRef.current) {
+      console.log("Stopping existing audio");
       bataPlayerRef.current.pause();
       bataPlayerRef.current.currentTime = 0;
     }
     
     // Create fresh audio instance for authentic Bata drums
+    console.log("Creating new Audio instance");
     bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
     bataPlayerRef.current.loop = true;
     
     // Modulate volume based on intensity
     const intensityVolume = (intensity / 100) * volume;
     bataPlayerRef.current.volume = Math.max(0.3, intensityVolume);
+    console.log("Set volume to:", bataPlayerRef.current.volume);
     
     // Add event listeners for debugging
-    bataPlayerRef.current.addEventListener('loadstart', () => console.log("Bata audio loading..."));
-    bataPlayerRef.current.addEventListener('canplay', () => console.log("Bata audio ready to play"));
-    bataPlayerRef.current.addEventListener('error', (e) => console.error("Bata audio error:", e));
+    bataPlayerRef.current.addEventListener('loadstart', () => console.log("✓ Bata audio loading started"));
+    bataPlayerRef.current.addEventListener('loadeddata', () => console.log("✓ Bata audio data loaded"));
+    bataPlayerRef.current.addEventListener('canplay', () => console.log("✓ Bata audio ready to play"));
+    bataPlayerRef.current.addEventListener('playing', () => console.log("✓ Bata audio is playing"));
+    bataPlayerRef.current.addEventListener('error', (e) => console.error("✗ Bata audio error:", e.target.error));
     
+    console.log("Attempting to play audio...");
     bataPlayerRef.current.play().then(() => {
-      console.log("Authentic Bata drums playing successfully");
+      console.log("SUCCESS: Authentic Bata drums playing!");
       setIsLooping(true);
     }).catch(err => {
-      console.error("Failed to play authentic Bata drums:", err);
+      console.error("FAILED to play authentic Bata drums:", err);
+      console.error("Error details:", err.name, err.message);
     });
   };
 
@@ -171,30 +180,52 @@ export default function BataRhythmVisualizer() {
   };
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
+    console.log(`playDrumSound called: frequency=${frequency}, duration=${duration}`);
+    
     // Create audio instance for individual drum hits - AUTHENTIC ONLY
     const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
     
     // Set volume based on intensity
     const baseVolume = 0.4 + (intensity / 100) * 0.4;
     audio.volume = baseVolume;
+    console.log(`Individual drum hit volume: ${baseVolume}`);
     
     // Map frequencies to different drum sounds in the recording
     let startPosition = 0;
-    if (frequency <= 100) startPosition = 0.2; // Iya drum (low, deep)
-    else if (frequency <= 200) startPosition = 0.8; // Itotele drum (medium)
-    else startPosition = 1.4; // Okonkolo drum (high, sharp)
+    let drumType = '';
+    if (frequency <= 100) {
+      startPosition = 0.2; // Iya drum (low, deep)
+      drumType = 'Iya';
+    } else if (frequency <= 200) {
+      startPosition = 0.8; // Itotele drum (medium)
+      drumType = 'Itotele';
+    } else {
+      startPosition = 1.4; // Okonkolo drum (high, sharp)
+      drumType = 'Okonkolo';
+    }
     
-    // Load and play from specific position
+    console.log(`Playing ${drumType} drum from position ${startPosition}s`);
+    
+    // Add error handling and debugging
+    audio.addEventListener('error', (e) => {
+      console.error(`${drumType} drum hit error:`, e.target.error);
+    });
+    
     audio.addEventListener('loadeddata', () => {
+      console.log(`${drumType} audio data loaded, setting position to ${startPosition}s`);
       audio.currentTime = startPosition;
+      
       audio.play().then(() => {
-        console.log(`Playing authentic ${frequency <= 100 ? 'Iya' : frequency <= 200 ? 'Itotele' : 'Okonkolo'} drum at ${startPosition}s`);
-      }).catch(e => console.error("Drum hit failed:", e));
+        console.log(`SUCCESS: ${drumType} drum playing from ${startPosition}s`);
+      }).catch(e => {
+        console.error(`FAILED: ${drumType} drum hit:`, e);
+      });
     });
     
     // Stop individual hit after duration
     setTimeout(() => {
       if (!audio.paused) {
+        console.log(`Stopping ${drumType} drum hit`);
         audio.pause();
         audio.currentTime = 0;
       }
