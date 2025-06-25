@@ -444,9 +444,11 @@
 
             // If the user picked Batá, use proper loop management
             if (l1 === "bata_egungun_abida") {
+                console.log("User selected AUTHENTIC EGUNGUN BATA - starting loop");
                 startBataLoop(0.8 * intensityMultiplier);
                 // Don't play a1 to avoid duplication
             } else {
+                console.log("User selected other sound, stopping Bata loop");
                 stopBataLoop();
                 a1.play().catch(e => console.log("Layer 1 failed:", e));
             }
