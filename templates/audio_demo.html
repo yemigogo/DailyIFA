@@ -388,6 +388,27 @@
             }
         }
 
+        function fadeInOcean(step = 0.05, interval = 100) {
+            startOceanLoop(0);                          // start muted
+            const id = setInterval(() => {
+                if (oceanPlayer && oceanPlayer.volume < 0.5) {
+                    oceanPlayer.volume += step;
+                } else clearInterval(id);
+            }, interval);
+        }
+
+        function fadeOutOcean(step = 0.05, interval = 100) {
+            if (!oceanPlayer) return;
+            const id = setInterval(() => {
+                if (oceanPlayer && oceanPlayer.volume > step) {
+                    oceanPlayer.volume -= step;
+                } else {
+                    clearInterval(id);
+                    stopOceanLoop();
+                }
+            }, interval);
+        }
+
         const soundDetails = {
             bata_egungun_abida: {
                 title: "Batá Drum – Egungun Ceremony",
@@ -526,12 +547,20 @@
                 a1.play().catch(e => console.log("Layer 1 failed:", e));
             }
             
-            // Ocean control following user's exact pattern
+            // Ocean control following user's exact pattern with smooth transitions
             const natureKey = l2;
             if (natureKey === "ocean_blessing_waves") {
-                startOceanLoop(0.5 * intensityMultiplier);          // adjust default volume with intensity
+                // Use fade-in for smooth ocean entrance
+                fadeInOcean(0.05, 100);
+                // Adjust final volume based on intensity
+                setTimeout(() => {
+                    if (oceanPlayer) {
+                        oceanPlayer.volume = 0.5 * intensityMultiplier;
+                    }
+                }, 1000);
             } else {
-                stopOceanLoop();
+                // Use fade-out for smooth ocean exit
+                fadeOutOcean(0.05, 100);
             }
             
             // Handle other layer 2 sounds (non-ocean)
@@ -647,9 +676,9 @@
                 audio.currentTime = 0;
             });
             
-            // Stop all specialized loops
+            // Stop all specialized loops with smooth fade-out
             stopBataLoop();
-            stopOceanLoop();
+            fadeOutOcean(0.1, 50);  // Faster fade-out when stopping all
             
             if (sleepTimer) {
                 clearTimeout(sleepTimer);

@@ -195,6 +195,27 @@ export default function BataRhythmVisualizer() {
     }
   };
 
+  const fadeInOcean = (step: number = 0.05, interval: number = 100) => {
+    startOceanLoop(0);                          // start muted
+    const id = setInterval(() => {
+      if (oceanPlayerRef.current && oceanPlayerRef.current.volume < 0.5) {
+        oceanPlayerRef.current.volume += step;
+      } else clearInterval(id);
+    }, interval);
+  };
+
+  const fadeOutOcean = (step: number = 0.05, interval: number = 100) => {
+    if (!oceanPlayerRef.current) return;
+    const id = setInterval(() => {
+      if (oceanPlayerRef.current && oceanPlayerRef.current.volume > step) {
+        oceanPlayerRef.current.volume -= step;
+      } else {
+        clearInterval(id);
+        stopOceanLoop();
+      }
+    }, interval);
+  };
+
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
     console.log(`playDrumSound called: frequency=${frequency}, duration=${duration}`);
     
