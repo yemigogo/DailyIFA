@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Test - Direct File Access</title>
+</head>
+<body>
+    <h1>Direct Audio File Test</h1>
+    
+    <h2>Authentic Egungun Bata Drums</h2>
+    <audio controls preload="auto">
+        <source src="/static/audio/soundscapes/bata_egungun_abida.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <br><br>
+    <button onclick="testBata()">Test Bata Programmatically</button>
+    
+    <h2>Ocean Blessing Waves</h2>
+    <audio controls preload="auto">
+        <source src="/static/audio/soundscapes/ocean_blessing_waves.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <br><br>
+    <button onclick="testOcean()">Test Ocean Programmatically</button>
+    
+    <div id="results"></div>
+
+    <script>
+        function log(message) {
+            document.getElementById('results').innerHTML += '<br>' + message;
+            console.log(message);
+        }
+
+        function testBata() {
+            log("Testing Bata drums...");
+            const audio = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
+            
+            audio.addEventListener('loadstart', () => log("✓ Bata: loadstart"));
+            audio.addEventListener('loadeddata', () => log("✓ Bata: loadeddata"));
+            audio.addEventListener('canplay', () => log("✓ Bata: canplay"));
+            audio.addEventListener('playing', () => log("✓ SUCCESS: Bata is playing!"));
+            audio.addEventListener('error', (e) => log("✗ Bata ERROR: " + e.target.error?.message));
+            
+            audio.play().then(() => {
+                log("✓ Bata play() promise resolved");
+            }).catch(err => {
+                log("✗ Bata play() failed: " + err.message);
+            });
+        }
+
+        function testOcean() {
+            log("Testing Ocean waves...");
+            const audio = new Audio("/static/audio/soundscapes/ocean_blessing_waves.mp3");
+            
+            audio.addEventListener('loadstart', () => log("✓ Ocean: loadstart"));
+            audio.addEventListener('loadeddata', () => log("✓ Ocean: loadeddata"));
+            audio.addEventListener('canplay', () => log("✓ Ocean: canplay"));
+            audio.addEventListener('playing', () => log("✓ SUCCESS: Ocean is playing!"));
+            audio.addEventListener('error', (e) => log("✗ Ocean ERROR: " + e.target.error?.message));
+            
+            audio.play().then(() => {
+                log("✓ Ocean play() promise resolved");
+            }).catch(err => {
+                log("✗ Ocean play() failed: " + err.message);
+            });
+        }
+    </script>
+</body>
+</html>

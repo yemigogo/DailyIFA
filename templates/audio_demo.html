@@ -324,26 +324,42 @@
             
             if (bataPlayer && !bataPlayer.paused) {
                 console.log("Authentic Egungun Bata already playing");
+                bataPlayer.volume = volume; // Update volume if already playing
                 return;
             }
             
-            console.log("Creating new AUTHENTIC EGUNGUN BATA player");
-            bataPlayer = new Audio(audioMap.bata_egungun_abida);
+            console.log("Creating new AUTHENTIC EGUNGUN BATA player with path:", audioMap.bata_egungun_abida);
+            bataPlayer = new Audio();
+            bataPlayer.src = audioMap.bata_egungun_abida;
             bataPlayer.loop = true;
             bataPlayer.volume = volume;
+            bataPlayer.preload = "auto";
             
             bataPlayer.addEventListener('loadstart', () => console.log("AUTHENTIC EGUNGUN BATA: loadstart"));
-            bataPlayer.addEventListener('loadeddata', () => console.log("AUTHENTIC EGUNGUN BATA: loadeddata"));
+            bataPlayer.addEventListener('loadeddata', () => console.log("AUTHENTIC EGUNGUN BATA: loadeddata - duration:", bataPlayer.duration));
             bataPlayer.addEventListener('canplay', () => console.log("AUTHENTIC EGUNGUN BATA: canplay"));
+            bataPlayer.addEventListener('canplaythrough', () => console.log("AUTHENTIC EGUNGUN BATA: canplaythrough"));
             bataPlayer.addEventListener('playing', () => console.log("SUCCESS: AUTHENTIC EGUNGUN BATA IS PLAYING!"));
-            bataPlayer.addEventListener('error', (e) => console.error("AUTHENTIC EGUNGUN BATA ERROR:", e.target.error));
-            
-            console.log("Playing AUTHENTIC EGUNGUN BATA...");
-            bataPlayer.play().then(() => {
-                console.log("CONFIRMED: Authentic Egungun Bata drums are playing!");
-            }).catch(err => {
-                console.error("FAILED: Authentic Egungun Bata error:", err);
+            bataPlayer.addEventListener('error', (e) => {
+                console.error("AUTHENTIC EGUNGUN BATA ERROR:", e);
+                console.error("Error details:", e.target.error);
+                console.error("Network state:", e.target.networkState);
+                console.error("Ready state:", e.target.readyState);
             });
+            
+            console.log("Loading and playing AUTHENTIC EGUNGUN BATA...");
+            bataPlayer.load();
+            
+            // Wait for some loading before attempting play
+            setTimeout(() => {
+                bataPlayer.play().then(() => {
+                    console.log("CONFIRMED: Authentic Egungun Bata drums are playing!");
+                }).catch(err => {
+                    console.error("FAILED: Authentic Egungun Bata error:", err);
+                    console.error("Error name:", err.name);
+                    console.error("Error message:", err.message);
+                });
+            }, 100);
         }
 
         function stopBataLoop() {
@@ -360,22 +376,42 @@
             console.log("OCEAN BLESSING WAVES: startOceanLoop called with volume:", volume);
             if (oceanPlayer && !oceanPlayer.paused) {
                 console.log("Ocean waves already playing");
+                oceanPlayer.volume = volume; // Update volume if already playing
                 return;        // already playing
             }
             
-            console.log("Creating new OCEAN BLESSING WAVES player");
-            oceanPlayer = new Audio(audioMap.ocean_blessing_waves);
+            console.log("Creating new OCEAN BLESSING WAVES player with path:", audioMap.ocean_blessing_waves);
+            oceanPlayer = new Audio();
+            oceanPlayer.src = audioMap.ocean_blessing_waves;
             oceanPlayer.loop = true;
             oceanPlayer.volume = volume;   // 0–1
+            oceanPlayer.preload = "auto";
             
+            oceanPlayer.addEventListener('loadstart', () => console.log("OCEAN BLESSING WAVES: loadstart"));
+            oceanPlayer.addEventListener('loadeddata', () => console.log("OCEAN BLESSING WAVES: loadeddata - duration:", oceanPlayer.duration));
+            oceanPlayer.addEventListener('canplay', () => console.log("OCEAN BLESSING WAVES: canplay"));
+            oceanPlayer.addEventListener('canplaythrough', () => console.log("OCEAN BLESSING WAVES: canplaythrough"));
             oceanPlayer.addEventListener('playing', () => console.log("SUCCESS: OCEAN BLESSING WAVES IS PLAYING!"));
-            oceanPlayer.addEventListener('error', (e) => console.error("OCEAN WAVES ERROR:", e.target.error));
-            
-            oceanPlayer.play().then(() => {
-                console.log("CONFIRMED: Ocean blessing waves are playing!");
-            }).catch(err => {
-                console.error("Ocean audio error:", err);
+            oceanPlayer.addEventListener('error', (e) => {
+                console.error("OCEAN WAVES ERROR:", e);
+                console.error("Error details:", e.target.error);
+                console.error("Network state:", e.target.networkState);
+                console.error("Ready state:", e.target.readyState);
             });
+            
+            console.log("Loading and playing OCEAN BLESSING WAVES...");
+            oceanPlayer.load();
+            
+            // Wait for some loading before attempting play
+            setTimeout(() => {
+                oceanPlayer.play().then(() => {
+                    console.log("CONFIRMED: Ocean blessing waves are playing!");
+                }).catch(err => {
+                    console.error("Ocean audio error:", err);
+                    console.error("Error name:", err.name);
+                    console.error("Error message:", err.message);
+                });
+            }, 100);
         }
 
         function stopOceanLoop() {
