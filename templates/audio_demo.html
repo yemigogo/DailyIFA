@@ -526,27 +526,23 @@
                 a1.play().catch(e => console.log("Layer 1 failed:", e));
             }
             
-            // If the user picked Ocean Waves for layer 2, use proper loop management
-            if (l2 === "ocean_blessing_waves") {
-                console.log("User selected OCEAN BLESSING WAVES - starting loop");
-                startOceanLoop(0.5 * intensityMultiplier);
-            } else if (l2.includes('bata') || l2.includes('drum')) {
-                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
+            // Ocean control following user's exact pattern
+            const natureKey = l2;
+            if (natureKey === "ocean_blessing_waves") {
+                startOceanLoop(0.5 * intensityMultiplier);          // adjust default volume with intensity
             } else {
-                a2.play().catch(e => console.log("Layer 2 failed:", e));
+                stopOceanLoop();
             }
             
-            // Don't play a2 if using specialized loops - they handle their own playback
+            // Handle other layer 2 sounds (non-ocean)
+            if (l2 !== "ocean_blessing_waves" && l2.includes('bata') || l2.includes('drum')) {
+                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
+            } else if (l2 !== "ocean_blessing_waves" && l2) {
+                a2.play().catch(e => console.log("Layer 2 failed:", e));
+            }
             
             if (l3) {
                 setTimeout(() => a3.play().catch(e => console.log("Layer 3 failed:", e)), 2000);
-            }
-            
-            // Handle regular audio files for non-specialized sounds
-            if (l2 !== "ocean_blessing_waves" && !l2.includes('bata') && !l2.includes('drum') && l2) {
-                a2.play().catch(e => console.log("Layer 2 failed:", e));
-            } else if (l2.includes('bata') || l2.includes('drum')) {
-                setTimeout(() => a2.play().catch(e => console.log("Layer 2 failed:", e)), offset * 1000);
             }
 
             // Update display
