@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Audio Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+        .results { margin-top: 20px; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Simple Audio Test - Authentic Files</h1>
+    
+    <div>
+        <h2>Test 1: Direct HTML5 Audio Elements</h2>
+        <p>Bata Egungun Drums (15.8MB):</p>
+        <audio controls preload="auto" style="width: 100%;">
+            <source src="/static/audio/soundscapes/bata_egungun_abida.mp3" type="audio/mpeg">
+        </audio>
+        
+        <p>Ocean Blessing Waves (7.9MB):</p>
+        <audio controls preload="auto" style="width: 100%;">
+            <source src="/static/audio/soundscapes/ocean_blessing_waves.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <div>
+        <h2>Test 2: JavaScript Playback</h2>
+        <button onclick="testBata()">Play Bata Drums</button>
+        <button onclick="testOcean()">Play Ocean Waves</button>
+        <button onclick="stopAll()">Stop All</button>
+    </div>
+    
+    <div id="results" class="results">
+        <strong>Test Results:</strong><br>
+        Click the buttons above to test JavaScript audio playback.
+    </div>
+
+    <script>
+        let bataAudio = null;
+        let oceanAudio = null;
+
+        function log(message) {
+            const results = document.getElementById('results');
+            results.innerHTML += '<br>• ' + message;
+            console.log(message);
+        }
+
+        function testBata() {
+            log("Testing Bata drums...");
+            
+            if (bataAudio) {
+                bataAudio.pause();
+                bataAudio = null;
+            }
+            
+            bataAudio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+            bataAudio.volume = 0.7;
+            
+            bataAudio.addEventListener('canplay', () => log('✓ Bata: Ready to play'));
+            bataAudio.addEventListener('playing', () => log('✓ SUCCESS: Bata drums are playing!'));
+            bataAudio.addEventListener('error', (e) => log('✗ Bata Error: ' + (e.target.error?.message || 'Unknown error')));
+            
+            bataAudio.play().then(() => {
+                log('✓ Bata play() promise resolved');
+            }).catch(err => {
+                log('✗ Bata play() failed: ' + err.message);
+            });
+        }
+
+        function testOcean() {
+            log("Testing Ocean waves...");
+            
+            if (oceanAudio) {
+                oceanAudio.pause();
+                oceanAudio = null;
+            }
+            
+            oceanAudio = new Audio('/static/audio/soundscapes/ocean_blessing_waves.mp3');
+            oceanAudio.volume = 0.5;
+            
+            oceanAudio.addEventListener('canplay', () => log('✓ Ocean: Ready to play'));
+            oceanAudio.addEventListener('playing', () => log('✓ SUCCESS: Ocean waves are playing!'));
+            oceanAudio.addEventListener('error', (e) => log('✗ Ocean Error: ' + (e.target.error?.message || 'Unknown error')));
+            
+            oceanAudio.play().then(() => {
+                log('✓ Ocean play() promise resolved');
+            }).catch(err => {
+                log('✗ Ocean play() failed: ' + err.message);
+            });
+        }
+
+        function stopAll() {
+            if (bataAudio) {
+                bataAudio.pause();
+                bataAudio.currentTime = 0;
+            }
+            if (oceanAudio) {
+                oceanAudio.pause();
+                oceanAudio.currentTime = 0;
+            }
+            log("All audio stopped");
+        }
+    </script>
+</body>
+</html>
