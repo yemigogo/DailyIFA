@@ -20,7 +20,7 @@ const bataDrumPatterns: DrumPattern[] = [
     nameYoruba: "Ìyá (Ìlù Ìyá)",
     pattern: [1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0],
     color: "#8B4513", // Deep brown for mother drum
-    frequency: 60,
+    frequency: 80, // Lower frequency for deeper drum sound
     description: "Deep, resonant mother drum providing the foundation",
     descriptionYoruba: "Ìlù Ìyá tó jinlẹ̀, tí ń fi ìpìlẹ̀ sílẹ̀"
   },
@@ -29,7 +29,7 @@ const bataDrumPatterns: DrumPattern[] = [
     nameYoruba: "Ìtótẹlẹ (Ìlù Àárín)",
     pattern: [0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
     color: "#D2691E", // Medium brown for middle drum
-    frequency: 120,
+    frequency: 150, // Medium frequency for middle drum
     description: "Medium-pitched drum responding to the mother drum",
     descriptionYoruba: "Ìlù àárín tí ń dáhùn sí Ìyá"
   },
@@ -38,7 +38,7 @@ const bataDrumPatterns: DrumPattern[] = [
     nameYoruba: "Ọ̀kọ́nkọlọ (Ìlù Kékeré)",
     pattern: [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1],
     color: "#DAA520", // Golden brown for small drum
-    frequency: 200,
+    frequency: 280, // Higher frequency for smaller drum
     description: "High-pitched drum providing rapid rhythmic patterns",
     descriptionYoruba: "Ìlù kékeré tí ń ṣe àwọn ìlù yára"
   }
@@ -91,21 +91,67 @@ export default function BataRhythmVisualizer() {
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
     if (!audioContextRef.current) return;
 
-    const oscillator = audioContextRef.current.createOscillator();
-    const gainNode = audioContextRef.current.createGain();
+    // Create more realistic drum sound using noise and filters
+    const audioContext = audioContextRef.current;
+    const now = audioContext.currentTime;
     
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContextRef.current.destination);
+    // Create white noise for drum body
+    const bufferSize = audioContext.sampleRate * duration;
+    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
     
-    // Create drum-like sound with frequency modulation
-    oscillator.frequency.setValueAtTime(frequency, audioContextRef.current.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.3, audioContextRef.current.currentTime + duration);
+    // Generate noise with exponential decay
+    for (let i = 0; i < bufferSize; i++) {
+      const decay = Math.exp(-i / (bufferSize * 0.1));
+      data[i] = (Math.random() * 2 - 1) * decay * 0.3;
+    }
     
-    gainNode.gain.setValueAtTime(0.3, audioContextRef.current.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContextRef.current.currentTime + duration);
+    const noiseSource = audioContext.createBufferSource();
+    noiseSource.buffer = buffer;
     
-    oscillator.start(audioContextRef.current.currentTime);
-    oscillator.stop(audioContextRef.current.currentTime + duration);
+    // Create low-pass filter for drum tone
+    const filter = audioContext.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(frequency * 2, now);
+    filter.frequency.exponentialRampToValueAtTime(frequency * 0.5, now + duration);
+    filter.Q.setValueAtTime(8, now);
+    
+    // Create oscillator for fundamental tone
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'triangle';
+    oscillator.frequency.setValueAtTime(frequency, now);
+    oscillator.frequency.exponentialRampToValueAtTime(frequency * 0.3, now + duration * 0.1);
+    
+    // Create gain nodes
+    const noiseGain = audioContext.createGain();
+    const oscGain = audioContext.createGain();
+    const masterGain = audioContext.createGain();
+    
+    // Set envelope for more drum-like attack
+    noiseGain.gain.setValueAtTime(0.4, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.01, now + duration);
+    
+    oscGain.gain.setValueAtTime(0.2, now);
+    oscGain.gain.exponentialRampToValueAtTime(0.01, now + duration * 0.3);
+    
+    masterGain.gain.setValueAtTime(0.6, now);
+    masterGain.gain.exponentialRampToValueAtTime(0.01, now + duration);
+    
+    // Connect audio graph
+    noiseSource.connect(filter);
+    filter.connect(noiseGain);
+    noiseGain.connect(masterGain);
+    
+    oscillator.connect(oscGain);
+    oscGain.connect(masterGain);
+    
+    masterGain.connect(audioContext.destination);
+    
+    // Start and stop
+    noiseSource.start(now);
+    oscillator.start(now);
+    noiseSource.stop(now + duration);
+    oscillator.stop(now + duration);
   };
 
   const startVisualization = () => {

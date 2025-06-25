@@ -63,6 +63,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Cultural Authenticity**: Maintaining traditional Yoruba terminology and sacred practices
 - **Mobile-First**: Primary focus on smartphone accessibility
 - **Spiritual Atmosphere**: Ambient Yoruba soundscapes for enhanced practice
+- **Drum Sound Quality**: User requires authentic African drum sounds - Bata drums must sound like real traditional drums, not synthetic guitar-like tones
 
 ## Technical Details
 - **Port**: Flask app runs on port 5001 (Node.js was on 5000)
