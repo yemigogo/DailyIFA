@@ -254,9 +254,23 @@ export default function AmbientSoundscapes() {
     }, 100);
   };
 
+  const audioMap = {
+    ifa_wisdom_chant: "/static/audio/soundscapes/ifa_wisdom_chant.mp3",
+    ifa_prosperity_chant: "/static/audio/soundscapes/ifa_prosperity_chant.mp3",
+    talking_drum_loop: "/static/audio/soundscapes/talking_drum_loop.mp3",
+    ocean_blessing_waves: "/static/audio/soundscapes/ocean_blessing_waves.mp3",
+    bata_egungun_abida: "/static/audio/soundscapes/bata_egungun_abida.mp3",
+    bata_drums_loop: "/static/audio/soundscapes/bata_drums_loop.mp3",
+    flowing_river: "/static/audio/soundscapes/flowing_river.mp3",
+    sacred_forest: "/static/audio/soundscapes/sacred_forest.mp3",
+    temple_peace: "/static/audio/soundscapes/temple_peace.mp3",
+    sacred_ceremony: "/static/audio/soundscapes/sacred_ceremony.mp3"
+  };
+
   const loadNewTrack = (track: AmbientTrack) => {
     if (audioRef.current) {
-      audioRef.current.src = track.file;
+      const audioUrl = audioMap[track.id as keyof typeof audioMap] || track.file;
+      audioRef.current.src = audioUrl;
       audioRef.current.play().then(() => {
         fadeIn(audioRef.current!);
         setIsPlaying(true);
