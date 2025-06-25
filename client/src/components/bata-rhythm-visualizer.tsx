@@ -135,17 +135,31 @@ export default function BataRhythmVisualizer() {
   const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
 
   const startBataLoop = (volume: number = 0.8) => {
-    if (bataPlayerRef.current && !bataPlayerRef.current.paused) return;
+    // Stop any existing audio first
+    if (bataPlayerRef.current) {
+      bataPlayerRef.current.pause();
+      bataPlayerRef.current.currentTime = 0;
+    }
     
+    // Create fresh audio instance for authentic Bata drums
     bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
     bataPlayerRef.current.loop = true;
     
     // Modulate volume based on intensity
     const intensityVolume = (intensity / 100) * volume;
-    bataPlayerRef.current.volume = Math.max(0.1, intensityVolume);
+    bataPlayerRef.current.volume = Math.max(0.3, intensityVolume);
     
-    bataPlayerRef.current.play().catch(err => console.error("Batá error:", err));
-    setIsLooping(true);
+    // Add event listeners for debugging
+    bataPlayerRef.current.addEventListener('loadstart', () => console.log("Bata audio loading..."));
+    bataPlayerRef.current.addEventListener('canplay', () => console.log("Bata audio ready to play"));
+    bataPlayerRef.current.addEventListener('error', (e) => console.error("Bata audio error:", e));
+    
+    bataPlayerRef.current.play().then(() => {
+      console.log("Authentic Bata drums playing successfully");
+      setIsLooping(true);
+    }).catch(err => {
+      console.error("Failed to play authentic Bata drums:", err);
+    });
   };
 
   const stopBataLoop = () => {
@@ -157,28 +171,34 @@ export default function BataRhythmVisualizer() {
   };
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
-    // ALWAYS use authentic Bata drum recording - NO SYNTHETIC SOUNDS
+    // Create audio instance for individual drum hits - AUTHENTIC ONLY
     const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
     
-    // Modulate volume based on intensity
-    const baseVolume = 0.3 + (intensity / 100) * 0.5;
+    // Set volume based on intensity
+    const baseVolume = 0.4 + (intensity / 100) * 0.4;
     audio.volume = baseVolume;
     
-    // Use different starting positions for drum variation based on frequency
-    // Map different frequencies to different parts of the authentic recording
+    // Map frequencies to different drum sounds in the recording
     let startPosition = 0;
-    if (frequency <= 100) startPosition = 0.5; // Iya (low)
-    else if (frequency <= 200) startPosition = 1.0; // Itotele (medium) 
-    else startPosition = 1.5; // Okonkolo (high)
+    if (frequency <= 100) startPosition = 0.2; // Iya drum (low, deep)
+    else if (frequency <= 200) startPosition = 0.8; // Itotele drum (medium)
+    else startPosition = 1.4; // Okonkolo drum (high, sharp)
     
-    audio.currentTime = startPosition;
-    audio.play().catch(e => console.log("Authentic Bata playback failed:", e));
+    // Load and play from specific position
+    audio.addEventListener('loadeddata', () => {
+      audio.currentTime = startPosition;
+      audio.play().then(() => {
+        console.log(`Playing authentic ${frequency <= 100 ? 'Iya' : frequency <= 200 ? 'Itotele' : 'Okonkolo'} drum at ${startPosition}s`);
+      }).catch(e => console.error("Drum hit failed:", e));
+    });
     
-    // Stop after brief duration for individual hits
+    // Stop individual hit after duration
     setTimeout(() => {
-      audio.pause();
-      audio.currentTime = 0;
-    }, 300);
+      if (!audio.paused) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }, 400);
   };
 
   const startVisualization = () => {

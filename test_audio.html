@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Authentic Bata Audio</title>
+</head>
+<body>
+    <h1>Testing Authentic Bata Drum Audio</h1>
+    <button onclick="testAudio()">Play Authentic Bata</button>
+    <div id="status"></div>
+    
+    <script>
+        function testAudio() {
+            const status = document.getElementById('status');
+            status.innerHTML = 'Loading authentic Bata drums...';
+            
+            const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
+            audio.volume = 0.8;
+            
+            audio.addEventListener('loadstart', () => {
+                status.innerHTML += '<br>Audio loading started...';
+            });
+            
+            audio.addEventListener('canplay', () => {
+                status.innerHTML += '<br>Audio ready to play';
+            });
+            
+            audio.addEventListener('error', (e) => {
+                status.innerHTML += '<br>ERROR: ' + e.target.error.message;
+            });
+            
+            audio.play().then(() => {
+                status.innerHTML += '<br>SUCCESS: Authentic Bata drums playing!';
+            }).catch(err => {
+                status.innerHTML += '<br>FAILED: ' + err.message;
+            });
+        }
+    </script>
+</body>
+</html>
