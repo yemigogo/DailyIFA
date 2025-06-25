@@ -273,30 +273,31 @@ export default function AmbientSoundscapes() {
   };
 
   const playTrack = (track: AmbientTrack) => {
+    // Toggle pause if same track
     if (currentTrack?.id === track.id && isPlaying) {
-      if (audioRef.current) {
-        audioRef.current.pause();
+      if (currentAudio) {
+        currentAudio.pause();
         setIsPlaying(false);
       }
       return;
     }
 
-    // Stop current audio if playing
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+    // Stop current audio
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
     }
 
-    // Create new audio with direct pattern
+    // Create new audio using working pattern
     const audio = new Audio(track.file);
     audio.loop = true;
     audio.volume = isMuted ? 0 : volume;
     audio.play().then(() => {
-      audioRef.current = audio;
+      setCurrentAudio(audio);
       setCurrentTrack(track);
       setIsPlaying(true);
     }).catch(e => {
-      console.error(`${track.name} audio failed:`, e);
+      console.error(`${track.name} failed:`, e);
       setIsPlaying(false);
     });
   };
