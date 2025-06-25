@@ -99,26 +99,40 @@ export default function BataRhythmVisualizer() {
         clearInterval(intervalRef.current);
       }
       // Clean up audio reference
-      if (bataPlayerRef.current) {
-        bataPlayerRef.current.pause();
-        bataPlayerRef.current = null;
-      }
+      stopBataLoop();
       window.removeEventListener('applyRhythmRecommendation', handleRecommendation as EventListener);
     };
   }, []);
 
   // Global reference for better audio control
   const bataPlayerRef = useRef<HTMLAudioElement | null>(null);
+  const [isLooping, setIsLooping] = useState(false);
+
+  const startBataLoop = (volume: number = 0.8) => {
+    // If already playing, just return
+    if (bataPlayerRef.current && !bataPlayerRef.current.paused) return;
+
+    bataPlayerRef.current = new Audio("/static/audio/soundscapes/bata_egungun_abida.mp3");
+    bataPlayerRef.current.loop = true;
+    bataPlayerRef.current.volume = volume;
+    bataPlayerRef.current.play().catch(err => {
+      console.error("Batá audio failed:", err);
+    });
+    setIsLooping(true);
+  };
+
+  const stopBataLoop = () => {
+    if (bataPlayerRef.current) {
+      bataPlayerRef.current.pause();
+      bataPlayerRef.current.currentTime = 0;
+      bataPlayerRef.current = null;
+    }
+    setIsLooping(false);
+  };
 
   const playDrumSound = (frequency: number, duration: number = 0.2) => {
-    // Use authentic Bata drum recording with global reference
-    if (!bataPlayerRef.current) {
-      bataPlayerRef.current = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
-      bataPlayerRef.current.volume = 0.4;
-      bataPlayerRef.current.preload = 'auto';
-    }
-    
-    const audio = bataPlayerRef.current.cloneNode() as HTMLAudioElement;
+    // For individual drum hits, use separate audio instances
+    const audio = new Audio('/static/audio/soundscapes/bata_egungun_abida.mp3');
     audio.volume = 0.4;
     
     // Map frequency to different starting positions for variation
