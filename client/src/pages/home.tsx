@@ -12,7 +12,7 @@ import { formatDate, getPreviousDay, getNextDay } from "@/lib/date-utils";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { DailyReadingWithOdu } from "@shared/schema";
-import ImmersiveAudioExperience from "@/components/immersive-audio-experience";
+
 
 export default function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());

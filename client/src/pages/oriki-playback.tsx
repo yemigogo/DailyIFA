@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Play, Pause, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import AmbientSoundscapes from "@/components/ambient-soundscapes";
+
 
 interface OrikiVerse {
   id: string;
@@ -321,8 +321,7 @@ export default function OrikiPlayback() {
           </div>
         </div>
 
-        {/* Ambient Soundscapes */}
-        <AmbientSoundscapes />
+
 
         {/* Closing Message */}
         <div className="text-center mt-12 max-w-md mx-auto">
