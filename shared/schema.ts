@@ -165,3 +165,6 @@ export type DivinationLogWithOdu = DivinationLog & {
 export type EboRecommendationWithOdu = EboRecommendation & {
   odu: Odu;
 };
+
+// Re-export encyclopedia types
+export * from "./encyclopedia-schema";
