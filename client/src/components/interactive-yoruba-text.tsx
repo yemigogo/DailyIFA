@@ -14,47 +14,66 @@ export default function InteractiveYorubaText({ children, className }: Interacti
     const container = containerRef.current;
     if (!container) return;
 
-    // Google TTS endpoint for Yoruba
-    const googleTTS = (query: string) => 
-      `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&ie=UTF-8&q=${encodeURIComponent(query)}`;
-
-    // Local pronunciation path
-    const getLocalURL = (word: string) => `/static/audio/pronunciation/${word.toLowerCase()}.mp3`;
-
+    // Enhanced audio playback with better controls
+    let yoWordPlayer: HTMLAudioElement | null = null;
+    
     const playYorubaWord = async (word: string) => {
       const trimmedWord = word.trim();
       if (!trimmedWord) return;
 
-      try {
-        // First try local pronunciation file
-        const localURL = getLocalURL(trimmedWord);
-        const headResponse = await fetch(localURL, { method: "HEAD" });
-        const audioSource = headResponse.ok ? localURL : googleTTS(trimmedWord);
+      const localPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
+      const fallbackTTS = `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&q=${encodeURIComponent(trimmedWord)}`;
 
-        const audio = new Audio(audioSource);
-        await audio.play();
+      try {
+        // Check for local file first
+        const checkResponse = await fetch(localPath, { method: "HEAD" });
+        const audioSource = checkResponse.ok ? localPath : fallbackTTS;
+
+        // Stop any currently playing audio
+        if (yoWordPlayer) {
+          yoWordPlayer.pause();
+          yoWordPlayer.currentTime = 0;
+        }
+
+        // Create new audio instance with enhanced settings
+        yoWordPlayer = new Audio(audioSource);
+        yoWordPlayer.volume = 0.9;
+        yoWordPlayer.playbackRate = 0.95; // Slightly slower for better comprehension
+        
+        // Play the audio
+        await yoWordPlayer.play();
       } catch (error) {
-        console.error("Pronunciation error:", error);
+        console.warn("Audio playback failed:", error);
       }
     };
 
-    // Add click handlers to all Yoruba words
+    // Enhanced click handler with better feedback
     const handleWordClick = (event: Event) => {
       const target = event.target as HTMLElement;
       if (target.classList.contains('yoruba-word') || target.hasAttribute('data-word')) {
         event.preventDefault();
-        const word = target.getAttribute('data-word') || target.textContent || '';
-        playYorubaWord(word);
+        const word = target.getAttribute('data-word') || target.textContent?.replace('🔊', '').trim() || '';
         
-        // Visual feedback - flash effect
-        target.style.backgroundColor = '#059669';
-        target.style.color = 'white';
-        target.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          target.style.backgroundColor = '';
-          target.style.color = '';
-          target.style.transform = '';
-        }, 200);
+        if (word) {
+          playYorubaWord(word);
+          
+          // Enhanced visual feedback
+          const originalBg = target.style.backgroundColor;
+          const originalColor = target.style.color;
+          const originalTransform = target.style.transform;
+          
+          target.style.backgroundColor = '#059669';
+          target.style.color = 'white';
+          target.style.transform = 'scale(0.95)';
+          target.style.boxShadow = '0 2px 8px rgba(5, 150, 105, 0.3)';
+          
+          setTimeout(() => {
+            target.style.backgroundColor = originalBg;
+            target.style.color = originalColor;
+            target.style.transform = originalTransform;
+            target.style.boxShadow = '';
+          }, 250);
+        }
       }
     };
 
@@ -121,9 +140,10 @@ export default function InteractiveYorubaText({ children, className }: Interacti
         right: 2px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 0.8em;
+        font-size: 0.75em;
         color: #065f46;
-        opacity: 0.8;
+        opacity: 0.7;
+        transition: all 0.2s ease;
       }
       
       .clickable-yoruba {
@@ -139,6 +159,7 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       .yoruba-word:hover::after {
         opacity: 1;
         color: #059669;
+        transform: translateY(-50%) scale(1.1);
       }
       
       .yoruba-word:active {
@@ -178,7 +199,13 @@ export default function InteractiveYorubaText({ children, className }: Interacti
     // Cleanup
     return () => {
       container.removeEventListener('click', handleWordClick);
-      document.head.removeChild(style);
+      if (yoWordPlayer) {
+        yoWordPlayer.pause();
+        yoWordPlayer = null;
+      }
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
     };
   }, []);
 
