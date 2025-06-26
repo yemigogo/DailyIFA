@@ -156,7 +156,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {(t(reading.odu.guidance, reading.odu.guidanceYoruba) as string[]).map((guidance, index) => (
                   <li key={index} className="flex items-start space-x-2">
                     <Leaf className="h-4 w-4 text-sage-green mt-1 flex-shrink-0" />
-                    <span><AutoLinkText>{guidance}</AutoLinkText></span>
+                    <span>{guidance}</span>
                   </li>
                 ))}
               </ul>
@@ -167,7 +167,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Reflection", "Ìrònú")}
               </h4>
               <p className="text-gray-600 text-sm italic">
-                "<AutoLinkText>{t(reading.odu.reflection, reading.odu.reflectionYoruba) as string}</AutoLinkText>"
+                "{t(reading.odu.reflection, reading.odu.reflectionYoruba) as string}"
               </p>
             </div>
           </div>
