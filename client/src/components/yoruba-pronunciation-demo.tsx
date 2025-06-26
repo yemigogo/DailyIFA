@@ -51,8 +51,8 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
       
       if (!headResponse.ok) {
         setStatus(ts(
-          `Authentic pronunciation not available for "${trimmedWord}". Please add authentic audio file.`,
-          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Jọ̀wọ́ fi fáìlì ohùn òtítọ́ sí.`
+          `Authentic pronunciation not available for "${trimmedWord}". Available words: àṣẹ, òrìṣà, ifá, ṣàngó, ọ̀ṣun, yemọja, ọ̀rúnmìlà`,
+          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn ọ̀rọ̀ tí ó wà: àṣẹ, òrìṣà, ifá, ṣàngó, ọ̀ṣun, yemọja, ọ̀rúnmìlà`
         ));
         setIsPlaying(false);
         return;

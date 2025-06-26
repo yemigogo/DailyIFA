@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Authentic Yoruba Pronunciation</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        .word { 
+            background: #d1fae5; 
+            padding: 8px 16px; 
+            margin: 8px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            display: inline-block;
+        }
+        .word:hover { background: #a7f3d0; }
+    </style>
+</head>
+<body>
+    <h1>Test Authentic Yoruba Pronunciation</h1>
+    <p>Click the words to hear authentic African pronunciation:</p>
+    
+    <div class="word" onclick="playWord('àṣẹ')">àṣẹ (divine force)</div>
+    <div class="word" onclick="playWord('òrìṣà')">òrìṣà (deity)</div>
+    <div class="word" onclick="playWord('ifá')">ifá (divination)</div>
+    <div class="word" onclick="playWord('ṣàngó')">ṣàngó (thunder god)</div>
+    <div class="word" onclick="playWord('ọ̀ṣun')">ọ̀ṣun (river goddess)</div>
+    <div class="word" onclick="playWord('yemọja')">yemọja (ocean mother)</div>
+    <div class="word" onclick="playWord('ọ̀rúnmìlà')">ọ̀rúnmìlà (wisdom deity)</div>
+    
+    <div id="status" style="margin-top: 20px; padding: 10px; background: #f3f4f6; border-radius: 4px;"></div>
+
+    <script>
+        let player = null;
+        
+        function playWord(word) {
+            const audioPath = `/static/audio/pronunciation/${word}.mp3`;
+            const status = document.getElementById('status');
+            
+            status.innerHTML = `Loading: ${word}...`;
+            
+            if (player) player.pause();
+            
+            player = new Audio(audioPath);
+            player.volume = 0.9;
+            player.playbackRate = 0.9; // Slower for authentic African pace
+            
+            player.onloadstart = () => {
+                status.innerHTML = `Playing authentic pronunciation: ${word}`;
+            };
+            
+            player.onended = () => {
+                status.innerHTML = `Completed: ${word} (authentic Yoruba audio)`;
+            };
+            
+            player.onerror = () => {
+                status.innerHTML = `Error loading: ${word} - Check if file exists`;
+            };
+            
+            player.play().catch(e => {
+                status.innerHTML = `Playback failed: ${e.message}`;
+            });
+        }
+    </script>
+</body>
+</html>
