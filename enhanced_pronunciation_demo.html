@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yorùbá Authentic Pronunciation Pack</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      padding: 2rem; 
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+      margin: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 { 
+      color: #0a663e; 
+      text-align: center; 
+      margin-bottom: 2rem; 
+      font-size: 2.5rem;
+    }
+    .word-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+      gap: 1rem; 
+      margin: 2rem 0;
+    }
+    .word-tile { 
+      background: white; 
+      padding: 1.5rem; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 4px solid #10b981;
+    }
+    .word-tile:hover { 
+      background: #f0fdf4;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .word-tile.authentic {
+      border-left-color: #059669;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+    }
+    .word-tile.placeholder {
+      border-left-color: #f59e0b;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    }
+    .word { 
+      font-weight: bold; 
+      font-size: 1.3em; 
+      color: #046b4a;
+      margin-bottom: 0.5rem;
+    }
+    .meaning { 
+      font-size: 0.9em; 
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .status {
+      font-size: 0.8em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .status.authentic {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .status.placeholder {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .stats {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔊 Yorùbá Authentic Pronunciation Pack</h1>
+    
+    <div class="stats" id="stats">
+      <div class="loading">Loading pronunciation data...</div>
+    </div>
+    
+    <div class="word-grid" id="wordGrid"></div>
+  </div>
+
+  <script>
+    let player = null;
+
+    async function loadWords() {
+      try {
+        const res = await fetch("/static/audio/pronunciation/map.json");
+        const words = await res.json();
+        
+        const authentic = words.filter(w => w.has_authentic).length;
+        const total = words.length;
+        
+        // Update stats
+        document.getElementById("stats").innerHTML = `
+          <h3 style="margin: 0 0 0.5rem 0; color: #0a663e;">Pronunciation Status</h3>
+          <div>✅ <strong>${authentic}</strong> authentic African pronunciations available</div>
+          <div>⏳ <strong>${total - authentic}</strong> placeholders for future authentic audio</div>
+        `;
+        
+        const grid = document.getElementById("wordGrid");
+        grid.innerHTML = "";
+        
+        words.forEach(w => {
+          const div = document.createElement("div");
+          div.className = `word-tile ${w.has_authentic ? 'authentic' : 'placeholder'}`;
+          div.innerHTML = `
+            <div class="word">${w.word} 🔊</div>
+            <div class="meaning">${w.meaning}</div>
+            <div class="status ${w.has_authentic ? 'authentic' : 'placeholder'}">
+              ${w.has_authentic ? '✅ Authentic Audio' : '⏳ Placeholder'}
+            </div>
+          `;
+          div.onclick = () => playAudio(w.file, w.word);
+          grid.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Failed to load pronunciation data:", error);
+        document.getElementById("stats").innerHTML = `
+          <div style="color: #dc2626;">❌ Failed to load pronunciation data</div>
+        `;
+      }
+    }
+
+    async function playAudio(filename, word) {
+      const src = "/static/audio/pronunciation/" + filename;
+      
+      try {
+        // Check if file exists
+        const response = await fetch(src, { method: 'HEAD' });
+        
+        if (response.ok) {
+          if (player) player.pause();
+          player = new Audio(src);
+          player.volume = 0.9;
+          player.playbackRate = 0.9; // Authentic African pace
+          await player.play();
+          console.log(`Playing authentic pronunciation: ${word}`);
+        } else {
+          console.warn(`Audio file not found: ${filename}`);
+          alert(`Authentic pronunciation for "${word}" not yet available. This is a placeholder for future authentic audio.`);
+        }
+      } catch (error) {
+        console.error("Audio playback failed:", error);
+        alert(`Failed to play pronunciation for "${word}"`);
+      }
+    }
+
+    // Load words on page load
+    loadWords();
+  </script>
+</body>
+</html>

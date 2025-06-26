@@ -21,27 +21,45 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       const trimmedWord = word.trim();
       if (!trimmedWord) return;
 
-      // Try both diacritical and simplified versions
-      const localPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
-      const simplifiedPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase().replace(/[àáèéìíòóùúẹọṣǹ]/g, (match) => {
-        const map = {
-          'à': 'a', 'á': 'a', 'è': 'e', 'é': 'e', 'ì': 'i', 'í': 'i',
-          'ò': 'o', 'ó': 'o', 'ù': 'u', 'ú': 'u', 'ẹ': 'e', 'ọ': 'o',
-          'ṣ': 's', 'ǹ': 'n'
-        };
-        return map[match] || match;
-      })}.mp3`;
+      // Use pronunciation mapping for accurate file lookup
+      let audioPath = null;
+      
+      try {
+        // First try to load the pronunciation mapping
+        const mapResponse = await fetch('/static/audio/pronunciation/map.json');
+        if (mapResponse.ok) {
+          const pronunciationMap = await mapResponse.json();
+          const wordEntry = pronunciationMap.find(entry => 
+            entry.word.toLowerCase() === trimmedWord.toLowerCase()
+          );
+          
+          if (wordEntry) {
+            audioPath = `/static/audio/pronunciation/${wordEntry.file}`;
+          }
+        }
+      } catch (error) {
+        console.warn('Could not load pronunciation mapping');
+      }
+      
+      // Fallback to direct filename if mapping not found
+      if (!audioPath) {
+        const simplifiedWord = trimmedWord.toLowerCase()
+          .replace(/[àáâãäå]/g, 'a')
+          .replace(/[èéêë]/g, 'e')
+          .replace(/[ìíîï]/g, 'i')
+          .replace(/[òóôõö]/g, 'o')
+          .replace(/[ùúûü]/g, 'u')
+          .replace(/[ṣş]/g, 's')
+          .replace(/[ọọ́ọ̀]/g, 'o')
+          .replace(/[ẹẹ́ẹ̀]/g, 'e')
+          .replace(/[ǹń]/g, 'n');
+        audioPath = `/static/audio/pronunciation/${simplifiedWord}.mp3`;
+      }
       
       // Remove Google TTS fallback - only use authentic sources
       try {
-        // Check for local authentic file first (try both versions)
-        let checkResponse = await fetch(localPath, { method: "HEAD" });
-        let audioPath = localPath;
-        
-        if (!checkResponse.ok) {
-          checkResponse = await fetch(simplifiedPath, { method: "HEAD" });
-          audioPath = simplifiedPath;
-        }
+        // Check if the audio file exists
+        const checkResponse = await fetch(audioPath, { method: "HEAD" });
         
         if (checkResponse.ok) {
           // Stop any currently playing audio

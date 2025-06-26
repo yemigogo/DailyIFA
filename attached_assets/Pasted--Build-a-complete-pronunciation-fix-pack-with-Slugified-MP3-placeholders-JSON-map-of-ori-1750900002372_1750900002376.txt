@@ -1,0 +1,124 @@
+# Build a complete pronunciation fix pack with:
+# - Slugified MP3 placeholders
+# - JSON map of original Yoruba -> slugified filename
+# - Flask + HTML template for Replit
+import unicodedata
+
+# Yoruba words and their meanings
+yoruba_words = [
+    ("ṣàngó", "Orisha of thunder"),
+    ("òrìṣà", "Deity"),
+    ("ọ̀run", "Heaven"),
+    ("ayé", "Earth"),
+    ("ògún", "Orisha of iron and war"),
+    ("ìwòrì", "Odu Ifá sign"),
+    ("ẹ̀jẹ̀", "Blood"),
+    ("àlàáfíà", "Peace"),
+    ("odù", "Divination sign"),
+    ("bàbáláwo", "Diviner, priest"),
+    ("ìyánífẹ́", "Love"),
+    ("ọjọ́", "Day"),
+    ("ọsẹ̀", "Week"),
+    ("ọdún", "Year"),
+    ("ìmọ̀", "Knowledge"),
+    ("àdúrà", "Prayer"),
+    ("àṣẹ", "Divine command / affirmation")
+]
+
+# Function to slugify Yoruba to ascii-safe filenames
+def slugify(text):
+    return ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c)).lower()
+
+# Create project structure
+base = "/mnt/data/yoruba_pronunciation_pack"
+os.makedirs(f"{base}/static/audio/pronunciation", exist_ok=True)
+os.makedirs(f"{base}/templates", exist_ok=True)
+
+# Create placeholder mp3s and mapping JSON
+mapping = []
+for word, meaning in yoruba_words:
+    filename = f"{slugify(word)}.mp3"
+    path = os.path.join(base, "static/audio/pronunciation", filename)
+    with open(path, "wb") as f:
+        f.write(b"")  # empty placeholder
+    mapping.append({"word": word, "meaning": meaning, "file": filename})
+
+with open(f"{base}/static/audio/pronunciation/map.json", "w", encoding="utf-8") as f:
+    json.dump(mapping, f, ensure_ascii=False, indent=2)
+
+# HTML template
+html = """
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Yorùbá Authentic Pronunciation</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9 }
+    .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .word-tile { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); cursor: pointer }
+    .word-tile:hover { background: #f0fdf4 }
+    .word { font-weight: bold; font-size: 1.2em; color: #046b4a }
+    .meaning { font-size: 0.9em; color: #555 }
+  </style>
+</head>
+<body>
+  <h1>🔊 Yorùbá Authentic Pronunciation</h1>
+  <p>Click a word to hear real African audio (no Google TTS).</p>
+  <div class="word-grid" id="wordGrid"></div>
+
+  <script>
+    let player = null;
+
+    async function loadWords() {
+      const res = await fetch("/static/audio/pronunciation/map.json");
+      const words = await res.json();
+      const grid = document.getElementById("wordGrid");
+      words.forEach(w => {
+        const div = document.createElement("div");
+        div.className = "word-tile";
+        div.innerHTML = `<div class="word">${w.word} 🔊</div><div class="meaning">${w.meaning}</div>`;
+        div.onclick = () => playAudio(w.file);
+        grid.appendChild(div);
+      });
+    }
+
+    function playAudio(filename) {
+      const src = "/static/audio/pronunciation/" + filename;
+      if (player) player.pause();
+      player = new Audio(src);
+      player.volume = 0.9;
+      player.playbackRate = 0.95;
+      player.play().catch(err => console.error("Audio failed:", err));
+    }
+
+    loadWords();
+  </script>
+</body>
+</html>
+"""
+
+with open(f"{base}/templates/index.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+# Flask app
+main_py = """
+from flask import Flask, render_template
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return render_template('index.html')
+"""
+
+with open(f"{base}/main.py", "w") as f:
+    f.write(main_py)
+
+# Zip it all up
+zip_path = "/mnt/data/yoruba_pronunciation_pack.zip"
+with zipfile.ZipFile(zip_path, "w") as z:
+    for root, dirs, files in os.walk(base):
+        for file in files:
+            full = os.path.join(root, file)
+            z.write(full, arcname=os.path.relpath(full, base))
+
+zip_path

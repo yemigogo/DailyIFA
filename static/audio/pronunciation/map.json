@@ -1,0 +1,170 @@
+[
+  {
+    "word": "ṣàngó",
+    "meaning": "Orisha of thunder",
+    "file": "sango.mp3",
+    "slugified": "sango",
+    "has_authentic": true
+  },
+  {
+    "word": "òrìṣà",
+    "meaning": "Deity",
+    "file": "orisa.mp3",
+    "slugified": "orisa",
+    "has_authentic": true
+  },
+  {
+    "word": "ọ̀run",
+    "meaning": "Heaven",
+    "file": "orun.mp3",
+    "slugified": "orun",
+    "has_authentic": false
+  },
+  {
+    "word": "ayé",
+    "meaning": "Earth",
+    "file": "aye.mp3",
+    "slugified": "aye",
+    "has_authentic": false
+  },
+  {
+    "word": "ògún",
+    "meaning": "Orisha of iron and war",
+    "file": "ogun.mp3",
+    "slugified": "ogun",
+    "has_authentic": false
+  },
+  {
+    "word": "ìwòrì",
+    "meaning": "Odu Ifá sign",
+    "file": "iwori.mp3",
+    "slugified": "iwori",
+    "has_authentic": false
+  },
+  {
+    "word": "ẹ̀jẹ̀",
+    "meaning": "Blood",
+    "file": "eje.mp3",
+    "slugified": "eje",
+    "has_authentic": false
+  },
+  {
+    "word": "àlàáfíà",
+    "meaning": "Peace",
+    "file": "alaafia.mp3",
+    "slugified": "alaafia",
+    "has_authentic": false
+  },
+  {
+    "word": "odù",
+    "meaning": "Divination sign",
+    "file": "odu.mp3",
+    "slugified": "odu",
+    "has_authentic": false
+  },
+  {
+    "word": "bàbáláwo",
+    "meaning": "Diviner, priest",
+    "file": "babalawo.mp3",
+    "slugified": "babalawo",
+    "has_authentic": false
+  },
+  {
+    "word": "ìyánífẹ́",
+    "meaning": "Love",
+    "file": "iyanife.mp3",
+    "slugified": "iyanife",
+    "has_authentic": false
+  },
+  {
+    "word": "ọjọ́",
+    "meaning": "Day",
+    "file": "ojo.mp3",
+    "slugified": "ojo",
+    "has_authentic": false
+  },
+  {
+    "word": "ọsẹ̀",
+    "meaning": "Week",
+    "file": "ose.mp3",
+    "slugified": "ose",
+    "has_authentic": false
+  },
+  {
+    "word": "ọdún",
+    "meaning": "Year",
+    "file": "odun.mp3",
+    "slugified": "odun",
+    "has_authentic": false
+  },
+  {
+    "word": "ìmọ̀",
+    "meaning": "Knowledge",
+    "file": "imo.mp3",
+    "slugified": "imo",
+    "has_authentic": false
+  },
+  {
+    "word": "àdúrà",
+    "meaning": "Prayer",
+    "file": "adura.mp3",
+    "slugified": "adura",
+    "has_authentic": false
+  },
+  {
+    "word": "àṣẹ",
+    "meaning": "Divine command / affirmation",
+    "file": "ase.mp3",
+    "slugified": "ase",
+    "has_authentic": true
+  },
+  {
+    "word": "ifá",
+    "meaning": "Divination system",
+    "file": "ifa.mp3",
+    "slugified": "ifa",
+    "has_authentic": false
+  },
+  {
+    "word": "yemọja",
+    "meaning": "Ocean mother",
+    "file": "yemoja.mp3",
+    "slugified": "yemoja",
+    "has_authentic": false
+  },
+  {
+    "word": "ọbàtálá",
+    "meaning": "Creator Orisha",
+    "file": "obatala.mp3",
+    "slugified": "obatala",
+    "has_authentic": false
+  },
+  {
+    "word": "ọya",
+    "meaning": "Wind Orisha",
+    "file": "oya.mp3",
+    "slugified": "oya",
+    "has_authentic": false
+  },
+  {
+    "word": "èṣù",
+    "meaning": "Messenger Orisha",
+    "file": "esu.mp3",
+    "slugified": "esu",
+    "has_authentic": false
+  },
+  {
+    "word": "ọ̀ṣun",
+    "meaning": "River Orisha",
+    "file": "osun.mp3",
+    "slugified": "osun",
+    "has_authentic": true
+  },
+  {
+    "word": "ọ̀rúnmìlà",
+    "meaning": "Orisha of wisdom",
+    "file": "orunmila.mp3",
+    "slugified": "orunmila",
+    "has_authentic": true
+  }
+]

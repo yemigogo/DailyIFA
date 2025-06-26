@@ -42,31 +42,49 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
     setIsPlaying(true);
     setStatus(ts("Loading pronunciation...", "Ń gbe ìpè ohùn..."));
 
-    // Try both diacritical and simplified pronunciation paths
-    const localURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
-    const simplifiedURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase().replace(/[àáèéìíòóùúẹọṣǹ]/g, (match) => {
-      const map = {
-        'à': 'a', 'á': 'a', 'è': 'e', 'é': 'e', 'ì': 'i', 'í': 'i',
-        'ò': 'o', 'ó': 'o', 'ù': 'u', 'ú': 'u', 'ẹ': 'e', 'ọ': 'o',
-        'ṣ': 's', 'ǹ': 'n'
-      };
-      return map[match] || match;
-    })}.mp3`;
+    // Use pronunciation mapping for accurate file lookup
+    let audioSource = null;
+    
+    try {
+      // Load pronunciation mapping
+      const mapResponse = await fetch('/static/audio/pronunciation/map.json');
+      if (mapResponse.ok) {
+        const pronunciationMap = await mapResponse.json();
+        const wordEntry = pronunciationMap.find(entry => 
+          entry.word.toLowerCase() === trimmedWord.toLowerCase()
+        );
+        
+        if (wordEntry) {
+          audioSource = `/static/audio/pronunciation/${wordEntry.file}`;
+        }
+      }
+    } catch (error) {
+      console.warn('Could not load pronunciation mapping');
+    }
+    
+    // Fallback to simplified filename
+    if (!audioSource) {
+      const simplifiedWord = trimmedWord.toLowerCase()
+        .replace(/[àáâãäå]/g, 'a')
+        .replace(/[èéêë]/g, 'e') 
+        .replace(/[ìíîï]/g, 'i')
+        .replace(/[òóôõö]/g, 'o')
+        .replace(/[ùúûü]/g, 'u')
+        .replace(/[ṣş]/g, 's')
+        .replace(/[ọọ́ọ̀]/g, 'o')
+        .replace(/[ẹẹ́ẹ̀]/g, 'e')
+        .replace(/[ǹń]/g, 'n');
+      audioSource = `/static/audio/pronunciation/${simplifiedWord}.mp3`;
+    }
 
     try {
-      // Only use authentic local pronunciation files (try both versions)
-      let headResponse = await fetch(localURL, { method: "HEAD" });
-      let audioSource = localURL;
-      
-      if (!headResponse.ok) {
-        headResponse = await fetch(simplifiedURL, { method: "HEAD" });
-        audioSource = simplifiedURL;
-      }
+      // Check if authentic pronunciation file exists
+      const headResponse = await fetch(audioSource, { method: "HEAD" });
       
       if (!headResponse.ok) {
         setStatus(ts(
-          `Authentic pronunciation not available for "${trimmedWord}". Available words: ase/àṣẹ, orisa/òrìṣà, ifa/ifá, sango/ṣàngó, osun/ọ̀ṣun, yemoja, orunmila/ọ̀rúnmìlà`,
-          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn ọ̀rọ̀ tí ó wà: ase/àṣẹ, orisa/òrìṣà, ifa/ifá, sango/ṣàngó, osun/ọ̀ṣun, yemoja, orunmila/ọ̀rúnmìlà`
+          `Authentic pronunciation not available for "${trimmedWord}". Check pronunciation mapping for available words.`,
+          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Wo àtẹ ìpè fún àwọn ọ̀rọ̀ tí ó wà.`
         ));
         setIsPlaying(false);
         return;
