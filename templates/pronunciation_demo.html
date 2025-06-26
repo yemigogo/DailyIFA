@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorùbá Pronunciation Demo - Ifá App Integration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+            line-height: 1.6;
+            color: #334155;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #0a663e;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        
+        .yoruba-word {
+            font-weight: bold;
+            color: #0a663e;
+            cursor: pointer;
+            position: relative;
+            padding: 4px 1.5em 4px 8px;
+            margin: 2px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        
+        .yoruba-word::after {
+            content: "🔊";
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8em;
+            color: #065f46;
+            opacity: 0.7;
+        }
+        
+        .yoruba-word:hover {
+            background-color: #d1fae5;
+            color: #064e3b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .yoruba-word:hover::after {
+            opacity: 1;
+            color: #059669;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .demo-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔊 Yorùbá Pronunciation Demo</h1>
+        
+        <div class="demo-text">
+            <p>In <span class="yoruba-word" data-word="ifá">Ifá</span> tradition, we seek guidance from 
+            <span class="yoruba-word" data-word="ọ̀rúnmìlà">Ọ̀rúnmìlà</span>, the 
+            <span class="yoruba-word" data-word="òrìṣà">òrìṣà</span> of wisdom and divination.</p>
+            
+            <p>The sacred word <span class="yoruba-word" data-word="àṣẹ">àṣẹ</span> 
+            affirms divine will, while <span class="yoruba-word" data-word="àlàáfíà">àlàáfíà</span> 
+            brings peace to our spiritual practice.</p>
+            
+            <p>Other important <span class="yoruba-word" data-word="òrìṣà">òrìṣà</span> include 
+            <span class="yoruba-word" data-word="ṣàngó">Ṣàngó</span>, 
+            <span class="yoruba-word" data-word="ọ̀ṣun">Ọ̀ṣun</span>, 
+            <span class="yoruba-word" data-word="yemọja">Yemọja</span>, and 
+            <span class="yoruba-word" data-word="ọbàtálá">Ọbàtálá</span>.</p>
+        </div>
+    </div>
+
+    <script>
+        const LOCAL_PATH = "/static/audio/pronunciation/";
+        let yoPlayer = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".yoruba-word").forEach(el => {
+                el.addEventListener("click", () => playWord(el.dataset.word));
+            });
+        });
+
+        async function playWord(word) {
+            const local = LOCAL_PATH + word.toLowerCase() + ".mp3";
+            const fallback = `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&q=${encodeURIComponent(word)}`;
+            
+            try {
+                const head = await fetch(local, { method: "HEAD" });
+                const src = head.ok ? local : fallback;
+                
+                if (yoPlayer) yoPlayer.pause();
+                yoPlayer = new Audio(src);
+                yoPlayer.volume = 0.9;
+                yoPlayer.playbackRate = 0.95;
+                await yoPlayer.play();
+            } catch (e) {
+                console.error("Pronunciation error:", e);
+            }
+        }
+    </script>
+</body>
+</html>

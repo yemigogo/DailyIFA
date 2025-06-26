@@ -1,0 +1,84 @@
+# Create template directory
+base = "/mnt/data/yoruba_pronunciation_template"
+os.makedirs(f"{base}/static/audio/pronunciation", exist_ok=True)
+os.makedirs(f"{base}/templates", exist_ok=True)
+
+# placeholder mp3 names
+placeholder = ["orun.mp3", "aye.mp3", "sango.mp3"]
+for name in placeholder:
+    with open(f"{base}/static/audio/pronunciation/{name}", "wb") as f:
+        f.write(b"")
+
+# index.html with speaker icon demo
+html = """
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Yorùbá Pronunciation Demo</title>
+<style>
+body{font-family:sans-serif;padding:2rem;background:#f0f0f0}
+.yoruba-word{font-weight:bold;color:#0a663e;cursor:pointer;position:relative;padding-right:1.3em}
+.yoruba-word::after{content:"🔊";position:absolute;right:0;top:0;font-size:0.9em;color:#444}
+</style>
+</head>
+<body>
+<h1>Yorùbá Pronunciation Demo</h1>
+<p>Click the words to hear:</p>
+<p>
+  <span class="yoruba-word" data-word="ọ̀run">ọ̀run</span>,
+  <span class="yoruba-word" data-word="ayé">ayé</span>,
+  <span class="yoruba-word" data-word="ṣàngó">ṣàngó</span>
+</p>
+
+<script>
+const LOCAL_PATH="/static/audio/pronunciation/";
+let yoPlayer=null;
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelectorAll(".yoruba-word").forEach(el=>{
+    el.addEventListener("click",()=>playWord(el.dataset.word));
+  });
+});
+
+async function playWord(word){
+  const local=LOCAL_PATH+word.toLowerCase()+".mp3";
+  const fallback=`https://translate.google.com/translate_tts?client=tw-ob&tl=yo&q=${encodeURIComponent(word)}`;
+  try{
+    const head=await fetch(local,{method:"HEAD"});
+    const src=head.ok?local:fallback;
+    if(yoPlayer) yoPlayer.pause();
+    yoPlayer=new Audio(src);
+    yoPlayer.volume=0.9;
+    yoPlayer.playbackRate=0.95;
+    yoPlayer.play();
+  }catch(e){console.error(e);}
+}
+</script>
+</body>
+</html>
+"""
+
+with open(f"{base}/templates/index.html","w") as f:
+    f.write(html)
+
+# Flask app
+py = """
+from flask import Flask, render_template
+app=Flask(__name__)
+@app.route('/')
+def home():
+    return render_template('index.html')
+"""
+
+with open(f"{base}/main.py","w") as f:
+    f.write(py)
+
+# zip it
+zip_path = "/mnt/data/yoruba_pronunciation_template.zip"
+with zipfile.ZipFile(zip_path,"w") as z:
+    for root,dirs,files in os.walk(base):
+        for file in files:
+            full = os.path.join(root,file)
+            z.write(full, arcname=os.path.relpath(full,base))
+zip_path
