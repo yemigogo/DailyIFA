@@ -26,12 +26,21 @@ export default function DemoInteractiveText() {
               Traditional greetings include àlàáfíà (peace) and ìbùkún (blessing). 
               The ọba (king) and àgbà (elders) hold special respect in Yoruba culture.
             </p>
-            <p className="text-sm text-amber-600 dark:text-amber-400 italic">
-              {ts(
-                "Click on any highlighted Yoruba word to hear its pronunciation!",
-                "Tẹ eyikeyi ọ̀rọ̀ Yorùbá tí a fojú hàn láti gbọ́ bí a ṣe ń kà á!"
-              )}
-            </p>
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-lg border border-emerald-200 dark:border-emerald-800">
+              <p className="text-sm text-emerald-700 dark:text-emerald-300 font-medium flex items-center gap-2">
+                <span className="text-lg">🔊</span>
+                {ts(
+                  "Click on any highlighted Yoruba word to hear its pronunciation!",
+                  "Tẹ eyikeyi ọ̀rọ̀ Yorùbá tí a fojú hàn láti gbọ́ bí a ṣe ń kà á!"
+                )}
+              </p>
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-1">
+                {ts(
+                  "Look for the speaker icon (🔊) next to Yoruba words",
+                  "Wá fún àmì agbohùnsọ (🔊) lẹ́gbẹ̀ẹ́ àwọn ọ̀rọ̀ Yorùbá"
+                )}
+              </p>
+            </div>
           </div>
         </InteractiveYorubaText>
       </CardContent>

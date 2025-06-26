@@ -46,13 +46,15 @@ export default function InteractiveYorubaText({ children, className }: Interacti
         const word = target.getAttribute('data-word') || target.textContent || '';
         playYorubaWord(word);
         
-        // Visual feedback
-        target.style.backgroundColor = '#f59e0b';
+        // Visual feedback - flash effect
+        target.style.backgroundColor = '#059669';
         target.style.color = 'white';
+        target.style.transform = 'scale(0.95)';
         setTimeout(() => {
           target.style.backgroundColor = '';
           target.style.color = '';
-        }, 300);
+          target.style.transform = '';
+        }, 200);
       }
     };
 
@@ -102,28 +104,69 @@ export default function InteractiveYorubaText({ children, className }: Interacti
     const style = document.createElement('style');
     style.textContent = `
       .yoruba-word {
-        color: #d97706;
-        font-weight: 500;
-        text-decoration: underline;
-        text-decoration-style: dotted;
-        cursor: help;
-      }
-      .clickable-yoruba {
+        font-weight: bold;
+        color: #046b4a;
         cursor: pointer;
+        position: relative;
+        padding-right: 1.5em;
         transition: all 0.2s ease;
         border-radius: 3px;
-        padding: 1px 2px;
+        padding: 2px 1.8em 2px 4px;
+        margin: 0 2px;
       }
-      .clickable-yoruba:hover {
-        background-color: #fef3c7;
-        color: #92400e;
+      
+      .yoruba-word::after {
+        content: "🔊";
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8em;
+        color: #065f46;
+        opacity: 0.8;
       }
+      
+      .clickable-yoruba {
+        cursor: pointer;
+      }
+      
+      .yoruba-word:hover {
+        background-color: #d1fae5;
+        color: #064e3b;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .yoruba-word:hover::after {
+        opacity: 1;
+        color: #059669;
+      }
+      
+      .yoruba-word:active {
+        background-color: #059669;
+        color: white;
+        transform: scale(0.98);
+      }
+      
+      .yoruba-word:active::after {
+        color: white;
+      }
+      
       .dark .yoruba-word {
-        color: #f59e0b;
+        color: #10b981;
+        background-color: rgba(16, 185, 129, 0.1);
       }
-      .dark .clickable-yoruba:hover {
-        background-color: #451a03;
-        color: #fbbf24;
+      
+      .dark .yoruba-word::after {
+        color: #34d399;
+      }
+      
+      .dark .yoruba-word:hover {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: #6ee7b7;
+      }
+      
+      .dark .yoruba-word:hover::after {
+        color: #6ee7b7;
       }
     `;
     document.head.appendChild(style);
