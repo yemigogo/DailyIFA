@@ -1,0 +1,177 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Play, Volume2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+interface YorubaPronunciationDemoProps {
+  className?: string;
+}
+
+export default function YorubaPronunciationDemo({ className }: YorubaPronunciationDemoProps) {
+  const [word, setWord] = useState("");
+  const [status, setStatus] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { ts } = useLanguage();
+
+  // Common Yoruba words with their pronunciation guides
+  const commonWords = [
+    { word: "òrìṣà", meaning: "deity/divine force", pronunciation: "oh-ree-shah" },
+    { word: "àṣẹ", meaning: "divine force/amen", pronunciation: "ah-shay" },
+    { word: "ifá", meaning: "Yoruba divination system", pronunciation: "ee-fah" },
+    { word: "ọdún", meaning: "year/festival", pronunciation: "oh-doon" },
+    { word: "ìwòrì", meaning: "Odu name", pronunciation: "ee-woh-ree" },
+    { word: "ẹjẹ́", meaning: "blood", pronunciation: "eh-jay" },
+    { word: "ọmọ", meaning: "child", pronunciation: "oh-moh" },
+    { word: "ilé", meaning: "house/home", pronunciation: "ee-lay" },
+    { word: "owó", meaning: "money", pronunciation: "oh-woh" },
+    { word: "ayé", meaning: "world/life", pronunciation: "ah-yay" },
+    { word: "ọrun", meaning: "heaven/sky", pronunciation: "oh-roon" },
+    { word: "àgbà", meaning: "elder", pronunciation: "ah-gbah" }
+  ];
+
+  const playPronunciation = async () => {
+    if (!word.trim()) {
+      setStatus(ts("Please enter a Yoruba word", "Jọ̀wọ́ fi ọ̀rọ̀ Yorùbá kan sí"));
+      return;
+    }
+
+    setIsPlaying(true);
+    setStatus(ts("Playing pronunciation...", "Ń ṣe ìpè ohùn..."));
+
+    // Check if we have a matching audio file for common words
+    const matchedWord = commonWords.find(w => 
+      w.word.toLowerCase() === word.toLowerCase().trim()
+    );
+
+    if (matchedWord) {
+      try {
+        // Try to play existing pronunciation file
+        const audioUrl = `/static/audio/pronunciation/${word.toLowerCase().trim()}.mp3`;
+        const audio = new Audio(audioUrl);
+        
+        audio.onloadeddata = () => {
+          audio.play().then(() => {
+            setStatus(ts(
+              `Playing: ${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`,
+              `Ń ṣe: ${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`
+            ));
+          }).catch(() => {
+            setStatus(ts(
+              `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
+              `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
+            ));
+          });
+        };
+
+        audio.onerror = () => {
+          setStatus(ts(
+            `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
+            `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
+          ));
+        };
+
+        audio.onended = () => {
+          setIsPlaying(false);
+        };
+
+      } catch (error) {
+        setStatus(ts(
+          `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
+          `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
+        ));
+        setIsPlaying(false);
+      }
+    } else {
+      // Provide general pronunciation guidance for unknown words
+      setStatus(ts(
+        `"${word}" - For accurate pronunciation, consult a Yoruba speaker or language resource`,
+        `"${word}" - Fún ìpè tí ó tọ́, béèrè lọ́wọ́ ẹni tí ó mọ̀ èdè Yorùbá`
+      ));
+      setIsPlaying(false);
+    }
+
+    // Reset playing state after 3 seconds
+    setTimeout(() => {
+      setIsPlaying(false);
+    }, 3000);
+  };
+
+  const handleWordClick = (selectedWord: string) => {
+    setWord(selectedWord);
+    setStatus("");
+  };
+
+  return (
+    <Card className={`bg-gradient-to-br from-amber-50 to-orange-100 dark:from-gray-900 dark:to-gray-800 ${className}`}>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
+          <Volume2 className="w-5 h-5" />
+          {ts("🔊 Yoruba Pronunciation Demo", "🔊 Àpẹẹrẹ Ìpè Yorùbá")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div>
+          <Label htmlFor="yorubaWord" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+            {ts("Enter Yorùbá word:", "Fi ọ̀rọ̀ Yorùbá sí:")}
+          </Label>
+          <Input
+            id="yorubaWord"
+            type="text"
+            placeholder={ts("e.g. òrìṣà", "àpẹẹrẹ: òrìṣà")}
+            value={word}
+            onChange={(e) => setWord(e.target.value)}
+            className="mt-1"
+            onKeyPress={(e) => e.key === 'Enter' && playPronunciation()}
+          />
+        </div>
+
+        <Button
+          onClick={playPronunciation}
+          disabled={isPlaying}
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+        >
+          <Play className="w-4 h-4 mr-2" />
+          {isPlaying 
+            ? ts("Playing...", "Ń ṣe...") 
+            : ts("▶️ Hear Pronunciation", "▶️ Gbọ́ Bí A Ṣe Ń Kà Á")
+          }
+        </Button>
+
+        {status && (
+          <p className="text-sm text-gray-700 dark:text-gray-300 italic bg-white dark:bg-gray-800 p-3 rounded-lg">
+            {status}
+          </p>
+        )}
+
+        {/* Common Words Grid */}
+        <div className="mt-6">
+          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+            {ts("Common Yoruba Words:", "Àwọn Ọ̀rọ̀ Yorùbá Tí A Mọ̀:")}
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {commonWords.slice(0, 6).map((item) => (
+              <button
+                key={item.word}
+                onClick={() => handleWordClick(item.word)}
+                className="text-left p-2 text-xs bg-white dark:bg-gray-800 rounded border hover:bg-amber-50 dark:hover:bg-gray-700 transition-colors"
+              >
+                <div className="font-medium text-amber-700 dark:text-amber-300">{item.word}</div>
+                <div className="text-gray-600 dark:text-gray-400 text-xs">{item.meaning}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="text-xs text-gray-600 dark:text-gray-400 border-t pt-3">
+          {ts(
+            "Tip: Click on common words above to try them, or type your own Yoruba word",
+            "Ìmọ̀ràn: Tẹ àwọn ọ̀rọ̀ tí ó wà lókè tàbí kọ tirẹ"
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

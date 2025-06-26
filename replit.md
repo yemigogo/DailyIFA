@@ -32,6 +32,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 
 
 - ✅ **Completely Removed Ambient Yoruba Soundscapes**: Successfully eliminated the entire ambient soundscapes system per user request - removed all related components (ambient-soundscapes.tsx, ambient-player.tsx, immersive-audio-experience.tsx, floating-ambient-controls.tsx), cleaned up all imports and references, fixed build errors, and streamlined audio system to focus only on core Yoruba pronunciation files (ẹjẹ́.mp3, ìwòrì.mp3, ọdún.mp3)
+- ✅ **Interactive Yoruba Pronunciation Demo**: Added comprehensive pronunciation learning tool with input field for custom words, clickable grid of 12 common Yoruba terms (òrìṣà, àṣẹ, ifá, ọdún, etc.), audio playback for available pronunciation files, phonetic pronunciation guides, English/Yoruba meanings, and bilingual interface for enhanced language learning
 
 **June 23, 2025**
 - ✅ **Major Architecture Change**: Successfully converted from React/Node.js to Python Flask with Jinja2 templates
