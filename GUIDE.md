@@ -1,8 +1,18 @@
-# Ifá Daily – Yoruba Sound & Wisdom App
+# 📘 Ifá Daily – Yoruba Sound & Wisdom App
 
-## 📌 Project Overview
+This guide helps you set up, test, and prepare the Ifá Daily web app on Replit before pushing to mobile platforms. It includes instructions, a to-do checklist, and deployment notes.
 
-**Purpose**: Deliver authentic daily Ifá Odu readings, Yoruba wisdom, traditional Oríkì (praise poetry), and spiritual guidance through a modern web application that bridges ancient Yoruba wisdom with contemporary digital accessibility.
+---
+
+## 📌 1. Project Overview
+
+**Ifá Daily** delivers authentic Yoruba spiritual experience:
+- Daily Ifá Odu and divination logic
+- Accurate Yoruba pronunciation (currently disabled pending authentic recordings)
+- Oríkì playback and ambient soundscapes
+- Bilingual explanations and cultural context
+- AI-powered rhythm recommendations with Batá drum patterns
+- Personalized ancestral connection pathways
 
 **Core Features**:
 - **Daily Ifá Readings**: Authentic Odu verses with automated daily selection
@@ -16,29 +26,41 @@
 
 **Current Status**: Audio pronunciation system intentionally disabled due to quality standards - awaiting authentic native speaker recordings.
 
-## ✅ Setup Instructions
+## ✅ 2. Setup Instructions
 
 ### Environment Setup
 ```bash
-# Python Flask environment (already configured)
+# Main Application (React/Node.js)
 npm run dev  # Starts both backend and frontend on port 5000
+
+# Flask Components (for standalone pronunciation demos)
+pip install flask
+python pronunciation_demo_app.py  # Runs on port 5001
 ```
 
 ### Project Architecture
-- **Frontend**: React with TypeScript, Vite build system
-- **Backend**: Node.js/Express with PostgreSQL database
-- **Styling**: Tailwind CSS with sacred color palette
+- **Main App**: React/TypeScript frontend with Node.js/Express backend
+- **Database**: PostgreSQL with Drizzle ORM
+- **Flask Components**: Standalone pronunciation demos and utilities
+- **Styling**: Tailwind CSS with sacred color palette (amber, emerald, spiritual blue)
 - **Audio**: Static file serving with HTML5 audio controls
 
 ### Folder Structure
 ```
-/client/src/components/     # React components
-/server/                    # Backend API routes
-/static/audio/             # Audio files directory
-  ├── pronunciation/       # Yoruba word pronunciations
-  └── ambient/            # Spiritual soundscapes
-/shared/schema.ts          # Database models
-/templates/                # Static templates
+/client/src/               # React frontend
+  ├── components/          # UI components
+  ├── pages/              # Route pages
+  └── contexts/           # React contexts
+/server/                   # Node.js backend
+  ├── routes.ts           # API endpoints
+  ├── storage.ts          # Database layer
+  └── index.ts            # Server entry
+/static/audio/            # Audio files
+  ├── pronunciation/      # Yoruba word pronunciations (33 files)
+  └── ambient/           # Spiritual soundscapes
+/shared/schema.ts         # Database models
+/templates/               # Jinja2 templates (Flask components)
+/scripts/                 # Utility scripts
 ```
 
 ### Audio File Requirements
@@ -47,7 +69,7 @@ npm run dev  # Starts both backend and frontend on port 5000
 - **Naming**: ASCII-safe filenames (e.g., `sango.mp3` for `ṣàngó`)
 - **Quality**: Native speaker recordings only - no synthetic audio
 
-## 🧩 Components Overview
+## 🧩 3. Components Overview
 
 ### Core Application Files
 - **`server/index.ts`**: Express server and API routing
@@ -55,6 +77,11 @@ npm run dev  # Starts both backend and frontend on port 5000
 - **`server/routes.ts`**: Backend API endpoints for readings, Odus, prayers
 - **`shared/schema.ts`**: Database schema and TypeScript types
 - **`server/storage.ts`**: Database interaction layer
+
+### Flask Components
+- **`pronunciation_demo_app.py`**: Standalone pronunciation testing (port 5001)
+- **`enhanced_pronunciation_server.py`**: Advanced pronunciation features
+- **`app.py`**: Legacy Flask application with SQLite backend
 
 ### Frontend Components
 - **`daily-reading.tsx`**: Main reading display with Odu interpretation
@@ -75,7 +102,10 @@ npm run dev  # Starts both backend and frontend on port 5000
 - **Prayers**: Daily and lunar prayer cycles
 - **User Data**: Reading history and practice tracking
 
-## 📂 Audio Checklist
+## 📂 4. Audio Checklist
+
+### Current Audio Status
+**🔇 DISABLED**: All pronunciation features are intentionally disabled due to quality standards.
 
 ### Pronunciation Audio Requirements
 - [ ] **Native Speaker Recordings**: Only authentic Yoruba speakers from Nigeria/Benin/Togo
@@ -83,6 +113,7 @@ npm run dev  # Starts both backend and frontend on port 5000
 - [ ] **Quality Standards**: Clear enunciation with proper tonal patterns
 - [ ] **Cultural Context**: Speakers who understand spiritual terminology
 - [ ] **Format**: MP3, 22050Hz, mono, minimum 10KB file size
+- [ ] **No Synthetic Audio**: Absolutely no Google TTS or generated voices
 
 ### Priority Words for Recording
 - [ ] `ṣàngó` (sango.mp3) - Orisha of thunder
@@ -99,7 +130,7 @@ npm run dev  # Starts both backend and frontend on port 5000
 - [ ] No synthetic/generated audio
 - [ ] Cultural authenticity verified by native speakers
 
-## 🐛 Bug Fix Workflow
+## 🐛 5. Bug Fix Workflow
 
 ### Audio Testing Process
 1. **Manual Browser Testing**
@@ -132,7 +163,7 @@ npm run dev  # Starts both backend and frontend on port 5000
 - **Poor quality**: Replace with authentic native speaker recordings
 - **Mobile issues**: Test on actual devices, not just browser emulation
 
-## 📦 Database and API Structure
+## 📦 6. Database Prep (for later mobile sync)
 
 ### Current Database Schema
 - **odus**: Traditional Ifá verses and interpretations
@@ -153,14 +184,14 @@ GET /api/search?problem={query}   # Problem-based Odu search
 GET /api/ebo-recommendations      # Spiritual guidance
 ```
 
-### Mobile Preparation
-- [ ] **JSON Mapping**: Unicode-safe filename mapping complete
-- [ ] **API Endpoints**: RESTful design for mobile app consumption
+### Mobile Sync Preparation
+- [x] **JSON Mapping**: Unicode-safe filename mapping complete (`map.json`)
+- [x] **Normalized Audio Names**: Slugified filenames with Unicode-safe naming
+- [x] **API Endpoints**: RESTful design for mobile app consumption
 - [ ] **Caching Headers**: Static audio files properly cached
-- [ ] **CORS Configuration**: Cross-origin requests handled
-- [ ] **Error Handling**: Graceful fallbacks for missing content
+- [x] **Clean Fallback**: Proper handling for missing authentic files
 
-## 🔄 Ready for Mobile?
+## 🔄 7. Ready for Mobile?
 
 ### Frontend Requirements
 - [x] **Mobile-Responsive Design**: Tailwind CSS with mobile-first approach
@@ -168,11 +199,12 @@ GET /api/ebo-recommendations      # Spiritual guidance
 - [x] **Fast Loading**: Optimized images and efficient API calls
 - [x] **Offline Capability**: Core functionality works without network
 
-### Audio System Status
-- [ ] **Authentic Audio**: Currently disabled - awaiting native speaker recordings
-- [x] **Clean Fallbacks**: Proper error handling for missing files
-- [x] **Mobile Audio**: HTML5 audio controls work on mobile browsers
-- [ ] **No Synthetic Audio**: Removed all Google TTS and generated content
+### Audio Integration Status
+- [ ] **All audio integrated and plays on click**: Currently disabled pending authentic recordings
+- [x] **No Google TTS fallback**: Completely removed synthetic audio
+- [x] **Runs cleanly in mobile browser preview**: React app is mobile-responsive
+- [x] **Clean fallback for missing files**: Proper error handling implemented
+- [x] **UI elements mobile-responsive**: Tailwind CSS mobile-first design
 
 ### Performance Optimization
 - [x] **Image Optimization**: SVG icons and optimized backgrounds
@@ -216,8 +248,10 @@ GET /api/ebo-recommendations      # Spiritual guidance
 
 ---
 
-> **To contribute or test, fork this Replit and upload your own verified authentic audio recordings into the correct folders. Ensure filenames match the pronunciation mapping system and that all recordings are from native Yoruba speakers who understand the spiritual context of these sacred terms.**
+> **To contribute or test, fork this Replit and upload your own verified audio into the correct folders. Make sure filenames match those in the map.json file.**
 
 ---
 
-**Note**: This application prioritizes cultural authenticity over technical convenience. The audio system remains disabled until genuine native speaker recordings are available, maintaining the spiritual integrity of the Ifá tradition.
+**Audio Quality Standards**: This application prioritizes cultural authenticity over technical convenience. The audio system remains disabled until genuine native speaker recordings are available, maintaining the spiritual integrity of the Ifá tradition.
+
+**Testing Protocol**: Use DevTools → Network tab to confirm audio loads (Status 200), validate audio MIME type (`audio/mpeg`), and ensure no synthetic/generated audio is used.
