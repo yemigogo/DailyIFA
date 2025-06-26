@@ -12,6 +12,7 @@ import { formatDate, getPreviousDay, getNextDay } from "@/lib/date-utils";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { DailyReadingWithOdu } from "@shared/schema";
+import YorubaPronunciationDemo from "@/components/yoruba-pronunciation-demo";
 
 
 export default function Home() {

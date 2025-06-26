@@ -33,70 +33,95 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
   ];
 
   const playPronunciation = async () => {
-    if (!word.trim()) {
+    const trimmedWord = word.trim();
+    if (!trimmedWord) {
       setStatus(ts("Please enter a Yoruba word", "Jọ̀wọ́ fi ọ̀rọ̀ Yorùbá kan sí"));
       return;
     }
 
     setIsPlaying(true);
-    setStatus(ts("Playing pronunciation...", "Ń ṣe ìpè ohùn..."));
+    setStatus(ts("Loading pronunciation...", "Ń gbe ìpè ohùn..."));
 
-    // Check if we have a matching audio file for common words
-    const matchedWord = commonWords.find(w => 
-      w.word.toLowerCase() === word.toLowerCase().trim()
-    );
+    // Google TTS endpoint for Yoruba
+    const googleTTS = (query: string) => 
+      `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&ie=UTF-8&q=${encodeURIComponent(query)}`;
 
-    if (matchedWord) {
-      try {
-        // Try to play existing pronunciation file
-        const audioUrl = `/static/audio/pronunciation/${word.toLowerCase().trim()}.mp3`;
-        const audio = new Audio(audioUrl);
-        
-        audio.onloadeddata = () => {
-          audio.play().then(() => {
-            setStatus(ts(
-              `Playing: ${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`,
-              `Ń ṣe: ${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`
-            ));
-          }).catch(() => {
-            setStatus(ts(
-              `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
-              `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
-            ));
-          });
-        };
+    // Local pronunciation path
+    const localURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
 
-        audio.onerror = () => {
+    try {
+      // First try local pronunciation file
+      const headResponse = await fetch(localURL, { method: "HEAD" });
+      const audioSource = headResponse.ok ? localURL : googleTTS(trimmedWord);
+      const sourceType = headResponse.ok ? "local" : "TTS";
+
+      // Find matching word info for display
+      const matchedWord = commonWords.find(w => 
+        w.word.toLowerCase() === trimmedWord.toLowerCase()
+      );
+
+      // Create and play audio
+      const audio = new Audio(audioSource);
+      
+      audio.onloadeddata = () => {
+        setStatus(ts(
+          `Playing ${sourceType} pronunciation...`,
+          `Ń ṣe ìpè ohùn ${sourceType}...`
+        ));
+      };
+
+      audio.onended = () => {
+        setIsPlaying(false);
+        if (matchedWord) {
+          setStatus(ts(
+            `${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`,
+            `${matchedWord.word} (${matchedWord.pronunciation}) - ${matchedWord.meaning}`
+          ));
+        } else {
+          setStatus(ts(
+            `Played pronunciation for "${trimmedWord}"`,
+            `Ti ṣe ìpè ohùn fún "${trimmedWord}"`
+          ));
+        }
+      };
+
+      audio.onerror = () => {
+        setIsPlaying(false);
+        if (matchedWord) {
           setStatus(ts(
             `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
-            `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
+            `Ìtọ́kasí ìpè: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
           ));
-        };
+        } else {
+          setStatus(ts(
+            "Could not load audio. Click again to retry.",
+            "Kò lè gbe ohùn. Tẹ padà láti gbìyànjú."
+          ));
+        }
+      };
 
-        audio.onended = () => {
-          setIsPlaying(false);
-        };
+      await audio.play();
 
-      } catch (error) {
+    } catch (error) {
+      setIsPlaying(false);
+      console.error("Pronunciation error:", error);
+      
+      const matchedWord = commonWords.find(w => 
+        w.word.toLowerCase() === trimmedWord.toLowerCase()
+      );
+      
+      if (matchedWord) {
         setStatus(ts(
-          `Pronunciation guide: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
-          `Ìtọ́kasí bí a ṣe ń kà á: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
+          `Browser blocked audio. Pronunciation: ${matchedWord.pronunciation} - ${matchedWord.meaning}`,
+          `Ẹ̀rọ ayélujára dá ohùn dúró. Ìpè: ${matchedWord.pronunciation} - ${matchedWord.meaning}`
         ));
-        setIsPlaying(false);
+      } else {
+        setStatus(ts(
+          "Browser blocked auto-play. Click again to play.",
+          "Ẹ̀rọ ayélujára dá ohùn dúró. Tẹ padà láti ṣe."
+        ));
       }
-    } else {
-      // Provide general pronunciation guidance for unknown words
-      setStatus(ts(
-        `"${word}" - For accurate pronunciation, consult a Yoruba speaker or language resource`,
-        `"${word}" - Fún ìpè tí ó tọ́, béèrè lọ́wọ́ ẹni tí ó mọ̀ èdè Yorùbá`
-      ));
-      setIsPlaying(false);
     }
-
-    // Reset playing state after 3 seconds
-    setTimeout(() => {
-      setIsPlaying(false);
-    }, 3000);
   };
 
   const handleWordClick = (selectedWord: string) => {
@@ -165,11 +190,19 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
           </div>
         </div>
 
-        <div className="text-xs text-gray-600 dark:text-gray-400 border-t pt-3">
-          {ts(
-            "Tip: Click on common words above to try them, or type your own Yoruba word",
-            "Ìmọ̀ràn: Tẹ àwọn ọ̀rọ̀ tí ó wà lókè tàbí kọ tirẹ"
-          )}
+        <div className="text-xs text-gray-600 dark:text-gray-400 border-t pt-3 space-y-1">
+          <div>
+            {ts(
+              "Tip: Click on common words above to try them, or type your own Yoruba word",
+              "Ìmọ̀ràn: Tẹ àwọn ọ̀rọ̀ tí ó wà lókè tàbí kọ tirẹ"
+            )}
+          </div>
+          <div className="text-emerald-600 dark:text-emerald-400">
+            {ts(
+              "Uses local audio files when available, otherwise Google TTS for Yoruba",
+              "Lo fáìlì ohùn agbègbè tí ó bá wà, bí kò Google TTS fún Yorùbá"
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>
