@@ -100,11 +100,12 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 - **Audio System Status**: All pronunciation playback temporarily disabled after user feedback confirmed current synthetic audio files do not meet authentic African pronunciation standards. System infrastructure complete and ready for genuine native speaker recordings when available
 
 ## Technical Details
-- **Port**: Flask app runs on port 5001 (Node.js was on 5000)
-- **Audio Files**: Located in `static/audio/` with proper web serving
-- **Templates**: Modern Jinja2 with Alpine.js for dynamic functionality
-- **Database**: SQLite with proper relationships and data integrity
-- **Styling**: Tailwind CSS with sacred color palette (amber, spiritual blue, sage green)
+- **Ports**: React/Node.js on 5000, Flask demo on 5001
+- **Audio Files**: 33 pronunciation files in `static/audio/pronunciation/` (disabled)
+- **Templates**: Responsive HTML with Tailwind CSS for Flask app
+- **Database**: SQLite with Odu data and daily reading generation
+- **Styling**: Tailwind CSS with sacred color palette (amber, emerald, spiritual blue)
+- **API**: RESTful endpoints for readings, Odus, and health checks
 
 ## Deployment Notes
 - Python Flask application ready for production deployment
