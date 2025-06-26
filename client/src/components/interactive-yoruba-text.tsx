@@ -107,7 +107,7 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       }
     };
 
-    // Auto-detect and mark Yoruba words in text
+    // Auto-detect and mark Yoruba words in text (audio disabled)
     const markYorubaWords = () => {
       const commonYorubaWords = [
         'òrìṣà', 'àṣẹ', 'ifá', 'ọdún', 'ìwòrì', 'ẹjẹ́', 'ọmọ', 'ilé', 'owó', 'ayé', 
