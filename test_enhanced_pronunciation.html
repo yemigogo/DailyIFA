@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Enhanced Pronunciation System</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+        .test-section { background: white; margin: 20px 0; padding: 20px; border-radius: 8px; }
+        .test-btn { background: #059669; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        .test-btn:hover { background: #047857; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 4px; }
+        .success { background: #d1fae5; color: #065f46; }
+        .error { background: #fee2e2; color: #dc2626; }
+        .info { background: #e0e7ff; color: #3730a3; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Enhanced Pronunciation System Test</h1>
+    
+    <div class="test-section">
+        <h3>1. Mapping System Test</h3>
+        <button class="test-btn" onclick="testMapping()">Test JSON Mapping</button>
+        <div id="mappingResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Audio File Verification</h3>
+        <button class="test-btn" onclick="testAudioFiles()">Verify Audio Files</button>
+        <div id="audioResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Pronunciation Lookup Test</h3>
+        <button class="test-btn" onclick="testLookup('ṣàngó')">Test: ṣàngó</button>
+        <button class="test-btn" onclick="testLookup('òrìṣà')">Test: òrìṣà</button>
+        <button class="test-btn" onclick="testLookup('àṣẹ')">Test: àṣẹ</button>
+        <div id="lookupResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Audio Playback Test</h3>
+        <button class="test-btn" onclick="testPlayback()">Test Audio Playback</button>
+        <div id="playbackResult"></div>
+    </div>
+
+    <script>
+        async function testMapping() {
+            const result = document.getElementById('mappingResult');
+            try {
+                const response = await fetch('/static/audio/pronunciation/map.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    result.innerHTML = `
+                        <div class="result success">
+                            ✅ Mapping loaded successfully!<br>
+                            Total words: ${data.length}<br>
+                            Authentic audio: ${data.filter(w => w.has_authentic).length}<br>
+                            Sample entries: ${data.slice(0, 3).map(w => w.word).join(', ')}
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `<div class="result error">❌ Failed to load mapping: ${response.status}</div>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testAudioFiles() {
+            const result = document.getElementById('audioResult');
+            try {
+                const response = await fetch('/static/audio/pronunciation/map.json');
+                const data = await response.json();
+                
+                let workingFiles = 0;
+                let totalFiles = 0;
+                const checks = [];
+                
+                for (const entry of data) {
+                    if (entry.has_authentic) {
+                        totalFiles++;
+                        const audioResponse = await fetch(`/static/audio/pronunciation/${entry.file}`, { method: 'HEAD' });
+                        if (audioResponse.ok) {
+                            workingFiles++;
+                            checks.push(`✅ ${entry.word} (${entry.file})`);
+                        } else {
+                            checks.push(`❌ ${entry.word} (${entry.file}) - Not found`);
+                        }
+                    }
+                }
+                
+                result.innerHTML = `
+                    <div class="result ${workingFiles === totalFiles ? 'success' : 'error'}">
+                        Audio Files: ${workingFiles}/${totalFiles} working<br>
+                        ${checks.join('<br>')}
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testLookup(word) {
+            const result = document.getElementById('lookupResult');
+            try {
+                const response = await fetch('/static/audio/pronunciation/map.json');
+                const data = await response.json();
+                
+                const entry = data.find(w => w.word.toLowerCase() === word.toLowerCase());
+                
+                if (entry) {
+                    const audioCheck = await fetch(`/static/audio/pronunciation/${entry.file}`, { method: 'HEAD' });
+                    
+                    result.innerHTML = `
+                        <div class="result ${audioCheck.ok ? 'success' : 'error'}">
+                            Word: ${entry.word}<br>
+                            Meaning: ${entry.meaning}<br>
+                            File: ${entry.file}<br>
+                            Authentic: ${entry.has_authentic ? 'Yes' : 'No'}<br>
+                            Available: ${audioCheck.ok ? 'Yes' : 'No'}
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `<div class="result error">❌ Word "${word}" not found in mapping</div>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        async function testPlayback() {
+            const result = document.getElementById('playbackResult');
+            try {
+                const response = await fetch('/static/audio/pronunciation/map.json');
+                const data = await response.json();
+                
+                const authenticWords = data.filter(w => w.has_authentic);
+                if (authenticWords.length === 0) {
+                    result.innerHTML = `<div class="result error">❌ No authentic audio files available</div>`;
+                    return;
+                }
+                
+                const testWord = authenticWords[0];
+                const audio = new Audio(`/static/audio/pronunciation/${testWord.file}`);
+                audio.volume = 0.7;
+                
+                audio.onloadstart = () => {
+                    result.innerHTML = `<div class="result info">🔄 Loading ${testWord.word}...</div>`;
+                };
+                
+                audio.oncanplaythrough = () => {
+                    result.innerHTML = `<div class="result success">✅ Audio ready: ${testWord.word}</div>`;
+                };
+                
+                audio.onplay = () => {
+                    result.innerHTML = `<div class="result success">🔊 Playing: ${testWord.word} (${testWord.meaning})</div>`;
+                };
+                
+                audio.onended = () => {
+                    result.innerHTML = `<div class="result success">✅ Playback completed successfully!</div>`;
+                };
+                
+                audio.onerror = () => {
+                    result.innerHTML = `<div class="result error">❌ Playback failed</div>`;
+                };
+                
+                await audio.play();
+                
+            } catch (error) {
+                result.innerHTML = `<div class="result error">❌ Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
