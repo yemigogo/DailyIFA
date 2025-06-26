@@ -64,14 +64,13 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
       ? `/static/audio/pronunciation/${audioFiles[trimmedWord.toLowerCase()]}`
       : null;
 
-    if (!audioSource) {
-      setStatus(ts(
-        `No authentic pronunciation available for "${trimmedWord}". Available: ṣàngó, òrìṣà, àṣẹ, ọ̀ṣun, ọ̀rúnmìlà, yemọja, ifá`,
-        `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn tí ó wà: ṣàngó, òrìṣà, àṣẹ, ọ̀ṣun, ọ̀rúnmìlà, yemọja, ifá`
-      ));
-      setIsPlaying(false);
-      return;
-    }
+    // Disable audio until authentic recordings are provided
+    setStatus(ts(
+      `Audio playback disabled - current files do not meet authentic African pronunciation standards. Awaiting genuine native speaker recordings.`,
+      `Àwòrán ohùn ti dí kúrò - àwọn fáìlì tí ó wà báyìí kò bá ìlànà ìpè Yorùbá òtítọ́ mu. A ń dúró fún àwọn àmòhùn òdájú láti ọ̀dọ̀ àwọn afẹ̀dè ìbílẹ̀.`
+    ));
+    setIsPlaying(false);
+    return;
 
     try {
       // Check if authentic pronunciation file exists
