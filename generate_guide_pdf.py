@@ -10,7 +10,7 @@ class PDF(FPDF):
     def header(self):
         self.set_font("Arial", "B", 12)
         self.set_text_color(4, 107, 74)  # Dark green
-        self.cell(0, 10, "Ifá Daily – Yoruba Sound & Wisdom App Guide", ln=1, align="C")
+        self.cell(0, 10, "Ifa Daily - Yoruba Sound & Wisdom App Guide", ln=1, align="C")
         self.ln(5)
 
     def footer(self):
@@ -58,9 +58,14 @@ def main():
         print("Error: GUIDE.md file not found")
         return
 
-    # Read guide content
+    # Read guide content and fix Unicode characters
     with open("GUIDE.md", "r", encoding="utf-8") as f:
-        guide_lines = f.readlines()
+        guide_lines = []
+        for line in f:
+            # Replace problematic Unicode characters
+            line = line.replace("–", "-").replace("'", "'").replace("…", "...").replace(""", '"').replace(""", '"')
+            line = line.replace("Ifá", "Ifa").replace("Yorubá", "Yoruba")  # Remove diacritics for PDF compatibility
+            guide_lines.append(line)
 
     # Parse and convert markdown to PDF
     in_code_block = False
