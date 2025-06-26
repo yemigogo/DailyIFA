@@ -42,23 +42,37 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
     setIsPlaying(true);
     setStatus(ts("Loading pronunciation...", "Ń gbe ìpè ohùn..."));
 
-    // Local authentic pronunciation path only
+    // Try both diacritical and simplified pronunciation paths
     const localURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
+    const simplifiedURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase().replace(/[àáèéìíòóùúẹọṣǹ]/g, (match) => {
+      const map = {
+        'à': 'a', 'á': 'a', 'è': 'e', 'é': 'e', 'ì': 'i', 'í': 'i',
+        'ò': 'o', 'ó': 'o', 'ù': 'u', 'ú': 'u', 'ẹ': 'e', 'ọ': 'o',
+        'ṣ': 's', 'ǹ': 'n'
+      };
+      return map[match] || match;
+    })}.mp3`;
 
     try {
-      // Only use authentic local pronunciation files
-      const headResponse = await fetch(localURL, { method: "HEAD" });
+      // Only use authentic local pronunciation files (try both versions)
+      let headResponse = await fetch(localURL, { method: "HEAD" });
+      let audioSource = localURL;
+      
+      if (!headResponse.ok) {
+        headResponse = await fetch(simplifiedURL, { method: "HEAD" });
+        audioSource = simplifiedURL;
+      }
       
       if (!headResponse.ok) {
         setStatus(ts(
-          `Authentic pronunciation not available for "${trimmedWord}". Available words: àṣẹ, òrìṣà, ifá, ṣàngó, ọ̀ṣun, yemọja, ọ̀rúnmìlà`,
-          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn ọ̀rọ̀ tí ó wà: àṣẹ, òrìṣà, ifá, ṣàngó, ọ̀ṣun, yemọja, ọ̀rúnmìlà`
+          `Authentic pronunciation not available for "${trimmedWord}". Available words: ase/àṣẹ, orisa/òrìṣà, ifa/ifá, sango/ṣàngó, osun/ọ̀ṣun, yemoja, orunmila/ọ̀rúnmìlà`,
+          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn ọ̀rọ̀ tí ó wà: ase/àṣẹ, orisa/òrìṣà, ifa/ifá, sango/ṣàngó, osun/ọ̀ṣun, yemoja, orunmila/ọ̀rúnmìlà`
         ));
         setIsPlaying(false);
         return;
       }
       
-      const audioSource = localURL;
+      // audioSource already set above
       const sourceType = "authentic Yoruba audio";
 
       // Find matching word info for display

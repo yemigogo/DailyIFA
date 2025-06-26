@@ -21,12 +21,27 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       const trimmedWord = word.trim();
       if (!trimmedWord) return;
 
+      // Try both diacritical and simplified versions
       const localPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
+      const simplifiedPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase().replace(/[àáèéìíòóùúẹọṣǹ]/g, (match) => {
+        const map = {
+          'à': 'a', 'á': 'a', 'è': 'e', 'é': 'e', 'ì': 'i', 'í': 'i',
+          'ò': 'o', 'ó': 'o', 'ù': 'u', 'ú': 'u', 'ẹ': 'e', 'ọ': 'o',
+          'ṣ': 's', 'ǹ': 'n'
+        };
+        return map[match] || match;
+      })}.mp3`;
       
       // Remove Google TTS fallback - only use authentic sources
       try {
-        // Check for local authentic file first
-        const checkResponse = await fetch(localPath, { method: "HEAD" });
+        // Check for local authentic file first (try both versions)
+        let checkResponse = await fetch(localPath, { method: "HEAD" });
+        let audioPath = localPath;
+        
+        if (!checkResponse.ok) {
+          checkResponse = await fetch(simplifiedPath, { method: "HEAD" });
+          audioPath = simplifiedPath;
+        }
         
         if (checkResponse.ok) {
           // Stop any currently playing audio
@@ -36,7 +51,7 @@ export default function InteractiveYorubaText({ children, className }: Interacti
           }
 
           // Create new audio instance with enhanced settings for African pronunciation
-          yoWordPlayer = new Audio(localPath);
+          yoWordPlayer = new Audio(audioPath);
           yoWordPlayer.volume = 0.95; // Slightly higher for clear tonal pronunciation
           yoWordPlayer.playbackRate = 0.9; // Slower for authentic African speech patterns
           
