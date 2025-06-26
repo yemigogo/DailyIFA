@@ -18,7 +18,7 @@ export function EncyclopediaProvider({ children }: { children: React.ReactNode }
 
   // Fetch all encyclopedia entries
   const { data: entries = [], isLoading: entriesLoading } = useQuery({
-    queryKey: ["/api/encyclopedia/entries"],
+    queryKey: ["/api/encyclopedia"],
   });
 
   // Fetch hyperlinkable terms

@@ -4,7 +4,7 @@ import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
 import SimpleAudioPlayer from "./simple-audio-player";
-import { AutoLinkText } from "./encyclopedia/auto-link-text";
+// import { AutoLinkText } from "./encyclopedia/auto-link-text";
 
 import EboRecommendations from "./ebo-recommendations";
 import HerbsMaterials from "./herbs-materials";
@@ -135,7 +135,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Ese Ifa (Sacred Verse)", "Ese Ifá (Ọ̀rọ̀ Mímọ́)")}
               </h4>
               <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
-                "<AutoLinkText>{t(reading.odu.eseIfa, reading.odu.eseIfaYoruba) as string}</AutoLinkText>"
+                "{t(reading.odu.eseIfa, reading.odu.eseIfaYoruba) as string}"
               </p>
             </div>
 
@@ -144,7 +144,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Today's Message", "Ọ̀rọ̀ Òní")}
               </h4>
               <p className="text-gray-700 leading-relaxed font-crimson text-base">
-                <AutoLinkText>{t(reading.odu.message, reading.odu.messageYoruba) as string}</AutoLinkText>
+                {t(reading.odu.message, reading.odu.messageYoruba) as string}
               </p>
             </div>
 
