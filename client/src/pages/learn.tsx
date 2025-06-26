@@ -8,6 +8,7 @@ import { useLocation } from "wouter";
 import OduPattern from "@/components/odu-pattern";
 import OduIfaImage from "@/components/odu-ifa-image";
 import { useLanguage } from "@/contexts/LanguageContext";
+import InteractiveYorubaText from "@/components/interactive-yoruba-text";
 import { formatDate } from "@/lib/date-utils";
 
 export default function Learn() {

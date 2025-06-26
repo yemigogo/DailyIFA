@@ -13,6 +13,7 @@ import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { DailyReadingWithOdu } from "@shared/schema";
 import YorubaPronunciationDemo from "@/components/yoruba-pronunciation-demo";
+import DemoInteractiveText from "@/components/demo-interactive-text";
 
 
 export default function Home() {

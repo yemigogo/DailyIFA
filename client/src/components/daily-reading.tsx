@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { apiRequest, getQueryFn } from "@/lib/queryClient";
 import { useLanguage } from "@/contexts/LanguageContext";
+import InteractiveYorubaText from "./interactive-yoruba-text";
 
 interface DailyReadingProps {
   reading: DailyReadingWithOdu;
