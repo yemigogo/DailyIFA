@@ -15,14 +15,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await initializeIfaLunarCalendar();
   await initializeEboRecommendations();
 
-  // Test pages
-  app.get('/test_ambient_simple.html', (req, res) => {
-    res.sendFile(join(process.cwd(), 'test_ambient_simple.html'));
-  });
-  
-  app.get('/debug_audio.html', (req, res) => {
-    res.sendFile(join(process.cwd(), 'debug_audio.html'));
-  });
+
 
   // Get today's reading
   app.get("/api/readings/today", async (req, res) => {

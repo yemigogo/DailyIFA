@@ -14,7 +14,7 @@ import ProfilePage from "@/pages/profile";
 import OrikiPlayback from "@/pages/oriki-playback";
 import { Link } from "wouter";
 import BottomNavigation from "@/components/bottom-navigation";
-import FloatingAmbientControls from "@/components/floating-ambient-controls";
+
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -44,7 +44,6 @@ function App() {
           <div className="min-h-screen">
             <Router />
             <BottomNavigation />
-            <FloatingAmbientControls />
           </div>
         </TooltipProvider>
       </LanguageProvider>
