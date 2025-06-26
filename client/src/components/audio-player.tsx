@@ -25,6 +25,9 @@ export default function AudioPlayer({
   meaningYoruba,
   hasAudio = false
 }: AudioPlayerProps) {
+  const { ts } = useLanguage();
+  
+  // Audio disabled for Nigerian authenticity requirements
   
   // Extract Odu number from name for direct file access
   const getOduNumber = () => {
