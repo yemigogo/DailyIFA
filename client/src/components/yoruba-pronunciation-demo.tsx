@@ -42,18 +42,24 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
     setIsPlaying(true);
     setStatus(ts("Loading pronunciation...", "Ń gbe ìpè ohùn..."));
 
-    // Google TTS endpoint for Yoruba
-    const googleTTS = (query: string) => 
-      `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&ie=UTF-8&q=${encodeURIComponent(query)}`;
-
-    // Local pronunciation path
+    // Local authentic pronunciation path only
     const localURL = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
 
     try {
-      // First try local pronunciation file
+      // Only use authentic local pronunciation files
       const headResponse = await fetch(localURL, { method: "HEAD" });
-      const audioSource = headResponse.ok ? localURL : googleTTS(trimmedWord);
-      const sourceType = headResponse.ok ? "local" : "TTS";
+      
+      if (!headResponse.ok) {
+        setStatus(ts(
+          `Authentic pronunciation not available for "${trimmedWord}". Please add authentic audio file.`,
+          `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Jọ̀wọ́ fi fáìlì ohùn òtítọ́ sí.`
+        ));
+        setIsPlaying(false);
+        return;
+      }
+      
+      const audioSource = localURL;
+      const sourceType = "authentic Yoruba audio";
 
       // Find matching word info for display
       const matchedWord = commonWords.find(w => 

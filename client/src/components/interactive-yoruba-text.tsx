@@ -14,7 +14,7 @@ export default function InteractiveYorubaText({ children, className }: Interacti
     const container = containerRef.current;
     if (!container) return;
 
-    // Enhanced audio playback with better controls
+    // Enhanced audio playback with authentic African voice priority
     let yoWordPlayer: HTMLAudioElement | null = null;
     
     const playYorubaWord = async (word: string) => {
@@ -22,26 +22,32 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       if (!trimmedWord) return;
 
       const localPath = `/static/audio/pronunciation/${trimmedWord.toLowerCase()}.mp3`;
-      const fallbackTTS = `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&q=${encodeURIComponent(trimmedWord)}`;
-
+      
+      // Remove Google TTS fallback - only use authentic sources
       try {
-        // Check for local file first
+        // Check for local authentic file first
         const checkResponse = await fetch(localPath, { method: "HEAD" });
-        const audioSource = checkResponse.ok ? localPath : fallbackTTS;
-
-        // Stop any currently playing audio
-        if (yoWordPlayer) {
-          yoWordPlayer.pause();
-          yoWordPlayer.currentTime = 0;
-        }
-
-        // Create new audio instance with enhanced settings
-        yoWordPlayer = new Audio(audioSource);
-        yoWordPlayer.volume = 0.9;
-        yoWordPlayer.playbackRate = 0.95; // Slightly slower for better comprehension
         
-        // Play the audio
-        await yoWordPlayer.play();
+        if (checkResponse.ok) {
+          // Stop any currently playing audio
+          if (yoWordPlayer) {
+            yoWordPlayer.pause();
+            yoWordPlayer.currentTime = 0;
+          }
+
+          // Create new audio instance with enhanced settings for African pronunciation
+          yoWordPlayer = new Audio(localPath);
+          yoWordPlayer.volume = 0.95; // Slightly higher for clear tonal pronunciation
+          yoWordPlayer.playbackRate = 0.9; // Slower for authentic African speech patterns
+          
+          // Play the authentic audio
+          await yoWordPlayer.play();
+          console.log(`Playing authentic Yoruba pronunciation: ${trimmedWord}`);
+        } else {
+          console.warn(`No authentic pronunciation available for: ${trimmedWord}`);
+          // Could notify user that authentic pronunciation is not available
+          // Rather than falling back to inauthentic TTS
+        }
       } catch (error) {
         console.warn("Audio playback failed:", error);
       }
