@@ -1,0 +1,50 @@
+Generate a detailed `GUIDE.md` for a Flask-based web application called **"Ifá Daily – Yoruba Sound & Wisdom App"**, designed to be deployed on Replit and eventually pushed to mobile.
+
+The markdown file should include:
+
+## 1. 📌 Project Overview
+- Purpose: Deliver authentic daily Ifá Odu, Yoruba wisdom, Oriki, and spiritual soundscapes.
+- Features: Odu auto-generation, pronunciation module, layered ambient Yoruba soundscapes, oriki playback, bilingual explanations.
+
+## 2. ✅ Setup Instructions
+- Python + Flask environment setup
+- Folder structure for audio, templates, and static files
+- How to upload authentic MP3s for pronunciation and soundscapes
+- How to run locally in Replit or Flask
+
+## 3. 🧩 Components Overview
+- `main.py`: Flask routing
+- `templates/index.html`: UI layout
+- `static/audio/pronunciation/`: Audio for Yoruba words
+- `static/audio/soundscapes/`: Ambient sounds (ocean, Batá, chants, etc.)
+- `map.json`: Word-to-file mapping
+- `README.md` / `GUIDE.md`: This file
+
+## 4. 📂 Audio Checklist
+- [ ] All 17 pronunciation MP3s named correctly
+- [ ] Ambient sound layers loop correctly and sound authentic
+- [ ] MP3s are > 10 KB and load without errors
+
+## 5. 🐛 Bug Fix Workflow
+- [ ] Test all audio in browser manually
+- [ ] Use DevTools → Network tab to confirm audio loads (Status 200)
+- [ ] Confirm correct volume + playbackRate in JS
+- [ ] Log errors in browser console for missing files or blocked playback
+- [ ] Validate audio MIME type (`audio/mpeg` or `audio/wav`)
+
+## 6. 📦 Database Prep (for later mobile sync)
+- [ ] Ensure JSON map has slugified keys
+- [ ] Normalize audio names with Unicode-safe filenames
+- [ ] Plan API endpoints for mobile app to fetch word, meaning, audio URL
+- [ ] Add caching headers for static audio
+
+## 7. 🔄 Ready for Mobile?
+- [ ] All audio integrated and plays on click
+- [ ] No Google TTS fallback (authentic voices only)
+- [ ] Runs cleanly in mobile browser preview
+- [ ] Has clean fallback for missing files
+- [ ] UI elements mobile-responsive
+
+End the guide with:
+
+> **To contribute or test, fork this Replit and upload your own verified audio into the correct folders. Make sure filenames match those in the map.json file.**
