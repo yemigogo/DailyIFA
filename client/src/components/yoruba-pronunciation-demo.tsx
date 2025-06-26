@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Play, Volume2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import NigerianAuthenticityBanner from "./nigerian-authenticity-banner";
 
 interface YorubaPronunciationDemoProps {
   className?: string;
@@ -12,7 +13,7 @@ interface YorubaPronunciationDemoProps {
 
 export default function YorubaPronunciationDemo({ className }: YorubaPronunciationDemoProps) {
   const [word, setWord] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("🔇 Audio disabled - Requires authentic Nigerian Yoruba speakers");
   const [isPlaying, setIsPlaying] = useState(false);
   const { ts } = useLanguage();
 
@@ -167,7 +168,7 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
           <Volume2 className="w-5 h-5" />
-          {ts("🔊 Yoruba Pronunciation Demo", "🔊 Àpẹẹrẹ Ìpè Yorùbá")}
+          🔇 {ts("Yoruba Pronunciation Demo - DISABLED", "Àpẹẹrẹ Ìpè Yorùbá - TI DÁ DÚRÓ")}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -178,24 +179,19 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
           <Input
             id="yorubaWord"
             type="text"
-            placeholder={ts("e.g. òrìṣà", "àpẹẹrẹ: òrìṣà")}
+            placeholder={ts("🔇 Disabled - Nigerian speakers needed", "🔇 Ti dá dúró - A nílò àwọn Nàìjíríà")}
             value={word}
             onChange={(e) => setWord(e.target.value)}
-            className="mt-1"
-            onKeyPress={(e) => e.key === 'Enter' && playPronunciation()}
+            className="mt-1 opacity-50 cursor-not-allowed line-through"
+            disabled
           />
         </div>
 
         <Button
-          onClick={playPronunciation}
-          disabled={isPlaying}
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+          disabled={true}
+          className="w-full bg-gray-400 cursor-not-allowed line-through"
         >
-          <Play className="w-4 h-4 mr-2" />
-          {isPlaying 
-            ? ts("Playing...", "Ń ṣe...") 
-            : ts("▶️ Hear Pronunciation", "▶️ Gbọ́ Bí A Ṣe Ń Kà Á")
-          }
+          🔇 {ts("DISABLED - Nigerian speakers needed", "TI DÁ DÚRÓ - A nílò àwọn Nàìjíríà")}
         </Button>
 
         {status && (
@@ -213,27 +209,33 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
             {commonWords.slice(0, 6).map((item) => (
               <button
                 key={item.word}
-                onClick={() => handleWordClick(item.word)}
-                className="text-left p-2 text-xs bg-white dark:bg-gray-800 rounded border hover:bg-amber-50 dark:hover:bg-gray-700 transition-colors"
+                disabled={true}
+                className="text-left p-2 text-xs bg-gray-200 dark:bg-gray-700 rounded border cursor-not-allowed opacity-60 line-through"
               >
-                <div className="font-medium text-amber-700 dark:text-amber-300">{item.word}</div>
-                <div className="text-gray-600 dark:text-gray-400 text-xs">{item.meaning}</div>
+                <div className="font-medium text-gray-500 dark:text-gray-400">🔇 {item.word}</div>
+                <div className="text-gray-500 dark:text-gray-500 text-xs">{item.meaning}</div>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="text-xs text-gray-600 dark:text-gray-400 border-t pt-3 space-y-1">
-          <div>
-            {ts(
-              "Tip: Click on common words above to try them, or type your own Yoruba word",
-              "Ìmọ̀ràn: Tẹ àwọn ọ̀rọ̀ tí ó wà lókè tàbí kọ tirẹ"
+        <div className="text-xs text-red-600 dark:text-red-400 border-t pt-3 space-y-2 bg-red-50 dark:bg-red-900/20 p-3 rounded">
+          <div className="font-semibold">
+            🚫 {ts(
+              "AUDIO DISABLED - Cultural Authenticity Required",
+              "OHÙN TI DÁ DÚRÓ - Àṣà Gidi Ni A Nílò"
             )}
           </div>
-          <div className="text-emerald-600 dark:text-emerald-400">
+          <div>
             {ts(
-              "Uses local audio files when available, otherwise Google TTS for Yoruba",
-              "Lo fáìlì ohùn agbègbè tí ó bá wà, bí kò Google TTS fún Yorùbá"
+              "Pronunciation features disabled until authentic Nigerian Yoruba speakers provide recordings",
+              "Àwọn ẹ̀yà ìpè ti dá dúró títí àwọn agbọ́rọ̀ Yorùbá Nàìjíríà gidi yóó fi fún wa"
+            )}
+          </div>
+          <div className="text-xs">
+            {ts(
+              "Requirements: Native speakers from Southwest Nigeria (Lagos, Oyo, Ogun, Osun) with Ifá cultural knowledge",
+              "Àwọn àdínwọ́n: Àwọn abínibí láti Gúúsù-Ìwọ̀-Oòrùn Nàìjíríà pẹ̀lú ìmọ̀ àṣà Ifá"
             )}
           </div>
         </div>
