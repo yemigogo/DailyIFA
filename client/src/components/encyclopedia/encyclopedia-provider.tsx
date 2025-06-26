@@ -29,28 +29,28 @@ export function EncyclopediaProvider({ children }: { children: React.ReactNode }
   const isLoading = entriesLoading || termsLoading;
 
   const getEntry = (slug: string): EncyclopediaEntry | undefined => {
-    return entries.find((entry: EncyclopediaEntry) => entry.slug === slug);
+    return (entries as EncyclopediaEntry[]).find((entry: EncyclopediaEntry) => entry.slug === slug);
   };
 
   const searchEntries = (query: string): EncyclopediaEntry[] => {
-    if (!query.trim()) return entries;
+    if (!query.trim()) return entries as EncyclopediaEntry[];
     
     const searchTerm = query.toLowerCase();
-    return entries.filter((entry: EncyclopediaEntry) => 
+    return (entries as EncyclopediaEntry[]).filter((entry: EncyclopediaEntry) => 
       entry.title.toLowerCase().includes(searchTerm) ||
       entry.shortDescription.toLowerCase().includes(searchTerm) ||
-      entry.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
-      entry.yorubaTerms.some(term => term.toLowerCase().includes(searchTerm))
+      (entry.tags || []).some(tag => tag.toLowerCase().includes(searchTerm)) ||
+      (entry.yorubaTerms || []).some(term => term.toLowerCase().includes(searchTerm))
     );
   };
 
   const getEntriesByCategory = (category: string): EncyclopediaEntry[] => {
-    return entries.filter((entry: EncyclopediaEntry) => entry.category === category);
+    return (entries as EncyclopediaEntry[]).filter((entry: EncyclopediaEntry) => entry.category === category);
   };
 
   const contextValue: EncyclopediaContextType = {
-    entries,
-    hyperlinkableTerms,
+    entries: entries as EncyclopediaEntry[],
+    hyperlinkableTerms: hyperlinkableTerms as HyperlinkableTerm[],
     getEntry,
     searchEntries,
     getEntriesByCategory,

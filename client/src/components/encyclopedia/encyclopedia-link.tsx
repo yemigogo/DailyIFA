@@ -98,11 +98,11 @@ export function EncyclopediaLink({ term, children, className = "" }: Encyclopedi
                   ))}
                 </div>
 
-                {entry.yorubaTerms.length > 0 && (
+                {(entry.yorubaTerms || []).length > 0 && (
                   <div className="space-y-2">
                     <h4 className="font-semibold text-sm">Yoruba Terms:</h4>
                     <div className="flex flex-wrap gap-1">
-                      {entry.yorubaTerms.map((term, index) => (
+                      {(entry.yorubaTerms || []).map((term, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
                           {term}
                         </Badge>
@@ -111,11 +111,11 @@ export function EncyclopediaLink({ term, children, className = "" }: Encyclopedi
                   </div>
                 )}
 
-                {entry.tags.length > 0 && (
+                {(entry.tags || []).length > 0 && (
                   <div className="space-y-2">
                     <h4 className="font-semibold text-sm">Topics:</h4>
                     <div className="flex flex-wrap gap-1">
-                      {entry.tags.map((tag, index) => (
+                      {(entry.tags || []).map((tag, index) => (
                         <Badge key={index} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>

@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { EncyclopediaProvider } from "@/components/encyclopedia/encyclopedia-provider";
 import Home from "@/pages/home";
 import History from "@/pages/history";
 import Learn from "@/pages/learn";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
+      <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
       <Route path="/oriki" component={OrikiPlayback} />

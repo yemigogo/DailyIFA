@@ -23,17 +23,18 @@ export function AutoLinkText({ children, className = "" }: AutoLinkTextProps) {
   // Find all matches and create replacements
   sortedTerms.forEach((hyperlinkableTerm, termIndex) => {
     const regex = new RegExp(`\\b${hyperlinkableTerm.term}\\b`, 'gi');
-    let match;
+    let match: RegExpExecArray | null;
     
     while ((match = regex.exec(processedText)) !== null) {
       const matchedText = match[0];
       const key = `link-${termIndex}-${match.index}`;
       
       // Check if this position is already replaced
-      const isAlreadyReplaced = replacements.some(r => 
-        match.index >= processedText.indexOf(r.original) && 
-        match.index < processedText.indexOf(r.original) + r.original.length
-      );
+      const isAlreadyReplaced = replacements.some(r => {
+        const replaceIndex = processedText.indexOf(r.original);
+        return match!.index >= replaceIndex && 
+               match!.index < replaceIndex + r.original.length;
+      });
       
       if (!isAlreadyReplaced) {
         replacements.push({

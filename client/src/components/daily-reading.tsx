@@ -4,6 +4,7 @@ import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
 import SimpleAudioPlayer from "./simple-audio-player";
+import { AutoLinkText } from "./encyclopedia/auto-link-text";
 
 import EboRecommendations from "./ebo-recommendations";
 import HerbsMaterials from "./herbs-materials";
@@ -134,7 +135,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Ese Ifa (Sacred Verse)", "Ese Ifá (Ọ̀rọ̀ Mímọ́)")}
               </h4>
               <p className="text-amber-800 dark:text-amber-200 text-sm italic leading-relaxed font-medium">
-                "{t(reading.odu.eseIfa, reading.odu.eseIfaYoruba)}"
+                "<AutoLinkText>{t(reading.odu.eseIfa, reading.odu.eseIfaYoruba) as string}</AutoLinkText>"
               </p>
             </div>
 
@@ -143,7 +144,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Today's Message", "Ọ̀rọ̀ Òní")}
               </h4>
               <p className="text-gray-700 leading-relaxed font-crimson text-base">
-                {t(reading.odu.message, reading.odu.messageYoruba)}
+                <AutoLinkText>{t(reading.odu.message, reading.odu.messageYoruba) as string}</AutoLinkText>
               </p>
             </div>
 
@@ -155,7 +156,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {(t(reading.odu.guidance, reading.odu.guidanceYoruba) as string[]).map((guidance, index) => (
                   <li key={index} className="flex items-start space-x-2">
                     <Leaf className="h-4 w-4 text-sage-green mt-1 flex-shrink-0" />
-                    <span>{guidance}</span>
+                    <span><AutoLinkText>{guidance}</AutoLinkText></span>
                   </li>
                 ))}
               </ul>
@@ -166,7 +167,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
                 {t("Reflection", "Ìrònú")}
               </h4>
               <p className="text-gray-600 text-sm italic">
-                "{t(reading.odu.reflection, reading.odu.reflectionYoruba)}"
+                "<AutoLinkText>{t(reading.odu.reflection, reading.odu.reflectionYoruba) as string}</AutoLinkText>"
               </p>
             </div>
           </div>

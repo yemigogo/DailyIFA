@@ -1,12 +1,15 @@
 import { 
   odus, dailyReadings, dailyPrayers, ifaLunarPrayers, divinationLogs, eboRecommendations,
+  encyclopediaEntries, hyperlinkableTerms, encyclopediaProgress,
   type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu,
   type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer,
   type DivinationLog, type InsertDivinationLog, type DivinationLogWithOdu,
-  type EboRecommendation, type InsertEboRecommendation, type EboRecommendationWithOdu
+  type EboRecommendation, type InsertEboRecommendation, type EboRecommendationWithOdu,
+  type EncyclopediaEntry, type InsertEncyclopediaEntry, type HyperlinkableTerm,
+  type EncyclopediaProgress, type InsertEncyclopediaProgress
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and, or, ilike, sql } from "drizzle-orm";
 
 export interface IStorage {
   // Odu methods
@@ -256,6 +259,72 @@ export class DatabaseStorage implements IStorage {
       .from(eboRecommendations)
       .innerJoin(odus, eq(eboRecommendations.oduId, odus.id))
       .orderBy(eboRecommendations.category, eboRecommendations.difficulty);
+  }
+}
+
+  // Encyclopedia methods
+  async getAllEncyclopediaEntries(): Promise<EncyclopediaEntry[]> {
+    return await db.select().from(encyclopediaEntries)
+      .where(eq(encyclopediaEntries.isPublished, true))
+      .orderBy(encyclopediaEntries.title);
+  }
+
+  async getEncyclopediaEntry(slug: string): Promise<EncyclopediaEntry | undefined> {
+    const result = await db.select().from(encyclopediaEntries)
+      .where(and(
+        eq(encyclopediaEntries.slug, slug),
+        eq(encyclopediaEntries.isPublished, true)
+      ))
+      .limit(1);
+    return result[0];
+  }
+
+  async getEncyclopediaEntriesByCategory(category: string): Promise<EncyclopediaEntry[]> {
+    return await db.select().from(encyclopediaEntries)
+      .where(and(
+        eq(encyclopediaEntries.category, category),
+        eq(encyclopediaEntries.isPublished, true)
+      ))
+      .orderBy(encyclopediaEntries.title);
+  }
+
+  async searchEncyclopediaEntries(query: string): Promise<EncyclopediaEntry[]> {
+    const searchTerm = `%${query.toLowerCase()}%`;
+    return await db.select().from(encyclopediaEntries)
+      .where(and(
+        eq(encyclopediaEntries.isPublished, true),
+        or(
+          ilike(encyclopediaEntries.title, searchTerm),
+          ilike(encyclopediaEntries.shortDescription, searchTerm),
+          ilike(encyclopediaEntries.fullContent, searchTerm)
+        )
+      ))
+      .orderBy(encyclopediaEntries.title);
+  }
+
+  async getHyperlinkableTerms(): Promise<HyperlinkableTerm[]> {
+    return await db.select().from(hyperlinkableTerms)
+      .where(eq(hyperlinkableTerms.isActive, true))
+      .orderBy(desc(sql`length(${hyperlinkableTerms.term})`));
+  }
+
+  async createEncyclopediaEntry(insertEntry: InsertEncyclopediaEntry): Promise<EncyclopediaEntry> {
+    const result = await db.insert(encyclopediaEntries).values(insertEntry).returning();
+    return result[0];
+  }
+
+  async markEncyclopediaAsRead(userId: string | null, entrySlug: string): Promise<void> {
+    await db.insert(encyclopediaProgress).values({
+      userId,
+      entrySlug,
+      isCompleted: true
+    }).onConflictDoUpdate({
+      target: [encyclopediaProgress.userId, encyclopediaProgress.entrySlug],
+      set: {
+        isCompleted: true,
+        readAt: new Date()
+      }
+    });
   }
 }
 
