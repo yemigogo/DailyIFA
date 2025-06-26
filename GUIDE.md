@@ -33,9 +33,12 @@ This guide helps you set up, test, and prepare the Ifá Daily web app on Replit 
 # Main Application (React/Node.js)
 npm run dev  # Starts both backend and frontend on port 5000
 
-# Flask Components (for standalone pronunciation demos)
+# Flask Demo Application
 pip install flask
-python pronunciation_demo_app.py  # Runs on port 5001
+python main.py  # Runs Flask app on port 5001
+
+# Other Flask Components
+python pronunciation_demo_app.py  # Standalone demo on port 5001
 ```
 
 ### Project Architecture
