@@ -42,6 +42,15 @@ export interface IStorage {
   getEboRecommendations(oduId: number): Promise<EboRecommendation[]>;
   createEboRecommendation(ebo: InsertEboRecommendation): Promise<EboRecommendation>;
   getAllEboRecommendations(): Promise<EboRecommendationWithOdu[]>;
+  
+  // Encyclopedia methods
+  getAllEncyclopediaEntries(): Promise<EncyclopediaEntry[]>;
+  getEncyclopediaEntry(slug: string): Promise<EncyclopediaEntry | undefined>;
+  getEncyclopediaEntriesByCategory(category: string): Promise<EncyclopediaEntry[]>;
+  searchEncyclopediaEntries(query: string): Promise<EncyclopediaEntry[]>;
+  getHyperlinkableTerms(): Promise<HyperlinkableTerm[]>;
+  createEncyclopediaEntry(entry: InsertEncyclopediaEntry): Promise<EncyclopediaEntry>;
+  markEncyclopediaAsRead(userId: string | null, entrySlug: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {

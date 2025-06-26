@@ -15,6 +15,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();
   await initializeEboRecommendations();
+  await initializeEncyclopediaData();
 
 
 
