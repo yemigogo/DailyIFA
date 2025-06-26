@@ -42,39 +42,35 @@ export default function YorubaPronunciationDemo({ className }: YorubaPronunciati
     setIsPlaying(true);
     setStatus(ts("Loading pronunciation...", "Ń gbe ìpè ohùn..."));
 
-    // Use pronunciation mapping for accurate file lookup
-    let audioSource = null;
+    // Direct mapping for authentic files
+    const audioFiles: Record<string, string> = {
+      'ṣàngó': 'sango.mp3',
+      'sango': 'sango.mp3',
+      'òrìṣà': 'orisa.mp3',
+      'orisa': 'orisa.mp3',
+      'àṣẹ': 'ase.mp3',
+      'ase': 'ase.mp3',
+      'ọ̀ṣun': 'osun.mp3',
+      'osun': 'osun.mp3',
+      'ọ̀rúnmìlà': 'orunmila.mp3',
+      'orunmila': 'orunmila.mp3',
+      'yemọja': 'yemoja.mp3',
+      'yemoja': 'yemoja.mp3',
+      'ifá': 'ifa.mp3',
+      'ifa': 'ifa.mp3'
+    };
     
-    try {
-      // Load pronunciation mapping
-      const mapResponse = await fetch('/static/audio/pronunciation/map.json');
-      if (mapResponse.ok) {
-        const pronunciationMap = await mapResponse.json();
-        const wordEntry = pronunciationMap.find(entry => 
-          entry.word.toLowerCase() === trimmedWord.toLowerCase()
-        );
-        
-        if (wordEntry) {
-          audioSource = `/static/audio/pronunciation/${wordEntry.file}`;
-        }
-      }
-    } catch (error) {
-      console.warn('Could not load pronunciation mapping');
-    }
-    
-    // Fallback to simplified filename
+    const audioSource = audioFiles[trimmedWord.toLowerCase()] 
+      ? `/static/audio/pronunciation/${audioFiles[trimmedWord.toLowerCase()]}`
+      : null;
+
     if (!audioSource) {
-      const simplifiedWord = trimmedWord.toLowerCase()
-        .replace(/[àáâãäå]/g, 'a')
-        .replace(/[èéêë]/g, 'e') 
-        .replace(/[ìíîï]/g, 'i')
-        .replace(/[òóôõö]/g, 'o')
-        .replace(/[ùúûü]/g, 'u')
-        .replace(/[ṣş]/g, 's')
-        .replace(/[ọọ́ọ̀]/g, 'o')
-        .replace(/[ẹẹ́ẹ̀]/g, 'e')
-        .replace(/[ǹń]/g, 'n');
-      audioSource = `/static/audio/pronunciation/${simplifiedWord}.mp3`;
+      setStatus(ts(
+        `No authentic pronunciation available for "${trimmedWord}". Available: ṣàngó, òrìṣà, àṣẹ, ọ̀ṣun, ọ̀rúnmìlà, yemọja, ifá`,
+        `Kò sí ìpè òtítọ́ fún "${trimmedWord}". Àwọn tí ó wà: ṣàngó, òrìṣà, àṣẹ, ọ̀ṣun, ọ̀rúnmìlà, yemọja, ifá`
+      ));
+      setIsPlaying(false);
+      return;
     }
 
     try {

@@ -21,42 +21,34 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       const trimmedWord = word.trim();
       if (!trimmedWord) return;
 
-      // Use pronunciation mapping for accurate file lookup
-      let audioPath = null;
+      // Direct mapping for known authentic files
+      const knownFiles: Record<string, string> = {
+        'ṣàngó': 'sango.mp3',
+        'sango': 'sango.mp3',
+        'òrìṣà': 'orisa.mp3',
+        'orisa': 'orisa.mp3',
+        'àṣẹ': 'ase.mp3',
+        'ase': 'ase.mp3',
+        'ọ̀ṣun': 'osun.mp3',
+        'osun': 'osun.mp3',
+        'ọ̀rúnmìlà': 'orunmila.mp3',
+        'orunmila': 'orunmila.mp3',
+        'yemọja': 'yemoja.mp3',
+        'yemoja': 'yemoja.mp3',
+        'ifá': 'ifa.mp3',
+        'ifa': 'ifa.mp3'
+      };
       
-      try {
-        // First try to load the pronunciation mapping
-        const mapResponse = await fetch('/static/audio/pronunciation/map.json');
-        if (mapResponse.ok) {
-          const pronunciationMap = await mapResponse.json();
-          const wordEntry = pronunciationMap.find(entry => 
-            entry.word.toLowerCase() === trimmedWord.toLowerCase()
-          );
-          
-          if (wordEntry) {
-            audioPath = `/static/audio/pronunciation/${wordEntry.file}`;
-          }
-        }
-      } catch (error) {
-        console.warn('Could not load pronunciation mapping');
-      }
+      const audioPath = knownFiles[trimmedWord.toLowerCase()] 
+        ? `/static/audio/pronunciation/${knownFiles[trimmedWord.toLowerCase()]}`
+        : null;
       
-      // Fallback to direct filename if mapping not found
+      // Only use authentic pronunciation files
       if (!audioPath) {
-        const simplifiedWord = trimmedWord.toLowerCase()
-          .replace(/[àáâãäå]/g, 'a')
-          .replace(/[èéêë]/g, 'e')
-          .replace(/[ìíîï]/g, 'i')
-          .replace(/[òóôõö]/g, 'o')
-          .replace(/[ùúûü]/g, 'u')
-          .replace(/[ṣş]/g, 's')
-          .replace(/[ọọ́ọ̀]/g, 'o')
-          .replace(/[ẹẹ́ẹ̀]/g, 'e')
-          .replace(/[ǹń]/g, 'n');
-        audioPath = `/static/audio/pronunciation/${simplifiedWord}.mp3`;
+        console.log(`No authentic pronunciation available for: ${trimmedWord}`);
+        return;
       }
       
-      // Remove Google TTS fallback - only use authentic sources
       try {
         // Check if the audio file exists
         const checkResponse = await fetch(audioPath, { method: "HEAD" });
