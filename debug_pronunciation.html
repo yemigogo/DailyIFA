@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Pronunciation</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .word { 
+            display: inline-block; 
+            margin: 5px; 
+            padding: 8px 12px;
+            background: #10b981; 
+            color: white; 
+            border-radius: 4px; 
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .word:hover { 
+            background: #059669; 
+            transform: scale(1.05);
+        }
+        .result { 
+            margin: 10px 0; 
+            padding: 10px; 
+            background: #f3f4f6; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debug Yoruba Pronunciation</h1>
+    
+    <div>
+        <span class="word" onclick="testWord('ṣàngó')">ṣàngó 🔊</span>
+        <span class="word" onclick="testWord('òrìṣà')">òrìṣà 🔊</span>
+        <span class="word" onclick="testWord('àṣẹ')">àṣẹ 🔊</span>
+        <span class="word" onclick="testWord('ọ̀ṣun')">ọ̀ṣun 🔊</span>
+        <span class="word" onclick="testWord('ọ̀rúnmìlà')">ọ̀rúnmìlà 🔊</span>
+        <span class="word" onclick="testWord('yemọja')">yemọja 🔊</span>
+        <span class="word" onclick="testWord('ifá')">ifá 🔊</span>
+    </div>
+    
+    <div id="debug"></div>
+
+    <script>
+        let currentAudio = null;
+        
+        function testWord(word) {
+            const debug = document.getElementById('debug');
+            
+            // Direct mapping like in the React component
+            const knownFiles = {
+                'ṣàngó': 'sango.mp3',
+                'sango': 'sango.mp3',
+                'òrìṣà': 'orisa.mp3',
+                'orisa': 'orisa.mp3',
+                'àṣẹ': 'ase.mp3',
+                'ase': 'ase.mp3',
+                'ọ̀ṣun': 'osun.mp3',
+                'osun': 'osun.mp3',
+                'ọ̀rúnmìlà': 'orunmila.mp3',
+                'orunmila': 'orunmila.mp3',
+                'yemọja': 'yemoja.mp3',
+                'yemoja': 'yemoja.mp3',
+                'ifá': 'ifa.mp3',
+                'ifa': 'ifa.mp3'
+            };
+            
+            const filename = knownFiles[word.toLowerCase()];
+            
+            if (!filename) {
+                debug.innerHTML = `<div class="result">❌ No mapping for: ${word}</div>`;
+                return;
+            }
+            
+            const audioPath = `/static/audio/pronunciation/${filename}`;
+            debug.innerHTML = `<div class="result">🔄 Testing: ${word} -> ${audioPath}</div>`;
+            
+            // Stop current audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            
+            // Test file access first
+            fetch(audioPath, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        debug.innerHTML += `<div class="result">✅ File accessible: ${filename}</div>`;
+                        
+                        // Try to play
+                        currentAudio = new Audio(audioPath);
+                        currentAudio.volume = 0.9;
+                        currentAudio.playbackRate = 0.9;
+                        
+                        currentAudio.onloadstart = () => {
+                            debug.innerHTML += `<div class="result">📡 Loading audio...</div>`;
+                        };
+                        
+                        currentAudio.oncanplaythrough = () => {
+                            debug.innerHTML += `<div class="result">🎵 Audio ready</div>`;
+                        };
+                        
+                        currentAudio.onplay = () => {
+                            debug.innerHTML += `<div class="result">🔊 Playing: ${word}</div>`;
+                        };
+                        
+                        currentAudio.onended = () => {
+                            debug.innerHTML += `<div class="result">✅ Playback completed</div>`;
+                        };
+                        
+                        currentAudio.onerror = (e) => {
+                            debug.innerHTML += `<div class="result">❌ Audio error: ${e.message || 'Unknown error'}</div>`;
+                        };
+                        
+                        return currentAudio.play();
+                    } else {
+                        debug.innerHTML += `<div class="result">❌ File not accessible: ${response.status}</div>`;
+                    }
+                })
+                .catch(error => {
+                    debug.innerHTML += `<div class="result">❌ Network error: ${error.message}</div>`;
+                });
+        }
+    </script>
+</body>
+</html>
