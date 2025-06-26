@@ -1,0 +1,115 @@
+{
+  "generator": "Authentic Yoruba Audio Generator",
+  "sample_rate": 22050,
+  "method": "Phonetic synthesis with Yoruba tonal patterns",
+  "words": {
+    "àṣẹ": {
+      "phonemes": [
+        "a",
+        "ʃ",
+        "e"
+      ],
+      "tones": [
+        2,
+        3
+      ],
+      "duration": 0.6,
+      "meaning": "divine force/amen"
+    },
+    "òrìṣà": {
+      "phonemes": [
+        "o",
+        "r",
+        "i",
+        "ʃ",
+        "a"
+      ],
+      "tones": [
+        1,
+        2,
+        1
+      ],
+      "duration": 0.8,
+      "meaning": "deity"
+    },
+    "ifá": {
+      "phonemes": [
+        "i",
+        "f",
+        "a"
+      ],
+      "tones": [
+        2,
+        4
+      ],
+      "duration": 0.5,
+      "meaning": "divination system"
+    },
+    "ọ̀rúnmìlà": {
+      "phonemes": [
+        "ɔ",
+        "r",
+        "u",
+        "n",
+        "m",
+        "i",
+        "l",
+        "a"
+      ],
+      "tones": [
+        1,
+        4,
+        2,
+        1
+      ],
+      "duration": 1.2,
+      "meaning": "Orisha of wisdom"
+    },
+    "ṣàngó": {
+      "phonemes": [
+        "ʃ",
+        "a",
+        "ŋ",
+        "g",
+        "o"
+      ],
+      "tones": [
+        1,
+        4
+      ],
+      "duration": 0.7,
+      "meaning": "Thunder Orisha"
+    },
+    "ọ̀ṣun": {
+      "phonemes": [
+        "ɔ",
+        "ʃ",
+        "u",
+        "n"
+      ],
+      "tones": [
+        1,
+        2
+      ],
+      "duration": 0.6,
+      "meaning": "River Orisha"
+    },
+    "yemọja": {
+      "phonemes": [
+        "j",
+        "e",
+        "m",
+        "ɔ",
+        "j",
+        "a"
+      ],
+      "tones": [
+        2,
+        2,
+        2
+      ],
+      "duration": 0.8,
+      "meaning": "Ocean mother"
+    }
+  }
+}
