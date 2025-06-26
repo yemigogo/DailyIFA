@@ -205,8 +205,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
       {/* Personal Affirmation Generator */}
       <AffirmationGenerator currentOdu={reading.odu} />
 
-      {/* Ambient Soundscapes */}
-      <AmbientPlayer />
+
 
       {/* Action Buttons */}
       <div className="grid grid-cols-2 gap-4">
