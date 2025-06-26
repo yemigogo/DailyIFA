@@ -58,14 +58,30 @@ def main():
         print("Error: GUIDE.md file not found")
         return
 
-    # Read guide content and fix Unicode characters
+    def sanitize_text(text):
+        """Remove or replace all non-Latin-1 characters for PDF compatibility"""
+        # Replace common Unicode characters
+        replacements = {
+            "–": "-", "—": "-", "'": "'", "'": "'", """: '"', """: '"',
+            "…": "...", "•": "*", "✓": "√", "✅": "[DONE]", "❌": "[X]",
+            "🔇": "[MUTED]", "📌": "[PIN]", "🧪": "[TEST]", "🔧": "[TOOL]",
+            "📱": "[MOBILE]", "🚀": "[DEPLOY]", "🎯": "[TARGET]", "📞": "[CONTACT]",
+            "📊": "[DATA]", "🌟": "*", "⚠️": "[WARNING]", "🔄": "[PROGRESS]",
+            "⏳": "[PENDING]", "Ifá": "Ifa", "Yorubá": "Yoruba", "Ọ̀": "O",
+            "ṣ": "s", "ẹ": "e", "à": "a", "ò": "o", "ọ": "o", "ù": "u"
+        }
+        
+        for unicode_char, replacement in replacements.items():
+            text = text.replace(unicode_char, replacement)
+            
+        # Force encode to latin-1, replacing any remaining problematic characters
+        return text.encode("latin-1", "replace").decode("latin-1")
+
+    # Read guide content and sanitize
     with open("GUIDE.md", "r", encoding="utf-8") as f:
         guide_lines = []
         for line in f:
-            # Replace problematic Unicode characters
-            line = line.replace("–", "-").replace("'", "'").replace("…", "...").replace(""", '"').replace(""", '"')
-            line = line.replace("Ifá", "Ifa").replace("Yorubá", "Yoruba")  # Remove diacritics for PDF compatibility
-            guide_lines.append(line)
+            guide_lines.append(sanitize_text(line))
 
     # Parse and convert markdown to PDF
     in_code_block = False
@@ -109,8 +125,8 @@ def main():
             pdf.status_item(line[5:].strip(), completed=True)
         elif line.startswith("- [ ]"):
             pdf.status_item(line[5:].strip(), completed=False)
-        elif line.startswith("- ✅"):
-            pdf.status_item(line[4:].strip(), completed=True)
+        elif line.startswith("- [DONE]"):
+            pdf.status_item(line[8:].strip(), completed=True)
         elif line.startswith("- "):
             pdf.chapter_body("• " + line[2:].strip())
         elif line.startswith("**") and line.endswith("**"):
