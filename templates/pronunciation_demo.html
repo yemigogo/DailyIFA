@@ -93,6 +93,18 @@
             <span class="yoruba-word" data-word="ọ̀ṣun">Ọ̀ṣun</span>, 
             <span class="yoruba-word" data-word="yemọja">Yemọja</span>, and 
             <span class="yoruba-word" data-word="ọbàtálá">Ọbàtálá</span>.</p>
+            
+            <p>Traditional greetings include <span class="yoruba-word" data-word="ẹ kú àárọ̀">ẹ kú àárọ̀</span> (good morning),
+            <span class="yoruba-word" data-word="ẹ kú ọ̀sán">ẹ kú ọ̀sán</span> (good afternoon), and 
+            <span class="yoruba-word" data-word="ẹ kú alẹ́">ẹ kú alẹ́</span> (good evening).</p>
+        </div>
+        
+        <div class="api-section" style="margin-top: 2rem; padding: 1rem; background: #f1f5f9; border-radius: 8px;">
+            <h3 style="color: #0a663e; margin-bottom: 1rem;">API Integration Test</h3>
+            <button onclick="testAPI()" style="background: #059669; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                Test API Endpoints
+            </button>
+            <div id="api-results" style="margin-top: 1rem; font-family: monospace; font-size: 0.9rem;"></div>
         </div>
     </div>
 
@@ -119,8 +131,43 @@
                 yoPlayer.volume = 0.9;
                 yoPlayer.playbackRate = 0.95;
                 await yoPlayer.play();
+                
+                console.log(`Played "${word}" from ${head.ok ? 'local file' : 'Google TTS'}`);
             } catch (e) {
                 console.error("Pronunciation error:", e);
+            }
+        }
+        
+        async function testAPI() {
+            const resultsDiv = document.getElementById('api-results');
+            resultsDiv.innerHTML = 'Testing API endpoints...';
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch('/health');
+                const healthData = await healthResponse.json();
+                
+                // Test words endpoint
+                const wordsResponse = await fetch('/api/pronunciation/words');
+                const wordsData = await wordsResponse.json();
+                
+                // Test specific word
+                const testResponse = await fetch('/api/pronunciation/test/ifa');
+                const testData = await testResponse.json();
+                
+                resultsDiv.innerHTML = `
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Health Check:</strong> ${healthData.status} - ${healthData.app} v${healthData.version}
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong>Available Words:</strong> ${wordsData.total_words} pronunciation files found
+                    </div>
+                    <div>
+                        <strong>Test Word (ifá):</strong> ${testData.has_local_audio ? 'Local audio available' : 'Using TTS fallback'}
+                    </div>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `<div style="color: red;">API Test Failed: ${error.message}</div>`;
             }
         }
     </script>
