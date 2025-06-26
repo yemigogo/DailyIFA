@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yoruba Audio Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f0f9ff; }
+        .test-word { 
+            background: #10b981; color: white; padding: 10px 20px; margin: 5px; 
+            border-radius: 6px; cursor: pointer; display: inline-block;
+            transition: all 0.2s ease;
+        }
+        .test-word:hover { background: #059669; transform: scale(1.05); }
+        .test-word:active { transform: scale(0.95); }
+        #results { margin-top: 20px; padding: 15px; background: white; border-radius: 8px; }
+        .success { color: #059669; font-weight: bold; }
+        .error { color: #dc2626; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🎵 Authentic Yoruba Pronunciation Test</h1>
+    <p>Click each word to test authentic African pronunciation:</p>
+    
+    <div class="test-word" onclick="testWord('sango', 'ṣàngó (Thunder God)')">sango</div>
+    <div class="test-word" onclick="testWord('orisa', 'òrìṣà (Deity)')">orisa</div>
+    <div class="test-word" onclick="testWord('ase', 'àṣẹ (Divine Force)')">ase</div>
+    <div class="test-word" onclick="testWord('ifa', 'ifá (Divination)')">ifa</div>
+    <div class="test-word" onclick="testWord('osun', 'ọ̀ṣun (River Goddess)')">osun</div>
+    <div class="test-word" onclick="testWord('yemoja', 'yemọja (Ocean Mother)')">yemoja</div>
+    <div class="test-word" onclick="testWord('orunmila', 'ọ̀rúnmìlà (Wisdom Deity)')">orunmila</div>
+    
+    <div id="results">
+        <h3>Test Results:</h3>
+        <div id="output">Click words above to test pronunciation...</div>
+    </div>
+
+    <script>
+        let currentPlayer = null;
+        let testResults = [];
+        
+        async function testWord(filename, description) {
+            const audioUrl = `/static/audio/pronunciation/${filename}.mp3`;
+            const output = document.getElementById('output');
+            
+            try {
+                // Test if file exists
+                const response = await fetch(audioUrl, { method: 'HEAD' });
+                
+                if (response.ok) {
+                    // File exists, try to play
+                    if (currentPlayer) currentPlayer.pause();
+                    
+                    currentPlayer = new Audio(audioUrl);
+                    currentPlayer.volume = 0.9;
+                    currentPlayer.playbackRate = 0.9; // Authentic African pace
+                    
+                    currentPlayer.onloadstart = () => {
+                        output.innerHTML += `<div class="success">✓ Loading ${description}</div>`;
+                    };
+                    
+                    currentPlayer.oncanplay = () => {
+                        output.innerHTML += `<div class="success">✓ Ready to play ${description}</div>`;
+                    };
+                    
+                    currentPlayer.onplay = () => {
+                        output.innerHTML += `<div class="success">▶️ Playing authentic pronunciation: ${description}</div>`;
+                    };
+                    
+                    currentPlayer.onended = () => {
+                        output.innerHTML += `<div class="success">✅ Completed: ${description} (Authentic African Yoruba)</div><hr>`;
+                    };
+                    
+                    currentPlayer.onerror = (e) => {
+                        output.innerHTML += `<div class="error">❌ Playback error for ${description}</div>`;
+                    };
+                    
+                    await currentPlayer.play();
+                    
+                } else {
+                    output.innerHTML += `<div class="error">❌ File not found: ${filename}.mp3</div>`;
+                }
+                
+            } catch (error) {
+                output.innerHTML += `<div class="error">❌ Test failed for ${description}: ${error.message}</div>`;
+            }
+        }
+        
+        // Auto-scroll results
+        const observer = new MutationObserver(() => {
+            const results = document.getElementById('results');
+            results.scrollTop = results.scrollHeight;
+        });
+        observer.observe(document.getElementById('output'), { childList: true });
+    </script>
+</body>
+</html>

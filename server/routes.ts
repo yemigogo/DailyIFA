@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import aiRecommendationsRouter from "./routes/ai-recommendations";
 import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";

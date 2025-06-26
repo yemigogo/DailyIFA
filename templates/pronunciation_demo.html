@@ -119,20 +119,34 @@
         });
 
         async function playWord(word) {
-            const local = LOCAL_PATH + word.toLowerCase() + ".mp3";
-            const fallback = `https://translate.google.com/translate_tts?client=tw-ob&tl=yo&q=${encodeURIComponent(word)}`;
+            // Try simplified version for easier access
+            const simplifiedWord = word.toLowerCase()
+                .replace(/[àá]/g, 'a')
+                .replace(/[èé]/g, 'e') 
+                .replace(/[ìí]/g, 'i')
+                .replace(/[òó]/g, 'o')
+                .replace(/[ùú]/g, 'u')
+                .replace(/ẹ/g, 'e')
+                .replace(/ọ/g, 'o')
+                .replace(/ṣ/g, 's')
+                .replace(/ǹ/g, 'n');
+                
+            const local = LOCAL_PATH + simplifiedWord + ".mp3";
             
             try {
                 const head = await fetch(local, { method: "HEAD" });
-                const src = head.ok ? local : fallback;
                 
-                if (yoPlayer) yoPlayer.pause();
-                yoPlayer = new Audio(src);
-                yoPlayer.volume = 0.9;
-                yoPlayer.playbackRate = 0.95;
-                await yoPlayer.play();
-                
-                console.log(`Played "${word}" from ${head.ok ? 'local file' : 'Google TTS'}`);
+                if (head.ok) {
+                    if (yoPlayer) yoPlayer.pause();
+                    yoPlayer = new Audio(local);
+                    yoPlayer.volume = 0.9;
+                    yoPlayer.playbackRate = 0.9; // Authentic African pace
+                    await yoPlayer.play();
+                    
+                    console.log(`Playing authentic Yoruba: "${word}" (${simplifiedWord}.mp3)`);
+                } else {
+                    console.warn(`No authentic pronunciation available for: ${word}`);
+                }
             } catch (e) {
                 console.error("Pronunciation error:", e);
             }
