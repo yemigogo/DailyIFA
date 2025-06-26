@@ -175,16 +175,27 @@ export default function DailyReading({ reading }: DailyReadingProps) {
 
       {/* Audio Pronunciation */}
       {audioData && (
-        <AudioPlayer
-          oduName={audioData.oduName}
-          oduNameYoruba={audioData.oduNameYoruba}
-          pronunciation={audioData.pronunciation}
-          audioUrl={audioData.audioUrl}
-          phoneticAudioUrl={audioData.phoneticAudioUrl}
-          meaning={audioData.meaning}
-          meaningYoruba={audioData.meaningYoruba}
-          hasAudio={audioData.hasAudio}
-        />
+        <div className="mt-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
+          <h4 className="text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
+            Audio Pronunciation
+          </h4>
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => {
+                const audio = new Audio(`/api/odu/${reading.odu.id}/audio`);
+                audio.volume = 0.9;
+                audio.playbackRate = 0.9;
+                audio.play();
+              }}
+              className="flex items-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+            >
+              🔊 Play {reading.odu.nameYoruba}
+            </button>
+            <span className="text-sm text-emerald-600 dark:text-emerald-400">
+              Authentic African pronunciation
+            </span>
+          </div>
+        </div>
       )}
 
       {/* Audio Player */}

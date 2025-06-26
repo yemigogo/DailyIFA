@@ -109,7 +109,7 @@ export default function OrikiPlayback() {
     return selectedOrisha === "" || oriki.id === selectedOrisha;
   });
 
-  const uniqueOrishas = [...new Set(orikiData.map(o => o.orisha))];
+  const uniqueOrishas = Array.from(new Set(orikiData.map(o => o.orisha)));
 
   // Get week number using accurate calculation
   const getWeekNumber = (date: Date): number => {
