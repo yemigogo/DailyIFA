@@ -260,7 +260,6 @@ export class DatabaseStorage implements IStorage {
       .innerJoin(odus, eq(eboRecommendations.oduId, odus.id))
       .orderBy(eboRecommendations.category, eboRecommendations.difficulty);
   }
-}
 
   // Encyclopedia methods
   async getAllEncyclopediaEntries(): Promise<EncyclopediaEntry[]> {

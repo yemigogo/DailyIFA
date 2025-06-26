@@ -15,7 +15,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();
   await initializeEboRecommendations();
-  await initializeEncyclopediaData();
 
 
 
@@ -408,3 +407,35 @@ async function initializeEboRecommendations() {
     console.error("Error initializing Ebo recommendations:", error);
   }
 }
+
+// Initialize encyclopedia data
+async function initializeEncyclopediaData() {
+  try {
+    const existingEntries = await storage.getAllEncyclopediaEntries();
+    if (existingEntries.length === 0) {
+      console.log("Initializing encyclopedia data...");
+      
+      // Import encyclopedia data
+      const { encyclopediaData, hyperlinkableTermsData } = await import("./encyclopedia-data");
+      const { db } = await import("./db");
+      const { hyperlinkableTerms } = await import("@shared/schema");
+      
+      // Insert encyclopedia entries
+      for (const entryData of encyclopediaData) {
+        await storage.createEncyclopediaEntry(entryData);
+      }
+      
+      // Insert hyperlinkable terms directly
+      for (const termData of hyperlinkableTermsData) {
+        await db.insert(hyperlinkableTerms).values(termData);
+      }
+      
+      console.log(`Initialized ${encyclopediaData.length} encyclopedia entries and ${hyperlinkableTermsData.length} hyperlinkable terms`);
+    }
+  } catch (error) {
+    console.error("Error initializing encyclopedia data:", error);
+  }
+}
+
+// Call encyclopedia initialization
+initializeEncyclopediaData();
