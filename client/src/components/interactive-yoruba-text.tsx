@@ -43,10 +43,17 @@ export default function InteractiveYorubaText({ children, className }: Interacti
         ? `/static/audio/pronunciation/${knownFiles[trimmedWord.toLowerCase()]}`
         : null;
       
-      // Disable all audio playback until authentic recordings are available
-      console.log(`Audio disabled - no authentic African pronunciation available for: ${trimmedWord}`);
-      console.log(`Current files are not meeting quality standards - awaiting authentic recordings`);
-      return;
+      // Play authentic pronunciation audio
+      if (audioPath) {
+        try {
+          yoWordPlayer = new Audio(audioPath);
+          yoWordPlayer.volume = 0.9;
+          yoWordPlayer.playbackRate = 0.95;
+          await yoWordPlayer.play();
+        } catch (error) {
+          console.error("Audio playback error:", error);
+        }
+      }
       
       try {
         // Check if the audio file exists

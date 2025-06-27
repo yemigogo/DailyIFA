@@ -1,82 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Direct Audio Test</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .test-btn { background: #059669; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
-        .test-btn:hover { background: #047857; }
-        .result { margin: 10px 0; padding: 10px; border-radius: 4px; background: #f3f4f6; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-button { 
+            background: #059669; 
+            color: white; 
+            padding: 10px 20px; 
+            margin: 10px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .test-button:hover { background: #047857; }
+        .status { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d1fae5; color: #065f46; }
+        .error { background: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body>
-    <h1>Direct Audio Test</h1>
+    <h1>Audio System Test</h1>
     
-    <div>
-        <button class="test-btn" onclick="testAudio('sango.mp3', 'ṣàngó')">Test ṣàngó</button>
-        <button class="test-btn" onclick="testAudio('orisa.mp3', 'òrìṣà')">Test òrìṣà</button>
-        <button class="test-btn" onclick="testAudio('ase.mp3', 'àṣẹ')">Test àṣẹ</button>
-        <button class="test-btn" onclick="testAudio('osun.mp3', 'ọ̀ṣun')">Test ọ̀ṣun</button>
-        <button class="test-btn" onclick="testAudio('orunmila.mp3', 'ọ̀rúnmìlà')">Test ọ̀rúnmìlà</button>
-    </div>
+    <h2>Working Audio Files</h2>
+    <button class="test-button" onclick="testAudio('ifa.mp3')">Test Ifá</button>
+    <button class="test-button" onclick="testAudio('ase.mp3')">Test Àṣẹ</button>
+    <button class="test-button" onclick="testAudio('orisa.mp3')">Test Òrìṣà</button>
+    <button class="test-button" onclick="testAudio('orunmila.mp3')">Test Ọ̀rúnmìlà</button>
     
-    <div id="result"></div>
-
+    <h2>Odu Audio Files</h2>
+    <button class="test-button" onclick="testOdu(1)">Test Odu 1</button>
+    <button class="test-button" onclick="testOdu(5)">Test Odu 5</button>
+    <button class="test-button" onclick="testOdu(10)">Test Odu 10</button>
+    
+    <div id="status"></div>
+    
     <script>
-        let currentAudio = null;
+        function showStatus(message, isError = false) {
+            const status = document.getElementById('status');
+            status.innerHTML = `<div class="status ${isError ? 'error' : 'success'}">${message}</div>`;
+        }
         
-        async function testAudio(filename, word) {
-            const result = document.getElementById('result');
-            const url = `/static/audio/pronunciation/${filename}`;
-            
+        async function testAudio(filename) {
             try {
-                // Stop current audio
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio = null;
-                }
-                
-                result.innerHTML = `Testing: ${word} (${filename})...`;
-                
-                // Test file accessibility
-                const response = await fetch(url, { method: 'HEAD' });
-                
-                if (!response.ok) {
-                    result.innerHTML = `❌ File not accessible: ${filename} (${response.status})`;
-                    return;
-                }
-                
-                // Try to play
-                currentAudio = new Audio(url);
-                currentAudio.volume = 0.9;
-                currentAudio.playbackRate = 0.9;
-                
-                currentAudio.onloadstart = () => {
-                    result.innerHTML = `🔄 Loading ${word}...`;
-                };
-                
-                currentAudio.oncanplaythrough = () => {
-                    result.innerHTML = `✅ Ready to play: ${word}`;
-                };
-                
-                currentAudio.onplay = () => {
-                    result.innerHTML = `🔊 Playing: ${word} (${filename})`;
-                };
-                
-                currentAudio.onended = () => {
-                    result.innerHTML = `✅ Completed: ${word}`;
-                };
-                
-                currentAudio.onerror = (e) => {
-                    result.innerHTML = `❌ Playback error for ${word}: ${e.message || 'Unknown error'}`;
-                };
-                
-                await currentAudio.play();
-                
+                const audio = new Audio(`/static/audio/pronunciation/${filename}`);
+                audio.volume = 0.9;
+                await audio.play();
+                showStatus(`✅ Successfully played ${filename}`);
             } catch (error) {
-                result.innerHTML = `❌ Error testing ${word}: ${error.message}`;
+                showStatus(`❌ Failed to play ${filename}: ${error.message}`, true);
             }
         }
+        
+        async function testOdu(number) {
+            try {
+                const audio = new Audio(`/static/audio/odu/${number}.mp3`);
+                audio.volume = 0.9;
+                await audio.play();
+                showStatus(`✅ Successfully played Odu ${number}`);
+            } catch (error) {
+                showStatus(`❌ Failed to play Odu ${number}: ${error.message}`, true);
+            }
+        }
+        
+        // Test audio system on load
+        window.onload = function() {
+            showStatus("🎵 Audio test page loaded. Click buttons to test pronunciation files.");
+        };
     </script>
 </body>
 </html>
