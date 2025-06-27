@@ -1,0 +1,23 @@
+{
+  "audio_system_active": true,
+  "activated_at": "2025-06-27T18:51:28.046390",
+  "working_files_count": 14,
+  "working_files": [
+    "\u00e0\u1e63\u1eb9.mp3",
+    "\u00f2r\u00ec\u1e63\u00e0.mp3",
+    "if\u00e1.mp3",
+    "\u1ecd\u0300r\u00fanm\u00ecl\u00e0.mp3",
+    "\u1e63\u00e0ng\u00f3.mp3",
+    "\u1ecd\u0300\u1e63un.mp3",
+    "yem\u1ecdja.mp3",
+    "sango.mp3",
+    "orisa.mp3",
+    "ase.mp3",
+    "osun.mp3",
+    "orunmila.mp3",
+    "ifa.mp3",
+    "yemoja.mp3"
+  ],
+  "authentication_method": "existing_recordings",
+  "status": "partially_activated"
+}

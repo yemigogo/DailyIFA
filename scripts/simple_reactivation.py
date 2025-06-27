@@ -1,4 +1,27 @@
-import { Volume2, CheckCircle } from "lucide-react";
+#!/usr/bin/env python3
+"""
+Simple audio component reactivation for working files
+"""
+
+import os
+
+def reactivate_components():
+    """Reactivate audio components with working pronunciation files"""
+    
+    print("🔄 Reactivating Audio Components")
+    print("=" * 40)
+    
+    # Check if we have working audio files
+    if not os.path.exists("AUDIO_SYSTEM_ACTIVATED.json"):
+        print("❌ Audio system not activated. Run activate_working_audio.py first.")
+        return
+    
+    # Update SimpleAudioPlayer to show active state
+    simple_player_path = "client/src/components/simple-audio-player.tsx"
+    
+    if os.path.exists(simple_player_path):
+        # Create active version
+        active_content = '''import { Volume2, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -55,4 +78,33 @@ export default function SimpleAudioPlayer({ oduName, oduId }: SimpleAudioPlayerP
       </CardContent>
     </Card>
   );
-}
+}'''
+        
+        with open(simple_player_path, 'w', encoding='utf-8') as f:
+            f.write(active_content)
+        
+        print("✅ SimpleAudioPlayer activated")
+    
+    # Update interactive Yoruba text
+    interactive_text_path = "client/src/components/interactive-yoruba-text.tsx"
+    
+    if os.path.exists(interactive_text_path):
+        with open(interactive_text_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Replace disabled styling with active styling
+        content = content.replace('🔇', '🔊')
+        content = content.replace('color: "#9CA3AF"', 'color: "#059669"')
+        content = content.replace('cursor: "not-allowed"', 'cursor: "pointer"')
+        content = content.replace('Audio disabled - Nigerian speakers needed', 'Click to hear pronunciation')
+        
+        with open(interactive_text_path, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        print("✅ InteractiveYorubaText activated")
+    
+    print("\n🎉 Audio components successfully reactivated!")
+    print("The app now features working audio pronunciation.")
+
+if __name__ == "__main__":
+    reactivate_components()

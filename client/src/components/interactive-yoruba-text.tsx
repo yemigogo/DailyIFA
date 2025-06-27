@@ -166,7 +166,7 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       }
       
       .yoruba-word::after {
-        content: "🔇";
+        content: "🔊";
         position: absolute;
         right: 2px;
         top: 50%;
