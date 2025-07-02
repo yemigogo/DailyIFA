@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -22,35 +22,65 @@ import BottomNavigation from "@/components/bottom-navigation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const [location] = useLocation();
+  
+  // Debug: Always show current location in a visible corner
+  const debugStyle = {
+    position: "fixed" as const,
+    top: "10px",
+    left: "10px",
+    backgroundColor: "#000",
+    color: "#fff",
+    padding: "10px",
+    zIndex: 99999,
+    fontSize: "14px",
+    fontFamily: "monospace",
+    borderRadius: "4px"
+  };
+  
   return (
-    <Switch>
-      <Route path="/learning" component={() => (
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "#dc2626",
-          color: "white",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "3rem",
-          fontWeight: "bold",
-          zIndex: 99999,
-          textAlign: "center"
-        }}>
-          <div>
-            <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎓</div>
-            <div>LEARNING PAGE WORKS!</div>
-            <div style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Route is Working!</div>
+    <div>
+      <div style={debugStyle}>
+        Location: {location}
+      </div>
+      
+      <Switch>
+        <Route path="/learning">
+          <div style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "#dc2626",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "3rem",
+            fontWeight: "bold",
+            zIndex: 99998,
+            textAlign: "center"
+          }}>
+            <div>
+              <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎓</div>
+              <div>LEARNING PAGE WORKS!</div>
+              <div style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Route: {location}</div>
+            </div>
           </div>
-        </div>
-      )} />
-      <Route path="/" component={Home} />
-      <Route component={() => <div style={{ padding: "2rem", fontSize: "2rem", textAlign: "center" }}>Other Route</div>} />
-    </Switch>
+        </Route>
+        
+        <Route path="/">
+          <Home />
+        </Route>
+        
+        <Route>
+          <div style={{ padding: "2rem", fontSize: "2rem", textAlign: "center" }}>
+            404 - Current path: {location}
+          </div>
+        </Route>
+      </Switch>
+    </div>
   );
 }
 
