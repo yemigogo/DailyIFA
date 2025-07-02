@@ -357,6 +357,16 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
           duration: 102
         },
         {
+          id: 'osun',
+          name: 'Ọ̀ṣun',
+          yorubaText: 'Ọ̀ṣun',
+          englishTranslation: 'Goddess of Rivers and Love',
+          category: 'orisha',
+          isAuthentic: true,
+          audioUrl: '/static/audio/pronunciation/osun.mp3',
+          duration: 66
+        },
+        {
           id: 'sango',
           name: 'Ṣàngó',
           yorubaText: 'Ṣàngó',
