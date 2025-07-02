@@ -6,7 +6,7 @@ import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
-import { eboRecommendations } from "./data/ebo-recommendations";
+
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -14,7 +14,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database and Ifa lunar calendar
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();
-  await initializeEboRecommendations();
+
 
 
 
@@ -391,22 +391,7 @@ function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 
-async function initializeEboRecommendations() {
-  try {
-    const existingEbos = await storage.getAllEboRecommendations();
-    if (existingEbos.length === 0) {
-      console.log("Initializing Ebo recommendations...");
-      
-      for (const ebo of eboRecommendations) {
-        await storage.createEboRecommendation(ebo);
-      }
-      
-      console.log("Ebo recommendations initialized successfully");
-    }
-  } catch (error) {
-    console.error("Error initializing Ebo recommendations:", error);
-  }
-}
+
 
 // Initialize encyclopedia data
 async function initializeEncyclopediaData() {
