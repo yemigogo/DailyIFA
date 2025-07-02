@@ -35,26 +35,26 @@ export default function DateNavigation({
   };
 
   return (
-    <Card className="border-sacred-gold/10">
+    <Card className="border-sacred-gold/10 card-smooth bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-4">
           <Button
             variant="ghost"
             size="sm"
             onClick={onPreviousDay}
-            className="p-2 text-spiritual-blue hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-3 text-spiritual-blue hover:bg-spiritual-blue/10 rounded-xl nav-transition btn-touch"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </Button>
           
           <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
             <PopoverTrigger asChild>
-              <Button variant="ghost" className="text-center hover:bg-gray-50">
+              <Button variant="ghost" className="text-center hover:bg-spiritual-blue/10 rounded-xl nav-transition btn-touch px-4 py-2">
                 <div>
-                  <p className="font-crimson text-spiritual-blue text-lg font-semibold">
+                  <p className="font-crimson text-spiritual-blue dark:text-white text-responsive-lg font-semibold">
                     {formatDisplayDate(currentDate)}
                   </p>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-responsive-base text-mobile-optimized">
                     {currentDate.toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",
@@ -80,15 +80,15 @@ export default function DateNavigation({
             size="sm"
             onClick={onNextDay}
             disabled={!canGoNext}
-            className="p-2 text-spiritual-blue hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+            className="p-3 text-spiritual-blue hover:bg-spiritual-blue/10 rounded-xl nav-transition btn-touch disabled:opacity-50 disabled:hover:bg-transparent"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </Button>
         </div>
         
-        <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
+        <div className="flex items-center justify-center space-x-4 text-responsive-base text-gray-600 dark:text-gray-400 text-mobile-optimized">
           <div className="flex items-center space-x-1">
-            <Calendar className="h-4 w-4 text-sacred-gold" />
+            <Calendar className="h-4 w-4 text-sacred-gold transition-transform hover:scale-110" />
             <span>{ts("Day", "Ọjọ́")} {dayOfYear} {ts("of", "ninu")} {totalDaysInYear}</span>
           </div>
           <span className="text-sacred-gold">•</span>

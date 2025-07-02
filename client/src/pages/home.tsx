@@ -159,8 +159,9 @@ export default function Home() {
               >
                 {t("Explore Ifá Tradition", "Ṣàwárí Àṣà Ifá")}
               </Button>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </main>
 
       {/* Floating Action Button */}
