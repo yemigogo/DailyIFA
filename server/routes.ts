@@ -638,6 +638,65 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // Initialize sample learning modules for new paths
+  app.post('/api/learning-paths/:pathId/initialize-modules', async (req, res) => {
+    try {
+      const pathId = parseInt(req.params.pathId);
+      const { orishaName } = req.body;
+      
+      // Sample learning modules for each Orisha
+      const sampleModules = [
+        {
+          pathId,
+          moduleType: 'pronunciation',
+          title: `Pronouncing ${orishaName}`,
+          titleYoruba: `Sísọ ${orishaName}`,
+          content: `Learn the authentic pronunciation of ${orishaName} with traditional tonal patterns and spiritual reverence.`,
+          contentYoruba: `Kọ́ sísọ ${orishaName} tó tọ́ pẹ̀lú àwọn ohùn àtìjọ́ àti ẹ̀bùn ẹ̀mí.`,
+          moduleOrder: 1
+        },
+        {
+          pathId,
+          moduleType: 'history',
+          title: `Origins of ${orishaName}`,
+          titleYoruba: `Ìpilẹ̀ṣẹ̀ ${orishaName}`,
+          content: `Discover the ancient stories and cultural significance of ${orishaName} in Yoruba tradition.`,
+          contentYoruba: `Ṣàwárí àwọn ìtàn àtijọ́ àti pàtàkì àṣà ${orishaName} nínú àṣà Yorùbá.`,
+          moduleOrder: 2
+        },
+        {
+          pathId,
+          moduleType: 'practice',
+          title: `Connecting with ${orishaName}`,
+          titleYoruba: `Ìbáraẹnisọ̀rọ̀ pẹ̀lú ${orishaName}`,
+          content: `Learn traditional prayers, offerings, and spiritual practices for honoring ${orishaName}.`,
+          contentYoruba: `Kọ́ àwọn àdúrà àtìjọ́, ẹbọ, àti àwọn ìṣe ẹ̀mí fún ọ̀wọ̀ ${orishaName}.`,
+          moduleOrder: 3
+        },
+        {
+          pathId,
+          moduleType: 'quiz',
+          title: `${orishaName} Knowledge Test`,
+          titleYoruba: `Ìdánwò Ìmọ̀ ${orishaName}`,
+          content: `Test your understanding of ${orishaName}'s attributes, stories, and spiritual significance.`,
+          contentYoruba: `Dán ìmọ̀ rẹ nípa àwọn àbùdá ${orishaName}, ìtàn, àti pàtàkì ẹ̀mí wò.`,
+          moduleOrder: 4
+        }
+      ];
+
+      const createdModules = [];
+      for (const moduleData of sampleModules) {
+        const module = await storage.createLearningModule(moduleData);
+        createdModules.push(module);
+      }
+
+      res.json({ modules: createdModules });
+    } catch (error) {
+      console.error("Error initializing learning modules:", error);
+      res.status(500).json({ message: "Failed to initialize learning modules" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

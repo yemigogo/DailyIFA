@@ -103,18 +103,34 @@ export default function OrishaLearningPath({ userId }: OrishaLearningPathProps) 
   // Create learning path mutation
   const createPathMutation = useMutation({
     mutationFn: async (orishaName: string) => {
-      return apiRequest(`/api/learning-paths`, {
+      const response = await fetch(`/api/learning-paths`, {
         method: "POST",
-        body: {
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           userId,
           orishaName,
           currentLevel: "beginner",
           totalProgress: 0,
           preferences: {}
-        }
+        })
       });
+      if (!response.ok) throw new Error('Failed to create learning path');
+      return response.json();
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
+      // Initialize learning modules for the new path
+      if (data.path && data.path.id) {
+        try {
+          await fetch(`/api/learning-paths/${data.path.id}/initialize-modules`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orishaName: data.path.orishaName })
+          });
+        } catch (error) {
+          console.error("Failed to initialize modules:", error);
+        }
+      }
+      
       queryClient.invalidateQueries({ queryKey: [`/api/learning-paths/${userId}`] });
       queryClient.invalidateQueries({ queryKey: [`/api/achievements/${userId}`] });
       if (data.newAchievements && data.newAchievements.length > 0) {
@@ -129,20 +145,24 @@ export default function OrishaLearningPath({ userId }: OrishaLearningPathProps) 
   };
 
   const getOrishaProgress = (orishaName: string) => {
-    const path = learningPaths.find((p: LearningPathWithModules) => p.orishaName === orishaName);
+    const pathsArray = Array.isArray(learningPaths) ? learningPaths as LearningPathWithModules[] : [];
+    const path = pathsArray.find((p: LearningPathWithModules) => p.orishaName === orishaName);
     return path ? path.totalProgress : 0;
   };
 
   const hasStartedPath = (orishaName: string) => {
-    return learningPaths.some((p: LearningPathWithModules) => p.orishaName === orishaName);
+    const pathsArray = Array.isArray(learningPaths) ? learningPaths as LearningPathWithModules[] : [];
+    return pathsArray.some((p: LearningPathWithModules) => p.orishaName === orishaName);
   };
 
   const getCompletedPaths = () => {
-    return learningPaths.filter((p: LearningPathWithModules) => p.isCompleted).length;
+    const pathsArray = Array.isArray(learningPaths) ? learningPaths as LearningPathWithModules[] : [];
+    return pathsArray.filter((p: LearningPathWithModules) => p.isCompleted).length;
   };
 
   const getTotalTimeSpent = () => {
-    return learningPaths.reduce((total: number, path: LearningPathWithModules) => {
+    const pathsArray = Array.isArray(learningPaths) ? learningPaths as LearningPathWithModules[] : [];
+    return pathsArray.reduce((total: number, path: LearningPathWithModules) => {
       return total + (path.userProgress?.reduce((sum: number, progress: any) => sum + (progress.timeSpent || 0), 0) || 0);
     }, 0);
   };
@@ -263,6 +283,7 @@ export default function OrishaLearningPath({ userId }: OrishaLearningPathProps) 
         <TabsContent value="paths" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {availableOrishas.map((orisha) => {
+              const pathsArray = Array.isArray(learningPaths) ? learningPaths as LearningPathWithModules[] : [];
               const progress = getOrishaProgress(orisha.name);
               const started = hasStartedPath(orisha.name);
               
@@ -331,7 +352,7 @@ export default function OrishaLearningPath({ userId }: OrishaLearningPathProps) 
         </TabsContent>
 
         <TabsContent value="achievements" className="space-y-6">
-          {achievements.length === 0 ? (
+          {(!achievements || (Array.isArray(achievements) && achievements.length === 0)) ? (
             <Card>
               <CardContent className="p-8 text-center">
                 <Trophy className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -345,7 +366,7 @@ export default function OrishaLearningPath({ userId }: OrishaLearningPathProps) 
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {achievements.map((achievement) => {
+              {Array.isArray(achievements) && (achievements as Achievement[]).map((achievement: Achievement) => {
                 const IconComponent = getBadgeIcon(achievement.iconName);
                 return (
                   <Card key={achievement.id} className={`${achievement.isRare ? 'bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-amber-200 dark:border-amber-800' : 'bg-gray-50 dark:bg-gray-800/50'}`}>
