@@ -9,6 +9,39 @@ import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import multer from 'multer';
+import fs from 'fs/promises';
+
+const execAsync = promisify(exec);
+
+// Configure multer for audio uploads
+const upload = multer({
+  dest: 'temp_uploads/',
+  fileFilter: (req, file, cb) => {
+    const allowedMimeTypes = [
+      'audio/mpeg',
+      'audio/wav', 
+      'audio/mp3',
+      'audio/opus',
+      'application/ogg'
+    ];
+    const allowedExtensions = ['.mp3', '.wav', '.opus', '.ogg'];
+    
+    const isValidMime = allowedMimeTypes.includes(file.mimetype);
+    const isValidExt = allowedExtensions.some(ext => file.originalname.toLowerCase().endsWith(ext));
+    
+    if (isValidMime || isValidExt) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only audio files are allowed (.mp3, .wav, .opus, .ogg)'));
+    }
+  },
+  limits: {
+    fileSize: 10 * 1024 * 1024 // 10MB max file size
+  }
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize the Odu database and Ifa lunar calendar
@@ -284,6 +317,134 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     } catch (error) {
       console.error("Error generating rhythm recommendation:", error);
       res.status(500).json({ error: "Failed to generate recommendation" });
+    }
+  });
+
+  // Audio management endpoints
+  
+  // Get audio library
+  app.get("/api/audio/library", async (req, res) => {
+    try {
+      const audioFiles = [
+        {
+          id: 'olokun',
+          name: 'Olókun',
+          yorubaText: 'Olókun',
+          englishTranslation: 'Orisha of the Ocean',
+          category: 'orisha',
+          isAuthentic: true,
+          audioUrl: '/static/audio/pronunciation/olokun.mp3',
+          duration: 46
+        },
+        {
+          id: 'oya',
+          name: 'Ọya',
+          yorubaText: 'Ọya',
+          englishTranslation: 'Orisha of Wind and Storms',
+          category: 'orisha',
+          isAuthentic: true,
+          audioUrl: '/static/audio/pronunciation/oya.mp3',
+          duration: 51
+        },
+        {
+          id: 'sango',
+          name: 'Ṣàngó',
+          yorubaText: 'Ṣàngó',
+          englishTranslation: 'Orisha of Thunder',
+          category: 'orisha',
+          isAuthentic: false,
+          audioUrl: '/static/audio/pronunciation/sango.mp3'
+        },
+        {
+          id: 'orisa',
+          name: 'Òrìṣà',
+          yorubaText: 'Òrìṣà',
+          englishTranslation: 'Deity/Divine Being',
+          category: 'spiritual-terms',
+          isAuthentic: false,
+          audioUrl: '/static/audio/pronunciation/orisa.mp3'
+        }
+      ];
+      
+      res.json(audioFiles);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get audio library" });
+    }
+  });
+
+  // Upload and process authentic audio
+  app.post("/api/audio/upload", upload.single('audioFile'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No audio file provided" });
+      }
+
+      const { yorubaText, englishTranslation, category } = req.body;
+      
+      if (!yorubaText || !englishTranslation) {
+        return res.status(400).json({ error: "Yoruba text and English translation are required" });
+      }
+
+      // Create safe filename from Yoruba text
+      const safeFilename = yorubaText.toLowerCase()
+        .replace(/[ọọ́]/g, 'o')
+        .replace(/[ẹệ́]/g, 'e')
+        .replace(/[ìíī]/g, 'i')
+        .replace(/[àáā]/g, 'a')
+        .replace(/[ùúū]/g, 'u')
+        .replace(/[ṣ]/g, 's')
+        .replace(/[ń]/g, 'n')
+        .replace(/[^a-z0-9]/g, '');
+
+      const outputPath = `static/audio/pronunciation/${safeFilename}.mp3`;
+      const tempPath = req.file.path;
+
+      try {
+        // Convert to MP3 using FFmpeg
+        await execAsync(`ffmpeg -i "${tempPath}" -acodec libmp3lame -ab 128k "${outputPath}" -y`);
+        
+        // Get audio duration
+        const { stdout } = await execAsync(`ffprobe -v quiet -show_entries format=duration -of csv=p=0 "${outputPath}"`);
+        const duration = Math.round(parseFloat(stdout.trim()));
+
+        // Clean up temp file
+        await fs.unlink(tempPath);
+
+        // Update Interactive Yoruba Text mapping
+        const mappingUpdate = `
+        '${yorubaText.toLowerCase()}': '${safeFilename}.mp3',
+        '${safeFilename}': '${safeFilename}.mp3'`;
+
+        // Return success response
+        res.json({
+          success: true,
+          file: {
+            id: safeFilename,
+            name: yorubaText,
+            yorubaText,
+            englishTranslation,
+            category: category || 'orisha',
+            isAuthentic: true,
+            audioUrl: `/static/audio/pronunciation/${safeFilename}.mp3`,
+            duration
+          },
+          mappingUpdate,
+          message: `Successfully processed ${yorubaText} pronunciation (${duration}s)`
+        });
+
+      } catch (ffmpegError) {
+        // Clean up temp file on error
+        try {
+          await fs.unlink(tempPath);
+        } catch (unlinkError) {
+          console.error("Failed to clean up temp file:", unlinkError);
+        }
+        throw ffmpegError;
+      }
+
+    } catch (error) {
+      console.error("Audio upload error:", error);
+      res.status(500).json({ error: "Failed to process audio file" });
     }
   });
 

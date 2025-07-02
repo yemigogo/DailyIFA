@@ -1,13 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Play, Pause, CheckCircle, Volume2, Mic } from "lucide-react";
+import { Upload, Play, Pause, CheckCircle, Volume2, Mic, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ResponsiveCard from "@/components/responsive-card";
+import { useToast } from "@/hooks/use-toast";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface AudioFile {
   id: string;
@@ -20,51 +22,12 @@ interface AudioFile {
   duration?: number;
 }
 
-const existingAudioFiles: AudioFile[] = [
-  {
-    id: 'olokun',
-    name: 'Olókun',
-    yorubaText: 'Olókun',
-    englishTranslation: 'Orisha of the Ocean',
-    category: 'orisha',
-    isAuthentic: true,
-    audioUrl: '/static/audio/pronunciation/olokun.mp3',
-    duration: 46
-  },
-  {
-    id: 'oya',
-    name: 'Ọya',
-    yorubaText: 'Ọya',
-    englishTranslation: 'Orisha of Wind and Storms',
-    category: 'orisha',
-    isAuthentic: true,
-    audioUrl: '/static/audio/pronunciation/oya.mp3',
-    duration: 51
-  },
-  {
-    id: 'sango',
-    name: 'Ṣàngó',
-    yorubaText: 'Ṣàngó',
-    englishTranslation: 'Orisha of Thunder',
-    category: 'orisha',
-    isAuthentic: false,
-    audioUrl: '/static/audio/pronunciation/sango.mp3'
-  },
-  {
-    id: 'orisa',
-    name: 'Òrìṣà',
-    yorubaText: 'Òrìṣà',
-    englishTranslation: 'Deity/Divine Being',
-    category: 'spiritual-terms',
-    isAuthentic: false,
-    audioUrl: '/static/audio/pronunciation/orisa.mp3'
-  }
-];
-
 export default function AudioManagement() {
   const { language, ts } = useLanguage();
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [audioFiles] = useState<AudioFile[]>(existingAudioFiles);
+  const [isUploading, setIsUploading] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
   const [newAudio, setNewAudio] = useState({
     name: '',
@@ -75,10 +38,80 @@ export default function AudioManagement() {
   
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
 
+  // Fetch audio library from API
+  const { data: audioFiles = [], isLoading } = useQuery({
+    queryKey: ['/api/audio/library'],
+    queryFn: async () => {
+      const response = await fetch('/api/audio/library');
+      if (!response.ok) throw new Error('Failed to fetch audio library');
+      return response.json();
+    }
+  });
+
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && (file.type.includes('audio') || file.name.endsWith('.opus'))) {
       setSelectedFile(file);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile || !newAudio.yorubaText || !newAudio.englishTranslation) {
+      toast({
+        title: ts("Error", "Aṣiṣe"),
+        description: ts("Please fill all fields and select an audio file", "Jọ̀wọ́ fi gbogbo aaye kún àti yan fáìlì ohùn"),
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsUploading(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('audioFile', selectedFile);
+      formData.append('yorubaText', newAudio.yorubaText);
+      formData.append('englishTranslation', newAudio.englishTranslation);
+      formData.append('category', newAudio.category);
+
+      const response = await fetch('/api/audio/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+
+      const result = await response.json();
+      
+      toast({
+        title: ts("Success", "Àṣeyọrí"),
+        description: result.message,
+        variant: "default"
+      });
+
+      // Reset form
+      setSelectedFile(null);
+      setNewAudio({ name: '', yorubaText: '', englishTranslation: '', category: 'orisha' });
+      
+      // Refresh audio library
+      queryClient.invalidateQueries({ queryKey: ['/api/audio/library'] });
+      
+      // Reset file input
+      const fileInput = document.getElementById('audio-file') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast({
+        title: ts("Error", "Aṣiṣe"),
+        description: error instanceof Error ? error.message : 'Upload failed',
+        variant: "destructive"
+      });
+    } finally {
+      setIsUploading(false);
     }
   };
 
