@@ -9,6 +9,7 @@ import Home from "@/pages/home";
 import History from "@/pages/history";
 import Learn from "@/pages/learn";
 import Learning from "@/pages/learning";
+import LearningSimple from "@/pages/learning-simple";
 import ProblemSearch from "@/pages/problem-search";
 import DailyPrayers from "@/pages/daily-prayers";
 import DivinationLogsPage from "@/pages/divination-logs";
@@ -26,7 +27,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
-      <Route path="/learning" component={Learning} />
+      <Route path="/learning" component={LearningSimple} />
       <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
