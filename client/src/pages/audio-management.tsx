@@ -10,6 +10,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import ResponsiveCard from "@/components/responsive-card";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import AuthenticAudioShowcase from "@/components/authentic-audio-showcase";
 
 interface AudioFile {
   id: string;
@@ -342,6 +343,9 @@ export default function AudioManagement() {
           </div>
         </CardContent>
       </ResponsiveCard>
+
+      {/* Authentic Audio Showcase */}
+      <AuthenticAudioShowcase />
     </div>
   );
 }
