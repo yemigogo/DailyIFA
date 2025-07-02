@@ -1,12 +1,16 @@
 import { 
   odus, dailyReadings, dailyPrayers, ifaLunarPrayers, divinationLogs, eboRecommendations,
   encyclopediaEntries, hyperlinkableTerms, encyclopediaProgress,
+  learningPaths, achievements, learningModules, userProgress,
   type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu,
   type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer,
   type DivinationLog, type InsertDivinationLog, type DivinationLogWithOdu,
   type EboRecommendation, type InsertEboRecommendation, type EboRecommendationWithOdu,
   type EncyclopediaEntry, type InsertEncyclopediaEntry, type HyperlinkableTerm,
-  type EncyclopediaProgress, type InsertEncyclopediaProgress
+  type EncyclopediaProgress, type InsertEncyclopediaProgress,
+  type LearningPath, type InsertLearningPath, type Achievement, type InsertAchievement,
+  type LearningModule, type InsertLearningModule, type UserProgress, type InsertUserProgress,
+  type LearningPathWithModules, type ModuleWithProgress
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, ilike, sql } from "drizzle-orm";
@@ -54,6 +58,24 @@ export interface IStorage {
   getHyperlinkableTerms(): Promise<HyperlinkableTerm[]>;
   createEncyclopediaEntry(entry: InsertEncyclopediaEntry): Promise<EncyclopediaEntry>;
   markEncyclopediaAsRead(userId: string | null, entrySlug: string): Promise<void>;
+  
+  // Learning Path methods
+  getUserLearningPaths(userId: string): Promise<LearningPathWithModules[]>;
+  createLearningPath(path: InsertLearningPath): Promise<LearningPath>;
+  getLearningPath(userId: string, orishaName: string): Promise<LearningPathWithModules | undefined>;
+  updateLearningPathProgress(pathId: number, progress: number): Promise<LearningPath>;
+  completeLearningPath(pathId: number): Promise<LearningPath>;
+  
+  // Achievement methods
+  getUserAchievements(userId: string): Promise<Achievement[]>;
+  createAchievement(achievement: InsertAchievement): Promise<Achievement>;
+  checkAndAwardAchievements(userId: string, action: string, context?: any): Promise<Achievement[]>;
+  
+  // Learning Module methods
+  getModulesForPath(pathId: number): Promise<ModuleWithProgress[]>;
+  createLearningModule(module: InsertLearningModule): Promise<LearningModule>;
+  updateModuleProgress(userId: string, moduleId: number, progress: InsertUserProgress): Promise<UserProgress>;
+  completeModule(userId: string, moduleId: number, score: number): Promise<UserProgress>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -324,6 +346,231 @@ export class DatabaseStorage implements IStorage {
         readAt: new Date()
       }
     });
+  }
+
+  // Learning Path methods implementation
+  async getUserLearningPaths(userId: string): Promise<LearningPathWithModules[]> {
+    const paths = await db.select().from(learningPaths).where(eq(learningPaths.userId, userId));
+    
+    const pathsWithModules: LearningPathWithModules[] = [];
+    for (const path of paths) {
+      const modules = await this.getModulesForPath(path.id);
+      const userAchievements = await this.getUserAchievements(userId);
+      const progressRecords = await db.select().from(userProgress)
+        .where(eq(userProgress.userId, userId));
+      
+      pathsWithModules.push({
+        ...path,
+        modules: modules.map(m => m),
+        userProgress: progressRecords,
+        achievements: userAchievements.filter(a => a.category === path.orishaName.toLowerCase())
+      });
+    }
+    
+    return pathsWithModules;
+  }
+
+  async createLearningPath(insertPath: InsertLearningPath): Promise<LearningPath> {
+    const [path] = await db.insert(learningPaths).values(insertPath).returning();
+    return path;
+  }
+
+  async getLearningPath(userId: string, orishaName: string): Promise<LearningPathWithModules | undefined> {
+    const [path] = await db.select().from(learningPaths)
+      .where(and(eq(learningPaths.userId, userId), eq(learningPaths.orishaName, orishaName)));
+    
+    if (!path) return undefined;
+    
+    const modules = await this.getModulesForPath(path.id);
+    const userAchievements = await this.getUserAchievements(userId);
+    const progressRecords = await db.select().from(userProgress)
+      .where(eq(userProgress.userId, userId));
+    
+    return {
+      ...path,
+      modules: modules.map(m => m),
+      userProgress: progressRecords,
+      achievements: userAchievements.filter(a => a.category === orishaName.toLowerCase())
+    };
+  }
+
+  async updateLearningPathProgress(pathId: number, progress: number): Promise<LearningPath> {
+    const [updatedPath] = await db.update(learningPaths)
+      .set({ 
+        totalProgress: progress,
+        lastActivityAt: new Date()
+      })
+      .where(eq(learningPaths.id, pathId))
+      .returning();
+    return updatedPath;
+  }
+
+  async completeLearningPath(pathId: number): Promise<LearningPath> {
+    const [completedPath] = await db.update(learningPaths)
+      .set({ 
+        isCompleted: true,
+        completedAt: new Date(),
+        totalProgress: 100,
+        lastActivityAt: new Date()
+      })
+      .where(eq(learningPaths.id, pathId))
+      .returning();
+    return completedPath;
+  }
+
+  // Achievement methods implementation
+  async getUserAchievements(userId: string): Promise<Achievement[]> {
+    return await db.select().from(achievements)
+      .where(eq(achievements.userId, userId))
+      .orderBy(desc(achievements.earnedAt));
+  }
+
+  async createAchievement(insertAchievement: InsertAchievement): Promise<Achievement> {
+    const [achievement] = await db.insert(achievements).values(insertAchievement).returning();
+    return achievement;
+  }
+
+  async checkAndAwardAchievements(userId: string, action: string, context?: any): Promise<Achievement[]> {
+    const newAchievements: Achievement[] = [];
+    const existingAchievements = await this.getUserAchievements(userId);
+    const earnedBadgeTypes = existingAchievements.map(a => a.badgeType);
+
+    // Define achievement criteria and award logic
+    const achievementDefinitions = [
+      {
+        badgeType: 'first_orisha',
+        condition: action === 'start_learning_path',
+        badgeName: 'Spiritual Seeker',
+        description: 'Started your first Orisha learning journey',
+        iconName: 'Crown',
+        category: 'milestone',
+        isRare: false
+      },
+      {
+        badgeType: 'pronunciation_master',
+        condition: action === 'complete_pronunciation' && context?.score >= 90,
+        badgeName: 'Voice of Tradition',
+        description: 'Mastered authentic Yoruba pronunciation',
+        iconName: 'Volume2',
+        category: 'skill',
+        isRare: false
+      },
+      {
+        badgeType: 'complete_path',
+        condition: action === 'complete_learning_path',
+        badgeName: 'Orisha Devotee',
+        description: `Completed the ${context?.orishaName} learning path`,
+        iconName: 'CheckCircle',
+        category: context?.orishaName?.toLowerCase() || 'general',
+        isRare: false
+      },
+      {
+        badgeType: 'authentic_listener',
+        condition: action === 'listen_authentic_audio',
+        badgeName: 'Authentic Voice Keeper',
+        description: 'Listened to authentic Nigerian Yoruba pronunciations',
+        iconName: 'Headphones',
+        category: 'cultural',
+        isRare: true
+      },
+      {
+        badgeType: 'five_orisha_master',
+        condition: action === 'complete_learning_path' && context?.completedPaths >= 5,
+        badgeName: 'Orisha Council Sage',
+        description: 'Mastered 5 different Orisha learning paths',
+        iconName: 'Star',
+        category: 'mastery',
+        isRare: true
+      }
+    ];
+
+    for (const achievement of achievementDefinitions) {
+      if (achievement.condition && !earnedBadgeTypes.includes(achievement.badgeType)) {
+        const newAchievement = await this.createAchievement({
+          userId,
+          badgeType: achievement.badgeType,
+          badgeName: achievement.badgeName,
+          description: achievement.description,
+          iconName: achievement.iconName,
+          category: achievement.category,
+          isRare: achievement.isRare
+        });
+        newAchievements.push(newAchievement);
+      }
+    }
+
+    return newAchievements;
+  }
+
+  // Learning Module methods implementation
+  async getModulesForPath(pathId: number): Promise<ModuleWithProgress[]> {
+    const modules = await db.select().from(learningModules)
+      .where(eq(learningModules.pathId, pathId))
+      .orderBy(asc(learningModules.moduleOrder));
+    
+    const modulesWithProgress: ModuleWithProgress[] = [];
+    for (const module of modules) {
+      const [progress] = await db.select().from(userProgress)
+        .where(eq(userProgress.moduleId, module.id))
+        .limit(1);
+      
+      modulesWithProgress.push({
+        ...module,
+        userProgress: progress
+      });
+    }
+    
+    return modulesWithProgress;
+  }
+
+  async createLearningModule(insertModule: InsertLearningModule): Promise<LearningModule> {
+    const [module] = await db.insert(learningModules).values(insertModule).returning();
+    return module;
+  }
+
+  async updateModuleProgress(userId: string, moduleId: number, progressData: InsertUserProgress): Promise<UserProgress> {
+    const [progress] = await db.insert(userProgress)
+      .values({
+        ...progressData,
+        userId,
+        moduleId
+      })
+      .onConflictDoUpdate({
+        target: [userProgress.userId, userProgress.moduleId],
+        set: {
+          progress: progressData.progress || 0,
+          status: progressData.status || 'in_progress',
+          timeSpent: progressData.timeSpent || 0,
+          lastAccessed: new Date(),
+          attempts: sql`${userProgress.attempts} + 1`
+        }
+      })
+      .returning();
+    return progress;
+  }
+
+  async completeModule(userId: string, moduleId: number, score: number): Promise<UserProgress> {
+    const [progress] = await db.insert(userProgress)
+      .values({
+        userId,
+        moduleId,
+        status: 'completed',
+        progress: 100,
+        score,
+        bestScore: score
+      })
+      .onConflictDoUpdate({
+        target: [userProgress.userId, userProgress.moduleId],
+        set: {
+          status: 'completed',
+          progress: 100,
+          score,
+          bestScore: sql`GREATEST(${userProgress.bestScore}, ${score})`,
+          lastAccessed: new Date()
+        }
+      })
+      .returning();
+    return progress;
   }
 }
 

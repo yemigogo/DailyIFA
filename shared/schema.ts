@@ -166,5 +166,104 @@ export type EboRecommendationWithOdu = EboRecommendation & {
   odu: Odu;
 };
 
+// Learning Path and Achievement Tables
+export const learningPaths = pgTable("learning_paths", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  orishaName: text("orisha_name").notNull(),
+  currentLevel: text("current_level").default("beginner"),
+  totalProgress: integer("total_progress").default(0),
+  isCompleted: boolean("is_completed").default(false),
+  startedAt: timestamp("started_at").defaultNow(),
+  completedAt: timestamp("completed_at"),
+  lastActivityAt: timestamp("last_activity_at").defaultNow(),
+  preferences: jsonb("preferences").default("{}"),
+});
+
+export const achievements = pgTable("achievements", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  badgeType: text("badge_type").notNull(),
+  badgeName: text("badge_name").notNull(),
+  description: text("description").notNull(),
+  iconName: text("icon_name").notNull(),
+  earnedAt: timestamp("earned_at").defaultNow(),
+  progress: integer("progress").default(100),
+  category: text("category").default("general"),
+  isRare: boolean("is_rare").default(false),
+});
+
+export const learningModules = pgTable("learning_modules", {
+  id: serial("id").primaryKey(),
+  pathId: integer("path_id").references(() => learningPaths.id).notNull(),
+  moduleType: text("module_type").notNull(), // "pronunciation", "history", "practice", "quiz"
+  title: text("title").notNull(),
+  titleYoruba: text("title_yoruba"),
+  content: text("content").notNull(),
+  contentYoruba: text("content_yoruba"),
+  isCompleted: boolean("is_completed").default(false),
+  completedAt: timestamp("completed_at"),
+  score: integer("score").default(0),
+  timeSpent: integer("time_spent").default(0),
+  moduleOrder: integer("module_order").notNull(),
+});
+
+export const userProgress = pgTable("user_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  moduleId: integer("module_id").references(() => learningModules.id).notNull(),
+  status: text("status").default("not_started"), // "not_started", "in_progress", "completed"
+  progress: integer("progress").default(0),
+  score: integer("score").default(0),
+  timeSpent: integer("time_spent").default(0),
+  lastAccessed: timestamp("last_accessed").defaultNow(),
+  attempts: integer("attempts").default(0),
+  bestScore: integer("best_score").default(0),
+});
+
+// Insert schemas for learning system
+export const insertLearningPathSchema = createInsertSchema(learningPaths).omit({
+  id: true,
+  startedAt: true,
+  lastActivityAt: true,
+});
+
+export const insertAchievementSchema = createInsertSchema(achievements).omit({
+  id: true,
+  earnedAt: true,
+});
+
+export const insertLearningModuleSchema = createInsertSchema(learningModules).omit({
+  id: true,
+  completedAt: true,
+});
+
+export const insertUserProgressSchema = createInsertSchema(userProgress).omit({
+  id: true,
+  lastAccessed: true,
+});
+
+// Types for learning system
+export type LearningPath = typeof learningPaths.$inferSelect;
+export type Achievement = typeof achievements.$inferSelect;
+export type LearningModule = typeof learningModules.$inferSelect;
+export type UserProgress = typeof userProgress.$inferSelect;
+
+export type InsertLearningPath = z.infer<typeof insertLearningPathSchema>;
+export type InsertAchievement = z.infer<typeof insertAchievementSchema>;
+export type InsertLearningModule = z.infer<typeof insertLearningModuleSchema>;
+export type InsertUserProgress = z.infer<typeof insertUserProgressSchema>;
+
+// Combined types for learning system
+export type LearningPathWithModules = LearningPath & {
+  modules: LearningModule[];
+  userProgress: UserProgress[];
+  achievements: Achievement[];
+};
+
+export type ModuleWithProgress = LearningModule & {
+  userProgress?: UserProgress;
+};
+
 // Re-export encyclopedia types
 export * from "./encyclopedia-schema";
