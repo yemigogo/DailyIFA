@@ -48,20 +48,6 @@ export default function InteractiveYorubaText({ children, className }: Interacti
       // Play authentic pronunciation audio
       if (audioPath) {
         try {
-          yoWordPlayer = new Audio(audioPath);
-          yoWordPlayer.volume = 0.9;
-          yoWordPlayer.playbackRate = 0.95;
-          await yoWordPlayer.play();
-        } catch (error) {
-          console.error("Audio playback error:", error);
-        }
-      }
-      
-      try {
-        // Check if the audio file exists
-        const checkResponse = await fetch(audioPath, { method: "HEAD" });
-        
-        if (checkResponse.ok) {
           // Stop any currently playing audio
           if (yoWordPlayer) {
             yoWordPlayer.pause();
@@ -76,13 +62,11 @@ export default function InteractiveYorubaText({ children, className }: Interacti
           // Play the authentic audio
           await yoWordPlayer.play();
           console.log(`Playing authentic Yoruba pronunciation: ${trimmedWord}`);
-        } else {
-          console.warn(`No authentic pronunciation available for: ${trimmedWord}`);
-          // Could notify user that authentic pronunciation is not available
-          // Rather than falling back to inauthentic TTS
+        } catch (error) {
+          console.warn("Audio playback failed:", error);
         }
-      } catch (error) {
-        console.warn("Audio playback failed:", error);
+      } else {
+        console.warn(`No authentic pronunciation available for: ${trimmedWord}`);
       }
     };
 
