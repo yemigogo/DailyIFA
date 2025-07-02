@@ -154,7 +154,7 @@ export default function AudioManagement() {
     }
   };
 
-  const authenticCount = audioFiles.filter(f => f.isAuthentic).length;
+  const authenticCount = audioFiles.filter((f: AudioFile) => f.isAuthentic).length;
   const totalCount = audioFiles.length;
 
   return (
@@ -194,7 +194,7 @@ export default function AudioManagement() {
             </div>
             <div>
               <div className="text-responsive-xl font-bold text-purple-600 dark:text-purple-400">
-                {audioFiles.filter(f => f.category === 'orisha').length}
+                {audioFiles.filter((f: AudioFile) => f.category === 'orisha').length}
               </div>
               <div className="text-responsive-sm text-gray-600 dark:text-gray-400">
                 {ts("Orisha", "Òrìṣà")}
@@ -262,11 +262,19 @@ export default function AudioManagement() {
           </div>
 
           <Button 
+            onClick={handleUpload}
             className="w-full nav-transition btn-touch bg-emerald-600 hover:bg-emerald-700 text-white"
-            disabled={!selectedFile || !newAudio.yorubaText || !newAudio.englishTranslation}
+            disabled={!selectedFile || !newAudio.yorubaText || !newAudio.englishTranslation || isUploading}
           >
-            <Mic className="h-4 w-4 mr-2" />
-            {ts("Process & Integrate Audio", "Ṣe Àti Darapọ̀ Ohùn")}
+            {isUploading ? (
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            ) : (
+              <Mic className="h-4 w-4 mr-2" />
+            )}
+            {isUploading 
+              ? ts("Processing...", "Ńṣe...")
+              : ts("Process & Integrate Audio", "Ṣe Àti Darapọ̀ Ohùn")
+            }
           </Button>
         </CardContent>
       </ResponsiveCard>
@@ -287,7 +295,7 @@ export default function AudioManagement() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {audioFiles.map((audioFile) => (
+            {audioFiles.map((audioFile: AudioFile) => (
               <div
                 key={audioFile.id}
                 className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800/50 card-smooth"
