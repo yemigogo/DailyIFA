@@ -27,7 +27,30 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
-      <Route path="/learning" component={LearningSimple} />
+      <Route path="/learning" component={() => (
+        <div style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: "#dc2626",
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "3rem",
+          fontWeight: "bold",
+          zIndex: 99999,
+          textAlign: "center"
+        }}>
+          <div>
+            <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎓</div>
+            <div>LEARNING PAGE</div>
+            <div style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Route is Working!</div>
+          </div>
+        </div>
+      )} />
       <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
