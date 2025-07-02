@@ -40,7 +40,9 @@ export default function InteractiveYorubaText({ children, className }: Interacti
         'ọya': 'oya.mp3',
         'oya': 'oya.mp3',
         'yemọja': 'yemoja.mp3',
-        'yemoja': 'yemoja.mp3'
+        'yemoja': 'yemoja.mp3',
+        'ọbàtálá': 'obatala.mp3',
+        'obatala': 'obatala.mp3'
       };
       
       const audioPath = knownFiles[trimmedWord.toLowerCase()] 

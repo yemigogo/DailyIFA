@@ -52,6 +52,15 @@ const authenticRecordings: AuthenticAudio[] = [
     descriptionYoruba: "Òrìṣà àwọn odò, ìfẹ́, ìbísí àti ọrọ̀",
     audioUrl: "/static/audio/pronunciation/osun.mp3", 
     category: "Love & Prosperity"
+  },
+  {
+    id: "obatala",
+    orisha: "Ọbàtálá",
+    duration: 86,
+    description: "Father of creation, king of white cloth, divine sculptor of humanity",
+    descriptionYoruba: "Baba ìṣẹ̀dá, ọba aṣọ funfun, onísọ̀nà ẹ̀dá ènìyàn",
+    audioUrl: "/static/audio/pronunciation/obatala.mp3",
+    category: "Creation & Wisdom"
   }
 ];
 
@@ -104,6 +113,7 @@ export default function AuthenticAudioShowcase() {
       case "Storm & Wind": return <Volume2 className="h-4 w-4 text-gray-500" />;
       case "Motherhood & Protection": return <Star className="h-4 w-4 text-purple-500" />;
       case "Love & Prosperity": return <Star className="h-4 w-4 text-amber-500" />;
+      case "Creation & Wisdom": return <Star className="h-4 w-4 text-white" />;
       default: return <Star className="h-4 w-4 text-emerald-500" />;
     }
   };
@@ -136,7 +146,7 @@ export default function AuthenticAudioShowcase() {
             </div>
             <div className="text-center">
               <div className="text-responsive-xl font-bold text-purple-600 dark:text-purple-400">
-                4
+                5
               </div>
               <div className="text-responsive-sm text-gray-600 dark:text-gray-400">
                 {ts("Orisha", "Òrìṣà")}

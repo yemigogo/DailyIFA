@@ -367,6 +367,16 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
           duration: 66
         },
         {
+          id: 'obatala',
+          name: 'Ọbàtálá',
+          yorubaText: 'Ọbàtálá',
+          englishTranslation: 'Father of Creation, King of White Cloth',
+          category: 'orisha',
+          isAuthentic: true,
+          audioUrl: '/static/audio/pronunciation/obatala.mp3',
+          duration: 86
+        },
+        {
           id: 'sango',
           name: 'Ṣàngó',
           yorubaText: 'Ṣàngó',
