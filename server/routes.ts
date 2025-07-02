@@ -347,6 +347,16 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
           duration: 51
         },
         {
+          id: 'yemoja',
+          name: 'Yemọja',
+          yorubaText: 'Yemọja',
+          englishTranslation: 'Mother of the Ocean',
+          category: 'orisha',
+          isAuthentic: true,
+          audioUrl: '/static/audio/pronunciation/yemoja.mp3',
+          duration: 102
+        },
+        {
           id: 'sango',
           name: 'Ṣàngó',
           yorubaText: 'Ṣàngó',

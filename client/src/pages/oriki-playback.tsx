@@ -42,7 +42,7 @@ const orikiData: OrikiVerse[] = [
     id: "yemaya",
     orisha: "Yemoja",
     text: "Ìyá omi, ọmọ yemoja. Tí ngbe omi gangan. \nMother of the ocean, bearer of life, the water nurturer.",
-    audioUrl: "/static/audio/yemaya.mp3"
+    audioUrl: "/static/audio/pronunciation/yemoja.mp3"
   },
   {
     id: "oshun",
@@ -227,7 +227,7 @@ export default function OrikiPlayback() {
               <option value="ogun">Ògún</option>
               <option value="obatala">Ọbàtálá</option>
               <option value="sango">Ṣàngó</option>
-              <option value="yemaya">Yemọja</option>
+              <option value="yemaya">Yemọja ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="oshun">Ọ̀ṣun</option>
               <option value="elegba">Èṣù Ẹlẹ́gbára</option>
               <option value="oya">Ọya ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
@@ -245,7 +245,7 @@ export default function OrikiPlayback() {
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
                   Oríkì {selectedOriki.orisha}
-                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya') && (
+                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya') && (
                     <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                       ⭐ {ts("Authentic", "Òtítọ́")}
                     </Badge>
