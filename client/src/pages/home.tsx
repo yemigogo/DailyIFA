@@ -66,37 +66,48 @@ export default function Home() {
   return (
     <div className={`min-h-screen pb-20 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
       {/* Header */}
-      <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-sacred-gold/20 sticky top-0 z-40">
-        <div className="container-responsive py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.1s'}}>
-            <div className="w-10 h-10 bg-gradient-to-br from-sacred-gold to-orange-500 rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-110">
+      <header className="bg-red-100 border-4 border-red-500 shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-sacred-gold to-orange-500 rounded-full flex items-center justify-center shadow-lg">
               <RefreshCw className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h1 className="font-crimson font-bold text-spiritual-blue dark:text-white text-responsive-lg">
+              <h1 className="font-bold text-spiritual-blue text-xl">
                 {t("Ifá Daily", "Ifá Ojoojúmọ́")}
               </h1>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-600">
                 {t("Traditional Yoruba Wisdom", "Ọgbọ́n Yorùbá Àtìjọ́")}
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
-            <LanguageToggle />
-            {/* Direct language toggle */}
-            <Button
-              variant="outline"
-              size="sm"
+          
+          {/* RIGHT SIDE - LANGUAGE TOGGLES */}
+          <div className="flex items-center space-x-2 bg-yellow-200 p-2 border-2 border-black">
+            <div className="text-xs text-black">DEBUG:</div>
+            
+            {/* Original LanguageToggle */}
+            <div className="border-2 border-green-500 p-1">
+              <LanguageToggle />
+            </div>
+            
+            {/* Direct inline toggle */}
+            <button
               onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
-              className="px-3 py-2 bg-spiritual-blue text-white border-spiritual-blue hover:bg-spiritual-blue/80 rounded-lg flex items-center space-x-2"
+              className="px-4 py-2 bg-red-500 text-white font-bold rounded border-2 border-black"
             >
-              🌍 <span>{language === "english" ? "Yorùbá" : "English"}</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="p-2 text-spiritual-blue hover:bg-spiritual-blue/10 rounded-xl nav-transition btn-touch"
+              🌍 {language === "english" ? "YORUBA" : "ENGLISH"}
+            </button>
+            
+            {/* Simple test button */}
+            <button
+              onClick={() => alert(`Current language: ${language}`)}
+              className="px-2 py-1 bg-blue-500 text-white font-bold"
             >
+              TEST
+            </button>
+            
+            <Button variant="ghost" size="sm" className="p-2">
               <Menu className="h-5 w-5" />
             </Button>
           </div>
