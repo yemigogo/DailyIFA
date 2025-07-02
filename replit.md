@@ -5,7 +5,7 @@ A comprehensive bilingual Yoruba spiritual guidance application providing authen
 
 ## Recent Changes
 **July 2, 2025**
-- ✅ **Authentic Olókun Audio Integration**: Successfully integrated user-provided authentic Olókun pronunciation (46-second OPUS file converted to high-quality MP3), enhanced Interactive Yoruba Text system with clickable "Olókun" words, added special "Authentic" badge to Oríkì page, and optimized audio playback with Nigerian pronunciation settings (95% volume, 90% playback rate)
+- ✅ **Dual Authentic Audio Integration**: Successfully integrated user-provided authentic pronunciations for both Olókun (46-second) and Ọya (51-second) from OPUS files to high-quality MP3, enhanced Interactive Yoruba Text system with clickable words for both Orisha, added special "Authentic" badges to Oríkì page, and optimized audio playback with Nigerian pronunciation settings (95% volume, 90% playback rate) - now featuring 35 total pronunciation files
 - ✅ **Comprehensive Responsive Design Enhancement**: Implemented mobile-first responsive design with smooth animations, enhanced CSS utilities (text-responsive-*, container-responsive, btn-touch), backdrop blur effects, staggered entrance animations, touch-friendly navigation targets, and seamless transitions across all screen sizes
 
 **June 27, 2025**

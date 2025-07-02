@@ -38,7 +38,9 @@ export default function InteractiveYorubaText({ children, className }: Interacti
         'ifá': 'ifa.mp3',
         'ifa': 'ifa.mp3',
         'olókun': 'olokun.mp3',
-        'olokun': 'olokun.mp3'
+        'olokun': 'olokun.mp3',
+        'ọya': 'oya.mp3',
+        'oya': 'oya.mp3'
       };
       
       const audioPath = knownFiles[trimmedWord.toLowerCase()] 
