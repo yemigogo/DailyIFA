@@ -82,7 +82,15 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
-            <LanguageToggle />
+            <button
+              onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
+              className="px-3 py-2 bg-blue-600 text-white border border-blue-600 hover:bg-blue-700 rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-sm hover:shadow-md text-sm font-medium"
+            >
+              🌍
+              <span>
+                {language === "english" ? "Yorùbá" : "English"}
+              </span>
+            </button>
             <Button
               variant="ghost"
               size="sm"
