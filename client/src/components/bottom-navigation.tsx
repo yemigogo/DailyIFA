@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Home, Scroll, Search, Heart, ScrollText, BookOpen, User } from "lucide-react";
+import { Home, Scroll, Search, Heart, ScrollText, BookOpen, User, Mic } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -12,8 +12,8 @@ export default function BottomNavigation() {
     { id: "prayers", label: ts("Prayers", "Ìwúre"), icon: Heart, path: "/prayers" },
     { id: "history", label: ts("History", "Ìtàn"), icon: Scroll, path: "/history" },
     { id: "learn", label: ts("Learn", "Kọ́"), icon: BookOpen, path: "/learn" },
-    { id: "search", label: ts("Search", "Wá"), icon: Search, path: "/search" },
     { id: "oriki", label: ts("Oríkì", "Oríkì"), icon: ScrollText, path: "/oriki" },
+    { id: "audio", label: ts("Audio", "Ohùn"), icon: Mic, path: "/audio" },
     { id: "profile", label: ts("Profile", "Àkọsílẹ̀"), icon: User, path: "/profile" },
   ];
 
