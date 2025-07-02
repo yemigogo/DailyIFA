@@ -24,9 +24,6 @@ import NotFound from "@/pages/not-found";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/history" component={History} />
-      <Route path="/learn" component={Learn} />
       <Route path="/learning" component={() => (
         <div style={{
           position: "fixed",
@@ -46,21 +43,13 @@ function Router() {
         }}>
           <div>
             <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎓</div>
-            <div>LEARNING PAGE</div>
+            <div>LEARNING PAGE WORKS!</div>
             <div style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Route is Working!</div>
           </div>
         </div>
       )} />
-      <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
-      <Route path="/orisha-calendar" component={Learn} />
-      <Route path="/diaspora" component={Learn} />
-      <Route path="/oriki" component={OrikiPlayback} />
-      <Route path="/audio" component={AudioManagement} />
-      <Route path="/search" component={ProblemSearch} />
-      <Route path="/prayers" component={DailyPrayers} />
-      <Route path="/logs" component={DivinationLogsPage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route component={NotFound} />
+      <Route path="/" component={Home} />
+      <Route component={() => <div style={{ padding: "2rem", fontSize: "2rem", textAlign: "center" }}>Other Route</div>} />
     </Switch>
   );
 }
