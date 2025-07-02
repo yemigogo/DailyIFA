@@ -87,8 +87,9 @@ export default function Home() {
             <div className="text-xs text-black">DEBUG:</div>
             
             {/* Original LanguageToggle */}
-            <div className="border-2 border-green-500 p-1">
+            <div className="border-2 border-green-500 p-1 min-w-[100px] min-h-[40px] bg-white">
               <LanguageToggle />
+              <div className="text-xs text-red-500">COMPONENT HERE</div>
             </div>
             
             {/* Direct inline toggle */}
