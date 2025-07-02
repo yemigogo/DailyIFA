@@ -478,6 +478,166 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // Learning Path API endpoints
+  app.get('/api/learning-paths/:userId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const paths = await storage.getUserLearningPaths(userId);
+      res.json(paths);
+    } catch (error) {
+      console.error("Error fetching learning paths:", error);
+      res.status(500).json({ message: "Failed to fetch learning paths" });
+    }
+  });
+
+  app.post('/api/learning-paths', async (req, res) => {
+    try {
+      const pathData = req.body;
+      const path = await storage.createLearningPath(pathData);
+      
+      // Award achievement for starting first learning path
+      const achievements = await storage.checkAndAwardAchievements(
+        pathData.userId, 
+        'start_learning_path',
+        { orishaName: pathData.orishaName }
+      );
+      
+      res.json({ path, newAchievements: achievements });
+    } catch (error) {
+      console.error("Error creating learning path:", error);
+      res.status(500).json({ message: "Failed to create learning path" });
+    }
+  });
+
+  app.get('/api/learning-paths/:userId/:orishaName', async (req, res) => {
+    try {
+      const { userId, orishaName } = req.params;
+      const path = await storage.getLearningPath(userId, orishaName);
+      if (!path) {
+        return res.status(404).json({ message: "Learning path not found" });
+      }
+      res.json(path);
+    } catch (error) {
+      console.error("Error fetching learning path:", error);
+      res.status(500).json({ message: "Failed to fetch learning path" });
+    }
+  });
+
+  app.put('/api/learning-paths/:pathId/progress', async (req, res) => {
+    try {
+      const pathId = parseInt(req.params.pathId);
+      const { progress } = req.body;
+      const updatedPath = await storage.updateLearningPathProgress(pathId, progress);
+      res.json(updatedPath);
+    } catch (error) {
+      console.error("Error updating learning path progress:", error);
+      res.status(500).json({ message: "Failed to update progress" });
+    }
+  });
+
+  app.put('/api/learning-paths/:pathId/complete', async (req, res) => {
+    try {
+      const pathId = parseInt(req.params.pathId);
+      const { userId, orishaName } = req.body;
+      const completedPath = await storage.completeLearningPath(pathId);
+      
+      // Award achievement for completing learning path
+      const userPaths = await storage.getUserLearningPaths(userId);
+      const completedPaths = userPaths.filter(p => p.isCompleted).length;
+      
+      const achievements = await storage.checkAndAwardAchievements(
+        userId,
+        'complete_learning_path',
+        { orishaName, completedPaths }
+      );
+      
+      res.json({ path: completedPath, newAchievements: achievements });
+    } catch (error) {
+      console.error("Error completing learning path:", error);
+      res.status(500).json({ message: "Failed to complete learning path" });
+    }
+  });
+
+  // Achievement API endpoints
+  app.get('/api/achievements/:userId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const achievements = await storage.getUserAchievements(userId);
+      res.json(achievements);
+    } catch (error) {
+      console.error("Error fetching achievements:", error);
+      res.status(500).json({ message: "Failed to fetch achievements" });
+    }
+  });
+
+  app.post('/api/achievements/check', async (req, res) => {
+    try {
+      const { userId, action, context } = req.body;
+      const newAchievements = await storage.checkAndAwardAchievements(userId, action, context);
+      res.json(newAchievements);
+    } catch (error) {
+      console.error("Error checking achievements:", error);
+      res.status(500).json({ message: "Failed to check achievements" });
+    }
+  });
+
+  // Learning Module API endpoints
+  app.get('/api/learning-modules/:pathId', async (req, res) => {
+    try {
+      const pathId = parseInt(req.params.pathId);
+      const modules = await storage.getModulesForPath(pathId);
+      res.json(modules);
+    } catch (error) {
+      console.error("Error fetching learning modules:", error);
+      res.status(500).json({ message: "Failed to fetch learning modules" });
+    }
+  });
+
+  app.post('/api/learning-modules', async (req, res) => {
+    try {
+      const moduleData = req.body;
+      const module = await storage.createLearningModule(moduleData);
+      res.json(module);
+    } catch (error) {
+      console.error("Error creating learning module:", error);
+      res.status(500).json({ message: "Failed to create learning module" });
+    }
+  });
+
+  app.put('/api/user-progress/:userId/:moduleId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const moduleId = parseInt(req.params.moduleId);
+      const progressData = req.body;
+      const progress = await storage.updateModuleProgress(userId, moduleId, progressData);
+      res.json(progress);
+    } catch (error) {
+      console.error("Error updating module progress:", error);
+      res.status(500).json({ message: "Failed to update module progress" });
+    }
+  });
+
+  app.put('/api/user-progress/:userId/:moduleId/complete', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const moduleId = parseInt(req.params.moduleId);
+      const { score } = req.body;
+      const progress = await storage.completeModule(userId, moduleId, score);
+      
+      // Check for pronunciation achievement
+      const achievements = await storage.checkAndAwardAchievements(
+        userId,
+        'complete_pronunciation',
+        { score }
+      );
+      
+      res.json({ progress, newAchievements: achievements });
+    } catch (error) {
+      console.error("Error completing module:", error);
+      res.status(500).json({ message: "Failed to complete module" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

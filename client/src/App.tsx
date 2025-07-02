@@ -8,6 +8,7 @@ import { EncyclopediaProvider } from "@/components/encyclopedia/encyclopedia-pro
 import Home from "@/pages/home";
 import History from "@/pages/history";
 import Learn from "@/pages/learn";
+import Learning from "@/pages/learning";
 import ProblemSearch from "@/pages/problem-search";
 import DailyPrayers from "@/pages/daily-prayers";
 import DivinationLogsPage from "@/pages/divination-logs";
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
+      <Route path="/learning" component={Learning} />
       <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
