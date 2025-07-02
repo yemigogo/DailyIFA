@@ -20,7 +20,7 @@ export default function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
 
   // Trigger entrance animation on mount
   useEffect(() => {
@@ -83,6 +83,15 @@ export default function Home() {
           </div>
           <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
             <LanguageToggle />
+            {/* Direct language toggle */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
+              className="px-3 py-2 bg-spiritual-blue text-white border-spiritual-blue hover:bg-spiritual-blue/80 rounded-lg flex items-center space-x-2"
+            >
+              🌍 <span>{language === "english" ? "Yorùbá" : "English"}</span>
+            </Button>
             <Button
               variant="ghost"
               size="sm"
