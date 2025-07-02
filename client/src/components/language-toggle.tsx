@@ -11,13 +11,13 @@ export default function LanguageToggle() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="sm"
       onClick={toggleLanguage}
-      className="p-2 text-spiritual-blue hover:bg-gray-100 rounded-lg transition-colors flex items-center space-x-1"
+      className="px-3 py-2 bg-white dark:bg-gray-800 text-spiritual-blue dark:text-white border-spiritual-blue/30 hover:bg-spiritual-blue hover:text-white dark:hover:bg-spiritual-blue dark:hover:text-white rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-sm hover:shadow-md"
     >
       <Globe className="h-4 w-4" />
-      <span className="text-xs font-medium">
+      <span className="text-sm font-medium">
         {language === "english" ? "Yorùbá" : "English"}
       </span>
     </Button>

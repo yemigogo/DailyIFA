@@ -72,11 +72,16 @@ export default function Home() {
             <div className="w-10 h-10 bg-gradient-to-br from-sacred-gold to-orange-500 rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-110">
               <RefreshCw className="h-5 w-5 text-white" />
             </div>
-            <h1 className="font-crimson font-bold text-spiritual-blue dark:text-white text-responsive-lg">
-              {t("Ifá Daily", "Ifá Ojoojúmọ́")}
-            </h1>
+            <div>
+              <h1 className="font-crimson font-bold text-spiritual-blue dark:text-white text-responsive-lg">
+                {t("Ifá Daily", "Ifá Ojoojúmọ́")}
+              </h1>
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                {t("Traditional Yoruba Wisdom", "Ọgbọ́n Yorùbá Àtìjọ́")}
+              </div>
+            </div>
           </div>
-          <div className="flex items-center space-x-2 reveal-fade" style={{animationDelay: '0.2s'}}>
+          <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
             <LanguageToggle />
             <Button
               variant="ghost"
