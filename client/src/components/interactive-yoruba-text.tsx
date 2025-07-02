@@ -161,9 +161,9 @@ export default function InteractiveYorubaText({ children, className }: Interacti
     style.textContent = `
       .yoruba-word {
         font-weight: bold;
-        color: #9CA3AF;
-        cursor: not-allowed;
-        text-decoration: line-through;
+        color: #059669;
+        cursor: pointer;
+        text-decoration: none;
         position: relative;
         padding-right: 1.5em;
         transition: all 0.2s ease;

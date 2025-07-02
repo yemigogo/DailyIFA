@@ -6,7 +6,7 @@ import OduTraditionalImage from "./odu-traditional-image";
 import SimpleAudioPlayer from "./simple-audio-player";
 // import { AutoLinkText } from "./encyclopedia/auto-link-text";
 
-import EboRecommendations from "./ebo-recommendations";
+
 import HerbsMaterials from "./herbs-materials";
 import AffirmationGenerator from "./affirmation-generator";
 import { useToast } from "@/hooks/use-toast";
@@ -208,12 +208,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
       {/* Traditional Herbs & Materials */}
       <HerbsMaterials oduId={reading.odu.id} oduName={reading.odu.name} />
 
-      {/* Ẹbọ Recommendations */}
-      <Card className="border-amber-200 dark:border-amber-800">
-        <CardContent className="p-6">
-          <EboRecommendations oduId={reading.odu.id} showFilters={false} />
-        </CardContent>
-      </Card>
+
 
       {/* Personal Affirmation Generator */}
       <AffirmationGenerator currentOdu={reading.odu} />
