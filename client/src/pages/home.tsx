@@ -81,29 +81,27 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-3" style={{background: 'red', padding: '10px', border: '2px solid black'}}>
-            <div style={{background: 'yellow', padding: '5px', border: '1px solid blue'}}>
-              <button
-                onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
-                style={{
-                  padding: '8px 12px',
-                  backgroundColor: '#2563eb',
-                  color: 'white',
-                  border: '2px solid #2563eb',
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}
-              >
-                🌍
-                <span>
-                  {language === "english" ? "Yorùbá" : "English"}
-                </span>
-              </button>
-            </div>
+          <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
+            <button
+              onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
+              style={{
+                padding: '8px 12px',
+                backgroundColor: '#2563eb',
+                color: 'white',
+                border: '2px solid #2563eb',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+            >
+              🌍
+              <span>
+                {language === "english" ? "Yorùbá" : "English"}
+              </span>
+            </button>
             <Button
               variant="ghost"
               size="sm"
