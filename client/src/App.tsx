@@ -43,8 +43,10 @@ function App() {
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
-          <div className="min-h-screen">
-            <Router />
+          <div className="min-h-screen relative overflow-x-hidden">
+            <main className="pb-16 sm:pb-20 page-transition">
+              <Router />
+            </main>
             <BottomNavigation />
           </div>
         </TooltipProvider>
