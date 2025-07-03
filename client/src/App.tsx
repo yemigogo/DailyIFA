@@ -22,7 +22,7 @@ import BottomNavigation from "@/components/bottom-navigation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   
   // Debug: Always show current location in a visible corner
   const debugStyle = {
@@ -42,6 +42,50 @@ function Router() {
     <div>
       <div style={debugStyle}>
         Location: {location}
+      </div>
+      
+      {/* Manual test buttons */}
+      <div style={{
+        position: "fixed",
+        top: "50px",
+        left: "10px",
+        zIndex: 99999,
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px"
+      }}>
+        <button 
+          onClick={() => {
+            console.log("Manual navigation to /learning");
+            setLocation("/learning");
+          }}
+          style={{
+            padding: "10px",
+            backgroundColor: "#22c55e",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          Go to Learning
+        </button>
+        <button 
+          onClick={() => {
+            console.log("Manual navigation to /");
+            setLocation("/");
+          }}
+          style={{
+            padding: "10px",
+            backgroundColor: "#3b82f6",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          Go to Home
+        </button>
       </div>
       
       <Switch>
