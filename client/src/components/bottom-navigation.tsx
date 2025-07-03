@@ -27,15 +27,25 @@ export default function BottomNavigation() {
             return (
               <button
                 key={item.id}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   console.log(`Navigating to: ${item.path}`);
                   setLocation(item.path);
                 }}
-                className={`flex flex-col items-center py-2 px-2 rounded-xl nav-transition btn-touch ${
-                  isActive
-                    ? "text-spiritual-blue bg-spiritual-blue/15 scale-105"
-                    : "text-gray-500 hover:text-spiritual-blue hover:bg-spiritual-blue/10 dark:text-gray-400 dark:hover:text-spiritual-blue"
-                }`}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  padding: "8px",
+                  border: "none",
+                  borderRadius: "8px",
+                  backgroundColor: isActive ? "#e0f2fe" : "transparent",
+                  color: isActive ? "#0ea5e9" : "#6b7280",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: isActive ? "600" : "400"
+                }}
                 aria-label={item.label}
               >
                 <Icon className={`h-5 w-5 mb-1 transition-all duration-200 ${isActive ? 'scale-110' : ''}`} />
