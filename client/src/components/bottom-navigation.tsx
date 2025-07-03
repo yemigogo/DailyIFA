@@ -27,7 +27,10 @@ export default function BottomNavigation() {
             return (
               <button
                 key={item.id}
-                onClick={() => setLocation(item.path)}
+                onClick={() => {
+                  console.log(`Navigating to: ${item.path}`);
+                  setLocation(item.path);
+                }}
                 className={`flex flex-col items-center py-2 px-2 rounded-xl nav-transition btn-touch ${
                   isActive
                     ? "text-spiritual-blue bg-spiritual-blue/15 scale-105"
