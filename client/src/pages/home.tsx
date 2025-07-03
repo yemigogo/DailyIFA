@@ -81,29 +81,31 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             {/* Language Toggle Button */}
             <button
               onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
-              className="px-3 py-2 bg-spiritual-blue text-white border-2 border-spiritual-blue hover:bg-spiritual-blue/80 rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-md hover:shadow-lg text-sm font-medium min-w-[100px] justify-center"
-              style={{ 
-                zIndex: 1000,
-                position: 'relative'
+              className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition-colors flex items-center gap-2 text-sm font-semibold shadow-lg"
+              style={{
+                minWidth: '120px',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
-              <span className="text-lg">🌍</span>
-              <span className="text-white">
+              <span style={{ fontSize: '16px' }}>🌍</span>
+              <span style={{ color: 'white', fontSize: '14px', fontWeight: 'bold' }}>
                 {language === "english" ? "Yorùbá" : "English"}
               </span>
             </button>
             
-            <Button
-              variant="ghost"
-              size="sm"
-              className="p-2 text-spiritual-blue hover:bg-spiritual-blue/10 rounded-xl nav-transition btn-touch"
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
+            {/* Menu Button */}
+            <button className="p-2 text-gray-600 hover:text-blue-600 hover:bg-gray-100 rounded-lg transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </header>
