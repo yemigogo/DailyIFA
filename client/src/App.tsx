@@ -22,26 +22,10 @@ import BottomNavigation from "@/components/bottom-navigation";
 import NotFound from "@/pages/not-found";
 
 function Router() {
-  const [location, setLocation] = useLocation();
-  
-  // Debug: Always show current location in a visible corner
-  const debugStyle = {
-    position: "fixed" as const,
-    top: "10px",
-    left: "10px",
-    backgroundColor: "#000",
-    color: "#fff",
-    padding: "10px",
-    zIndex: 99999,
-    fontSize: "14px",
-    fontFamily: "monospace",
-    borderRadius: "4px"
-  };
-  
   return (
     <Switch>
-      <Route path="/learning" component={LearningSimple} />
       <Route path="/" component={Home} />
+      <Route path="/learning" component={LearningSimple} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
       <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
