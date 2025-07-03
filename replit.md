@@ -4,6 +4,10 @@
 A comprehensive bilingual Yoruba spiritual guidance application providing authentic Ifá readings, Odu wisdom, and traditional spiritual practices. The app serves as a bridge between ancient Yoruba wisdom and modern digital accessibility.
 
 ## Recent Changes
+**July 3, 2025**
+- ✅ **Enhanced Language Toggle Functionality**: Fixed and enhanced bilingual English/Yoruba language toggle button with improved visibility, proper styling (blue background, white text, globe icon), and functional switching between "Ifá Daily" ↔ "Ifá Ojoojúmọ́", "Traditional Yoruba Wisdom" ↔ "Ọgbọ́n Yorùbá Àtìjọ́", and other bilingual content throughout the app
+- ✅ **Header Navigation Improvements**: Added clear hamburger menu icon (three horizontal lines) alongside language toggle button, improved header styling with proper contrast and mobile-friendly button sizing
+
 **July 2, 2025**
 - ✅ **Five Authentic Audio Integration**: Successfully integrated user-provided authentic pronunciations for Olókun (46s), Ọya (51s), Yemọja (102s), Ọ̀ṣun (66s), and Ọbàtálá (86s) from OPUS files to high-quality MP3, created comprehensive Audio Management system with drag-and-drop upload, automatic FFmpeg processing, duration detection, Interactive Yoruba Text integration, special "Authentic" badges throughout app, and optimized Nigerian pronunciation settings - now featuring 38 total pronunciation files with 5 authentic recordings totaling 6+ minutes
 - ✅ **Comprehensive Responsive Design Enhancement**: Implemented mobile-first responsive design with smooth animations, enhanced CSS utilities (text-responsive-*, container-responsive, btn-touch), backdrop blur effects, staggered entrance animations, touch-friendly navigation targets, and seamless transitions across all screen sizes
