@@ -81,27 +81,22 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center space-x-3 reveal-fade" style={{animationDelay: '0.2s'}}>
+          <div className="flex items-center space-x-3">
+            {/* Language Toggle Button */}
             <button
               onClick={() => setLanguage(language === "english" ? "yoruba" : "english")}
-              style={{
-                padding: '8px 12px',
-                backgroundColor: '#2563eb',
-                color: 'white',
-                border: '2px solid #2563eb',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: '500',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
+              className="px-3 py-2 bg-spiritual-blue text-white border-2 border-spiritual-blue hover:bg-spiritual-blue/80 rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-md hover:shadow-lg text-sm font-medium min-w-[100px] justify-center"
+              style={{ 
+                zIndex: 1000,
+                position: 'relative'
               }}
             >
-              🌍
-              <span>
+              <span className="text-lg">🌍</span>
+              <span className="text-white">
                 {language === "english" ? "Yorùbá" : "English"}
               </span>
             </button>
+            
             <Button
               variant="ghost"
               size="sm"
