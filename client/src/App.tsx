@@ -39,92 +39,22 @@ function Router() {
   };
   
   return (
-    <div>
-      <div style={debugStyle}>
-        Location: {location}
-      </div>
-      
-      {/* Manual test buttons */}
-      <div style={{
-        position: "fixed",
-        top: "50px",
-        left: "10px",
-        zIndex: 99999,
-        display: "flex",
-        flexDirection: "column",
-        gap: "5px"
-      }}>
-        <button 
-          onClick={() => {
-            console.log("Manual navigation to /learning");
-            setLocation("/learning");
-          }}
-          style={{
-            padding: "10px",
-            backgroundColor: "#22c55e",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
-          Go to Learning
-        </button>
-        <button 
-          onClick={() => {
-            console.log("Manual navigation to /");
-            setLocation("/");
-          }}
-          style={{
-            padding: "10px",
-            backgroundColor: "#3b82f6",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
-          Go to Home
-        </button>
-      </div>
-      
-      <Switch>
-        <Route path="/learning">
-          <div style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "#dc2626",
-            color: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "3rem",
-            fontWeight: "bold",
-            zIndex: 99998,
-            textAlign: "center"
-          }}>
-            <div>
-              <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>🎓</div>
-              <div>LEARNING PAGE WORKS!</div>
-              <div style={{ fontSize: "1.5rem", marginTop: "1rem" }}>Route: {location}</div>
-            </div>
-          </div>
-        </Route>
-        
-        <Route path="/">
-          <Home />
-        </Route>
-        
-        <Route>
-          <div style={{ padding: "2rem", fontSize: "2rem", textAlign: "center" }}>
-            404 - Current path: {location}
-          </div>
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route path="/learning" component={LearningSimple} />
+      <Route path="/" component={Home} />
+      <Route path="/history" component={History} />
+      <Route path="/learn" component={Learn} />
+      <Route path="/encyclopedia" component={() => <div>Encyclopedia Coming Soon</div>} />
+      <Route path="/orisha-calendar" component={Learn} />
+      <Route path="/diaspora" component={Learn} />
+      <Route path="/oriki" component={OrikiPlayback} />
+      <Route path="/audio" component={AudioManagement} />
+      <Route path="/search" component={ProblemSearch} />
+      <Route path="/prayers" component={DailyPrayers} />
+      <Route path="/logs" component={DivinationLogsPage} />
+      <Route path="/profile" component={ProfilePage} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 
