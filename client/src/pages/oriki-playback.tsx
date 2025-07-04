@@ -21,7 +21,10 @@ const orikiData: OrikiVerse[] = [
     id: "orunmila",
     orisha: "Òrúnmìlà",
     text: "Ẹlẹ́rìí ìpín, agbani nímọ̀ràn, alábáyọ̀. \nThe witness to destiny, provider of wise counsel, bringer of joy.",
-    audioUrl: "/static/audio/orunmila.mp3"
+    audioUrl: "/static/audio/pronunciation/orunmila_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 78.1,
+    authenticMarker: "🎵 Authentic Nigerian Recording"
   },
   {
     id: "ogun",
@@ -241,7 +244,7 @@ export default function OrikiPlayback() {
               className="w-full border border-gray-300 dark:border-gray-600 p-3 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             >
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
-              <option value="orunmila">Òrúnmìlà</option>
+              <option value="orunmila">Òrúnmìlà ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="ogun">Ògún ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="ogun-extended">Ògún Extended ⭐ {ts("(2min Authentic)", "(2min Òtítọ́)")}</option>
               <option value="obatala">Ọbàtálá ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
@@ -264,7 +267,7 @@ export default function OrikiPlayback() {
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
                   Oríkì {selectedOriki.orisha}
-                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'ogun-extended' || selectedOriki.id === 'sango') && (
+                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'ogun-extended' || selectedOriki.id === 'sango' || selectedOriki.id === 'orunmila') && (
                     <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                       ⭐ {ts("Authentic", "Òtítọ́")}
                     </Badge>

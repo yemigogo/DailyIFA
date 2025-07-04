@@ -18,6 +18,15 @@ interface AuthenticAudio {
 
 const authenticRecordings: AuthenticAudio[] = [
   {
+    id: "orunmila",
+    orisha: "Òrúnmìlà",
+    duration: 78,
+    description: "Great oracle of Ifá, witness to destiny and divine wisdom keeper",
+    descriptionYoruba: "Ẹlẹ́rìí ìpín ńlá, agbani nímọ̀ràn àti alábáyọ̀ ìmọ̀ rẹ̀",
+    audioUrl: "/static/audio/pronunciation/orunmila_oriki_authentic.mp3",
+    category: "Divination & Wisdom"
+  },
+  {
     id: "olokun",
     orisha: "Olókun",
     duration: 46,
