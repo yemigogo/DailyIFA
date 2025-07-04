@@ -61,6 +61,15 @@ const authenticRecordings: AuthenticAudio[] = [
     descriptionYoruba: "Baba ìṣẹ̀dá, ọba aṣọ funfun, onísọ̀nà ẹ̀dá ènìyàn",
     audioUrl: "/static/audio/pronunciation/obatala.mp3",
     category: "Creation & Wisdom"
+  },
+  {
+    id: "ogun",
+    orisha: "Ògún",
+    duration: 26,
+    description: "Mighty warrior and blacksmith, master of iron and all metals",
+    descriptionYoruba: "Jagunjagun àti alágbède, ọ̀gá irin àti gbogbo èwe-àwon",
+    audioUrl: "/static/audio/pronunciation/ogun_oriki_authentic.mp3",
+    category: "War & Technology"
   }
 ];
 

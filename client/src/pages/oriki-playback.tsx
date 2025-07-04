@@ -11,6 +11,9 @@ interface OrikiVerse {
   orisha: string;
   text: string;
   audioUrl: string;
+  isAuthentic?: boolean;
+  duration?: number;
+  authenticMarker?: string;
 }
 
 const orikiData: OrikiVerse[] = [
@@ -24,7 +27,10 @@ const orikiData: OrikiVerse[] = [
     id: "ogun",
     orisha: "Ògún",
     text: "Alágbède méjì, onírin tí ngbé orí lẹ̀sẹ̀. \nBlacksmith of iron, warrior who carries iron on his head.",
-    audioUrl: "/static/audio/ogun.mp3"
+    audioUrl: "/static/audio/pronunciation/ogun_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 26.3,
+    authenticMarker: "🎵 Authentic Nigerian Recording"
   },
   {
     id: "obatala",
@@ -224,7 +230,7 @@ export default function OrikiPlayback() {
             >
               <option value="">{ts("-- Select --", "-- Yan --")}</option>
               <option value="orunmila">Òrúnmìlà</option>
-              <option value="ogun">Ògún</option>
+              <option value="ogun">Ògún ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="obatala">Ọbàtálá ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="sango">Ṣàngó</option>
               <option value="yemaya">Yemọja ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
@@ -245,7 +251,7 @@ export default function OrikiPlayback() {
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
                   Oríkì {selectedOriki.orisha}
-                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala') && (
+                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun') && (
                     <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                       ⭐ {ts("Authentic", "Òtítọ́")}
                     </Badge>
