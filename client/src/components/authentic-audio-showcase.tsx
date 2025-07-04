@@ -70,6 +70,15 @@ const authenticRecordings: AuthenticAudio[] = [
     descriptionYoruba: "Jagunjagun àti alágbède, ọ̀gá irin àti gbogbo èwe-àwon",
     audioUrl: "/static/audio/pronunciation/ogun_oriki_authentic.mp3",
     category: "War & Technology"
+  },
+  {
+    id: "ogun-extended",
+    orisha: "Ògún (Extended)",
+    duration: 129,
+    description: "Extended praise poetry - comprehensive warrior and craftsmanship oríkì",
+    descriptionYoruba: "Oríkì gígùn - àkójọpọ̀ jagunjagun àti iṣẹ́ ọnà ìyànjú",
+    audioUrl: "/static/audio/pronunciation/ogun_oriki_2_authentic.mp3",
+    category: "War & Technology"
   }
 ];
 
