@@ -79,6 +79,15 @@ const authenticRecordings: AuthenticAudio[] = [
     descriptionYoruba: "Oríkì gígùn - àkójọpọ̀ jagunjagun àti iṣẹ́ ọnà ìyànjú",
     audioUrl: "/static/audio/pronunciation/ogun_oriki_2_authentic.mp3",
     category: "War & Technology"
+  },
+  {
+    id: "sango",
+    orisha: "Ṣàngó",
+    duration: 35,
+    description: "Thunder king and former Ọ̀yọ́ ruler, master of fire and justice",
+    descriptionYoruba: "Ọba àrá àti àláàfin àtijọ́, ọ̀gá iná àti òdodo",
+    audioUrl: "/static/audio/pronunciation/sango_oriki_authentic.mp3",
+    category: "Thunder & Justice"
   }
 ];
 
