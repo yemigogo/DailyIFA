@@ -41,19 +41,19 @@ export default function Odu256Page() {
 
   // Fetch paginated Odu data
   const { data: oduData, isLoading } = useQuery<OduResponse>({
-    queryKey: ["/api/odus/complete", currentPage, 16],
+    queryKey: [`/api/odus/complete?page=${currentPage}&limit=16`],
     enabled: !searchQuery && selectedCategory === "all"
   });
 
   // Search Odu
   const { data: searchResults, isLoading: isSearching } = useQuery<{ results: OduData[]; count: number }>({
-    queryKey: ["/api/odus/search-complete", searchQuery],
+    queryKey: [`/api/odus/search-complete?q=${searchQuery}`],
     enabled: !!searchQuery
   });
 
   // Get Odu by category
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery<{ odus: OduData[]; count: number }>({
-    queryKey: ["/api/odus/category", selectedCategory],
+    queryKey: [`/api/odus/category/${selectedCategory}`],
     enabled: selectedCategory !== "all" && !searchQuery
   });
 
