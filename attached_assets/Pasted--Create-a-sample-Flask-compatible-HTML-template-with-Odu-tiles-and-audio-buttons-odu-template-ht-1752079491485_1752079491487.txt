@@ -1,0 +1,97 @@
+# Create a sample Flask-compatible HTML template with Odu tiles and audio buttons
+
+odu_template_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learning – Ifá Daily</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffdf7;
+      padding: 30px;
+      color: #2a1d0c;
+    }
+    h1 {
+      font-size: 26px;
+      border-bottom: 2px solid #e2c49c;
+      padding-bottom: 10px;
+    }
+    .odu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .odu-card {
+      background: #fefaf3;
+      border: 1px solid #d5b994;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .odu-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    audio {
+      margin-top: 10px;
+      width: 100%;
+    }
+    .glossary {
+      margin-top: 40px;
+    }
+    .glossary-term {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔮 Learn the Odu – Ifá Wisdom</h1>
+
+  <div class="odu-grid">
+    <div class="odu-card">
+      <div class="odu-name">Èjì Ogbè</div>
+      <div>“Strength, unity, light.”</div>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/odu/eji_ogbe.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="odu-card">
+      <div class="odu-name">Òyèkú Méjì</div>
+      <div>“Transformation, darkness, rebirth.”</div>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/odu/oyeku_meji.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="odu-card">
+      <div class="odu-name">Ìwòrì Méjì</div>
+      <div>“Patience, intuition, warning.”</div>
+      <audio controls>
+        <source src="{{ url_for('static', filename='audio/odu/iwori_meji.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+
+  <div class="glossary">
+    <h2>🧠 Key Terms Glossary</h2>
+    <div class="glossary-term"><strong>Olódùmarè:</strong> Supreme Creator in Yoruba cosmology.</div>
+    <div class="glossary-term"><strong>Orí:</strong> One’s spiritual head and destiny.</div>
+    <div class="glossary-term"><strong>Ọ̀pón Ifá:</strong> The divination tray used during Ifá readings.</div>
+  </div>
+</body>
+</html>
+"""
+
+odu_template_path = "/mnt/data/templates/learning.html"
+os.makedirs("/mnt/data/templates", exist_ok=True)
+with open(odu_template_path, "w", encoding="utf-8") as f:
+    f.write(odu_template_html)
+
+odu_template_path
