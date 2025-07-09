@@ -10,6 +10,7 @@ import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
 import opaIfaImage from '@assets/image_1752089221750.png';
+import ikinImage from '@assets/image_1752089487782.png';
 
 interface LearningModule {
   id: string;
@@ -134,9 +135,9 @@ const Learning: React.FC = () => {
     {
       name: "Ikin",
       nameYoruba: "Ikin",
-      description: "Sacred palm nuts used in Ifá divination",
-      descriptionYoruba: "Ẹsọ ọ̀pẹ mímọ́ tí a ń lò fún fífá",
-      image: "/static/images/ikin.svg"
+      description: "Sacred palm nuts from the Ọ̀pẹ tree, traditionally used in sets of 16 for the most formal Ifá divination ceremonies",
+      descriptionYoruba: "Ẹsọ ọ̀pẹ mímọ́ láti igi Ọ̀pẹ, tí a máa ń lò ní ọ̀nà mẹ́rìndínlógún fún àwọn àyẹ̀yẹ fífá Ifá tó ṣe pàtàkì jùlọ",
+      image: ikinImage
     },
     {
       name: "Ọpẹlẹ Chain",
