@@ -257,9 +257,9 @@ export default function Odu256Page() {
                 <CardHeader className="pb-3">
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-lg leading-tight">
-                      <InteractiveYorubaText 
-                        text={currentLanguage === "english" ? odu.name : odu.nameYoruba} 
-                      />
+                      <InteractiveYorubaText>
+                        {currentLanguage === "english" ? odu.name : odu.nameYoruba}
+                      </InteractiveYorubaText>
                     </CardTitle>
                     <div className="flex gap-1">
                       <Badge 
@@ -345,7 +345,9 @@ export default function Odu256Page() {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-2xl mb-2">
-                      <InteractiveYorubaText text={currentLanguage === "english" ? selectedOdu.name : selectedOdu.nameYoruba} />
+                      <InteractiveYorubaText>
+                        {currentLanguage === "english" ? selectedOdu.name : selectedOdu.nameYoruba}
+                      </InteractiveYorubaText>
                     </CardTitle>
                     <CardDescription className="text-lg">
                       {selectedOdu.name}
