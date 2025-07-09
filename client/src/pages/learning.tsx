@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
+import oponIfaImage from '@assets/image_1752087156776.png';
 
 interface LearningModule {
   id: string;
@@ -153,9 +154,9 @@ const Learning: React.FC = () => {
     {
       name: "Ọ̀pón Ifá",
       nameYoruba: "Ọ̀pón Ifá",
-      description: "Divination tray for casting Ifá",
-      descriptionYoruba: "Àwo fífá fún dída Ifá",
-      image: "/static/images/opon_ifa.svg"
+      description: "Sacred wooden divination tray with geometric patterns and the face of Ẹṣù, used for casting Ikin palm nuts during Ifá consultation",
+      descriptionYoruba: "Àwo igi mímọ́ pẹ̀lú àwọn àpẹẹrẹ àti ojú Ẹṣù, tí a ń lò fún dída ikin nígbà ìfọ̀rọ̀wérọ̀ Ifá",
+      image: oponIfaImage
     }
   ];
 
