@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Play, Pause, Volume2, Crown, Zap, Waves, Wind, Hammer, Sun, Heart, TreePine, Trophy } from 'lucide-react';
+import { Play, Pause, Volume2, Crown, Zap, Waves, Wind, Hammer, Sun, Heart, TreePine, Trophy, Mountain, Leaf, Fish, Moon, Shield } from 'lucide-react';
 
 interface OrishaCharacter {
   id: string;
@@ -231,6 +231,188 @@ const OrishaCharacterProfiles: React.FC = () => {
       },
       animationStyle: 'pure-light',
       icon: <Sun className="w-6 h-6 text-white" />
+    },
+    {
+      id: 'esu',
+      name: 'Èṣù Ẹlẹ́gbára',
+      nameYoruba: 'Èṣù Ẹlẹ́gbára',
+      title: 'Divine Messenger',
+      titleYoruba: 'Ìránṣẹ́ Òrìṣà',
+      domain: 'Communication & Crossroads',
+      domainYoruba: 'Ìbánisọ̀rọ̀ àti Orítamẹta',
+      colors: ['black', 'red'],
+      symbols: ['crossroads', 'keys', 'cowrie shells'],
+      personality: 'Trickster messenger who opens and closes pathways, facilitating communication with divine',
+      personalityYoruba: 'Ẹlẹ́tàn ìránṣẹ́ tí ó ń ṣí àti tì àwọn ọ̀nà, tí ó ń mú ìbánisọ̀rọ̀ pẹ̀lú àwọn òrìṣà',
+      powers: ['Pathway Opening', 'Divine Communication', 'Luck Transformation', 'Barrier Removal'],
+      powersYoruba: ['Ṣíṣí Ọ̀nà', 'Ìbánisọ̀rọ̀ Òrìṣà', 'Yíyí Orí Padà', 'Ìmú Ìdínà Kúrò'],
+      audioUrl: '/static/audio/pronunciation/esu.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 85,
+        wisdom: 95,
+        compassion: 70,
+        power: 90,
+        mystery: 100
+      },
+      animationStyle: 'crossroads-spin',
+      icon: <Shield className="w-6 h-6 text-red-600" />
+    },
+    {
+      id: 'osanyin',
+      name: 'Ọ̀sányìn',
+      nameYoruba: 'Ọ̀sányìn',
+      title: 'Master of Herbs',
+      titleYoruba: 'Ọlọ́run Ewé',
+      domain: 'Medicine & Plants',
+      domainYoruba: 'Oògùn àti Ewé',
+      colors: ['green', 'brown'],
+      symbols: ['herbs', 'mortar', 'healing leaves'],
+      personality: 'Wise herbalist with knowledge of all plants and their healing properties for body and spirit',
+      personalityYoruba: 'Ọlọ́gbọ́n onísègùn pẹ̀lú ìmọ̀ gbogbo ewé àti agbára wọn fún ìwòsàn ara àti ẹ̀mí',
+      powers: ['Herbal Medicine', 'Plant Communication', 'Disease Healing', 'Nature Balance'],
+      powersYoruba: ['Oògùn Ewé', 'Ìbánisọ̀rọ̀ Ewé', 'Ìwòsàn Àrùn', 'Ìdọ̀tí Àdáyéba'],
+      audioUrl: '/static/audio/pronunciation/osanyin.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 75,
+        wisdom: 100,
+        compassion: 90,
+        power: 85,
+        mystery: 95
+      },
+      animationStyle: 'leaf-growth',
+      icon: <Leaf className="w-6 h-6 text-green-600" />
+    },
+    {
+      id: 'olokun',
+      name: 'Olókun',
+      nameYoruba: 'Olókun',
+      title: 'Lord of the Ocean',
+      titleYoruba: 'Ọlọ́run Òkun',
+      domain: 'Ocean & Wealth',
+      domainYoruba: 'Òkun àti Ọrọ̀',
+      colors: ['blue', 'white', 'silver'],
+      symbols: ['ocean waves', 'serpent', 'cowrie shells'],
+      personality: 'Ancient ocean deity with vast wisdom and control over wealth from the depths of the sea',
+      personalityYoruba: 'Òrìṣà òkun àtijọ́ pẹ̀lú ọgbọ́n nípòn àti ìṣàkóso ọrọ̀ láti ìsàlẹ̀ òkun',
+      powers: ['Ocean Control', 'Wealth Manifestation', 'Deep Wisdom', 'Water Purification'],
+      powersYoruba: ['Ìṣàkóso Òkun', 'Ìfárawé Ọrọ̀', 'Ọgbọ́n Jíjìn', 'Ìwẹ̀nù Omi'],
+      audioUrl: '/static/audio/pronunciation/olokun.mp3',
+      hasAuthentic: true,
+      characterTraits: {
+        strength: 90,
+        wisdom: 100,
+        compassion: 85,
+        power: 95,
+        mystery: 100
+      },
+      animationStyle: 'ocean-depth',
+      icon: <Fish className="w-6 h-6 text-blue-700" />
+    },
+    {
+      id: 'orisa-oko',
+      name: 'Òrìṣà Òkò',
+      nameYoruba: 'Òrìṣà Òkò',
+      title: 'God of Agriculture',
+      titleYoruba: 'Òrìṣà Ọgbìn',
+      domain: 'Farming & Harvest',
+      domainYoruba: 'Ọgbìn àti Ìkórè',
+      colors: ['brown', 'green', 'white'],
+      symbols: ['plow', 'yam', 'fertile soil'],
+      personality: 'Patient farmer deity who ensures bountiful harvests and teaches sustainable agriculture',
+      personalityYoruba: 'Òrìṣà àgbẹ̀ onísùúrù tí ó ń rí dájú ìkórè púpọ̀ àti kíkọ́ ọgbìn tó dúró',
+      powers: ['Crop Growth', 'Soil Fertility', 'Harvest Blessing', 'Agricultural Wisdom'],
+      powersYoruba: ['Ìdàgbà Irúgbìn', 'Ọlọ́rọ̀ Ilẹ̀', 'Ìbùkún Ìkórè', 'Ọgbọ́n Ọgbìn'],
+      audioUrl: '/static/audio/pronunciation/orisa-oko.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 80,
+        wisdom: 85,
+        compassion: 95,
+        power: 80,
+        mystery: 70
+      },
+      animationStyle: 'earth-growth',
+      icon: <Mountain className="w-6 h-6 text-amber-700" />
+    },
+    {
+      id: 'oshosi',
+      name: 'Ọ̀ṣọ́ọ̀sì',
+      nameYoruba: 'Ọ̀ṣọ́ọ̀sì',
+      title: 'Divine Hunter',
+      titleYoruba: 'Ọdẹ Òrìṣà',
+      domain: 'Hunting & Justice',
+      domainYoruba: 'Ọdẹ àti Òdodo',
+      colors: ['blue', 'yellow', 'green'],
+      symbols: ['bow and arrow', 'forest animals', 'tracking'],
+      personality: 'Skilled hunter and tracker who brings justice and provides sustenance from the forest',
+      personalityYoruba: 'Ọdẹ ọlọ́gbọ́n àti atọ̀nà tí ó mú òdodo àti tí ó ń pèsè oúnjẹ láti igbó',
+      powers: ['Precise Targeting', 'Forest Navigation', 'Justice Delivery', 'Wildlife Protection'],
+      powersYoruba: ['Ifojúsùn Déédéé', 'Ìrìn Igbó', 'Fífún Òdodo', 'Àbò Ẹranko Igbó'],
+      audioUrl: '/static/audio/pronunciation/oshosi.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 90,
+        wisdom: 80,
+        compassion: 85,
+        power: 85,
+        mystery: 75
+      },
+      animationStyle: 'arrow-precision',
+      icon: <TreePine className="w-6 h-6 text-green-700" />
+    },
+    {
+      id: 'aye-lala',
+      name: 'Ayé-là-là',
+      nameYoruba: 'Ayé-là-là',
+      title: 'Earth Mother',
+      titleYoruba: 'Ìyá Ayé',
+      domain: 'Earth & Stability',
+      domainYoruba: 'Ayé àti Ìdúró',
+      colors: ['brown', 'green', 'black'],
+      symbols: ['earth', 'mountains', 'clay'],
+      personality: 'Grounding earth mother who provides stability, foundation, and connection to ancestral land',
+      personalityYoruba: 'Ìyá ayé ìfọwọ́sowọ́pọ̀ tí ó ń pèsè ìdúró, ìpìlẹ̀ àti ìbásọ̀pọ̀ sí ilẹ̀ baba',
+      powers: ['Earth Stabilization', 'Foundation Building', 'Ancestral Connection', 'Grounding Energy'],
+      powersYoruba: ['Ìmúlẹ̀dúró Ayé', 'Ìkọ́lé Ìpìlẹ̀', 'Ìbásọ̀pọ̀ Eégún', 'Agbára Ìfọwọ́sowọ́pọ̀'],
+      audioUrl: '/static/audio/pronunciation/aye-lala.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 85,
+        wisdom: 90,
+        compassion: 100,
+        power: 80,
+        mystery: 85
+      },
+      animationStyle: 'earth-pulse',
+      icon: <Mountain className="w-6 h-6 text-amber-800" />
+    },
+    {
+      id: 'oba',
+      name: 'Ọba',
+      nameYoruba: 'Ọba',
+      title: 'River Guardian',
+      titleYoruba: 'Olùṣọ́ Odò',
+      domain: 'River & Marriage',
+      domainYoruba: 'Odò àti Ìgbéyàwó',
+      colors: ['yellow', 'orange', 'brown'],
+      symbols: ['river current', 'wedding crown', 'flowing water'],
+      personality: 'Devoted river goddess who embodies loyalty, sacrifice, and the transformative power of love',
+      personalityYoruba: 'Òrìṣà odò olóore tí ó dúró fún òdodo, ìrúbọ àti agbára ìyípadà ìfẹ́',
+      powers: ['River Flow Control', 'Marriage Blessing', 'Loyalty Strengthening', 'Emotional Healing'],
+      powersYoruba: ['Ìṣàkóso Ṣiṣan Odò', 'Ìbùkún Ìgbéyàwó', 'Ìmúlẹ̀ Òdodo', 'Ìwòsàn Ẹ̀dùn'],
+      audioUrl: '/static/audio/pronunciation/oba.mp3',
+      hasAuthentic: false,
+      characterTraits: {
+        strength: 80,
+        wisdom: 85,
+        compassion: 100,
+        power: 75,
+        mystery: 80
+      },
+      animationStyle: 'river-devotion',
+      icon: <Moon className="w-6 h-6 text-yellow-600" />
     }
   ];
 
@@ -254,6 +436,13 @@ const OrishaCharacterProfiles: React.FC = () => {
       case 'forge-fire': return 'forge-fire';
       case 'honey-flow': return 'honey-flow';
       case 'pure-light': return 'pure-light';
+      case 'crossroads-spin': return 'crossroads-spin';
+      case 'leaf-growth': return 'leaf-growth';
+      case 'ocean-depth': return 'ocean-depth';
+      case 'earth-growth': return 'earth-growth';
+      case 'arrow-precision': return 'arrow-precision';
+      case 'earth-pulse': return 'earth-pulse';
+      case 'river-devotion': return 'river-devotion';
       default: return 'gentle-glow';
     }
   };
@@ -277,7 +466,7 @@ const OrishaCharacterProfiles: React.FC = () => {
       </div>
 
       {/* Character Selection */}
-      <div className="grid grid-cols-3 md:grid-cols-7 gap-2 mb-8">
+      <div className="grid grid-cols-4 md:grid-cols-7 lg:grid-cols-13 gap-2 mb-8">
         {orishaCharacters.map((orisha) => (
           <button
             key={orisha.id}
