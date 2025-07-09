@@ -35,7 +35,7 @@ interface OduResponse {
 export default function Odu256Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "major" | "minor">("all");
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "major" | "minor" | "all-256">("all");
   const [selectedOdu, setSelectedOdu] = useState<OduData | null>(null);
   const [currentLanguage, setCurrentLanguage] = useState<"english" | "yoruba">("english");
 
@@ -54,7 +54,13 @@ export default function Odu256Page() {
   // Get Odu by category
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery<{ odus: OduData[]; count: number }>({
     queryKey: [`/api/odus/category/${selectedCategory}`],
-    enabled: selectedCategory !== "all" && !searchQuery
+    enabled: selectedCategory !== "all" && selectedCategory !== "all-256" && !searchQuery
+  });
+
+  // Get all 256 Odu at once
+  const { data: all256Data, isLoading: isAll256Loading } = useQuery<{ odus: OduData[]; totalOdus: number; majorOdus: number; minorOdus: number }>({
+    queryKey: ["/api/odus/all-256"],
+    enabled: selectedCategory === "all-256" && !searchQuery
   });
 
   // Random Odu for daily inspiration
@@ -64,6 +70,8 @@ export default function Odu256Page() {
 
   const displayedOdus = searchQuery 
     ? searchResults?.results || []
+    : selectedCategory === "all-256"
+    ? all256Data?.odus || []
     : selectedCategory !== "all" 
     ? categoryData?.odus || []
     : oduData?.odus || [];
@@ -171,7 +179,8 @@ export default function Odu256Page() {
                 <Filter className="w-4 h-4 text-gray-500" />
                 <Tabs value={selectedCategory} onValueChange={(value) => setSelectedCategory(value as any)}>
                   <TabsList className="bg-amber-100">
-                    <TabsTrigger value="all">All 256</TabsTrigger>
+                    <TabsTrigger value="all">Paginated</TabsTrigger>
+                    <TabsTrigger value="all-256">All 256</TabsTrigger>
                     <TabsTrigger value="major">Major (16)</TabsTrigger>
                     <TabsTrigger value="minor">Minor (240)</TabsTrigger>
                   </TabsList>
@@ -202,7 +211,12 @@ export default function Odu256Page() {
               Found {searchResults.count} Odu matching "{searchQuery}"
             </p>
           )}
-          {selectedCategory !== "all" && categoryData && (
+          {selectedCategory === "all-256" && all256Data && (
+            <p className="text-gray-600 font-semibold">
+              Viewing all {all256Data.totalOdus} Odu • {all256Data.majorOdus} Major + {all256Data.minorOdus} Minor
+            </p>
+          )}
+          {selectedCategory !== "all" && selectedCategory !== "all-256" && categoryData && (
             <p className="text-gray-600">
               Showing {categoryData.count} {selectedCategory} Odu
             </p>
@@ -215,7 +229,7 @@ export default function Odu256Page() {
         </div>
 
         {/* Odu Grid */}
-        {isLoading || isSearching || isCategoryLoading ? (
+        {isLoading || isSearching || isCategoryLoading || isAll256Loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {Array.from({ length: 16 }).map((_, i) => (
               <Card key={i} className="animate-pulse">
