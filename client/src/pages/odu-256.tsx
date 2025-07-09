@@ -345,7 +345,7 @@ export default function Odu256Page() {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-2xl mb-2">
-                      <InteractiveYorubaText text={selectedOdu.nameYoruba} />
+                      <InteractiveYorubaText text={currentLanguage === "english" ? selectedOdu.name : selectedOdu.nameYoruba} />
                     </CardTitle>
                     <CardDescription className="text-lg">
                       {selectedOdu.name}
