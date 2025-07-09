@@ -9,6 +9,7 @@ import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, Che
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
+import opaIfaImage from '@assets/image_1752089221750.png';
 
 interface LearningModule {
   id: string;
@@ -147,9 +148,9 @@ const Learning: React.FC = () => {
     {
       name: "Ọ̀pá Ifá",
       nameYoruba: "Ọ̀pá Ifá",
-      description: "Sacred staff of the Babaláwo",
-      descriptionYoruba: "Ọ̀pá mímọ́ Babaláwo",
-      image: "/static/images/opa_ifa.svg"
+      description: "Sacred carved staff of the Babaláwo with twisted handle and spiritual head, symbol of authority in Ifá divination",
+      descriptionYoruba: "Ọ̀pá mímọ́ Babaláwo pẹ̀lú ìmú tí a fín àti orí ẹ̀mí, àmì àṣẹ nínú fífá Ifá",
+      image: opaIfaImage
     },
     {
       name: "Ọ̀pón Ifá",
