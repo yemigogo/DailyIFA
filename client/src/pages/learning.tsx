@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles } from 'lucide-react';
+import { Link } from 'wouter';
 
 interface LearningModule {
   id: string;
@@ -244,6 +245,45 @@ const Learning: React.FC = () => {
             {ts("Deepen your understanding of Ifá wisdom and Yoruba culture", "Jẹ́ kí ó jinlẹ̀ nínú òye Ifá àti àṣà Yorùbá")}
           </p>
         </div>
+
+        {/* Featured: Complete 256 Odu System */}
+        <Card className="mb-8 bg-gradient-to-r from-amber-600 to-orange-600 border-none text-white">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <Sparkles className="w-6 h-6" />
+                  <h2 className="text-2xl font-bold">
+                    {ts("Complete 256 Odu Ifá System", "Àwọn Odù Ifá 256 Pípé")}
+                  </h2>
+                </div>
+                <p className="text-amber-100 mb-4 max-w-2xl">
+                  {ts(
+                    "Explore the complete corpus of Ifá wisdom with all 256 Odu combinations. Dynamic Python-generated system with authentic Yoruba names, meanings, and spiritual guidance for the 16 major Odu Méjì and 240 minor combinations.",
+                    "Ṣàwárí gbogbo ìmọ̀ Ifá pẹ̀lú àwọn àkópọ̀ Odù 256. Ètò Python tí ó ń ṣẹ̀dá pẹ̀lú àwọn orúkọ Yorùbá òtítọ́, ìtumọ̀, àti ìtọ́nisọ́nà ẹ̀mí fún 16 Odù Méjì àti àkópọ̀ 240."
+                  )}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <Badge className="bg-white/20 text-white border-white/30">16 Major Odu</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">240 Minor Combinations</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">Authentic Pronunciation</Badge>
+                  <Badge className="bg-white/20 text-white border-white/30">Bilingual Support</Badge>
+                </div>
+              </div>
+              <div className="ml-6">
+                <Link href="/odu-256">
+                  <Button 
+                    className="bg-white text-amber-600 hover:bg-amber-50 font-semibold px-6 py-3 text-lg"
+                    size="lg"
+                  >
+                    {ts("Explore 256 Odu", "Ṣàwárí Odù 256")}
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
           <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">

@@ -6,6 +6,7 @@ import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
+import { generateAll256Odu, getOduPaginated, searchOdu, getOduByCategory, getRandomOdu } from "./odu-generator";
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -694,6 +695,151 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     } catch (error) {
       console.error("Error initializing learning modules:", error);
       res.status(500).json({ message: "Failed to initialize learning modules" });
+    }
+  });
+
+  // ===== 256 ODU COMPLETE SYSTEM API ENDPOINTS =====
+  
+  // Get all 256 Odu with pagination
+  app.get("/api/odus/complete", async (req, res) => {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 16;
+      
+      const result = getOduPaginated(page, limit);
+      res.json(result);
+    } catch (error) {
+      console.error("Error getting complete Odu system:", error);
+      res.status(500).json({ message: "Failed to get complete Odu system" });
+    }
+  });
+
+  // Get random Odu for daily reading
+  app.get("/api/odus/random", async (req, res) => {
+    try {
+      const randomOdu = getRandomOdu();
+      res.json(randomOdu);
+    } catch (error) {
+      console.error("Error getting random Odu:", error);
+      res.status(500).json({ message: "Failed to get random Odu" });
+    }
+  });
+
+  // Search Odu by name, meaning, or spiritual focus
+  app.get("/api/odus/search-complete", async (req, res) => {
+    try {
+      const query = req.query.q as string;
+      if (!query) {
+        return res.status(400).json({ message: "Search query is required" });
+      }
+      
+      const results = searchOdu(query);
+      res.json({
+        query,
+        results,
+        count: results.length
+      });
+    } catch (error) {
+      console.error("Error searching complete Odu system:", error);
+      res.status(500).json({ message: "Failed to search Odu system" });
+    }
+  });
+
+  // Get Odu by category (major or minor)
+  app.get("/api/odus/category/:category", async (req, res) => {
+    try {
+      const category = req.params.category as 'major' | 'minor';
+      if (category !== 'major' && category !== 'minor') {
+        return res.status(400).json({ message: "Category must be 'major' or 'minor'" });
+      }
+      
+      const odus = getOduByCategory(category);
+      res.json({
+        category,
+        odus,
+        count: odus.length
+      });
+    } catch (error) {
+      console.error("Error getting Odu by category:", error);
+      res.status(500).json({ message: "Failed to get Odu by category" });
+    }
+  });
+
+  // Get all 256 Odu as a complete list (for advanced users)
+  app.get("/api/odus/all-256", async (req, res) => {
+    try {
+      const all256Odu = generateAll256Odu();
+      res.json({
+        totalOdus: all256Odu.length,
+        majorOdus: all256Odu.filter(odu => odu.category === 'major').length,
+        minorOdus: all256Odu.filter(odu => odu.category === 'minor').length,
+        odus: all256Odu
+      });
+    } catch (error) {
+      console.error("Error getting all 256 Odu:", error);
+      res.status(500).json({ message: "Failed to get complete 256 Odu system" });
+    }
+  });
+
+  // Get Odu by specific ID
+  app.get("/api/odus/complete/:id", async (req, res) => {
+    try {
+      const oduId = parseInt(req.params.id);
+      if (isNaN(oduId) || oduId < 1 || oduId > 256) {
+        return res.status(400).json({ message: "Odu ID must be between 1-256" });
+      }
+      
+      const all256Odu = generateAll256Odu();
+      const odu = all256Odu.find(o => o.id === oduId);
+      
+      if (!odu) {
+        return res.status(404).json({ message: "Odu not found" });
+      }
+      
+      res.json(odu);
+    } catch (error) {
+      console.error("Error getting Odu by ID:", error);
+      res.status(500).json({ message: "Failed to get Odu" });
+    }
+  });
+
+  // Get spiritual guidance based on multiple Odu
+  app.post("/api/odus/guidance", async (req, res) => {
+    try {
+      const { oduIds, question } = req.body;
+      
+      if (!oduIds || !Array.isArray(oduIds) || oduIds.length === 0) {
+        return res.status(400).json({ message: "At least one Odu ID is required" });
+      }
+      
+      const all256Odu = generateAll256Odu();
+      const selectedOdus = oduIds
+        .map((id: number) => all256Odu.find(odu => odu.id === id))
+        .filter((odu: any) => odu !== undefined);
+      
+      if (selectedOdus.length === 0) {
+        return res.status(404).json({ message: "No valid Odus found" });
+      }
+      
+      // Combine guidance from multiple Odu
+      const combinedGuidance = {
+        question: question || "General spiritual guidance",
+        selectedOdus: selectedOdus.map(odu => ({
+          name: odu.name,
+          nameYoruba: odu.nameYoruba,
+          guidance: odu.guidance,
+          guidanceYoruba: odu.guidanceYoruba
+        })),
+        overallGuidance: selectedOdus.map(odu => odu.guidance).join(' '),
+        overallGuidanceYoruba: selectedOdus.map(odu => odu.guidanceYoruba).join(' '),
+        spiritualFoci: [...new Set(selectedOdus.flatMap(odu => odu.spiritualFocus))],
+        combinedProverb: selectedOdus.map(odu => odu.proverb).join(' • ')
+      };
+      
+      res.json(combinedGuidance);
+    } catch (error) {
+      console.error("Error generating combined guidance:", error);
+      res.status(500).json({ message: "Failed to generate spiritual guidance" });
     }
   });
 

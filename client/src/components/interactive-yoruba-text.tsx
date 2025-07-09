@@ -6,7 +6,7 @@ interface InteractiveYorubaTextProps {
   className?: string;
 }
 
-export default function InteractiveYorubaText({ children, className }: InteractiveYorubaTextProps) {
+function InteractiveYorubaText({ children, className }: InteractiveYorubaTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { ts } = useLanguage();
 
@@ -270,3 +270,7 @@ export function useYorubaWordHighlighting() {
 
   return { highlightYorubaWords };
 }
+
+// Export both default and named exports
+export default InteractiveYorubaText;
+export { InteractiveYorubaText };
