@@ -1,0 +1,90 @@
+# Generate a basic Replit-ready markdown template for the Learning page
+learning_md = """
+# 📚 Ifá Daily – Learning Section Guide
+
+This file outlines suggested content structure for your **Learning Page** on the Ifá Daily App (Replit version). Designed to teach core concepts of Yorùbá spirituality, language, and Ifá.
+
+---
+
+## 🧭 Introduction to Ifá
+- What is Ifá?
+- History and origins
+- Core spiritual principles
+- Role in daily life
+
+---
+
+## 🕯️ Yorùbá Cosmology
+- **Olódùmarè** – Supreme being
+- **Orí** – Inner head / destiny
+- **Ẹlẹ́dà** – Creator / guardian spirit
+- **Egúngún** – Ancestral spirits
+
+---
+
+## 🔮 The 256 Odu Ifá
+Each Odu should include:
+- Odu name (e.g. **Ìrẹtẹ̀ Méjì**)
+- Yorùbá script
+- Audio pronunciation (MP3)
+- Literal and spiritual meaning
+- Key proverbs and interpretations
+
+---
+
+## 🗣️ Yoruba Language Basics
+- Yoruba alphabet + tone system
+- Flashcards for:
+  - Greetings
+  - Orisha names
+  - Family terms
+- Audio buttons to hear proper pronunciation
+
+---
+
+## 🧰 Tools of Divination
+- Images + descriptions of:
+  - Ikin (palm nuts)
+  - Ọpẹlẹ̀ chain
+  - Ọ̀pá Ifá (staff)
+  - Ọ̀pón Ifá (divination tray)
+- Optional: video of divination in action
+
+---
+
+## 📖 Sacred Proverbs (Ọ̀rọ̀ Àgbà)
+- Upload one wisdom verse per week
+- Show:
+  - Original Yoruba verse
+  - Literal and interpretive English
+  - Audio chant (if available)
+
+---
+
+## 👤 Initiation & Lineage (For Educational Use Only)
+- Roles of Babaláwo, Ìyánífẹ́, Ìyálọ́rìṣà
+- What is initiation? Who can receive it?
+- Sacred items and responsibilities
+
+---
+
+## 🧠 Glossary
+Create a glossary file or page:
+- A-Z list of key terms
+- Searchable if possible
+- Link audio where needed
+
+---
+
+> To make the Learning page interactive: embed audio buttons, scrollable tiles for Odu, and expandable glossary terms. Style consistently with the Oriki and Audio sections.
+
+---
+
+*Prepared for spiritual enrichment and cultural preservation.*
+"""
+
+learning_path = "/mnt/data/IFA_Learning_Page_Template.md"
+with open(learning_path, "w", encoding="utf-8") as f:
+    f.write(learning_md)
+
+learning_path

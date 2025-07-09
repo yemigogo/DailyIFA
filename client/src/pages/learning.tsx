@@ -1,227 +1,472 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Crown, 
-  BookOpen, 
-  Award, 
-  Zap, 
-  Volume2, 
-  CheckCircle,
-  PlayCircle,
-  GraduationCap,
-  Target,
-  Sparkles
-} from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import OrishaLearningPath from "@/components/orisha-learning-path";
+import { Input } from "@/components/ui/input";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play } from 'lucide-react';
 
-export default function Learning() {
-  const { language, t: ts } = useLanguage();
-  const [userId] = useState("user-demo"); // Demo user ID
+interface LearningModule {
+  id: string;
+  title: string;
+  titleYoruba: string;
+  description: string;
+  descriptionYoruba: string;
+  icon: React.ReactNode;
+  content: any[];
+}
+
+interface OduData {
+  id: string;
+  name: string;
+  meaning: string;
+  proverb: string;
+  audioUrl?: string;
+  category: string;
+}
+
+interface GlossaryTerm {
+  term: string;
+  termYoruba: string;
+  definition: string;
+  definitionYoruba: string;
+  audioUrl?: string;
+}
+
+const Learning: React.FC = () => {
+  const { language, ts } = useLanguage();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedModule, setSelectedModule] = useState<string>('introduction');
+  const [playingAudio, setPlayingAudio] = useState<string | null>(null);
+
+  const playAudio = (audioUrl: string, id: string) => {
+    setPlayingAudio(id);
+    const audio = new Audio(audioUrl);
+    audio.play();
+    audio.onended = () => setPlayingAudio(null);
+  };
+
+  const majorOdu: OduData[] = [
+    {
+      id: "ejiogbe",
+      name: "Èjì Ogbè",
+      meaning: "The light of consciousness, new beginnings",
+      proverb: "Èjì Ogbè ní: Ọ̀run rere ni mo fẹ́ fún ẹ. (Good fortune I wish for you)",
+      category: "Principal Odu"
+    },
+    {
+      id: "oyekumeji",
+      name: "Òyẹ̀kú Méjì",
+      meaning: "Death and transformation, endings that lead to new life",
+      proverb: "Òyẹ̀kú ní: Ikú kò pa tálákà. (Death does not kill the poor)",
+      category: "Principal Odu"
+    },
+    {
+      id: "iwori",
+      name: "Ìwòrì Méjì",
+      meaning: "Patience and character, the virtue of waiting",
+      proverb: "Ìwòrì ní: Sùúrù ni baba ìwà. (Patience is the father of character)",
+      category: "Principal Odu"
+    },
+    {
+      id: "odi",
+      name: "Òdí Méjì",
+      meaning: "Obstacles and challenges, paths that seem blocked",
+      proverb: "Òdí ní: Ẹni tí ó gbọ́n a rí ọ̀nà. (The wise one will find a way)",
+      category: "Principal Odu"
+    }
+  ];
+
+  const yorubaBasics = [
+    {
+      category: "Greetings",
+      phrases: [
+        { yoruba: "Ẹ kú àárọ̀", english: "Good morning", audio: "/static/audio/pronunciation/eku_aaro.mp3" },
+        { yoruba: "Ẹ kú ọ̀sán", english: "Good afternoon", audio: "/static/audio/pronunciation/eku_osan.mp3" },
+        { yoruba: "Ẹ kú alẹ́", english: "Good evening", audio: "/static/audio/pronunciation/eku_ale.mp3" },
+        { yoruba: "Báwo ni?", english: "How are you?", audio: "/static/audio/pronunciation/bawo_ni.mp3" }
+      ]
+    },
+    {
+      category: "Orisha Names",
+      phrases: [
+        { yoruba: "Òrúnmìlà", english: "Oracle of Ifá", audio: "/static/audio/pronunciation/orunmila_oriki_authentic.mp3" },
+        { yoruba: "Ṣàngó", english: "Thunder deity", audio: "/static/audio/pronunciation/sango_oriki_authentic.mp3" },
+        { yoruba: "Ògún", english: "Iron deity", audio: "/static/audio/pronunciation/ogun_oriki_authentic.mp3" },
+        { yoruba: "Ọbàtálá", english: "Creator deity", audio: "/static/audio/pronunciation/obatala.mp3" }
+      ]
+    }
+  ];
+
+  const glossaryTerms: GlossaryTerm[] = [
+    {
+      term: "Àṣẹ",
+      termYoruba: "Àṣẹ",
+      definition: "Divine force, spiritual power that makes things happen",
+      definitionYoruba: "Àgbára òrìṣà, agbára ẹ̀mí tí ó mú nǹkan ṣẹ"
+    },
+    {
+      term: "Orí",
+      termYoruba: "Orí",
+      definition: "Personal destiny, inner head, guardian spirit",
+      definitionYoruba: "Ìpínlẹ̀ ẹni kọ̀ọ̀kan, orí inú, ẹ̀mí asọ́"
+    },
+    {
+      term: "Ẹbọ",
+      termYoruba: "Ẹbọ",
+      definition: "Ritual offering, sacrifice to the Orisha",
+      definitionYoruba: "Ẹbọ, ìrúbọ sí àwọn Òrìṣà"
+    },
+    {
+      term: "Babaláwo",
+      termYoruba: "Babaláwo",
+      definition: "Ifá priest, father of mysteries",
+      definitionYoruba: "Àlùfáà Ifá, baba àwọn àwọn ohun ìjìnlẹ̀"
+    }
+  ];
+
+  const divinationTools = [
+    {
+      name: "Ikin",
+      nameYoruba: "Ikin",
+      description: "Sacred palm nuts used in Ifá divination",
+      descriptionYoruba: "Ẹsọ ọ̀pẹ mímọ́ tí a ń lò fún fífá",
+      image: "/static/images/ikin.svg"
+    },
+    {
+      name: "Ọpẹlẹ Chain",
+      nameYoruba: "Ọpẹlẹ",
+      description: "Divination chain with eight half-shells",
+      descriptionYoruba: "Ẹ̀wọ̀n fífá pẹ̀lú ìgbín mẹ́jọ",
+      image: "/static/images/opele.svg"
+    },
+    {
+      name: "Ọ̀pá Ifá",
+      nameYoruba: "Ọ̀pá Ifá",
+      description: "Sacred staff of the Babaláwo",
+      descriptionYoruba: "Ọ̀pá mímọ́ Babaláwo",
+      image: "/static/images/opa_ifa.svg"
+    },
+    {
+      name: "Ọ̀pón Ifá",
+      nameYoruba: "Ọ̀pón Ifá",
+      description: "Divination tray for casting Ifá",
+      descriptionYoruba: "Àwo fífá fún dída Ifá",
+      image: "/static/images/opon_ifa.svg"
+    }
+  ];
+
+  const learningModules: LearningModule[] = [
+    {
+      id: "introduction",
+      title: "Introduction to Ifá",
+      titleYoruba: "Ìfàhàn sí Ifá",
+      description: "Core spiritual principles and daily practice",
+      descriptionYoruba: "Àwọn ìlànà ẹ̀mí àti ìṣe ojoojúmọ́",
+      icon: <BookOpen className="w-5 h-5" />,
+      content: [
+        {
+          title: "What is Ifá?",
+          titleYoruba: "Kí ni Ifá?",
+          text: "Ifá is an ancient Yoruba system of divination and spiritual guidance that connects practitioners with divine wisdom through the Oracle of Òrúnmìlà.",
+          textYoruba: "Ifá jẹ́ ẹ̀tọ́ àtijọ́ Yorùbá fún fífá àti ìtọ́nisọ́nà ẹ̀mí tí ó so àwọn oníṣe pọ̀ mọ́ ọgbọ́n òrìṣà nípasẹ̀ Òrúnmìlà."
+        }
+      ]
+    },
+    {
+      id: "cosmology",
+      title: "Yorùbá Cosmology",
+      titleYoruba: "Ìmọ̀ Nípa Ayé Yorùbá",
+      description: "Understanding the spiritual universe",
+      descriptionYoruba: "Òye àgbáyé ẹ̀mí",
+      icon: <Globe className="w-5 h-5" />,
+      content: [
+        {
+          title: "Olódùmarè",
+          titleYoruba: "Olódùmarè",
+          text: "The Supreme Being, source of all existence and divine authority",
+          textYoruba: "Ọlọ́run Gíga, orísun gbogbo ohun alààyè àti àṣẹ òrìṣà"
+        }
+      ]
+    },
+    {
+      id: "odu",
+      title: "The 256 Odu Ifá",
+      titleYoruba: "Àwọn Odù Ifá 256",
+      description: "Sacred verses and their meanings",
+      descriptionYoruba: "Àwọn ọ̀rọ̀ mímọ́ àti ìtumọ̀ wọn",
+      icon: <Scroll className="w-5 h-5" />,
+      content: majorOdu
+    },
+    {
+      id: "language",
+      title: "Yoruba Language Basics",
+      titleYoruba: "Ìpilẹ̀ Èdè Yorùbá",
+      description: "Essential phrases and pronunciation",
+      descriptionYoruba: "Àwọn ọ̀rọ̀ pàtàkì àti bí a ṣe máa sọ wọ́n",
+      icon: <Volume2 className="w-5 h-5" />,
+      content: yorubaBasics
+    },
+    {
+      id: "tools",
+      title: "Tools of Divination",
+      titleYoruba: "Àwọn Ohun Èlò Fífá",
+      description: "Sacred instruments and their uses",
+      descriptionYoruba: "Àwọn ohun èlò mímọ́ àti lílò wọn",
+      icon: <Star className="w-5 h-5" />,
+      content: divinationTools
+    },
+    {
+      id: "glossary",
+      title: "Sacred Glossary",
+      titleYoruba: "Àtumọ̀ Àwọn Ọ̀rọ̀ Mímọ́",
+      description: "Key terms and definitions",
+      descriptionYoruba: "Àwọn ọ̀rọ̀ pàtàkì àti ìtumọ̀ wọn",
+      icon: <Brain className="w-5 h-5" />,
+      content: glossaryTerms
+    }
+  ];
+
+  const filteredGlossary = glossaryTerms.filter(term =>
+    term.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    term.definition.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-spiritual-blue to-sacred-gold text-white py-16">
-        <div className="container-responsive">
-          <div className="text-center space-y-6">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-white/20 backdrop-blur-sm rounded-full">
-                <GraduationCap className="h-16 w-16" />
-              </div>
-            </div>
-            
-            <h1 className="text-responsive-4xl font-bold mb-4">
-              {ts("Orisha Learning Academy", "Ilé-ẹ̀kọ́ Òrìṣà")}
-            </h1>
-            
-            <p className="text-responsive-xl max-w-3xl mx-auto opacity-90">
-              {ts(
-                "Master authentic Yoruba traditions through personalized learning paths, earn achievement badges, and connect with centuries-old wisdom",
-                "Mọ àwọn àṣà Yorùbá òtítọ́ nípa àwọn ọ̀nà ẹ̀kọ́ ti ara rẹ, gba àwọn àmì àṣeyọrí, kí o sì so mọ́ ọgbọ́n ọgọ́rùn-ún ọdún"
-              )}
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 px-4 py-2">
-                ⭐ {ts("5 Authentic Recordings", "5 Gbóhùn Òtítọ́")}
-              </Badge>
-              <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 px-4 py-2">
-                🏆 {ts("Achievement System", "Ètò Àṣeyọrí")}
-              </Badge>
-              <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 px-4 py-2">
-                📚 {ts("Personalized Paths", "Àwọn Ọ̀nà Ti Ara Rẹ")}
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Overview */}
-      <div className="py-16">
-        <div className="container-responsive">
-          <div className="text-center mb-12">
-            <h2 className="text-responsive-3xl font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
-              {ts("Learning Features", "Àwọn Ẹ̀yà Ẹ̀kọ́")}
-            </h2>
-            <p className="text-responsive-lg text-gray-600 dark:text-gray-400">
-              {ts("Comprehensive tools for authentic Yoruba spiritual education", "Àwọn ohun èlò tó pé fún ẹ̀kọ́ ẹ̀mí Yorùbá òtítọ́")}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-blue-500">
-              <CardHeader className="pb-3">
-                <Volume2 className="h-8 w-8 text-blue-500 mb-2" />
-                <CardTitle className="text-responsive-lg">
-                  {ts("Authentic Audio", "Ohùn Òtítọ́")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-responsive-sm text-gray-600 dark:text-gray-400">
-                  {ts("Learn proper pronunciation from genuine Nigerian Yoruba speakers", "Kọ́ sísọ tó tọ́ lọ́wọ́ àwọn onísọ̀rọ̀ Yorùbá Nàìjíríà gidi")}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-emerald-500">
-              <CardHeader className="pb-3">
-                <Target className="h-8 w-8 text-emerald-500 mb-2" />
-                <CardTitle className="text-responsive-lg">
-                  {ts("Personalized Paths", "Àwọn Ọ̀nà Ti Ara Rẹ")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-responsive-sm text-gray-600 dark:text-gray-400">
-                  {ts("Customized learning journeys for each Orisha based on your interests", "Àwọn ìrìn àjò ẹ̀kọ́ tí a ṣàtòpọ̀ fún Òrìṣà kọ̀ọ̀kan tó dá lórí ìfẹ́ rẹ")}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-amber-500">
-              <CardHeader className="pb-3">
-                <Award className="h-8 w-8 text-amber-500 mb-2" />
-                <CardTitle className="text-responsive-lg">
-                  {ts("Achievement Badges", "Àwọn Àmì Àṣeyọrí")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-responsive-sm text-gray-600 dark:text-gray-400">
-                  {ts("Earn recognition for milestones and mastery of spiritual knowledge", "Gba ìmọ̀ fún àwọn ààmì àkọ́kọ́ àti ìmọ̀ ẹ̀mí")}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-purple-500">
-              <CardHeader className="pb-3">
-                <Sparkles className="h-8 w-8 text-purple-500 mb-2" />
-                <CardTitle className="text-responsive-lg">
-                  {ts("Progress Tracking", "Àtẹ̀lé Ìlọsíwájú")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-responsive-sm text-gray-600 dark:text-gray-400">
-                  {ts("Monitor your spiritual education journey with detailed analytics", "Tọ́jú ìrìn àjò ẹ̀kọ́ ẹ̀mí rẹ pẹ̀lú àlàyé ìsọfúnni")}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Learning Types */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
-              <CardHeader>
-                <PlayCircle className="h-12 w-12 text-blue-600 mb-4" />
-                <CardTitle className="text-responsive-xl text-blue-700 dark:text-blue-300">
-                  {ts("Pronunciation Mastery", "Gígùn Sísọ")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {ts("Practice authentic Yoruba pronunciation with native speaker recordings", "Se àdáṣe sísọ Yorùbá òtítọ́ pẹ̀lú gbóhùn àwọn onílẹ̀")}
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li>• {ts("Tonal accuracy training", "Ẹ̀kọ́ òtítọ́ ohùn")}</li>
-                  <li>• {ts("Interactive pronunciation guide", "Ìtọ́nisọ́nà sísọ àjọṣepọ̀")}</li>
-                  <li>• {ts("Audio comparison tools", "Àwọn ohun èlò àfiwéra ohùn")}</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20">
-              <CardHeader>
-                <BookOpen className="h-12 w-12 text-emerald-600 mb-4" />
-                <CardTitle className="text-responsive-xl text-emerald-700 dark:text-emerald-300">
-                  {ts("Cultural History", "Ìtàn Àṣà")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {ts("Discover the rich stories and traditions behind each Orisha", "Ṣàwárí àwọn ìtàn ọlọ́rọ̀ àti àṣà tó wà lẹ́yìn Òrìṣà kọ̀ọ̀kan")}
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li>• {ts("Origin stories and myths", "Àwọn ìtàn ìpilẹ̀ṣẹ̀ àti àròsọ")}</li>
-                  <li>• {ts("Cultural significance", "Pàtàkì àṣà")}</li>
-                  <li>• {ts("Modern applications", "Àwọn ìlò òde òní")}</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20">
-              <CardHeader>
-                <Zap className="h-12 w-12 text-amber-600 mb-4" />
-                <CardTitle className="text-responsive-xl text-amber-700 dark:text-amber-300">
-                  {ts("Spiritual Practice", "Ìṣe Ẹ̀mí")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {ts("Learn traditional rituals, prayers, and daily spiritual practices", "Kọ́ àwọn ìṣe àtìjọ́, àdúrà, àti àwọn ìṣe ẹ̀mí ojoojúmọ́")}
-                </p>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                  <li>• {ts("Daily prayer cycles", "Àwọn àdúrà ojoojúmọ́")}</li>
-                  <li>• {ts("Ritual preparations", "Àmúra ìṣe")}</li>
-                  <li>• {ts("Meditation techniques", "Àwọn ọ̀nà ìṣàró")}</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Learning Path Component */}
-      <div className="py-8 bg-white dark:bg-gray-800">
-        <OrishaLearningPath userId={userId} />
-      </div>
-
-      {/* Call to Action */}
-      <div className="py-16 bg-gradient-to-r from-spiritual-blue to-sacred-gold text-white">
-        <div className="container-responsive text-center">
-          <h2 className="text-responsive-3xl font-bold mb-4">
-            {ts("Start Your Spiritual Learning Journey", "Bẹ̀rẹ̀ Ìrìn Àjò Ẹ̀kọ́ Ẹ̀mí Rẹ")}
-          </h2>
-          <p className="text-responsive-lg opacity-90 mb-8 max-w-2xl mx-auto">
-            {ts(
-              "Choose your first Orisha learning path and begin earning achievements while mastering authentic Yoruba traditions",
-              "Yan ọ̀nà ẹ̀kọ́ Òrìṣà àkọ́kọ́ rẹ kí o sì bẹ̀rẹ̀ gígba àwọn àṣeyọrí lákòókò tí o bá ń kọ́ àwọn àṣà Yorùbá òtítọ́"
-            )}
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold text-spiritual-blue dark:text-sacred-gold mb-4">
+            {ts("📚 Learning Center", "📚 Ile-Ẹ̀kọ́")}
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            {ts("Deepen your understanding of Ifá wisdom and Yoruba culture", "Jẹ́ kí ó jinlẹ̀ nínú òye Ifá àti àṣà Yorùbá")}
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-spiritual-blue hover:bg-gray-100 btn-touch">
-              <Crown className="h-5 w-5 mr-2" />
-              {ts("Begin Learning", "Bẹ̀rẹ̀ Ẹ̀kọ́")}
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-spiritual-blue btn-touch">
-              <CheckCircle className="h-5 w-5 mr-2" />
-              {ts("View Achievements", "Wo Àwọn Àṣeyọrí")}
-            </Button>
-          </div>
         </div>
+
+        <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">
+            {learningModules.map((module) => (
+              <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2">
+                {module.icon}
+                <span className="hidden sm:inline">{language === 'yoruba' ? module.titleYoruba : module.title}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {learningModules.map((module) => (
+            <TabsContent key={module.id} value={module.id}>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3">
+                    {module.icon}
+                    {language === 'yoruba' ? module.titleYoruba : module.title}
+                  </CardTitle>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {language === 'yoruba' ? module.descriptionYoruba : module.description}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  {module.id === 'odu' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {majorOdu.map((odu) => (
+                        <Card key={odu.id} className="border-l-4 border-l-spiritual-blue">
+                          <CardHeader>
+                            <CardTitle className="text-lg">{odu.name}</CardTitle>
+                            <Badge variant="outline">{odu.category}</Badge>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-700 dark:text-gray-300 mb-3">{odu.meaning}</p>
+                            <blockquote className="italic text-amber-700 dark:text-amber-300 border-l-2 border-amber-300 pl-4">
+                              {odu.proverb}
+                            </blockquote>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+
+                  {module.id === 'language' && (
+                    <div className="space-y-6">
+                      {yorubaBasics.map((section, index) => (
+                        <div key={index}>
+                          <h3 className="text-xl font-semibold mb-4 text-spiritual-blue dark:text-sacred-gold">
+                            {section.category}
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {section.phrases.map((phrase, phraseIndex) => (
+                              <Card key={phraseIndex} className="hover:shadow-md transition-shadow">
+                                <CardContent className="p-4">
+                                  <div className="flex items-center justify-between">
+                                    <div>
+                                      <p className="font-medium text-spiritual-blue dark:text-sacred-gold">
+                                        {phrase.yoruba}
+                                      </p>
+                                      <p className="text-gray-600 dark:text-gray-300">
+                                        {phrase.english}
+                                      </p>
+                                    </div>
+                                    {phrase.audio && (
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => playAudio(phrase.audio, `${index}-${phraseIndex}`)}
+                                        className="ml-2"
+                                      >
+                                        {playingAudio === `${index}-${phraseIndex}` ? (
+                                          <Volume2 className="w-4 h-4 animate-pulse" />
+                                        ) : (
+                                          <Play className="w-4 h-4" />
+                                        )}
+                                      </Button>
+                                    )}
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {module.id === 'tools' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {divinationTools.map((tool, index) => (
+                        <Card key={index} className="overflow-hidden">
+                          <CardHeader>
+                            <CardTitle className="flex items-center gap-3">
+                              <div className="w-12 h-12 bg-spiritual-blue/10 rounded-full flex items-center justify-center">
+                                <Star className="w-6 h-6 text-spiritual-blue" />
+                              </div>
+                              {language === 'yoruba' ? tool.nameYoruba : tool.name}
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-700 dark:text-gray-300">
+                              {language === 'yoruba' ? tool.descriptionYoruba : tool.description}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
+
+                  {module.id === 'glossary' && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-6">
+                        <Search className="w-5 h-5 text-gray-400" />
+                        <Input
+                          placeholder={ts("Search terms...", "Wá àwọn ọ̀rọ̀...")}
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="max-w-sm"
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {filteredGlossary.map((term, index) => (
+                          <Card key={index} className="hover:shadow-md transition-shadow">
+                            <CardContent className="p-4">
+                              <h4 className="font-semibold text-spiritual-blue dark:text-sacred-gold mb-2">
+                                {term.term}
+                              </h4>
+                              <p className="text-gray-700 dark:text-gray-300">
+                                {language === 'yoruba' ? term.definitionYoruba : term.definition}
+                              </p>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {module.id === 'introduction' && (
+                    <div className="space-y-6">
+                      <Card className="border-l-4 border-l-amber-500">
+                        <CardHeader>
+                          <CardTitle>{ts("What is Ifá?", "Kí ni Ifá?")}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-gray-700 dark:text-gray-300 mb-4">
+                            {ts(
+                              "Ifá is an ancient Yoruba system of divination and spiritual guidance that connects practitioners with divine wisdom through the Oracle of Òrúnmìlà.",
+                              "Ifá jẹ́ ẹ̀tọ́ àtijọ́ Yorùbá fún fífá àti ìtọ́nisọ́nà ẹ̀mí tí ó so àwọn oníṣe pọ̀ mọ́ ọgbọ́n òrìṣà nípasẹ̀ Òrúnmìlà."
+                            )}
+                          </p>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div className="text-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                              <BookOpen className="w-8 h-8 mx-auto mb-2 text-amber-600" />
+                              <h4 className="font-semibold">{ts("Wisdom", "Ọgbọ́n")}</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                {ts("Ancient knowledge", "Ìmọ̀ àtijọ́")}
+                              </p>
+                            </div>
+                            <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
+                              <Users className="w-8 h-8 mx-auto mb-2 text-emerald-600" />
+                              <h4 className="font-semibold">{ts("Community", "Àwùjọ")}</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                {ts("Spiritual fellowship", "Ìfẹ́ ẹ̀mí")}</p>
+                            </div>
+                            <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                              <Star className="w-8 h-8 mx-auto mb-2 text-blue-600" />
+                              <h4 className="font-semibold">{ts("Guidance", "Ìtọ́nisọ́nà")}</h4>
+                              <p className="text-sm text-gray-600 dark:text-gray-300">
+                                {ts("Divine direction", "Ìfàhàn òrìṣà")}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  )}
+
+                  {module.id === 'cosmology' && (
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Card className="border-l-4 border-l-sacred-gold">
+                          <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                              <Star className="w-5 h-5 text-sacred-gold" />
+                              Olódùmarè
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-700 dark:text-gray-300">
+                              {ts(
+                                "The Supreme Being, source of all existence and divine authority",
+                                "Ọlọ́run Gíga, orísun gbogbo ohun alààyè àti àṣẹ òrìṣà"
+                              )}
+                            </p>
+                          </CardContent>
+                        </Card>
+                        <Card className="border-l-4 border-l-spiritual-blue">
+                          <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                              <Brain className="w-5 h-5 text-spiritual-blue" />
+                              Orí
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-gray-700 dark:text-gray-300">
+                              {ts(
+                                "Personal destiny, inner head, guardian spirit",
+                                "Ìpínlẹ̀ ẹni kọ̀ọ̀kan, orí inú, ẹ̀mí asọ́"
+                              )}
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </div>
   );
-}
+};
+
+export default Learning;
