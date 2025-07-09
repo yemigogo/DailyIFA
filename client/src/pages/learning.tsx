@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from 'wouter';
+import opeleChainImage from '@assets/image_1752086728408.png';
 
 interface LearningModule {
   id: string;
@@ -138,9 +139,9 @@ const Learning: React.FC = () => {
     {
       name: "Ọpẹlẹ Chain",
       nameYoruba: "Ọpẹlẹ",
-      description: "Divination chain with eight half-shells",
-      descriptionYoruba: "Ẹ̀wọ̀n fífá pẹ̀lú ìgbín mẹ́jọ",
-      image: "/static/images/opele.svg"
+      description: "Divination chain with eight half-shells made from seed pods, used for quick spiritual consultation",
+      descriptionYoruba: "Ẹ̀wọ̀n fífá pẹ̀lú ìgbín mẹ́jọ tí a ṣe láti inú ẹ̀dá irúgbìn, tí a ń lò fún ìfọ̀rọ̀wérọ̀ ẹ̀mí kíákíá",
+      image: opeleChainImage
     },
     {
       name: "Ọ̀pá Ifá",
@@ -372,13 +373,22 @@ const Learning: React.FC = () => {
                   )}
 
                   {module.id === 'tools' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {divinationTools.map((tool, index) => (
-                        <Card key={index} className="overflow-hidden">
+                        <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
+                          {tool.image && (
+                            <div className="h-48 bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-4">
+                              <img 
+                                src={tool.image} 
+                                alt={tool.name}
+                                className="max-h-full max-w-full object-contain rounded-lg"
+                              />
+                            </div>
+                          )}
                           <CardHeader>
                             <CardTitle className="flex items-center gap-3">
-                              <div className="w-12 h-12 bg-spiritual-blue/10 rounded-full flex items-center justify-center">
-                                <Star className="w-6 h-6 text-spiritual-blue" />
+                              <div className="w-8 h-8 bg-spiritual-blue/10 rounded-full flex items-center justify-center">
+                                <Star className="w-4 h-4 text-spiritual-blue" />
                               </div>
                               {language === 'yoruba' ? tool.nameYoruba : tool.name}
                             </CardTitle>
