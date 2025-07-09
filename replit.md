@@ -4,6 +4,10 @@
 A comprehensive bilingual Yoruba spiritual guidance application providing authentic Ifá readings, Odu wisdom, and traditional spiritual practices. The app serves as a bridge between ancient Yoruba wisdom and modern digital accessibility.
 
 ## Recent Changes
+**July 9, 2025**
+- ✅ **Orisha Character Animation Profiles**: Created interactive animated character profiles for 7 major Orisha with unique animation styles (gentle-glow, lightning-pulse, water-flow, wind-swirl, forge-fire, honey-flow, pure-light), character trait analytics with animated progress bars, authentic audio integration, sacred color palettes, bilingual descriptions, divine powers display, and enhanced CSS animations. Features character selection grid, detailed personality profiles, and authentic Oríkì playback with verified recording badges
+- ✅ **Enhanced Navigation System**: Added Orisha Profiles to bottom navigation with Users icon, replaced profile tab for dedicated spiritual focus, integrated routing system for "/orisha-profiles" path
+
 **July 3, 2025**
 - ✅ **Comprehensive Learning Center**: Created extensive educational platform with 6 interactive modules - Introduction to Ifá, Yoruba Cosmology, 256 Odu Ifá database, Yoruba Language Basics with audio pronunciation, Tools of Divination showcase, and searchable Sacred Glossary. Features bilingual content, authentic audio integration from the 9 recordings, tabbed navigation, searchable terms, and comprehensive cultural education system designed for both beginners and advanced practitioners
 - ✅ **Dual Ògun Oríkì Integration**: Successfully integrated two authentic Nigerian Ògun praise poetry recordings - a 26-second traditional oríkì and an extended 2-minute comprehensive version from user-provided OPUS files, converted to high-quality MP3 format, created dual selection options in oriki playback system, added both recordings to authentic audio showcase, and enhanced UI with authentic markers and duration display for complete warrior praise poetry collection
