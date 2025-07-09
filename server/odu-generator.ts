@@ -20,8 +20,15 @@ interface OduData {
   guidanceYoruba: string;
 }
 
-// Base Odu names for combinations
+// Base Odu names for combinations (matching your Python script)
 const baseOduNames = [
+  "Ogbe", "Oyeku", "Iwori", "Odi", "Irosun", "Owonrin", 
+  "Obara", "Okanran", "Ogunda", "Osa", "Ika", "Oturupon", 
+  "Otura", "Irete", "Ose", "Ofun"
+];
+
+// Yoruba names with proper diacritical marks
+const yorubaOduNames = [
   "Ogbè", "Òyèkú", "Ìwòrì", "Òdí", "Ìròsù", "Ọ̀wọ́nrín", "Ọ̀bàrà", "Ọ̀kànràn",
   "Ògúndá", "Ọ̀sá", "Ìká", "Òtúrúpọ̀n", "Òtúrá", "Ìrẹtẹ̀", "Ọ̀ṣẹ́", "Òfún"
 ];
@@ -190,14 +197,35 @@ const majorOduData = [
   }
 ];
 
-// Function to generate traditional Odu name
+// Function to generate traditional Odu name using your format
 function generateTraditionalOduName(primaryIndex: number, secondaryIndex: number): {name: string, nameYoruba: string} {
   const primaryName = baseOduNames[primaryIndex];
   const secondaryName = baseOduNames[secondaryIndex];
+  const primaryYoruba = yorubaOduNames[primaryIndex];
+  const secondaryYoruba = yorubaOduNames[secondaryIndex];
   
   if (primaryIndex === secondaryIndex) {
-    // Major Odu (Méjì)
+    // Major Odu - use your exact format
     const specialNames: Record<string, string> = {
+      "Ogbe": "Ogbe-Ogbe",
+      "Oyeku": "Oyeku-Oyeku", 
+      "Iwori": "Iwori-Iwori",
+      "Odi": "Odi-Odi",
+      "Irosun": "Irosun-Irosun",
+      "Owonrin": "Owonrin-Owonrin",
+      "Obara": "Obara-Obara",
+      "Okanran": "Okanran-Okanran",
+      "Ogunda": "Ogunda-Ogunda",
+      "Osa": "Osa-Osa",
+      "Ika": "Ika-Ika",
+      "Oturupon": "Oturupon-Oturupon",
+      "Otura": "Otura-Otura",
+      "Irete": "Irete-Irete",
+      "Ose": "Ose-Ose",
+      "Ofun": "Ofun-Ofun"
+    };
+    
+    const specialYorubaNames: Record<string, string> = {
       "Ogbè": "Èjì Ogbè",
       "Òyèkú": "Òyèkú Méjì",
       "Ìwòrì": "Ìwòrì Méjì",
@@ -217,14 +245,14 @@ function generateTraditionalOduName(primaryIndex: number, secondaryIndex: number
     };
     
     return {
-      name: specialNames[primaryName] || `${primaryName} Méjì`,
-      nameYoruba: specialNames[primaryName] || `${primaryName} Méjì`
+      name: specialNames[primaryName] || `${primaryName}-${primaryName}`,
+      nameYoruba: specialYorubaNames[primaryYoruba] || `${primaryYoruba} Méjì`
     };
   } else {
-    // Minor Odu - traditional combination naming
+    // Minor Odu - your format with hyphen
     return {
-      name: `${primaryName} ${secondaryName}`,
-      nameYoruba: `${primaryName} ${secondaryName}`
+      name: `${primaryName}-${secondaryName}`,
+      nameYoruba: `${primaryYoruba} ${secondaryYoruba}`
     };
   }
 }
