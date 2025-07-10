@@ -11,8 +11,8 @@ function addProblemsToOdu(baseOdu: any, problems: string[], problemsYoruba: stri
 
 export const oduDatabase: InsertOdu[] = [
   {
-    name: "Ogbe Meji",
-    nameYoruba: "Ogbe Meji",
+    name: "Eji Ogbe",
+    nameYoruba: "Èjì Ogbè",
     subtitle: "The Odu of Light and Clarity",
     subtitleYoruba: "Odu ti Imole ati Aseyori",
     element: "Light",

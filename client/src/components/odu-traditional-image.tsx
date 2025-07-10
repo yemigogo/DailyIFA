@@ -1,4 +1,5 @@
 import React from 'react';
+import EjiOgbeImage from '@/components/eji-ogbe-image';
 
 interface OduTraditionalImageProps {
   oduName: string;
@@ -65,6 +66,12 @@ export default function OduTraditionalImage({
   size = 120, 
   className = "" 
 }: OduTraditionalImageProps) {
+  // Use authentic image for Eji Ogbe
+  if (oduName === "Eji Ogbe" || oduName === "Ogbe Meji") {
+    const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
+    return <EjiOgbeImage size={imageSize} className={className} showCaption={false} />;
+  }
+
   const oduData = ODU_TRADITIONAL_SYMBOLS[oduName as keyof typeof ODU_TRADITIONAL_SYMBOLS];
   
   if (!oduData) {
