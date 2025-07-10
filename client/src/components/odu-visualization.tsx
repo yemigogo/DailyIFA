@@ -15,6 +15,7 @@ import ogundaMejiImage from '@assets/Screenshot_20250710_123529_Instagram (1)_17
 import osaMejiImage from '@assets/Screenshot_20250710_123502_Instagram_1752168440315.jpg';
 import ikaMejiImage from '@assets/image_1752169327055.png';
 import oturuponMejiImage from '@assets/image_1752169509053.png';
+import oturaMejiImage from '@assets/image_1752169666712.png';
 
 interface OduPattern {
   name: string;
@@ -127,6 +128,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Patience, endurance, spiritual growth',
       meaningYoruba: 'Sùúrù, ìfaradà, ìdàgbàsókè ẹ̀mí',
       image: oturuponMejiImage
+    },
+    'otura-meji': {
+      name: 'Otura Meji',
+      nameYoruba: 'Òtúrá Méjì',
+      pattern: [true, true, false, false],
+      meaning: 'Hidden mysteries, spiritual revelation',
+      meaningYoruba: 'Àwọn àṣírí tí a fi pamọ́, ìfihàn ẹ̀mí',
+      image: oturaMejiImage
     }
   };
 
