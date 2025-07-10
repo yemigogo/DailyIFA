@@ -13,6 +13,7 @@ import iworiMejiImage from '@assets/Screenshot_20250710_121156_Instagram_1752167
 import okanranMejiImage from '@assets/Screenshot_20250710_123552_Instagram_1752168011070.jpg';
 import ogundaMejiImage from '@assets/Screenshot_20250710_123529_Instagram (1)_1752168226467.jpg';
 import osaMejiImage from '@assets/Screenshot_20250710_123502_Instagram_1752168440315.jpg';
+import ikaMejiImage from '@assets/image_1752169327055.png';
 
 interface OduPattern {
   name: string;
@@ -109,6 +110,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Intuition, spiritual insight, divination',
       meaningYoruba: 'Ìmọ̀ràn, ìmọ̀ ẹ̀mí, ìfá',
       image: osaMejiImage
+    },
+    'ika-meji': {
+      name: 'Ika Meji',
+      nameYoruba: 'Ìká Méjì',
+      pattern: [true, true, false, true],
+      meaning: 'Transformation, cunning, strategy',
+      meaningYoruba: 'Ìyípadà, àrékérekè, ìlànà',
+      image: ikaMejiImage
     }
   };
 
