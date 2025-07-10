@@ -12,6 +12,7 @@ import obaraMejiImage from '@assets/Screenshot_20250710_123617_Instagram_1752167
 import iworiMejiImage from '@assets/Screenshot_20250710_121156_Instagram_1752167900326.jpg';
 import okanranMejiImage from '@assets/Screenshot_20250710_123552_Instagram_1752168011070.jpg';
 import ogundaMejiImage from '@assets/Screenshot_20250710_123529_Instagram (1)_1752168226467.jpg';
+import osaMejiImage from '@assets/Screenshot_20250710_123502_Instagram_1752168440315.jpg';
 
 interface OduPattern {
   name: string;
@@ -100,6 +101,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Warrior spirit, strength, courage',
       meaningYoruba: 'Ẹ̀mí jagunjagun, agbára, ìgboyà',
       image: ogundaMejiImage
+    },
+    'osa-meji': {
+      name: 'Osa Meji',
+      nameYoruba: 'Òsá Méjì',
+      pattern: [true, false, false, false],
+      meaning: 'Intuition, spiritual insight, divination',
+      meaningYoruba: 'Ìmọ̀ràn, ìmọ̀ ẹ̀mí, ìfá',
+      image: osaMejiImage
     }
   };
 
