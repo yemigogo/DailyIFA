@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useLanguage } from '@/contexts/LanguageContext';
 import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_1752166024343.jpg';
 import oyekuMejiImage from '@assets/Screenshot_20250710_123808_Instagram_1752166865820.jpg';
+import idiMejiImage from '@assets/Screenshot_20250710_123729_Instagram_1752167034304.jpg';
 
 interface OduPattern {
   name: string;
@@ -46,11 +47,12 @@ const OduVisualization: React.FC = () => {
       meaningYoruba: 'Ìwà, ìdàgbàsókè ẹ̀mí'
     },
     'odi-meji': {
-      name: 'Odi Meji',
-      nameYoruba: 'Òdí Méjì',
+      name: 'Idi Meji',
+      nameYoruba: 'Ìdí Méjì',
       pattern: [false, true, false, true],
-      meaning: 'Obstacles, challenges to overcome',
-      meaningYoruba: 'Àwọn ìdènà, àwọn nǹkan tí a gbọ́dọ̀ bori'
+      meaning: 'Foundation, stability, obstacles overcome',
+      meaningYoruba: 'Ìpìlẹ̀, ìdúróṣinṣin, àwọn ìdènà tí a bori',
+      image: idiMejiImage
     },
     'irosun-meji': {
       name: 'Irosun Meji',

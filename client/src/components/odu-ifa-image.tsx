@@ -1,6 +1,7 @@
 import React from 'react';
 import EjiOgbeImage from '@/components/eji-ogbe-image';
 import OyekuMejiImage from '@/components/oyeku-meji-image';
+import IdiMejiImage from '@/components/idi-meji-image';
 
 interface OduIfaImageProps {
   oduName: string;
@@ -66,6 +67,11 @@ export default function OduIfaImage({
   if (oduName === "Oyeku Meji") {
     const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
     return <OyekuMejiImage size={imageSize} className={className} showCaption={false} />;
+  }
+  
+  if (oduName === "Idi Meji" || oduName === "Odi Meji") {
+    const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
+    return <IdiMejiImage size={imageSize} className={className} showCaption={false} />;
   }
 
   const oduData = ODU_IFA_IMAGES[oduName as keyof typeof ODU_IFA_IMAGES];
