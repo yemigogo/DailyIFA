@@ -10,6 +10,7 @@ import irosunMejiImage from '@assets/Screenshot_20250710_123701_Instagram_175216
 import owonrinMejiImage from '@assets/Screenshot_20250710_123637_Instagram_1752167413566.jpg';
 import obaraMejiImage from '@assets/Screenshot_20250710_123617_Instagram_1752167558117.jpg';
 import iworiMejiImage from '@assets/Screenshot_20250710_121156_Instagram_1752167900326.jpg';
+import okanranMejiImage from '@assets/Screenshot_20250710_123552_Instagram_1752168011070.jpg';
 
 interface OduPattern {
   name: string;
@@ -88,7 +89,8 @@ const OduVisualization: React.FC = () => {
       nameYoruba: 'Òkànràn Méjì',
       pattern: [false, true, true, false],
       meaning: 'Protection, defense, boundaries',
-      meaningYoruba: 'Ààbò, ìgbéjà, àlà'
+      meaningYoruba: 'Ààbò, ìgbéjà, àlà',
+      image: okanranMejiImage
     }
   };
 
