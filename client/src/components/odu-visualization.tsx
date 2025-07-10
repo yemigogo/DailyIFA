@@ -17,6 +17,7 @@ import ikaMejiImage from '@assets/image_1752169327055.png';
 import oturuponMejiImage from '@assets/image_1752169509053.png';
 import oturaMejiImage from '@assets/image_1752169961583.png';
 import ireteMejiImage from '@assets/image_1752177542267.png';
+import oseMejiImage from '@assets/image_1752179450588.png';
 
 interface OduPattern {
   name: string;
@@ -145,6 +146,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Victory, triumph, success through perseverance',
       meaningYoruba: 'Ìṣẹ́gun, àṣẹ́yọrí, farahan nípasẹ̀ ìfaradà',
       image: ireteMejiImage
+    },
+    'ose-meji': {
+      name: 'Ose Meji',
+      nameYoruba: 'Òṣé Méjì',
+      pattern: [false, false, true, true],
+      meaning: 'Abundance, prosperity, spiritual gifts',
+      meaningYoruba: 'Ọrọ̀, ìlọ́síwájú, àwọn ẹ̀bùn ẹ̀mí',
+      image: oseMejiImage
     }
   };
 
