@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from '@/contexts/LanguageContext';
+import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_1752166024343.jpg';
 
 interface OduPattern {
   name: string;
@@ -10,6 +11,7 @@ interface OduPattern {
   pattern: boolean[]; // true = broken line, false = solid line
   meaning: string;
   meaningYoruba: string;
+  image?: string;
 }
 
 const OduVisualization: React.FC = () => {
@@ -24,7 +26,8 @@ const OduVisualization: React.FC = () => {
       nameYoruba: 'Èjì Ogbè',
       pattern: [false, false, false, false],
       meaning: 'Light, wisdom, divine authority',
-      meaningYoruba: 'Ìmọ́lẹ̀, ọgbọ́n, àṣẹ òrìṣà'
+      meaningYoruba: 'Ìmọ́lẹ̀, ọgbọ́n, àṣẹ òrìṣà',
+      image: ejiOgbeImage
     },
     'oyeku-meji': {
       name: 'Oyeku Meji',
@@ -196,13 +199,35 @@ const OduVisualization: React.FC = () => {
           </Select>
         </div>
 
-        <div className="flex justify-center">
-          <canvas
-            ref={canvasRef}
-            width={400}
-            height={200}
-            className="border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Canvas Visualization */}
+          <div className="flex flex-col items-center space-y-4">
+            <h3 className="text-lg font-semibold text-spiritual-blue dark:text-sacred-gold">
+              {ts("Pattern Visualization", "Àwòrán Àpẹẹrẹ")}
+            </h3>
+            <canvas
+              ref={canvasRef}
+              width={400}
+              height={200}
+              className="border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+            />
+          </div>
+
+          {/* Authentic Image */}
+          {majorOdu[selectedOdu]?.image && (
+            <div className="flex flex-col items-center space-y-4">
+              <h3 className="text-lg font-semibold text-spiritual-blue dark:text-sacred-gold">
+                {ts("Traditional Representation", "Àpẹẹrẹ Àtijọ́")}
+              </h3>
+              <div className="border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden">
+                <img 
+                  src={majorOdu[selectedOdu].image} 
+                  alt={`${majorOdu[selectedOdu].name} traditional pattern`}
+                  className="max-w-full h-auto max-h-80 object-contain"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="text-center space-y-2">
