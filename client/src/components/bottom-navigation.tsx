@@ -13,7 +13,7 @@ export default function BottomNavigation() {
     { id: "learning", label: ts("Learning", "Ẹ̀kọ́"), icon: GraduationCap, path: "/learning" },
     { id: "oriki", label: ts("Oríkì", "Oríkì"), icon: ScrollText, path: "/oriki" },
     { id: "audio", label: ts("Audio", "Ohùn"), icon: Mic, path: "/audio" },
-    { id: "orisha-profiles", label: ts("Orisha", "Òrìṣà"), icon: Users, path: "/orisha-profiles" },
+    { id: "profile", label: ts("Profile", "Ìwé"), icon: User, path: "/profile" },
   ];
 
   return (
