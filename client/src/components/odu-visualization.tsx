@@ -11,6 +11,7 @@ import owonrinMejiImage from '@assets/Screenshot_20250710_123637_Instagram_17521
 import obaraMejiImage from '@assets/Screenshot_20250710_123617_Instagram_1752167558117.jpg';
 import iworiMejiImage from '@assets/Screenshot_20250710_121156_Instagram_1752167900326.jpg';
 import okanranMejiImage from '@assets/Screenshot_20250710_123552_Instagram_1752168011070.jpg';
+import ogundaMejiImage from '@assets/Screenshot_20250710_123529_Instagram (1)_1752168226467.jpg';
 
 interface OduPattern {
   name: string;
@@ -91,6 +92,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Protection, defense, boundaries',
       meaningYoruba: 'Ààbò, ìgbéjà, àlà',
       image: okanranMejiImage
+    },
+    'ogunda-meji': {
+      name: 'Ogunda Meji',
+      nameYoruba: 'Ògúndá Méjì',
+      pattern: [false, false, false, true],
+      meaning: 'Warrior spirit, strength, courage',
+      meaningYoruba: 'Ẹ̀mí jagunjagun, agbára, ìgboyà',
+      image: ogundaMejiImage
     }
   };
 
