@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_1752166024343.jpg';
 import oyekuMejiImage from '@assets/Screenshot_20250710_123808_Instagram_1752166865820.jpg';
 import idiMejiImage from '@assets/Screenshot_20250710_123729_Instagram_1752167034304.jpg';
+import irosunMejiImage from '@assets/Screenshot_20250710_123701_Instagram_1752167178403.jpg';
 
 interface OduPattern {
   name: string;
@@ -59,7 +60,8 @@ const OduVisualization: React.FC = () => {
       nameYoruba: 'Ìrosùn Méjì',
       pattern: [true, true, false, false],
       meaning: 'Healing, medicine, restoration',
-      meaningYoruba: 'Ìwòsàn, oògùn, ìmúpadàbọ̀sípò'
+      meaningYoruba: 'Ìwòsàn, oògùn, ìmúpadàbọ̀sípò',
+      image: irosunMejiImage
     },
     'owonrin-meji': {
       name: 'Owonrin Meji',
