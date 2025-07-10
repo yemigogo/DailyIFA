@@ -79,6 +79,8 @@ export default function OduIfaImage({
     const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
     return <IrosunMejiImage size={imageSize} className={className} showCaption={false} />;
   }
+  
+  // For Owonrin Meji and other Odu without authentic images, continue with geometric patterns
 
   const oduData = ODU_IFA_IMAGES[oduName as keyof typeof ODU_IFA_IMAGES];
   
