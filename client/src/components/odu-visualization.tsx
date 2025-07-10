@@ -18,6 +18,7 @@ import oturuponMejiImage from '@assets/image_1752169509053.png';
 import oturaMejiImage from '@assets/image_1752169961583.png';
 import ireteMejiImage from '@assets/image_1752177542267.png';
 import oseMejiImage from '@assets/image_1752179450588.png';
+import ofunMejiImage from '@assets/image_1752180065606.png';
 
 interface OduPattern {
   name: string;
@@ -154,6 +155,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Abundance, prosperity, spiritual gifts',
       meaningYoruba: 'Ọrọ̀, ìlọ́síwájú, àwọn ẹ̀bùn ẹ̀mí',
       image: oseMejiImage
+    },
+    'ofun-meji': {
+      name: 'Ofun Meji',
+      nameYoruba: 'Òfún Méjì',
+      pattern: [true, true, false, false],
+      meaning: 'Completion, spiritual fulfillment, divine blessing',
+      meaningYoruba: 'Ìparí, ìtẹ́lọ́rùn ẹ̀mí, ìbùkún òrìṣà',
+      image: ofunMejiImage
     }
   };
 
