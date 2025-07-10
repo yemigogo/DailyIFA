@@ -3,6 +3,7 @@ import EjiOgbeImage from '@/components/eji-ogbe-image';
 import OyekuMejiImage from '@/components/oyeku-meji-image';
 import IdiMejiImage from '@/components/idi-meji-image';
 import IrosunMejiImage from '@/components/irosun-meji-image';
+import OwonrinMejiImage from '@/components/owonrin-meji-image';
 
 interface OduIfaImageProps {
   oduName: string;
@@ -80,7 +81,12 @@ export default function OduIfaImage({
     return <IrosunMejiImage size={imageSize} className={className} showCaption={false} />;
   }
   
-  // For Owonrin Meji and other Odu without authentic images, continue with geometric patterns
+  if (oduName === "Owonrin Meji") {
+    const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
+    return <OwonrinMejiImage size={imageSize} className={className} showCaption={false} />;
+  }
+  
+  // For other Odu without authentic images, continue with geometric patterns
 
   const oduData = ODU_IFA_IMAGES[oduName as keyof typeof ODU_IFA_IMAGES];
   

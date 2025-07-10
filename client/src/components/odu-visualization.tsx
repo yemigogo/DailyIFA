@@ -7,6 +7,7 @@ import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_175216602
 import oyekuMejiImage from '@assets/Screenshot_20250710_123808_Instagram_1752166865820.jpg';
 import idiMejiImage from '@assets/Screenshot_20250710_123729_Instagram_1752167034304.jpg';
 import irosunMejiImage from '@assets/Screenshot_20250710_123701_Instagram_1752167178403.jpg';
+import owonrinMejiImage from '@assets/Screenshot_20250710_123637_Instagram_1752167413566.jpg';
 
 interface OduPattern {
   name: string;
@@ -68,7 +69,8 @@ const OduVisualization: React.FC = () => {
       nameYoruba: 'Òwónrín Méjì',
       pattern: [false, false, true, true],
       meaning: 'Chaos, transformation, change',
-      meaningYoruba: 'Rúdurùdu, ìyípadà, àtúnṣe'
+      meaningYoruba: 'Rúdurùdu, ìyípadà, àtúnṣe',
+      image: owonrinMejiImage
     },
     'obara-meji': {
       name: 'Obara Meji',
