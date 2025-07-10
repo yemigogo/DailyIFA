@@ -1,5 +1,5 @@
 import React from 'react';
-import oturaMejiImage from '@assets/image_1752169666712.png';
+import oturaMejiImage from '@assets/image_1752169961583.png';
 
 interface OturaMejiImageProps {
   className?: string;
