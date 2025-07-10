@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from '@/contexts/LanguageContext';
 import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_1752166024343.jpg';
+import oyekuMejiImage from '@assets/Screenshot_20250710_123808_Instagram_1752166865820.jpg';
 
 interface OduPattern {
   name: string;
@@ -34,7 +35,8 @@ const OduVisualization: React.FC = () => {
       nameYoruba: 'Òyẹ̀kú Méjì',
       pattern: [true, true, true, true],
       meaning: 'Darkness, mystery, hidden knowledge',
-      meaningYoruba: 'Òkùnkùn, àwọn ohun ìjìnlẹ̀, ìmọ̀ ìkọ̀kọ̀'
+      meaningYoruba: 'Òkùnkùn, àwọn ohun ìjìnlẹ̀, ìmọ̀ ìkọ̀kọ̀',
+      image: oyekuMejiImage
     },
     'iwori-meji': {
       name: 'Iwori Meji',
