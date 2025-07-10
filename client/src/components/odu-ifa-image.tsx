@@ -12,6 +12,7 @@ import OsaMejiImage from '@/components/osa-meji-image';
 import IkaMejiImage from '@/components/ika-meji-image';
 import OturuponMejiImage from '@/components/oturupon-meji-image';
 import OturaMejiImage from '@/components/otura-meji-image';
+import IreteMejiImage from '@/components/irete-meji-image';
 
 interface OduIfaImageProps {
   oduName: string;
@@ -132,6 +133,11 @@ export default function OduIfaImage({
   if (oduName === "Otura Meji") {
     const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
     return <OturaMejiImage size={imageSize} className={className} showCaption={false} />;
+  }
+  
+  if (oduName === "Irete Meji") {
+    const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
+    return <IreteMejiImage size={imageSize} className={className} showCaption={false} />;
   }
   
   // For other Odu without authentic images, continue with geometric patterns

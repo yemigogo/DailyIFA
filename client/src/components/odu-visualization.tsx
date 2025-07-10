@@ -16,6 +16,7 @@ import osaMejiImage from '@assets/Screenshot_20250710_123502_Instagram_175216844
 import ikaMejiImage from '@assets/image_1752169327055.png';
 import oturuponMejiImage from '@assets/image_1752169509053.png';
 import oturaMejiImage from '@assets/image_1752169961583.png';
+import ireteMejiImage from '@assets/image_1752177542267.png';
 
 interface OduPattern {
   name: string;
@@ -136,6 +137,14 @@ const OduVisualization: React.FC = () => {
       meaning: 'Hidden mysteries, spiritual revelation',
       meaningYoruba: 'Àwọn àṣírí tí a fi pamọ́, ìfihàn ẹ̀mí',
       image: oturaMejiImage
+    },
+    'irete-meji': {
+      name: 'Irete Meji',
+      nameYoruba: 'Ìrétè Méjì',
+      pattern: [false, false, true, false],
+      meaning: 'Victory, triumph, success through perseverance',
+      meaningYoruba: 'Ìṣẹ́gun, àṣẹ́yọrí, farahan nípasẹ̀ ìfaradà',
+      image: ireteMejiImage
     }
   };
 
