@@ -4,6 +4,7 @@ import OyekuMejiImage from '@/components/oyeku-meji-image';
 import IdiMejiImage from '@/components/idi-meji-image';
 import IrosunMejiImage from '@/components/irosun-meji-image';
 import OwonrinMejiImage from '@/components/owonrin-meji-image';
+import ObaraMejiImage from '@/components/obara-meji-image';
 
 interface OduTraditionalImageProps {
   oduName: string;
@@ -94,6 +95,11 @@ export default function OduTraditionalImage({
   if (oduName === "Owonrin Meji") {
     const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
     return <OwonrinMejiImage size={imageSize} className={className} showCaption={false} />;
+  }
+  
+  if (oduName === "Obara Meji") {
+    const imageSize = size <= 60 ? 'small' : size <= 150 ? 'medium' : 'large';
+    return <ObaraMejiImage size={imageSize} className={className} showCaption={false} />;
   }
   
   // For other Odu without authentic images, continue with geometric patterns
