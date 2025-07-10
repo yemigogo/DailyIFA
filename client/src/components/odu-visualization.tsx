@@ -1,82 +1,222 @@
-interface OduVisualizationProps {
-  oduName: string;
-  pattern: boolean[][];
-  size?: number;
-  className?: string;
+import React, { useRef, useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useLanguage } from '@/contexts/LanguageContext';
+
+interface OduPattern {
+  name: string;
+  nameYoruba: string;
+  pattern: boolean[]; // true = broken line, false = solid line
+  meaning: string;
+  meaningYoruba: string;
 }
 
-// Sacred Odu patterns for timeline visualization (vertical legs format)
-const SACRED_ODU_PATTERNS = {
-  "Eji Ogbe": [
-    [true, true, true, true], // Right leg
-    [true, true, true, true]  // Left leg
-  ],
-  "Oyeku Meji": [
-    [false, false, false, false], // Right leg
-    [false, false, false, false]  // Left leg
-  ],
-  "Iwori Meji": [
-    [false, true, false, true], // Right leg
-    [false, true, false, true]  // Left leg
-  ],
-  "Odi Meji": [
-    [true, false, false, true], // Right leg
-    [true, false, false, true]  // Left leg
-  ],
-  "Irosun Meji": [
-    [true, true, false, false], // Right leg
-    [true, true, false, false]  // Left leg
-  ],
-  "Owonrin Meji": [
-    [false, false, true, true], // Right leg
-    [false, false, true, true]  // Left leg
-  ],
-  "Obara Meji": [
-    [true, false, true, false], // Right leg
-    [true, false, true, false]  // Left leg
-  ],
-  "Okanran Meji": [
-    [false, true, true, false], // Right leg
-    [false, true, true, false]  // Left leg
-  ]
-};
+const OduVisualization: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { language, ts } = useLanguage();
+  const [selectedOdu, setSelectedOdu] = useState<string>('eji-ogbe');
 
-export default function OduVisualization({ 
-  oduName, 
-  pattern, 
-  size = 40, 
-  className = "" 
-}: OduVisualizationProps) {
-  // Use provided pattern or fall back to sacred patterns
-  const displayPattern = pattern || SACRED_ODU_PATTERNS[oduName as keyof typeof SACRED_ODU_PATTERNS] || SACRED_ODU_PATTERNS["Eji Ogbe"];
+  // 16 Major Odu patterns
+  const majorOdu: Record<string, OduPattern> = {
+    'eji-ogbe': {
+      name: 'Eji Ogbe',
+      nameYoruba: 'Èjì Ogbè',
+      pattern: [false, false, false, false],
+      meaning: 'Light, wisdom, divine authority',
+      meaningYoruba: 'Ìmọ́lẹ̀, ọgbọ́n, àṣẹ òrìṣà'
+    },
+    'oyeku-meji': {
+      name: 'Oyeku Meji',
+      nameYoruba: 'Òyẹ̀kú Méjì',
+      pattern: [true, true, true, true],
+      meaning: 'Darkness, mystery, hidden knowledge',
+      meaningYoruba: 'Òkùnkùn, àwọn ohun ìjìnlẹ̀, ìmọ̀ ìkọ̀kọ̀'
+    },
+    'iwori-meji': {
+      name: 'Iwori Meji',
+      nameYoruba: 'Ìwòrì Méjì',
+      pattern: [true, false, true, false],
+      meaning: 'Character, spiritual development',
+      meaningYoruba: 'Ìwà, ìdàgbàsókè ẹ̀mí'
+    },
+    'odi-meji': {
+      name: 'Odi Meji',
+      nameYoruba: 'Òdí Méjì',
+      pattern: [false, true, false, true],
+      meaning: 'Obstacles, challenges to overcome',
+      meaningYoruba: 'Àwọn ìdènà, àwọn nǹkan tí a gbọ́dọ̀ bori'
+    },
+    'irosun-meji': {
+      name: 'Irosun Meji',
+      nameYoruba: 'Ìrosùn Méjì',
+      pattern: [true, true, false, false],
+      meaning: 'Healing, medicine, restoration',
+      meaningYoruba: 'Ìwòsàn, oògùn, ìmúpadàbọ̀sípò'
+    },
+    'owonrin-meji': {
+      name: 'Owonrin Meji',
+      nameYoruba: 'Òwónrín Méjì',
+      pattern: [false, false, true, true],
+      meaning: 'Chaos, transformation, change',
+      meaningYoruba: 'Rúdurùdu, ìyípadà, àtúnṣe'
+    },
+    'obara-meji': {
+      name: 'Obara Meji',
+      nameYoruba: 'Òbàrà Méjì',
+      pattern: [true, false, false, true],
+      meaning: 'Passion, emotion, relationships',
+      meaningYoruba: 'Ìfẹ́kúfẹ́, ìmọ̀lára, àjọṣe'
+    },
+    'okanran-meji': {
+      name: 'Okanran Meji',
+      nameYoruba: 'Òkànràn Méjì',
+      pattern: [false, true, true, false],
+      meaning: 'Protection, defense, boundaries',
+      meaningYoruba: 'Ààbò, ìgbéjà, àlà'
+    }
+  };
+
+  const drawOduPattern = (pattern: boolean[], oduName: string) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Set drawing style
+    ctx.strokeStyle = '#8B4513'; // Brown color for traditional look
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+
+    // Canvas dimensions
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    
+    // Drawing parameters
+    const lineHeight = 80;
+    const lineSpacing = 60;
+    const startX = (canvasWidth - (3 * lineSpacing)) / 2;
+    const centerY = canvasHeight / 2;
+
+    // Draw title
+    ctx.fillStyle = '#4A5568';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(oduName, canvasWidth / 2, 40);
+
+    // Draw pattern
+    pattern.forEach((broken, index) => {
+      const x = startX + (index * lineSpacing);
+      
+      if (broken) {
+        // Draw broken line (two segments with gap)
+        // Left line of pair
+        ctx.beginPath();
+        ctx.moveTo(x - 5, centerY - lineHeight/2);
+        ctx.lineTo(x - 5, centerY - lineHeight/6);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(x - 5, centerY + lineHeight/6);
+        ctx.lineTo(x - 5, centerY + lineHeight/2);
+        ctx.stroke();
+        
+        // Right line of pair
+        ctx.beginPath();
+        ctx.moveTo(x + 5, centerY - lineHeight/2);
+        ctx.lineTo(x + 5, centerY - lineHeight/6);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(x + 5, centerY + lineHeight/6);
+        ctx.lineTo(x + 5, centerY + lineHeight/2);
+        ctx.stroke();
+      } else {
+        // Draw solid line
+        // Left line of pair
+        ctx.beginPath();
+        ctx.moveTo(x - 5, centerY - lineHeight/2);
+        ctx.lineTo(x - 5, centerY + lineHeight/2);
+        ctx.stroke();
+        
+        // Right line of pair
+        ctx.beginPath();
+        ctx.moveTo(x + 5, centerY - lineHeight/2);
+        ctx.lineTo(x + 5, centerY + lineHeight/2);
+        ctx.stroke();
+      }
+    });
+
+    // Draw meaning below
+    const selectedOduData = majorOdu[selectedOdu];
+    if (selectedOduData) {
+      ctx.fillStyle = '#718096';
+      ctx.font = '14px Arial';
+      ctx.textAlign = 'center';
+      const meaning = language === 'yoruba' ? selectedOduData.meaningYoruba : selectedOduData.meaning;
+      ctx.fillText(meaning, canvasWidth / 2, canvasHeight - 20);
+    }
+  };
+
+  useEffect(() => {
+    const selectedOduData = majorOdu[selectedOdu];
+    if (selectedOduData) {
+      const displayName = language === 'yoruba' ? selectedOduData.nameYoruba : selectedOduData.name;
+      drawOduPattern(selectedOduData.pattern, displayName);
+    }
+  }, [selectedOdu, language]);
 
   return (
-    <div className={`inline-flex items-center justify-center gap-2 ${className}`}>
-      {/* Traditional vertical Ifa pattern: two legs side by side */}
-      {displayPattern.map((leg, legIndex) => (
-        <div key={legIndex} className="flex flex-col gap-1">
-          {leg.map((mark, markIndex) => (
-            <div
-              key={markIndex}
-              className={`rounded-sm border ${
-                mark 
-                  ? 'bg-amber-600 border-amber-700' 
-                  : 'bg-amber-100 border-amber-300 dark:bg-amber-900 dark:border-amber-700'
-              }`}
-              style={{ 
-                width: `${size / 10}px`, 
-                height: `${size / 20}px` 
-              }}
-              title={`${legIndex === 0 ? 'Right' : 'Left'} leg, mark ${markIndex + 1}`}
-            />
-          ))}
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-center text-spiritual-blue dark:text-sacred-gold">
+          {ts("Odu Ifá Visualization", "Àwòrán Odù Ifá")}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="space-y-4">
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {ts("Select Odu to Visualize", "Yan Odù tí o fẹ́ wò")}
+          </label>
+          <Select value={selectedOdu} onValueChange={setSelectedOdu}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.entries(majorOdu).map(([key, odu]) => (
+                <SelectItem key={key} value={key}>
+                  {language === 'yoruba' ? odu.nameYoruba : odu.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
-      ))}
-      {oduName && (
-        <div className="text-xs text-center text-amber-700 dark:text-amber-300 ml-2 font-medium">
-          {oduName}
+
+        <div className="flex justify-center">
+          <canvas
+            ref={canvasRef}
+            width={400}
+            height={200}
+            className="border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
+          />
         </div>
-      )}
-    </div>
+
+        <div className="text-center space-y-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            {ts("Traditional Ifá divination symbols", "Àwọn àmì fífá Ifá àtijọ́")}
+          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-500">
+            {ts("Solid lines represent Yang energy, broken lines represent Yin energy", 
+                "Àwọn ìlà kíkọ́ jẹ́ agbára Yang, àwọn ìlà pínyà jẹ́ agbára Yin")}
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   );
-}
+};
+
+export default OduVisualization;

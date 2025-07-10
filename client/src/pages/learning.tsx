@@ -11,6 +11,7 @@ import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
 import opaIfaImage from '@assets/image_1752089221750.png';
 import ikinImage from '@assets/image_1752089487782.png';
+import OduVisualization from '@/components/odu-visualization';
 
 interface LearningModule {
   id: string;
@@ -203,6 +204,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Àwọn ọ̀rọ̀ mímọ́ àti ìtumọ̀ wọn",
       icon: <Scroll className="w-5 h-5" />,
       content: majorOdu
+    },
+    {
+      id: "visualization",
+      title: "Odu Visualization",
+      titleYoruba: "Àwòrán Odù",
+      description: "Interactive visual patterns of major Odu",
+      descriptionYoruba: "Àwọn àpẹẹrẹ tí ó ní ìfẹsẹ̀múlẹ̀ ti àwọn Odù pàtàkì",
+      icon: <Brain className="w-5 h-5" />,
+      content: []
     },
     {
       id: "language",
@@ -403,6 +413,26 @@ const Learning: React.FC = () => {
                           </CardContent>
                         </Card>
                       ))}
+                    </div>
+                  )}
+
+                  {module.id === 'visualization' && (
+                    <div className="space-y-6">
+                      <OduVisualization />
+                      <div className="text-center space-y-2">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {language === 'yoruba' 
+                            ? "Àwọn àpẹẹrẹ Odù wọ̀nyí jẹ́ àti ìlànà àtijọ́ ti àwọn ọmọ Yorùbá ti ń lò láti ìgbà àtijọ́"
+                            : "These Odu patterns are based on traditional Yoruba divination symbols used for centuries"
+                          }
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-500">
+                          {language === 'yoruba'
+                            ? "Àwọn ìlà kíkọ́ àti pínyà ni wọ́n ń lo láti ṣàpèjúwe àwọn agbára ẹ̀mí"
+                            : "Solid and broken lines represent different spiritual energies and meanings"
+                          }
+                        </p>
+                      </div>
                     </div>
                   )}
 
