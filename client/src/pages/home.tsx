@@ -107,6 +107,14 @@ export default function Home() {
   };
 
   const currentOduCard = getTodaysOduCardNumber();
+  
+  // Debug logging
+  useEffect(() => {
+    if (reading?.odu) {
+      console.log('Today\'s Odu:', reading.odu.name, 'ID:', reading.odu.id);
+      console.log('Mapped to card:', currentOduCard);
+    }
+  }, [reading, currentOduCard]);
 
   const handlePreviousDay = () => {
     setCurrentDate(getPreviousDay(currentDate));
