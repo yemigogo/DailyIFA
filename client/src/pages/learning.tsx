@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
@@ -13,6 +13,7 @@ import opaIfaImage from '@assets/image_1752089221750.png';
 import ikinImage from '@assets/image_1752089487782.png';
 import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
+import Complete256OduSystem from '@/components/complete-256-odu-system';
 
 interface LearningModule {
   id: string;
@@ -250,6 +251,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Àwọn kádì Odù ìbílẹ̀ láti Flask",
       icon: <Server className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "complete-256",
+      title: "Complete 256 Odu System",
+      titleYoruba: "Àwọn Odù Ifá 256 Pípé",
+      description: "Full traditional Odu system with authentic naming",
+      descriptionYoruba: "Àwọn Odù Ifá 256 pípé pẹ̀lú orúkọ ìbílẹ̀",
+      icon: <Database className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -477,6 +487,12 @@ const Learning: React.FC = () => {
                   {module.id === 'flask-cards' && (
                     <div className="space-y-6">
                       <FlaskOduCards />
+                    </div>
+                  )}
+
+                  {module.id === 'complete-256' && (
+                    <div className="space-y-6">
+                      <Complete256OduSystem />
                     </div>
                   )}
 
