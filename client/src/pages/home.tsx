@@ -20,25 +20,12 @@ export default function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
-  const [currentOduCard, setCurrentOduCard] = useState(1);
   const { t, language, setLanguage } = useLanguage();
 
   // Trigger entrance animation on mount
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
-  }, []);
-
-  // Rotate through authentic Odu cards every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentOduCard(prev => {
-        const next = prev + 1;
-        return next > 256 ? 1 : next;
-      });
-    }, 5000); // Change every 5 seconds
-
-    return () => clearInterval(interval);
   }, []);
 
   const dateString = formatDate(currentDate);
@@ -54,6 +41,69 @@ export default function Home() {
   const { data: history = [] } = useQuery<DailyReadingWithOdu[]>({
     queryKey: ["/api/readings/history"],
   });
+
+  // Get today's Odu card number from the reading
+  const getTodaysOduCardNumber = () => {
+    if (!reading?.odu) return 1;
+    
+    // Map Odu names to card numbers - comprehensive mapping
+    const oduToCardMap: Record<string, number> = {
+      // Major Odu (1-16)
+      'Eji Ogbe': 1,
+      'Oyeku Meji': 2,
+      'Iwori Meji': 3,
+      'Idi Meji': 4,
+      'Irosun Meji': 5,
+      'Owonrin Meji': 6,
+      'Obara Meji': 7,
+      'Okanran Meji': 8,
+      'Ogunda Meji': 9,
+      'Osa Meji': 10,
+      'Ika Meji': 11,
+      'Oturupon Meji': 12,
+      'Otura Meji': 13,
+      'Irete Meji': 14,
+      'Ose Meji': 15,
+      'Ofun Meji': 16,
+      
+      // Combined Odu (17-256) - examples for common combinations
+      'Iwori Odi': 35, // Iwori + Odi combination
+      'Ogbe Oyeku': 17,
+      'Ogbe Iwori': 18,
+      'Ogbe Idi': 19,
+      'Oyeku Ogbe': 33,
+      'Oyeku Iwori': 34,
+      'Oyeku Idi': 35,
+      'Iwori Ogbe': 49,
+      'Iwori Oyeku': 50,
+      'Iwori Idi': 51,
+      'Idi Ogbe': 65,
+      'Idi Oyeku': 66,
+      'Idi Iwori': 67,
+      'Odi Iwori': 67, // Alternative naming
+      
+      // Alternative Yoruba spellings and combinations
+      'Òdí Ìwòrì': 67,
+      'Ìwòrì Òdí': 51,
+      'Òdí': 4,
+      'Ìwòrì': 3
+    };
+
+    // First try exact match
+    if (oduToCardMap[reading.odu.name]) {
+      return oduToCardMap[reading.odu.name];
+    }
+
+    // Fallback: use Odu ID if available
+    if (reading.odu.id && reading.odu.id <= 256) {
+      return reading.odu.id;
+    }
+
+    // Default fallback
+    return 1;
+  };
+
+  const currentOduCard = getTodaysOduCardNumber();
 
   const handlePreviousDay = () => {
     setCurrentDate(getPreviousDay(currentDate));
@@ -134,14 +184,11 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden shadow-lg bg-black/5">
                     <img
-                      key={currentOduCard}
                       src={`/static/odu_cards/odu_card_${currentOduCard}.png`}
-                      alt={`Authentic Odu Ifá Card ${currentOduCard}`}
-                      className="w-full h-full object-cover transition-all duration-1000 ease-in-out transform hover:scale-105"
+                      alt={`Today's Odu Ifá Card: ${reading?.odu?.name || 'Sacred Odu'}`}
+                      className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
                       onError={(e) => {
                         console.log(`Failed to load odu_card_${currentOduCard}.png`);
-                        // Fallback to next card
-                        setCurrentOduCard(prev => prev + 1 > 256 ? 1 : prev + 1);
                       }}
                     />
                     {/* Overlay with card number */}
@@ -157,17 +204,12 @@ export default function Home() {
                     {t("Today's Sacred Odu", "Odù Mímọ́ Onì")}
                   </h3>
                   <p className="text-sacred-gold font-semibold text-lg mb-3">
-                    {currentOduCard <= 16 ? 
-                      ['Eji Ogbe', 'Oyeku Meji', 'Iwori Meji', 'Idi Meji', 'Irosun Meji', 'Owonrin Meji', 
-                       'Obara Meji', 'Okanran Meji', 'Ogunda Meji', 'Osa Meji', 'Ika Meji', 'Oturupon Meji',
-                       'Otura Meji', 'Irete Meji', 'Ose Meji', 'Ofun Meji'][currentOduCard - 1] :
-                      `Odu ${currentOduCard}`
-                    }
+                    {reading?.odu?.name || `Odu ${currentOduCard}`}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    {t(
-                      "Authentic Ifá divination cards cycling through the complete 256 Odu system. Each image represents sacred wisdom from traditional Yoruba spiritual practice.",
-                      "Àwọn káàdì àfọṣẹ Ifá tótọ́ tí ń yí yíká láàárín ètò Odù 256 pípé. Àwòrán kọ̀ọ̀kan dúró fún ọgbọ́n mímọ́ láti àṣà ẹ̀mí Yorùbá àtijọ́."
+                    {reading?.odu?.meaning || t(
+                      "Today's sacred Odu card representing divine wisdom and spiritual guidance from traditional Yoruba practice.",
+                      "Káàdì Odù mímọ́ onì tí ó dúró fún ọgbọ́n òrìṣà àti ìtọ́sọ́nà ẹ̀mí láti àṣà Yorùbá àtijọ́."
                     )}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
@@ -184,12 +226,11 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Progress indicator */}
-              <div className="mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
-                <div 
-                  className="bg-gradient-to-r from-sacred-gold to-spiritual-blue h-1 rounded-full transition-all duration-1000 ease-in-out"
-                  style={{ width: `${(currentOduCard / 256) * 100}%` }}
-                ></div>
+              {/* Today's date indicator */}
+              <div className="mt-4 text-center">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {t(`Today's Sacred Reading • ${formatDate(currentDate)}`, `Kíkà Mímọ́ Onì • ${formatDate(currentDate)}`)}
+                </span>
               </div>
             </CardContent>
           </Card>
