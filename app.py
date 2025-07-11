@@ -887,6 +887,46 @@ def get_daily_orisha(date):
     
     return orisha_data.get(cycle_day, orisha_data[0])
 
+@app.route('/odu')
+def odu_cards():
+    """Display Odu cards from static folder"""
+    card_folder = os.path.join(app.static_folder, 'odu_cards')
+    if not os.path.exists(card_folder):
+        os.makedirs(card_folder, exist_ok=True)
+    
+    # Get all PNG files in the odu_cards folder
+    cards = []
+    if os.path.exists(card_folder):
+        cards = sorted([f for f in os.listdir(card_folder) if f.endswith('.png')])
+    
+    return render_template('odu_cards.html', cards=cards)
+
+@app.route('/api/odu-cards')
+def api_odu_cards():
+    """API endpoint for React frontend to get Odu card data"""
+    card_folder = os.path.join(app.static_folder, 'odu_cards')
+    if not os.path.exists(card_folder):
+        os.makedirs(card_folder, exist_ok=True)
+    
+    # Get all PNG files in the odu_cards folder
+    cards = []
+    if os.path.exists(card_folder):
+        for filename in sorted(os.listdir(card_folder)):
+            if filename.endswith('.png'):
+                card_name = filename.replace('.png', '').replace('-', ' ').title()
+                cards.append({
+                    'filename': filename,
+                    'name': card_name,
+                    'url': f'/static/odu_cards/{filename}',
+                    'type': 'traditional'
+                })
+    
+    return jsonify({
+        'cards': cards,
+        'total': len(cards),
+        'message': 'Odu cards loaded successfully' if cards else 'No Odu cards found'
+    })
+
 if __name__ == '__main__':
     # Create directories
     os.makedirs('static/audio/ambient', exist_ok=True)
