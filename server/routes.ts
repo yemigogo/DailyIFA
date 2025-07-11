@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 
@@ -989,6 +990,162 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
       res.status(500).json({ message: "Failed to fetch 256 Odu categories" });
     }
   });
+
+  // Flask Odu Interface route
+  app.get("/odu", (req, res) => {
+    try {
+      // Serve a simple HTML page that displays all Odu cards
+      const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Odu Ifá Cards Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #f4d03f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #333;
+            border: 2px solid white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(244, 208, 63, 0.3);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            color: #f4d03f;
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        .card p {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .loading {
+            text-align: center;
+            color: #f4d03f;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #f4d03f;
+            color: #1a1a1a;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Complete Odu Ifá Cards Interface</h1>
+        <p>Traditional Yoruba Divination System - Authentic Cards Collection</p>
+    </div>
+    <div id="cards-container">
+        <div class="loading">Loading Odu cards...</div>
+    </div>
+
+    <script>
+        async function loadOduCards() {
+            try {
+                const response = await fetch('/api/odu-cards');
+                const data = await response.json();
+                
+                const container = document.getElementById('cards-container');
+                container.innerHTML = '';
+                
+                if (data.cards && data.cards.length > 0) {
+                    const grid = document.createElement('div');
+                    grid.className = 'cards-grid';
+                    
+                    data.cards.forEach(card => {
+                        const cardElement = document.createElement('div');
+                        cardElement.className = 'card';
+                        
+                        cardElement.innerHTML = \`
+                            <div class="badge">\${card.type.toUpperCase()}</div>
+                            <img src="\${card.url}" alt="\${card.name}" onerror="this.src='/static/images/placeholder-odu.png'">
+                            <h3>\${card.name}</h3>
+                            <p>\${card.meaning || 'Sacred wisdom and divine guidance'}</p>
+                        \`;
+                        
+                        grid.appendChild(cardElement);
+                    });
+                    
+                    container.appendChild(grid);
+                } else {
+                    container.innerHTML = '<div class="loading">No Odu cards found</div>';
+                }
+            } catch (error) {
+                console.error('Error loading cards:', error);
+                document.getElementById('cards-container').innerHTML = 
+                    '<div class="loading">Error loading Odu cards</div>';
+            }
+        }
+        
+        // Load cards when page loads
+        loadOduCards();
+    </script>
+</body>
+</html>`;
+      
+      res.send(html);
+    } catch (error) {
+      console.error("Error serving Flask Odu interface:", error);
+      res.status(500).send("Error loading Flask Odu interface");
+    }
+  });
+
+  // Serve static files from the static directory
+  app.use('/static', express.static('static'));
+
+  console.log('Registered routes:');
+  console.log('- /api/odu-cards');
+  console.log('- /api/odu-256/complete');
+  console.log('- /api/odu-256/categories');
+  console.log('- /odu');
+  console.log('- /static (static files)');
 
   // Authentic Odu Cards API endpoint (from manifest)
   app.get("/api/odu-cards-authentic", async (req, res) => {
