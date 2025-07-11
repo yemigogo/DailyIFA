@@ -847,27 +847,100 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
   // Flask Odu Cards API endpoint
   app.get("/api/odu-cards", async (req, res) => {
     try {
-      const { authentic256OduData } = await import("./authentic-odu-data");
+      const fs = await import('fs/promises');
+      const path = await import('path');
       
-      // Convert to Flask-compatible format
-      const flaskCards = authentic256OduData.slice(0, 20).map(odu => ({
-        filename: odu.filename,
-        name: odu.name,
-        url: `/static/odu_cards/${odu.filename}`,
-        type: odu.category,
-        pattern: odu.pattern,
-        meaning: odu.meaning
-      }));
+      // Get all PNG files from the odu_cards directory
+      const cardsDir = path.join(process.cwd(), 'static/odu_cards');
+      const files = await fs.readdir(cardsDir);
+      const pngFiles = files.filter(file => file.endsWith('.png'));
+      
+      console.log(`Found ${pngFiles.length} PNG files in odu_cards directory`);
+      
+      // Create card objects with metadata
+      const cards = pngFiles
+        .filter(filename => {
+          // Extract number from filename (e.g., "001_OGBE_MEJI.png" -> "001")
+          const numberMatch = filename.match(/^(\d{3})_/);
+          if (!numberMatch) return false;
+          
+          const cardNumber = parseInt(numberMatch[1]);
+          return cardNumber >= 1 && cardNumber <= 256;
+        })
+        .sort((a, b) => {
+          // Sort by the number at the beginning of filename
+          const aNum = parseInt(a.match(/^(\d{3})_/)?.[1] || '0');
+          const bNum = parseInt(b.match(/^(\d{3})_/)?.[1] || '0');
+          return aNum - bNum;
+        })
+        .slice(0, 20) // Limit to first 20 for display
+        .map(filename => {
+          // Extract Odu name from filename (actual format: 001_OGBE_MEJI.png)
+          const nameMatch = filename.match(/^\d{3}_(.+)\.png$/);
+          const rawName = nameMatch ? nameMatch[1] : filename.replace('.png', '');
+          
+          // Clean up the name (remove MEJI suffix, replace underscores)
+          let name = rawName.replace(/_MEJI$/, '').replace(/_/g, ' ').toUpperCase();
+          
+          // Determine type based on naming pattern (files with MEJI are major Odu)
+          const isMajor = filename.includes('_MEJI.png') && !filename.includes('_Ogbe_') && !filename.includes('_Oyeku_');
+          
+          // Create pattern based on Odu name
+          let pattern = 'MEJI\nII\nII\nII\nII';
+          if (name.includes('OYEKU')) {
+            pattern = 'MEJI\nII II\nII II\nII II\nII II';
+          } else if (name.includes('IWORI')) {
+            pattern = 'MEJI\nII II\nI I\nI I\nII II';
+          } else if (name.includes('ODI')) {
+            pattern = 'MEJI\nI I\nII II\nII II\nI I';
+          }
+          
+          // Map meanings
+          const meanings: Record<string, string> = {
+            'OGBE': 'Light, clarity, divine wisdom',
+            'OYEKU': 'Mystery, reflection, hidden knowledge', 
+            'IWORI': 'Character, spiritual development',
+            'ODI': 'Foundation, stability',
+            'IROSUN': 'Healing, restoration',
+            'OWONRIN': 'Chaos, transformation',
+            'OBARA': 'Passion, emotion',
+            'OKANRAN': 'Protection, boundaries',
+            'OGUNDA': 'Warrior spirit, strength',
+            'OSA': 'Intuition, spiritual insight',
+            'IKA': 'Transformation, cunning strategy',
+            'OTURUPON': 'Patience, endurance',
+            'OTURA': 'Hidden mysteries',
+            'IRETE': 'Victory, triumph',
+            'OSE': 'Abundance, prosperity',
+            'OFUN': 'Completion, blessing'
+          };
+          
+          const meaning = meanings[name.split(' ')[0]] || 'Sacred wisdom and divine guidance';
+          
+          return {
+            filename,
+            name,
+            url: `/static/odu_cards/${filename}`,
+            type: isMajor ? 'major' : 'minor',
+            pattern,
+            meaning
+          };
+        });
 
+      console.log(`Processed ${cards.length} cards for API response`);
+      
       res.json({
-        cards: flaskCards,
-        total: flaskCards.length,
+        cards,
+        total: cards.length,
         message: "Flask Odu cards (authentic Excel data)",
         source: "User Excel Integration"
       });
     } catch (error) {
-      console.error("Error fetching Flask Odu cards:", error);
-      res.status(500).json({ message: "Failed to fetch Flask Odu cards" });
+      console.error("Error fetching Odu cards:", error);
+      res.status(500).json({ 
+        message: "Failed to fetch Odu cards",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 

@@ -515,12 +515,20 @@ const Learning: React.FC = () => {
 
                   {module.id === 'flask-cards' && (
                     <div className="space-y-6">
+                      <div className="text-center mb-4">
+                        <h3 className="text-lg font-semibold text-spiritual-blue">Flask Odu Cards System</h3>
+                        <p className="text-gray-600">Authentic traditional cards from Flask backend</p>
+                      </div>
                       <FlaskOduCards />
                     </div>
                   )}
 
                   {module.id === 'complete-256' && (
                     <div className="space-y-6">
+                      <div className="text-center mb-4">
+                        <h3 className="text-lg font-semibold text-spiritual-blue">Complete 256 Odu System</h3>
+                        <p className="text-gray-600">Traditional Yoruba divination system</p>
+                      </div>
                       <Complete256OduSystem />
                     </div>
                   )}

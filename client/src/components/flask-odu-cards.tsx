@@ -25,6 +25,7 @@ export default function FlaskOduCards() {
   const [selectedCard, setSelectedCard] = useState<OduCard | null>(null);
 
   useEffect(() => {
+    console.log('FlaskOduCards component mounted, fetching cards...');
     fetchOduCards();
   }, []);
 

@@ -9,8 +9,14 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve audio files statically
 app.use('/audio', express.static(path.join(process.cwd(), 'client/public/audio')));
-// Serve ambient soundscapes
-app.use('/static', express.static(path.join(process.cwd(), 'static')));
+// Serve static files (Odu cards, etc.) - this must come first
+app.use('/static', express.static(path.join(process.cwd(), 'static'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.png')) {
+      res.setHeader('Content-Type', 'image/png');
+    }
+  }
+}));
 
 app.use((req, res, next) => {
   const start = Date.now();

@@ -30,6 +30,8 @@ export default function Complete256OduSystem() {
   const [primaryOdu, setPrimaryOdu] = useState('');
   const [selectedOdu, setSelectedOdu] = useState<OduEntry | null>(null);
   
+  console.log('Complete256OduSystem component rendered');
+  
   const { data: oduData, isLoading, error } = useQuery({
     queryKey: ['/api/odu-256/complete', page, search, category, primaryOdu],
     queryFn: async () => {
