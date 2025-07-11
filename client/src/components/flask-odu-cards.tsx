@@ -33,14 +33,8 @@ export default function FlaskOduCards() {
       setLoading(true);
       setError(null);
       
-      // Try Flask backend first (port 5001)
-      let response;
-      try {
-        response = await fetch('http://localhost:5001/api/odu-cards');
-      } catch (flaskError) {
-        // Fallback to current server
-        response = await fetch('/api/odu-cards');
-      }
+      // Use current server API endpoint
+      const response = await fetch('/api/odu-cards');
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,7 +51,7 @@ export default function FlaskOduCards() {
   };
 
   const openFlaskInterface = () => {
-    window.open('http://localhost:5001/odu', '_blank');
+    window.open('/odu', '_blank');
   };
 
   if (loading) {
@@ -220,8 +214,8 @@ export default function FlaskOduCards() {
             </div>
             <div>
               <p className="text-sm text-blue-700">
-                <strong>Flask Integration:</strong> This component connects to the Flask backend 
-                at <code>localhost:5001</code> to display traditional Odu cards.
+                <strong>Flask Integration:</strong> This component displays traditional Odu cards 
+                served from the integrated Flask backend with authentic Excel data.
               </p>
             </div>
           </div>
