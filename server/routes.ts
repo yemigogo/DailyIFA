@@ -857,75 +857,101 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
       
       console.log(`Found ${pngFiles.length} PNG files in odu_cards directory`);
       
-      // Create card objects with metadata
-      const cards = pngFiles
+      // Focus on the authentic odu_card_X.png files from your Flask app
+      const oduCardFiles = pngFiles
+        .filter(filename => filename.startsWith('odu_card_') && filename.endsWith('.png'))
         .filter(filename => {
-          // Extract number from filename (e.g., "001_OGBE_MEJI.png" -> "001")
-          const numberMatch = filename.match(/^(\d{3})_/);
+          // Extract number from filename (e.g., "odu_card_1.png" -> "1")
+          const numberMatch = filename.match(/^odu_card_(\d+)\.png$/);
           if (!numberMatch) return false;
           
           const cardNumber = parseInt(numberMatch[1]);
           return cardNumber >= 1 && cardNumber <= 256;
         })
         .sort((a, b) => {
-          // Sort by the number at the beginning of filename
-          const aNum = parseInt(a.match(/^(\d{3})_/)?.[1] || '0');
-          const bNum = parseInt(b.match(/^(\d{3})_/)?.[1] || '0');
+          // Sort by the number in filename
+          const aNum = parseInt(a.match(/^odu_card_(\d+)\.png$/)?.[1] || '0');
+          const bNum = parseInt(b.match(/^odu_card_(\d+)\.png$/)?.[1] || '0');
           return aNum - bNum;
         })
-        .slice(0, 20) // Limit to first 20 for display
-        .map(filename => {
-          // Extract Odu name from filename (actual format: 001_OGBE_MEJI.png)
-          const nameMatch = filename.match(/^\d{3}_(.+)\.png$/);
-          const rawName = nameMatch ? nameMatch[1] : filename.replace('.png', '');
-          
-          // Clean up the name (remove MEJI suffix, replace underscores)
-          let name = rawName.replace(/_MEJI$/, '').replace(/_/g, ' ').toUpperCase();
-          
-          // Determine type based on naming pattern (files with MEJI are major Odu)
-          const isMajor = filename.includes('_MEJI.png') && !filename.includes('_Ogbe_') && !filename.includes('_Oyeku_');
-          
-          // Create pattern based on Odu name
-          let pattern = 'MEJI\nII\nII\nII\nII';
-          if (name.includes('OYEKU')) {
-            pattern = 'MEJI\nII II\nII II\nII II\nII II';
-          } else if (name.includes('IWORI')) {
-            pattern = 'MEJI\nII II\nI I\nI I\nII II';
-          } else if (name.includes('ODI')) {
-            pattern = 'MEJI\nI I\nII II\nII II\nI I';
-          }
-          
-          // Map meanings
-          const meanings: Record<string, string> = {
-            'OGBE': 'Light, clarity, divine wisdom',
-            'OYEKU': 'Mystery, reflection, hidden knowledge', 
-            'IWORI': 'Character, spiritual development',
-            'ODI': 'Foundation, stability',
-            'IROSUN': 'Healing, restoration',
-            'OWONRIN': 'Chaos, transformation',
-            'OBARA': 'Passion, emotion',
-            'OKANRAN': 'Protection, boundaries',
-            'OGUNDA': 'Warrior spirit, strength',
-            'OSA': 'Intuition, spiritual insight',
-            'IKA': 'Transformation, cunning strategy',
-            'OTURUPON': 'Patience, endurance',
-            'OTURA': 'Hidden mysteries',
-            'IRETE': 'Victory, triumph',
-            'OSE': 'Abundance, prosperity',
-            'OFUN': 'Completion, blessing'
-          };
-          
-          const meaning = meanings[name.split(' ')[0]] || 'Sacred wisdom and divine guidance';
-          
-          return {
-            filename,
-            name,
-            url: `/static/odu_cards/${filename}`,
-            type: isMajor ? 'major' : 'minor',
-            pattern,
-            meaning
-          };
-        });
+        .slice(0, 20); // Limit to first 20 for display
+        
+      // Create card objects with metadata
+      const cards = oduCardFiles.map(filename => {
+        // Extract card number from filename (e.g., "odu_card_1.png" -> "1")
+        const numberMatch = filename.match(/^odu_card_(\d+)\.png$/);
+        const cardNumber = numberMatch ? parseInt(numberMatch[1]) : 0;
+        
+        // Generate traditional Odu names based on card number
+        const traditionalOduNames = [
+          'Eji Ogbe', 'Oyeku Meji', 'Iwori Meji', 'Idi Meji', 'Irosun Meji', 'Owonrin Meji', 
+          'Obara Meji', 'Okanran Meji', 'Ogunda Meji', 'Osa Meji', 'Ika Meji', 'Oturupon Meji',
+          'Otura Meji', 'Irete Meji', 'Ose Meji', 'Ofun Meji'
+        ];
+        
+        let name = `Odu ${cardNumber}`;
+        let type = 'minor';
+        
+        // First 16 cards are major Odu
+        if (cardNumber <= 16) {
+          name = traditionalOduNames[cardNumber - 1] || name;
+          type = 'major';
+        }
+        
+        // Create traditional patterns
+        const patterns = {
+          1: 'EJI OGBE\nII\nII\nII\nII',
+          2: 'OYEKU MEJI\nII II\nII II\nII II\nII II',
+          3: 'IWORI MEJI\nII II\nI I\nI I\nII II',
+          4: 'IDI MEJI\nI I\nII II\nII II\nI I',
+          5: 'IROSUN MEJI\nI I\nI I\nII II\nII II',
+          6: 'OWONRIN MEJI\nII II\nII II\nI I\nI I',
+          7: 'OBARA MEJI\nI I\nII II\nII II\nII II',
+          8: 'OKANRAN MEJI\nII II\nII II\nII II\nI I',
+          9: 'OGUNDA MEJI\nI I\nI I\nI I\nII II',
+          10: 'OSA MEJI\nII II\nI I\nI I\nI I',
+          11: 'IKA MEJI\nII II\nI I\nII II\nII II',
+          12: 'OTURUPON MEJI\nII II\nII II\nI I\nII II',
+          13: 'OTURA MEJI\nI I\nII II\nI I\nI I',
+          14: 'IRETE MEJI\nI I\nI I\nII II\nI I',
+          15: 'OSE MEJI\nI I\nII II\nI I\nII II',
+          16: 'OFUN MEJI\nII II\nII II\nII II\nII II'
+        };
+        
+        const pattern = patterns[cardNumber] || `ODU ${cardNumber}\nII\nII\nII\nII`;
+        
+        // Map meanings
+        const meanings: Record<string, string> = {
+          'Eji Ogbe': 'Light, clarity, divine wisdom',
+          'Oyeku Meji': 'Mystery, reflection, hidden knowledge', 
+          'Iwori Meji': 'Character, spiritual development',
+          'Idi Meji': 'Foundation, stability',
+          'Irosun Meji': 'Healing, restoration',
+          'Owonrin Meji': 'Chaos, transformation',
+          'Obara Meji': 'Passion, emotion',
+          'Okanran Meji': 'Protection, boundaries',
+          'Ogunda Meji': 'Warrior spirit, strength',
+          'Osa Meji': 'Intuition, spiritual insight',
+          'Ika Meji': 'Transformation, cunning strategy',
+          'Oturupon Meji': 'Patience, endurance',
+          'Otura Meji': 'Hidden mysteries',
+          'Irete Meji': 'Victory, triumph',
+          'Ose Meji': 'Abundance, prosperity',
+          'Ofun Meji': 'Completion, blessing'
+        };
+        
+        const meaning = meanings[name] || 'Sacred wisdom and divine guidance';
+        
+        return {
+          filename,
+          name,
+          url: `/static/odu_cards/${filename}`,
+          type,
+          pattern,
+          meaning,
+          cardNumber
+        };
+      });
 
       console.log(`Processed ${cards.length} cards for API response`);
       
