@@ -20,12 +20,25 @@ export default function Home() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
+  const [currentOduCard, setCurrentOduCard] = useState(1);
   const { t, language, setLanguage } = useLanguage();
 
   // Trigger entrance animation on mount
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Rotate through authentic Odu cards every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentOduCard(prev => {
+        const next = prev + 1;
+        return next > 256 ? 1 : next;
+      });
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const dateString = formatDate(currentDate);
@@ -112,6 +125,76 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="container-responsive py-6 spacing-mobile">
+        {/* Rotating Authentic Odu Card Display */}
+        <div className={`reveal-up ${isVisible ? 'visible' : ''}`} style={{animationDelay: '0.2s'}}>
+          <Card className="bg-gradient-to-br from-sacred-gold/10 via-spiritual-blue/5 to-emerald-50 border-sacred-gold/20 card-smooth mb-6 overflow-hidden">
+            <CardContent className="p-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                {/* Authentic Odu Card Image */}
+                <div className="flex-shrink-0">
+                  <div className="relative w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden shadow-lg bg-black/5">
+                    <img
+                      key={currentOduCard}
+                      src={`/static/odu_cards/odu_card_${currentOduCard}.png`}
+                      alt={`Authentic Odu Ifá Card ${currentOduCard}`}
+                      className="w-full h-full object-cover transition-all duration-1000 ease-in-out transform hover:scale-105"
+                      onError={(e) => {
+                        console.log(`Failed to load odu_card_${currentOduCard}.png`);
+                        // Fallback to next card
+                        setCurrentOduCard(prev => prev + 1 > 256 ? 1 : prev + 1);
+                      }}
+                    />
+                    {/* Overlay with card number */}
+                    <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md font-semibold">
+                      {currentOduCard}/256
+                    </div>
+                  </div>
+                </div>
+
+                {/* Odu Information */}
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="font-crimson text-xl md:text-2xl font-bold text-spiritual-blue dark:text-white mb-2">
+                    {t("Today's Sacred Odu", "Odù Mímọ́ Onì")}
+                  </h3>
+                  <p className="text-sacred-gold font-semibold text-lg mb-3">
+                    {currentOduCard <= 16 ? 
+                      ['Eji Ogbe', 'Oyeku Meji', 'Iwori Meji', 'Idi Meji', 'Irosun Meji', 'Owonrin Meji', 
+                       'Obara Meji', 'Okanran Meji', 'Ogunda Meji', 'Osa Meji', 'Ika Meji', 'Oturupon Meji',
+                       'Otura Meji', 'Irete Meji', 'Ose Meji', 'Ofun Meji'][currentOduCard - 1] :
+                      `Odu ${currentOduCard}`
+                    }
+                  </p>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    {t(
+                      "Authentic Ifá divination cards cycling through the complete 256 Odu system. Each image represents sacred wisdom from traditional Yoruba spiritual practice.",
+                      "Àwọn káàdì àfọṣẹ Ifá tótọ́ tí ń yí yíká láàárín ètò Odù 256 pípé. Àwòrán kọ̀ọ̀kan dúró fún ọgbọ́n mímọ́ láti àṣà ẹ̀mí Yorùbá àtijọ́."
+                    )}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span className="bg-spiritual-blue/10 text-spiritual-blue px-3 py-1 rounded-full text-xs font-medium">
+                      {t("Authentic Cards", "Káàdì Tótọ́")}
+                    </span>
+                    <span className="bg-sacred-gold/10 text-sacred-gold px-3 py-1 rounded-full text-xs font-medium">
+                      {currentOduCard <= 16 ? t("Major Odu", "Odù Àgbà") : t("Minor Odu", "Odù Kékeré")}
+                    </span>
+                    <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium">
+                      {t("Traditional Pattern", "Ilana Àtijọ́")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Progress indicator */}
+              <div className="mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
+                <div 
+                  className="bg-gradient-to-r from-sacred-gold to-spiritual-blue h-1 rounded-full transition-all duration-1000 ease-in-out"
+                  style={{ width: `${(currentOduCard / 256) * 100}%` }}
+                ></div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Date Navigation */}
         <div className={`reveal-up ${isVisible ? 'visible' : ''}`} style={{animationDelay: '0.3s'}}>
           <DateNavigation
