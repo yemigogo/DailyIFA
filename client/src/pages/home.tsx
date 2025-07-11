@@ -46,69 +46,19 @@ export default function Home() {
   const getTodaysOduCardNumber = () => {
     if (!reading?.odu) return 1;
     
-    // Map Odu names to card numbers - comprehensive mapping
-    const oduToCardMap: Record<string, number> = {
-      // Major Odu (1-16)
-      'Eji Ogbe': 1,
-      'Oyeku Meji': 2,
-      'Iwori Meji': 3,
-      'Idi Meji': 4,
-      'Irosun Meji': 5,
-      'Owonrin Meji': 6,
-      'Obara Meji': 7,
-      'Okanran Meji': 8,
-      'Ogunda Meji': 9,
-      'Osa Meji': 10,
-      'Ika Meji': 11,
-      'Oturupon Meji': 12,
-      'Otura Meji': 13,
-      'Irete Meji': 14,
-      'Ose Meji': 15,
-      'Ofun Meji': 16,
-      
-      // Combined Odu (17-256) - examples for common combinations
-      'Iwori Odi': 19, // Iwori Odi uses ID 19 (authentic card)
-      'Ogbe Oyeku': 17,
-      'Ogbe Iwori': 18,
-      'Ogbe Idi': 19,
-      'Oyeku Ogbe': 33,
-      'Oyeku Iwori': 34,
-      'Oyeku Idi': 35,
-      'Iwori Ogbe': 49,
-      'Iwori Oyeku': 50,
-      'Iwori Idi': 51,
-      'Idi Ogbe': 65,
-      'Idi Oyeku': 66,
-      'Idi Iwori': 67,
-      'Odi Iwori': 67, // Alternative naming
-      
-      // Alternative Yoruba spellings and combinations
-      'Òdí Ìwòrì': 67,
-      'Ìwòrì Òdí': 51,
-      'Òdí': 4,
-      'Ìwòrì': 3
-    };
-
-    // First try exact match
-    if (oduToCardMap[reading.odu.name]) {
-      console.log(`Found exact match for "${reading.odu.name}": card ${oduToCardMap[reading.odu.name]}`);
-      return oduToCardMap[reading.odu.name];
+    // For calendar consistency, always use the Odu ID directly
+    // This ensures each date maps to the same card consistently
+    const cardNumber = reading.odu.id;
+    
+    console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" (ID: ${reading.odu.id}) -> Card: ${cardNumber}`);
+    
+    // Ensure card number is within valid range
+    if (cardNumber && cardNumber >= 1 && cardNumber <= 256) {
+      return cardNumber;
     }
-
-    // Special handling for "Iwori Odi" - use the original Odu ID
-    if (reading.odu.name === "Iwori Odi") {
-      console.log('Special case: Iwori Odi -> using original ID (authentic image)');
-      return reading.odu.id;
-    }
-
-    // Fallback: use Odu ID if available
-    if (reading.odu.id && reading.odu.id <= 256) {
-      console.log(`Using Odu ID ${reading.odu.id} as card number`);
-      return reading.odu.id;
-    }
-
-    // Log if no match found
-    console.log(`No match found for "${reading.odu.name}", using default card 1`);
+    
+    // Fallback to card 1 if invalid
+    console.log(`Invalid card number ${cardNumber}, using default card 1`);
     return 1;
   };
 
