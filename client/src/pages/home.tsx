@@ -95,6 +95,12 @@ export default function Home() {
       return oduToCardMap[reading.odu.name];
     }
 
+    // Special handling for "Iwori Odi" - always use card 51
+    if (reading.odu.name === "Iwori Odi") {
+      console.log('Special case: Iwori Odi -> card 51 (authentic image)');
+      return 51;
+    }
+
     // Fallback: use Odu ID if available
     if (reading.odu.id && reading.odu.id <= 256) {
       console.log(`Using Odu ID ${reading.odu.id} as card number`);
@@ -195,11 +201,14 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden shadow-lg bg-black/5">
                     <img
-                      src={`/static/odu_cards/odu_card_${currentOduCard}.png`}
-                      alt={`Today's Odu Ifá Card: ${reading?.odu?.name || 'Sacred Odu'}`}
-                      className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
+                      src={`/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`}
+                      alt={`Today's Authentic Odu Ifá Card: ${reading?.odu?.name || 'Sacred Odu'}`}
+                      className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105 border-2 border-sacred-gold/20 rounded-lg"
                       onError={(e) => {
-                        console.log(`Failed to load odu_card_${currentOduCard}.png`);
+                        console.error(`Failed to load authentic Odu card: odu_card_${currentOduCard}.png`);
+                      }}
+                      onLoad={() => {
+                        console.log(`Successfully loaded authentic Odu card: odu_card_${currentOduCard}.png for "${reading?.odu?.name}"`);
                       }}
                     />
                     {/* Overlay with card number */}
