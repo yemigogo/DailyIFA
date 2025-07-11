@@ -67,7 +67,7 @@ export default function Home() {
       'Ofun Meji': 16,
       
       // Combined Odu (17-256) - examples for common combinations
-      'Iwori Odi': 51, // Iwori + Odi combination (card 51)
+      'Iwori Odi': 19, // Iwori Odi uses ID 19 (authentic card)
       'Ogbe Oyeku': 17,
       'Ogbe Iwori': 18,
       'Ogbe Idi': 19,
@@ -95,10 +95,10 @@ export default function Home() {
       return oduToCardMap[reading.odu.name];
     }
 
-    // Special handling for "Iwori Odi" - always use card 51
+    // Special handling for "Iwori Odi" - use the original Odu ID
     if (reading.odu.name === "Iwori Odi") {
-      console.log('Special case: Iwori Odi -> card 51 (authentic image)');
-      return 51;
+      console.log('Special case: Iwori Odi -> using original ID (authentic image)');
+      return reading.odu.id;
     }
 
     // Fallback: use Odu ID if available

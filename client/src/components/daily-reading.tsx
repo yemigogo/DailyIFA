@@ -37,7 +37,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
       'Otura Meji': 13, 'Irete Meji': 14, 'Ose Meji': 15, 'Ofun Meji': 16,
       
       // Combined Odu (17-256)
-      'Iwori Odi': 51, 'Ogbe Oyeku': 17, 'Ogbe Iwori': 18, 'Ogbe Idi': 19,
+      'Iwori Odi': 19, 'Ogbe Oyeku': 17, 'Ogbe Iwori': 18, 'Ogbe Idi': 19,
       'Oyeku Ogbe': 33, 'Oyeku Iwori': 34, 'Oyeku Idi': 35, 'Iwori Ogbe': 49,
       'Iwori Oyeku': 50, 'Iwori Idi': 51, 'Idi Ogbe': 65, 'Idi Oyeku': 66,
       'Idi Iwori': 67, 'Odi Iwori': 67,
@@ -51,9 +51,9 @@ export default function DailyReading({ reading }: DailyReadingProps) {
       return oduToCardMap[reading.odu.name];
     }
 
-    // Special handling for "Iwori Odi" - always use card 51
+    // Special handling for "Iwori Odi" - use the original Odu ID
     if (reading.odu.name === "Iwori Odi") {
-      return 51;
+      return reading.odu.id;
     }
 
     // Fallback: use Odu ID if available
