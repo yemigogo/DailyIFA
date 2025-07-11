@@ -2,7 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useQuery } from '@tanstack/react-query';
+import { Search, Filter } from 'lucide-react';
 import ejiOgbeImage from '@assets/Screenshot_20250710_123846_Instagram_1752166024343.jpg';
 import oyekuMejiImage from '@assets/Screenshot_20250710_123808_Instagram_1752166865820.jpg';
 import idiMejiImage from '@assets/Screenshot_20250710_123729_Instagram_1752167034304.jpg';
@@ -29,10 +33,33 @@ interface OduPattern {
   image?: string;
 }
 
+interface Complete256Odu {
+  id: number;
+  name: string;
+  traditional_name: string;
+  yoruba_name: string;
+  pattern: string;
+  spiritual_meaning: string;
+  guidance: string;
+  modern_application: string;
+  category: string;
+  primary_odu: string;
+  secondary_odu: string;
+}
+
 const OduVisualization: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { language, ts } = useLanguage();
   const [selectedOdu, setSelectedOdu] = useState<string>('eji-ogbe');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [viewMode, setViewMode] = useState<'traditional' | 'complete'>('traditional');
+  const [selectedCompleteOdu, setSelectedCompleteOdu] = useState<number>(1);
+
+  // Fetch all 256 Odu from API
+  const { data: complete256Odu, isLoading: isLoadingComplete } = useQuery({
+    queryKey: ['/api/odus/all-256'],
+    enabled: viewMode === 'complete'
+  });
 
   // 16 Major Odu patterns
   const majorOdu: Record<string, OduPattern> = {
@@ -259,31 +286,208 @@ const OduVisualization: React.FC = () => {
     }
   }, [selectedOdu, language]);
 
+  // Filter complete 256 Odu based on search
+  const filteredComplete256 = complete256Odu?.odus?.filter((odu: Complete256Odu) =>
+    odu.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    odu.traditional_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    odu.spiritual_meaning.toLowerCase().includes(searchTerm.toLowerCase())
+  ) || [];
+
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-center text-spiritual-blue dark:text-sacred-gold">
-          {ts("Odu Ifá Visualization", "Àwòrán Odù Ifá")}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-4">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            {ts("Select Odu to Visualize", "Yan Odù tí o fẹ́ wò")}
-          </label>
-          <Select value={selectedOdu} onValueChange={setSelectedOdu}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(majorOdu).map(([key, odu]) => (
-                <SelectItem key={key} value={key}>
-                  {language === 'yoruba' ? odu.nameYoruba : odu.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+    <div className="w-full space-y-6">
+      {/* View Mode Toggle */}
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle className="text-center text-spiritual-blue dark:text-sacred-gold">
+            {ts("Odu Ifá Visualization", "Àwòrán Odù Ifá")}
+          </CardTitle>
+          <div className="flex justify-center gap-2">
+            <Button
+              variant={viewMode === 'traditional' ? 'default' : 'outline'}
+              onClick={() => setViewMode('traditional')}
+              size="sm"
+            >
+              {ts("16 Major Odu", "16 Odù Pàtàkì")}
+            </Button>
+            <Button
+              variant={viewMode === 'complete' ? 'default' : 'outline'}
+              onClick={() => setViewMode('complete')}
+              size="sm"
+            >
+              {ts("Complete 256 Odu", "256 Odù Pípé")}
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {viewMode === 'traditional' ? (
+            <>
+              <div className="space-y-4">
+                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {ts("Select Major Odu to Visualize", "Yan Odù Pàtàkì tí o fẹ́ wò")}
+                </label>
+                <Select value={selectedOdu} onValueChange={setSelectedOdu}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(majorOdu).map(([key, odu]) => (
+                      <SelectItem key={key} value={key}>
+                        {language === 'yoruba' ? odu.nameYoruba : odu.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Complete 256 Odu Section */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+                      {ts("Search 256 Odu System", "Wá Nínú 256 Odù")}
+                    </label>
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        placeholder={ts("Search by name or meaning...", "Wá nípa orúkọ tàbí ìtumọ̀...")}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Badge variant="secondary" className="mb-2">
+                      {complete256Odu?.totalOdus || 256} Total
+                    </Badge>
+                    <div className="text-xs text-gray-500 text-center">
+                      <div>{complete256Odu?.majorOdus || 16} Major</div>
+                      <div>{complete256Odu?.minorOdus || 240} Minor</div>
+                    </div>
+                  </div>
+                </div>
+
+                {isLoadingComplete ? (
+                  <div className="text-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-spiritual-blue mx-auto"></div>
+                    <p className="mt-2 text-gray-600">{ts("Loading 256 Odu system...", "Ń gbé 256 Odù...")}</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+                    {filteredComplete256.map((odu: Complete256Odu) => (
+                      <Card 
+                        key={odu.id} 
+                        className={`cursor-pointer transition-all hover:shadow-md border-l-4 ${
+                          odu.category === 'major' ? 'border-l-amber-500' : 'border-l-blue-500'
+                        } ${selectedCompleteOdu === odu.id ? 'ring-2 ring-spiritual-blue' : ''}`}
+                        onClick={() => setSelectedCompleteOdu(odu.id)}
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between mb-2">
+                            <h4 className="font-semibold text-sm">{odu.traditional_name}</h4>
+                            <Badge variant={odu.category === 'major' ? 'default' : 'secondary'} className="text-xs">
+                              {odu.category}
+                            </Badge>
+                          </div>
+                          <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                            {odu.spiritual_meaning.substring(0, 60)}...
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-mono text-gray-500">#{odu.id}</span>
+                            <span className="text-xs text-gray-500">{odu.pattern}</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+
+                {/* Selected Complete Odu Details */}
+                {complete256Odu?.odus && (
+                  <Card className="mt-6">
+                    <CardContent className="p-6">
+                      {(() => {
+                        const selectedOduData = complete256Odu.odus.find((o: Complete256Odu) => o.id === selectedCompleteOdu);
+                        if (!selectedOduData) return null;
+                        return (
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <h3 className="text-xl font-bold text-spiritual-blue dark:text-sacred-gold">
+                                {selectedOduData.traditional_name}
+                              </h3>
+                              <div className="flex gap-2">
+                                <Badge variant={selectedOduData.category === 'major' ? 'default' : 'secondary'}>
+                                  {selectedOduData.category}
+                                </Badge>
+                                <Badge variant="outline">#{selectedOduData.id}</Badge>
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                  {ts("Spiritual Meaning", "Ìtumọ̀ Ẹ̀mí")}
+                                </h4>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                  {selectedOduData.spiritual_meaning}
+                                </p>
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                  {ts("Guidance", "Ìtọ́nisọ́nà")}
+                                </h4>
+                                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                  {selectedOduData.guidance}
+                                </p>
+                              </div>
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                {ts("Modern Application", "Ìlò Ìgbàlódé")}
+                              </h4>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                {selectedOduData.modern_application}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-4 pt-4 border-t">
+                              <div className="text-center">
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Pattern</span>
+                                <div className="text-lg font-mono text-spiritual-blue dark:text-sacred-gold">
+                                  {selectedOduData.pattern}
+                                </div>
+                              </div>
+                              <div className="text-center">
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Primary</span>
+                                <div className="text-sm text-gray-600 dark:text-gray-400">
+                                  {selectedOduData.primary_odu}
+                                </div>
+                              </div>
+                              {selectedOduData.secondary_odu && (
+                                <div className="text-center">
+                                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Secondary</span>
+                                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                                    {selectedOduData.secondary_odu}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            </>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Traditional 16 Major Odu Visualization */}
+      {viewMode === 'traditional' && (
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardContent className="space-y-6 pt-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Canvas Visualization */}
