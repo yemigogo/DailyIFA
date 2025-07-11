@@ -1112,6 +1112,11 @@ def authentic_odu_cards():
     """Display authentic Odu cards from user Excel data"""
     return render_template('authentic_odu_cards.html')
 
+@app.route('/odu-cards-simple')
+def odu_cards_simple():
+    """Simple display of Odu cards using your template structure"""
+    return render_template('odu_cards_simple.html')
+
 if __name__ == '__main__':
     # Create directories
     os.makedirs('static/audio/ambient', exist_ok=True)

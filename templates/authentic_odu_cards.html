@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentic Odu Ifá Cards - Traditional Sacred Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #2d1810;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .controls {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #FFD700;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1rem;
+            min-width: 300px;
+        }
+
+        .search-box::placeholder {
+            color: #ccc;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #4169E1, #FF6B35);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 2px solid #444;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255,215,0,0.2);
+            border-color: #FFD700;
+        }
+
+        .card-header {
+            padding: 1rem;
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            color: #1a1a1a;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-pattern {
+            background: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.1rem;
+            letter-spacing: 0.2rem;
+            color: #FFD700;
+        }
+
+        .card-meaning {
+            color: #ccc;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn {
+            background: linear-gradient(45deg, #4169E1, #6495ED);
+            color: #fff;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #32CD32, #228B22);
+            color: #fff;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #2d2d2d;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FF4444;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #888;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .sacred-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: radial-gradient(circle at 25% 25%, #FFD700 2px, transparent 2px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-box {
+                min-width: 250px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sacred-pattern"></div>
+    
+    <div class="header">
+        <h1>Authentic Odu Ifá Cards</h1>
+        <p>Traditional Sacred Collection from Excel Data</p>
+        <div class="stats">
+            <div class="stat-item">256 Cards</div>
+            <div class="stat-item">16 Major Odu</div>
+            <div class="stat-item">240 Minor Odu</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <input type="text" class="search-box" placeholder="Search Odu by name or number..." id="searchInput">
+        <button class="filter-btn active" data-filter="all">All Cards</button>
+        <button class="filter-btn" data-filter="major">Major Odu</button>
+        <button class="filter-btn" data-filter="minor">Minor Odu</button>
+    </div>
+
+    <div class="container">
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading authentic Odu cards...</p>
+        </div>
+
+        <div class="grid" id="cardGrid" style="display: none;">
+            <!-- Cards will be loaded here -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <h3>No cards found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </div>
+
+    <!-- Modal for card details -->
+    <div class="modal" id="cardModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalBody">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allCards = [];
+        let filteredCards = [];
+        let currentFilter = 'all';
+
+        // Load cards from Flask API
+        async function loadCards() {
+            try {
+                const response = await fetch('/api/odu-cards-authentic');
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    allCards = data.cards.map(card => ({
+                        ...card,
+                        category: data.categories.major.some(c => c.number === card.number) ? 'major' : 'minor'
+                    }));
+                    filteredCards = [...allCards];
+                    renderCards();
+                } else {
+                    showError(data.message || 'Failed to load cards');
+                }
+            } catch (error) {
+                showError('Error loading cards: ' + error.message);
+            }
+            
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function renderCards() {
+            const grid = document.getElementById('cardGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredCards.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            grid.innerHTML = filteredCards.map(card => `
+                <div class="card" data-category="${card.category}">
+                    <div class="card-header">
+                        <div class="card-number">#${card.number.toString().padStart(3, '0')}</div>
+                        <div class="card-title">${card.name}</div>
+                        <div class="card-category">${card.category.toUpperCase()}</div>
+                    </div>
+                    <img src="/static/odu_cards/${card.filename}" alt="${card.name}" class="card-image" 
+                         onerror="this.src='/static/images/placeholder-odu.svg'">
+                    <div class="card-content">
+                        <div class="card-pattern">Traditional Pattern</div>
+                        <div class="card-meaning">Authentic ${card.category} Odu from your Excel data</div>
+                        <div class="card-actions">
+                            <button class="action-btn view-btn" onclick="viewCard(${card.number})">View</button>
+                            <button class="action-btn download-btn" onclick="downloadCard('${card.filename}')">Download</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCards() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            filteredCards = allCards.filter(card => {
+                const matchesSearch = card.name.toLowerCase().includes(searchTerm) || 
+                                    card.number.toString().includes(searchTerm);
+                const matchesFilter = currentFilter === 'all' || card.category === currentFilter;
+                return matchesSearch && matchesFilter;
+            });
+            
+            renderCards();
+        }
+
+        function viewCard(cardNumber) {
+            const card = allCards.find(c => c.number === cardNumber);
+            if (!card) return;
+            
+            const modal = document.getElementById('cardModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <div style="text-align: center;">
+                    <h2 style="color: #FFD700; margin-bottom: 1rem;">${card.name}</h2>
+                    <div style="margin-bottom: 1rem;">
+                        <span style="background: #FFD700; color: #1a1a1a; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;">
+                            ${card.category.toUpperCase()} ODU #${card.number.toString().padStart(3, '0')}
+                        </span>
+                    </div>
+                    <img src="/static/odu_cards/${card.filename}" alt="${card.name}" class="modal-image">
+                    <p style="color: #ccc; margin-top: 1rem;">
+                        Traditional ${card.category} Odu card generated from your authentic Excel data with sacred patterns and spiritual aesthetics.
+                    </p>
+                    <button class="action-btn download-btn" onclick="downloadCard('${card.filename}')" style="margin-top: 1rem;">
+                        Download High Quality
+                    </button>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('cardModal').style.display = 'none';
+        }
+
+        function downloadCard(filename) {
+            const link = document.createElement('a');
+            link.href = `/static/odu_cards/${filename}`;
+            link.download = filename;
+            link.click();
+        }
+
+        function showError(message) {
+            const grid = document.getElementById('cardGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #FF4444;">
+                    <h3>Error Loading Cards</h3>
+                    <p>${message}</p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #FF4444; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+            grid.style.display = 'grid';
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterCards);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                filterCards();
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('cardModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Load cards on page load
+        window.addEventListener('load', loadCards);
+    </script>
+</body>
+</html>

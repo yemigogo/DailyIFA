@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odu Ifá Collection</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 8px #000;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid #333;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+        .card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid #444;
+        }
+        .card span {
+            display: block;
+            padding: 8px;
+            font-size: 14px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #FF4444;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Odu Ifá Cards</h1>
+        <p>Authentic Traditional Collection - 256 Sacred Cards</p>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading authentic Odu cards...</p>
+    </div>
+
+    <div class="grid" id="cardGrid" style="display: none;">
+        <!-- Cards will be loaded here -->
+    </div>
+
+    <div class="error" id="errorMessage" style="display: none;">
+        <h3>Error Loading Cards</h3>
+        <p id="errorText"></p>
+        <button onclick="location.reload()" style="padding: 0.5rem 1rem; background: #FF4444; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 1rem;">
+            Try Again
+        </button>
+    </div>
+
+    <script>
+        async function loadCards() {
+            try {
+                const response = await fetch('/api/odu-cards-authentic');
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    const cards = data.cards || [];
+                    renderCards(cards);
+                } else {
+                    showError(data.message || 'Failed to load cards');
+                }
+            } catch (error) {
+                showError('Error loading cards: ' + error.message);
+            }
+            
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function renderCards(cards) {
+            const grid = document.getElementById('cardGrid');
+            
+            if (cards.length === 0) {
+                showError('No cards found');
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            
+            grid.innerHTML = cards.map(card => `
+                <div class="card">
+                    <img src="/static/odu_cards/${card.filename}" alt="${card.name}" 
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDE2MCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI4MCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRkQ3MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiI+T2R1PC90ZXh0Pjwvc3ZnPg=='">
+                    <span>${card.name}</span>
+                </div>
+            `).join('');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('errorText').textContent = message;
+            document.getElementById('cardGrid').style.display = 'none';
+        }
+
+        // Load cards on page load
+        window.addEventListener('load', loadCards);
+    </script>
+</body>
+</html>
