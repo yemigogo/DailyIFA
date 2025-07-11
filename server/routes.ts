@@ -846,26 +846,23 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
   // Flask Odu Cards API endpoint
   app.get("/api/odu-cards", async (req, res) => {
     try {
-      // For now, return mock data since Flask backend integration is optional
-      const mockCards = [
-        {
-          filename: "eji-ogbe.png",
-          name: "Eji Ogbe",
-          url: "/static/odu_cards/001_Eji_Ogbe.png",
-          type: "major"
-        },
-        {
-          filename: "oyeku-meji.png", 
-          name: "Oyeku Meji",
-          url: "/static/odu_cards/017_Oyeku_Meji.png",
-          type: "major"
-        }
-      ];
+      const { authentic256OduData } = await import("./authentic-odu-data");
+      
+      // Convert to Flask-compatible format
+      const flaskCards = authentic256OduData.slice(0, 20).map(odu => ({
+        filename: odu.filename,
+        name: odu.name,
+        url: `/static/odu_cards/${odu.filename}`,
+        type: odu.category,
+        pattern: odu.pattern,
+        meaning: odu.meaning
+      }));
 
       res.json({
-        cards: mockCards,
-        total: mockCards.length,
-        message: "Flask Odu cards (demo data)"
+        cards: flaskCards,
+        total: flaskCards.length,
+        message: "Flask Odu cards (authentic Excel data)",
+        source: "User Excel Integration"
       });
     } catch (error) {
       console.error("Error fetching Flask Odu cards:", error);
