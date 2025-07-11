@@ -1,0 +1,67 @@
+# Prepare a basic Flask app to display all 256 Odu cards
+flask_folder = "/mnt/data/ifa_flask_app"
+static_folder = os.path.join(flask_folder, "static")
+templates_folder = os.path.join(flask_folder, "templates")
+os.makedirs(static_folder, exist_ok=True)
+os.makedirs(templates_folder, exist_ok=True)
+
+# Copy images to static folder
+for card in valid_cards:
+    target = os.path.join(static_folder, os.path.basename(card))
+    if not os.path.exists(target):
+        os.system(f"cp '{card}' '{target}'")
+
+# Flask app file
+app_code = '''
+from flask import Flask, render_template
+import os
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    image_files = sorted([f for f in os.listdir("static") if f.endswith(".png")],
+                         key=lambda x: int(x.split("_")[-1].split(".")[0]))
+    return render_template("index.html", images=image_files)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+'''
+
+# HTML template
+html_template = '''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odu Ifá Cards</title>
+    <style>
+        body { background: #000; color: white; text-align: center; font-family: sans-serif; }
+        img { max-width: 90%%; margin: 20px auto; display: block; border: 4px solid white; }
+    </style>
+</head>
+<body>
+    <h1>Odu Ifá – 256 Cards</h1>
+    {% for image in images %}
+        <img src="{{ url_for('static', filename=image) }}" alt="{{ image }}">
+    {% endfor %}
+</body>
+</html>
+'''
+
+# Write Flask app and HTML
+with open(os.path.join(flask_folder, "app.py"), "w") as f:
+    f.write(app_code)
+
+with open(os.path.join(templates_folder, "index.html"), "w") as f:
+    f.write(html_template)
+
+# Zip the entire Flask app
+flask_zip_path = "/mnt/data/odu_ifa_flask_app.zip"
+with zipfile.ZipFile(flask_zip_path, "w") as zipf:
+    for folder, _, files in os.walk(flask_folder):
+        for file in files:
+            full_path = os.path.join(folder, file)
+            arcname = os.path.relpath(full_path, flask_folder)
+            zipf.write(full_path, arcname=os.path.join("ifa_flask_app", arcname))
+
+flask_zip_path
