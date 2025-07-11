@@ -41,6 +41,7 @@ export default function FlaskOduCards() {
       }
 
       const data: OduCardsResponse = await response.json();
+      console.log('Flask Odu Cards API response:', data);
       setCards(data.cards);
     } catch (err) {
       console.error('Error fetching Odu cards:', err);

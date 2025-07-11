@@ -30,7 +30,7 @@ export default function Complete256OduSystem() {
   const [primaryOdu, setPrimaryOdu] = useState('');
   const [selectedOdu, setSelectedOdu] = useState<OduEntry | null>(null);
   
-  const { data: oduData, isLoading } = useQuery({
+  const { data: oduData, isLoading, error } = useQuery({
     queryKey: ['/api/odu-256/complete', page, search, category, primaryOdu],
     queryFn: async () => {
       const params = new URLSearchParams({
@@ -41,7 +41,12 @@ export default function Complete256OduSystem() {
         primary_odu: primaryOdu
       });
       const response = await fetch(`/api/odu-256/complete?${params}`);
-      return response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('256 Odu API response:', data);
+      return data;
     }
   });
 
@@ -49,7 +54,12 @@ export default function Complete256OduSystem() {
     queryKey: ['/api/odu-256/categories'],
     queryFn: async () => {
       const response = await fetch('/api/odu-256/categories');
-      return response.json();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Categories API response:', data);
+      return data;
     }
   });
 
@@ -57,6 +67,18 @@ export default function Complete256OduSystem() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-spiritual-blue"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-red-600 mb-2">Error Loading 256 Odu System</h2>
+          <p className="text-gray-600 mb-4">{error instanceof Error ? error.message : 'Unknown error'}</p>
+          <Button onClick={() => window.location.reload()}>Retry</Button>
+        </div>
       </div>
     );
   }
