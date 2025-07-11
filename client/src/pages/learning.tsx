@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
@@ -15,6 +15,7 @@ import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
 import Complete256OduSystem from '@/components/complete-256-odu-system';
 import AuthenticOduCards from '@/components/authentic-odu-cards';
+import OfflineMode from '@/components/offline-mode';
 
 interface LearningModule {
   id: string;
@@ -270,6 +271,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Àwọn kádì Odù ìbílẹ̀ láti Excel data rẹ",
       icon: <Sparkles className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "offline-mode",
+      title: "Offline Mode",
+      titleYoruba: "Ìṣiṣẹ́ Aláìlérí",
+      description: "Download resources for offline access",
+      descriptionYoruba: "Gba àwọn ohun èlò sílẹ̀ fún lílo láìsí ìntánẹ́ẹ̀tì",
+      icon: <Download className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -330,7 +340,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 mb-8">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-8 mb-8">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2">
                 {module.icon}
@@ -509,6 +519,12 @@ const Learning: React.FC = () => {
                   {module.id === 'authentic-cards' && (
                     <div className="space-y-6">
                       <AuthenticOduCards />
+                    </div>
+                  )}
+
+                  {module.id === 'offline-mode' && (
+                    <div className="space-y-6">
+                      <OfflineMode />
                     </div>
                   )}
 

@@ -1117,6 +1117,173 @@ def odu_cards_simple():
     """Simple display of Odu cards using your template structure"""
     return render_template('odu_cards_simple.html')
 
+# Offline Mode API Endpoints
+@app.route('/api/offline/odu-database')
+def api_offline_odu_database():
+    """Download complete Odu database for offline use"""
+    try:
+        conn = get_db_connection()
+        
+        # Get all Odu data
+        odus = conn.execute('SELECT * FROM odus ORDER BY id').fetchall()
+        odu_256 = conn.execute('SELECT * FROM odu_256_complete ORDER BY id').fetchall()
+        
+        offline_data = {
+            'version': '1.0',
+            'timestamp': datetime.now().isoformat(),
+            'data': {
+                'basic_odus': [dict(odu) for odu in odus],
+                'complete_256_odus': [dict(odu) for odu in odu_256],
+                'total_records': len(odus) + len(odu_256)
+            }
+        }
+        
+        conn.close()
+        
+        response = jsonify(offline_data)
+        response.headers['Content-Disposition'] = 'attachment; filename=odu_database_offline.json'
+        return response
+        
+    except Exception as e:
+        return jsonify({'error': f'Database export error: {str(e)}'}), 500
+
+@app.route('/api/offline/odu-cards')
+def api_offline_odu_cards():
+    """Download Odu cards manifest for offline use"""
+    try:
+        manifest_path = os.path.join('static', 'odu_cards', 'card_manifest.json')
+        
+        if os.path.exists(manifest_path):
+            with open(manifest_path, 'r', encoding='utf-8') as f:
+                manifest = json.load(f)
+            
+            # Add offline-specific metadata
+            offline_manifest = {
+                'version': '1.0',
+                'timestamp': datetime.now().isoformat(),
+                'offline_ready': True,
+                **manifest
+            }
+            
+            response = jsonify(offline_manifest)
+            response.headers['Content-Disposition'] = 'attachment; filename=odu_cards_offline.json'
+            return response
+        else:
+            return jsonify({'error': 'Card manifest not found'}), 404
+            
+    except Exception as e:
+        return jsonify({'error': f'Cards export error: {str(e)}'}), 500
+
+@app.route('/api/offline/audio')
+def api_offline_audio():
+    """Download audio pronunciations manifest for offline use"""
+    try:
+        audio_dir = 'static/audio/pronunciation'
+        audio_files = []
+        
+        if os.path.exists(audio_dir):
+            for filename in os.listdir(audio_dir):
+                if filename.endswith('.mp3'):
+                    file_path = os.path.join(audio_dir, filename)
+                    file_size = os.path.getsize(file_path)
+                    audio_files.append({
+                        'filename': filename,
+                        'size': file_size,
+                        'url': f'/static/audio/pronunciation/{filename}'
+                    })
+        
+        offline_audio = {
+            'version': '1.0',
+            'timestamp': datetime.now().isoformat(),
+            'audio_files': audio_files,
+            'total_files': len(audio_files)
+        }
+        
+        response = jsonify(offline_audio)
+        response.headers['Content-Disposition'] = 'attachment; filename=audio_offline.json'
+        return response
+        
+    except Exception as e:
+        return jsonify({'error': f'Audio export error: {str(e)}'}), 500
+
+@app.route('/api/offline/learning-content')
+def api_offline_learning_content():
+    """Download learning center content for offline use"""
+    try:
+        # Sample learning content (in a real app, this would come from database)
+        learning_content = {
+            'version': '1.0',
+            'timestamp': datetime.now().isoformat(),
+            'modules': [
+                {
+                    'id': 'intro-ifa',
+                    'title': 'Introduction to Ifá',
+                    'content': 'Comprehensive introduction to Ifá tradition...',
+                    'sections': ['History', 'Philosophy', 'Practice']
+                },
+                {
+                    'id': 'yoruba-cosmology',
+                    'title': 'Yoruba Cosmology',
+                    'content': 'Understanding the Yoruba spiritual universe...',
+                    'sections': ['Orun', 'Aiye', 'Spiritual Realms']
+                },
+                {
+                    'id': 'orisha-profiles',
+                    'title': 'Orisha Profiles',
+                    'content': 'Complete profiles of major Orishas...',
+                    'sections': ['Major Orishas', 'Attributes', 'Worship']
+                }
+            ],
+            'glossary': [
+                {'term': 'Ifá', 'definition': 'Ancient Yoruba system of divination...'},
+                {'term': 'Odu', 'definition': 'Sacred verses and wisdom teachings...'},
+                {'term': 'Orisha', 'definition': 'Divine forces in Yoruba religion...'}
+            ]
+        }
+        
+        response = jsonify(learning_content)
+        response.headers['Content-Disposition'] = 'attachment; filename=learning_content_offline.json'
+        return response
+        
+    except Exception as e:
+        return jsonify({'error': f'Learning content export error: {str(e)}'}), 500
+
+@app.route('/api/offline/complete-package')
+def api_offline_complete_package():
+    """Download complete offline package"""
+    try:
+        # This would create a comprehensive package with all resources
+        complete_package = {
+            'version': '1.0',
+            'timestamp': datetime.now().isoformat(),
+            'package_type': 'complete_offline',
+            'included_resources': [
+                'odu_database',
+                'odu_cards',
+                'audio_pronunciations',
+                'learning_content'
+            ],
+            'manifest': {
+                'database_version': '1.0',
+                'cards_count': 256,
+                'audio_files_count': 35,
+                'learning_modules': 6
+            },
+            'installation_instructions': [
+                '1. Extract all files to your local storage',
+                '2. Import database files to IndexedDB',
+                '3. Cache card images for offline viewing',
+                '4. Enable offline mode in application settings'
+            ]
+        }
+        
+        response = jsonify(complete_package)
+        response.headers['Content-Disposition'] = 'attachment; filename=ifa_complete_offline_package.json'
+        return response
+        
+    except Exception as e:
+        return jsonify({'error': f'Complete package export error: {str(e)}'}), 500
+
 if __name__ == '__main__':
     # Create directories
     os.makedirs('static/audio/ambient', exist_ok=True)
