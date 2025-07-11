@@ -1,0 +1,2064 @@
+{
+  "metadata": {
+    "title": "Corrected Final Enhanced 256 Odu Ifá Cards",
+    "generated_at": "2025-07-11T19:41:30.327455",
+    "total_cards": 256,
+    "card_specifications": {
+      "size": "600x800",
+      "background": "black",
+      "wood_carving": true,
+      "filename_format": "no_zero_padding",
+      "parsing_corrected": true
+    }
+  },
+  "cards": [
+    {
+      "number": "1",
+      "name": "OGBE MEJI",
+      "filename": "odu_card_1.png",
+      "web_path": "/static/odu_cards/odu_card_1.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "2",
+      "name": "OYEKU MEJI",
+      "filename": "odu_card_2.png",
+      "web_path": "/static/odu_cards/odu_card_2.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "3",
+      "name": "IWORI MEJI",
+      "filename": "odu_card_3.png",
+      "web_path": "/static/odu_cards/odu_card_3.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "4",
+      "name": "ODI MEJI",
+      "filename": "odu_card_4.png",
+      "web_path": "/static/odu_cards/odu_card_4.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "5",
+      "name": "IROSUN MEJI",
+      "filename": "odu_card_5.png",
+      "web_path": "/static/odu_cards/odu_card_5.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "6",
+      "name": "OWANRIN MEJI",
+      "filename": "odu_card_6.png",
+      "web_path": "/static/odu_cards/odu_card_6.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "7",
+      "name": "OBARA MEJI",
+      "filename": "odu_card_7.png",
+      "web_path": "/static/odu_cards/odu_card_7.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "8",
+      "name": "OKANRAN MEJI",
+      "filename": "odu_card_8.png",
+      "web_path": "/static/odu_cards/odu_card_8.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "9",
+      "name": "OGUNDA MEJI",
+      "filename": "odu_card_9.png",
+      "web_path": "/static/odu_cards/odu_card_9.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "10",
+      "name": "OSA MEJI",
+      "filename": "odu_card_10.png",
+      "web_path": "/static/odu_cards/odu_card_10.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "11",
+      "name": "IKA MEJI",
+      "filename": "odu_card_11.png",
+      "web_path": "/static/odu_cards/odu_card_11.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "12",
+      "name": "OTURUPON MEJI",
+      "filename": "odu_card_12.png",
+      "web_path": "/static/odu_cards/odu_card_12.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "13",
+      "name": "OTURA MEJI",
+      "filename": "odu_card_13.png",
+      "web_path": "/static/odu_cards/odu_card_13.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "14",
+      "name": "IRETE MEJI",
+      "filename": "odu_card_14.png",
+      "web_path": "/static/odu_cards/odu_card_14.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "15",
+      "name": "OSE MEJI",
+      "filename": "odu_card_15.png",
+      "web_path": "/static/odu_cards/odu_card_15.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "16",
+      "name": "OFUN MEJI",
+      "filename": "odu_card_16.png",
+      "web_path": "/static/odu_cards/odu_card_16.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "17",
+      "name": "OGBE OYEKU",
+      "filename": "odu_card_17.png",
+      "web_path": "/static/odu_cards/odu_card_17.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "18",
+      "name": "OYEKU OGBE",
+      "filename": "odu_card_18.png",
+      "web_path": "/static/odu_cards/odu_card_18.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "19",
+      "name": "OGBE IWORI",
+      "filename": "odu_card_19.png",
+      "web_path": "/static/odu_cards/odu_card_19.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "20",
+      "name": "IWORI OGBE",
+      "filename": "odu_card_20.png",
+      "web_path": "/static/odu_cards/odu_card_20.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "21",
+      "name": "OGBE ODI",
+      "filename": "odu_card_21.png",
+      "web_path": "/static/odu_cards/odu_card_21.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "22",
+      "name": "ODI OGBE",
+      "filename": "odu_card_22.png",
+      "web_path": "/static/odu_cards/odu_card_22.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "23",
+      "name": "OGBE IROSUN",
+      "filename": "odu_card_23.png",
+      "web_path": "/static/odu_cards/odu_card_23.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "24",
+      "name": "IROSUN OGBE",
+      "filename": "odu_card_24.png",
+      "web_path": "/static/odu_cards/odu_card_24.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "25",
+      "name": "OGBE OWANRIN",
+      "filename": "odu_card_25.png",
+      "web_path": "/static/odu_cards/odu_card_25.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "26",
+      "name": "OWANRIN OGBE",
+      "filename": "odu_card_26.png",
+      "web_path": "/static/odu_cards/odu_card_26.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "27",
+      "name": "OGBE OBARA",
+      "filename": "odu_card_27.png",
+      "web_path": "/static/odu_cards/odu_card_27.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "28",
+      "name": "OBARA OGBE",
+      "filename": "odu_card_28.png",
+      "web_path": "/static/odu_cards/odu_card_28.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "29",
+      "name": "OGBE OKANRAN",
+      "filename": "odu_card_29.png",
+      "web_path": "/static/odu_cards/odu_card_29.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "30",
+      "name": "OKANRAN OGBE",
+      "filename": "odu_card_30.png",
+      "web_path": "/static/odu_cards/odu_card_30.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "31",
+      "name": "OGBE OGUNDA",
+      "filename": "odu_card_31.png",
+      "web_path": "/static/odu_cards/odu_card_31.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "32",
+      "name": "OGUNDA OGBE",
+      "filename": "odu_card_32.png",
+      "web_path": "/static/odu_cards/odu_card_32.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "33",
+      "name": "OGBE OSA",
+      "filename": "odu_card_33.png",
+      "web_path": "/static/odu_cards/odu_card_33.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "34",
+      "name": "OSA OGBE",
+      "filename": "odu_card_34.png",
+      "web_path": "/static/odu_cards/odu_card_34.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "35",
+      "name": "OGBE IKA",
+      "filename": "odu_card_35.png",
+      "web_path": "/static/odu_cards/odu_card_35.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "36",
+      "name": "IKA OGBE",
+      "filename": "odu_card_36.png",
+      "web_path": "/static/odu_cards/odu_card_36.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "37",
+      "name": "OGBE OTURUPON",
+      "filename": "odu_card_37.png",
+      "web_path": "/static/odu_cards/odu_card_37.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "38",
+      "name": "OTURUPON OGBE",
+      "filename": "odu_card_38.png",
+      "web_path": "/static/odu_cards/odu_card_38.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "39",
+      "name": "OGBE OTURA",
+      "filename": "odu_card_39.png",
+      "web_path": "/static/odu_cards/odu_card_39.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "40",
+      "name": "OTURA OGBE",
+      "filename": "odu_card_40.png",
+      "web_path": "/static/odu_cards/odu_card_40.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "41",
+      "name": "OGBE IRETE",
+      "filename": "odu_card_41.png",
+      "web_path": "/static/odu_cards/odu_card_41.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "42",
+      "name": "IRETE OGBE",
+      "filename": "odu_card_42.png",
+      "web_path": "/static/odu_cards/odu_card_42.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "43",
+      "name": "OGBE OSE",
+      "filename": "odu_card_43.png",
+      "web_path": "/static/odu_cards/odu_card_43.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "44",
+      "name": "OSE OGBE",
+      "filename": "odu_card_44.png",
+      "web_path": "/static/odu_cards/odu_card_44.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "45",
+      "name": "OGBE OFUN",
+      "filename": "odu_card_45.png",
+      "web_path": "/static/odu_cards/odu_card_45.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "46",
+      "name": "OFUN OGBE",
+      "filename": "odu_card_46.png",
+      "web_path": "/static/odu_cards/odu_card_46.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "47",
+      "name": "OYEKU IWORI",
+      "filename": "odu_card_47.png",
+      "web_path": "/static/odu_cards/odu_card_47.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "48",
+      "name": "OWORI OYEKU",
+      "filename": "odu_card_48.png",
+      "web_path": "/static/odu_cards/odu_card_48.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "49",
+      "name": "OYEKU ODI",
+      "filename": "odu_card_49.png",
+      "web_path": "/static/odu_cards/odu_card_49.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "50",
+      "name": "ODI OYEKU",
+      "filename": "odu_card_50.png",
+      "web_path": "/static/odu_cards/odu_card_50.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "51",
+      "name": "OYEKU IROSUN",
+      "filename": "odu_card_51.png",
+      "web_path": "/static/odu_cards/odu_card_51.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "52",
+      "name": "IROSUN OYEKU",
+      "filename": "odu_card_52.png",
+      "web_path": "/static/odu_cards/odu_card_52.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "53",
+      "name": "OYEKU OWANRIN",
+      "filename": "odu_card_53.png",
+      "web_path": "/static/odu_cards/odu_card_53.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "54",
+      "name": "OWANRIN OYEKU",
+      "filename": "odu_card_54.png",
+      "web_path": "/static/odu_cards/odu_card_54.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "55",
+      "name": "OYEKU OBARA",
+      "filename": "odu_card_55.png",
+      "web_path": "/static/odu_cards/odu_card_55.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "56",
+      "name": "OBARA OYEKU",
+      "filename": "odu_card_56.png",
+      "web_path": "/static/odu_cards/odu_card_56.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "57",
+      "name": "OYEKU OKANRAN",
+      "filename": "odu_card_57.png",
+      "web_path": "/static/odu_cards/odu_card_57.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "58",
+      "name": "OKANRAN OYEKU",
+      "filename": "odu_card_58.png",
+      "web_path": "/static/odu_cards/odu_card_58.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "59",
+      "name": "OYEKU OGUNDA",
+      "filename": "odu_card_59.png",
+      "web_path": "/static/odu_cards/odu_card_59.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "60",
+      "name": "OGUNDA OYEKU",
+      "filename": "odu_card_60.png",
+      "web_path": "/static/odu_cards/odu_card_60.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "61",
+      "name": "OYEKU OSA",
+      "filename": "odu_card_61.png",
+      "web_path": "/static/odu_cards/odu_card_61.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "62",
+      "name": "OSA OYEKU",
+      "filename": "odu_card_62.png",
+      "web_path": "/static/odu_cards/odu_card_62.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "63",
+      "name": "OYEKU IKA",
+      "filename": "odu_card_63.png",
+      "web_path": "/static/odu_cards/odu_card_63.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "64",
+      "name": "IKA OYEKU",
+      "filename": "odu_card_64.png",
+      "web_path": "/static/odu_cards/odu_card_64.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "65",
+      "name": "OYEKU OTURUPON",
+      "filename": "odu_card_65.png",
+      "web_path": "/static/odu_cards/odu_card_65.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "66",
+      "name": "OTURUPON OYEKU",
+      "filename": "odu_card_66.png",
+      "web_path": "/static/odu_cards/odu_card_66.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "67",
+      "name": "OYEKU OTURA",
+      "filename": "odu_card_67.png",
+      "web_path": "/static/odu_cards/odu_card_67.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "68",
+      "name": "OTURA OYEKU",
+      "filename": "odu_card_68.png",
+      "web_path": "/static/odu_cards/odu_card_68.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "69",
+      "name": "OYEKU IRETE",
+      "filename": "odu_card_69.png",
+      "web_path": "/static/odu_cards/odu_card_69.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "70",
+      "name": "IRETE OYEKU",
+      "filename": "odu_card_70.png",
+      "web_path": "/static/odu_cards/odu_card_70.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "71",
+      "name": "OYEKU OSE",
+      "filename": "odu_card_71.png",
+      "web_path": "/static/odu_cards/odu_card_71.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "72",
+      "name": "OSE OYEKU",
+      "filename": "odu_card_72.png",
+      "web_path": "/static/odu_cards/odu_card_72.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "73",
+      "name": "OYEKU OFUN",
+      "filename": "odu_card_73.png",
+      "web_path": "/static/odu_cards/odu_card_73.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "74",
+      "name": "OFUN OYEKU",
+      "filename": "odu_card_74.png",
+      "web_path": "/static/odu_cards/odu_card_74.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "75",
+      "name": "IWORI ODI",
+      "filename": "odu_card_75.png",
+      "web_path": "/static/odu_cards/odu_card_75.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "76",
+      "name": "ODI IWORI",
+      "filename": "odu_card_76.png",
+      "web_path": "/static/odu_cards/odu_card_76.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "77",
+      "name": "IWORI IROSUN",
+      "filename": "odu_card_77.png",
+      "web_path": "/static/odu_cards/odu_card_77.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "78",
+      "name": "IROSUN IWORI",
+      "filename": "odu_card_78.png",
+      "web_path": "/static/odu_cards/odu_card_78.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "79",
+      "name": "IWORI OWANRIN",
+      "filename": "odu_card_79.png",
+      "web_path": "/static/odu_cards/odu_card_79.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "80",
+      "name": "OWANRIN IWORI",
+      "filename": "odu_card_80.png",
+      "web_path": "/static/odu_cards/odu_card_80.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "81",
+      "name": "IWORI OBARA",
+      "filename": "odu_card_81.png",
+      "web_path": "/static/odu_cards/odu_card_81.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "82",
+      "name": "OBARA IWORI",
+      "filename": "odu_card_82.png",
+      "web_path": "/static/odu_cards/odu_card_82.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "83",
+      "name": "IWORI OKANRAN",
+      "filename": "odu_card_83.png",
+      "web_path": "/static/odu_cards/odu_card_83.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "84",
+      "name": "OKANRAN IWORI",
+      "filename": "odu_card_84.png",
+      "web_path": "/static/odu_cards/odu_card_84.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "85",
+      "name": "IWORI OGUNDA",
+      "filename": "odu_card_85.png",
+      "web_path": "/static/odu_cards/odu_card_85.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "86",
+      "name": "OGUNDA IWORI",
+      "filename": "odu_card_86.png",
+      "web_path": "/static/odu_cards/odu_card_86.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "87",
+      "name": "IWORI OSA",
+      "filename": "odu_card_87.png",
+      "web_path": "/static/odu_cards/odu_card_87.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "88",
+      "name": "OSA IWORI",
+      "filename": "odu_card_88.png",
+      "web_path": "/static/odu_cards/odu_card_88.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "89",
+      "name": "IWORI IKA",
+      "filename": "odu_card_89.png",
+      "web_path": "/static/odu_cards/odu_card_89.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "90",
+      "name": "IKA IWORI",
+      "filename": "odu_card_90.png",
+      "web_path": "/static/odu_cards/odu_card_90.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "91",
+      "name": "IWORI OTURUPON",
+      "filename": "odu_card_91.png",
+      "web_path": "/static/odu_cards/odu_card_91.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "92",
+      "name": "OTURUPON IWORI",
+      "filename": "odu_card_92.png",
+      "web_path": "/static/odu_cards/odu_card_92.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "93",
+      "name": "IWORI OTURA",
+      "filename": "odu_card_93.png",
+      "web_path": "/static/odu_cards/odu_card_93.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "94",
+      "name": "OTURA IWORI",
+      "filename": "odu_card_94.png",
+      "web_path": "/static/odu_cards/odu_card_94.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "95",
+      "name": "IWORI IRETE",
+      "filename": "odu_card_95.png",
+      "web_path": "/static/odu_cards/odu_card_95.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "96",
+      "name": "IRETE IWORI",
+      "filename": "odu_card_96.png",
+      "web_path": "/static/odu_cards/odu_card_96.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "97",
+      "name": "IWORI OSE",
+      "filename": "odu_card_97.png",
+      "web_path": "/static/odu_cards/odu_card_97.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "98",
+      "name": "OSE IWORI",
+      "filename": "odu_card_98.png",
+      "web_path": "/static/odu_cards/odu_card_98.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "99",
+      "name": "IWORI OFUN",
+      "filename": "odu_card_99.png",
+      "web_path": "/static/odu_cards/odu_card_99.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "100",
+      "name": "OFUN IWORI",
+      "filename": "odu_card_100.png",
+      "web_path": "/static/odu_cards/odu_card_100.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "101",
+      "name": "ODI IROSUN",
+      "filename": "odu_card_101.png",
+      "web_path": "/static/odu_cards/odu_card_101.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "102",
+      "name": "IROSUN ODI",
+      "filename": "odu_card_102.png",
+      "web_path": "/static/odu_cards/odu_card_102.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "103",
+      "name": "ODI OWANRIN",
+      "filename": "odu_card_103.png",
+      "web_path": "/static/odu_cards/odu_card_103.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "104",
+      "name": "OWANRIN ODI",
+      "filename": "odu_card_104.png",
+      "web_path": "/static/odu_cards/odu_card_104.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "105",
+      "name": "ODI OBARA",
+      "filename": "odu_card_105.png",
+      "web_path": "/static/odu_cards/odu_card_105.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "106",
+      "name": "OBARA ODI",
+      "filename": "odu_card_106.png",
+      "web_path": "/static/odu_cards/odu_card_106.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "107",
+      "name": "ODI OKANRAN",
+      "filename": "odu_card_107.png",
+      "web_path": "/static/odu_cards/odu_card_107.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "108",
+      "name": "OKANRAN ODI",
+      "filename": "odu_card_108.png",
+      "web_path": "/static/odu_cards/odu_card_108.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "109",
+      "name": "ODI OGUNDA",
+      "filename": "odu_card_109.png",
+      "web_path": "/static/odu_cards/odu_card_109.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "110",
+      "name": "OGUNDA ODI",
+      "filename": "odu_card_110.png",
+      "web_path": "/static/odu_cards/odu_card_110.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "111",
+      "name": "ODI OSA",
+      "filename": "odu_card_111.png",
+      "web_path": "/static/odu_cards/odu_card_111.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "112",
+      "name": "OSA ODI",
+      "filename": "odu_card_112.png",
+      "web_path": "/static/odu_cards/odu_card_112.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "113",
+      "name": "ODI IKA",
+      "filename": "odu_card_113.png",
+      "web_path": "/static/odu_cards/odu_card_113.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "114",
+      "name": "IKA ODI",
+      "filename": "odu_card_114.png",
+      "web_path": "/static/odu_cards/odu_card_114.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "115",
+      "name": "ODI OTURUPON",
+      "filename": "odu_card_115.png",
+      "web_path": "/static/odu_cards/odu_card_115.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "116",
+      "name": "OTURUPON ODI",
+      "filename": "odu_card_116.png",
+      "web_path": "/static/odu_cards/odu_card_116.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "117",
+      "name": "ODI OTURA",
+      "filename": "odu_card_117.png",
+      "web_path": "/static/odu_cards/odu_card_117.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "118",
+      "name": "OTURA ODI",
+      "filename": "odu_card_118.png",
+      "web_path": "/static/odu_cards/odu_card_118.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "119",
+      "name": "0DI IRETE",
+      "filename": "odu_card_119.png",
+      "web_path": "/static/odu_cards/odu_card_119.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "120",
+      "name": "IRETE ODI",
+      "filename": "odu_card_120.png",
+      "web_path": "/static/odu_cards/odu_card_120.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "121",
+      "name": "ODI OSE",
+      "filename": "odu_card_121.png",
+      "web_path": "/static/odu_cards/odu_card_121.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "122",
+      "name": "OSE ODI",
+      "filename": "odu_card_122.png",
+      "web_path": "/static/odu_cards/odu_card_122.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "123",
+      "name": "ODI OFUN",
+      "filename": "odu_card_123.png",
+      "web_path": "/static/odu_cards/odu_card_123.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "124",
+      "name": "OFUN ODI",
+      "filename": "odu_card_124.png",
+      "web_path": "/static/odu_cards/odu_card_124.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "125",
+      "name": "IROSUN OWANRIN",
+      "filename": "odu_card_125.png",
+      "web_path": "/static/odu_cards/odu_card_125.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "126",
+      "name": "OWANRIN IROSUN",
+      "filename": "odu_card_126.png",
+      "web_path": "/static/odu_cards/odu_card_126.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "127",
+      "name": "IROSUN OBARA",
+      "filename": "odu_card_127.png",
+      "web_path": "/static/odu_cards/odu_card_127.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "128",
+      "name": "OBARA IROSUN",
+      "filename": "odu_card_128.png",
+      "web_path": "/static/odu_cards/odu_card_128.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "129",
+      "name": "IROSUN OKANRAN",
+      "filename": "odu_card_129.png",
+      "web_path": "/static/odu_cards/odu_card_129.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "130",
+      "name": "OKANRAN IROSUN",
+      "filename": "odu_card_130.png",
+      "web_path": "/static/odu_cards/odu_card_130.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "131",
+      "name": "IROSUN OGUNDA",
+      "filename": "odu_card_131.png",
+      "web_path": "/static/odu_cards/odu_card_131.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "132",
+      "name": "OGUNDA IROSUN",
+      "filename": "odu_card_132.png",
+      "web_path": "/static/odu_cards/odu_card_132.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "133",
+      "name": "IROSUN OSA",
+      "filename": "odu_card_133.png",
+      "web_path": "/static/odu_cards/odu_card_133.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "134",
+      "name": "OSA IROSUN",
+      "filename": "odu_card_134.png",
+      "web_path": "/static/odu_cards/odu_card_134.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "135",
+      "name": "IROSUN IKA",
+      "filename": "odu_card_135.png",
+      "web_path": "/static/odu_cards/odu_card_135.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "136",
+      "name": "IKA IROSUN",
+      "filename": "odu_card_136.png",
+      "web_path": "/static/odu_cards/odu_card_136.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "137",
+      "name": "IROSUN OTURUPON",
+      "filename": "odu_card_137.png",
+      "web_path": "/static/odu_cards/odu_card_137.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "138",
+      "name": "OTURUPON IROSUN",
+      "filename": "odu_card_138.png",
+      "web_path": "/static/odu_cards/odu_card_138.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "139",
+      "name": "IROSUN OTURA",
+      "filename": "odu_card_139.png",
+      "web_path": "/static/odu_cards/odu_card_139.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "140",
+      "name": "OTURA IROSUN",
+      "filename": "odu_card_140.png",
+      "web_path": "/static/odu_cards/odu_card_140.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "141",
+      "name": "IROSUN IRETE",
+      "filename": "odu_card_141.png",
+      "web_path": "/static/odu_cards/odu_card_141.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "142",
+      "name": "IRETE IROSUN",
+      "filename": "odu_card_142.png",
+      "web_path": "/static/odu_cards/odu_card_142.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "143",
+      "name": "IROSUN OSE",
+      "filename": "odu_card_143.png",
+      "web_path": "/static/odu_cards/odu_card_143.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "144",
+      "name": "OSE IROSUN",
+      "filename": "odu_card_144.png",
+      "web_path": "/static/odu_cards/odu_card_144.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "145",
+      "name": "IROSUN OFUN",
+      "filename": "odu_card_145.png",
+      "web_path": "/static/odu_cards/odu_card_145.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "146",
+      "name": "OFUN IROSUN",
+      "filename": "odu_card_146.png",
+      "web_path": "/static/odu_cards/odu_card_146.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "147",
+      "name": "OWANRIN OBARA",
+      "filename": "odu_card_147.png",
+      "web_path": "/static/odu_cards/odu_card_147.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "148",
+      "name": "OBARA OWANRIN",
+      "filename": "odu_card_148.png",
+      "web_path": "/static/odu_cards/odu_card_148.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "149",
+      "name": "OWANRIN OKANRAN",
+      "filename": "odu_card_149.png",
+      "web_path": "/static/odu_cards/odu_card_149.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "150",
+      "name": "OKANRAN OWANRIN",
+      "filename": "odu_card_150.png",
+      "web_path": "/static/odu_cards/odu_card_150.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "151",
+      "name": "OWANRIN OGUNDA",
+      "filename": "odu_card_151.png",
+      "web_path": "/static/odu_cards/odu_card_151.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "152",
+      "name": "OGUNDA OWANRIN",
+      "filename": "odu_card_152.png",
+      "web_path": "/static/odu_cards/odu_card_152.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "153",
+      "name": "OWANRIN OSA",
+      "filename": "odu_card_153.png",
+      "web_path": "/static/odu_cards/odu_card_153.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "154",
+      "name": "OSA OWANRIN",
+      "filename": "odu_card_154.png",
+      "web_path": "/static/odu_cards/odu_card_154.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "155",
+      "name": "OWANRIN IKA",
+      "filename": "odu_card_155.png",
+      "web_path": "/static/odu_cards/odu_card_155.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "156",
+      "name": "IKA OWANRIN",
+      "filename": "odu_card_156.png",
+      "web_path": "/static/odu_cards/odu_card_156.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "157",
+      "name": "OWANRIN OTURUPON",
+      "filename": "odu_card_157.png",
+      "web_path": "/static/odu_cards/odu_card_157.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "158",
+      "name": "OTURUPON OWANRIN",
+      "filename": "odu_card_158.png",
+      "web_path": "/static/odu_cards/odu_card_158.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "159",
+      "name": "OWANRIN OTURA",
+      "filename": "odu_card_159.png",
+      "web_path": "/static/odu_cards/odu_card_159.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "160",
+      "name": "OTURA OWANRIN",
+      "filename": "odu_card_160.png",
+      "web_path": "/static/odu_cards/odu_card_160.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "161",
+      "name": "OWANRIN IRETE",
+      "filename": "odu_card_161.png",
+      "web_path": "/static/odu_cards/odu_card_161.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "162",
+      "name": "IRETE OWANRIN",
+      "filename": "odu_card_162.png",
+      "web_path": "/static/odu_cards/odu_card_162.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "163",
+      "name": "OWANRIN OSE",
+      "filename": "odu_card_163.png",
+      "web_path": "/static/odu_cards/odu_card_163.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "164",
+      "name": "OSE OWANRIN",
+      "filename": "odu_card_164.png",
+      "web_path": "/static/odu_cards/odu_card_164.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "165",
+      "name": "OWANRIN OFUN",
+      "filename": "odu_card_165.png",
+      "web_path": "/static/odu_cards/odu_card_165.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "166",
+      "name": "OFUN OWANRIN",
+      "filename": "odu_card_166.png",
+      "web_path": "/static/odu_cards/odu_card_166.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "167",
+      "name": "OBARA OKANRAN",
+      "filename": "odu_card_167.png",
+      "web_path": "/static/odu_cards/odu_card_167.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "168",
+      "name": "OKANRAN OBARA",
+      "filename": "odu_card_168.png",
+      "web_path": "/static/odu_cards/odu_card_168.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "169",
+      "name": "OBARA OGUNDA",
+      "filename": "odu_card_169.png",
+      "web_path": "/static/odu_cards/odu_card_169.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "170",
+      "name": "OGUNDA OBARA",
+      "filename": "odu_card_170.png",
+      "web_path": "/static/odu_cards/odu_card_170.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "171",
+      "name": "OBARA OSA",
+      "filename": "odu_card_171.png",
+      "web_path": "/static/odu_cards/odu_card_171.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "172",
+      "name": "OSA OBARA",
+      "filename": "odu_card_172.png",
+      "web_path": "/static/odu_cards/odu_card_172.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "173",
+      "name": "OBARA IKA",
+      "filename": "odu_card_173.png",
+      "web_path": "/static/odu_cards/odu_card_173.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "174",
+      "name": "IKA OBARA",
+      "filename": "odu_card_174.png",
+      "web_path": "/static/odu_cards/odu_card_174.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "175",
+      "name": "OBARA OTURUPON",
+      "filename": "odu_card_175.png",
+      "web_path": "/static/odu_cards/odu_card_175.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "176",
+      "name": "OTURUPON OBARA",
+      "filename": "odu_card_176.png",
+      "web_path": "/static/odu_cards/odu_card_176.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "177",
+      "name": "OBARA OTURA",
+      "filename": "odu_card_177.png",
+      "web_path": "/static/odu_cards/odu_card_177.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "178",
+      "name": "OTURA OBARA",
+      "filename": "odu_card_178.png",
+      "web_path": "/static/odu_cards/odu_card_178.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "179",
+      "name": "OBARA IRETE",
+      "filename": "odu_card_179.png",
+      "web_path": "/static/odu_cards/odu_card_179.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "180",
+      "name": "IRETE OBARA",
+      "filename": "odu_card_180.png",
+      "web_path": "/static/odu_cards/odu_card_180.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "181",
+      "name": "OBARA OSE",
+      "filename": "odu_card_181.png",
+      "web_path": "/static/odu_cards/odu_card_181.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "182",
+      "name": "OSE OBARA",
+      "filename": "odu_card_182.png",
+      "web_path": "/static/odu_cards/odu_card_182.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "183",
+      "name": "OBARA OFUN",
+      "filename": "odu_card_183.png",
+      "web_path": "/static/odu_cards/odu_card_183.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "184",
+      "name": "OFUN OBARA",
+      "filename": "odu_card_184.png",
+      "web_path": "/static/odu_cards/odu_card_184.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "185",
+      "name": "OKANRAN OGUNDA",
+      "filename": "odu_card_185.png",
+      "web_path": "/static/odu_cards/odu_card_185.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "186",
+      "name": "OGUNDA OKANRAN",
+      "filename": "odu_card_186.png",
+      "web_path": "/static/odu_cards/odu_card_186.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "187",
+      "name": "OKANRAN OSA",
+      "filename": "odu_card_187.png",
+      "web_path": "/static/odu_cards/odu_card_187.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "188",
+      "name": "OSA OKANRAN",
+      "filename": "odu_card_188.png",
+      "web_path": "/static/odu_cards/odu_card_188.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "189",
+      "name": "OKANRAN IKA",
+      "filename": "odu_card_189.png",
+      "web_path": "/static/odu_cards/odu_card_189.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "190",
+      "name": "IKA OKANRAN",
+      "filename": "odu_card_190.png",
+      "web_path": "/static/odu_cards/odu_card_190.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "191",
+      "name": "OKANRAN OTURUPON",
+      "filename": "odu_card_191.png",
+      "web_path": "/static/odu_cards/odu_card_191.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "192",
+      "name": "OTURUPON OKANRAN",
+      "filename": "odu_card_192.png",
+      "web_path": "/static/odu_cards/odu_card_192.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "193",
+      "name": "OKANRAN OTURA",
+      "filename": "odu_card_193.png",
+      "web_path": "/static/odu_cards/odu_card_193.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "194",
+      "name": "OTURA OKANRAN",
+      "filename": "odu_card_194.png",
+      "web_path": "/static/odu_cards/odu_card_194.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "195",
+      "name": "OKANRAN IRETE",
+      "filename": "odu_card_195.png",
+      "web_path": "/static/odu_cards/odu_card_195.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "196",
+      "name": "IRETE OKANRAN",
+      "filename": "odu_card_196.png",
+      "web_path": "/static/odu_cards/odu_card_196.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "197",
+      "name": "OKANRAN OSE",
+      "filename": "odu_card_197.png",
+      "web_path": "/static/odu_cards/odu_card_197.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "198",
+      "name": "OSE OKANRAN",
+      "filename": "odu_card_198.png",
+      "web_path": "/static/odu_cards/odu_card_198.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "199",
+      "name": "OKANRAN OFUN",
+      "filename": "odu_card_199.png",
+      "web_path": "/static/odu_cards/odu_card_199.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "200",
+      "name": "OFUN OKANRAN",
+      "filename": "odu_card_200.png",
+      "web_path": "/static/odu_cards/odu_card_200.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "201",
+      "name": "OGUNDA OSA",
+      "filename": "odu_card_201.png",
+      "web_path": "/static/odu_cards/odu_card_201.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "202",
+      "name": "OSA OGUNDA",
+      "filename": "odu_card_202.png",
+      "web_path": "/static/odu_cards/odu_card_202.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "203",
+      "name": "OGUNDA IKA",
+      "filename": "odu_card_203.png",
+      "web_path": "/static/odu_cards/odu_card_203.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "204",
+      "name": "IKA OGUNDA",
+      "filename": "odu_card_204.png",
+      "web_path": "/static/odu_cards/odu_card_204.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "205",
+      "name": "OGUNDA OTURUPON",
+      "filename": "odu_card_205.png",
+      "web_path": "/static/odu_cards/odu_card_205.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "206",
+      "name": "OTURUPON OGUNDA",
+      "filename": "odu_card_206.png",
+      "web_path": "/static/odu_cards/odu_card_206.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "207",
+      "name": "OGUNDA OTURA",
+      "filename": "odu_card_207.png",
+      "web_path": "/static/odu_cards/odu_card_207.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "208",
+      "name": "OTURA OGUNDA",
+      "filename": "odu_card_208.png",
+      "web_path": "/static/odu_cards/odu_card_208.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "209",
+      "name": "OGUNDA IRETE",
+      "filename": "odu_card_209.png",
+      "web_path": "/static/odu_cards/odu_card_209.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "210",
+      "name": "IRETE OGUNDA",
+      "filename": "odu_card_210.png",
+      "web_path": "/static/odu_cards/odu_card_210.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "211",
+      "name": "OGUNDA OSE",
+      "filename": "odu_card_211.png",
+      "web_path": "/static/odu_cards/odu_card_211.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "212",
+      "name": "OSE OGUNDA",
+      "filename": "odu_card_212.png",
+      "web_path": "/static/odu_cards/odu_card_212.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "213",
+      "name": "OGUNDA OFUN",
+      "filename": "odu_card_213.png",
+      "web_path": "/static/odu_cards/odu_card_213.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "214",
+      "name": "OFUN OGUNDA",
+      "filename": "odu_card_214.png",
+      "web_path": "/static/odu_cards/odu_card_214.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "215",
+      "name": "OSA IKA",
+      "filename": "odu_card_215.png",
+      "web_path": "/static/odu_cards/odu_card_215.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "216",
+      "name": "IKA OSA",
+      "filename": "odu_card_216.png",
+      "web_path": "/static/odu_cards/odu_card_216.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "217",
+      "name": "OSA OTURUPON",
+      "filename": "odu_card_217.png",
+      "web_path": "/static/odu_cards/odu_card_217.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "218",
+      "name": "OTURUPON OSA",
+      "filename": "odu_card_218.png",
+      "web_path": "/static/odu_cards/odu_card_218.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "219",
+      "name": "OSA OTURA",
+      "filename": "odu_card_219.png",
+      "web_path": "/static/odu_cards/odu_card_219.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "220",
+      "name": "OTURA OSA",
+      "filename": "odu_card_220.png",
+      "web_path": "/static/odu_cards/odu_card_220.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "221",
+      "name": "OSA IRETE",
+      "filename": "odu_card_221.png",
+      "web_path": "/static/odu_cards/odu_card_221.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "222",
+      "name": "IRETE OSA",
+      "filename": "odu_card_222.png",
+      "web_path": "/static/odu_cards/odu_card_222.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "223",
+      "name": "OSA OSE",
+      "filename": "odu_card_223.png",
+      "web_path": "/static/odu_cards/odu_card_223.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "224",
+      "name": "OSE OSA",
+      "filename": "odu_card_224.png",
+      "web_path": "/static/odu_cards/odu_card_224.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "225",
+      "name": "OSA OFUN",
+      "filename": "odu_card_225.png",
+      "web_path": "/static/odu_cards/odu_card_225.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "226",
+      "name": "OFUN OSA",
+      "filename": "odu_card_226.png",
+      "web_path": "/static/odu_cards/odu_card_226.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "227",
+      "name": "IKA OTURUPON",
+      "filename": "odu_card_227.png",
+      "web_path": "/static/odu_cards/odu_card_227.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "228",
+      "name": "OTURUPON IKA",
+      "filename": "odu_card_228.png",
+      "web_path": "/static/odu_cards/odu_card_228.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "229",
+      "name": "IKA OTURA",
+      "filename": "odu_card_229.png",
+      "web_path": "/static/odu_cards/odu_card_229.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "230",
+      "name": "OTURA IKA",
+      "filename": "odu_card_230.png",
+      "web_path": "/static/odu_cards/odu_card_230.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "231",
+      "name": "IKA IRETE",
+      "filename": "odu_card_231.png",
+      "web_path": "/static/odu_cards/odu_card_231.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "232",
+      "name": "IRETE IKA",
+      "filename": "odu_card_232.png",
+      "web_path": "/static/odu_cards/odu_card_232.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "233",
+      "name": "IKA OSE",
+      "filename": "odu_card_233.png",
+      "web_path": "/static/odu_cards/odu_card_233.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "234",
+      "name": "OSE IKA",
+      "filename": "odu_card_234.png",
+      "web_path": "/static/odu_cards/odu_card_234.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "235",
+      "name": "IKA OFUN",
+      "filename": "odu_card_235.png",
+      "web_path": "/static/odu_cards/odu_card_235.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "236",
+      "name": "OFUN IKA",
+      "filename": "odu_card_236.png",
+      "web_path": "/static/odu_cards/odu_card_236.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "237",
+      "name": "OTURUPON OTURA",
+      "filename": "odu_card_237.png",
+      "web_path": "/static/odu_cards/odu_card_237.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "238",
+      "name": "OTURA OTURUPON",
+      "filename": "odu_card_238.png",
+      "web_path": "/static/odu_cards/odu_card_238.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "239",
+      "name": "OTURUPON IRETE",
+      "filename": "odu_card_239.png",
+      "web_path": "/static/odu_cards/odu_card_239.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "240",
+      "name": "IRETE OTURUPON",
+      "filename": "odu_card_240.png",
+      "web_path": "/static/odu_cards/odu_card_240.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "241",
+      "name": "OTURUPON OSE",
+      "filename": "odu_card_241.png",
+      "web_path": "/static/odu_cards/odu_card_241.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "242",
+      "name": "OSE OTUROPON",
+      "filename": "odu_card_242.png",
+      "web_path": "/static/odu_cards/odu_card_242.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "243",
+      "name": "OTURUPON OFUN",
+      "filename": "odu_card_243.png",
+      "web_path": "/static/odu_cards/odu_card_243.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "244",
+      "name": "OFUN OTURUPON",
+      "filename": "odu_card_244.png",
+      "web_path": "/static/odu_cards/odu_card_244.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "245",
+      "name": "OTURA IRETE",
+      "filename": "odu_card_245.png",
+      "web_path": "/static/odu_cards/odu_card_245.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "246",
+      "name": "IRETE OTURA",
+      "filename": "odu_card_246.png",
+      "web_path": "/static/odu_cards/odu_card_246.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "247",
+      "name": "OTURA OSE",
+      "filename": "odu_card_247.png",
+      "web_path": "/static/odu_cards/odu_card_247.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "248",
+      "name": "OSE OTURA",
+      "filename": "odu_card_248.png",
+      "web_path": "/static/odu_cards/odu_card_248.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "249",
+      "name": "OTURA OFUN",
+      "filename": "odu_card_249.png",
+      "web_path": "/static/odu_cards/odu_card_249.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "250",
+      "name": "OFUN OTURA",
+      "filename": "odu_card_250.png",
+      "web_path": "/static/odu_cards/odu_card_250.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "251",
+      "name": "IRETE OSE",
+      "filename": "odu_card_251.png",
+      "web_path": "/static/odu_cards/odu_card_251.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "252",
+      "name": "OSE IRETE",
+      "filename": "odu_card_252.png",
+      "web_path": "/static/odu_cards/odu_card_252.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "253",
+      "name": "IRETE OFUN",
+      "filename": "odu_card_253.png",
+      "web_path": "/static/odu_cards/odu_card_253.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "254",
+      "name": "OFUN IRETE",
+      "filename": "odu_card_254.png",
+      "web_path": "/static/odu_cards/odu_card_254.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "255",
+      "name": "OSE OFUN",
+      "filename": "odu_card_255.png",
+      "web_path": "/static/odu_cards/odu_card_255.png",
+      "has_wood_carving": true,
+      "background": "black"
+    },
+    {
+      "number": "256",
+      "name": "OFUN OSE",
+      "filename": "odu_card_256.png",
+      "web_path": "/static/odu_cards/odu_card_256.png",
+      "has_wood_carving": true,
+      "background": "black"
+    }
+  ]
+}
