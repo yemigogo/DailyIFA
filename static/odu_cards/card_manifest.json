@@ -1,19 +1,26 @@
 {
   "metadata": {
-    "title": "Complete 256 Odu System - Matrix Excel Integration",
+    "title": "Enhanced 256 Odu Ifá Cards with Wooden Texture",
     "source": "256 Odu Matrix Graph Excel",
     "total_cards": 256,
     "generated_at": "2025-07-11T15:07:55.686683",
-    "card_dimensions": "640x512",
+    "card_dimensions": "840x512",
     "directory": "static/odu_cards",
     "integration_method": "Matrix Parser",
     "major_odus": 16,
-    "minor_odus": 240
+    "minor_odus": 240,
+    "enhanced_generation_date": "2025-07-11T19:37:11.358129",
+    "total_enhanced_cards": 256,
+    "features": [
+      "Wooden carving texture",
+      "Clean typography",
+      "Sacred symbols"
+    ]
   },
   "cards": [
     {
       "number": 1,
-      "name": "OGBE",
+      "name": "OGBE MEJI",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -38,15 +45,16 @@
       "category": "major",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "001_OGBE.png",
+      "filename": "001_OGBE_MEJI.png",
       "filepath": "static/odu_cards/001_OGBE.png",
       "image_path": "/static/odu_cards/001_OGBE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 2,
-      "name": "OYEKU",
+      "name": "OYEKU MEJI",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -71,15 +79,16 @@
       "category": "major",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "002_OYEKU.png",
+      "filename": "002_OYEKU_MEJI.png",
       "filepath": "static/odu_cards/002_OYEKU.png",
       "image_path": "/static/odu_cards/002_OYEKU_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 3,
-      "name": "IWORI",
+      "name": "IWORI MEJI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -104,15 +113,16 @@
       "category": "major",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "003_IWORI.png",
+      "filename": "003_IWORI_MEJI.png",
       "filepath": "static/odu_cards/003_IWORI.png",
       "image_path": "/static/odu_cards/003_IWORI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 4,
-      "name": "ODI",
+      "name": "ODI MEJI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -137,15 +147,16 @@
       "category": "major",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "004_ODI.png",
+      "filename": "004_ODI_MEJI.png",
       "filepath": "static/odu_cards/004_ODI.png",
       "image_path": "/static/odu_cards/004_ODI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 5,
-      "name": "Odu 5",
+      "name": "IROSUN MEJI",
       "nameYoruba": "Odu 5",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 5",
@@ -171,15 +182,16 @@
       "category": "major",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "005_Odu_5.png",
+      "filename": "005_IROSUN_MEJI.png",
       "filepath": "static/odu_cards/005_Odu_5.png",
       "image_path": "/static/odu_cards/005_IROSUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 6,
-      "name": "Odu 6",
+      "name": "MEJI MEJI",
       "nameYoruba": "Odu 6",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 6",
@@ -205,15 +217,16 @@
       "category": "major",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "006_Odu_6.png",
+      "filename": "006_MEJI_MEJI.png",
       "filepath": "static/odu_cards/006_Odu_6.png",
       "image_path": "/static/odu_cards/006_MEJI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 7,
-      "name": "Odu 7",
+      "name": "OBARA MEJI",
       "nameYoruba": "Odu 7",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 7",
@@ -238,15 +251,16 @@
       "category": "major",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "007_Odu_7.png",
+      "filename": "007_OBARA_MEJI.png",
       "filepath": "static/odu_cards/007_Odu_7.png",
       "image_path": "/static/odu_cards/007_OBARA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 8,
-      "name": "Odu 8",
+      "name": "OKANRAN MEJI",
       "nameYoruba": "Odu 8",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 8",
@@ -271,15 +285,16 @@
       "category": "major",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "008_Odu_8.png",
+      "filename": "008_OKANRAN_MEJI.png",
       "filepath": "static/odu_cards/008_Odu_8.png",
       "image_path": "/static/odu_cards/008_OKANRAN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 9,
-      "name": "Odu 9",
+      "name": "OGUNDA MEJI",
       "nameYoruba": "Odu 9",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 9",
@@ -304,15 +319,16 @@
       "category": "major",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "009_Odu_9.png",
+      "filename": "009_OGUNDA_MEJI.png",
       "filepath": "static/odu_cards/009_Odu_9.png",
       "image_path": "/static/odu_cards/009_OGUNDA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 10,
-      "name": "Odu 10",
+      "name": "OSA MEJI",
       "nameYoruba": "Odu 10",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 10",
@@ -337,15 +353,16 @@
       "category": "major",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "010_Odu_10.png",
+      "filename": "010_OSA_MEJI.png",
       "filepath": "static/odu_cards/010_Odu_10.png",
       "image_path": "/static/odu_cards/010_OSA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 11,
-      "name": "Odu 11",
+      "name": "IKA MEJI",
       "nameYoruba": "Odu 11",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 11",
@@ -371,15 +388,16 @@
       "category": "major",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "011_Odu_11.png",
+      "filename": "011_IKA_MEJI.png",
       "filepath": "static/odu_cards/011_Odu_11.png",
       "image_path": "/static/odu_cards/011_IKA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 12,
-      "name": "Odu 12",
+      "name": "OTURUPON MEJI",
       "nameYoruba": "Odu 12",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 12",
@@ -404,15 +422,16 @@
       "category": "major",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "012_Odu_12.png",
+      "filename": "012_OTURUPON_MEJI.png",
       "filepath": "static/odu_cards/012_Odu_12.png",
       "image_path": "/static/odu_cards/012_OTURUPON_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 13,
-      "name": "Odu 13",
+      "name": "OTURA MEJI",
       "nameYoruba": "Odu 13",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 13",
@@ -437,15 +456,16 @@
       "category": "major",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "013_Odu_13.png",
+      "filename": "013_OTURA_MEJI.png",
       "filepath": "static/odu_cards/013_Odu_13.png",
       "image_path": "/static/odu_cards/013_OTURA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 14,
-      "name": "Odu 14",
+      "name": "IRETE MEJI",
       "nameYoruba": "Odu 14",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 14",
@@ -471,15 +491,16 @@
       "category": "major",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "014_Odu_14.png",
+      "filename": "014_IRETE_MEJI.png",
       "filepath": "static/odu_cards/014_Odu_14.png",
       "image_path": "/static/odu_cards/014_IRETE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 15,
-      "name": "Odu 15",
+      "name": "OSE MEJI",
       "nameYoruba": "Odu 15",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 15",
@@ -504,15 +525,16 @@
       "category": "major",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "015_Odu_15.png",
+      "filename": "015_OSE_MEJI.png",
       "filepath": "static/odu_cards/015_Odu_15.png",
       "image_path": "/static/odu_cards/015_OSE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 16,
-      "name": "Odu 16",
+      "name": "OFUN MEJI",
       "nameYoruba": "Odu 16",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 16",
@@ -537,15 +559,16 @@
       "category": "major",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "016_Odu_16.png",
+      "filename": "016_OFUN_MEJI.png",
       "filepath": "static/odu_cards/016_Odu_16.png",
       "image_path": "/static/odu_cards/016_OFUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 17,
-      "name": "OYEKU",
+      "name": "OGBE OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -569,15 +592,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "017_OYEKU.png",
+      "filename": "017_OGBE_OYEKU.png",
       "filepath": "static/odu_cards/017_OYEKU.png",
       "image_path": "/static/odu_cards/017_OGBE_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 18,
-      "name": "OGBE",
+      "name": "OYEKU OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -601,15 +625,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "018_OGBE.png",
+      "filename": "018_OYEKU_OGBE.png",
       "filepath": "static/odu_cards/018_OGBE.png",
       "image_path": "/static/odu_cards/018_OYEKU_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 19,
-      "name": "IWORI",
+      "name": "OGBE IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -633,15 +658,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "019_IWORI.png",
+      "filename": "019_OGBE_IWORI.png",
       "filepath": "static/odu_cards/019_IWORI.png",
       "image_path": "/static/odu_cards/019_OGBE_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 20,
-      "name": "OGBE",
+      "name": "IWORI OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -665,15 +691,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "020_OGBE.png",
+      "filename": "020_IWORI_OGBE.png",
       "filepath": "static/odu_cards/020_OGBE.png",
       "image_path": "/static/odu_cards/020_IWORI_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 21,
-      "name": "ODI",
+      "name": "OGBE ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -697,15 +724,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "021_ODI.png",
+      "filename": "021_OGBE_ODI.png",
       "filepath": "static/odu_cards/021_ODI.png",
       "image_path": "/static/odu_cards/021_OGBE_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 22,
-      "name": "OGBE",
+      "name": "ODI OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -729,15 +757,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "022_OGBE.png",
+      "filename": "022_ODI_OGBE.png",
       "filepath": "static/odu_cards/022_OGBE.png",
       "image_path": "/static/odu_cards/022_ODI_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 23,
-      "name": "OGBE",
+      "name": "OGBE IROSUN",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -762,15 +791,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "023_OGBE.png",
+      "filename": "023_OGBE_IROSUN.png",
       "filepath": "static/odu_cards/023_OGBE.png",
       "image_path": "/static/odu_cards/023_OGBE_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 24,
-      "name": "OGBE",
+      "name": "IROSUN OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -795,15 +825,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "024_OGBE.png",
+      "filename": "024_IROSUN_OGBE.png",
       "filepath": "static/odu_cards/024_OGBE.png",
       "image_path": "/static/odu_cards/024_IROSUN_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 25,
-      "name": "OGBE",
+      "name": "OGBE MEJI",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -828,15 +859,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "025_OGBE.png",
+      "filename": "025_OGBE_MEJI.png",
       "filepath": "static/odu_cards/025_OGBE.png",
       "image_path": "/static/odu_cards/025_OGBE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 26,
-      "name": "OGBE",
+      "name": "OGBE MEJI",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -861,15 +893,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "026_OGBE.png",
+      "filename": "026_OGBE_MEJI.png",
       "filepath": "static/odu_cards/026_OGBE.png",
       "image_path": "/static/odu_cards/026_OGBE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 27,
-      "name": "OGBE",
+      "name": "OGBE OBARA",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -893,15 +926,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "027_OGBE.png",
+      "filename": "027_OGBE_OBARA.png",
       "filepath": "static/odu_cards/027_OGBE.png",
       "image_path": "/static/odu_cards/027_OGBE_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 28,
-      "name": "OGBE",
+      "name": "OBARA OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -925,15 +959,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "028_OGBE.png",
+      "filename": "028_OBARA_OGBE.png",
       "filepath": "static/odu_cards/028_OGBE.png",
       "image_path": "/static/odu_cards/028_OBARA_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 29,
-      "name": "OGBE",
+      "name": "OGBE OKANRAN",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -957,15 +992,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "029_OGBE.png",
+      "filename": "029_OGBE_OKANRAN.png",
       "filepath": "static/odu_cards/029_OGBE.png",
       "image_path": "/static/odu_cards/029_OGBE_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 30,
-      "name": "OGBE",
+      "name": "OKANRAN OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -989,15 +1025,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "030_OGBE.png",
+      "filename": "030_OKANRAN_OGBE.png",
       "filepath": "static/odu_cards/030_OGBE.png",
       "image_path": "/static/odu_cards/030_OKANRAN_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 31,
-      "name": "OGBE",
+      "name": "OGBE OGUNDA",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1021,15 +1058,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "031_OGBE.png",
+      "filename": "031_OGBE_OGUNDA.png",
       "filepath": "static/odu_cards/031_OGBE.png",
       "image_path": "/static/odu_cards/031_OGBE_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 32,
-      "name": "OGBE",
+      "name": "OGUNDA OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1053,15 +1091,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "032_OGBE.png",
+      "filename": "032_OGUNDA_OGBE.png",
       "filepath": "static/odu_cards/032_OGBE.png",
       "image_path": "/static/odu_cards/032_OGUNDA_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 33,
-      "name": "OGBE",
+      "name": "OGBE OSA",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1085,15 +1124,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "033_OGBE.png",
+      "filename": "033_OGBE_OSA.png",
       "filepath": "static/odu_cards/033_OGBE.png",
       "image_path": "/static/odu_cards/033_OGBE_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 34,
-      "name": "OGBE",
+      "name": "OSA OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1117,15 +1157,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "034_OGBE.png",
+      "filename": "034_OSA_OGBE.png",
       "filepath": "static/odu_cards/034_OGBE.png",
       "image_path": "/static/odu_cards/034_OSA_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 35,
-      "name": "OGBE",
+      "name": "OGBE IKA",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1150,15 +1191,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "035_OGBE.png",
+      "filename": "035_OGBE_IKA.png",
       "filepath": "static/odu_cards/035_OGBE.png",
       "image_path": "/static/odu_cards/035_OGBE_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 36,
-      "name": "OGBE",
+      "name": "IKA OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1183,15 +1225,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "036_OGBE.png",
+      "filename": "036_IKA_OGBE.png",
       "filepath": "static/odu_cards/036_OGBE.png",
       "image_path": "/static/odu_cards/036_IKA_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 37,
-      "name": "OGBE",
+      "name": "OGBE OTURUPON",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1215,15 +1258,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "037_OGBE.png",
+      "filename": "037_OGBE_OTURUPON.png",
       "filepath": "static/odu_cards/037_OGBE.png",
       "image_path": "/static/odu_cards/037_OGBE_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 38,
-      "name": "OGBE",
+      "name": "OTURUPON OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1247,15 +1291,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "038_OGBE.png",
+      "filename": "038_OTURUPON_OGBE.png",
       "filepath": "static/odu_cards/038_OGBE.png",
       "image_path": "/static/odu_cards/038_OTURUPON_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 39,
-      "name": "OGBE",
+      "name": "OGBE OTURA",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1279,15 +1324,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "039_OGBE.png",
+      "filename": "039_OGBE_OTURA.png",
       "filepath": "static/odu_cards/039_OGBE.png",
       "image_path": "/static/odu_cards/039_OGBE_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 40,
-      "name": "OGBE",
+      "name": "OTURA OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1311,15 +1357,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "040_OGBE.png",
+      "filename": "040_OTURA_OGBE.png",
       "filepath": "static/odu_cards/040_OGBE.png",
       "image_path": "/static/odu_cards/040_OTURA_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 41,
-      "name": "OGBE",
+      "name": "OGBE IRETE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1344,15 +1391,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "041_OGBE.png",
+      "filename": "041_OGBE_IRETE.png",
       "filepath": "static/odu_cards/041_OGBE.png",
       "image_path": "/static/odu_cards/041_OGBE_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 42,
-      "name": "OGBE",
+      "name": "IRETE OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1377,15 +1425,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "042_OGBE.png",
+      "filename": "042_IRETE_OGBE.png",
       "filepath": "static/odu_cards/042_OGBE.png",
       "image_path": "/static/odu_cards/042_IRETE_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 43,
-      "name": "OGBE",
+      "name": "OGBE OSE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1409,15 +1458,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "043_OGBE.png",
+      "filename": "043_OGBE_OSE.png",
       "filepath": "static/odu_cards/043_OGBE.png",
       "image_path": "/static/odu_cards/043_OGBE_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 44,
-      "name": "OGBE",
+      "name": "OSE OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1441,15 +1491,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "044_OGBE.png",
+      "filename": "044_OSE_OGBE.png",
       "filepath": "static/odu_cards/044_OGBE.png",
       "image_path": "/static/odu_cards/044_OSE_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 45,
-      "name": "OGBE",
+      "name": "OGBE OFUN",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1473,15 +1524,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "045_OGBE.png",
+      "filename": "045_OGBE_OFUN.png",
       "filepath": "static/odu_cards/045_OGBE.png",
       "image_path": "/static/odu_cards/045_OGBE_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 46,
-      "name": "OGBE",
+      "name": "OFUN OGBE",
       "nameYoruba": "OGBE",
       "meaning": "Light, clarity, divine wisdom",
       "meaningYoruba": "Ọgbọ́n OGBE",
@@ -1505,15 +1557,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "046_OGBE.png",
+      "filename": "046_OFUN_OGBE.png",
       "filepath": "static/odu_cards/046_OGBE.png",
       "image_path": "/static/odu_cards/046_OFUN_OGBE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 47,
-      "name": "IWORI",
+      "name": "OYEKU IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -1537,15 +1590,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "047_IWORI.png",
+      "filename": "047_OYEKU_IWORI.png",
       "filepath": "static/odu_cards/047_IWORI.png",
       "image_path": "/static/odu_cards/047_OYEKU_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 48,
-      "name": "OYEKU",
+      "name": "OYEKU MEJI",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1570,15 +1624,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "048_OYEKU.png",
+      "filename": "048_OYEKU_MEJI.png",
       "filepath": "static/odu_cards/048_OYEKU.png",
       "image_path": "/static/odu_cards/048_OYEKU_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 49,
-      "name": "ODI",
+      "name": "OYEKU ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -1602,15 +1657,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "049_ODI.png",
+      "filename": "049_OYEKU_ODI.png",
       "filepath": "static/odu_cards/049_ODI.png",
       "image_path": "/static/odu_cards/049_OYEKU_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 50,
-      "name": "OYEKU",
+      "name": "ODI OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1634,15 +1690,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "050_OYEKU.png",
+      "filename": "050_ODI_OYEKU.png",
       "filepath": "static/odu_cards/050_OYEKU.png",
       "image_path": "/static/odu_cards/050_ODI_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 51,
-      "name": "OYEKU",
+      "name": "OYEKU IROSUN",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1667,15 +1724,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "051_OYEKU.png",
+      "filename": "051_OYEKU_IROSUN.png",
       "filepath": "static/odu_cards/051_OYEKU.png",
       "image_path": "/static/odu_cards/051_OYEKU_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 52,
-      "name": "OYEKU",
+      "name": "IROSUN OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1700,15 +1758,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "052_OYEKU.png",
+      "filename": "052_IROSUN_OYEKU.png",
       "filepath": "static/odu_cards/052_OYEKU.png",
       "image_path": "/static/odu_cards/052_IROSUN_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 53,
-      "name": "OYEKU",
+      "name": "OYEKU MEJI",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1733,15 +1792,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "053_OYEKU.png",
+      "filename": "053_OYEKU_MEJI.png",
       "filepath": "static/odu_cards/053_OYEKU.png",
       "image_path": "/static/odu_cards/053_OYEKU_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 54,
-      "name": "OYEKU",
+      "name": "OYEKU MEJI",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1766,15 +1826,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "054_OYEKU.png",
+      "filename": "054_OYEKU_MEJI.png",
       "filepath": "static/odu_cards/054_OYEKU.png",
       "image_path": "/static/odu_cards/054_OYEKU_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 55,
-      "name": "OYEKU",
+      "name": "OYEKU OBARA",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1798,15 +1859,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "055_OYEKU.png",
+      "filename": "055_OYEKU_OBARA.png",
       "filepath": "static/odu_cards/055_OYEKU.png",
       "image_path": "/static/odu_cards/055_OYEKU_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 56,
-      "name": "OYEKU",
+      "name": "OBARA OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1830,15 +1892,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "056_OYEKU.png",
+      "filename": "056_OBARA_OYEKU.png",
       "filepath": "static/odu_cards/056_OYEKU.png",
       "image_path": "/static/odu_cards/056_OBARA_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 57,
-      "name": "OYEKU",
+      "name": "OYEKU OKANRAN",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1862,15 +1925,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "057_OYEKU.png",
+      "filename": "057_OYEKU_OKANRAN.png",
       "filepath": "static/odu_cards/057_OYEKU.png",
       "image_path": "/static/odu_cards/057_OYEKU_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 58,
-      "name": "OYEKU",
+      "name": "OKANRAN OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1894,15 +1958,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "058_OYEKU.png",
+      "filename": "058_OKANRAN_OYEKU.png",
       "filepath": "static/odu_cards/058_OYEKU.png",
       "image_path": "/static/odu_cards/058_OKANRAN_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 59,
-      "name": "OYEKU",
+      "name": "OYEKU OGUNDA",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1926,15 +1991,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "059_OYEKU.png",
+      "filename": "059_OYEKU_OGUNDA.png",
       "filepath": "static/odu_cards/059_OYEKU.png",
       "image_path": "/static/odu_cards/059_OYEKU_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 60,
-      "name": "OYEKU",
+      "name": "OGUNDA OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1958,15 +2024,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "060_OYEKU.png",
+      "filename": "060_OGUNDA_OYEKU.png",
       "filepath": "static/odu_cards/060_OYEKU.png",
       "image_path": "/static/odu_cards/060_OGUNDA_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 61,
-      "name": "OYEKU",
+      "name": "OYEKU OSA",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -1990,15 +2057,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "061_OYEKU.png",
+      "filename": "061_OYEKU_OSA.png",
       "filepath": "static/odu_cards/061_OYEKU.png",
       "image_path": "/static/odu_cards/061_OYEKU_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 62,
-      "name": "OYEKU",
+      "name": "OSA OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2022,15 +2090,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "062_OYEKU.png",
+      "filename": "062_OSA_OYEKU.png",
       "filepath": "static/odu_cards/062_OYEKU.png",
       "image_path": "/static/odu_cards/062_OSA_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 63,
-      "name": "OYEKU",
+      "name": "OYEKU IKA",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2055,15 +2124,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "063_OYEKU.png",
+      "filename": "063_OYEKU_IKA.png",
       "filepath": "static/odu_cards/063_OYEKU.png",
       "image_path": "/static/odu_cards/063_OYEKU_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 64,
-      "name": "OYEKU",
+      "name": "IKA OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2088,15 +2158,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "064_OYEKU.png",
+      "filename": "064_IKA_OYEKU.png",
       "filepath": "static/odu_cards/064_OYEKU.png",
       "image_path": "/static/odu_cards/064_IKA_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 65,
-      "name": "OYEKU",
+      "name": "OYEKU OTURUPON",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2120,15 +2191,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "065_OYEKU.png",
+      "filename": "065_OYEKU_OTURUPON.png",
       "filepath": "static/odu_cards/065_OYEKU.png",
       "image_path": "/static/odu_cards/065_OYEKU_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 66,
-      "name": "OYEKU",
+      "name": "OTURUPON OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2152,15 +2224,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "066_OYEKU.png",
+      "filename": "066_OTURUPON_OYEKU.png",
       "filepath": "static/odu_cards/066_OYEKU.png",
       "image_path": "/static/odu_cards/066_OTURUPON_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 67,
-      "name": "OYEKU",
+      "name": "OYEKU OTURA",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2184,15 +2257,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "067_OYEKU.png",
+      "filename": "067_OYEKU_OTURA.png",
       "filepath": "static/odu_cards/067_OYEKU.png",
       "image_path": "/static/odu_cards/067_OYEKU_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 68,
-      "name": "OYEKU",
+      "name": "OTURA OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2216,15 +2290,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "068_OYEKU.png",
+      "filename": "068_OTURA_OYEKU.png",
       "filepath": "static/odu_cards/068_OYEKU.png",
       "image_path": "/static/odu_cards/068_OTURA_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 69,
-      "name": "OYEKU",
+      "name": "OYEKU IRETE",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2249,15 +2324,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "069_OYEKU.png",
+      "filename": "069_OYEKU_IRETE.png",
       "filepath": "static/odu_cards/069_OYEKU.png",
       "image_path": "/static/odu_cards/069_OYEKU_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 70,
-      "name": "OYEKU",
+      "name": "IRETE OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2282,15 +2358,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "070_OYEKU.png",
+      "filename": "070_IRETE_OYEKU.png",
       "filepath": "static/odu_cards/070_OYEKU.png",
       "image_path": "/static/odu_cards/070_IRETE_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 71,
-      "name": "OYEKU",
+      "name": "OYEKU OSE",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2314,15 +2391,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "071_OYEKU.png",
+      "filename": "071_OYEKU_OSE.png",
       "filepath": "static/odu_cards/071_OYEKU.png",
       "image_path": "/static/odu_cards/071_OYEKU_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 72,
-      "name": "OYEKU",
+      "name": "OSE OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2346,15 +2424,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "072_OYEKU.png",
+      "filename": "072_OSE_OYEKU.png",
       "filepath": "static/odu_cards/072_OYEKU.png",
       "image_path": "/static/odu_cards/072_OSE_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 73,
-      "name": "OYEKU",
+      "name": "OYEKU OFUN",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2378,15 +2457,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "073_OYEKU.png",
+      "filename": "073_OYEKU_OFUN.png",
       "filepath": "static/odu_cards/073_OYEKU.png",
       "image_path": "/static/odu_cards/073_OYEKU_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 74,
-      "name": "OYEKU",
+      "name": "OFUN OYEKU",
       "nameYoruba": "OYEKU",
       "meaning": "Mystery, reflection, hidden knowledge",
       "meaningYoruba": "Ọgbọ́n OYEKU",
@@ -2410,15 +2490,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "074_OYEKU.png",
+      "filename": "074_OFUN_OYEKU.png",
       "filepath": "static/odu_cards/074_OYEKU.png",
       "image_path": "/static/odu_cards/074_OFUN_OYEKU.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 75,
-      "name": "ODI",
+      "name": "IWORI ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -2442,15 +2523,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "075_ODI.png",
+      "filename": "075_IWORI_ODI.png",
       "filepath": "static/odu_cards/075_ODI.png",
       "image_path": "/static/odu_cards/075_IWORI_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 76,
-      "name": "IWORI",
+      "name": "ODI IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2474,15 +2556,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "076_IWORI.png",
+      "filename": "076_ODI_IWORI.png",
       "filepath": "static/odu_cards/076_IWORI.png",
       "image_path": "/static/odu_cards/076_ODI_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 77,
-      "name": "IWORI",
+      "name": "IWORI IROSUN",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2507,15 +2590,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "077_IWORI.png",
+      "filename": "077_IWORI_IROSUN.png",
       "filepath": "static/odu_cards/077_IWORI.png",
       "image_path": "/static/odu_cards/077_IWORI_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 78,
-      "name": "IWORI",
+      "name": "IROSUN IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2540,15 +2624,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "078_IWORI.png",
+      "filename": "078_IROSUN_IWORI.png",
       "filepath": "static/odu_cards/078_IWORI.png",
       "image_path": "/static/odu_cards/078_IROSUN_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 79,
-      "name": "IWORI",
+      "name": "IWORI MEJI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2573,15 +2658,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "079_IWORI.png",
+      "filename": "079_IWORI_MEJI.png",
       "filepath": "static/odu_cards/079_IWORI.png",
       "image_path": "/static/odu_cards/079_IWORI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 80,
-      "name": "IWORI",
+      "name": "IWORI MEJI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2606,15 +2692,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "080_IWORI.png",
+      "filename": "080_IWORI_MEJI.png",
       "filepath": "static/odu_cards/080_IWORI.png",
       "image_path": "/static/odu_cards/080_IWORI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 81,
-      "name": "IWORI",
+      "name": "IWORI OBARA",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2638,15 +2725,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "081_IWORI.png",
+      "filename": "081_IWORI_OBARA.png",
       "filepath": "static/odu_cards/081_IWORI.png",
       "image_path": "/static/odu_cards/081_IWORI_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 82,
-      "name": "IWORI",
+      "name": "OBARA IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2670,15 +2758,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "082_IWORI.png",
+      "filename": "082_OBARA_IWORI.png",
       "filepath": "static/odu_cards/082_IWORI.png",
       "image_path": "/static/odu_cards/082_OBARA_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 83,
-      "name": "IWORI",
+      "name": "IWORI OKANRAN",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2702,15 +2791,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "083_IWORI.png",
+      "filename": "083_IWORI_OKANRAN.png",
       "filepath": "static/odu_cards/083_IWORI.png",
       "image_path": "/static/odu_cards/083_IWORI_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 84,
-      "name": "IWORI",
+      "name": "OKANRAN IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2734,15 +2824,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "084_IWORI.png",
+      "filename": "084_OKANRAN_IWORI.png",
       "filepath": "static/odu_cards/084_IWORI.png",
       "image_path": "/static/odu_cards/084_OKANRAN_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 85,
-      "name": "IWORI",
+      "name": "IWORI OGUNDA",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2766,15 +2857,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "085_IWORI.png",
+      "filename": "085_IWORI_OGUNDA.png",
       "filepath": "static/odu_cards/085_IWORI.png",
       "image_path": "/static/odu_cards/085_IWORI_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 86,
-      "name": "IWORI",
+      "name": "OGUNDA IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2798,15 +2890,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "086_IWORI.png",
+      "filename": "086_OGUNDA_IWORI.png",
       "filepath": "static/odu_cards/086_IWORI.png",
       "image_path": "/static/odu_cards/086_OGUNDA_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 87,
-      "name": "IWORI",
+      "name": "IWORI OSA",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2830,15 +2923,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "087_IWORI.png",
+      "filename": "087_IWORI_OSA.png",
       "filepath": "static/odu_cards/087_IWORI.png",
       "image_path": "/static/odu_cards/087_IWORI_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 88,
-      "name": "IWORI",
+      "name": "OSA IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2862,15 +2956,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "088_IWORI.png",
+      "filename": "088_OSA_IWORI.png",
       "filepath": "static/odu_cards/088_IWORI.png",
       "image_path": "/static/odu_cards/088_OSA_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 89,
-      "name": "IWORI",
+      "name": "IWORI IKA",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2895,15 +2990,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "089_IWORI.png",
+      "filename": "089_IWORI_IKA.png",
       "filepath": "static/odu_cards/089_IWORI.png",
       "image_path": "/static/odu_cards/089_IWORI_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 90,
-      "name": "IWORI",
+      "name": "IKA IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2928,15 +3024,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "090_IWORI.png",
+      "filename": "090_IKA_IWORI.png",
       "filepath": "static/odu_cards/090_IWORI.png",
       "image_path": "/static/odu_cards/090_IKA_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 91,
-      "name": "IWORI",
+      "name": "IWORI OTURUPON",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2960,15 +3057,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "091_IWORI.png",
+      "filename": "091_IWORI_OTURUPON.png",
       "filepath": "static/odu_cards/091_IWORI.png",
       "image_path": "/static/odu_cards/091_IWORI_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 92,
-      "name": "IWORI",
+      "name": "OTURUPON IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -2992,15 +3090,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "092_IWORI.png",
+      "filename": "092_OTURUPON_IWORI.png",
       "filepath": "static/odu_cards/092_IWORI.png",
       "image_path": "/static/odu_cards/092_OTURUPON_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 93,
-      "name": "IWORI",
+      "name": "IWORI OTURA",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3024,15 +3123,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "093_IWORI.png",
+      "filename": "093_IWORI_OTURA.png",
       "filepath": "static/odu_cards/093_IWORI.png",
       "image_path": "/static/odu_cards/093_IWORI_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 94,
-      "name": "IWORI",
+      "name": "OTURA IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3056,15 +3156,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "094_IWORI.png",
+      "filename": "094_OTURA_IWORI.png",
       "filepath": "static/odu_cards/094_IWORI.png",
       "image_path": "/static/odu_cards/094_OTURA_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 95,
-      "name": "IWORI",
+      "name": "IWORI IRETE",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3089,15 +3190,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "095_IWORI.png",
+      "filename": "095_IWORI_IRETE.png",
       "filepath": "static/odu_cards/095_IWORI.png",
       "image_path": "/static/odu_cards/095_IWORI_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 96,
-      "name": "IWORI",
+      "name": "IRETE IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3122,15 +3224,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "096_IWORI.png",
+      "filename": "096_IRETE_IWORI.png",
       "filepath": "static/odu_cards/096_IWORI.png",
       "image_path": "/static/odu_cards/096_IRETE_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 97,
-      "name": "IWORI",
+      "name": "IWORI OSE",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3154,15 +3257,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "097_IWORI.png",
+      "filename": "097_IWORI_OSE.png",
       "filepath": "static/odu_cards/097_IWORI.png",
       "image_path": "/static/odu_cards/097_IWORI_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 98,
-      "name": "IWORI",
+      "name": "OSE IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3186,15 +3290,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "098_IWORI.png",
+      "filename": "098_OSE_IWORI.png",
       "filepath": "static/odu_cards/098_IWORI.png",
       "image_path": "/static/odu_cards/098_OSE_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 99,
-      "name": "IWORI",
+      "name": "IWORI OFUN",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3218,15 +3323,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "099_IWORI.png",
+      "filename": "099_IWORI_OFUN.png",
       "filepath": "static/odu_cards/099_IWORI.png",
       "image_path": "/static/odu_cards/099_IWORI_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 100,
-      "name": "IWORI",
+      "name": "OFUN IWORI",
       "nameYoruba": "IWORI",
       "meaning": "Character, spiritual development",
       "meaningYoruba": "Ọgbọ́n IWORI",
@@ -3250,15 +3356,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "100_IWORI.png",
+      "filename": "100_OFUN_IWORI.png",
       "filepath": "static/odu_cards/100_IWORI.png",
       "image_path": "/static/odu_cards/100_OFUN_IWORI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 101,
-      "name": "ODI",
+      "name": "ODI IROSUN",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3283,15 +3390,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "101_ODI.png",
+      "filename": "101_ODI_IROSUN.png",
       "filepath": "static/odu_cards/101_ODI.png",
       "image_path": "/static/odu_cards/101_ODI_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 102,
-      "name": "ODI",
+      "name": "IROSUN ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3316,15 +3424,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "102_ODI.png",
+      "filename": "102_IROSUN_ODI.png",
       "filepath": "static/odu_cards/102_ODI.png",
       "image_path": "/static/odu_cards/102_IROSUN_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 103,
-      "name": "ODI",
+      "name": "ODI MEJI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3349,15 +3458,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "103_ODI.png",
+      "filename": "103_ODI_MEJI.png",
       "filepath": "static/odu_cards/103_ODI.png",
       "image_path": "/static/odu_cards/103_ODI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 104,
-      "name": "ODI",
+      "name": "ODI MEJI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3382,15 +3492,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "104_ODI.png",
+      "filename": "104_ODI_MEJI.png",
       "filepath": "static/odu_cards/104_ODI.png",
       "image_path": "/static/odu_cards/104_ODI_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 105,
-      "name": "ODI",
+      "name": "ODI OBARA",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3414,15 +3525,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "105_ODI.png",
+      "filename": "105_ODI_OBARA.png",
       "filepath": "static/odu_cards/105_ODI.png",
       "image_path": "/static/odu_cards/105_ODI_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 106,
-      "name": "ODI",
+      "name": "OBARA ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3446,15 +3558,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "106_ODI.png",
+      "filename": "106_OBARA_ODI.png",
       "filepath": "static/odu_cards/106_ODI.png",
       "image_path": "/static/odu_cards/106_OBARA_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 107,
-      "name": "ODI",
+      "name": "ODI OKANRAN",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3478,15 +3591,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "107_ODI.png",
+      "filename": "107_ODI_OKANRAN.png",
       "filepath": "static/odu_cards/107_ODI.png",
       "image_path": "/static/odu_cards/107_ODI_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 108,
-      "name": "ODI",
+      "name": "OKANRAN ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3510,15 +3624,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "108_ODI.png",
+      "filename": "108_OKANRAN_ODI.png",
       "filepath": "static/odu_cards/108_ODI.png",
       "image_path": "/static/odu_cards/108_OKANRAN_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 109,
-      "name": "ODI",
+      "name": "ODI OGUNDA",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3542,15 +3657,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "109_ODI.png",
+      "filename": "109_ODI_OGUNDA.png",
       "filepath": "static/odu_cards/109_ODI.png",
       "image_path": "/static/odu_cards/109_ODI_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 110,
-      "name": "ODI",
+      "name": "OGUNDA ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3574,15 +3690,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "110_ODI.png",
+      "filename": "110_OGUNDA_ODI.png",
       "filepath": "static/odu_cards/110_ODI.png",
       "image_path": "/static/odu_cards/110_OGUNDA_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 111,
-      "name": "ODI",
+      "name": "ODI OSA",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3606,15 +3723,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "111_ODI.png",
+      "filename": "111_ODI_OSA.png",
       "filepath": "static/odu_cards/111_ODI.png",
       "image_path": "/static/odu_cards/111_ODI_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 112,
-      "name": "ODI",
+      "name": "OSA ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3638,15 +3756,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "112_ODI.png",
+      "filename": "112_OSA_ODI.png",
       "filepath": "static/odu_cards/112_ODI.png",
       "image_path": "/static/odu_cards/112_OSA_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 113,
-      "name": "ODI",
+      "name": "ODI IKA",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3671,15 +3790,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "113_ODI.png",
+      "filename": "113_ODI_IKA.png",
       "filepath": "static/odu_cards/113_ODI.png",
       "image_path": "/static/odu_cards/113_ODI_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 114,
-      "name": "ODI",
+      "name": "IKA ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3704,15 +3824,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "114_ODI.png",
+      "filename": "114_IKA_ODI.png",
       "filepath": "static/odu_cards/114_ODI.png",
       "image_path": "/static/odu_cards/114_IKA_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 115,
-      "name": "ODI",
+      "name": "ODI OTURUPON",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3736,15 +3857,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "115_ODI.png",
+      "filename": "115_ODI_OTURUPON.png",
       "filepath": "static/odu_cards/115_ODI.png",
       "image_path": "/static/odu_cards/115_ODI_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 116,
-      "name": "ODI",
+      "name": "OTURUPON ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3768,15 +3890,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "116_ODI.png",
+      "filename": "116_OTURUPON_ODI.png",
       "filepath": "static/odu_cards/116_ODI.png",
       "image_path": "/static/odu_cards/116_OTURUPON_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 117,
-      "name": "ODI",
+      "name": "ODI OTURA",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3800,15 +3923,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "117_ODI.png",
+      "filename": "117_ODI_OTURA.png",
       "filepath": "static/odu_cards/117_ODI.png",
       "image_path": "/static/odu_cards/117_ODI_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 118,
-      "name": "ODI",
+      "name": "OTURA ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3832,15 +3956,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "118_ODI.png",
+      "filename": "118_OTURA_ODI.png",
       "filepath": "static/odu_cards/118_ODI.png",
       "image_path": "/static/odu_cards/118_OTURA_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 119,
-      "name": "Odu 119",
+      "name": "IRETE MEJI",
       "nameYoruba": "Odu 119",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 119",
@@ -3866,15 +3991,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "119_Odu_119.png",
+      "filename": "119_IRETE_MEJI.png",
       "filepath": "static/odu_cards/119_Odu_119.png",
       "image_path": "/static/odu_cards/119_IRETE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 120,
-      "name": "ODI",
+      "name": "IRETE ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3899,15 +4025,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "120_ODI.png",
+      "filename": "120_IRETE_ODI.png",
       "filepath": "static/odu_cards/120_ODI.png",
       "image_path": "/static/odu_cards/120_IRETE_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 121,
-      "name": "ODI",
+      "name": "ODI OSE",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3931,15 +4058,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "121_ODI.png",
+      "filename": "121_ODI_OSE.png",
       "filepath": "static/odu_cards/121_ODI.png",
       "image_path": "/static/odu_cards/121_ODI_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 122,
-      "name": "ODI",
+      "name": "OSE ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3963,15 +4091,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "122_ODI.png",
+      "filename": "122_OSE_ODI.png",
       "filepath": "static/odu_cards/122_ODI.png",
       "image_path": "/static/odu_cards/122_OSE_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 123,
-      "name": "ODI",
+      "name": "ODI OFUN",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -3995,15 +4124,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "123_ODI.png",
+      "filename": "123_ODI_OFUN.png",
       "filepath": "static/odu_cards/123_ODI.png",
       "image_path": "/static/odu_cards/123_ODI_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 124,
-      "name": "ODI",
+      "name": "OFUN ODI",
       "nameYoruba": "ODI",
       "meaning": "Foundation, stability",
       "meaningYoruba": "Ọgbọ́n ODI",
@@ -4027,15 +4157,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "124_ODI.png",
+      "filename": "124_OFUN_ODI.png",
       "filepath": "static/odu_cards/124_ODI.png",
       "image_path": "/static/odu_cards/124_OFUN_ODI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 125,
-      "name": "Odu 125",
+      "name": "IROSUN MEJI",
       "nameYoruba": "Odu 125",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 125",
@@ -4061,15 +4192,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "125_Odu_125.png",
+      "filename": "125_IROSUN_MEJI.png",
       "filepath": "static/odu_cards/125_Odu_125.png",
       "image_path": "/static/odu_cards/125_IROSUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 126,
-      "name": "Odu 126",
+      "name": "IROSUN MEJI",
       "nameYoruba": "Odu 126",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 126",
@@ -4095,15 +4227,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "126_Odu_126.png",
+      "filename": "126_IROSUN_MEJI.png",
       "filepath": "static/odu_cards/126_Odu_126.png",
       "image_path": "/static/odu_cards/126_IROSUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 127,
-      "name": "Odu 127",
+      "name": "IROSUN OBARA",
       "nameYoruba": "Odu 127",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 127",
@@ -4128,15 +4261,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "127_Odu_127.png",
+      "filename": "127_IROSUN_OBARA.png",
       "filepath": "static/odu_cards/127_Odu_127.png",
       "image_path": "/static/odu_cards/127_IROSUN_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 128,
-      "name": "Odu 128",
+      "name": "OBARA IROSUN",
       "nameYoruba": "Odu 128",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 128",
@@ -4161,15 +4295,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "128_Odu_128.png",
+      "filename": "128_OBARA_IROSUN.png",
       "filepath": "static/odu_cards/128_Odu_128.png",
       "image_path": "/static/odu_cards/128_OBARA_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 129,
-      "name": "Odu 129",
+      "name": "IROSUN OKANRAN",
       "nameYoruba": "Odu 129",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 129",
@@ -4194,15 +4329,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "129_Odu_129.png",
+      "filename": "129_IROSUN_OKANRAN.png",
       "filepath": "static/odu_cards/129_Odu_129.png",
       "image_path": "/static/odu_cards/129_IROSUN_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 130,
-      "name": "Odu 130",
+      "name": "OKANRAN IROSUN",
       "nameYoruba": "Odu 130",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 130",
@@ -4227,15 +4363,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "130_Odu_130.png",
+      "filename": "130_OKANRAN_IROSUN.png",
       "filepath": "static/odu_cards/130_Odu_130.png",
       "image_path": "/static/odu_cards/130_OKANRAN_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 131,
-      "name": "Odu 131",
+      "name": "IROSUN OGUNDA",
       "nameYoruba": "Odu 131",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 131",
@@ -4260,15 +4397,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "131_Odu_131.png",
+      "filename": "131_IROSUN_OGUNDA.png",
       "filepath": "static/odu_cards/131_Odu_131.png",
       "image_path": "/static/odu_cards/131_IROSUN_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 132,
-      "name": "Odu 132",
+      "name": "OGUNDA IROSUN",
       "nameYoruba": "Odu 132",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 132",
@@ -4293,15 +4431,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "132_Odu_132.png",
+      "filename": "132_OGUNDA_IROSUN.png",
       "filepath": "static/odu_cards/132_Odu_132.png",
       "image_path": "/static/odu_cards/132_OGUNDA_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 133,
-      "name": "Odu 133",
+      "name": "IROSUN OSA",
       "nameYoruba": "Odu 133",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 133",
@@ -4326,15 +4465,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "133_Odu_133.png",
+      "filename": "133_IROSUN_OSA.png",
       "filepath": "static/odu_cards/133_Odu_133.png",
       "image_path": "/static/odu_cards/133_IROSUN_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 134,
-      "name": "Odu 134",
+      "name": "OSA IROSUN",
       "nameYoruba": "Odu 134",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 134",
@@ -4359,15 +4499,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "134_Odu_134.png",
+      "filename": "134_OSA_IROSUN.png",
       "filepath": "static/odu_cards/134_Odu_134.png",
       "image_path": "/static/odu_cards/134_OSA_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 135,
-      "name": "Odu 135",
+      "name": "IROSUN IKA",
       "nameYoruba": "Odu 135",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 135",
@@ -4393,15 +4534,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "135_Odu_135.png",
+      "filename": "135_IROSUN_IKA.png",
       "filepath": "static/odu_cards/135_Odu_135.png",
       "image_path": "/static/odu_cards/135_IROSUN_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 136,
-      "name": "Odu 136",
+      "name": "IKA IROSUN",
       "nameYoruba": "Odu 136",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 136",
@@ -4427,15 +4569,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "136_Odu_136.png",
+      "filename": "136_IKA_IROSUN.png",
       "filepath": "static/odu_cards/136_Odu_136.png",
       "image_path": "/static/odu_cards/136_IKA_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 137,
-      "name": "Odu 137",
+      "name": "IROSUN OTURUPON",
       "nameYoruba": "Odu 137",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 137",
@@ -4460,15 +4603,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "137_Odu_137.png",
+      "filename": "137_IROSUN_OTURUPON.png",
       "filepath": "static/odu_cards/137_Odu_137.png",
       "image_path": "/static/odu_cards/137_IROSUN_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 138,
-      "name": "Odu 138",
+      "name": "OTURUPON IROSUN",
       "nameYoruba": "Odu 138",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 138",
@@ -4493,15 +4637,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "138_Odu_138.png",
+      "filename": "138_OTURUPON_IROSUN.png",
       "filepath": "static/odu_cards/138_Odu_138.png",
       "image_path": "/static/odu_cards/138_OTURUPON_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 139,
-      "name": "Odu 139",
+      "name": "IROSUN OTURA",
       "nameYoruba": "Odu 139",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 139",
@@ -4526,15 +4671,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "139_Odu_139.png",
+      "filename": "139_IROSUN_OTURA.png",
       "filepath": "static/odu_cards/139_Odu_139.png",
       "image_path": "/static/odu_cards/139_IROSUN_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 140,
-      "name": "Odu 140",
+      "name": "OTURA IROSUN",
       "nameYoruba": "Odu 140",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 140",
@@ -4559,15 +4705,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "140_Odu_140.png",
+      "filename": "140_OTURA_IROSUN.png",
       "filepath": "static/odu_cards/140_Odu_140.png",
       "image_path": "/static/odu_cards/140_OTURA_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 141,
-      "name": "Odu 141",
+      "name": "IROSUN IRETE",
       "nameYoruba": "Odu 141",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 141",
@@ -4593,15 +4740,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "141_Odu_141.png",
+      "filename": "141_IROSUN_IRETE.png",
       "filepath": "static/odu_cards/141_Odu_141.png",
       "image_path": "/static/odu_cards/141_IROSUN_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 142,
-      "name": "Odu 142",
+      "name": "IRETE IROSUN",
       "nameYoruba": "Odu 142",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 142",
@@ -4627,15 +4775,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "142_Odu_142.png",
+      "filename": "142_IRETE_IROSUN.png",
       "filepath": "static/odu_cards/142_Odu_142.png",
       "image_path": "/static/odu_cards/142_IRETE_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 143,
-      "name": "Odu 143",
+      "name": "IROSUN OSE",
       "nameYoruba": "Odu 143",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 143",
@@ -4660,15 +4809,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "143_Odu_143.png",
+      "filename": "143_IROSUN_OSE.png",
       "filepath": "static/odu_cards/143_Odu_143.png",
       "image_path": "/static/odu_cards/143_IROSUN_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 144,
-      "name": "Odu 144",
+      "name": "OSE IROSUN",
       "nameYoruba": "Odu 144",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 144",
@@ -4693,15 +4843,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "144_Odu_144.png",
+      "filename": "144_OSE_IROSUN.png",
       "filepath": "static/odu_cards/144_Odu_144.png",
       "image_path": "/static/odu_cards/144_OSE_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 145,
-      "name": "Odu 145",
+      "name": "IROSUN OFUN",
       "nameYoruba": "Odu 145",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 145",
@@ -4726,15 +4877,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "145_Odu_145.png",
+      "filename": "145_IROSUN_OFUN.png",
       "filepath": "static/odu_cards/145_Odu_145.png",
       "image_path": "/static/odu_cards/145_IROSUN_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 146,
-      "name": "Odu 146",
+      "name": "OFUN IROSUN",
       "nameYoruba": "Odu 146",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 146",
@@ -4759,15 +4911,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "146_Odu_146.png",
+      "filename": "146_OFUN_IROSUN.png",
       "filepath": "static/odu_cards/146_Odu_146.png",
       "image_path": "/static/odu_cards/146_OFUN_IROSUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 147,
-      "name": "Odu 147",
+      "name": "OBARA MEJI",
       "nameYoruba": "Odu 147",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 147",
@@ -4792,15 +4945,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "147_Odu_147.png",
+      "filename": "147_OBARA_MEJI.png",
       "filepath": "static/odu_cards/147_Odu_147.png",
       "image_path": "/static/odu_cards/147_OBARA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 148,
-      "name": "Odu 148",
+      "name": "OBARA MEJI",
       "nameYoruba": "Odu 148",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 148",
@@ -4825,15 +4979,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "148_Odu_148.png",
+      "filename": "148_OBARA_MEJI.png",
       "filepath": "static/odu_cards/148_Odu_148.png",
       "image_path": "/static/odu_cards/148_OBARA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 149,
-      "name": "Odu 149",
+      "name": "OKANRAN MEJI",
       "nameYoruba": "Odu 149",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 149",
@@ -4858,15 +5013,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "149_Odu_149.png",
+      "filename": "149_OKANRAN_MEJI.png",
       "filepath": "static/odu_cards/149_Odu_149.png",
       "image_path": "/static/odu_cards/149_OKANRAN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 150,
-      "name": "Odu 150",
+      "name": "OKANRAN MEJI",
       "nameYoruba": "Odu 150",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 150",
@@ -4891,15 +5047,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "150_Odu_150.png",
+      "filename": "150_OKANRAN_MEJI.png",
       "filepath": "static/odu_cards/150_Odu_150.png",
       "image_path": "/static/odu_cards/150_OKANRAN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 151,
-      "name": "Odu 151",
+      "name": "OGUNDA MEJI",
       "nameYoruba": "Odu 151",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 151",
@@ -4924,15 +5081,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "151_Odu_151.png",
+      "filename": "151_OGUNDA_MEJI.png",
       "filepath": "static/odu_cards/151_Odu_151.png",
       "image_path": "/static/odu_cards/151_OGUNDA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 152,
-      "name": "Odu 152",
+      "name": "OGUNDA MEJI",
       "nameYoruba": "Odu 152",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 152",
@@ -4957,15 +5115,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "152_Odu_152.png",
+      "filename": "152_OGUNDA_MEJI.png",
       "filepath": "static/odu_cards/152_Odu_152.png",
       "image_path": "/static/odu_cards/152_OGUNDA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 153,
-      "name": "Odu 153",
+      "name": "OSA MEJI",
       "nameYoruba": "Odu 153",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 153",
@@ -4990,15 +5149,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "153_Odu_153.png",
+      "filename": "153_OSA_MEJI.png",
       "filepath": "static/odu_cards/153_Odu_153.png",
       "image_path": "/static/odu_cards/153_OSA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 154,
-      "name": "Odu 154",
+      "name": "OSA MEJI",
       "nameYoruba": "Odu 154",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 154",
@@ -5023,15 +5183,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "154_Odu_154.png",
+      "filename": "154_OSA_MEJI.png",
       "filepath": "static/odu_cards/154_Odu_154.png",
       "image_path": "/static/odu_cards/154_OSA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 155,
-      "name": "Odu 155",
+      "name": "IKA MEJI",
       "nameYoruba": "Odu 155",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 155",
@@ -5057,15 +5218,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "155_Odu_155.png",
+      "filename": "155_IKA_MEJI.png",
       "filepath": "static/odu_cards/155_Odu_155.png",
       "image_path": "/static/odu_cards/155_IKA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 156,
-      "name": "Odu 156",
+      "name": "IKA MEJI",
       "nameYoruba": "Odu 156",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 156",
@@ -5091,15 +5253,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "156_Odu_156.png",
+      "filename": "156_IKA_MEJI.png",
       "filepath": "static/odu_cards/156_Odu_156.png",
       "image_path": "/static/odu_cards/156_IKA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 157,
-      "name": "Odu 157",
+      "name": "OTURUPON MEJI",
       "nameYoruba": "Odu 157",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 157",
@@ -5124,15 +5287,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "157_Odu_157.png",
+      "filename": "157_OTURUPON_MEJI.png",
       "filepath": "static/odu_cards/157_Odu_157.png",
       "image_path": "/static/odu_cards/157_OTURUPON_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 158,
-      "name": "Odu 158",
+      "name": "OTURUPON MEJI",
       "nameYoruba": "Odu 158",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 158",
@@ -5157,15 +5321,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "158_Odu_158.png",
+      "filename": "158_OTURUPON_MEJI.png",
       "filepath": "static/odu_cards/158_Odu_158.png",
       "image_path": "/static/odu_cards/158_OTURUPON_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 159,
-      "name": "Odu 159",
+      "name": "OTURA MEJI",
       "nameYoruba": "Odu 159",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 159",
@@ -5190,15 +5355,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "159_Odu_159.png",
+      "filename": "159_OTURA_MEJI.png",
       "filepath": "static/odu_cards/159_Odu_159.png",
       "image_path": "/static/odu_cards/159_OTURA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 160,
-      "name": "Odu 160",
+      "name": "OTURA MEJI",
       "nameYoruba": "Odu 160",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 160",
@@ -5223,15 +5389,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "160_Odu_160.png",
+      "filename": "160_OTURA_MEJI.png",
       "filepath": "static/odu_cards/160_Odu_160.png",
       "image_path": "/static/odu_cards/160_OTURA_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 161,
-      "name": "Odu 161",
+      "name": "IRETE MEJI",
       "nameYoruba": "Odu 161",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 161",
@@ -5257,15 +5424,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "161_Odu_161.png",
+      "filename": "161_IRETE_MEJI.png",
       "filepath": "static/odu_cards/161_Odu_161.png",
       "image_path": "/static/odu_cards/161_IRETE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 162,
-      "name": "Odu 162",
+      "name": "IRETE MEJI",
       "nameYoruba": "Odu 162",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 162",
@@ -5291,15 +5459,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "162_Odu_162.png",
+      "filename": "162_IRETE_MEJI.png",
       "filepath": "static/odu_cards/162_Odu_162.png",
       "image_path": "/static/odu_cards/162_IRETE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 163,
-      "name": "Odu 163",
+      "name": "OSE MEJI",
       "nameYoruba": "Odu 163",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 163",
@@ -5324,15 +5493,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "163_Odu_163.png",
+      "filename": "163_OSE_MEJI.png",
       "filepath": "static/odu_cards/163_Odu_163.png",
       "image_path": "/static/odu_cards/163_OSE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 164,
-      "name": "Odu 164",
+      "name": "OSE MEJI",
       "nameYoruba": "Odu 164",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 164",
@@ -5357,15 +5527,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "164_Odu_164.png",
+      "filename": "164_OSE_MEJI.png",
       "filepath": "static/odu_cards/164_Odu_164.png",
       "image_path": "/static/odu_cards/164_OSE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 165,
-      "name": "Odu 165",
+      "name": "OFUN MEJI",
       "nameYoruba": "Odu 165",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 165",
@@ -5390,15 +5561,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "165_Odu_165.png",
+      "filename": "165_OFUN_MEJI.png",
       "filepath": "static/odu_cards/165_Odu_165.png",
       "image_path": "/static/odu_cards/165_OFUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 166,
-      "name": "Odu 166",
+      "name": "OFUN MEJI",
       "nameYoruba": "Odu 166",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 166",
@@ -5423,15 +5595,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "166_Odu_166.png",
+      "filename": "166_OFUN_MEJI.png",
       "filepath": "static/odu_cards/166_Odu_166.png",
       "image_path": "/static/odu_cards/166_OFUN_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 167,
-      "name": "Odu 167",
+      "name": "OBARA OKANRAN",
       "nameYoruba": "Odu 167",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 167",
@@ -5455,15 +5628,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "167_Odu_167.png",
+      "filename": "167_OBARA_OKANRAN.png",
       "filepath": "static/odu_cards/167_Odu_167.png",
       "image_path": "/static/odu_cards/167_OBARA_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 168,
-      "name": "Odu 168",
+      "name": "OKANRAN OBARA",
       "nameYoruba": "Odu 168",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 168",
@@ -5487,15 +5661,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "168_Odu_168.png",
+      "filename": "168_OKANRAN_OBARA.png",
       "filepath": "static/odu_cards/168_Odu_168.png",
       "image_path": "/static/odu_cards/168_OKANRAN_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 169,
-      "name": "Odu 169",
+      "name": "OBARA OGUNDA",
       "nameYoruba": "Odu 169",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 169",
@@ -5519,15 +5694,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "169_Odu_169.png",
+      "filename": "169_OBARA_OGUNDA.png",
       "filepath": "static/odu_cards/169_Odu_169.png",
       "image_path": "/static/odu_cards/169_OBARA_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 170,
-      "name": "Odu 170",
+      "name": "OGUNDA OBARA",
       "nameYoruba": "Odu 170",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 170",
@@ -5551,15 +5727,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "170_Odu_170.png",
+      "filename": "170_OGUNDA_OBARA.png",
       "filepath": "static/odu_cards/170_Odu_170.png",
       "image_path": "/static/odu_cards/170_OGUNDA_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 171,
-      "name": "Odu 171",
+      "name": "OBARA OSA",
       "nameYoruba": "Odu 171",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 171",
@@ -5583,15 +5760,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "171_Odu_171.png",
+      "filename": "171_OBARA_OSA.png",
       "filepath": "static/odu_cards/171_Odu_171.png",
       "image_path": "/static/odu_cards/171_OBARA_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 172,
-      "name": "Odu 172",
+      "name": "OSA OBARA",
       "nameYoruba": "Odu 172",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 172",
@@ -5615,15 +5793,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "172_Odu_172.png",
+      "filename": "172_OSA_OBARA.png",
       "filepath": "static/odu_cards/172_Odu_172.png",
       "image_path": "/static/odu_cards/172_OSA_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 173,
-      "name": "Odu 173",
+      "name": "OBARA IKA",
       "nameYoruba": "Odu 173",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 173",
@@ -5648,15 +5827,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "173_Odu_173.png",
+      "filename": "173_OBARA_IKA.png",
       "filepath": "static/odu_cards/173_Odu_173.png",
       "image_path": "/static/odu_cards/173_OBARA_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 174,
-      "name": "Odu 174",
+      "name": "IKA OBARA",
       "nameYoruba": "Odu 174",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 174",
@@ -5681,15 +5861,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "174_Odu_174.png",
+      "filename": "174_IKA_OBARA.png",
       "filepath": "static/odu_cards/174_Odu_174.png",
       "image_path": "/static/odu_cards/174_IKA_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 175,
-      "name": "Odu 175",
+      "name": "OBARA OTURUPON",
       "nameYoruba": "Odu 175",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 175",
@@ -5713,15 +5894,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "175_Odu_175.png",
+      "filename": "175_OBARA_OTURUPON.png",
       "filepath": "static/odu_cards/175_Odu_175.png",
       "image_path": "/static/odu_cards/175_OBARA_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 176,
-      "name": "Odu 176",
+      "name": "OTURUPON OBARA",
       "nameYoruba": "Odu 176",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 176",
@@ -5745,15 +5927,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "176_Odu_176.png",
+      "filename": "176_OTURUPON_OBARA.png",
       "filepath": "static/odu_cards/176_Odu_176.png",
       "image_path": "/static/odu_cards/176_OTURUPON_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 177,
-      "name": "Odu 177",
+      "name": "OBARA OTURA",
       "nameYoruba": "Odu 177",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 177",
@@ -5777,15 +5960,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "177_Odu_177.png",
+      "filename": "177_OBARA_OTURA.png",
       "filepath": "static/odu_cards/177_Odu_177.png",
       "image_path": "/static/odu_cards/177_OBARA_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 178,
-      "name": "Odu 178",
+      "name": "OTURA OBARA",
       "nameYoruba": "Odu 178",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 178",
@@ -5809,15 +5993,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "178_Odu_178.png",
+      "filename": "178_OTURA_OBARA.png",
       "filepath": "static/odu_cards/178_Odu_178.png",
       "image_path": "/static/odu_cards/178_OTURA_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 179,
-      "name": "Odu 179",
+      "name": "OBARA IRETE",
       "nameYoruba": "Odu 179",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 179",
@@ -5842,15 +6027,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "179_Odu_179.png",
+      "filename": "179_OBARA_IRETE.png",
       "filepath": "static/odu_cards/179_Odu_179.png",
       "image_path": "/static/odu_cards/179_OBARA_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 180,
-      "name": "Odu 180",
+      "name": "IRETE OBARA",
       "nameYoruba": "Odu 180",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 180",
@@ -5875,15 +6061,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "180_Odu_180.png",
+      "filename": "180_IRETE_OBARA.png",
       "filepath": "static/odu_cards/180_Odu_180.png",
       "image_path": "/static/odu_cards/180_IRETE_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 181,
-      "name": "Odu 181",
+      "name": "OBARA OSE",
       "nameYoruba": "Odu 181",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 181",
@@ -5907,15 +6094,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "181_Odu_181.png",
+      "filename": "181_OBARA_OSE.png",
       "filepath": "static/odu_cards/181_Odu_181.png",
       "image_path": "/static/odu_cards/181_OBARA_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 182,
-      "name": "Odu 182",
+      "name": "OSE OBARA",
       "nameYoruba": "Odu 182",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 182",
@@ -5939,15 +6127,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "182_Odu_182.png",
+      "filename": "182_OSE_OBARA.png",
       "filepath": "static/odu_cards/182_Odu_182.png",
       "image_path": "/static/odu_cards/182_OSE_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 183,
-      "name": "Odu 183",
+      "name": "OBARA OFUN",
       "nameYoruba": "Odu 183",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 183",
@@ -5971,15 +6160,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "183_Odu_183.png",
+      "filename": "183_OBARA_OFUN.png",
       "filepath": "static/odu_cards/183_Odu_183.png",
       "image_path": "/static/odu_cards/183_OBARA_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 184,
-      "name": "Odu 184",
+      "name": "OFUN OBARA",
       "nameYoruba": "Odu 184",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 184",
@@ -6003,15 +6193,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "184_Odu_184.png",
+      "filename": "184_OFUN_OBARA.png",
       "filepath": "static/odu_cards/184_Odu_184.png",
       "image_path": "/static/odu_cards/184_OFUN_OBARA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 185,
-      "name": "Odu 185",
+      "name": "OKANRAN OGUNDA",
       "nameYoruba": "Odu 185",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 185",
@@ -6035,15 +6226,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "185_Odu_185.png",
+      "filename": "185_OKANRAN_OGUNDA.png",
       "filepath": "static/odu_cards/185_Odu_185.png",
       "image_path": "/static/odu_cards/185_OKANRAN_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 186,
-      "name": "Odu 186",
+      "name": "OGUNDA OKANRAN",
       "nameYoruba": "Odu 186",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 186",
@@ -6067,15 +6259,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "186_Odu_186.png",
+      "filename": "186_OGUNDA_OKANRAN.png",
       "filepath": "static/odu_cards/186_Odu_186.png",
       "image_path": "/static/odu_cards/186_OGUNDA_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 187,
-      "name": "Odu 187",
+      "name": "OKANRAN OSA",
       "nameYoruba": "Odu 187",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 187",
@@ -6099,15 +6292,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "187_Odu_187.png",
+      "filename": "187_OKANRAN_OSA.png",
       "filepath": "static/odu_cards/187_Odu_187.png",
       "image_path": "/static/odu_cards/187_OKANRAN_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 188,
-      "name": "Odu 188",
+      "name": "OSA OKANRAN",
       "nameYoruba": "Odu 188",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 188",
@@ -6131,15 +6325,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "188_Odu_188.png",
+      "filename": "188_OSA_OKANRAN.png",
       "filepath": "static/odu_cards/188_Odu_188.png",
       "image_path": "/static/odu_cards/188_OSA_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 189,
-      "name": "Odu 189",
+      "name": "OKANRAN IKA",
       "nameYoruba": "Odu 189",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 189",
@@ -6164,15 +6359,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "189_Odu_189.png",
+      "filename": "189_OKANRAN_IKA.png",
       "filepath": "static/odu_cards/189_Odu_189.png",
       "image_path": "/static/odu_cards/189_OKANRAN_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 190,
-      "name": "Odu 190",
+      "name": "IKA OKANRAN",
       "nameYoruba": "Odu 190",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 190",
@@ -6197,15 +6393,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "190_Odu_190.png",
+      "filename": "190_IKA_OKANRAN.png",
       "filepath": "static/odu_cards/190_Odu_190.png",
       "image_path": "/static/odu_cards/190_IKA_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 191,
-      "name": "Odu 191",
+      "name": "OKANRAN OTURUPON",
       "nameYoruba": "Odu 191",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 191",
@@ -6229,15 +6426,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "191_Odu_191.png",
+      "filename": "191_OKANRAN_OTURUPON.png",
       "filepath": "static/odu_cards/191_Odu_191.png",
       "image_path": "/static/odu_cards/191_OKANRAN_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 192,
-      "name": "Odu 192",
+      "name": "OTURUPON OKANRAN",
       "nameYoruba": "Odu 192",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 192",
@@ -6261,15 +6459,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "192_Odu_192.png",
+      "filename": "192_OTURUPON_OKANRAN.png",
       "filepath": "static/odu_cards/192_Odu_192.png",
       "image_path": "/static/odu_cards/192_OTURUPON_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 193,
-      "name": "Odu 193",
+      "name": "OKANRAN OTURA",
       "nameYoruba": "Odu 193",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 193",
@@ -6293,15 +6492,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "193_Odu_193.png",
+      "filename": "193_OKANRAN_OTURA.png",
       "filepath": "static/odu_cards/193_Odu_193.png",
       "image_path": "/static/odu_cards/193_OKANRAN_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 194,
-      "name": "Odu 194",
+      "name": "OTURA OKANRAN",
       "nameYoruba": "Odu 194",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 194",
@@ -6325,15 +6525,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "194_Odu_194.png",
+      "filename": "194_OTURA_OKANRAN.png",
       "filepath": "static/odu_cards/194_Odu_194.png",
       "image_path": "/static/odu_cards/194_OTURA_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 195,
-      "name": "Odu 195",
+      "name": "OKANRAN IRETE",
       "nameYoruba": "Odu 195",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 195",
@@ -6358,15 +6559,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "195_Odu_195.png",
+      "filename": "195_OKANRAN_IRETE.png",
       "filepath": "static/odu_cards/195_Odu_195.png",
       "image_path": "/static/odu_cards/195_OKANRAN_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 196,
-      "name": "Odu 196",
+      "name": "IRETE OKANRAN",
       "nameYoruba": "Odu 196",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 196",
@@ -6391,15 +6593,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "196_Odu_196.png",
+      "filename": "196_IRETE_OKANRAN.png",
       "filepath": "static/odu_cards/196_Odu_196.png",
       "image_path": "/static/odu_cards/196_IRETE_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 197,
-      "name": "Odu 197",
+      "name": "OKANRAN OSE",
       "nameYoruba": "Odu 197",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 197",
@@ -6423,15 +6626,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "197_Odu_197.png",
+      "filename": "197_OKANRAN_OSE.png",
       "filepath": "static/odu_cards/197_Odu_197.png",
       "image_path": "/static/odu_cards/197_OKANRAN_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 198,
-      "name": "Odu 198",
+      "name": "OSE OKANRAN",
       "nameYoruba": "Odu 198",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 198",
@@ -6455,15 +6659,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "198_Odu_198.png",
+      "filename": "198_OSE_OKANRAN.png",
       "filepath": "static/odu_cards/198_Odu_198.png",
       "image_path": "/static/odu_cards/198_OSE_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 199,
-      "name": "Odu 199",
+      "name": "OKANRAN OFUN",
       "nameYoruba": "Odu 199",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 199",
@@ -6487,15 +6692,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "199_Odu_199.png",
+      "filename": "199_OKANRAN_OFUN.png",
       "filepath": "static/odu_cards/199_Odu_199.png",
       "image_path": "/static/odu_cards/199_OKANRAN_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 200,
-      "name": "Odu 200",
+      "name": "OFUN OKANRAN",
       "nameYoruba": "Odu 200",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 200",
@@ -6519,15 +6725,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "200_Odu_200.png",
+      "filename": "200_OFUN_OKANRAN.png",
       "filepath": "static/odu_cards/200_Odu_200.png",
       "image_path": "/static/odu_cards/200_OFUN_OKANRAN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 201,
-      "name": "Odu 201",
+      "name": "OGUNDA OSA",
       "nameYoruba": "Odu 201",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 201",
@@ -6551,15 +6758,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "201_Odu_201.png",
+      "filename": "201_OGUNDA_OSA.png",
       "filepath": "static/odu_cards/201_Odu_201.png",
       "image_path": "/static/odu_cards/201_OGUNDA_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 202,
-      "name": "Odu 202",
+      "name": "OSA OGUNDA",
       "nameYoruba": "Odu 202",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 202",
@@ -6583,15 +6791,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "202_Odu_202.png",
+      "filename": "202_OSA_OGUNDA.png",
       "filepath": "static/odu_cards/202_Odu_202.png",
       "image_path": "/static/odu_cards/202_OSA_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 203,
-      "name": "Odu 203",
+      "name": "OGUNDA IKA",
       "nameYoruba": "Odu 203",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 203",
@@ -6616,15 +6825,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "203_Odu_203.png",
+      "filename": "203_OGUNDA_IKA.png",
       "filepath": "static/odu_cards/203_Odu_203.png",
       "image_path": "/static/odu_cards/203_OGUNDA_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 204,
-      "name": "Odu 204",
+      "name": "IKA OGUNDA",
       "nameYoruba": "Odu 204",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 204",
@@ -6649,15 +6859,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "204_Odu_204.png",
+      "filename": "204_IKA_OGUNDA.png",
       "filepath": "static/odu_cards/204_Odu_204.png",
       "image_path": "/static/odu_cards/204_IKA_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 205,
-      "name": "Odu 205",
+      "name": "OGUNDA OTURUPON",
       "nameYoruba": "Odu 205",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 205",
@@ -6681,15 +6892,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "205_Odu_205.png",
+      "filename": "205_OGUNDA_OTURUPON.png",
       "filepath": "static/odu_cards/205_Odu_205.png",
       "image_path": "/static/odu_cards/205_OGUNDA_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 206,
-      "name": "Odu 206",
+      "name": "OTURUPON OGUNDA",
       "nameYoruba": "Odu 206",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 206",
@@ -6713,15 +6925,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "206_Odu_206.png",
+      "filename": "206_OTURUPON_OGUNDA.png",
       "filepath": "static/odu_cards/206_Odu_206.png",
       "image_path": "/static/odu_cards/206_OTURUPON_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 207,
-      "name": "Odu 207",
+      "name": "OGUNDA OTURA",
       "nameYoruba": "Odu 207",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 207",
@@ -6745,15 +6958,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "207_Odu_207.png",
+      "filename": "207_OGUNDA_OTURA.png",
       "filepath": "static/odu_cards/207_Odu_207.png",
       "image_path": "/static/odu_cards/207_OGUNDA_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 208,
-      "name": "Odu 208",
+      "name": "OTURA OGUNDA",
       "nameYoruba": "Odu 208",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 208",
@@ -6777,15 +6991,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "208_Odu_208.png",
+      "filename": "208_OTURA_OGUNDA.png",
       "filepath": "static/odu_cards/208_Odu_208.png",
       "image_path": "/static/odu_cards/208_OTURA_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 209,
-      "name": "Odu 209",
+      "name": "OGUNDA IRETE",
       "nameYoruba": "Odu 209",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 209",
@@ -6810,15 +7025,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "209_Odu_209.png",
+      "filename": "209_OGUNDA_IRETE.png",
       "filepath": "static/odu_cards/209_Odu_209.png",
       "image_path": "/static/odu_cards/209_OGUNDA_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 210,
-      "name": "Odu 210",
+      "name": "IRETE OGUNDA",
       "nameYoruba": "Odu 210",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 210",
@@ -6843,15 +7059,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "210_Odu_210.png",
+      "filename": "210_IRETE_OGUNDA.png",
       "filepath": "static/odu_cards/210_Odu_210.png",
       "image_path": "/static/odu_cards/210_IRETE_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 211,
-      "name": "Odu 211",
+      "name": "OGUNDA OSE",
       "nameYoruba": "Odu 211",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 211",
@@ -6875,15 +7092,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "211_Odu_211.png",
+      "filename": "211_OGUNDA_OSE.png",
       "filepath": "static/odu_cards/211_Odu_211.png",
       "image_path": "/static/odu_cards/211_OGUNDA_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 212,
-      "name": "Odu 212",
+      "name": "OSE OGUNDA",
       "nameYoruba": "Odu 212",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 212",
@@ -6907,15 +7125,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "212_Odu_212.png",
+      "filename": "212_OSE_OGUNDA.png",
       "filepath": "static/odu_cards/212_Odu_212.png",
       "image_path": "/static/odu_cards/212_OSE_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 213,
-      "name": "Odu 213",
+      "name": "OGUNDA OFUN",
       "nameYoruba": "Odu 213",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 213",
@@ -6939,15 +7158,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "213_Odu_213.png",
+      "filename": "213_OGUNDA_OFUN.png",
       "filepath": "static/odu_cards/213_Odu_213.png",
       "image_path": "/static/odu_cards/213_OGUNDA_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 214,
-      "name": "Odu 214",
+      "name": "OFUN OGUNDA",
       "nameYoruba": "Odu 214",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 214",
@@ -6971,15 +7191,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "214_Odu_214.png",
+      "filename": "214_OFUN_OGUNDA.png",
       "filepath": "static/odu_cards/214_Odu_214.png",
       "image_path": "/static/odu_cards/214_OFUN_OGUNDA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 215,
-      "name": "Odu 215",
+      "name": "OSA IKA",
       "nameYoruba": "Odu 215",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 215",
@@ -7004,15 +7225,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "215_Odu_215.png",
+      "filename": "215_OSA_IKA.png",
       "filepath": "static/odu_cards/215_Odu_215.png",
       "image_path": "/static/odu_cards/215_OSA_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 216,
-      "name": "Odu 216",
+      "name": "IKA OSA",
       "nameYoruba": "Odu 216",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 216",
@@ -7037,15 +7259,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "216_Odu_216.png",
+      "filename": "216_IKA_OSA.png",
       "filepath": "static/odu_cards/216_Odu_216.png",
       "image_path": "/static/odu_cards/216_IKA_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 217,
-      "name": "Odu 217",
+      "name": "OSA OTURUPON",
       "nameYoruba": "Odu 217",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 217",
@@ -7069,15 +7292,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "217_Odu_217.png",
+      "filename": "217_OSA_OTURUPON.png",
       "filepath": "static/odu_cards/217_Odu_217.png",
       "image_path": "/static/odu_cards/217_OSA_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 218,
-      "name": "Odu 218",
+      "name": "OTURUPON OSA",
       "nameYoruba": "Odu 218",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 218",
@@ -7101,15 +7325,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "218_Odu_218.png",
+      "filename": "218_OTURUPON_OSA.png",
       "filepath": "static/odu_cards/218_Odu_218.png",
       "image_path": "/static/odu_cards/218_OTURUPON_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 219,
-      "name": "Odu 219",
+      "name": "OSA OTURA",
       "nameYoruba": "Odu 219",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 219",
@@ -7133,15 +7358,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "219_Odu_219.png",
+      "filename": "219_OSA_OTURA.png",
       "filepath": "static/odu_cards/219_Odu_219.png",
       "image_path": "/static/odu_cards/219_OSA_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 220,
-      "name": "Odu 220",
+      "name": "OTURA OSA",
       "nameYoruba": "Odu 220",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 220",
@@ -7165,15 +7391,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "220_Odu_220.png",
+      "filename": "220_OTURA_OSA.png",
       "filepath": "static/odu_cards/220_Odu_220.png",
       "image_path": "/static/odu_cards/220_OTURA_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 221,
-      "name": "Odu 221",
+      "name": "OSA IRETE",
       "nameYoruba": "Odu 221",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 221",
@@ -7198,15 +7425,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "221_Odu_221.png",
+      "filename": "221_OSA_IRETE.png",
       "filepath": "static/odu_cards/221_Odu_221.png",
       "image_path": "/static/odu_cards/221_OSA_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 222,
-      "name": "Odu 222",
+      "name": "IRETE OSA",
       "nameYoruba": "Odu 222",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 222",
@@ -7231,15 +7459,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "222_Odu_222.png",
+      "filename": "222_IRETE_OSA.png",
       "filepath": "static/odu_cards/222_Odu_222.png",
       "image_path": "/static/odu_cards/222_IRETE_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 223,
-      "name": "Odu 223",
+      "name": "OSA OSE",
       "nameYoruba": "Odu 223",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 223",
@@ -7263,15 +7492,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "223_Odu_223.png",
+      "filename": "223_OSA_OSE.png",
       "filepath": "static/odu_cards/223_Odu_223.png",
       "image_path": "/static/odu_cards/223_OSA_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 224,
-      "name": "Odu 224",
+      "name": "OSE OSA",
       "nameYoruba": "Odu 224",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 224",
@@ -7295,15 +7525,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "224_Odu_224.png",
+      "filename": "224_OSE_OSA.png",
       "filepath": "static/odu_cards/224_Odu_224.png",
       "image_path": "/static/odu_cards/224_OSE_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 225,
-      "name": "Odu 225",
+      "name": "OSA OFUN",
       "nameYoruba": "Odu 225",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 225",
@@ -7327,15 +7558,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "225_Odu_225.png",
+      "filename": "225_OSA_OFUN.png",
       "filepath": "static/odu_cards/225_Odu_225.png",
       "image_path": "/static/odu_cards/225_OSA_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 226,
-      "name": "Odu 226",
+      "name": "OFUN OSA",
       "nameYoruba": "Odu 226",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 226",
@@ -7359,15 +7591,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "226_Odu_226.png",
+      "filename": "226_OFUN_OSA.png",
       "filepath": "static/odu_cards/226_Odu_226.png",
       "image_path": "/static/odu_cards/226_OFUN_OSA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 227,
-      "name": "Odu 227",
+      "name": "IKA OTURUPON",
       "nameYoruba": "Odu 227",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 227",
@@ -7392,15 +7625,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "227_Odu_227.png",
+      "filename": "227_IKA_OTURUPON.png",
       "filepath": "static/odu_cards/227_Odu_227.png",
       "image_path": "/static/odu_cards/227_IKA_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 228,
-      "name": "Odu 228",
+      "name": "OTURUPON IKA",
       "nameYoruba": "Odu 228",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 228",
@@ -7425,15 +7659,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "228_Odu_228.png",
+      "filename": "228_OTURUPON_IKA.png",
       "filepath": "static/odu_cards/228_Odu_228.png",
       "image_path": "/static/odu_cards/228_OTURUPON_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 229,
-      "name": "Odu 229",
+      "name": "IKA OTURA",
       "nameYoruba": "Odu 229",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 229",
@@ -7458,15 +7693,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "229_Odu_229.png",
+      "filename": "229_IKA_OTURA.png",
       "filepath": "static/odu_cards/229_Odu_229.png",
       "image_path": "/static/odu_cards/229_IKA_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 230,
-      "name": "Odu 230",
+      "name": "OTURA IKA",
       "nameYoruba": "Odu 230",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 230",
@@ -7491,15 +7727,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "230_Odu_230.png",
+      "filename": "230_OTURA_IKA.png",
       "filepath": "static/odu_cards/230_Odu_230.png",
       "image_path": "/static/odu_cards/230_OTURA_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 231,
-      "name": "Odu 231",
+      "name": "IKA IRETE",
       "nameYoruba": "Odu 231",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 231",
@@ -7525,15 +7762,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "231_Odu_231.png",
+      "filename": "231_IKA_IRETE.png",
       "filepath": "static/odu_cards/231_Odu_231.png",
       "image_path": "/static/odu_cards/231_IKA_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 232,
-      "name": "Odu 232",
+      "name": "IRETE IKA",
       "nameYoruba": "Odu 232",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 232",
@@ -7559,15 +7797,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "232_Odu_232.png",
+      "filename": "232_IRETE_IKA.png",
       "filepath": "static/odu_cards/232_Odu_232.png",
       "image_path": "/static/odu_cards/232_IRETE_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 233,
-      "name": "Odu 233",
+      "name": "IKA OSE",
       "nameYoruba": "Odu 233",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 233",
@@ -7592,15 +7831,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "233_Odu_233.png",
+      "filename": "233_IKA_OSE.png",
       "filepath": "static/odu_cards/233_Odu_233.png",
       "image_path": "/static/odu_cards/233_IKA_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 234,
-      "name": "Odu 234",
+      "name": "OSE IKA",
       "nameYoruba": "Odu 234",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 234",
@@ -7625,15 +7865,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "234_Odu_234.png",
+      "filename": "234_OSE_IKA.png",
       "filepath": "static/odu_cards/234_Odu_234.png",
       "image_path": "/static/odu_cards/234_OSE_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 235,
-      "name": "Odu 235",
+      "name": "IKA OFUN",
       "nameYoruba": "Odu 235",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 235",
@@ -7658,15 +7899,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "235_Odu_235.png",
+      "filename": "235_IKA_OFUN.png",
       "filepath": "static/odu_cards/235_Odu_235.png",
       "image_path": "/static/odu_cards/235_IKA_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 236,
-      "name": "Odu 236",
+      "name": "OFUN IKA",
       "nameYoruba": "Odu 236",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 236",
@@ -7691,15 +7933,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "236_Odu_236.png",
+      "filename": "236_OFUN_IKA.png",
       "filepath": "static/odu_cards/236_Odu_236.png",
       "image_path": "/static/odu_cards/236_OFUN_IKA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 237,
-      "name": "Odu 237",
+      "name": "OTURUPON OTURA",
       "nameYoruba": "Odu 237",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 237",
@@ -7723,15 +7966,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "237_Odu_237.png",
+      "filename": "237_OTURUPON_OTURA.png",
       "filepath": "static/odu_cards/237_Odu_237.png",
       "image_path": "/static/odu_cards/237_OTURUPON_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 238,
-      "name": "Odu 238",
+      "name": "OTURA OTURUPON",
       "nameYoruba": "Odu 238",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 238",
@@ -7755,15 +7999,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "238_Odu_238.png",
+      "filename": "238_OTURA_OTURUPON.png",
       "filepath": "static/odu_cards/238_Odu_238.png",
       "image_path": "/static/odu_cards/238_OTURA_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 239,
-      "name": "Odu 239",
+      "name": "OTURUPON IRETE",
       "nameYoruba": "Odu 239",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 239",
@@ -7788,15 +8033,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "239_Odu_239.png",
+      "filename": "239_OTURUPON_IRETE.png",
       "filepath": "static/odu_cards/239_Odu_239.png",
       "image_path": "/static/odu_cards/239_OTURUPON_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 240,
-      "name": "Odu 240",
+      "name": "IRETE OTURUPON",
       "nameYoruba": "Odu 240",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 240",
@@ -7821,15 +8067,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "240_Odu_240.png",
+      "filename": "240_IRETE_OTURUPON.png",
       "filepath": "static/odu_cards/240_Odu_240.png",
       "image_path": "/static/odu_cards/240_IRETE_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 241,
-      "name": "Odu 241",
+      "name": "OTURUPON OSE",
       "nameYoruba": "Odu 241",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 241",
@@ -7853,15 +8100,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "241_Odu_241.png",
+      "filename": "241_OTURUPON_OSE.png",
       "filepath": "static/odu_cards/241_Odu_241.png",
       "image_path": "/static/odu_cards/241_OTURUPON_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 242,
-      "name": "Odu 242",
+      "name": "OSE MEJI",
       "nameYoruba": "Odu 242",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 242",
@@ -7885,15 +8133,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "242_Odu_242.png",
+      "filename": "242_OSE_MEJI.png",
       "filepath": "static/odu_cards/242_Odu_242.png",
       "image_path": "/static/odu_cards/242_OSE_MEJI.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 243,
-      "name": "Odu 243",
+      "name": "OTURUPON OFUN",
       "nameYoruba": "Odu 243",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 243",
@@ -7917,15 +8166,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "243_Odu_243.png",
+      "filename": "243_OTURUPON_OFUN.png",
       "filepath": "static/odu_cards/243_Odu_243.png",
       "image_path": "/static/odu_cards/243_OTURUPON_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 244,
-      "name": "Odu 244",
+      "name": "OFUN OTURUPON",
       "nameYoruba": "Odu 244",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 244",
@@ -7949,15 +8199,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "244_Odu_244.png",
+      "filename": "244_OFUN_OTURUPON.png",
       "filepath": "static/odu_cards/244_Odu_244.png",
       "image_path": "/static/odu_cards/244_OFUN_OTURUPON.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 245,
-      "name": "Odu 245",
+      "name": "OTURA IRETE",
       "nameYoruba": "Odu 245",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 245",
@@ -7982,15 +8233,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "245_Odu_245.png",
+      "filename": "245_OTURA_IRETE.png",
       "filepath": "static/odu_cards/245_Odu_245.png",
       "image_path": "/static/odu_cards/245_OTURA_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 246,
-      "name": "Odu 246",
+      "name": "IRETE OTURA",
       "nameYoruba": "Odu 246",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 246",
@@ -8015,15 +8267,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "246_Odu_246.png",
+      "filename": "246_IRETE_OTURA.png",
       "filepath": "static/odu_cards/246_Odu_246.png",
       "image_path": "/static/odu_cards/246_IRETE_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 247,
-      "name": "Odu 247",
+      "name": "OTURA OSE",
       "nameYoruba": "Odu 247",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 247",
@@ -8047,15 +8300,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "247_Odu_247.png",
+      "filename": "247_OTURA_OSE.png",
       "filepath": "static/odu_cards/247_Odu_247.png",
       "image_path": "/static/odu_cards/247_OTURA_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 248,
-      "name": "Odu 248",
+      "name": "OSE OTURA",
       "nameYoruba": "Odu 248",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 248",
@@ -8079,15 +8333,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "248_Odu_248.png",
+      "filename": "248_OSE_OTURA.png",
       "filepath": "static/odu_cards/248_Odu_248.png",
       "image_path": "/static/odu_cards/248_OSE_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 249,
-      "name": "Odu 249",
+      "name": "OTURA OFUN",
       "nameYoruba": "Odu 249",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 249",
@@ -8111,15 +8366,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ṣàngó",
-      "filename": "249_Odu_249.png",
+      "filename": "249_OTURA_OFUN.png",
       "filepath": "static/odu_cards/249_Odu_249.png",
       "image_path": "/static/odu_cards/249_OTURA_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 250,
-      "name": "Odu 250",
+      "name": "OFUN OTURA",
       "nameYoruba": "Odu 250",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 250",
@@ -8143,15 +8399,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Yemọja",
-      "filename": "250_Odu_250.png",
+      "filename": "250_OFUN_OTURA.png",
       "filepath": "static/odu_cards/250_Odu_250.png",
       "image_path": "/static/odu_cards/250_OFUN_OTURA.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 251,
-      "name": "Odu 251",
+      "name": "IRETE OSE",
       "nameYoruba": "Odu 251",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 251",
@@ -8176,15 +8433,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Ọya",
-      "filename": "251_Odu_251.png",
+      "filename": "251_IRETE_OSE.png",
       "filepath": "static/odu_cards/251_Odu_251.png",
       "image_path": "/static/odu_cards/251_IRETE_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 252,
-      "name": "Odu 252",
+      "name": "OSE IRETE",
       "nameYoruba": "Odu 252",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 252",
@@ -8209,15 +8467,16 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Ògún",
-      "filename": "252_Odu_252.png",
+      "filename": "252_OSE_IRETE.png",
       "filepath": "static/odu_cards/252_Odu_252.png",
       "image_path": "/static/odu_cards/252_OSE_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 253,
-      "name": "Odu 253",
+      "name": "IRETE OFUN",
       "nameYoruba": "Odu 253",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 253",
@@ -8242,15 +8501,16 @@
       "category": "minor",
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
-      "filename": "253_Odu_253.png",
+      "filename": "253_IRETE_OFUN.png",
       "filepath": "static/odu_cards/253_Odu_253.png",
       "image_path": "/static/odu_cards/253_IRETE_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 254,
-      "name": "Odu 254",
+      "name": "OFUN IRETE",
       "nameYoruba": "Odu 254",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 254",
@@ -8275,15 +8535,16 @@
       "category": "minor",
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
-      "filename": "254_Odu_254.png",
+      "filename": "254_OFUN_IRETE.png",
       "filepath": "static/odu_cards/254_Odu_254.png",
       "image_path": "/static/odu_cards/254_OFUN_IRETE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 255,
-      "name": "Odu 255",
+      "name": "OSE OFUN",
       "nameYoruba": "Odu 255",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 255",
@@ -8307,15 +8568,16 @@
       "category": "minor",
       "element": "Air",
       "orishaConnection": "Èṣù",
-      "filename": "255_Odu_255.png",
+      "filename": "255_OSE_OFUN.png",
       "filepath": "static/odu_cards/255_Odu_255.png",
       "image_path": "/static/odu_cards/255_OSE_OFUN.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     },
     {
       "number": 256,
-      "name": "Odu 256",
+      "name": "OFUN OSE",
       "nameYoruba": "Odu 256",
       "meaning": "Sacred wisdom and divine guidance",
       "meaningYoruba": "Ọgbọ́n Odu 256",
@@ -8339,11 +8601,12 @@
       "category": "minor",
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
-      "filename": "256_Odu_256.png",
+      "filename": "256_OFUN_OSE.png",
       "filepath": "static/odu_cards/256_Odu_256.png",
       "image_path": "/static/odu_cards/256_OFUN_OSE.png",
       "has_authentic_image": true,
-      "generated_from_excel": true
+      "generated_from_excel": true,
+      "enhanced_with_wooden_texture": true
     }
   ],
   "categories": {
