@@ -24,6 +24,48 @@ export default function DailyReading({ reading }: DailyReadingProps) {
   const queryClient = useQueryClient();
   const { t, ts } = useLanguage();
 
+  // Get the same Odu card number used in home page
+  const getOduCardNumber = (): number => {
+    if (!reading?.odu) return 1;
+    
+    // Map Odu names to card numbers - same mapping as home page
+    const oduToCardMap: Record<string, number> = {
+      // Major Odu (1-16)
+      'Eji Ogbe': 1, 'Oyeku Meji': 2, 'Iwori Meji': 3, 'Idi Meji': 4,
+      'Irosun Meji': 5, 'Owonrin Meji': 6, 'Obara Meji': 7, 'Okanran Meji': 8,
+      'Ogunda Meji': 9, 'Osa Meji': 10, 'Ika Meji': 11, 'Oturupon Meji': 12,
+      'Otura Meji': 13, 'Irete Meji': 14, 'Ose Meji': 15, 'Ofun Meji': 16,
+      
+      // Combined Odu (17-256)
+      'Iwori Odi': 51, 'Ogbe Oyeku': 17, 'Ogbe Iwori': 18, 'Ogbe Idi': 19,
+      'Oyeku Ogbe': 33, 'Oyeku Iwori': 34, 'Oyeku Idi': 35, 'Iwori Ogbe': 49,
+      'Iwori Oyeku': 50, 'Iwori Idi': 51, 'Idi Ogbe': 65, 'Idi Oyeku': 66,
+      'Idi Iwori': 67, 'Odi Iwori': 67,
+      
+      // Alternative Yoruba spellings
+      'Òdí Ìwòrì': 67, 'Ìwòrì Òdí': 51, 'Òdí': 4, 'Ìwòrì': 3
+    };
+
+    // First try exact match
+    if (oduToCardMap[reading.odu.name]) {
+      return oduToCardMap[reading.odu.name];
+    }
+
+    // Special handling for "Iwori Odi" - always use card 51
+    if (reading.odu.name === "Iwori Odi") {
+      return 51;
+    }
+
+    // Fallback: use Odu ID if available
+    if (reading.odu.id && reading.odu.id <= 256) {
+      return reading.odu.id;
+    }
+
+    return 1;
+  };
+
+  const currentOduCard = getOduCardNumber();
+
   // Fetch audio data for the Odu
   const { data: audioData } = useQuery({
     queryKey: [`/api/odu/${reading.odu.id}/audio`],
@@ -111,11 +153,23 @@ export default function DailyReading({ reading }: DailyReadingProps) {
               {t("Sacred Odu Ifa", "Odù Ifá Mímọ́")}
             </h3>
             <div className="flex justify-center mb-4">
-              <OduTraditionalImage 
-                oduName={reading.odu.name} 
-                pattern={reading.odu.pattern}
-                size={150} 
-              />
+              <div className="relative w-36 h-48 rounded-xl overflow-hidden shadow-lg bg-black/5 border-2 border-sacred-gold/30">
+                <img
+                  src={`/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`}
+                  alt={`Authentic Odu Ifá Card: ${reading.odu.name}`}
+                  className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
+                  onError={(e) => {
+                    console.error(`Failed to load authentic Odu card: odu_card_${currentOduCard}.png`);
+                  }}
+                  onLoad={() => {
+                    console.log(`Successfully loaded authentic Odu card in daily reading: odu_card_${currentOduCard}.png for "${reading.odu.name}"`);
+                  }}
+                />
+                {/* Overlay with card number */}
+                <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md font-semibold">
+                  {currentOduCard}/256
+                </div>
+              </div>
             </div>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg">
               <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
