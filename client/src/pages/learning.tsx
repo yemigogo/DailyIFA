@@ -458,6 +458,15 @@ const Learning: React.FC = () => {
 
                   {module.id === 'visualization' && (
                     <div className="space-y-6">
+                      <div className="text-center mb-6">
+                        <h3 className="text-xl font-semibold text-spiritual-blue dark:text-sacred-gold mb-2">
+                          {ts("Complete Odu Ifá Visualization System", "Ètò Àwòrán Odù Ifá Pípé")}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {ts("Explore both the 16 major Odu and the complete 256 Odu system with interactive visualization and search capabilities", 
+                              "Ṣàwárí méjìlá Odù pàtàkì àti àwọn Odù 256 pípé pẹ̀lú àwòrán tí ó ní ìfẹsẹ̀múlẹ̀ àti agbára wíwá")}
+                        </p>
+                      </div>
                       <OduVisualization />
                       <div className="text-center space-y-2">
                         <p className="text-sm text-gray-600 dark:text-gray-400">

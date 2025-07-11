@@ -488,9 +488,8 @@ const OduVisualization: React.FC = () => {
       {viewMode === 'traditional' && (
         <Card className="w-full max-w-2xl mx-auto">
           <CardContent className="space-y-6 pt-6">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Canvas Visualization */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Canvas Visualization */}
           <div className="flex flex-col items-center space-y-4">
             <h3 className="text-lg font-semibold text-spiritual-blue dark:text-sacred-gold">
               {ts("Pattern Visualization", "Àwòrán Àpẹẹrẹ")}
@@ -528,9 +527,21 @@ const OduVisualization: React.FC = () => {
             {ts("Solid lines represent Yang energy, broken lines represent Yin energy", 
                 "Àwọn ìlà kíkọ́ jẹ́ agbára Yang, àwọn ìlà pínyà jẹ́ agbára Yin")}
           </p>
-        </div>
-      </CardContent>
-    </Card>
+            </div>
+
+            <div className="text-center space-y-2">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {ts("Traditional Ifá divination symbols", "Àwọn àmì fífá Ifá àtijọ́")}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-500">
+                {ts("Solid lines represent Yang energy, broken lines represent Yin energy", 
+                    "Àwọn ìlà kíkọ́ jẹ́ agbára Yang, àwọn ìlà pínyà jẹ́ agbára Yin")}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
   );
 };
 
