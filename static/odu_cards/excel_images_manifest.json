@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "source": "256 Odu Excel Matrix Images",
+    "extracted_at": "2025-07-11T15:13:06.488448",
+    "total_images": 0,
+    "total_odu_cells": 79
+  },
+  "images": [],
+  "odu_cells": [
+    [
+      1,
+      1,
+      "1\nOGBE\nMEJI\nII\nII\nII\nII"
+    ],
+    [
+      1,
+      2,
+      "2\nOYEKU\nMEJI\nII II\nII II\nII II\nII II"
+    ],
+    [
+      1,
+      3,
+      "3\nIWORI\nMEJI\nII II\nI I\nI I\nII II"
+    ],
+    [
+      1,
+      4,
+      "4\nODI\nMEJI\nI I\nII II\nII II\nI I"
+    ],
+    [
+      3,
+      1,
+      "17\nOGBE\nOYEKU\nII I\nII I\nII I\nII I"
+    ],
+    [
+      3,
+      2,
+      "18\nOYEKU\nOGBE\nI II\nI II\nI II\nI II"
+    ],
+    [
+      3,
+      3,
+      "19\nOGBE\nIWORI\nII I\nI I\nI I\nII I"
+    ],
+    [
+      3,
+      4,
+      "20\nIWORI\nOGBE\nI II\nI I\nI I\nI II"
+    ],
+    [
+      3,
+      5,
+      "21\nOGBE\nODI\nI I\nII I\nII I\nI  I"
+    ],
+    [
+      3,
+      6,
+      "22\nODI\nOGBE\nI    I\nI   I I\nI   I I \nI    I"
+    ],
+    [
+      3,
+      7,
+      "23\nOGBE\nIROSUN\nI  I\nI  I\nII  I\nII  I"
+    ],
+    [
+      3,
+      8,
+      "24\nIROSUN\nOGBE\nI  I\nI  I\nI  II\nI  II"
+    ],
+    [
+      3,
+      9,
+      "25\nOGBE\nOWANRIN\nII I\nII I\nI I\nI I"
+    ],
+    [
+      3,
+      10,
+      "26\nOWANRIN\nOGBE\nI II\nI II\nI I\nI I"
+    ],
+    [
+      3,
+      11,
+      "27\nOGBE\nOBARA\nI  I\nII  I\nII  I\nII  I"
+    ],
+    [
+      3,
+      12,
+      "28\nOBARA\nOGBE\nI  I\nI  II\nI  II\nI  II"
+    ],
+    [
+      3,
+      13,
+      "29\nOGBE\nOKANRAN\nII  I\nII  I\nII  I\nI  I"
+    ],
+    [
+      3,
+      14,
+      "30\nOKANRAN\nOGBE\nI II\nI II\nI II\nI I"
+    ],
+    [
+      3,
+      15,
+      "31\nOGBE\nOGUNDA\nI I\nI I\nI I\nII I"
+    ],
+    [
+      3,
+      16,
+      "32\nOGUNDA\nOGBE\nI I\nI I\nI I\nI II"
+    ],
+    [
+      3,
+      17,
+      "33\nOGBE\nOSA\nII I\nI  I\nI  I\nI  I"
+    ],
+    [
+      3,
+      18,
+      "34\nOSA\nOGBE\nI  II\nI  I\nI  I\nI  I"
+    ],
+    [
+      3,
+      19,
+      "35\nOGBE\nIKA\nII  I\nI  I\nII  I\nII  I"
+    ],
+    [
+      5,
+      1,
+      "47\nOYEKU\nIWORI\nII II\nI  II\nI  II\nII  II"
+    ],
+    [
+      5,
+      2,
+      "48\nOWORI\nOYEKU\nII  II\nII  I\nII  I\nII  II"
+    ],
+    [
+      5,
+      3,
+      "49\nOYEKU\nODI\nI  II\nII  II\nII  II\nI   II"
+    ],
+    [
+      5,
+      4,
+      "50\nODI\nOYEKU\nII  I\nII  II\nII  II\nII  I"
+    ],
+    [
+      5,
+      5,
+      "51\nOYEKU\nIROSUN\nI  II\nI  II\nII  II\nII  II"
+    ],
+    [
+      5,
+      6,
+      "52\nIROSUN\nOYEKU\nII  I\nII  I\nII  II\nII  II"
+    ],
+    [
+      5,
+      7,
+      "53\nOYEKU\nOWANRIN\nII  II\nII  II\nI   II\nI   II"
+    ],
+    [
+      5,
+      8,
+      "54\nOWANRIN\nOYEKU\nII  II\nII  I\nII  I\nII  I"
+    ],
+    [
+      5,
+      9,
+      "55\nOYEKU\nOBARA\nI  II\nII  II\nII  II\nII  II"
+    ],
+    [
+      5,
+      10,
+      "56\nOBARA\nOYEKU\nII   I\nII  II\nII  II\nII  II"
+    ],
+    [
+      5,
+      11,
+      "57\nOYEKU\nOKANRAN\nII  II\nII  II\nII  II\nI   II"
+    ],
+    [
+      5,
+      12,
+      "58\nOKANRAN\nOYEKU\nII  II\nII  II\nII  II\nII  I"
+    ],
+    [
+      5,
+      13,
+      "59\nOYEKU\nOGUNDA\nI  II\nI  II\nI  II\nII II"
+    ],
+    [
+      5,
+      14,
+      "60\nOGUNDA\nOYEKU\nII  I\nII  I\nII  I\nII  II"
+    ],
+    [
+      5,
+      15,
+      "61\nOYEKU\nOSA\nII  II\nI  II\nI  II\nI  II"
+    ],
+    [
+      5,
+      16,
+      "62\nOSA\nOYEKU\nII  II\nII  I\nII  I\nII  I"
+    ],
+    [
+      5,
+      17,
+      "63\nOYEKU\nIKA\nII  II\nI   II\nII  II\nII  II"
+    ],
+    [
+      5,
+      18,
+      "64\nIKA\nOYEKU\nII  II\nII   I\nII  II\nII  II"
+    ],
+    [
+      5,
+      19,
+      "65\nOYEKU\nOTURUPON\nII  II\nII  II\nI   II\nII  II"
+    ],
+    [
+      7,
+      1,
+      "75\nIWORI\nODI\nI  II\nII  I\nII  I\nI  II"
+    ],
+    [
+      7,
+      2,
+      "76\nODI\nIWORI\nII  I\nI  II\nI  II\nII  I"
+    ],
+    [
+      7,
+      3,
+      "77\nIWORI\nIROSUN\nI   II\nI   I\nII   I\nII  II"
+    ],
+    [
+      7,
+      4,
+      "78\nIROSUN\nIWORI\nII  I\nI   I\nI   II\nII  II"
+    ],
+    [
+      7,
+      5,
+      "79\nIWORI\nOWANRIN\nII  II\nII  I\nI  I\nI  II"
+    ],
+    [
+      7,
+      6,
+      "80\nOWANRIN\nIWORI\nII  II\nI  II\nI  I\nII  I"
+    ],
+    [
+      7,
+      7,
+      "81\nIWORI\nOBARA\nI  II\nII  I\nII  I\nII  II"
+    ],
+    [
+      7,
+      8,
+      "82\nOBARA\nIWORI\nII  I\nI  II\nI  II\nII  II"
+    ],
+    [
+      7,
+      9,
+      "83\nIWORI\nOKANRAN\nII  II\nII  I\nII  I\nI  II"
+    ],
+    [
+      7,
+      10,
+      "84\nOKANRAN\nIWORI\nII  II\nI  II\nI  II\nII  I"
+    ],
+    [
+      7,
+      11,
+      "85\nIWORI\nOGUNDA\nI  II\nI  I\nI  I\nII II"
+    ],
+    [
+      7,
+      12,
+      "86\nOGUNDA\nIWORI\nII  I\nI  I\nI  I\nII II"
+    ],
+    [
+      7,
+      13,
+      "87\nIWORI\nOSA\nII  II\nI  I\nI  I\nI  II"
+    ],
+    [
+      7,
+      14,
+      "88\nOSA\nIWORI\nII  II\nI   I\nI  I\nII  I"
+    ],
+    [
+      7,
+      15,
+      "89\nIWORI\nIKA\nII  II\nI  I\nII  I\nII  II"
+    ],
+    [
+      7,
+      16,
+      "90\nIKA\nIWORI\nII  II\nI   I\nI   II\nII  II"
+    ],
+    [
+      7,
+      17,
+      "91\nIWORI\nOTURUPON\nII  II\nII  I\nI   I\nII II"
+    ],
+    [
+      7,
+      18,
+      "92\nOTURUPON\nIWORI\nII   II\nI   II\nI   I\nII  II"
+    ],
+    [
+      7,
+      19,
+      "93\nIWORI\nOTURA\nI  II\nII  I\nI  I\nI  II"
+    ],
+    [
+      9,
+      1,
+      "101\nODI\nIROSUN\nI   I\nI   II\nII  II\nII   I"
+    ],
+    [
+      9,
+      2,
+      "102\nIROSUN\nODI\nI   I\nII  I\nII  II\nI  II"
+    ],
+    [
+      9,
+      3,
+      "103\nODI\nOWANRIN\nII  I\nII  II\nI  II\nI  I"
+    ],
+    [
+      9,
+      4,
+      "104\nOWANRIN\nODI\nI   II\nII  II\nII  I\nI   I"
+    ],
+    [
+      9,
+      5,
+      "105\nODI\nOBARA\nI  I\nII  II\nII  II\nII  I"
+    ],
+    [
+      9,
+      6,
+      "106\nOBARA\nODI\nI  I\nII  II\nII  II\nI  II"
+    ],
+    [
+      9,
+      7,
+      "107\nODI\nOKANRAN\nII  I\nII  II\nII  II\nI  I"
+    ],
+    [
+      9,
+      8,
+      "108\nOKANRAN\nODI\nI  II\nII II\nII II\nI  I"
+    ],
+    [
+      9,
+      9,
+      "109\nODI\nOGUNDA\nI  I\nI  II\nI  II\nII  I"
+    ],
+    [
+      9,
+      10,
+      "110\nOGUNDA\nODI\nI  I\nII  I\nII  I\nI  II"
+    ],
+    [
+      9,
+      11,
+      "111\nODI\nOSA\nII  I\nI  II\nI  II\nI  I"
+    ],
+    [
+      9,
+      12,
+      "112\nOSA\nODI\nI  II\nII  I\nII  I\nI   I"
+    ],
+    [
+      9,
+      13,
+      "113\nODI\nIKA\nII   I\nI   II\nII  II\nII  I"
+    ],
+    [
+      9,
+      14,
+      "114\nIKA\nODI\nI  II\nII  I\nII  II\nI  II"
+    ],
+    [
+      9,
+      15,
+      "115\nODI\nOTURUPON\nII  I\nII  II\nI   II\nII  I"
+    ],
+    [
+      9,
+      16,
+      "116\nOTURUPON\nODI\nI  II\nII II\nII  I\nI  II"
+    ],
+    [
+      9,
+      17,
+      "117\nODI\nOTURA\nI  I\nII II\nI  II\nI  I"
+    ],
+    [
+      9,
+      18,
+      "118\nOTURA\nODI\nI  I\nII II\nII  I\nI  I"
+    ]
+  ],
+  "mapping": []
+}

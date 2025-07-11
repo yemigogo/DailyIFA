@@ -1,0 +1,3382 @@
+{
+  "metadata": {
+    "title": "Odu Cards Generated from Excel Data",
+    "source": "256 Odu Excel Matrix",
+    "generated_at": "2025-07-11T15:15:29.226711",
+    "total_cards": 256,
+    "card_dimensions": "640x512",
+    "color_palette": {
+      "gold": "#FFD700",
+      "amber": "#FFA500",
+      "blue": "#1E40AF",
+      "dark_blue": "#1E3A8A",
+      "white": "#FFFFFF",
+      "black": "#000000",
+      "brown": "#8B4513",
+      "cream": "#F5F5DC"
+    }
+  },
+  "cards": [
+    {
+      "number": 1,
+      "name": "OGBE MEJI",
+      "filename": "001_OGBE_MEJI.png",
+      "filepath": "static/odu_cards/001_OGBE_MEJI.png",
+      "pattern_lines": [
+        "II",
+        "II",
+        "II",
+        "II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 2,
+      "name": "OYEKU MEJI",
+      "filename": "002_OYEKU_MEJI.png",
+      "filepath": "static/odu_cards/002_OYEKU_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "II II",
+        "II II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 3,
+      "name": "IWORI MEJI",
+      "filename": "003_IWORI_MEJI.png",
+      "filepath": "static/odu_cards/003_IWORI_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "I I",
+        "I I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 4,
+      "name": "ODI MEJI",
+      "filename": "004_ODI_MEJI.png",
+      "filepath": "static/odu_cards/004_ODI_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "II II",
+        "II II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 5,
+      "name": "IROSUN MEJI",
+      "filename": "005_IROSUN_MEJI.png",
+      "filepath": "static/odu_cards/005_IROSUN_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "II II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 6,
+      "name": "MEJI MEJI",
+      "filename": "006_MEJI_MEJI.png",
+      "filepath": "static/odu_cards/006_MEJI_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "II II",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 7,
+      "name": "OBARA MEJI",
+      "filename": "007_OBARA_MEJI.png",
+      "filepath": "static/odu_cards/007_OBARA_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "II II",
+        "II II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 8,
+      "name": "OKANRAN MEJI",
+      "filename": "008_OKANRAN_MEJI.png",
+      "filepath": "static/odu_cards/008_OKANRAN_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "II II",
+        "II II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 9,
+      "name": "OGUNDA MEJI",
+      "filename": "009_OGUNDA_MEJI.png",
+      "filepath": "static/odu_cards/009_OGUNDA_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "I I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 10,
+      "name": "OSA MEJI",
+      "filename": "010_OSA_MEJI.png",
+      "filepath": "static/odu_cards/010_OSA_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "I I",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 11,
+      "name": "IKA MEJI",
+      "filename": "011_IKA_MEJI.png",
+      "filepath": "static/odu_cards/011_IKA_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "I I",
+        "II II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 12,
+      "name": "OTURUPON MEJI",
+      "filename": "012_OTURUPON_MEJI.png",
+      "filepath": "static/odu_cards/012_OTURUPON_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "II II",
+        "I I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 13,
+      "name": "OTURA MEJI",
+      "filename": "013_OTURA_MEJI.png",
+      "filepath": "static/odu_cards/013_OTURA_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "II II",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 14,
+      "name": "IRETE MEJI",
+      "filename": "014_IRETE_MEJI.png",
+      "filepath": "static/odu_cards/014_IRETE_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "II II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 15,
+      "name": "OSE MEJI",
+      "filename": "015_OSE_MEJI.png",
+      "filepath": "static/odu_cards/015_OSE_MEJI.png",
+      "pattern_lines": [
+        "I I",
+        "II II",
+        "I I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 16,
+      "name": "OFUN MEJI",
+      "filename": "016_OFUN_MEJI.png",
+      "filepath": "static/odu_cards/016_OFUN_MEJI.png",
+      "pattern_lines": [
+        "II II",
+        "II",
+        "II II",
+        "II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 17,
+      "name": "OGBE OYEKU",
+      "filename": "017_OGBE_OYEKU.png",
+      "filepath": "static/odu_cards/017_OGBE_OYEKU.png",
+      "pattern_lines": [
+        "II I",
+        "II I",
+        "II I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 18,
+      "name": "OYEKU OGBE",
+      "filename": "018_OYEKU_OGBE.png",
+      "filepath": "static/odu_cards/018_OYEKU_OGBE.png",
+      "pattern_lines": [
+        "I II",
+        "I II",
+        "I II",
+        "I II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 19,
+      "name": "OGBE IWORI",
+      "filename": "019_OGBE_IWORI.png",
+      "filepath": "static/odu_cards/019_OGBE_IWORI.png",
+      "pattern_lines": [
+        "II I",
+        "I I",
+        "I I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 20,
+      "name": "IWORI OGBE",
+      "filename": "020_IWORI_OGBE.png",
+      "filepath": "static/odu_cards/020_IWORI_OGBE.png",
+      "pattern_lines": [
+        "I II",
+        "I I",
+        "I I",
+        "I II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 21,
+      "name": "OGBE ODI",
+      "filename": "021_OGBE_ODI.png",
+      "filepath": "static/odu_cards/021_OGBE_ODI.png",
+      "pattern_lines": [
+        "I I",
+        "II I",
+        "II I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 22,
+      "name": "ODI OGBE",
+      "filename": "022_ODI_OGBE.png",
+      "filepath": "static/odu_cards/022_ODI_OGBE.png",
+      "pattern_lines": [
+        "I    I",
+        "I   I I",
+        "I   I I",
+        "I    I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 23,
+      "name": "OGBE IROSUN",
+      "filename": "023_OGBE_IROSUN.png",
+      "filepath": "static/odu_cards/023_OGBE_IROSUN.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 24,
+      "name": "IROSUN OGBE",
+      "filename": "024_IROSUN_OGBE.png",
+      "filepath": "static/odu_cards/024_IROSUN_OGBE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 25,
+      "name": "OGBE MEJI",
+      "filename": "025_OGBE_MEJI.png",
+      "filepath": "static/odu_cards/025_OGBE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II I",
+        "II I",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 26,
+      "name": "OGBE MEJI",
+      "filename": "026_OGBE_MEJI.png",
+      "filepath": "static/odu_cards/026_OGBE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I II",
+        "I II",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 27,
+      "name": "OGBE OBARA",
+      "filename": "027_OGBE_OBARA.png",
+      "filepath": "static/odu_cards/027_OGBE_OBARA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 28,
+      "name": "OBARA OGBE",
+      "filename": "028_OBARA_OGBE.png",
+      "filepath": "static/odu_cards/028_OBARA_OGBE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 29,
+      "name": "OGBE OKANRAN",
+      "filename": "029_OGBE_OKANRAN.png",
+      "filepath": "static/odu_cards/029_OGBE_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 30,
+      "name": "OKANRAN OGBE",
+      "filename": "030_OKANRAN_OGBE.png",
+      "filepath": "static/odu_cards/030_OKANRAN_OGBE.png",
+      "pattern_lines": [
+        "I II",
+        "I II",
+        "I II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 31,
+      "name": "OGBE OGUNDA",
+      "filename": "031_OGBE_OGUNDA.png",
+      "filepath": "static/odu_cards/031_OGBE_OGUNDA.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "I I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 32,
+      "name": "OGUNDA OGBE",
+      "filename": "032_OGUNDA_OGBE.png",
+      "filepath": "static/odu_cards/032_OGUNDA_OGBE.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "I I",
+        "I II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 33,
+      "name": "OGBE OSA",
+      "filename": "033_OGBE_OSA.png",
+      "filepath": "static/odu_cards/033_OGBE_OSA.png",
+      "pattern_lines": [
+        "II I",
+        "I  I",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 34,
+      "name": "OSA OGBE",
+      "filename": "034_OSA_OGBE.png",
+      "filepath": "static/odu_cards/034_OSA_OGBE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 35,
+      "name": "OGBE IKA",
+      "filename": "035_OGBE_IKA.png",
+      "filepath": "static/odu_cards/035_OGBE_IKA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 36,
+      "name": "IKA OGBE",
+      "filename": "036_IKA_OGBE.png",
+      "filepath": "static/odu_cards/036_IKA_OGBE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 37,
+      "name": "OGBE OTURUPON",
+      "filename": "037_OGBE_OTURUPON.png",
+      "filepath": "static/odu_cards/037_OGBE_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "I   I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 38,
+      "name": "OTURUPON OGBE",
+      "filename": "038_OTURUPON_OGBE.png",
+      "filepath": "static/odu_cards/038_OTURUPON_OGBE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 39,
+      "name": "OGBE OTURA",
+      "filename": "039_OGBE_OTURA.png",
+      "filepath": "static/odu_cards/039_OGBE_OTURA.png",
+      "pattern_lines": [
+        "I I",
+        "II I",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 40,
+      "name": "OTURA OGBE",
+      "filename": "040_OTURA_OGBE.png",
+      "filepath": "static/odu_cards/040_OTURA_OGBE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 41,
+      "name": "OGBE IRETE",
+      "filename": "041_OGBE_IRETE.png",
+      "filepath": "static/odu_cards/041_OGBE_IRETE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "II I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 42,
+      "name": "IRETE OGBE",
+      "filename": "042_IRETE_OGBE.png",
+      "filepath": "static/odu_cards/042_IRETE_OGBE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 43,
+      "name": "OGBE OSE",
+      "filename": "043_OGBE_OSE.png",
+      "filepath": "static/odu_cards/043_OGBE_OSE.png",
+      "pattern_lines": [
+        "I   I",
+        "II   I",
+        "I   I",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 44,
+      "name": "OSE OGBE",
+      "filename": "044_OSE_OGBE.png",
+      "filepath": "static/odu_cards/044_OSE_OGBE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 45,
+      "name": "OGBE OFUN",
+      "filename": "045_OGBE_OFUN.png",
+      "filepath": "static/odu_cards/045_OGBE_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  I",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 46,
+      "name": "OFUN OGBE",
+      "filename": "046_OFUN_OGBE.png",
+      "filepath": "static/odu_cards/046_OFUN_OGBE.png",
+      "pattern_lines": [
+        "I II",
+        "II",
+        "I",
+        "II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 47,
+      "name": "OYEKU IWORI",
+      "filename": "047_OYEKU_IWORI.png",
+      "filepath": "static/odu_cards/047_OYEKU_IWORI.png",
+      "pattern_lines": [
+        "II II",
+        "I  II",
+        "I  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 48,
+      "name": "OYEKU MEJI",
+      "filename": "048_OYEKU_MEJI.png",
+      "filepath": "static/odu_cards/048_OYEKU_MEJI.png",
+      "pattern_lines": [
+        "OWORI",
+        "II  II",
+        "II  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 49,
+      "name": "OYEKU ODI",
+      "filename": "049_OYEKU_ODI.png",
+      "filepath": "static/odu_cards/049_OYEKU_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II  II",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 50,
+      "name": "ODI OYEKU",
+      "filename": "050_ODI_OYEKU.png",
+      "filepath": "static/odu_cards/050_ODI_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 51,
+      "name": "OYEKU IROSUN",
+      "filename": "051_OYEKU_IROSUN.png",
+      "filepath": "static/odu_cards/051_OYEKU_IROSUN.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 52,
+      "name": "IROSUN OYEKU",
+      "filename": "052_IROSUN_OYEKU.png",
+      "filepath": "static/odu_cards/052_IROSUN_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 53,
+      "name": "OYEKU MEJI",
+      "filename": "053_OYEKU_MEJI.png",
+      "filepath": "static/odu_cards/053_OYEKU_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  II",
+        "I   II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 54,
+      "name": "OYEKU MEJI",
+      "filename": "054_OYEKU_MEJI.png",
+      "filepath": "static/odu_cards/054_OYEKU_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 55,
+      "name": "OYEKU OBARA",
+      "filename": "055_OYEKU_OBARA.png",
+      "filepath": "static/odu_cards/055_OYEKU_OBARA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  II",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 56,
+      "name": "OBARA OYEKU",
+      "filename": "056_OBARA_OYEKU.png",
+      "filepath": "static/odu_cards/056_OBARA_OYEKU.png",
+      "pattern_lines": [
+        "II   I",
+        "II  II",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 57,
+      "name": "OYEKU OKANRAN",
+      "filename": "057_OYEKU_OKANRAN.png",
+      "filepath": "static/odu_cards/057_OYEKU_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 58,
+      "name": "OKANRAN OYEKU",
+      "filename": "058_OKANRAN_OYEKU.png",
+      "filepath": "static/odu_cards/058_OKANRAN_OYEKU.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 59,
+      "name": "OYEKU OGUNDA",
+      "filename": "059_OYEKU_OGUNDA.png",
+      "filepath": "static/odu_cards/059_OYEKU_OGUNDA.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "I  II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 60,
+      "name": "OGUNDA OYEKU",
+      "filename": "060_OGUNDA_OYEKU.png",
+      "filepath": "static/odu_cards/060_OGUNDA_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 61,
+      "name": "OYEKU OSA",
+      "filename": "061_OYEKU_OSA.png",
+      "filepath": "static/odu_cards/061_OYEKU_OSA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 62,
+      "name": "OSA OYEKU",
+      "filename": "062_OSA_OYEKU.png",
+      "filepath": "static/odu_cards/062_OSA_OYEKU.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 63,
+      "name": "OYEKU IKA",
+      "filename": "063_OYEKU_IKA.png",
+      "filepath": "static/odu_cards/063_OYEKU_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I   II",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 64,
+      "name": "IKA OYEKU",
+      "filename": "064_IKA_OYEKU.png",
+      "filepath": "static/odu_cards/064_IKA_OYEKU.png",
+      "pattern_lines": [
+        "II  II",
+        "II   I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 65,
+      "name": "OYEKU OTURUPON",
+      "filename": "065_OYEKU_OTURUPON.png",
+      "filepath": "static/odu_cards/065_OYEKU_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 66,
+      "name": "OTURUPON OYEKU",
+      "filename": "066_OTURUPON_OYEKU.png",
+      "filepath": "static/odu_cards/066_OTURUPON_OYEKU.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 67,
+      "name": "OYEKU OTURA",
+      "filename": "067_OYEKU_OTURA.png",
+      "filepath": "static/odu_cards/067_OYEKU_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 68,
+      "name": "OTURA OYEKU",
+      "filename": "068_OTURA_OYEKU.png",
+      "filepath": "static/odu_cards/068_OTURA_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 69,
+      "name": "OYEKU IRETE",
+      "filename": "069_OYEKU_IRETE.png",
+      "filepath": "static/odu_cards/069_OYEKU_IRETE.png",
+      "pattern_lines": [
+        "I   II",
+        "I   II",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 70,
+      "name": "IRETE OYEKU",
+      "filename": "070_IRETE_OYEKU.png",
+      "filepath": "static/odu_cards/070_IRETE_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 71,
+      "name": "OYEKU OSE",
+      "filename": "071_OYEKU_OSE.png",
+      "filepath": "static/odu_cards/071_OYEKU_OSE.png",
+      "pattern_lines": [
+        "I   II",
+        "II  II",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 72,
+      "name": "OSE OYEKU",
+      "filename": "072_OSE_OYEKU.png",
+      "filepath": "static/odu_cards/072_OSE_OYEKU.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 73,
+      "name": "OYEKU OFUN",
+      "filename": "073_OYEKU_OFUN.png",
+      "filepath": "static/odu_cards/073_OYEKU_OFUN.png",
+      "pattern_lines": [
+        "II  II",
+        "I   II",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 74,
+      "name": "OFUN OYEKU",
+      "filename": "074_OFUN_OYEKU.png",
+      "filepath": "static/odu_cards/074_OFUN_OYEKU.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 75,
+      "name": "IWORI ODI",
+      "filename": "075_IWORI_ODI.png",
+      "filepath": "static/odu_cards/075_IWORI_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 76,
+      "name": "ODI IWORI",
+      "filename": "076_ODI_IWORI.png",
+      "filepath": "static/odu_cards/076_ODI_IWORI.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 77,
+      "name": "IWORI IROSUN",
+      "filename": "077_IWORI_IROSUN.png",
+      "filepath": "static/odu_cards/077_IWORI_IROSUN.png",
+      "pattern_lines": [
+        "I   II",
+        "I   I",
+        "II   I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 78,
+      "name": "IROSUN IWORI",
+      "filename": "078_IROSUN_IWORI.png",
+      "filepath": "static/odu_cards/078_IROSUN_IWORI.png",
+      "pattern_lines": [
+        "II  I",
+        "I   I",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 79,
+      "name": "IWORI MEJI",
+      "filename": "079_IWORI_MEJI.png",
+      "filepath": "static/odu_cards/079_IWORI_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 80,
+      "name": "IWORI MEJI",
+      "filename": "080_IWORI_MEJI.png",
+      "filepath": "static/odu_cards/080_IWORI_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "I  II",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 81,
+      "name": "IWORI OBARA",
+      "filename": "081_IWORI_OBARA.png",
+      "filepath": "static/odu_cards/081_IWORI_OBARA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 82,
+      "name": "OBARA IWORI",
+      "filename": "082_OBARA_IWORI.png",
+      "filepath": "static/odu_cards/082_OBARA_IWORI.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 83,
+      "name": "IWORI OKANRAN",
+      "filename": "083_IWORI_OKANRAN.png",
+      "filepath": "static/odu_cards/083_IWORI_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 84,
+      "name": "OKANRAN IWORI",
+      "filename": "084_OKANRAN_IWORI.png",
+      "filepath": "static/odu_cards/084_OKANRAN_IWORI.png",
+      "pattern_lines": [
+        "II  II",
+        "I  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 85,
+      "name": "IWORI OGUNDA",
+      "filename": "085_IWORI_OGUNDA.png",
+      "filepath": "static/odu_cards/085_IWORI_OGUNDA.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 86,
+      "name": "OGUNDA IWORI",
+      "filename": "086_OGUNDA_IWORI.png",
+      "filepath": "static/odu_cards/086_OGUNDA_IWORI.png",
+      "pattern_lines": [
+        "II  I",
+        "I  I",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 87,
+      "name": "IWORI OSA",
+      "filename": "087_IWORI_OSA.png",
+      "filepath": "static/odu_cards/087_IWORI_OSA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 88,
+      "name": "OSA IWORI",
+      "filename": "088_OSA_IWORI.png",
+      "filepath": "static/odu_cards/088_OSA_IWORI.png",
+      "pattern_lines": [
+        "II  II",
+        "I   I",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 89,
+      "name": "IWORI IKA",
+      "filename": "089_IWORI_IKA.png",
+      "filepath": "static/odu_cards/089_IWORI_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 90,
+      "name": "IKA IWORI",
+      "filename": "090_IKA_IWORI.png",
+      "filepath": "static/odu_cards/090_IKA_IWORI.png",
+      "pattern_lines": [
+        "II  II",
+        "I   I",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 91,
+      "name": "IWORI OTURUPON",
+      "filename": "091_IWORI_OTURUPON.png",
+      "filepath": "static/odu_cards/091_IWORI_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "I   I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 92,
+      "name": "OTURUPON IWORI",
+      "filename": "092_OTURUPON_IWORI.png",
+      "filepath": "static/odu_cards/092_OTURUPON_IWORI.png",
+      "pattern_lines": [
+        "II   II",
+        "I   II",
+        "I   I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 93,
+      "name": "IWORI OTURA",
+      "filename": "093_IWORI_OTURA.png",
+      "filepath": "static/odu_cards/093_IWORI_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 94,
+      "name": "OTURA IWORI",
+      "filename": "094_OTURA_IWORI.png",
+      "filepath": "static/odu_cards/094_OTURA_IWORI.png",
+      "pattern_lines": [
+        "II   I",
+        "I   II",
+        "I   I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 95,
+      "name": "IWORI IRETE",
+      "filename": "095_IWORI_IRETE.png",
+      "filepath": "static/odu_cards/095_IWORI_IRETE.png",
+      "pattern_lines": [
+        "I   II",
+        "I    I",
+        "II   I",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 96,
+      "name": "IRETE IWORI",
+      "filename": "096_IRETE_IWORI.png",
+      "filepath": "static/odu_cards/096_IRETE_IWORI.png",
+      "pattern_lines": [
+        "II  I",
+        "I   I",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 97,
+      "name": "IWORI OSE",
+      "filename": "097_IWORI_OSE.png",
+      "filepath": "static/odu_cards/097_IWORI_OSE.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 98,
+      "name": "OSE IWORI",
+      "filename": "098_OSE_IWORI.png",
+      "filepath": "static/odu_cards/098_OSE_IWORI.png",
+      "pattern_lines": [
+        "II   I",
+        "I   II",
+        "I   I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 99,
+      "name": "IWORI OFUN",
+      "filename": "099_IWORI_OFUN.png",
+      "filepath": "static/odu_cards/099_IWORI_OFUN.png",
+      "pattern_lines": [
+        "II  II",
+        "I   I",
+        "II   I",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 100,
+      "name": "OFUN IWORI",
+      "filename": "100_OFUN_IWORI.png",
+      "filepath": "static/odu_cards/100_OFUN_IWORI.png",
+      "pattern_lines": [
+        "II  II",
+        "I   I",
+        "I   II",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 101,
+      "name": "ODI IROSUN",
+      "filename": "101_ODI_IROSUN.png",
+      "filepath": "static/odu_cards/101_ODI_IROSUN.png",
+      "pattern_lines": [
+        "I   I",
+        "I   II",
+        "II  II",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 102,
+      "name": "IROSUN ODI",
+      "filename": "102_IROSUN_ODI.png",
+      "filepath": "static/odu_cards/102_IROSUN_ODI.png",
+      "pattern_lines": [
+        "I   I",
+        "II  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 103,
+      "name": "ODI MEJI",
+      "filename": "103_ODI_MEJI.png",
+      "filepath": "static/odu_cards/103_ODI_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  I",
+        "II  II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 104,
+      "name": "ODI MEJI",
+      "filename": "104_ODI_MEJI.png",
+      "filepath": "static/odu_cards/104_ODI_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I   II",
+        "II  II",
+        "II  I",
+        "I   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 105,
+      "name": "ODI OBARA",
+      "filename": "105_ODI_OBARA.png",
+      "filepath": "static/odu_cards/105_ODI_OBARA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 106,
+      "name": "OBARA ODI",
+      "filename": "106_OBARA_ODI.png",
+      "filepath": "static/odu_cards/106_OBARA_ODI.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 107,
+      "name": "ODI OKANRAN",
+      "filename": "107_ODI_OKANRAN.png",
+      "filepath": "static/odu_cards/107_ODI_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 108,
+      "name": "OKANRAN ODI",
+      "filename": "108_OKANRAN_ODI.png",
+      "filepath": "static/odu_cards/108_OKANRAN_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II II",
+        "II II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 109,
+      "name": "ODI OGUNDA",
+      "filename": "109_ODI_OGUNDA.png",
+      "filepath": "static/odu_cards/109_ODI_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 110,
+      "name": "OGUNDA ODI",
+      "filename": "110_OGUNDA_ODI.png",
+      "filepath": "static/odu_cards/110_OGUNDA_ODI.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 111,
+      "name": "ODI OSA",
+      "filename": "111_ODI_OSA.png",
+      "filepath": "static/odu_cards/111_ODI_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 112,
+      "name": "OSA ODI",
+      "filename": "112_OSA_ODI.png",
+      "filepath": "static/odu_cards/112_OSA_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  I",
+        "I   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 113,
+      "name": "ODI IKA",
+      "filename": "113_ODI_IKA.png",
+      "filepath": "static/odu_cards/113_ODI_IKA.png",
+      "pattern_lines": [
+        "II   I",
+        "I   II",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 114,
+      "name": "IKA ODI",
+      "filename": "114_IKA_ODI.png",
+      "filepath": "static/odu_cards/114_IKA_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 115,
+      "name": "ODI OTURUPON",
+      "filename": "115_ODI_OTURUPON.png",
+      "filepath": "static/odu_cards/115_ODI_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "I   II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 116,
+      "name": "OTURUPON ODI",
+      "filename": "116_OTURUPON_ODI.png",
+      "filepath": "static/odu_cards/116_OTURUPON_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 117,
+      "name": "ODI OTURA",
+      "filename": "117_ODI_OTURA.png",
+      "filepath": "static/odu_cards/117_ODI_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 118,
+      "name": "OTURA ODI",
+      "filename": "118_OTURA_ODI.png",
+      "filepath": "static/odu_cards/118_OTURA_ODI.png",
+      "pattern_lines": [
+        "I  I",
+        "II II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 119,
+      "name": "IRETE MEJI",
+      "filename": "119_IRETE_MEJI.png",
+      "filepath": "static/odu_cards/119_IRETE_MEJI.png",
+      "pattern_lines": [
+        "0DI",
+        "I  I",
+        "I  II",
+        "II II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 120,
+      "name": "IRETE ODI",
+      "filename": "120_IRETE_ODI.png",
+      "filepath": "static/odu_cards/120_IRETE_ODI.png",
+      "pattern_lines": [
+        "I   I",
+        "II  I",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 121,
+      "name": "ODI OSE",
+      "filename": "121_ODI_OSE.png",
+      "filepath": "static/odu_cards/121_ODI_OSE.png",
+      "pattern_lines": [
+        "I   I",
+        "II  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 122,
+      "name": "OSE ODI",
+      "filename": "122_OSE_ODI.png",
+      "filepath": "static/odu_cards/122_OSE_ODI.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "II  I",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 123,
+      "name": "ODI OFUN",
+      "filename": "123_ODI_OFUN.png",
+      "filepath": "static/odu_cards/123_ODI_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 124,
+      "name": "OFUN ODI",
+      "filename": "124_OFUN_ODI.png",
+      "filepath": "static/odu_cards/124_OFUN_ODI.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 125,
+      "name": "IROSUN MEJI",
+      "filename": "125_IROSUN_MEJI.png",
+      "filepath": "static/odu_cards/125_IROSUN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  I",
+        "II  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 126,
+      "name": "IROSUN MEJI",
+      "filename": "126_IROSUN_MEJI.png",
+      "filepath": "static/odu_cards/126_IROSUN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I  II",
+        "I  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 127,
+      "name": "IROSUN OBARA",
+      "filename": "127_IROSUN_OBARA.png",
+      "filepath": "static/odu_cards/127_IROSUN_OBARA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 128,
+      "name": "OBARA IROSUN",
+      "filename": "128_OBARA_IROSUN.png",
+      "filepath": "static/odu_cards/128_OBARA_IROSUN.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 129,
+      "name": "IROSUN OKANRAN",
+      "filename": "129_IROSUN_OKANRAN.png",
+      "filepath": "static/odu_cards/129_IROSUN_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 130,
+      "name": "OKANRAN IROSUN",
+      "filename": "130_OKANRAN_IROSUN.png",
+      "filepath": "static/odu_cards/130_OKANRAN_IROSUN.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "II II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 131,
+      "name": "IROSUN OGUNDA",
+      "filename": "131_IROSUN_OGUNDA.png",
+      "filepath": "static/odu_cards/131_IROSUN_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "I  II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 132,
+      "name": "OGUNDA IROSUN",
+      "filename": "132_OGUNDA_IROSUN.png",
+      "filepath": "static/odu_cards/132_OGUNDA_IROSUN.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 133,
+      "name": "IROSUN OSA",
+      "filename": "133_IROSUN_OSA.png",
+      "filepath": "static/odu_cards/133_IROSUN_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I   I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 134,
+      "name": "OSA IROSUN",
+      "filename": "134_OSA_IROSUN.png",
+      "filepath": "static/odu_cards/134_OSA_IROSUN.png",
+      "pattern_lines": [
+        "I II",
+        "I  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 135,
+      "name": "IROSUN IKA",
+      "filename": "135_IROSUN_IKA.png",
+      "filepath": "static/odu_cards/135_IROSUN_IKA.png",
+      "pattern_lines": [
+        "II I",
+        "I  I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 136,
+      "name": "IKA IROSUN",
+      "filename": "136_IKA_IROSUN.png",
+      "filepath": "static/odu_cards/136_IKA_IROSUN.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 137,
+      "name": "IROSUN OTURUPON",
+      "filename": "137_IROSUN_OTURUPON.png",
+      "filepath": "static/odu_cards/137_IROSUN_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "I  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 138,
+      "name": "OTURUPON IROSUN",
+      "filename": "138_OTURUPON_IROSUN.png",
+      "filepath": "static/odu_cards/138_OTURUPON_IROSUN.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "II  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 139,
+      "name": "IROSUN OTURA",
+      "filename": "139_IROSUN_OTURA.png",
+      "filepath": "static/odu_cards/139_IROSUN_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 140,
+      "name": "OTURA IROSUN",
+      "filename": "140_OTURA_IROSUN.png",
+      "filepath": "static/odu_cards/140_OTURA_IROSUN.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 141,
+      "name": "IROSUN IRETE",
+      "filename": "141_IROSUN_IRETE.png",
+      "filepath": "static/odu_cards/141_IROSUN_IRETE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 142,
+      "name": "IRETE IROSUN",
+      "filename": "142_IRETE_IROSUN.png",
+      "filepath": "static/odu_cards/142_IRETE_IROSUN.png",
+      "pattern_lines": [
+        "I I",
+        "I I",
+        "II II",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 143,
+      "name": "IROSUN OSE",
+      "filename": "143_IROSUN_OSE.png",
+      "filepath": "static/odu_cards/143_IROSUN_OSE.png",
+      "pattern_lines": [
+        "I  I",
+        "II I",
+        "I  II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 144,
+      "name": "OSE IROSUN",
+      "filename": "144_OSE_IROSUN.png",
+      "filepath": "static/odu_cards/144_OSE_IROSUN.png",
+      "pattern_lines": [
+        "I I",
+        "I  II",
+        "II  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 145,
+      "name": "IROSUN OFUN",
+      "filename": "145_IROSUN_OFUN.png",
+      "filepath": "static/odu_cards/145_IROSUN_OFUN.png",
+      "pattern_lines": [
+        "II I",
+        "I  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 146,
+      "name": "OFUN IROSUN",
+      "filename": "146_OFUN_IROSUN.png",
+      "filepath": "static/odu_cards/146_OFUN_IROSUN.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "II II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 147,
+      "name": "OBARA MEJI",
+      "filename": "147_OBARA_MEJI.png",
+      "filepath": "static/odu_cards/147_OBARA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I  II",
+        "II II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 148,
+      "name": "OBARA MEJI",
+      "filename": "148_OBARA_MEJI.png",
+      "filepath": "static/odu_cards/148_OBARA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II I",
+        "II II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 149,
+      "name": "OKANRAN MEJI",
+      "filename": "149_OKANRAN_MEJI.png",
+      "filepath": "static/odu_cards/149_OKANRAN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 150,
+      "name": "OKANRAN MEJI",
+      "filename": "150_OKANRAN_MEJI.png",
+      "filepath": "static/odu_cards/150_OKANRAN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "II II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 151,
+      "name": "OGUNDA MEJI",
+      "filename": "151_OGUNDA_MEJI.png",
+      "filepath": "static/odu_cards/151_OGUNDA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I  II",
+        "I  II",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 152,
+      "name": "OGUNDA MEJI",
+      "filename": "152_OGUNDA_MEJI.png",
+      "filepath": "static/odu_cards/152_OGUNDA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II I",
+        "II I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 153,
+      "name": "OSA MEJI",
+      "filename": "153_OSA_MEJI.png",
+      "filepath": "static/odu_cards/153_OSA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "I  II",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 154,
+      "name": "OSA MEJI",
+      "filename": "154_OSA_MEJI.png",
+      "filepath": "static/odu_cards/154_OSA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "II I",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 155,
+      "name": "IKA MEJI",
+      "filename": "155_IKA_MEJI.png",
+      "filepath": "static/odu_cards/155_IKA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "I  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 156,
+      "name": "IKA MEJI",
+      "filename": "156_IKA_MEJI.png",
+      "filepath": "static/odu_cards/156_IKA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 157,
+      "name": "OTURUPON MEJI",
+      "filename": "157_OTURUPON_MEJI.png",
+      "filepath": "static/odu_cards/157_OTURUPON_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "II II",
+        "I  I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 158,
+      "name": "OTURUPON MEJI",
+      "filename": "158_OTURUPON_MEJI.png",
+      "filepath": "static/odu_cards/158_OTURUPON_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II II",
+        "II II",
+        "I  I",
+        "I II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 159,
+      "name": "OTURA MEJI",
+      "filename": "159_OTURA_MEJI.png",
+      "filepath": "static/odu_cards/159_OTURA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I II",
+        "II II",
+        "I I",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 160,
+      "name": "OTURA MEJI",
+      "filename": "160_OTURA_MEJI.png",
+      "filepath": "static/odu_cards/160_OTURA_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  I",
+        "II  II",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 161,
+      "name": "IRETE MEJI",
+      "filename": "161_IRETE_MEJI.png",
+      "filepath": "static/odu_cards/161_IRETE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I  II",
+        "I  II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 162,
+      "name": "IRETE MEJI",
+      "filename": "162_IRETE_MEJI.png",
+      "filepath": "static/odu_cards/162_IRETE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  I",
+        "II  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 163,
+      "name": "OSE MEJI",
+      "filename": "163_OSE_MEJI.png",
+      "filepath": "static/odu_cards/163_OSE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "I  II",
+        "II II",
+        "I  I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 164,
+      "name": "OSE MEJI",
+      "filename": "164_OSE_MEJI.png",
+      "filepath": "static/odu_cards/164_OSE_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  I",
+        "II  II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 165,
+      "name": "OFUN MEJI",
+      "filename": "165_OFUN_MEJI.png",
+      "filepath": "static/odu_cards/165_OFUN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "I  II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 166,
+      "name": "OFUN MEJI",
+      "filename": "166_OFUN_MEJI.png",
+      "filepath": "static/odu_cards/166_OFUN_MEJI.png",
+      "pattern_lines": [
+        "OWANRIN",
+        "II  II",
+        "II  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 167,
+      "name": "OBARA OKANRAN",
+      "filename": "167_OBARA_OKANRAN.png",
+      "filepath": "static/odu_cards/167_OBARA_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 168,
+      "name": "OKANRAN OBARA",
+      "filename": "168_OKANRAN_OBARA.png",
+      "filepath": "static/odu_cards/168_OKANRAN_OBARA.png",
+      "pattern_lines": [
+        "I II",
+        "II II",
+        "II II",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 169,
+      "name": "OBARA OGUNDA",
+      "filename": "169_OBARA_OGUNDA.png",
+      "filepath": "static/odu_cards/169_OBARA_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 170,
+      "name": "OGUNDA OBARA",
+      "filename": "170_OGUNDA_OBARA.png",
+      "filepath": "static/odu_cards/170_OGUNDA_OBARA.png",
+      "pattern_lines": [
+        "I   I",
+        "II  I",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 171,
+      "name": "OBARA OSA",
+      "filename": "171_OBARA_OSA.png",
+      "filepath": "static/odu_cards/171_OBARA_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 172,
+      "name": "OSA OBARA",
+      "filename": "172_OSA_OBARA.png",
+      "filepath": "static/odu_cards/172_OSA_OBARA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 173,
+      "name": "OBARA IKA",
+      "filename": "173_OBARA_IKA.png",
+      "filepath": "static/odu_cards/173_OBARA_IKA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 174,
+      "name": "IKA OBARA",
+      "filename": "174_IKA_OBARA.png",
+      "filepath": "static/odu_cards/174_IKA_OBARA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 175,
+      "name": "OBARA OTURUPON",
+      "filename": "175_OBARA_OTURUPON.png",
+      "filepath": "static/odu_cards/175_OBARA_OTURUPON.png",
+      "pattern_lines": [
+        "II   I",
+        "II  II",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 176,
+      "name": "OTURUPON OBARA",
+      "filename": "176_OTURUPON_OBARA.png",
+      "filepath": "static/odu_cards/176_OTURUPON_OBARA.png",
+      "pattern_lines": [
+        "I   II",
+        "II  II",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 177,
+      "name": "OBARA OTURA",
+      "filename": "177_OBARA_OTURA.png",
+      "filepath": "static/odu_cards/177_OBARA_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 178,
+      "name": "OTURA OBARA",
+      "filename": "178_OTURA_OBARA.png",
+      "filepath": "static/odu_cards/178_OTURA_OBARA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 179,
+      "name": "OBARA IRETE",
+      "filename": "179_OBARA_IRETE.png",
+      "filepath": "static/odu_cards/179_OBARA_IRETE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 180,
+      "name": "IRETE OBARA",
+      "filename": "180_IRETE_OBARA.png",
+      "filepath": "static/odu_cards/180_IRETE_OBARA.png",
+      "pattern_lines": [
+        "I   I",
+        "II   I",
+        "II  II",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 181,
+      "name": "OBARA OSE",
+      "filename": "181_OBARA_OSE.png",
+      "filepath": "static/odu_cards/181_OBARA_OSE.png",
+      "pattern_lines": [
+        "I  I",
+        "II  II",
+        "I  II",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 182,
+      "name": "OSE OBARA",
+      "filename": "182_OSE_OBARA.png",
+      "filepath": "static/odu_cards/182_OSE_OBARA.png",
+      "pattern_lines": [
+        "I  I",
+        "II II",
+        "II  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 183,
+      "name": "OBARA OFUN",
+      "filename": "183_OBARA_OFUN.png",
+      "filepath": "static/odu_cards/183_OBARA_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 184,
+      "name": "OFUN OBARA",
+      "filename": "184_OFUN_OBARA.png",
+      "filepath": "static/odu_cards/184_OFUN_OBARA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 185,
+      "name": "OKANRAN OGUNDA",
+      "filename": "185_OKANRAN_OGUNDA.png",
+      "filepath": "static/odu_cards/185_OKANRAN_OGUNDA.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 186,
+      "name": "OGUNDA OKANRAN",
+      "filename": "186_OGUNDA_OKANRAN.png",
+      "filepath": "static/odu_cards/186_OGUNDA_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 187,
+      "name": "OKANRAN OSA",
+      "filename": "187_OKANRAN_OSA.png",
+      "filepath": "static/odu_cards/187_OKANRAN_OSA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 188,
+      "name": "OSA OKANRAN",
+      "filename": "188_OSA_OKANRAN.png",
+      "filepath": "static/odu_cards/188_OSA_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 189,
+      "name": "OKANRAN IKA",
+      "filename": "189_OKANRAN_IKA.png",
+      "filepath": "static/odu_cards/189_OKANRAN_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I   II",
+        "II  II",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 190,
+      "name": "IKA OKANRAN",
+      "filename": "190_IKA_OKANRAN.png",
+      "filepath": "static/odu_cards/190_IKA_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II   I",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 191,
+      "name": "OKANRAN OTURUPON",
+      "filename": "191_OKANRAN_OTURUPON.png",
+      "filepath": "static/odu_cards/191_OKANRAN_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 192,
+      "name": "OTURUPON OKANRAN",
+      "filename": "192_OTURUPON_OKANRAN.png",
+      "filepath": "static/odu_cards/192_OTURUPON_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II  II",
+        "II   I",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 193,
+      "name": "OKANRAN OTURA",
+      "filename": "193_OKANRAN_OTURA.png",
+      "filepath": "static/odu_cards/193_OKANRAN_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II II",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 194,
+      "name": "OTURA OKANRAN",
+      "filename": "194_OTURA_OKANRAN.png",
+      "filepath": "static/odu_cards/194_OTURA_OKANRAN.png",
+      "pattern_lines": [
+        "II   I",
+        "II  II",
+        "II   I",
+        "I   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 195,
+      "name": "OKANRAN IRETE",
+      "filename": "195_OKANRAN_IRETE.png",
+      "filepath": "static/odu_cards/195_OKANRAN_IRETE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "II  II",
+        "I   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 196,
+      "name": "IRETE OKANRAN",
+      "filename": "196_IRETE_OKANRAN.png",
+      "filepath": "static/odu_cards/196_IRETE_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 197,
+      "name": "OKANRAN OSE",
+      "filename": "197_OKANRAN_OSE.png",
+      "filepath": "static/odu_cards/197_OKANRAN_OSE.png",
+      "pattern_lines": [
+        "I  II",
+        "II II",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 198,
+      "name": "OSE OKANRAN",
+      "filename": "198_OSE_OKANRAN.png",
+      "filepath": "static/odu_cards/198_OSE_OKANRAN.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 199,
+      "name": "OKANRAN OFUN",
+      "filename": "199_OKANRAN_OFUN.png",
+      "filepath": "static/odu_cards/199_OKANRAN_OFUN.png",
+      "pattern_lines": [
+        "II  II",
+        "I   II",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 200,
+      "name": "OFUN OKANRAN",
+      "filename": "200_OFUN_OKANRAN.png",
+      "filepath": "static/odu_cards/200_OFUN_OKANRAN.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "II  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 201,
+      "name": "OGUNDA OSA",
+      "filename": "201_OGUNDA_OSA.png",
+      "filepath": "static/odu_cards/201_OGUNDA_OSA.png",
+      "pattern_lines": [
+        "II I",
+        "I  I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 202,
+      "name": "OSA OGUNDA",
+      "filename": "202_OSA_OGUNDA.png",
+      "filepath": "static/odu_cards/202_OSA_OGUNDA.png",
+      "pattern_lines": [
+        "I   II",
+        "I   I",
+        "I   I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 203,
+      "name": "OGUNDA IKA",
+      "filename": "203_OGUNDA_IKA.png",
+      "filepath": "static/odu_cards/203_OGUNDA_IKA.png",
+      "pattern_lines": [
+        "II   I",
+        "I    I",
+        "I   I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 204,
+      "name": "IKA OGUNDA",
+      "filename": "204_IKA_OGUNDA.png",
+      "filepath": "static/odu_cards/204_IKA_OGUNDA.png",
+      "pattern_lines": [
+        "I  II",
+        "I   I",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 205,
+      "name": "OGUNDA OTURUPON",
+      "filename": "205_OGUNDA_OTURUPON.png",
+      "filepath": "static/odu_cards/205_OGUNDA_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 206,
+      "name": "OTURUPON OGUNDA",
+      "filename": "206_OTURUPON_OGUNDA.png",
+      "filepath": "static/odu_cards/206_OTURUPON_OGUNDA.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 207,
+      "name": "OGUNDA OTURA",
+      "filename": "207_OGUNDA_OTURA.png",
+      "filepath": "static/odu_cards/207_OGUNDA_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II I",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 208,
+      "name": "OTURA OGUNDA",
+      "filename": "208_OTURA_OGUNDA.png",
+      "filepath": "static/odu_cards/208_OTURA_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 209,
+      "name": "OGUNDA IRETE",
+      "filename": "209_OGUNDA_IRETE.png",
+      "filepath": "static/odu_cards/209_OGUNDA_IRETE.png",
+      "pattern_lines": [
+        "I   I",
+        "I   I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 210,
+      "name": "IRETE OGUNDA",
+      "filename": "210_IRETE_OGUNDA.png",
+      "filepath": "static/odu_cards/210_IRETE_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  I",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 211,
+      "name": "OGUNDA OSE",
+      "filename": "211_OGUNDA_OSE.png",
+      "filepath": "static/odu_cards/211_OGUNDA_OSE.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "I  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 212,
+      "name": "OSE OGUNDA",
+      "filename": "212_OSE_OGUNDA.png",
+      "filepath": "static/odu_cards/212_OSE_OGUNDA.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 213,
+      "name": "OGUNDA OFUN",
+      "filename": "213_OGUNDA_OFUN.png",
+      "filepath": "static/odu_cards/213_OGUNDA_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I   I",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 214,
+      "name": "OFUN OGUNDA",
+      "filename": "214_OFUN_OGUNDA.png",
+      "filepath": "static/odu_cards/214_OFUN_OGUNDA.png",
+      "pattern_lines": [
+        "I   II",
+        "I    I",
+        "I   II",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 215,
+      "name": "OSA IKA",
+      "filename": "215_OSA_IKA.png",
+      "filepath": "static/odu_cards/215_OSA_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I   I",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 216,
+      "name": "IKA OSA",
+      "filename": "216_IKA_OSA.png",
+      "filepath": "static/odu_cards/216_IKA_OSA.png",
+      "pattern_lines": [
+        "II II",
+        "I  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 217,
+      "name": "OSA OTURUPON",
+      "filename": "217_OSA_OTURUPON.png",
+      "filepath": "static/odu_cards/217_OSA_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II   I",
+        "I   I",
+        "II   I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 218,
+      "name": "OTURUPON OSA",
+      "filename": "218_OTURUPON_OSA.png",
+      "filepath": "static/odu_cards/218_OTURUPON_OSA.png",
+      "pattern_lines": [
+        "II   II",
+        "I   II",
+        "I   I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 219,
+      "name": "OSA OTURA",
+      "filename": "219_OSA_OTURA.png",
+      "filepath": "static/odu_cards/219_OSA_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 220,
+      "name": "OTURA OSA",
+      "filename": "220_OTURA_OSA.png",
+      "filepath": "static/odu_cards/220_OTURA_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 221,
+      "name": "OSA IRETE",
+      "filename": "221_OSA_IRETE.png",
+      "filepath": "static/odu_cards/221_OSA_IRETE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  I",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 222,
+      "name": "IRETE OSA",
+      "filename": "222_IRETE_OSA.png",
+      "filepath": "static/odu_cards/222_IRETE_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  I",
+        "I II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 223,
+      "name": "OSA OSE",
+      "filename": "223_OSA_OSE.png",
+      "filepath": "static/odu_cards/223_OSA_OSE.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 224,
+      "name": "OSE OSA",
+      "filename": "224_OSE_OSA.png",
+      "filepath": "static/odu_cards/224_OSE_OSA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 225,
+      "name": "OSA OFUN",
+      "filename": "225_OSA_OFUN.png",
+      "filepath": "static/odu_cards/225_OSA_OFUN.png",
+      "pattern_lines": [
+        "II II",
+        "I  I",
+        "II I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 226,
+      "name": "OFUN OSA",
+      "filename": "226_OFUN_OSA.png",
+      "filepath": "static/odu_cards/226_OFUN_OSA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 227,
+      "name": "IKA OTURUPON",
+      "filename": "227_IKA_OTURUPON.png",
+      "filepath": "static/odu_cards/227_IKA_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II   I",
+        "I   II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 228,
+      "name": "OTURUPON IKA",
+      "filename": "228_OTURUPON_IKA.png",
+      "filepath": "static/odu_cards/228_OTURUPON_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I   II",
+        "II   I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 229,
+      "name": "IKA OTURA",
+      "filename": "229_IKA_OTURA.png",
+      "filepath": "static/odu_cards/229_IKA_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 230,
+      "name": "OTURA IKA",
+      "filename": "230_OTURA_IKA.png",
+      "filepath": "static/odu_cards/230_OTURA_IKA.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 231,
+      "name": "IKA IRETE",
+      "filename": "231_IKA_IRETE.png",
+      "filepath": "static/odu_cards/231_IKA_IRETE.png",
+      "pattern_lines": [
+        "I   II",
+        "I   I",
+        "II  II",
+        "I   II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 232,
+      "name": "IRETE IKA",
+      "filename": "232_IRETE_IKA.png",
+      "filepath": "static/odu_cards/232_IRETE_IKA.png",
+      "pattern_lines": [
+        "II  I",
+        "I   I",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 233,
+      "name": "IKA OSE",
+      "filename": "233_IKA_OSE.png",
+      "filepath": "static/odu_cards/233_IKA_OSE.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  II",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 234,
+      "name": "OSE IKA",
+      "filename": "234_OSE_IKA.png",
+      "filepath": "static/odu_cards/234_OSE_IKA.png",
+      "pattern_lines": [
+        "II  I",
+        "I   II",
+        "II  I",
+        "II  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 235,
+      "name": "IKA OFUN",
+      "filename": "235_IKA_OFUN.png",
+      "filepath": "static/odu_cards/235_IKA_OFUN.png",
+      "pattern_lines": [
+        "II  II",
+        "I  I",
+        "II  II",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 236,
+      "name": "OFUN IKA",
+      "filename": "236_OFUN_IKA.png",
+      "filepath": "static/odu_cards/236_OFUN_IKA.png",
+      "pattern_lines": [
+        "II  II",
+        "I  I",
+        "II  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 237,
+      "name": "OTURUPON OTURA",
+      "filename": "237_OTURUPON_OTURA.png",
+      "filepath": "static/odu_cards/237_OTURUPON_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 238,
+      "name": "OTURA OTURUPON",
+      "filename": "238_OTURA_OTURUPON.png",
+      "filepath": "static/odu_cards/238_OTURA_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "I  I",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 239,
+      "name": "OTURUPON IRETE",
+      "filename": "239_OTURUPON_IRETE.png",
+      "filepath": "static/odu_cards/239_OTURUPON_IRETE.png",
+      "pattern_lines": [
+        "I  II",
+        "I  II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 240,
+      "name": "IRETE OTURUPON",
+      "filename": "240_IRETE_OTURUPON.png",
+      "filepath": "static/odu_cards/240_IRETE_OTURUPON.png",
+      "pattern_lines": [
+        "II  I",
+        "II  I",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 241,
+      "name": "OTURUPON OSE",
+      "filename": "241_OTURUPON_OSE.png",
+      "filepath": "static/odu_cards/241_OTURUPON_OSE.png",
+      "pattern_lines": [
+        "I  II",
+        "II II",
+        "I I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 242,
+      "name": "OSE MEJI",
+      "filename": "242_OSE_MEJI.png",
+      "filepath": "static/odu_cards/242_OSE_MEJI.png",
+      "pattern_lines": [
+        "II  I",
+        "II  II",
+        "I  I",
+        "II II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 243,
+      "name": "OTURUPON OFUN",
+      "filename": "243_OTURUPON_OFUN.png",
+      "filepath": "static/odu_cards/243_OTURUPON_OFUN.png",
+      "pattern_lines": [
+        "II  II",
+        "I  II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 244,
+      "name": "OFUN OTURUPON",
+      "filename": "244_OFUN_OTURUPON.png",
+      "filepath": "static/odu_cards/244_OFUN_OTURUPON.png",
+      "pattern_lines": [
+        "II  II",
+        "II  I",
+        "I  II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 245,
+      "name": "OTURA IRETE",
+      "filename": "245_OTURA_IRETE.png",
+      "filepath": "static/odu_cards/245_OTURA_IRETE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 246,
+      "name": "IRETE OTURA",
+      "filename": "246_IRETE_OTURA.png",
+      "filepath": "static/odu_cards/246_IRETE_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 247,
+      "name": "OTURA OSE",
+      "filename": "247_OTURA_OSE.png",
+      "filepath": "static/odu_cards/247_OTURA_OSE.png",
+      "pattern_lines": [
+        "I  I",
+        "II II",
+        "I  I",
+        "II I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 248,
+      "name": "OSE OTURA",
+      "filename": "248_OSE_OTURA.png",
+      "filepath": "static/odu_cards/248_OSE_OTURA.png",
+      "pattern_lines": [
+        "I  I",
+        "II II",
+        "I  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 249,
+      "name": "OTURA OFUN",
+      "filename": "249_OTURA_OFUN.png",
+      "filepath": "static/odu_cards/249_OTURA_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II  I",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 250,
+      "name": "OFUN OTURA",
+      "filename": "250_OFUN_OTURA.png",
+      "filepath": "static/odu_cards/250_OFUN_OTURA.png",
+      "pattern_lines": [
+        "I  II",
+        "II  I",
+        "I  II",
+        "I  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 251,
+      "name": "IRETE OSE",
+      "filename": "251_IRETE_OSE.png",
+      "filepath": "static/odu_cards/251_IRETE_OSE.png",
+      "pattern_lines": [
+        "I   I",
+        "II  I",
+        "I   II",
+        "II  I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 252,
+      "name": "OSE IRETE",
+      "filename": "252_OSE_IRETE.png",
+      "filepath": "static/odu_cards/252_OSE_IRETE.png",
+      "pattern_lines": [
+        "I  I",
+        "I  II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 253,
+      "name": "IRETE OFUN",
+      "filename": "253_IRETE_OFUN.png",
+      "filepath": "static/odu_cards/253_IRETE_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  I",
+        "II II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 254,
+      "name": "OFUN IRETE",
+      "filename": "254_OFUN_IRETE.png",
+      "filepath": "static/odu_cards/254_OFUN_IRETE.png",
+      "pattern_lines": [
+        "I  II",
+        "I I",
+        "II II",
+        "I I"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 255,
+      "name": "OSE OFUN",
+      "filename": "255_OSE_OFUN.png",
+      "filepath": "static/odu_cards/255_OSE_OFUN.png",
+      "pattern_lines": [
+        "II  I",
+        "I  II",
+        "II  I",
+        "I  II"
+      ],
+      "has_authentic_image": true
+    },
+    {
+      "number": 256,
+      "name": "OFUN OSE",
+      "filename": "256_OFUN_OSE.png",
+      "filepath": "static/odu_cards/256_OFUN_OSE.png",
+      "pattern_lines": [
+        "I II",
+        "II I",
+        "I II",
+        "II I"
+      ],
+      "has_authentic_image": true
+    }
+  ]
+}

@@ -39,7 +39,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "001_OGBE.png",
-      "filepath": "static/odu_cards/001_OGBE.png"
+      "filepath": "static/odu_cards/001_OGBE.png",
+      "image_path": "/static/odu_cards/001_OGBE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 2,
@@ -69,7 +72,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "002_OYEKU.png",
-      "filepath": "static/odu_cards/002_OYEKU.png"
+      "filepath": "static/odu_cards/002_OYEKU.png",
+      "image_path": "/static/odu_cards/002_OYEKU_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 3,
@@ -99,7 +105,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "003_IWORI.png",
-      "filepath": "static/odu_cards/003_IWORI.png"
+      "filepath": "static/odu_cards/003_IWORI.png",
+      "image_path": "/static/odu_cards/003_IWORI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 4,
@@ -129,7 +138,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "004_ODI.png",
-      "filepath": "static/odu_cards/004_ODI.png"
+      "filepath": "static/odu_cards/004_ODI.png",
+      "image_path": "/static/odu_cards/004_ODI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 5,
@@ -160,7 +172,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "005_Odu_5.png",
-      "filepath": "static/odu_cards/005_Odu_5.png"
+      "filepath": "static/odu_cards/005_Odu_5.png",
+      "image_path": "/static/odu_cards/005_IROSUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 6,
@@ -191,7 +206,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "006_Odu_6.png",
-      "filepath": "static/odu_cards/006_Odu_6.png"
+      "filepath": "static/odu_cards/006_Odu_6.png",
+      "image_path": "/static/odu_cards/006_MEJI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 7,
@@ -221,7 +239,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "007_Odu_7.png",
-      "filepath": "static/odu_cards/007_Odu_7.png"
+      "filepath": "static/odu_cards/007_Odu_7.png",
+      "image_path": "/static/odu_cards/007_OBARA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 8,
@@ -251,7 +272,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "008_Odu_8.png",
-      "filepath": "static/odu_cards/008_Odu_8.png"
+      "filepath": "static/odu_cards/008_Odu_8.png",
+      "image_path": "/static/odu_cards/008_OKANRAN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 9,
@@ -281,7 +305,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "009_Odu_9.png",
-      "filepath": "static/odu_cards/009_Odu_9.png"
+      "filepath": "static/odu_cards/009_Odu_9.png",
+      "image_path": "/static/odu_cards/009_OGUNDA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 10,
@@ -311,7 +338,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "010_Odu_10.png",
-      "filepath": "static/odu_cards/010_Odu_10.png"
+      "filepath": "static/odu_cards/010_Odu_10.png",
+      "image_path": "/static/odu_cards/010_OSA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 11,
@@ -342,7 +372,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "011_Odu_11.png",
-      "filepath": "static/odu_cards/011_Odu_11.png"
+      "filepath": "static/odu_cards/011_Odu_11.png",
+      "image_path": "/static/odu_cards/011_IKA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 12,
@@ -372,7 +405,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "012_Odu_12.png",
-      "filepath": "static/odu_cards/012_Odu_12.png"
+      "filepath": "static/odu_cards/012_Odu_12.png",
+      "image_path": "/static/odu_cards/012_OTURUPON_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 13,
@@ -402,7 +438,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "013_Odu_13.png",
-      "filepath": "static/odu_cards/013_Odu_13.png"
+      "filepath": "static/odu_cards/013_Odu_13.png",
+      "image_path": "/static/odu_cards/013_OTURA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 14,
@@ -433,7 +472,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "014_Odu_14.png",
-      "filepath": "static/odu_cards/014_Odu_14.png"
+      "filepath": "static/odu_cards/014_Odu_14.png",
+      "image_path": "/static/odu_cards/014_IRETE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 15,
@@ -463,7 +505,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "015_Odu_15.png",
-      "filepath": "static/odu_cards/015_Odu_15.png"
+      "filepath": "static/odu_cards/015_Odu_15.png",
+      "image_path": "/static/odu_cards/015_OSE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 16,
@@ -493,7 +538,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "016_Odu_16.png",
-      "filepath": "static/odu_cards/016_Odu_16.png"
+      "filepath": "static/odu_cards/016_Odu_16.png",
+      "image_path": "/static/odu_cards/016_OFUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 17,
@@ -522,7 +570,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "017_OYEKU.png",
-      "filepath": "static/odu_cards/017_OYEKU.png"
+      "filepath": "static/odu_cards/017_OYEKU.png",
+      "image_path": "/static/odu_cards/017_OGBE_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 18,
@@ -551,7 +602,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "018_OGBE.png",
-      "filepath": "static/odu_cards/018_OGBE.png"
+      "filepath": "static/odu_cards/018_OGBE.png",
+      "image_path": "/static/odu_cards/018_OYEKU_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 19,
@@ -580,7 +634,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "019_IWORI.png",
-      "filepath": "static/odu_cards/019_IWORI.png"
+      "filepath": "static/odu_cards/019_IWORI.png",
+      "image_path": "/static/odu_cards/019_OGBE_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 20,
@@ -609,7 +666,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "020_OGBE.png",
-      "filepath": "static/odu_cards/020_OGBE.png"
+      "filepath": "static/odu_cards/020_OGBE.png",
+      "image_path": "/static/odu_cards/020_IWORI_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 21,
@@ -638,7 +698,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "021_ODI.png",
-      "filepath": "static/odu_cards/021_ODI.png"
+      "filepath": "static/odu_cards/021_ODI.png",
+      "image_path": "/static/odu_cards/021_OGBE_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 22,
@@ -667,7 +730,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "022_OGBE.png",
-      "filepath": "static/odu_cards/022_OGBE.png"
+      "filepath": "static/odu_cards/022_OGBE.png",
+      "image_path": "/static/odu_cards/022_ODI_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 23,
@@ -697,7 +763,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "023_OGBE.png",
-      "filepath": "static/odu_cards/023_OGBE.png"
+      "filepath": "static/odu_cards/023_OGBE.png",
+      "image_path": "/static/odu_cards/023_OGBE_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 24,
@@ -727,7 +796,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "024_OGBE.png",
-      "filepath": "static/odu_cards/024_OGBE.png"
+      "filepath": "static/odu_cards/024_OGBE.png",
+      "image_path": "/static/odu_cards/024_IROSUN_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 25,
@@ -757,7 +829,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "025_OGBE.png",
-      "filepath": "static/odu_cards/025_OGBE.png"
+      "filepath": "static/odu_cards/025_OGBE.png",
+      "image_path": "/static/odu_cards/025_OGBE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 26,
@@ -787,7 +862,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "026_OGBE.png",
-      "filepath": "static/odu_cards/026_OGBE.png"
+      "filepath": "static/odu_cards/026_OGBE.png",
+      "image_path": "/static/odu_cards/026_OGBE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 27,
@@ -816,7 +894,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "027_OGBE.png",
-      "filepath": "static/odu_cards/027_OGBE.png"
+      "filepath": "static/odu_cards/027_OGBE.png",
+      "image_path": "/static/odu_cards/027_OGBE_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 28,
@@ -845,7 +926,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "028_OGBE.png",
-      "filepath": "static/odu_cards/028_OGBE.png"
+      "filepath": "static/odu_cards/028_OGBE.png",
+      "image_path": "/static/odu_cards/028_OBARA_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 29,
@@ -874,7 +958,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "029_OGBE.png",
-      "filepath": "static/odu_cards/029_OGBE.png"
+      "filepath": "static/odu_cards/029_OGBE.png",
+      "image_path": "/static/odu_cards/029_OGBE_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 30,
@@ -903,7 +990,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "030_OGBE.png",
-      "filepath": "static/odu_cards/030_OGBE.png"
+      "filepath": "static/odu_cards/030_OGBE.png",
+      "image_path": "/static/odu_cards/030_OKANRAN_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 31,
@@ -932,7 +1022,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "031_OGBE.png",
-      "filepath": "static/odu_cards/031_OGBE.png"
+      "filepath": "static/odu_cards/031_OGBE.png",
+      "image_path": "/static/odu_cards/031_OGBE_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 32,
@@ -961,7 +1054,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "032_OGBE.png",
-      "filepath": "static/odu_cards/032_OGBE.png"
+      "filepath": "static/odu_cards/032_OGBE.png",
+      "image_path": "/static/odu_cards/032_OGUNDA_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 33,
@@ -990,7 +1086,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "033_OGBE.png",
-      "filepath": "static/odu_cards/033_OGBE.png"
+      "filepath": "static/odu_cards/033_OGBE.png",
+      "image_path": "/static/odu_cards/033_OGBE_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 34,
@@ -1019,7 +1118,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "034_OGBE.png",
-      "filepath": "static/odu_cards/034_OGBE.png"
+      "filepath": "static/odu_cards/034_OGBE.png",
+      "image_path": "/static/odu_cards/034_OSA_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 35,
@@ -1049,7 +1151,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "035_OGBE.png",
-      "filepath": "static/odu_cards/035_OGBE.png"
+      "filepath": "static/odu_cards/035_OGBE.png",
+      "image_path": "/static/odu_cards/035_OGBE_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 36,
@@ -1079,7 +1184,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "036_OGBE.png",
-      "filepath": "static/odu_cards/036_OGBE.png"
+      "filepath": "static/odu_cards/036_OGBE.png",
+      "image_path": "/static/odu_cards/036_IKA_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 37,
@@ -1108,7 +1216,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "037_OGBE.png",
-      "filepath": "static/odu_cards/037_OGBE.png"
+      "filepath": "static/odu_cards/037_OGBE.png",
+      "image_path": "/static/odu_cards/037_OGBE_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 38,
@@ -1137,7 +1248,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "038_OGBE.png",
-      "filepath": "static/odu_cards/038_OGBE.png"
+      "filepath": "static/odu_cards/038_OGBE.png",
+      "image_path": "/static/odu_cards/038_OTURUPON_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 39,
@@ -1166,7 +1280,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "039_OGBE.png",
-      "filepath": "static/odu_cards/039_OGBE.png"
+      "filepath": "static/odu_cards/039_OGBE.png",
+      "image_path": "/static/odu_cards/039_OGBE_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 40,
@@ -1195,7 +1312,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "040_OGBE.png",
-      "filepath": "static/odu_cards/040_OGBE.png"
+      "filepath": "static/odu_cards/040_OGBE.png",
+      "image_path": "/static/odu_cards/040_OTURA_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 41,
@@ -1225,7 +1345,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "041_OGBE.png",
-      "filepath": "static/odu_cards/041_OGBE.png"
+      "filepath": "static/odu_cards/041_OGBE.png",
+      "image_path": "/static/odu_cards/041_OGBE_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 42,
@@ -1255,7 +1378,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "042_OGBE.png",
-      "filepath": "static/odu_cards/042_OGBE.png"
+      "filepath": "static/odu_cards/042_OGBE.png",
+      "image_path": "/static/odu_cards/042_IRETE_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 43,
@@ -1284,7 +1410,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "043_OGBE.png",
-      "filepath": "static/odu_cards/043_OGBE.png"
+      "filepath": "static/odu_cards/043_OGBE.png",
+      "image_path": "/static/odu_cards/043_OGBE_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 44,
@@ -1313,7 +1442,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "044_OGBE.png",
-      "filepath": "static/odu_cards/044_OGBE.png"
+      "filepath": "static/odu_cards/044_OGBE.png",
+      "image_path": "/static/odu_cards/044_OSE_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 45,
@@ -1342,7 +1474,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "045_OGBE.png",
-      "filepath": "static/odu_cards/045_OGBE.png"
+      "filepath": "static/odu_cards/045_OGBE.png",
+      "image_path": "/static/odu_cards/045_OGBE_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 46,
@@ -1371,7 +1506,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "046_OGBE.png",
-      "filepath": "static/odu_cards/046_OGBE.png"
+      "filepath": "static/odu_cards/046_OGBE.png",
+      "image_path": "/static/odu_cards/046_OFUN_OGBE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 47,
@@ -1400,7 +1538,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "047_IWORI.png",
-      "filepath": "static/odu_cards/047_IWORI.png"
+      "filepath": "static/odu_cards/047_IWORI.png",
+      "image_path": "/static/odu_cards/047_OYEKU_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 48,
@@ -1430,7 +1571,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "048_OYEKU.png",
-      "filepath": "static/odu_cards/048_OYEKU.png"
+      "filepath": "static/odu_cards/048_OYEKU.png",
+      "image_path": "/static/odu_cards/048_OYEKU_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 49,
@@ -1459,7 +1603,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "049_ODI.png",
-      "filepath": "static/odu_cards/049_ODI.png"
+      "filepath": "static/odu_cards/049_ODI.png",
+      "image_path": "/static/odu_cards/049_OYEKU_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 50,
@@ -1488,7 +1635,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "050_OYEKU.png",
-      "filepath": "static/odu_cards/050_OYEKU.png"
+      "filepath": "static/odu_cards/050_OYEKU.png",
+      "image_path": "/static/odu_cards/050_ODI_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 51,
@@ -1518,7 +1668,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "051_OYEKU.png",
-      "filepath": "static/odu_cards/051_OYEKU.png"
+      "filepath": "static/odu_cards/051_OYEKU.png",
+      "image_path": "/static/odu_cards/051_OYEKU_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 52,
@@ -1548,7 +1701,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "052_OYEKU.png",
-      "filepath": "static/odu_cards/052_OYEKU.png"
+      "filepath": "static/odu_cards/052_OYEKU.png",
+      "image_path": "/static/odu_cards/052_IROSUN_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 53,
@@ -1578,7 +1734,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "053_OYEKU.png",
-      "filepath": "static/odu_cards/053_OYEKU.png"
+      "filepath": "static/odu_cards/053_OYEKU.png",
+      "image_path": "/static/odu_cards/053_OYEKU_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 54,
@@ -1608,7 +1767,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "054_OYEKU.png",
-      "filepath": "static/odu_cards/054_OYEKU.png"
+      "filepath": "static/odu_cards/054_OYEKU.png",
+      "image_path": "/static/odu_cards/054_OYEKU_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 55,
@@ -1637,7 +1799,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "055_OYEKU.png",
-      "filepath": "static/odu_cards/055_OYEKU.png"
+      "filepath": "static/odu_cards/055_OYEKU.png",
+      "image_path": "/static/odu_cards/055_OYEKU_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 56,
@@ -1666,7 +1831,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "056_OYEKU.png",
-      "filepath": "static/odu_cards/056_OYEKU.png"
+      "filepath": "static/odu_cards/056_OYEKU.png",
+      "image_path": "/static/odu_cards/056_OBARA_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 57,
@@ -1695,7 +1863,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "057_OYEKU.png",
-      "filepath": "static/odu_cards/057_OYEKU.png"
+      "filepath": "static/odu_cards/057_OYEKU.png",
+      "image_path": "/static/odu_cards/057_OYEKU_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 58,
@@ -1724,7 +1895,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "058_OYEKU.png",
-      "filepath": "static/odu_cards/058_OYEKU.png"
+      "filepath": "static/odu_cards/058_OYEKU.png",
+      "image_path": "/static/odu_cards/058_OKANRAN_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 59,
@@ -1753,7 +1927,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "059_OYEKU.png",
-      "filepath": "static/odu_cards/059_OYEKU.png"
+      "filepath": "static/odu_cards/059_OYEKU.png",
+      "image_path": "/static/odu_cards/059_OYEKU_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 60,
@@ -1782,7 +1959,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "060_OYEKU.png",
-      "filepath": "static/odu_cards/060_OYEKU.png"
+      "filepath": "static/odu_cards/060_OYEKU.png",
+      "image_path": "/static/odu_cards/060_OGUNDA_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 61,
@@ -1811,7 +1991,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "061_OYEKU.png",
-      "filepath": "static/odu_cards/061_OYEKU.png"
+      "filepath": "static/odu_cards/061_OYEKU.png",
+      "image_path": "/static/odu_cards/061_OYEKU_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 62,
@@ -1840,7 +2023,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "062_OYEKU.png",
-      "filepath": "static/odu_cards/062_OYEKU.png"
+      "filepath": "static/odu_cards/062_OYEKU.png",
+      "image_path": "/static/odu_cards/062_OSA_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 63,
@@ -1870,7 +2056,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "063_OYEKU.png",
-      "filepath": "static/odu_cards/063_OYEKU.png"
+      "filepath": "static/odu_cards/063_OYEKU.png",
+      "image_path": "/static/odu_cards/063_OYEKU_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 64,
@@ -1900,7 +2089,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "064_OYEKU.png",
-      "filepath": "static/odu_cards/064_OYEKU.png"
+      "filepath": "static/odu_cards/064_OYEKU.png",
+      "image_path": "/static/odu_cards/064_IKA_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 65,
@@ -1929,7 +2121,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "065_OYEKU.png",
-      "filepath": "static/odu_cards/065_OYEKU.png"
+      "filepath": "static/odu_cards/065_OYEKU.png",
+      "image_path": "/static/odu_cards/065_OYEKU_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 66,
@@ -1958,7 +2153,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "066_OYEKU.png",
-      "filepath": "static/odu_cards/066_OYEKU.png"
+      "filepath": "static/odu_cards/066_OYEKU.png",
+      "image_path": "/static/odu_cards/066_OTURUPON_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 67,
@@ -1987,7 +2185,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "067_OYEKU.png",
-      "filepath": "static/odu_cards/067_OYEKU.png"
+      "filepath": "static/odu_cards/067_OYEKU.png",
+      "image_path": "/static/odu_cards/067_OYEKU_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 68,
@@ -2016,7 +2217,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "068_OYEKU.png",
-      "filepath": "static/odu_cards/068_OYEKU.png"
+      "filepath": "static/odu_cards/068_OYEKU.png",
+      "image_path": "/static/odu_cards/068_OTURA_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 69,
@@ -2046,7 +2250,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "069_OYEKU.png",
-      "filepath": "static/odu_cards/069_OYEKU.png"
+      "filepath": "static/odu_cards/069_OYEKU.png",
+      "image_path": "/static/odu_cards/069_OYEKU_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 70,
@@ -2076,7 +2283,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "070_OYEKU.png",
-      "filepath": "static/odu_cards/070_OYEKU.png"
+      "filepath": "static/odu_cards/070_OYEKU.png",
+      "image_path": "/static/odu_cards/070_IRETE_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 71,
@@ -2105,7 +2315,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "071_OYEKU.png",
-      "filepath": "static/odu_cards/071_OYEKU.png"
+      "filepath": "static/odu_cards/071_OYEKU.png",
+      "image_path": "/static/odu_cards/071_OYEKU_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 72,
@@ -2134,7 +2347,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "072_OYEKU.png",
-      "filepath": "static/odu_cards/072_OYEKU.png"
+      "filepath": "static/odu_cards/072_OYEKU.png",
+      "image_path": "/static/odu_cards/072_OSE_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 73,
@@ -2163,7 +2379,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "073_OYEKU.png",
-      "filepath": "static/odu_cards/073_OYEKU.png"
+      "filepath": "static/odu_cards/073_OYEKU.png",
+      "image_path": "/static/odu_cards/073_OYEKU_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 74,
@@ -2192,7 +2411,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "074_OYEKU.png",
-      "filepath": "static/odu_cards/074_OYEKU.png"
+      "filepath": "static/odu_cards/074_OYEKU.png",
+      "image_path": "/static/odu_cards/074_OFUN_OYEKU.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 75,
@@ -2221,7 +2443,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "075_ODI.png",
-      "filepath": "static/odu_cards/075_ODI.png"
+      "filepath": "static/odu_cards/075_ODI.png",
+      "image_path": "/static/odu_cards/075_IWORI_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 76,
@@ -2250,7 +2475,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "076_IWORI.png",
-      "filepath": "static/odu_cards/076_IWORI.png"
+      "filepath": "static/odu_cards/076_IWORI.png",
+      "image_path": "/static/odu_cards/076_ODI_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 77,
@@ -2280,7 +2508,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "077_IWORI.png",
-      "filepath": "static/odu_cards/077_IWORI.png"
+      "filepath": "static/odu_cards/077_IWORI.png",
+      "image_path": "/static/odu_cards/077_IWORI_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 78,
@@ -2310,7 +2541,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "078_IWORI.png",
-      "filepath": "static/odu_cards/078_IWORI.png"
+      "filepath": "static/odu_cards/078_IWORI.png",
+      "image_path": "/static/odu_cards/078_IROSUN_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 79,
@@ -2340,7 +2574,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "079_IWORI.png",
-      "filepath": "static/odu_cards/079_IWORI.png"
+      "filepath": "static/odu_cards/079_IWORI.png",
+      "image_path": "/static/odu_cards/079_IWORI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 80,
@@ -2370,7 +2607,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "080_IWORI.png",
-      "filepath": "static/odu_cards/080_IWORI.png"
+      "filepath": "static/odu_cards/080_IWORI.png",
+      "image_path": "/static/odu_cards/080_IWORI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 81,
@@ -2399,7 +2639,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "081_IWORI.png",
-      "filepath": "static/odu_cards/081_IWORI.png"
+      "filepath": "static/odu_cards/081_IWORI.png",
+      "image_path": "/static/odu_cards/081_IWORI_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 82,
@@ -2428,7 +2671,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "082_IWORI.png",
-      "filepath": "static/odu_cards/082_IWORI.png"
+      "filepath": "static/odu_cards/082_IWORI.png",
+      "image_path": "/static/odu_cards/082_OBARA_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 83,
@@ -2457,7 +2703,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "083_IWORI.png",
-      "filepath": "static/odu_cards/083_IWORI.png"
+      "filepath": "static/odu_cards/083_IWORI.png",
+      "image_path": "/static/odu_cards/083_IWORI_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 84,
@@ -2486,7 +2735,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "084_IWORI.png",
-      "filepath": "static/odu_cards/084_IWORI.png"
+      "filepath": "static/odu_cards/084_IWORI.png",
+      "image_path": "/static/odu_cards/084_OKANRAN_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 85,
@@ -2515,7 +2767,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "085_IWORI.png",
-      "filepath": "static/odu_cards/085_IWORI.png"
+      "filepath": "static/odu_cards/085_IWORI.png",
+      "image_path": "/static/odu_cards/085_IWORI_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 86,
@@ -2544,7 +2799,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "086_IWORI.png",
-      "filepath": "static/odu_cards/086_IWORI.png"
+      "filepath": "static/odu_cards/086_IWORI.png",
+      "image_path": "/static/odu_cards/086_OGUNDA_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 87,
@@ -2573,7 +2831,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "087_IWORI.png",
-      "filepath": "static/odu_cards/087_IWORI.png"
+      "filepath": "static/odu_cards/087_IWORI.png",
+      "image_path": "/static/odu_cards/087_IWORI_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 88,
@@ -2602,7 +2863,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "088_IWORI.png",
-      "filepath": "static/odu_cards/088_IWORI.png"
+      "filepath": "static/odu_cards/088_IWORI.png",
+      "image_path": "/static/odu_cards/088_OSA_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 89,
@@ -2632,7 +2896,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "089_IWORI.png",
-      "filepath": "static/odu_cards/089_IWORI.png"
+      "filepath": "static/odu_cards/089_IWORI.png",
+      "image_path": "/static/odu_cards/089_IWORI_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 90,
@@ -2662,7 +2929,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "090_IWORI.png",
-      "filepath": "static/odu_cards/090_IWORI.png"
+      "filepath": "static/odu_cards/090_IWORI.png",
+      "image_path": "/static/odu_cards/090_IKA_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 91,
@@ -2691,7 +2961,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "091_IWORI.png",
-      "filepath": "static/odu_cards/091_IWORI.png"
+      "filepath": "static/odu_cards/091_IWORI.png",
+      "image_path": "/static/odu_cards/091_IWORI_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 92,
@@ -2720,7 +2993,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "092_IWORI.png",
-      "filepath": "static/odu_cards/092_IWORI.png"
+      "filepath": "static/odu_cards/092_IWORI.png",
+      "image_path": "/static/odu_cards/092_OTURUPON_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 93,
@@ -2749,7 +3025,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "093_IWORI.png",
-      "filepath": "static/odu_cards/093_IWORI.png"
+      "filepath": "static/odu_cards/093_IWORI.png",
+      "image_path": "/static/odu_cards/093_IWORI_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 94,
@@ -2778,7 +3057,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "094_IWORI.png",
-      "filepath": "static/odu_cards/094_IWORI.png"
+      "filepath": "static/odu_cards/094_IWORI.png",
+      "image_path": "/static/odu_cards/094_OTURA_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 95,
@@ -2808,7 +3090,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "095_IWORI.png",
-      "filepath": "static/odu_cards/095_IWORI.png"
+      "filepath": "static/odu_cards/095_IWORI.png",
+      "image_path": "/static/odu_cards/095_IWORI_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 96,
@@ -2838,7 +3123,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "096_IWORI.png",
-      "filepath": "static/odu_cards/096_IWORI.png"
+      "filepath": "static/odu_cards/096_IWORI.png",
+      "image_path": "/static/odu_cards/096_IRETE_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 97,
@@ -2867,7 +3155,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "097_IWORI.png",
-      "filepath": "static/odu_cards/097_IWORI.png"
+      "filepath": "static/odu_cards/097_IWORI.png",
+      "image_path": "/static/odu_cards/097_IWORI_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 98,
@@ -2896,7 +3187,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "098_IWORI.png",
-      "filepath": "static/odu_cards/098_IWORI.png"
+      "filepath": "static/odu_cards/098_IWORI.png",
+      "image_path": "/static/odu_cards/098_OSE_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 99,
@@ -2925,7 +3219,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "099_IWORI.png",
-      "filepath": "static/odu_cards/099_IWORI.png"
+      "filepath": "static/odu_cards/099_IWORI.png",
+      "image_path": "/static/odu_cards/099_IWORI_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 100,
@@ -2954,7 +3251,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "100_IWORI.png",
-      "filepath": "static/odu_cards/100_IWORI.png"
+      "filepath": "static/odu_cards/100_IWORI.png",
+      "image_path": "/static/odu_cards/100_OFUN_IWORI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 101,
@@ -2984,7 +3284,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "101_ODI.png",
-      "filepath": "static/odu_cards/101_ODI.png"
+      "filepath": "static/odu_cards/101_ODI.png",
+      "image_path": "/static/odu_cards/101_ODI_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 102,
@@ -3014,7 +3317,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "102_ODI.png",
-      "filepath": "static/odu_cards/102_ODI.png"
+      "filepath": "static/odu_cards/102_ODI.png",
+      "image_path": "/static/odu_cards/102_IROSUN_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 103,
@@ -3044,7 +3350,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "103_ODI.png",
-      "filepath": "static/odu_cards/103_ODI.png"
+      "filepath": "static/odu_cards/103_ODI.png",
+      "image_path": "/static/odu_cards/103_ODI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 104,
@@ -3074,7 +3383,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "104_ODI.png",
-      "filepath": "static/odu_cards/104_ODI.png"
+      "filepath": "static/odu_cards/104_ODI.png",
+      "image_path": "/static/odu_cards/104_ODI_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 105,
@@ -3103,7 +3415,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "105_ODI.png",
-      "filepath": "static/odu_cards/105_ODI.png"
+      "filepath": "static/odu_cards/105_ODI.png",
+      "image_path": "/static/odu_cards/105_ODI_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 106,
@@ -3132,7 +3447,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "106_ODI.png",
-      "filepath": "static/odu_cards/106_ODI.png"
+      "filepath": "static/odu_cards/106_ODI.png",
+      "image_path": "/static/odu_cards/106_OBARA_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 107,
@@ -3161,7 +3479,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "107_ODI.png",
-      "filepath": "static/odu_cards/107_ODI.png"
+      "filepath": "static/odu_cards/107_ODI.png",
+      "image_path": "/static/odu_cards/107_ODI_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 108,
@@ -3190,7 +3511,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "108_ODI.png",
-      "filepath": "static/odu_cards/108_ODI.png"
+      "filepath": "static/odu_cards/108_ODI.png",
+      "image_path": "/static/odu_cards/108_OKANRAN_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 109,
@@ -3219,7 +3543,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "109_ODI.png",
-      "filepath": "static/odu_cards/109_ODI.png"
+      "filepath": "static/odu_cards/109_ODI.png",
+      "image_path": "/static/odu_cards/109_ODI_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 110,
@@ -3248,7 +3575,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "110_ODI.png",
-      "filepath": "static/odu_cards/110_ODI.png"
+      "filepath": "static/odu_cards/110_ODI.png",
+      "image_path": "/static/odu_cards/110_OGUNDA_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 111,
@@ -3277,7 +3607,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "111_ODI.png",
-      "filepath": "static/odu_cards/111_ODI.png"
+      "filepath": "static/odu_cards/111_ODI.png",
+      "image_path": "/static/odu_cards/111_ODI_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 112,
@@ -3306,7 +3639,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "112_ODI.png",
-      "filepath": "static/odu_cards/112_ODI.png"
+      "filepath": "static/odu_cards/112_ODI.png",
+      "image_path": "/static/odu_cards/112_OSA_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 113,
@@ -3336,7 +3672,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "113_ODI.png",
-      "filepath": "static/odu_cards/113_ODI.png"
+      "filepath": "static/odu_cards/113_ODI.png",
+      "image_path": "/static/odu_cards/113_ODI_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 114,
@@ -3366,7 +3705,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "114_ODI.png",
-      "filepath": "static/odu_cards/114_ODI.png"
+      "filepath": "static/odu_cards/114_ODI.png",
+      "image_path": "/static/odu_cards/114_IKA_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 115,
@@ -3395,7 +3737,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "115_ODI.png",
-      "filepath": "static/odu_cards/115_ODI.png"
+      "filepath": "static/odu_cards/115_ODI.png",
+      "image_path": "/static/odu_cards/115_ODI_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 116,
@@ -3424,7 +3769,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "116_ODI.png",
-      "filepath": "static/odu_cards/116_ODI.png"
+      "filepath": "static/odu_cards/116_ODI.png",
+      "image_path": "/static/odu_cards/116_OTURUPON_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 117,
@@ -3453,7 +3801,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "117_ODI.png",
-      "filepath": "static/odu_cards/117_ODI.png"
+      "filepath": "static/odu_cards/117_ODI.png",
+      "image_path": "/static/odu_cards/117_ODI_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 118,
@@ -3482,7 +3833,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "118_ODI.png",
-      "filepath": "static/odu_cards/118_ODI.png"
+      "filepath": "static/odu_cards/118_ODI.png",
+      "image_path": "/static/odu_cards/118_OTURA_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 119,
@@ -3513,7 +3867,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "119_Odu_119.png",
-      "filepath": "static/odu_cards/119_Odu_119.png"
+      "filepath": "static/odu_cards/119_Odu_119.png",
+      "image_path": "/static/odu_cards/119_IRETE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 120,
@@ -3543,7 +3900,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "120_ODI.png",
-      "filepath": "static/odu_cards/120_ODI.png"
+      "filepath": "static/odu_cards/120_ODI.png",
+      "image_path": "/static/odu_cards/120_IRETE_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 121,
@@ -3572,7 +3932,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "121_ODI.png",
-      "filepath": "static/odu_cards/121_ODI.png"
+      "filepath": "static/odu_cards/121_ODI.png",
+      "image_path": "/static/odu_cards/121_ODI_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 122,
@@ -3601,7 +3964,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "122_ODI.png",
-      "filepath": "static/odu_cards/122_ODI.png"
+      "filepath": "static/odu_cards/122_ODI.png",
+      "image_path": "/static/odu_cards/122_OSE_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 123,
@@ -3630,7 +3996,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "123_ODI.png",
-      "filepath": "static/odu_cards/123_ODI.png"
+      "filepath": "static/odu_cards/123_ODI.png",
+      "image_path": "/static/odu_cards/123_ODI_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 124,
@@ -3659,7 +4028,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "124_ODI.png",
-      "filepath": "static/odu_cards/124_ODI.png"
+      "filepath": "static/odu_cards/124_ODI.png",
+      "image_path": "/static/odu_cards/124_OFUN_ODI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 125,
@@ -3690,7 +4062,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "125_Odu_125.png",
-      "filepath": "static/odu_cards/125_Odu_125.png"
+      "filepath": "static/odu_cards/125_Odu_125.png",
+      "image_path": "/static/odu_cards/125_IROSUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 126,
@@ -3721,7 +4096,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "126_Odu_126.png",
-      "filepath": "static/odu_cards/126_Odu_126.png"
+      "filepath": "static/odu_cards/126_Odu_126.png",
+      "image_path": "/static/odu_cards/126_IROSUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 127,
@@ -3751,7 +4129,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "127_Odu_127.png",
-      "filepath": "static/odu_cards/127_Odu_127.png"
+      "filepath": "static/odu_cards/127_Odu_127.png",
+      "image_path": "/static/odu_cards/127_IROSUN_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 128,
@@ -3781,7 +4162,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "128_Odu_128.png",
-      "filepath": "static/odu_cards/128_Odu_128.png"
+      "filepath": "static/odu_cards/128_Odu_128.png",
+      "image_path": "/static/odu_cards/128_OBARA_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 129,
@@ -3811,7 +4195,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "129_Odu_129.png",
-      "filepath": "static/odu_cards/129_Odu_129.png"
+      "filepath": "static/odu_cards/129_Odu_129.png",
+      "image_path": "/static/odu_cards/129_IROSUN_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 130,
@@ -3841,7 +4228,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "130_Odu_130.png",
-      "filepath": "static/odu_cards/130_Odu_130.png"
+      "filepath": "static/odu_cards/130_Odu_130.png",
+      "image_path": "/static/odu_cards/130_OKANRAN_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 131,
@@ -3871,7 +4261,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "131_Odu_131.png",
-      "filepath": "static/odu_cards/131_Odu_131.png"
+      "filepath": "static/odu_cards/131_Odu_131.png",
+      "image_path": "/static/odu_cards/131_IROSUN_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 132,
@@ -3901,7 +4294,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "132_Odu_132.png",
-      "filepath": "static/odu_cards/132_Odu_132.png"
+      "filepath": "static/odu_cards/132_Odu_132.png",
+      "image_path": "/static/odu_cards/132_OGUNDA_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 133,
@@ -3931,7 +4327,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "133_Odu_133.png",
-      "filepath": "static/odu_cards/133_Odu_133.png"
+      "filepath": "static/odu_cards/133_Odu_133.png",
+      "image_path": "/static/odu_cards/133_IROSUN_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 134,
@@ -3961,7 +4360,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "134_Odu_134.png",
-      "filepath": "static/odu_cards/134_Odu_134.png"
+      "filepath": "static/odu_cards/134_Odu_134.png",
+      "image_path": "/static/odu_cards/134_OSA_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 135,
@@ -3992,7 +4394,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "135_Odu_135.png",
-      "filepath": "static/odu_cards/135_Odu_135.png"
+      "filepath": "static/odu_cards/135_Odu_135.png",
+      "image_path": "/static/odu_cards/135_IROSUN_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 136,
@@ -4023,7 +4428,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "136_Odu_136.png",
-      "filepath": "static/odu_cards/136_Odu_136.png"
+      "filepath": "static/odu_cards/136_Odu_136.png",
+      "image_path": "/static/odu_cards/136_IKA_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 137,
@@ -4053,7 +4461,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "137_Odu_137.png",
-      "filepath": "static/odu_cards/137_Odu_137.png"
+      "filepath": "static/odu_cards/137_Odu_137.png",
+      "image_path": "/static/odu_cards/137_IROSUN_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 138,
@@ -4083,7 +4494,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "138_Odu_138.png",
-      "filepath": "static/odu_cards/138_Odu_138.png"
+      "filepath": "static/odu_cards/138_Odu_138.png",
+      "image_path": "/static/odu_cards/138_OTURUPON_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 139,
@@ -4113,7 +4527,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "139_Odu_139.png",
-      "filepath": "static/odu_cards/139_Odu_139.png"
+      "filepath": "static/odu_cards/139_Odu_139.png",
+      "image_path": "/static/odu_cards/139_IROSUN_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 140,
@@ -4143,7 +4560,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "140_Odu_140.png",
-      "filepath": "static/odu_cards/140_Odu_140.png"
+      "filepath": "static/odu_cards/140_Odu_140.png",
+      "image_path": "/static/odu_cards/140_OTURA_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 141,
@@ -4174,7 +4594,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "141_Odu_141.png",
-      "filepath": "static/odu_cards/141_Odu_141.png"
+      "filepath": "static/odu_cards/141_Odu_141.png",
+      "image_path": "/static/odu_cards/141_IROSUN_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 142,
@@ -4205,7 +4628,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "142_Odu_142.png",
-      "filepath": "static/odu_cards/142_Odu_142.png"
+      "filepath": "static/odu_cards/142_Odu_142.png",
+      "image_path": "/static/odu_cards/142_IRETE_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 143,
@@ -4235,7 +4661,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "143_Odu_143.png",
-      "filepath": "static/odu_cards/143_Odu_143.png"
+      "filepath": "static/odu_cards/143_Odu_143.png",
+      "image_path": "/static/odu_cards/143_IROSUN_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 144,
@@ -4265,7 +4694,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "144_Odu_144.png",
-      "filepath": "static/odu_cards/144_Odu_144.png"
+      "filepath": "static/odu_cards/144_Odu_144.png",
+      "image_path": "/static/odu_cards/144_OSE_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 145,
@@ -4295,7 +4727,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "145_Odu_145.png",
-      "filepath": "static/odu_cards/145_Odu_145.png"
+      "filepath": "static/odu_cards/145_Odu_145.png",
+      "image_path": "/static/odu_cards/145_IROSUN_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 146,
@@ -4325,7 +4760,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "146_Odu_146.png",
-      "filepath": "static/odu_cards/146_Odu_146.png"
+      "filepath": "static/odu_cards/146_Odu_146.png",
+      "image_path": "/static/odu_cards/146_OFUN_IROSUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 147,
@@ -4355,7 +4793,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "147_Odu_147.png",
-      "filepath": "static/odu_cards/147_Odu_147.png"
+      "filepath": "static/odu_cards/147_Odu_147.png",
+      "image_path": "/static/odu_cards/147_OBARA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 148,
@@ -4385,7 +4826,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "148_Odu_148.png",
-      "filepath": "static/odu_cards/148_Odu_148.png"
+      "filepath": "static/odu_cards/148_Odu_148.png",
+      "image_path": "/static/odu_cards/148_OBARA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 149,
@@ -4415,7 +4859,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "149_Odu_149.png",
-      "filepath": "static/odu_cards/149_Odu_149.png"
+      "filepath": "static/odu_cards/149_Odu_149.png",
+      "image_path": "/static/odu_cards/149_OKANRAN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 150,
@@ -4445,7 +4892,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "150_Odu_150.png",
-      "filepath": "static/odu_cards/150_Odu_150.png"
+      "filepath": "static/odu_cards/150_Odu_150.png",
+      "image_path": "/static/odu_cards/150_OKANRAN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 151,
@@ -4475,7 +4925,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "151_Odu_151.png",
-      "filepath": "static/odu_cards/151_Odu_151.png"
+      "filepath": "static/odu_cards/151_Odu_151.png",
+      "image_path": "/static/odu_cards/151_OGUNDA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 152,
@@ -4505,7 +4958,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "152_Odu_152.png",
-      "filepath": "static/odu_cards/152_Odu_152.png"
+      "filepath": "static/odu_cards/152_Odu_152.png",
+      "image_path": "/static/odu_cards/152_OGUNDA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 153,
@@ -4535,7 +4991,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "153_Odu_153.png",
-      "filepath": "static/odu_cards/153_Odu_153.png"
+      "filepath": "static/odu_cards/153_Odu_153.png",
+      "image_path": "/static/odu_cards/153_OSA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 154,
@@ -4565,7 +5024,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "154_Odu_154.png",
-      "filepath": "static/odu_cards/154_Odu_154.png"
+      "filepath": "static/odu_cards/154_Odu_154.png",
+      "image_path": "/static/odu_cards/154_OSA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 155,
@@ -4596,7 +5058,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "155_Odu_155.png",
-      "filepath": "static/odu_cards/155_Odu_155.png"
+      "filepath": "static/odu_cards/155_Odu_155.png",
+      "image_path": "/static/odu_cards/155_IKA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 156,
@@ -4627,7 +5092,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "156_Odu_156.png",
-      "filepath": "static/odu_cards/156_Odu_156.png"
+      "filepath": "static/odu_cards/156_Odu_156.png",
+      "image_path": "/static/odu_cards/156_IKA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 157,
@@ -4657,7 +5125,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "157_Odu_157.png",
-      "filepath": "static/odu_cards/157_Odu_157.png"
+      "filepath": "static/odu_cards/157_Odu_157.png",
+      "image_path": "/static/odu_cards/157_OTURUPON_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 158,
@@ -4687,7 +5158,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "158_Odu_158.png",
-      "filepath": "static/odu_cards/158_Odu_158.png"
+      "filepath": "static/odu_cards/158_Odu_158.png",
+      "image_path": "/static/odu_cards/158_OTURUPON_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 159,
@@ -4717,7 +5191,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "159_Odu_159.png",
-      "filepath": "static/odu_cards/159_Odu_159.png"
+      "filepath": "static/odu_cards/159_Odu_159.png",
+      "image_path": "/static/odu_cards/159_OTURA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 160,
@@ -4747,7 +5224,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "160_Odu_160.png",
-      "filepath": "static/odu_cards/160_Odu_160.png"
+      "filepath": "static/odu_cards/160_Odu_160.png",
+      "image_path": "/static/odu_cards/160_OTURA_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 161,
@@ -4778,7 +5258,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "161_Odu_161.png",
-      "filepath": "static/odu_cards/161_Odu_161.png"
+      "filepath": "static/odu_cards/161_Odu_161.png",
+      "image_path": "/static/odu_cards/161_IRETE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 162,
@@ -4809,7 +5292,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "162_Odu_162.png",
-      "filepath": "static/odu_cards/162_Odu_162.png"
+      "filepath": "static/odu_cards/162_Odu_162.png",
+      "image_path": "/static/odu_cards/162_IRETE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 163,
@@ -4839,7 +5325,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "163_Odu_163.png",
-      "filepath": "static/odu_cards/163_Odu_163.png"
+      "filepath": "static/odu_cards/163_Odu_163.png",
+      "image_path": "/static/odu_cards/163_OSE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 164,
@@ -4869,7 +5358,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "164_Odu_164.png",
-      "filepath": "static/odu_cards/164_Odu_164.png"
+      "filepath": "static/odu_cards/164_Odu_164.png",
+      "image_path": "/static/odu_cards/164_OSE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 165,
@@ -4899,7 +5391,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "165_Odu_165.png",
-      "filepath": "static/odu_cards/165_Odu_165.png"
+      "filepath": "static/odu_cards/165_Odu_165.png",
+      "image_path": "/static/odu_cards/165_OFUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 166,
@@ -4929,7 +5424,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "166_Odu_166.png",
-      "filepath": "static/odu_cards/166_Odu_166.png"
+      "filepath": "static/odu_cards/166_Odu_166.png",
+      "image_path": "/static/odu_cards/166_OFUN_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 167,
@@ -4958,7 +5456,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "167_Odu_167.png",
-      "filepath": "static/odu_cards/167_Odu_167.png"
+      "filepath": "static/odu_cards/167_Odu_167.png",
+      "image_path": "/static/odu_cards/167_OBARA_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 168,
@@ -4987,7 +5488,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "168_Odu_168.png",
-      "filepath": "static/odu_cards/168_Odu_168.png"
+      "filepath": "static/odu_cards/168_Odu_168.png",
+      "image_path": "/static/odu_cards/168_OKANRAN_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 169,
@@ -5016,7 +5520,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "169_Odu_169.png",
-      "filepath": "static/odu_cards/169_Odu_169.png"
+      "filepath": "static/odu_cards/169_Odu_169.png",
+      "image_path": "/static/odu_cards/169_OBARA_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 170,
@@ -5045,7 +5552,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "170_Odu_170.png",
-      "filepath": "static/odu_cards/170_Odu_170.png"
+      "filepath": "static/odu_cards/170_Odu_170.png",
+      "image_path": "/static/odu_cards/170_OGUNDA_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 171,
@@ -5074,7 +5584,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "171_Odu_171.png",
-      "filepath": "static/odu_cards/171_Odu_171.png"
+      "filepath": "static/odu_cards/171_Odu_171.png",
+      "image_path": "/static/odu_cards/171_OBARA_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 172,
@@ -5103,7 +5616,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "172_Odu_172.png",
-      "filepath": "static/odu_cards/172_Odu_172.png"
+      "filepath": "static/odu_cards/172_Odu_172.png",
+      "image_path": "/static/odu_cards/172_OSA_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 173,
@@ -5133,7 +5649,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "173_Odu_173.png",
-      "filepath": "static/odu_cards/173_Odu_173.png"
+      "filepath": "static/odu_cards/173_Odu_173.png",
+      "image_path": "/static/odu_cards/173_OBARA_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 174,
@@ -5163,7 +5682,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "174_Odu_174.png",
-      "filepath": "static/odu_cards/174_Odu_174.png"
+      "filepath": "static/odu_cards/174_Odu_174.png",
+      "image_path": "/static/odu_cards/174_IKA_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 175,
@@ -5192,7 +5714,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "175_Odu_175.png",
-      "filepath": "static/odu_cards/175_Odu_175.png"
+      "filepath": "static/odu_cards/175_Odu_175.png",
+      "image_path": "/static/odu_cards/175_OBARA_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 176,
@@ -5221,7 +5746,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "176_Odu_176.png",
-      "filepath": "static/odu_cards/176_Odu_176.png"
+      "filepath": "static/odu_cards/176_Odu_176.png",
+      "image_path": "/static/odu_cards/176_OTURUPON_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 177,
@@ -5250,7 +5778,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "177_Odu_177.png",
-      "filepath": "static/odu_cards/177_Odu_177.png"
+      "filepath": "static/odu_cards/177_Odu_177.png",
+      "image_path": "/static/odu_cards/177_OBARA_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 178,
@@ -5279,7 +5810,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "178_Odu_178.png",
-      "filepath": "static/odu_cards/178_Odu_178.png"
+      "filepath": "static/odu_cards/178_Odu_178.png",
+      "image_path": "/static/odu_cards/178_OTURA_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 179,
@@ -5309,7 +5843,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "179_Odu_179.png",
-      "filepath": "static/odu_cards/179_Odu_179.png"
+      "filepath": "static/odu_cards/179_Odu_179.png",
+      "image_path": "/static/odu_cards/179_OBARA_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 180,
@@ -5339,7 +5876,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "180_Odu_180.png",
-      "filepath": "static/odu_cards/180_Odu_180.png"
+      "filepath": "static/odu_cards/180_Odu_180.png",
+      "image_path": "/static/odu_cards/180_IRETE_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 181,
@@ -5368,7 +5908,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "181_Odu_181.png",
-      "filepath": "static/odu_cards/181_Odu_181.png"
+      "filepath": "static/odu_cards/181_Odu_181.png",
+      "image_path": "/static/odu_cards/181_OBARA_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 182,
@@ -5397,7 +5940,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "182_Odu_182.png",
-      "filepath": "static/odu_cards/182_Odu_182.png"
+      "filepath": "static/odu_cards/182_Odu_182.png",
+      "image_path": "/static/odu_cards/182_OSE_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 183,
@@ -5426,7 +5972,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "183_Odu_183.png",
-      "filepath": "static/odu_cards/183_Odu_183.png"
+      "filepath": "static/odu_cards/183_Odu_183.png",
+      "image_path": "/static/odu_cards/183_OBARA_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 184,
@@ -5455,7 +6004,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "184_Odu_184.png",
-      "filepath": "static/odu_cards/184_Odu_184.png"
+      "filepath": "static/odu_cards/184_Odu_184.png",
+      "image_path": "/static/odu_cards/184_OFUN_OBARA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 185,
@@ -5484,7 +6036,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "185_Odu_185.png",
-      "filepath": "static/odu_cards/185_Odu_185.png"
+      "filepath": "static/odu_cards/185_Odu_185.png",
+      "image_path": "/static/odu_cards/185_OKANRAN_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 186,
@@ -5513,7 +6068,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "186_Odu_186.png",
-      "filepath": "static/odu_cards/186_Odu_186.png"
+      "filepath": "static/odu_cards/186_Odu_186.png",
+      "image_path": "/static/odu_cards/186_OGUNDA_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 187,
@@ -5542,7 +6100,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "187_Odu_187.png",
-      "filepath": "static/odu_cards/187_Odu_187.png"
+      "filepath": "static/odu_cards/187_Odu_187.png",
+      "image_path": "/static/odu_cards/187_OKANRAN_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 188,
@@ -5571,7 +6132,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "188_Odu_188.png",
-      "filepath": "static/odu_cards/188_Odu_188.png"
+      "filepath": "static/odu_cards/188_Odu_188.png",
+      "image_path": "/static/odu_cards/188_OSA_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 189,
@@ -5601,7 +6165,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "189_Odu_189.png",
-      "filepath": "static/odu_cards/189_Odu_189.png"
+      "filepath": "static/odu_cards/189_Odu_189.png",
+      "image_path": "/static/odu_cards/189_OKANRAN_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 190,
@@ -5631,7 +6198,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "190_Odu_190.png",
-      "filepath": "static/odu_cards/190_Odu_190.png"
+      "filepath": "static/odu_cards/190_Odu_190.png",
+      "image_path": "/static/odu_cards/190_IKA_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 191,
@@ -5660,7 +6230,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "191_Odu_191.png",
-      "filepath": "static/odu_cards/191_Odu_191.png"
+      "filepath": "static/odu_cards/191_Odu_191.png",
+      "image_path": "/static/odu_cards/191_OKANRAN_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 192,
@@ -5689,7 +6262,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "192_Odu_192.png",
-      "filepath": "static/odu_cards/192_Odu_192.png"
+      "filepath": "static/odu_cards/192_Odu_192.png",
+      "image_path": "/static/odu_cards/192_OTURUPON_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 193,
@@ -5718,7 +6294,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "193_Odu_193.png",
-      "filepath": "static/odu_cards/193_Odu_193.png"
+      "filepath": "static/odu_cards/193_Odu_193.png",
+      "image_path": "/static/odu_cards/193_OKANRAN_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 194,
@@ -5747,7 +6326,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "194_Odu_194.png",
-      "filepath": "static/odu_cards/194_Odu_194.png"
+      "filepath": "static/odu_cards/194_Odu_194.png",
+      "image_path": "/static/odu_cards/194_OTURA_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 195,
@@ -5777,7 +6359,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "195_Odu_195.png",
-      "filepath": "static/odu_cards/195_Odu_195.png"
+      "filepath": "static/odu_cards/195_Odu_195.png",
+      "image_path": "/static/odu_cards/195_OKANRAN_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 196,
@@ -5807,7 +6392,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "196_Odu_196.png",
-      "filepath": "static/odu_cards/196_Odu_196.png"
+      "filepath": "static/odu_cards/196_Odu_196.png",
+      "image_path": "/static/odu_cards/196_IRETE_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 197,
@@ -5836,7 +6424,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "197_Odu_197.png",
-      "filepath": "static/odu_cards/197_Odu_197.png"
+      "filepath": "static/odu_cards/197_Odu_197.png",
+      "image_path": "/static/odu_cards/197_OKANRAN_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 198,
@@ -5865,7 +6456,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "198_Odu_198.png",
-      "filepath": "static/odu_cards/198_Odu_198.png"
+      "filepath": "static/odu_cards/198_Odu_198.png",
+      "image_path": "/static/odu_cards/198_OSE_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 199,
@@ -5894,7 +6488,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "199_Odu_199.png",
-      "filepath": "static/odu_cards/199_Odu_199.png"
+      "filepath": "static/odu_cards/199_Odu_199.png",
+      "image_path": "/static/odu_cards/199_OKANRAN_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 200,
@@ -5923,7 +6520,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "200_Odu_200.png",
-      "filepath": "static/odu_cards/200_Odu_200.png"
+      "filepath": "static/odu_cards/200_Odu_200.png",
+      "image_path": "/static/odu_cards/200_OFUN_OKANRAN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 201,
@@ -5952,7 +6552,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "201_Odu_201.png",
-      "filepath": "static/odu_cards/201_Odu_201.png"
+      "filepath": "static/odu_cards/201_Odu_201.png",
+      "image_path": "/static/odu_cards/201_OGUNDA_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 202,
@@ -5981,7 +6584,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "202_Odu_202.png",
-      "filepath": "static/odu_cards/202_Odu_202.png"
+      "filepath": "static/odu_cards/202_Odu_202.png",
+      "image_path": "/static/odu_cards/202_OSA_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 203,
@@ -6011,7 +6617,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "203_Odu_203.png",
-      "filepath": "static/odu_cards/203_Odu_203.png"
+      "filepath": "static/odu_cards/203_Odu_203.png",
+      "image_path": "/static/odu_cards/203_OGUNDA_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 204,
@@ -6041,7 +6650,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "204_Odu_204.png",
-      "filepath": "static/odu_cards/204_Odu_204.png"
+      "filepath": "static/odu_cards/204_Odu_204.png",
+      "image_path": "/static/odu_cards/204_IKA_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 205,
@@ -6070,7 +6682,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "205_Odu_205.png",
-      "filepath": "static/odu_cards/205_Odu_205.png"
+      "filepath": "static/odu_cards/205_Odu_205.png",
+      "image_path": "/static/odu_cards/205_OGUNDA_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 206,
@@ -6099,7 +6714,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "206_Odu_206.png",
-      "filepath": "static/odu_cards/206_Odu_206.png"
+      "filepath": "static/odu_cards/206_Odu_206.png",
+      "image_path": "/static/odu_cards/206_OTURUPON_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 207,
@@ -6128,7 +6746,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "207_Odu_207.png",
-      "filepath": "static/odu_cards/207_Odu_207.png"
+      "filepath": "static/odu_cards/207_Odu_207.png",
+      "image_path": "/static/odu_cards/207_OGUNDA_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 208,
@@ -6157,7 +6778,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "208_Odu_208.png",
-      "filepath": "static/odu_cards/208_Odu_208.png"
+      "filepath": "static/odu_cards/208_Odu_208.png",
+      "image_path": "/static/odu_cards/208_OTURA_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 209,
@@ -6187,7 +6811,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "209_Odu_209.png",
-      "filepath": "static/odu_cards/209_Odu_209.png"
+      "filepath": "static/odu_cards/209_Odu_209.png",
+      "image_path": "/static/odu_cards/209_OGUNDA_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 210,
@@ -6217,7 +6844,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "210_Odu_210.png",
-      "filepath": "static/odu_cards/210_Odu_210.png"
+      "filepath": "static/odu_cards/210_Odu_210.png",
+      "image_path": "/static/odu_cards/210_IRETE_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 211,
@@ -6246,7 +6876,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "211_Odu_211.png",
-      "filepath": "static/odu_cards/211_Odu_211.png"
+      "filepath": "static/odu_cards/211_Odu_211.png",
+      "image_path": "/static/odu_cards/211_OGUNDA_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 212,
@@ -6275,7 +6908,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "212_Odu_212.png",
-      "filepath": "static/odu_cards/212_Odu_212.png"
+      "filepath": "static/odu_cards/212_Odu_212.png",
+      "image_path": "/static/odu_cards/212_OSE_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 213,
@@ -6304,7 +6940,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "213_Odu_213.png",
-      "filepath": "static/odu_cards/213_Odu_213.png"
+      "filepath": "static/odu_cards/213_Odu_213.png",
+      "image_path": "/static/odu_cards/213_OGUNDA_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 214,
@@ -6333,7 +6972,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "214_Odu_214.png",
-      "filepath": "static/odu_cards/214_Odu_214.png"
+      "filepath": "static/odu_cards/214_Odu_214.png",
+      "image_path": "/static/odu_cards/214_OFUN_OGUNDA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 215,
@@ -6363,7 +7005,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "215_Odu_215.png",
-      "filepath": "static/odu_cards/215_Odu_215.png"
+      "filepath": "static/odu_cards/215_Odu_215.png",
+      "image_path": "/static/odu_cards/215_OSA_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 216,
@@ -6393,7 +7038,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "216_Odu_216.png",
-      "filepath": "static/odu_cards/216_Odu_216.png"
+      "filepath": "static/odu_cards/216_Odu_216.png",
+      "image_path": "/static/odu_cards/216_IKA_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 217,
@@ -6422,7 +7070,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "217_Odu_217.png",
-      "filepath": "static/odu_cards/217_Odu_217.png"
+      "filepath": "static/odu_cards/217_Odu_217.png",
+      "image_path": "/static/odu_cards/217_OSA_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 218,
@@ -6451,7 +7102,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "218_Odu_218.png",
-      "filepath": "static/odu_cards/218_Odu_218.png"
+      "filepath": "static/odu_cards/218_Odu_218.png",
+      "image_path": "/static/odu_cards/218_OTURUPON_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 219,
@@ -6480,7 +7134,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "219_Odu_219.png",
-      "filepath": "static/odu_cards/219_Odu_219.png"
+      "filepath": "static/odu_cards/219_Odu_219.png",
+      "image_path": "/static/odu_cards/219_OSA_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 220,
@@ -6509,7 +7166,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "220_Odu_220.png",
-      "filepath": "static/odu_cards/220_Odu_220.png"
+      "filepath": "static/odu_cards/220_Odu_220.png",
+      "image_path": "/static/odu_cards/220_OTURA_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 221,
@@ -6539,7 +7199,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "221_Odu_221.png",
-      "filepath": "static/odu_cards/221_Odu_221.png"
+      "filepath": "static/odu_cards/221_Odu_221.png",
+      "image_path": "/static/odu_cards/221_OSA_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 222,
@@ -6569,7 +7232,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "222_Odu_222.png",
-      "filepath": "static/odu_cards/222_Odu_222.png"
+      "filepath": "static/odu_cards/222_Odu_222.png",
+      "image_path": "/static/odu_cards/222_IRETE_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 223,
@@ -6598,7 +7264,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "223_Odu_223.png",
-      "filepath": "static/odu_cards/223_Odu_223.png"
+      "filepath": "static/odu_cards/223_Odu_223.png",
+      "image_path": "/static/odu_cards/223_OSA_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 224,
@@ -6627,7 +7296,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "224_Odu_224.png",
-      "filepath": "static/odu_cards/224_Odu_224.png"
+      "filepath": "static/odu_cards/224_Odu_224.png",
+      "image_path": "/static/odu_cards/224_OSE_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 225,
@@ -6656,7 +7328,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "225_Odu_225.png",
-      "filepath": "static/odu_cards/225_Odu_225.png"
+      "filepath": "static/odu_cards/225_Odu_225.png",
+      "image_path": "/static/odu_cards/225_OSA_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 226,
@@ -6685,7 +7360,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "226_Odu_226.png",
-      "filepath": "static/odu_cards/226_Odu_226.png"
+      "filepath": "static/odu_cards/226_Odu_226.png",
+      "image_path": "/static/odu_cards/226_OFUN_OSA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 227,
@@ -6715,7 +7393,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "227_Odu_227.png",
-      "filepath": "static/odu_cards/227_Odu_227.png"
+      "filepath": "static/odu_cards/227_Odu_227.png",
+      "image_path": "/static/odu_cards/227_IKA_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 228,
@@ -6745,7 +7426,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "228_Odu_228.png",
-      "filepath": "static/odu_cards/228_Odu_228.png"
+      "filepath": "static/odu_cards/228_Odu_228.png",
+      "image_path": "/static/odu_cards/228_OTURUPON_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 229,
@@ -6775,7 +7459,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "229_Odu_229.png",
-      "filepath": "static/odu_cards/229_Odu_229.png"
+      "filepath": "static/odu_cards/229_Odu_229.png",
+      "image_path": "/static/odu_cards/229_IKA_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 230,
@@ -6805,7 +7492,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "230_Odu_230.png",
-      "filepath": "static/odu_cards/230_Odu_230.png"
+      "filepath": "static/odu_cards/230_Odu_230.png",
+      "image_path": "/static/odu_cards/230_OTURA_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 231,
@@ -6836,7 +7526,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "231_Odu_231.png",
-      "filepath": "static/odu_cards/231_Odu_231.png"
+      "filepath": "static/odu_cards/231_Odu_231.png",
+      "image_path": "/static/odu_cards/231_IKA_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 232,
@@ -6867,7 +7560,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "232_Odu_232.png",
-      "filepath": "static/odu_cards/232_Odu_232.png"
+      "filepath": "static/odu_cards/232_Odu_232.png",
+      "image_path": "/static/odu_cards/232_IRETE_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 233,
@@ -6897,7 +7593,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "233_Odu_233.png",
-      "filepath": "static/odu_cards/233_Odu_233.png"
+      "filepath": "static/odu_cards/233_Odu_233.png",
+      "image_path": "/static/odu_cards/233_IKA_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 234,
@@ -6927,7 +7626,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "234_Odu_234.png",
-      "filepath": "static/odu_cards/234_Odu_234.png"
+      "filepath": "static/odu_cards/234_Odu_234.png",
+      "image_path": "/static/odu_cards/234_OSE_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 235,
@@ -6957,7 +7659,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "235_Odu_235.png",
-      "filepath": "static/odu_cards/235_Odu_235.png"
+      "filepath": "static/odu_cards/235_Odu_235.png",
+      "image_path": "/static/odu_cards/235_IKA_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 236,
@@ -6987,7 +7692,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "236_Odu_236.png",
-      "filepath": "static/odu_cards/236_Odu_236.png"
+      "filepath": "static/odu_cards/236_Odu_236.png",
+      "image_path": "/static/odu_cards/236_OFUN_IKA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 237,
@@ -7016,7 +7724,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "237_Odu_237.png",
-      "filepath": "static/odu_cards/237_Odu_237.png"
+      "filepath": "static/odu_cards/237_Odu_237.png",
+      "image_path": "/static/odu_cards/237_OTURUPON_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 238,
@@ -7045,7 +7756,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "238_Odu_238.png",
-      "filepath": "static/odu_cards/238_Odu_238.png"
+      "filepath": "static/odu_cards/238_Odu_238.png",
+      "image_path": "/static/odu_cards/238_OTURA_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 239,
@@ -7075,7 +7789,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "239_Odu_239.png",
-      "filepath": "static/odu_cards/239_Odu_239.png"
+      "filepath": "static/odu_cards/239_Odu_239.png",
+      "image_path": "/static/odu_cards/239_OTURUPON_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 240,
@@ -7105,7 +7822,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "240_Odu_240.png",
-      "filepath": "static/odu_cards/240_Odu_240.png"
+      "filepath": "static/odu_cards/240_Odu_240.png",
+      "image_path": "/static/odu_cards/240_IRETE_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 241,
@@ -7134,7 +7854,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "241_Odu_241.png",
-      "filepath": "static/odu_cards/241_Odu_241.png"
+      "filepath": "static/odu_cards/241_Odu_241.png",
+      "image_path": "/static/odu_cards/241_OTURUPON_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 242,
@@ -7163,7 +7886,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "242_Odu_242.png",
-      "filepath": "static/odu_cards/242_Odu_242.png"
+      "filepath": "static/odu_cards/242_Odu_242.png",
+      "image_path": "/static/odu_cards/242_OSE_MEJI.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 243,
@@ -7192,7 +7918,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "243_Odu_243.png",
-      "filepath": "static/odu_cards/243_Odu_243.png"
+      "filepath": "static/odu_cards/243_Odu_243.png",
+      "image_path": "/static/odu_cards/243_OTURUPON_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 244,
@@ -7221,7 +7950,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "244_Odu_244.png",
-      "filepath": "static/odu_cards/244_Odu_244.png"
+      "filepath": "static/odu_cards/244_Odu_244.png",
+      "image_path": "/static/odu_cards/244_OFUN_OTURUPON.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 245,
@@ -7251,7 +7983,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "245_Odu_245.png",
-      "filepath": "static/odu_cards/245_Odu_245.png"
+      "filepath": "static/odu_cards/245_Odu_245.png",
+      "image_path": "/static/odu_cards/245_OTURA_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 246,
@@ -7281,7 +8016,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "246_Odu_246.png",
-      "filepath": "static/odu_cards/246_Odu_246.png"
+      "filepath": "static/odu_cards/246_Odu_246.png",
+      "image_path": "/static/odu_cards/246_IRETE_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 247,
@@ -7310,7 +8048,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "247_Odu_247.png",
-      "filepath": "static/odu_cards/247_Odu_247.png"
+      "filepath": "static/odu_cards/247_Odu_247.png",
+      "image_path": "/static/odu_cards/247_OTURA_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 248,
@@ -7339,7 +8080,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "248_Odu_248.png",
-      "filepath": "static/odu_cards/248_Odu_248.png"
+      "filepath": "static/odu_cards/248_Odu_248.png",
+      "image_path": "/static/odu_cards/248_OSE_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 249,
@@ -7368,7 +8112,10 @@
       "element": "Water",
       "orishaConnection": "Ṣàngó",
       "filename": "249_Odu_249.png",
-      "filepath": "static/odu_cards/249_Odu_249.png"
+      "filepath": "static/odu_cards/249_Odu_249.png",
+      "image_path": "/static/odu_cards/249_OTURA_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 250,
@@ -7397,7 +8144,10 @@
       "element": "Earth",
       "orishaConnection": "Yemọja",
       "filename": "250_Odu_250.png",
-      "filepath": "static/odu_cards/250_Odu_250.png"
+      "filepath": "static/odu_cards/250_Odu_250.png",
+      "image_path": "/static/odu_cards/250_OFUN_OTURA.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 251,
@@ -7427,7 +8177,10 @@
       "element": "Air",
       "orishaConnection": "Ọya",
       "filename": "251_Odu_251.png",
-      "filepath": "static/odu_cards/251_Odu_251.png"
+      "filepath": "static/odu_cards/251_Odu_251.png",
+      "image_path": "/static/odu_cards/251_IRETE_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 252,
@@ -7457,7 +8210,10 @@
       "element": "Fire",
       "orishaConnection": "Ògún",
       "filename": "252_Odu_252.png",
-      "filepath": "static/odu_cards/252_Odu_252.png"
+      "filepath": "static/odu_cards/252_Odu_252.png",
+      "image_path": "/static/odu_cards/252_OSE_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 253,
@@ -7487,7 +8243,10 @@
       "element": "Water",
       "orishaConnection": "Ọ̀ṣun",
       "filename": "253_Odu_253.png",
-      "filepath": "static/odu_cards/253_Odu_253.png"
+      "filepath": "static/odu_cards/253_Odu_253.png",
+      "image_path": "/static/odu_cards/253_IRETE_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 254,
@@ -7517,7 +8276,10 @@
       "element": "Earth",
       "orishaConnection": "Ọbàtálá",
       "filename": "254_Odu_254.png",
-      "filepath": "static/odu_cards/254_Odu_254.png"
+      "filepath": "static/odu_cards/254_Odu_254.png",
+      "image_path": "/static/odu_cards/254_OFUN_IRETE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 255,
@@ -7546,7 +8308,10 @@
       "element": "Air",
       "orishaConnection": "Èṣù",
       "filename": "255_Odu_255.png",
-      "filepath": "static/odu_cards/255_Odu_255.png"
+      "filepath": "static/odu_cards/255_Odu_255.png",
+      "image_path": "/static/odu_cards/255_OSE_OFUN.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     },
     {
       "number": 256,
@@ -7575,7 +8340,10 @@
       "element": "Fire",
       "orishaConnection": "Òrúnmìlà",
       "filename": "256_Odu_256.png",
-      "filepath": "static/odu_cards/256_Odu_256.png"
+      "filepath": "static/odu_cards/256_Odu_256.png",
+      "image_path": "/static/odu_cards/256_OFUN_OSE.png",
+      "has_authentic_image": true,
+      "generated_from_excel": true
     }
   ],
   "categories": {
