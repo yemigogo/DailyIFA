@@ -843,6 +843,68 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // Flask Odu Cards API endpoint
+  app.get("/api/odu-cards", async (req, res) => {
+    try {
+      // For now, return mock data since Flask backend integration is optional
+      const mockCards = [
+        {
+          filename: "eji-ogbe.png",
+          name: "Eji Ogbe",
+          url: "/static/odu_cards/001_Eji_Ogbe.png",
+          type: "major"
+        },
+        {
+          filename: "oyeku-meji.png", 
+          name: "Oyeku Meji",
+          url: "/static/odu_cards/017_Oyeku_Meji.png",
+          type: "major"
+        }
+      ];
+
+      res.json({
+        cards: mockCards,
+        total: mockCards.length,
+        message: "Flask Odu cards (demo data)"
+      });
+    } catch (error) {
+      console.error("Error fetching Flask Odu cards:", error);
+      res.status(500).json({ message: "Failed to fetch Flask Odu cards" });
+    }
+  });
+
+  // Authentic Odu Cards API endpoint (from manifest)
+  app.get("/api/odu-cards-authentic", async (req, res) => {
+    try {
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      
+      // Read the card manifest
+      const manifestPath = path.join(process.cwd(), 'static/odu_cards/card_manifest.json');
+      const manifestData = await fs.readFile(manifestPath, 'utf-8');
+      const manifest = JSON.parse(manifestData);
+      
+      // Categorize cards into major and minor Odu
+      const majorOduNumbers = [1, 17, 33, 49, 65, 81, 97, 113, 129, 145, 161, 177, 193, 209, 225, 241]; // Major Odu positions
+      
+      const categorizedManifest = {
+        ...manifest,
+        categories: {
+          major: manifest.cards.filter((card: any) => majorOduNumbers.includes(card.number)),
+          minor: manifest.cards.filter((card: any) => !majorOduNumbers.includes(card.number))
+        }
+      };
+
+      res.json(categorizedManifest);
+    } catch (error) {
+      console.error("Error fetching authentic Odu cards:", error);
+      res.status(500).json({ 
+        message: "Failed to fetch authentic Odu cards",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
