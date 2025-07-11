@@ -340,9 +340,9 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-8 mb-8">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-10 mb-8">
             {learningModules.map((module) => (
-              <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2">
+              <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
                 <span className="hidden sm:inline">{language === 'yoruba' ? module.titleYoruba : module.title}</span>
               </TabsTrigger>

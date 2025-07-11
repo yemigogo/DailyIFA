@@ -870,6 +870,126 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // Complete 256 Odu System API endpoint
+  app.get("/api/odu-256/complete", async (req, res) => {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const per_page = parseInt(req.query.per_page as string) || 20;
+      const category = req.query.category as string || 'all';
+      const search = req.query.search as string || '';
+      const primary_odu = req.query.primary_odu as string || '';
+      
+      const all256Odu = generateAll256Odu();
+      
+      // Filter by category
+      let filteredOdus = all256Odu;
+      if (category !== 'all') {
+        filteredOdus = filteredOdus.filter(odu => odu.category === category);
+      }
+      
+      // Filter by search
+      if (search) {
+        filteredOdus = filteredOdus.filter(odu => 
+          odu.name.toLowerCase().includes(search.toLowerCase()) ||
+          odu.nameYoruba.toLowerCase().includes(search.toLowerCase()) ||
+          odu.meaning.toLowerCase().includes(search.toLowerCase()) ||
+          odu.guidance.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+      
+      // Filter by primary Odu
+      if (primary_odu) {
+        filteredOdus = filteredOdus.filter(odu => 
+          odu.name.toLowerCase().includes(primary_odu.toLowerCase())
+        );
+      }
+      
+      // Pagination
+      const total = filteredOdus.length;
+      const startIndex = (page - 1) * per_page;
+      const endIndex = startIndex + per_page;
+      const paginatedOdus = filteredOdus.slice(startIndex, endIndex);
+      
+      // Convert to expected format
+      const formattedOdus = paginatedOdus.map(odu => ({
+        id: odu.id,
+        name: odu.name,
+        full_name: odu.nameYoruba,
+        pattern: odu.pattern,
+        meaning: odu.meaning,
+        guidance: odu.guidance,
+        category: odu.category,
+        spiritual_significance: odu.spiritualFocus.join(', '),
+        traditional_story: odu.proverb,
+        modern_application: odu.guidance,
+        primary_odu: odu.name.split('-')[0] || odu.name,
+        secondary_odu: odu.name.split('-')[1] || odu.name
+      }));
+      
+      res.json({
+        odu_list: formattedOdus,
+        pagination: {
+          page,
+          per_page,
+          total,
+          pages: Math.ceil(total / per_page)
+        },
+        filters: {
+          category,
+          search,
+          primary_odu
+        },
+        statistics: {
+          total_odu: total,
+          major_odu: 16,
+          minor_odu: 240
+        }
+      });
+    } catch (error) {
+      console.error("Error fetching complete 256 Odu system:", error);
+      res.status(500).json({ message: "Failed to fetch complete 256 Odu system" });
+    }
+  });
+
+  // 256 Odu Categories API endpoint
+  app.get("/api/odu-256/categories", async (req, res) => {
+    try {
+      const all256Odu = generateAll256Odu();
+      
+      // Calculate category distribution
+      const categoryStats = all256Odu.reduce((acc, odu) => {
+        acc[odu.category] = (acc[odu.category] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      // Calculate primary Odu distribution
+      const primaryOduStats = all256Odu.reduce((acc, odu) => {
+        const primaryOdu = odu.name.split('-')[0] || odu.name;
+        acc[primaryOdu] = (acc[primaryOdu] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      const categories = Object.entries(categoryStats).map(([category, count]) => ({
+        category,
+        count
+      }));
+      
+      const primary_odu_distribution = Object.entries(primaryOduStats).map(([primary_odu, count]) => ({
+        primary_odu,
+        count
+      }));
+      
+      res.json({
+        categories,
+        primary_odu_distribution,
+        total_combinations: 256
+      });
+    } catch (error) {
+      console.error("Error fetching 256 Odu categories:", error);
+      res.status(500).json({ message: "Failed to fetch 256 Odu categories" });
+    }
+  });
+
   // Authentic Odu Cards API endpoint (from manifest)
   app.get("/api/odu-cards-authentic", async (req, res) => {
     try {
