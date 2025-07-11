@@ -1,0 +1,3090 @@
+{
+  "metadata": {
+    "title": "Authentic 256 Odu Cards",
+    "source": "User Excel Data",
+    "total_cards": 256,
+    "generated_at": "2025-07-11T14:36:44.879055",
+    "card_dimensions": "640x512",
+    "directory": "static/odu_cards"
+  },
+  "cards": [
+    {
+      "number": 1,
+      "name": "Eji Ogbe",
+      "filename": "001_Eji_Ogbe.png",
+      "filepath": "static/odu_cards/001_Eji_Ogbe.png"
+    },
+    {
+      "number": 2,
+      "name": "Ogbe Oyeku",
+      "filename": "002_Ogbe_Oyeku.png",
+      "filepath": "static/odu_cards/002_Ogbe_Oyeku.png"
+    },
+    {
+      "number": 3,
+      "name": "Ogbe Iwori",
+      "filename": "003_Ogbe_Iwori.png",
+      "filepath": "static/odu_cards/003_Ogbe_Iwori.png"
+    },
+    {
+      "number": 4,
+      "name": "Ogbe Idi",
+      "filename": "004_Ogbe_Idi.png",
+      "filepath": "static/odu_cards/004_Ogbe_Idi.png"
+    },
+    {
+      "number": 5,
+      "name": "Ogbe Irosun",
+      "filename": "005_Ogbe_Irosun.png",
+      "filepath": "static/odu_cards/005_Ogbe_Irosun.png"
+    },
+    {
+      "number": 6,
+      "name": "Ogbe Owonrin",
+      "filename": "006_Ogbe_Owonrin.png",
+      "filepath": "static/odu_cards/006_Ogbe_Owonrin.png"
+    },
+    {
+      "number": 7,
+      "name": "Ogbe Obara",
+      "filename": "007_Ogbe_Obara.png",
+      "filepath": "static/odu_cards/007_Ogbe_Obara.png"
+    },
+    {
+      "number": 8,
+      "name": "Ogbe Okanran",
+      "filename": "008_Ogbe_Okanran.png",
+      "filepath": "static/odu_cards/008_Ogbe_Okanran.png"
+    },
+    {
+      "number": 9,
+      "name": "Ogbe Ogunda",
+      "filename": "009_Ogbe_Ogunda.png",
+      "filepath": "static/odu_cards/009_Ogbe_Ogunda.png"
+    },
+    {
+      "number": 10,
+      "name": "Ogbe Osa",
+      "filename": "010_Ogbe_Osa.png",
+      "filepath": "static/odu_cards/010_Ogbe_Osa.png"
+    },
+    {
+      "number": 11,
+      "name": "Ogbe Ika",
+      "filename": "011_Ogbe_Ika.png",
+      "filepath": "static/odu_cards/011_Ogbe_Ika.png"
+    },
+    {
+      "number": 12,
+      "name": "Ogbe Oturupon",
+      "filename": "012_Ogbe_Oturupon.png",
+      "filepath": "static/odu_cards/012_Ogbe_Oturupon.png"
+    },
+    {
+      "number": 13,
+      "name": "Ogbe Otura",
+      "filename": "013_Ogbe_Otura.png",
+      "filepath": "static/odu_cards/013_Ogbe_Otura.png"
+    },
+    {
+      "number": 14,
+      "name": "Ogbe Irete",
+      "filename": "014_Ogbe_Irete.png",
+      "filepath": "static/odu_cards/014_Ogbe_Irete.png"
+    },
+    {
+      "number": 15,
+      "name": "Ogbe Ose",
+      "filename": "015_Ogbe_Ose.png",
+      "filepath": "static/odu_cards/015_Ogbe_Ose.png"
+    },
+    {
+      "number": 16,
+      "name": "Ogbe Ofun",
+      "filename": "016_Ogbe_Ofun.png",
+      "filepath": "static/odu_cards/016_Ogbe_Ofun.png"
+    },
+    {
+      "number": 17,
+      "name": "Oyeku Ogbe",
+      "filename": "017_Oyeku_Ogbe.png",
+      "filepath": "static/odu_cards/017_Oyeku_Ogbe.png"
+    },
+    {
+      "number": 18,
+      "name": "Oyeku Meji",
+      "filename": "018_Oyeku_Meji.png",
+      "filepath": "static/odu_cards/018_Oyeku_Meji.png"
+    },
+    {
+      "number": 19,
+      "name": "Oyeku Iwori",
+      "filename": "019_Oyeku_Iwori.png",
+      "filepath": "static/odu_cards/019_Oyeku_Iwori.png"
+    },
+    {
+      "number": 20,
+      "name": "Oyeku Idi",
+      "filename": "020_Oyeku_Idi.png",
+      "filepath": "static/odu_cards/020_Oyeku_Idi.png"
+    },
+    {
+      "number": 21,
+      "name": "Oyeku Irosun",
+      "filename": "021_Oyeku_Irosun.png",
+      "filepath": "static/odu_cards/021_Oyeku_Irosun.png"
+    },
+    {
+      "number": 22,
+      "name": "Oyeku Owonrin",
+      "filename": "022_Oyeku_Owonrin.png",
+      "filepath": "static/odu_cards/022_Oyeku_Owonrin.png"
+    },
+    {
+      "number": 23,
+      "name": "Oyeku Obara",
+      "filename": "023_Oyeku_Obara.png",
+      "filepath": "static/odu_cards/023_Oyeku_Obara.png"
+    },
+    {
+      "number": 24,
+      "name": "Oyeku Okanran",
+      "filename": "024_Oyeku_Okanran.png",
+      "filepath": "static/odu_cards/024_Oyeku_Okanran.png"
+    },
+    {
+      "number": 25,
+      "name": "Oyeku Ogunda",
+      "filename": "025_Oyeku_Ogunda.png",
+      "filepath": "static/odu_cards/025_Oyeku_Ogunda.png"
+    },
+    {
+      "number": 26,
+      "name": "Oyeku Osa",
+      "filename": "026_Oyeku_Osa.png",
+      "filepath": "static/odu_cards/026_Oyeku_Osa.png"
+    },
+    {
+      "number": 27,
+      "name": "Oyeku Ika",
+      "filename": "027_Oyeku_Ika.png",
+      "filepath": "static/odu_cards/027_Oyeku_Ika.png"
+    },
+    {
+      "number": 28,
+      "name": "Oyeku Oturupon",
+      "filename": "028_Oyeku_Oturupon.png",
+      "filepath": "static/odu_cards/028_Oyeku_Oturupon.png"
+    },
+    {
+      "number": 29,
+      "name": "Oyeku Otura",
+      "filename": "029_Oyeku_Otura.png",
+      "filepath": "static/odu_cards/029_Oyeku_Otura.png"
+    },
+    {
+      "number": 30,
+      "name": "Oyeku Irete",
+      "filename": "030_Oyeku_Irete.png",
+      "filepath": "static/odu_cards/030_Oyeku_Irete.png"
+    },
+    {
+      "number": 31,
+      "name": "Oyeku Ose",
+      "filename": "031_Oyeku_Ose.png",
+      "filepath": "static/odu_cards/031_Oyeku_Ose.png"
+    },
+    {
+      "number": 32,
+      "name": "Oyeku Ofun",
+      "filename": "032_Oyeku_Ofun.png",
+      "filepath": "static/odu_cards/032_Oyeku_Ofun.png"
+    },
+    {
+      "number": 33,
+      "name": "Iwori Ogbe",
+      "filename": "033_Iwori_Ogbe.png",
+      "filepath": "static/odu_cards/033_Iwori_Ogbe.png"
+    },
+    {
+      "number": 34,
+      "name": "Iwori Oyeku",
+      "filename": "034_Iwori_Oyeku.png",
+      "filepath": "static/odu_cards/034_Iwori_Oyeku.png"
+    },
+    {
+      "number": 35,
+      "name": "Iwori Meji",
+      "filename": "035_Iwori_Meji.png",
+      "filepath": "static/odu_cards/035_Iwori_Meji.png"
+    },
+    {
+      "number": 36,
+      "name": "Iwori Idi",
+      "filename": "036_Iwori_Idi.png",
+      "filepath": "static/odu_cards/036_Iwori_Idi.png"
+    },
+    {
+      "number": 37,
+      "name": "Iwori Irosun",
+      "filename": "037_Iwori_Irosun.png",
+      "filepath": "static/odu_cards/037_Iwori_Irosun.png"
+    },
+    {
+      "number": 38,
+      "name": "Iwori Owonrin",
+      "filename": "038_Iwori_Owonrin.png",
+      "filepath": "static/odu_cards/038_Iwori_Owonrin.png"
+    },
+    {
+      "number": 39,
+      "name": "Iwori Obara",
+      "filename": "039_Iwori_Obara.png",
+      "filepath": "static/odu_cards/039_Iwori_Obara.png"
+    },
+    {
+      "number": 40,
+      "name": "Iwori Okanran",
+      "filename": "040_Iwori_Okanran.png",
+      "filepath": "static/odu_cards/040_Iwori_Okanran.png"
+    },
+    {
+      "number": 41,
+      "name": "Iwori Ogunda",
+      "filename": "041_Iwori_Ogunda.png",
+      "filepath": "static/odu_cards/041_Iwori_Ogunda.png"
+    },
+    {
+      "number": 42,
+      "name": "Iwori Osa",
+      "filename": "042_Iwori_Osa.png",
+      "filepath": "static/odu_cards/042_Iwori_Osa.png"
+    },
+    {
+      "number": 43,
+      "name": "Iwori Ika",
+      "filename": "043_Iwori_Ika.png",
+      "filepath": "static/odu_cards/043_Iwori_Ika.png"
+    },
+    {
+      "number": 44,
+      "name": "Iwori Oturupon",
+      "filename": "044_Iwori_Oturupon.png",
+      "filepath": "static/odu_cards/044_Iwori_Oturupon.png"
+    },
+    {
+      "number": 45,
+      "name": "Iwori Otura",
+      "filename": "045_Iwori_Otura.png",
+      "filepath": "static/odu_cards/045_Iwori_Otura.png"
+    },
+    {
+      "number": 46,
+      "name": "Iwori Irete",
+      "filename": "046_Iwori_Irete.png",
+      "filepath": "static/odu_cards/046_Iwori_Irete.png"
+    },
+    {
+      "number": 47,
+      "name": "Iwori Ose",
+      "filename": "047_Iwori_Ose.png",
+      "filepath": "static/odu_cards/047_Iwori_Ose.png"
+    },
+    {
+      "number": 48,
+      "name": "Iwori Ofun",
+      "filename": "048_Iwori_Ofun.png",
+      "filepath": "static/odu_cards/048_Iwori_Ofun.png"
+    },
+    {
+      "number": 49,
+      "name": "Idi Ogbe",
+      "filename": "049_Idi_Ogbe.png",
+      "filepath": "static/odu_cards/049_Idi_Ogbe.png"
+    },
+    {
+      "number": 50,
+      "name": "Idi Oyeku",
+      "filename": "050_Idi_Oyeku.png",
+      "filepath": "static/odu_cards/050_Idi_Oyeku.png"
+    },
+    {
+      "number": 51,
+      "name": "Idi Iwori",
+      "filename": "051_Idi_Iwori.png",
+      "filepath": "static/odu_cards/051_Idi_Iwori.png"
+    },
+    {
+      "number": 52,
+      "name": "Idi Meji",
+      "filename": "052_Idi_Meji.png",
+      "filepath": "static/odu_cards/052_Idi_Meji.png"
+    },
+    {
+      "number": 53,
+      "name": "Idi Irosun",
+      "filename": "053_Idi_Irosun.png",
+      "filepath": "static/odu_cards/053_Idi_Irosun.png"
+    },
+    {
+      "number": 54,
+      "name": "Idi Owonrin",
+      "filename": "054_Idi_Owonrin.png",
+      "filepath": "static/odu_cards/054_Idi_Owonrin.png"
+    },
+    {
+      "number": 55,
+      "name": "Idi Obara",
+      "filename": "055_Idi_Obara.png",
+      "filepath": "static/odu_cards/055_Idi_Obara.png"
+    },
+    {
+      "number": 56,
+      "name": "Idi Okanran",
+      "filename": "056_Idi_Okanran.png",
+      "filepath": "static/odu_cards/056_Idi_Okanran.png"
+    },
+    {
+      "number": 57,
+      "name": "Idi Ogunda",
+      "filename": "057_Idi_Ogunda.png",
+      "filepath": "static/odu_cards/057_Idi_Ogunda.png"
+    },
+    {
+      "number": 58,
+      "name": "Idi Osa",
+      "filename": "058_Idi_Osa.png",
+      "filepath": "static/odu_cards/058_Idi_Osa.png"
+    },
+    {
+      "number": 59,
+      "name": "Idi Ika",
+      "filename": "059_Idi_Ika.png",
+      "filepath": "static/odu_cards/059_Idi_Ika.png"
+    },
+    {
+      "number": 60,
+      "name": "Idi Oturupon",
+      "filename": "060_Idi_Oturupon.png",
+      "filepath": "static/odu_cards/060_Idi_Oturupon.png"
+    },
+    {
+      "number": 61,
+      "name": "Idi Otura",
+      "filename": "061_Idi_Otura.png",
+      "filepath": "static/odu_cards/061_Idi_Otura.png"
+    },
+    {
+      "number": 62,
+      "name": "Idi Irete",
+      "filename": "062_Idi_Irete.png",
+      "filepath": "static/odu_cards/062_Idi_Irete.png"
+    },
+    {
+      "number": 63,
+      "name": "Idi Ose",
+      "filename": "063_Idi_Ose.png",
+      "filepath": "static/odu_cards/063_Idi_Ose.png"
+    },
+    {
+      "number": 64,
+      "name": "Idi Ofun",
+      "filename": "064_Idi_Ofun.png",
+      "filepath": "static/odu_cards/064_Idi_Ofun.png"
+    },
+    {
+      "number": 65,
+      "name": "Irosun Ogbe",
+      "filename": "065_Irosun_Ogbe.png",
+      "filepath": "static/odu_cards/065_Irosun_Ogbe.png"
+    },
+    {
+      "number": 66,
+      "name": "Irosun Oyeku",
+      "filename": "066_Irosun_Oyeku.png",
+      "filepath": "static/odu_cards/066_Irosun_Oyeku.png"
+    },
+    {
+      "number": 67,
+      "name": "Irosun Iwori",
+      "filename": "067_Irosun_Iwori.png",
+      "filepath": "static/odu_cards/067_Irosun_Iwori.png"
+    },
+    {
+      "number": 68,
+      "name": "Irosun Idi",
+      "filename": "068_Irosun_Idi.png",
+      "filepath": "static/odu_cards/068_Irosun_Idi.png"
+    },
+    {
+      "number": 69,
+      "name": "Irosun Meji",
+      "filename": "069_Irosun_Meji.png",
+      "filepath": "static/odu_cards/069_Irosun_Meji.png"
+    },
+    {
+      "number": 70,
+      "name": "Irosun Owonrin",
+      "filename": "070_Irosun_Owonrin.png",
+      "filepath": "static/odu_cards/070_Irosun_Owonrin.png"
+    },
+    {
+      "number": 71,
+      "name": "Irosun Obara",
+      "filename": "071_Irosun_Obara.png",
+      "filepath": "static/odu_cards/071_Irosun_Obara.png"
+    },
+    {
+      "number": 72,
+      "name": "Irosun Okanran",
+      "filename": "072_Irosun_Okanran.png",
+      "filepath": "static/odu_cards/072_Irosun_Okanran.png"
+    },
+    {
+      "number": 73,
+      "name": "Irosun Ogunda",
+      "filename": "073_Irosun_Ogunda.png",
+      "filepath": "static/odu_cards/073_Irosun_Ogunda.png"
+    },
+    {
+      "number": 74,
+      "name": "Irosun Osa",
+      "filename": "074_Irosun_Osa.png",
+      "filepath": "static/odu_cards/074_Irosun_Osa.png"
+    },
+    {
+      "number": 75,
+      "name": "Irosun Ika",
+      "filename": "075_Irosun_Ika.png",
+      "filepath": "static/odu_cards/075_Irosun_Ika.png"
+    },
+    {
+      "number": 76,
+      "name": "Irosun Oturupon",
+      "filename": "076_Irosun_Oturupon.png",
+      "filepath": "static/odu_cards/076_Irosun_Oturupon.png"
+    },
+    {
+      "number": 77,
+      "name": "Irosun Otura",
+      "filename": "077_Irosun_Otura.png",
+      "filepath": "static/odu_cards/077_Irosun_Otura.png"
+    },
+    {
+      "number": 78,
+      "name": "Irosun Irete",
+      "filename": "078_Irosun_Irete.png",
+      "filepath": "static/odu_cards/078_Irosun_Irete.png"
+    },
+    {
+      "number": 79,
+      "name": "Irosun Ose",
+      "filename": "079_Irosun_Ose.png",
+      "filepath": "static/odu_cards/079_Irosun_Ose.png"
+    },
+    {
+      "number": 80,
+      "name": "Irosun Ofun",
+      "filename": "080_Irosun_Ofun.png",
+      "filepath": "static/odu_cards/080_Irosun_Ofun.png"
+    },
+    {
+      "number": 81,
+      "name": "Owonrin Ogbe",
+      "filename": "081_Owonrin_Ogbe.png",
+      "filepath": "static/odu_cards/081_Owonrin_Ogbe.png"
+    },
+    {
+      "number": 82,
+      "name": "Owonrin Oyeku",
+      "filename": "082_Owonrin_Oyeku.png",
+      "filepath": "static/odu_cards/082_Owonrin_Oyeku.png"
+    },
+    {
+      "number": 83,
+      "name": "Owonrin Iwori",
+      "filename": "083_Owonrin_Iwori.png",
+      "filepath": "static/odu_cards/083_Owonrin_Iwori.png"
+    },
+    {
+      "number": 84,
+      "name": "Owonrin Idi",
+      "filename": "084_Owonrin_Idi.png",
+      "filepath": "static/odu_cards/084_Owonrin_Idi.png"
+    },
+    {
+      "number": 85,
+      "name": "Owonrin Irosun",
+      "filename": "085_Owonrin_Irosun.png",
+      "filepath": "static/odu_cards/085_Owonrin_Irosun.png"
+    },
+    {
+      "number": 86,
+      "name": "Owonrin Meji",
+      "filename": "086_Owonrin_Meji.png",
+      "filepath": "static/odu_cards/086_Owonrin_Meji.png"
+    },
+    {
+      "number": 87,
+      "name": "Owonrin Obara",
+      "filename": "087_Owonrin_Obara.png",
+      "filepath": "static/odu_cards/087_Owonrin_Obara.png"
+    },
+    {
+      "number": 88,
+      "name": "Owonrin Okanran",
+      "filename": "088_Owonrin_Okanran.png",
+      "filepath": "static/odu_cards/088_Owonrin_Okanran.png"
+    },
+    {
+      "number": 89,
+      "name": "Owonrin Ogunda",
+      "filename": "089_Owonrin_Ogunda.png",
+      "filepath": "static/odu_cards/089_Owonrin_Ogunda.png"
+    },
+    {
+      "number": 90,
+      "name": "Owonrin Osa",
+      "filename": "090_Owonrin_Osa.png",
+      "filepath": "static/odu_cards/090_Owonrin_Osa.png"
+    },
+    {
+      "number": 91,
+      "name": "Owonrin Ika",
+      "filename": "091_Owonrin_Ika.png",
+      "filepath": "static/odu_cards/091_Owonrin_Ika.png"
+    },
+    {
+      "number": 92,
+      "name": "Owonrin Oturupon",
+      "filename": "092_Owonrin_Oturupon.png",
+      "filepath": "static/odu_cards/092_Owonrin_Oturupon.png"
+    },
+    {
+      "number": 93,
+      "name": "Owonrin Otura",
+      "filename": "093_Owonrin_Otura.png",
+      "filepath": "static/odu_cards/093_Owonrin_Otura.png"
+    },
+    {
+      "number": 94,
+      "name": "Owonrin Irete",
+      "filename": "094_Owonrin_Irete.png",
+      "filepath": "static/odu_cards/094_Owonrin_Irete.png"
+    },
+    {
+      "number": 95,
+      "name": "Owonrin Ose",
+      "filename": "095_Owonrin_Ose.png",
+      "filepath": "static/odu_cards/095_Owonrin_Ose.png"
+    },
+    {
+      "number": 96,
+      "name": "Owonrin Ofun",
+      "filename": "096_Owonrin_Ofun.png",
+      "filepath": "static/odu_cards/096_Owonrin_Ofun.png"
+    },
+    {
+      "number": 97,
+      "name": "Obara Ogbe",
+      "filename": "097_Obara_Ogbe.png",
+      "filepath": "static/odu_cards/097_Obara_Ogbe.png"
+    },
+    {
+      "number": 98,
+      "name": "Obara Oyeku",
+      "filename": "098_Obara_Oyeku.png",
+      "filepath": "static/odu_cards/098_Obara_Oyeku.png"
+    },
+    {
+      "number": 99,
+      "name": "Obara Iwori",
+      "filename": "099_Obara_Iwori.png",
+      "filepath": "static/odu_cards/099_Obara_Iwori.png"
+    },
+    {
+      "number": 100,
+      "name": "Obara Idi",
+      "filename": "100_Obara_Idi.png",
+      "filepath": "static/odu_cards/100_Obara_Idi.png"
+    },
+    {
+      "number": 101,
+      "name": "Obara Irosun",
+      "filename": "101_Obara_Irosun.png",
+      "filepath": "static/odu_cards/101_Obara_Irosun.png"
+    },
+    {
+      "number": 102,
+      "name": "Obara Owonrin",
+      "filename": "102_Obara_Owonrin.png",
+      "filepath": "static/odu_cards/102_Obara_Owonrin.png"
+    },
+    {
+      "number": 103,
+      "name": "Obara Meji",
+      "filename": "103_Obara_Meji.png",
+      "filepath": "static/odu_cards/103_Obara_Meji.png"
+    },
+    {
+      "number": 104,
+      "name": "Obara Okanran",
+      "filename": "104_Obara_Okanran.png",
+      "filepath": "static/odu_cards/104_Obara_Okanran.png"
+    },
+    {
+      "number": 105,
+      "name": "Obara Ogunda",
+      "filename": "105_Obara_Ogunda.png",
+      "filepath": "static/odu_cards/105_Obara_Ogunda.png"
+    },
+    {
+      "number": 106,
+      "name": "Obara Osa",
+      "filename": "106_Obara_Osa.png",
+      "filepath": "static/odu_cards/106_Obara_Osa.png"
+    },
+    {
+      "number": 107,
+      "name": "Obara Ika",
+      "filename": "107_Obara_Ika.png",
+      "filepath": "static/odu_cards/107_Obara_Ika.png"
+    },
+    {
+      "number": 108,
+      "name": "Obara Oturupon",
+      "filename": "108_Obara_Oturupon.png",
+      "filepath": "static/odu_cards/108_Obara_Oturupon.png"
+    },
+    {
+      "number": 109,
+      "name": "Obara Otura",
+      "filename": "109_Obara_Otura.png",
+      "filepath": "static/odu_cards/109_Obara_Otura.png"
+    },
+    {
+      "number": 110,
+      "name": "Obara Irete",
+      "filename": "110_Obara_Irete.png",
+      "filepath": "static/odu_cards/110_Obara_Irete.png"
+    },
+    {
+      "number": 111,
+      "name": "Obara Ose",
+      "filename": "111_Obara_Ose.png",
+      "filepath": "static/odu_cards/111_Obara_Ose.png"
+    },
+    {
+      "number": 112,
+      "name": "Obara Ofun",
+      "filename": "112_Obara_Ofun.png",
+      "filepath": "static/odu_cards/112_Obara_Ofun.png"
+    },
+    {
+      "number": 113,
+      "name": "Okanran Ogbe",
+      "filename": "113_Okanran_Ogbe.png",
+      "filepath": "static/odu_cards/113_Okanran_Ogbe.png"
+    },
+    {
+      "number": 114,
+      "name": "Okanran Oyeku",
+      "filename": "114_Okanran_Oyeku.png",
+      "filepath": "static/odu_cards/114_Okanran_Oyeku.png"
+    },
+    {
+      "number": 115,
+      "name": "Okanran Iwori",
+      "filename": "115_Okanran_Iwori.png",
+      "filepath": "static/odu_cards/115_Okanran_Iwori.png"
+    },
+    {
+      "number": 116,
+      "name": "Okanran Idi",
+      "filename": "116_Okanran_Idi.png",
+      "filepath": "static/odu_cards/116_Okanran_Idi.png"
+    },
+    {
+      "number": 117,
+      "name": "Okanran Irosun",
+      "filename": "117_Okanran_Irosun.png",
+      "filepath": "static/odu_cards/117_Okanran_Irosun.png"
+    },
+    {
+      "number": 118,
+      "name": "Okanran Owonrin",
+      "filename": "118_Okanran_Owonrin.png",
+      "filepath": "static/odu_cards/118_Okanran_Owonrin.png"
+    },
+    {
+      "number": 119,
+      "name": "Okanran Obara",
+      "filename": "119_Okanran_Obara.png",
+      "filepath": "static/odu_cards/119_Okanran_Obara.png"
+    },
+    {
+      "number": 120,
+      "name": "Okanran Meji",
+      "filename": "120_Okanran_Meji.png",
+      "filepath": "static/odu_cards/120_Okanran_Meji.png"
+    },
+    {
+      "number": 121,
+      "name": "Okanran Ogunda",
+      "filename": "121_Okanran_Ogunda.png",
+      "filepath": "static/odu_cards/121_Okanran_Ogunda.png"
+    },
+    {
+      "number": 122,
+      "name": "Okanran Osa",
+      "filename": "122_Okanran_Osa.png",
+      "filepath": "static/odu_cards/122_Okanran_Osa.png"
+    },
+    {
+      "number": 123,
+      "name": "Okanran Ika",
+      "filename": "123_Okanran_Ika.png",
+      "filepath": "static/odu_cards/123_Okanran_Ika.png"
+    },
+    {
+      "number": 124,
+      "name": "Okanran Oturupon",
+      "filename": "124_Okanran_Oturupon.png",
+      "filepath": "static/odu_cards/124_Okanran_Oturupon.png"
+    },
+    {
+      "number": 125,
+      "name": "Okanran Otura",
+      "filename": "125_Okanran_Otura.png",
+      "filepath": "static/odu_cards/125_Okanran_Otura.png"
+    },
+    {
+      "number": 126,
+      "name": "Okanran Irete",
+      "filename": "126_Okanran_Irete.png",
+      "filepath": "static/odu_cards/126_Okanran_Irete.png"
+    },
+    {
+      "number": 127,
+      "name": "Okanran Ose",
+      "filename": "127_Okanran_Ose.png",
+      "filepath": "static/odu_cards/127_Okanran_Ose.png"
+    },
+    {
+      "number": 128,
+      "name": "Okanran Ofun",
+      "filename": "128_Okanran_Ofun.png",
+      "filepath": "static/odu_cards/128_Okanran_Ofun.png"
+    },
+    {
+      "number": 129,
+      "name": "Ogunda Ogbe",
+      "filename": "129_Ogunda_Ogbe.png",
+      "filepath": "static/odu_cards/129_Ogunda_Ogbe.png"
+    },
+    {
+      "number": 130,
+      "name": "Ogunda Oyeku",
+      "filename": "130_Ogunda_Oyeku.png",
+      "filepath": "static/odu_cards/130_Ogunda_Oyeku.png"
+    },
+    {
+      "number": 131,
+      "name": "Ogunda Iwori",
+      "filename": "131_Ogunda_Iwori.png",
+      "filepath": "static/odu_cards/131_Ogunda_Iwori.png"
+    },
+    {
+      "number": 132,
+      "name": "Ogunda Idi",
+      "filename": "132_Ogunda_Idi.png",
+      "filepath": "static/odu_cards/132_Ogunda_Idi.png"
+    },
+    {
+      "number": 133,
+      "name": "Ogunda Irosun",
+      "filename": "133_Ogunda_Irosun.png",
+      "filepath": "static/odu_cards/133_Ogunda_Irosun.png"
+    },
+    {
+      "number": 134,
+      "name": "Ogunda Owonrin",
+      "filename": "134_Ogunda_Owonrin.png",
+      "filepath": "static/odu_cards/134_Ogunda_Owonrin.png"
+    },
+    {
+      "number": 135,
+      "name": "Ogunda Obara",
+      "filename": "135_Ogunda_Obara.png",
+      "filepath": "static/odu_cards/135_Ogunda_Obara.png"
+    },
+    {
+      "number": 136,
+      "name": "Ogunda Okanran",
+      "filename": "136_Ogunda_Okanran.png",
+      "filepath": "static/odu_cards/136_Ogunda_Okanran.png"
+    },
+    {
+      "number": 137,
+      "name": "Ogunda Meji",
+      "filename": "137_Ogunda_Meji.png",
+      "filepath": "static/odu_cards/137_Ogunda_Meji.png"
+    },
+    {
+      "number": 138,
+      "name": "Ogunda Osa",
+      "filename": "138_Ogunda_Osa.png",
+      "filepath": "static/odu_cards/138_Ogunda_Osa.png"
+    },
+    {
+      "number": 139,
+      "name": "Ogunda Ika",
+      "filename": "139_Ogunda_Ika.png",
+      "filepath": "static/odu_cards/139_Ogunda_Ika.png"
+    },
+    {
+      "number": 140,
+      "name": "Ogunda Oturupon",
+      "filename": "140_Ogunda_Oturupon.png",
+      "filepath": "static/odu_cards/140_Ogunda_Oturupon.png"
+    },
+    {
+      "number": 141,
+      "name": "Ogunda Otura",
+      "filename": "141_Ogunda_Otura.png",
+      "filepath": "static/odu_cards/141_Ogunda_Otura.png"
+    },
+    {
+      "number": 142,
+      "name": "Ogunda Irete",
+      "filename": "142_Ogunda_Irete.png",
+      "filepath": "static/odu_cards/142_Ogunda_Irete.png"
+    },
+    {
+      "number": 143,
+      "name": "Ogunda Ose",
+      "filename": "143_Ogunda_Ose.png",
+      "filepath": "static/odu_cards/143_Ogunda_Ose.png"
+    },
+    {
+      "number": 144,
+      "name": "Ogunda Ofun",
+      "filename": "144_Ogunda_Ofun.png",
+      "filepath": "static/odu_cards/144_Ogunda_Ofun.png"
+    },
+    {
+      "number": 145,
+      "name": "Osa Ogbe",
+      "filename": "145_Osa_Ogbe.png",
+      "filepath": "static/odu_cards/145_Osa_Ogbe.png"
+    },
+    {
+      "number": 146,
+      "name": "Osa Oyeku",
+      "filename": "146_Osa_Oyeku.png",
+      "filepath": "static/odu_cards/146_Osa_Oyeku.png"
+    },
+    {
+      "number": 147,
+      "name": "Osa Iwori",
+      "filename": "147_Osa_Iwori.png",
+      "filepath": "static/odu_cards/147_Osa_Iwori.png"
+    },
+    {
+      "number": 148,
+      "name": "Osa Idi",
+      "filename": "148_Osa_Idi.png",
+      "filepath": "static/odu_cards/148_Osa_Idi.png"
+    },
+    {
+      "number": 149,
+      "name": "Osa Irosun",
+      "filename": "149_Osa_Irosun.png",
+      "filepath": "static/odu_cards/149_Osa_Irosun.png"
+    },
+    {
+      "number": 150,
+      "name": "Osa Owonrin",
+      "filename": "150_Osa_Owonrin.png",
+      "filepath": "static/odu_cards/150_Osa_Owonrin.png"
+    },
+    {
+      "number": 151,
+      "name": "Osa Obara",
+      "filename": "151_Osa_Obara.png",
+      "filepath": "static/odu_cards/151_Osa_Obara.png"
+    },
+    {
+      "number": 152,
+      "name": "Osa Okanran",
+      "filename": "152_Osa_Okanran.png",
+      "filepath": "static/odu_cards/152_Osa_Okanran.png"
+    },
+    {
+      "number": 153,
+      "name": "Osa Ogunda",
+      "filename": "153_Osa_Ogunda.png",
+      "filepath": "static/odu_cards/153_Osa_Ogunda.png"
+    },
+    {
+      "number": 154,
+      "name": "Osa Meji",
+      "filename": "154_Osa_Meji.png",
+      "filepath": "static/odu_cards/154_Osa_Meji.png"
+    },
+    {
+      "number": 155,
+      "name": "Osa Ika",
+      "filename": "155_Osa_Ika.png",
+      "filepath": "static/odu_cards/155_Osa_Ika.png"
+    },
+    {
+      "number": 156,
+      "name": "Osa Oturupon",
+      "filename": "156_Osa_Oturupon.png",
+      "filepath": "static/odu_cards/156_Osa_Oturupon.png"
+    },
+    {
+      "number": 157,
+      "name": "Osa Otura",
+      "filename": "157_Osa_Otura.png",
+      "filepath": "static/odu_cards/157_Osa_Otura.png"
+    },
+    {
+      "number": 158,
+      "name": "Osa Irete",
+      "filename": "158_Osa_Irete.png",
+      "filepath": "static/odu_cards/158_Osa_Irete.png"
+    },
+    {
+      "number": 159,
+      "name": "Osa Ose",
+      "filename": "159_Osa_Ose.png",
+      "filepath": "static/odu_cards/159_Osa_Ose.png"
+    },
+    {
+      "number": 160,
+      "name": "Osa Ofun",
+      "filename": "160_Osa_Ofun.png",
+      "filepath": "static/odu_cards/160_Osa_Ofun.png"
+    },
+    {
+      "number": 161,
+      "name": "Ika Ogbe",
+      "filename": "161_Ika_Ogbe.png",
+      "filepath": "static/odu_cards/161_Ika_Ogbe.png"
+    },
+    {
+      "number": 162,
+      "name": "Ika Oyeku",
+      "filename": "162_Ika_Oyeku.png",
+      "filepath": "static/odu_cards/162_Ika_Oyeku.png"
+    },
+    {
+      "number": 163,
+      "name": "Ika Iwori",
+      "filename": "163_Ika_Iwori.png",
+      "filepath": "static/odu_cards/163_Ika_Iwori.png"
+    },
+    {
+      "number": 164,
+      "name": "Ika Idi",
+      "filename": "164_Ika_Idi.png",
+      "filepath": "static/odu_cards/164_Ika_Idi.png"
+    },
+    {
+      "number": 165,
+      "name": "Ika Irosun",
+      "filename": "165_Ika_Irosun.png",
+      "filepath": "static/odu_cards/165_Ika_Irosun.png"
+    },
+    {
+      "number": 166,
+      "name": "Ika Owonrin",
+      "filename": "166_Ika_Owonrin.png",
+      "filepath": "static/odu_cards/166_Ika_Owonrin.png"
+    },
+    {
+      "number": 167,
+      "name": "Ika Obara",
+      "filename": "167_Ika_Obara.png",
+      "filepath": "static/odu_cards/167_Ika_Obara.png"
+    },
+    {
+      "number": 168,
+      "name": "Ika Okanran",
+      "filename": "168_Ika_Okanran.png",
+      "filepath": "static/odu_cards/168_Ika_Okanran.png"
+    },
+    {
+      "number": 169,
+      "name": "Ika Ogunda",
+      "filename": "169_Ika_Ogunda.png",
+      "filepath": "static/odu_cards/169_Ika_Ogunda.png"
+    },
+    {
+      "number": 170,
+      "name": "Ika Osa",
+      "filename": "170_Ika_Osa.png",
+      "filepath": "static/odu_cards/170_Ika_Osa.png"
+    },
+    {
+      "number": 171,
+      "name": "Ika Meji",
+      "filename": "171_Ika_Meji.png",
+      "filepath": "static/odu_cards/171_Ika_Meji.png"
+    },
+    {
+      "number": 172,
+      "name": "Ika Oturupon",
+      "filename": "172_Ika_Oturupon.png",
+      "filepath": "static/odu_cards/172_Ika_Oturupon.png"
+    },
+    {
+      "number": 173,
+      "name": "Ika Otura",
+      "filename": "173_Ika_Otura.png",
+      "filepath": "static/odu_cards/173_Ika_Otura.png"
+    },
+    {
+      "number": 174,
+      "name": "Ika Irete",
+      "filename": "174_Ika_Irete.png",
+      "filepath": "static/odu_cards/174_Ika_Irete.png"
+    },
+    {
+      "number": 175,
+      "name": "Ika Ose",
+      "filename": "175_Ika_Ose.png",
+      "filepath": "static/odu_cards/175_Ika_Ose.png"
+    },
+    {
+      "number": 176,
+      "name": "Ika Ofun",
+      "filename": "176_Ika_Ofun.png",
+      "filepath": "static/odu_cards/176_Ika_Ofun.png"
+    },
+    {
+      "number": 177,
+      "name": "Oturupon Ogbe",
+      "filename": "177_Oturupon_Ogbe.png",
+      "filepath": "static/odu_cards/177_Oturupon_Ogbe.png"
+    },
+    {
+      "number": 178,
+      "name": "Oturupon Oyeku",
+      "filename": "178_Oturupon_Oyeku.png",
+      "filepath": "static/odu_cards/178_Oturupon_Oyeku.png"
+    },
+    {
+      "number": 179,
+      "name": "Oturupon Iwori",
+      "filename": "179_Oturupon_Iwori.png",
+      "filepath": "static/odu_cards/179_Oturupon_Iwori.png"
+    },
+    {
+      "number": 180,
+      "name": "Oturupon Idi",
+      "filename": "180_Oturupon_Idi.png",
+      "filepath": "static/odu_cards/180_Oturupon_Idi.png"
+    },
+    {
+      "number": 181,
+      "name": "Oturupon Irosun",
+      "filename": "181_Oturupon_Irosun.png",
+      "filepath": "static/odu_cards/181_Oturupon_Irosun.png"
+    },
+    {
+      "number": 182,
+      "name": "Oturupon Owonrin",
+      "filename": "182_Oturupon_Owonrin.png",
+      "filepath": "static/odu_cards/182_Oturupon_Owonrin.png"
+    },
+    {
+      "number": 183,
+      "name": "Oturupon Obara",
+      "filename": "183_Oturupon_Obara.png",
+      "filepath": "static/odu_cards/183_Oturupon_Obara.png"
+    },
+    {
+      "number": 184,
+      "name": "Oturupon Okanran",
+      "filename": "184_Oturupon_Okanran.png",
+      "filepath": "static/odu_cards/184_Oturupon_Okanran.png"
+    },
+    {
+      "number": 185,
+      "name": "Oturupon Ogunda",
+      "filename": "185_Oturupon_Ogunda.png",
+      "filepath": "static/odu_cards/185_Oturupon_Ogunda.png"
+    },
+    {
+      "number": 186,
+      "name": "Oturupon Osa",
+      "filename": "186_Oturupon_Osa.png",
+      "filepath": "static/odu_cards/186_Oturupon_Osa.png"
+    },
+    {
+      "number": 187,
+      "name": "Oturupon Ika",
+      "filename": "187_Oturupon_Ika.png",
+      "filepath": "static/odu_cards/187_Oturupon_Ika.png"
+    },
+    {
+      "number": 188,
+      "name": "Oturupon Meji",
+      "filename": "188_Oturupon_Meji.png",
+      "filepath": "static/odu_cards/188_Oturupon_Meji.png"
+    },
+    {
+      "number": 189,
+      "name": "Oturupon Otura",
+      "filename": "189_Oturupon_Otura.png",
+      "filepath": "static/odu_cards/189_Oturupon_Otura.png"
+    },
+    {
+      "number": 190,
+      "name": "Oturupon Irete",
+      "filename": "190_Oturupon_Irete.png",
+      "filepath": "static/odu_cards/190_Oturupon_Irete.png"
+    },
+    {
+      "number": 191,
+      "name": "Oturupon Ose",
+      "filename": "191_Oturupon_Ose.png",
+      "filepath": "static/odu_cards/191_Oturupon_Ose.png"
+    },
+    {
+      "number": 192,
+      "name": "Oturupon Ofun",
+      "filename": "192_Oturupon_Ofun.png",
+      "filepath": "static/odu_cards/192_Oturupon_Ofun.png"
+    },
+    {
+      "number": 193,
+      "name": "Otura Ogbe",
+      "filename": "193_Otura_Ogbe.png",
+      "filepath": "static/odu_cards/193_Otura_Ogbe.png"
+    },
+    {
+      "number": 194,
+      "name": "Otura Oyeku",
+      "filename": "194_Otura_Oyeku.png",
+      "filepath": "static/odu_cards/194_Otura_Oyeku.png"
+    },
+    {
+      "number": 195,
+      "name": "Otura Iwori",
+      "filename": "195_Otura_Iwori.png",
+      "filepath": "static/odu_cards/195_Otura_Iwori.png"
+    },
+    {
+      "number": 196,
+      "name": "Otura Idi",
+      "filename": "196_Otura_Idi.png",
+      "filepath": "static/odu_cards/196_Otura_Idi.png"
+    },
+    {
+      "number": 197,
+      "name": "Otura Irosun",
+      "filename": "197_Otura_Irosun.png",
+      "filepath": "static/odu_cards/197_Otura_Irosun.png"
+    },
+    {
+      "number": 198,
+      "name": "Otura Owonrin",
+      "filename": "198_Otura_Owonrin.png",
+      "filepath": "static/odu_cards/198_Otura_Owonrin.png"
+    },
+    {
+      "number": 199,
+      "name": "Otura Obara",
+      "filename": "199_Otura_Obara.png",
+      "filepath": "static/odu_cards/199_Otura_Obara.png"
+    },
+    {
+      "number": 200,
+      "name": "Otura Okanran",
+      "filename": "200_Otura_Okanran.png",
+      "filepath": "static/odu_cards/200_Otura_Okanran.png"
+    },
+    {
+      "number": 201,
+      "name": "Otura Ogunda",
+      "filename": "201_Otura_Ogunda.png",
+      "filepath": "static/odu_cards/201_Otura_Ogunda.png"
+    },
+    {
+      "number": 202,
+      "name": "Otura Osa",
+      "filename": "202_Otura_Osa.png",
+      "filepath": "static/odu_cards/202_Otura_Osa.png"
+    },
+    {
+      "number": 203,
+      "name": "Otura Ika",
+      "filename": "203_Otura_Ika.png",
+      "filepath": "static/odu_cards/203_Otura_Ika.png"
+    },
+    {
+      "number": 204,
+      "name": "Otura Oturupon",
+      "filename": "204_Otura_Oturupon.png",
+      "filepath": "static/odu_cards/204_Otura_Oturupon.png"
+    },
+    {
+      "number": 205,
+      "name": "Otura Meji",
+      "filename": "205_Otura_Meji.png",
+      "filepath": "static/odu_cards/205_Otura_Meji.png"
+    },
+    {
+      "number": 206,
+      "name": "Otura Irete",
+      "filename": "206_Otura_Irete.png",
+      "filepath": "static/odu_cards/206_Otura_Irete.png"
+    },
+    {
+      "number": 207,
+      "name": "Otura Ose",
+      "filename": "207_Otura_Ose.png",
+      "filepath": "static/odu_cards/207_Otura_Ose.png"
+    },
+    {
+      "number": 208,
+      "name": "Otura Ofun",
+      "filename": "208_Otura_Ofun.png",
+      "filepath": "static/odu_cards/208_Otura_Ofun.png"
+    },
+    {
+      "number": 209,
+      "name": "Irete Ogbe",
+      "filename": "209_Irete_Ogbe.png",
+      "filepath": "static/odu_cards/209_Irete_Ogbe.png"
+    },
+    {
+      "number": 210,
+      "name": "Irete Oyeku",
+      "filename": "210_Irete_Oyeku.png",
+      "filepath": "static/odu_cards/210_Irete_Oyeku.png"
+    },
+    {
+      "number": 211,
+      "name": "Irete Iwori",
+      "filename": "211_Irete_Iwori.png",
+      "filepath": "static/odu_cards/211_Irete_Iwori.png"
+    },
+    {
+      "number": 212,
+      "name": "Irete Idi",
+      "filename": "212_Irete_Idi.png",
+      "filepath": "static/odu_cards/212_Irete_Idi.png"
+    },
+    {
+      "number": 213,
+      "name": "Irete Irosun",
+      "filename": "213_Irete_Irosun.png",
+      "filepath": "static/odu_cards/213_Irete_Irosun.png"
+    },
+    {
+      "number": 214,
+      "name": "Irete Owonrin",
+      "filename": "214_Irete_Owonrin.png",
+      "filepath": "static/odu_cards/214_Irete_Owonrin.png"
+    },
+    {
+      "number": 215,
+      "name": "Irete Obara",
+      "filename": "215_Irete_Obara.png",
+      "filepath": "static/odu_cards/215_Irete_Obara.png"
+    },
+    {
+      "number": 216,
+      "name": "Irete Okanran",
+      "filename": "216_Irete_Okanran.png",
+      "filepath": "static/odu_cards/216_Irete_Okanran.png"
+    },
+    {
+      "number": 217,
+      "name": "Irete Ogunda",
+      "filename": "217_Irete_Ogunda.png",
+      "filepath": "static/odu_cards/217_Irete_Ogunda.png"
+    },
+    {
+      "number": 218,
+      "name": "Irete Osa",
+      "filename": "218_Irete_Osa.png",
+      "filepath": "static/odu_cards/218_Irete_Osa.png"
+    },
+    {
+      "number": 219,
+      "name": "Irete Ika",
+      "filename": "219_Irete_Ika.png",
+      "filepath": "static/odu_cards/219_Irete_Ika.png"
+    },
+    {
+      "number": 220,
+      "name": "Irete Oturupon",
+      "filename": "220_Irete_Oturupon.png",
+      "filepath": "static/odu_cards/220_Irete_Oturupon.png"
+    },
+    {
+      "number": 221,
+      "name": "Irete Otura",
+      "filename": "221_Irete_Otura.png",
+      "filepath": "static/odu_cards/221_Irete_Otura.png"
+    },
+    {
+      "number": 222,
+      "name": "Irete Meji",
+      "filename": "222_Irete_Meji.png",
+      "filepath": "static/odu_cards/222_Irete_Meji.png"
+    },
+    {
+      "number": 223,
+      "name": "Irete Ose",
+      "filename": "223_Irete_Ose.png",
+      "filepath": "static/odu_cards/223_Irete_Ose.png"
+    },
+    {
+      "number": 224,
+      "name": "Irete Ofun",
+      "filename": "224_Irete_Ofun.png",
+      "filepath": "static/odu_cards/224_Irete_Ofun.png"
+    },
+    {
+      "number": 225,
+      "name": "Ose Ogbe",
+      "filename": "225_Ose_Ogbe.png",
+      "filepath": "static/odu_cards/225_Ose_Ogbe.png"
+    },
+    {
+      "number": 226,
+      "name": "Ose Oyeku",
+      "filename": "226_Ose_Oyeku.png",
+      "filepath": "static/odu_cards/226_Ose_Oyeku.png"
+    },
+    {
+      "number": 227,
+      "name": "Ose Iwori",
+      "filename": "227_Ose_Iwori.png",
+      "filepath": "static/odu_cards/227_Ose_Iwori.png"
+    },
+    {
+      "number": 228,
+      "name": "Ose Idi",
+      "filename": "228_Ose_Idi.png",
+      "filepath": "static/odu_cards/228_Ose_Idi.png"
+    },
+    {
+      "number": 229,
+      "name": "Ose Irosun",
+      "filename": "229_Ose_Irosun.png",
+      "filepath": "static/odu_cards/229_Ose_Irosun.png"
+    },
+    {
+      "number": 230,
+      "name": "Ose Owonrin",
+      "filename": "230_Ose_Owonrin.png",
+      "filepath": "static/odu_cards/230_Ose_Owonrin.png"
+    },
+    {
+      "number": 231,
+      "name": "Ose Obara",
+      "filename": "231_Ose_Obara.png",
+      "filepath": "static/odu_cards/231_Ose_Obara.png"
+    },
+    {
+      "number": 232,
+      "name": "Ose Okanran",
+      "filename": "232_Ose_Okanran.png",
+      "filepath": "static/odu_cards/232_Ose_Okanran.png"
+    },
+    {
+      "number": 233,
+      "name": "Ose Ogunda",
+      "filename": "233_Ose_Ogunda.png",
+      "filepath": "static/odu_cards/233_Ose_Ogunda.png"
+    },
+    {
+      "number": 234,
+      "name": "Ose Osa",
+      "filename": "234_Ose_Osa.png",
+      "filepath": "static/odu_cards/234_Ose_Osa.png"
+    },
+    {
+      "number": 235,
+      "name": "Ose Ika",
+      "filename": "235_Ose_Ika.png",
+      "filepath": "static/odu_cards/235_Ose_Ika.png"
+    },
+    {
+      "number": 236,
+      "name": "Ose Oturupon",
+      "filename": "236_Ose_Oturupon.png",
+      "filepath": "static/odu_cards/236_Ose_Oturupon.png"
+    },
+    {
+      "number": 237,
+      "name": "Ose Otura",
+      "filename": "237_Ose_Otura.png",
+      "filepath": "static/odu_cards/237_Ose_Otura.png"
+    },
+    {
+      "number": 238,
+      "name": "Ose Irete",
+      "filename": "238_Ose_Irete.png",
+      "filepath": "static/odu_cards/238_Ose_Irete.png"
+    },
+    {
+      "number": 239,
+      "name": "Ose Meji",
+      "filename": "239_Ose_Meji.png",
+      "filepath": "static/odu_cards/239_Ose_Meji.png"
+    },
+    {
+      "number": 240,
+      "name": "Ose Ofun",
+      "filename": "240_Ose_Ofun.png",
+      "filepath": "static/odu_cards/240_Ose_Ofun.png"
+    },
+    {
+      "number": 241,
+      "name": "Ofun Ogbe",
+      "filename": "241_Ofun_Ogbe.png",
+      "filepath": "static/odu_cards/241_Ofun_Ogbe.png"
+    },
+    {
+      "number": 242,
+      "name": "Ofun Oyeku",
+      "filename": "242_Ofun_Oyeku.png",
+      "filepath": "static/odu_cards/242_Ofun_Oyeku.png"
+    },
+    {
+      "number": 243,
+      "name": "Ofun Iwori",
+      "filename": "243_Ofun_Iwori.png",
+      "filepath": "static/odu_cards/243_Ofun_Iwori.png"
+    },
+    {
+      "number": 244,
+      "name": "Ofun Idi",
+      "filename": "244_Ofun_Idi.png",
+      "filepath": "static/odu_cards/244_Ofun_Idi.png"
+    },
+    {
+      "number": 245,
+      "name": "Ofun Irosun",
+      "filename": "245_Ofun_Irosun.png",
+      "filepath": "static/odu_cards/245_Ofun_Irosun.png"
+    },
+    {
+      "number": 246,
+      "name": "Ofun Owonrin",
+      "filename": "246_Ofun_Owonrin.png",
+      "filepath": "static/odu_cards/246_Ofun_Owonrin.png"
+    },
+    {
+      "number": 247,
+      "name": "Ofun Obara",
+      "filename": "247_Ofun_Obara.png",
+      "filepath": "static/odu_cards/247_Ofun_Obara.png"
+    },
+    {
+      "number": 248,
+      "name": "Ofun Okanran",
+      "filename": "248_Ofun_Okanran.png",
+      "filepath": "static/odu_cards/248_Ofun_Okanran.png"
+    },
+    {
+      "number": 249,
+      "name": "Ofun Ogunda",
+      "filename": "249_Ofun_Ogunda.png",
+      "filepath": "static/odu_cards/249_Ofun_Ogunda.png"
+    },
+    {
+      "number": 250,
+      "name": "Ofun Osa",
+      "filename": "250_Ofun_Osa.png",
+      "filepath": "static/odu_cards/250_Ofun_Osa.png"
+    },
+    {
+      "number": 251,
+      "name": "Ofun Ika",
+      "filename": "251_Ofun_Ika.png",
+      "filepath": "static/odu_cards/251_Ofun_Ika.png"
+    },
+    {
+      "number": 252,
+      "name": "Ofun Oturupon",
+      "filename": "252_Ofun_Oturupon.png",
+      "filepath": "static/odu_cards/252_Ofun_Oturupon.png"
+    },
+    {
+      "number": 253,
+      "name": "Ofun Otura",
+      "filename": "253_Ofun_Otura.png",
+      "filepath": "static/odu_cards/253_Ofun_Otura.png"
+    },
+    {
+      "number": 254,
+      "name": "Ofun Irete",
+      "filename": "254_Ofun_Irete.png",
+      "filepath": "static/odu_cards/254_Ofun_Irete.png"
+    },
+    {
+      "number": 255,
+      "name": "Ofun Ose",
+      "filename": "255_Ofun_Ose.png",
+      "filepath": "static/odu_cards/255_Ofun_Ose.png"
+    },
+    {
+      "number": 256,
+      "name": "Ofun Meji",
+      "filename": "256_Ofun_Meji.png",
+      "filepath": "static/odu_cards/256_Ofun_Meji.png"
+    }
+  ],
+  "categories": {
+    "major": [
+      {
+        "number": 1,
+        "name": "Eji Ogbe",
+        "filename": "001_Eji_Ogbe.png",
+        "filepath": "static/odu_cards/001_Eji_Ogbe.png"
+      },
+      {
+        "number": 18,
+        "name": "Oyeku Meji",
+        "filename": "018_Oyeku_Meji.png",
+        "filepath": "static/odu_cards/018_Oyeku_Meji.png"
+      },
+      {
+        "number": 35,
+        "name": "Iwori Meji",
+        "filename": "035_Iwori_Meji.png",
+        "filepath": "static/odu_cards/035_Iwori_Meji.png"
+      },
+      {
+        "number": 52,
+        "name": "Idi Meji",
+        "filename": "052_Idi_Meji.png",
+        "filepath": "static/odu_cards/052_Idi_Meji.png"
+      },
+      {
+        "number": 69,
+        "name": "Irosun Meji",
+        "filename": "069_Irosun_Meji.png",
+        "filepath": "static/odu_cards/069_Irosun_Meji.png"
+      },
+      {
+        "number": 86,
+        "name": "Owonrin Meji",
+        "filename": "086_Owonrin_Meji.png",
+        "filepath": "static/odu_cards/086_Owonrin_Meji.png"
+      },
+      {
+        "number": 103,
+        "name": "Obara Meji",
+        "filename": "103_Obara_Meji.png",
+        "filepath": "static/odu_cards/103_Obara_Meji.png"
+      },
+      {
+        "number": 120,
+        "name": "Okanran Meji",
+        "filename": "120_Okanran_Meji.png",
+        "filepath": "static/odu_cards/120_Okanran_Meji.png"
+      },
+      {
+        "number": 137,
+        "name": "Ogunda Meji",
+        "filename": "137_Ogunda_Meji.png",
+        "filepath": "static/odu_cards/137_Ogunda_Meji.png"
+      },
+      {
+        "number": 154,
+        "name": "Osa Meji",
+        "filename": "154_Osa_Meji.png",
+        "filepath": "static/odu_cards/154_Osa_Meji.png"
+      },
+      {
+        "number": 171,
+        "name": "Ika Meji",
+        "filename": "171_Ika_Meji.png",
+        "filepath": "static/odu_cards/171_Ika_Meji.png"
+      },
+      {
+        "number": 188,
+        "name": "Oturupon Meji",
+        "filename": "188_Oturupon_Meji.png",
+        "filepath": "static/odu_cards/188_Oturupon_Meji.png"
+      },
+      {
+        "number": 205,
+        "name": "Otura Meji",
+        "filename": "205_Otura_Meji.png",
+        "filepath": "static/odu_cards/205_Otura_Meji.png"
+      },
+      {
+        "number": 222,
+        "name": "Irete Meji",
+        "filename": "222_Irete_Meji.png",
+        "filepath": "static/odu_cards/222_Irete_Meji.png"
+      },
+      {
+        "number": 239,
+        "name": "Ose Meji",
+        "filename": "239_Ose_Meji.png",
+        "filepath": "static/odu_cards/239_Ose_Meji.png"
+      },
+      {
+        "number": 256,
+        "name": "Ofun Meji",
+        "filename": "256_Ofun_Meji.png",
+        "filepath": "static/odu_cards/256_Ofun_Meji.png"
+      }
+    ],
+    "minor": [
+      {
+        "number": 2,
+        "name": "Ogbe Oyeku",
+        "filename": "002_Ogbe_Oyeku.png",
+        "filepath": "static/odu_cards/002_Ogbe_Oyeku.png"
+      },
+      {
+        "number": 3,
+        "name": "Ogbe Iwori",
+        "filename": "003_Ogbe_Iwori.png",
+        "filepath": "static/odu_cards/003_Ogbe_Iwori.png"
+      },
+      {
+        "number": 4,
+        "name": "Ogbe Idi",
+        "filename": "004_Ogbe_Idi.png",
+        "filepath": "static/odu_cards/004_Ogbe_Idi.png"
+      },
+      {
+        "number": 5,
+        "name": "Ogbe Irosun",
+        "filename": "005_Ogbe_Irosun.png",
+        "filepath": "static/odu_cards/005_Ogbe_Irosun.png"
+      },
+      {
+        "number": 6,
+        "name": "Ogbe Owonrin",
+        "filename": "006_Ogbe_Owonrin.png",
+        "filepath": "static/odu_cards/006_Ogbe_Owonrin.png"
+      },
+      {
+        "number": 7,
+        "name": "Ogbe Obara",
+        "filename": "007_Ogbe_Obara.png",
+        "filepath": "static/odu_cards/007_Ogbe_Obara.png"
+      },
+      {
+        "number": 8,
+        "name": "Ogbe Okanran",
+        "filename": "008_Ogbe_Okanran.png",
+        "filepath": "static/odu_cards/008_Ogbe_Okanran.png"
+      },
+      {
+        "number": 9,
+        "name": "Ogbe Ogunda",
+        "filename": "009_Ogbe_Ogunda.png",
+        "filepath": "static/odu_cards/009_Ogbe_Ogunda.png"
+      },
+      {
+        "number": 10,
+        "name": "Ogbe Osa",
+        "filename": "010_Ogbe_Osa.png",
+        "filepath": "static/odu_cards/010_Ogbe_Osa.png"
+      },
+      {
+        "number": 11,
+        "name": "Ogbe Ika",
+        "filename": "011_Ogbe_Ika.png",
+        "filepath": "static/odu_cards/011_Ogbe_Ika.png"
+      },
+      {
+        "number": 12,
+        "name": "Ogbe Oturupon",
+        "filename": "012_Ogbe_Oturupon.png",
+        "filepath": "static/odu_cards/012_Ogbe_Oturupon.png"
+      },
+      {
+        "number": 13,
+        "name": "Ogbe Otura",
+        "filename": "013_Ogbe_Otura.png",
+        "filepath": "static/odu_cards/013_Ogbe_Otura.png"
+      },
+      {
+        "number": 14,
+        "name": "Ogbe Irete",
+        "filename": "014_Ogbe_Irete.png",
+        "filepath": "static/odu_cards/014_Ogbe_Irete.png"
+      },
+      {
+        "number": 15,
+        "name": "Ogbe Ose",
+        "filename": "015_Ogbe_Ose.png",
+        "filepath": "static/odu_cards/015_Ogbe_Ose.png"
+      },
+      {
+        "number": 16,
+        "name": "Ogbe Ofun",
+        "filename": "016_Ogbe_Ofun.png",
+        "filepath": "static/odu_cards/016_Ogbe_Ofun.png"
+      },
+      {
+        "number": 17,
+        "name": "Oyeku Ogbe",
+        "filename": "017_Oyeku_Ogbe.png",
+        "filepath": "static/odu_cards/017_Oyeku_Ogbe.png"
+      },
+      {
+        "number": 19,
+        "name": "Oyeku Iwori",
+        "filename": "019_Oyeku_Iwori.png",
+        "filepath": "static/odu_cards/019_Oyeku_Iwori.png"
+      },
+      {
+        "number": 20,
+        "name": "Oyeku Idi",
+        "filename": "020_Oyeku_Idi.png",
+        "filepath": "static/odu_cards/020_Oyeku_Idi.png"
+      },
+      {
+        "number": 21,
+        "name": "Oyeku Irosun",
+        "filename": "021_Oyeku_Irosun.png",
+        "filepath": "static/odu_cards/021_Oyeku_Irosun.png"
+      },
+      {
+        "number": 22,
+        "name": "Oyeku Owonrin",
+        "filename": "022_Oyeku_Owonrin.png",
+        "filepath": "static/odu_cards/022_Oyeku_Owonrin.png"
+      },
+      {
+        "number": 23,
+        "name": "Oyeku Obara",
+        "filename": "023_Oyeku_Obara.png",
+        "filepath": "static/odu_cards/023_Oyeku_Obara.png"
+      },
+      {
+        "number": 24,
+        "name": "Oyeku Okanran",
+        "filename": "024_Oyeku_Okanran.png",
+        "filepath": "static/odu_cards/024_Oyeku_Okanran.png"
+      },
+      {
+        "number": 25,
+        "name": "Oyeku Ogunda",
+        "filename": "025_Oyeku_Ogunda.png",
+        "filepath": "static/odu_cards/025_Oyeku_Ogunda.png"
+      },
+      {
+        "number": 26,
+        "name": "Oyeku Osa",
+        "filename": "026_Oyeku_Osa.png",
+        "filepath": "static/odu_cards/026_Oyeku_Osa.png"
+      },
+      {
+        "number": 27,
+        "name": "Oyeku Ika",
+        "filename": "027_Oyeku_Ika.png",
+        "filepath": "static/odu_cards/027_Oyeku_Ika.png"
+      },
+      {
+        "number": 28,
+        "name": "Oyeku Oturupon",
+        "filename": "028_Oyeku_Oturupon.png",
+        "filepath": "static/odu_cards/028_Oyeku_Oturupon.png"
+      },
+      {
+        "number": 29,
+        "name": "Oyeku Otura",
+        "filename": "029_Oyeku_Otura.png",
+        "filepath": "static/odu_cards/029_Oyeku_Otura.png"
+      },
+      {
+        "number": 30,
+        "name": "Oyeku Irete",
+        "filename": "030_Oyeku_Irete.png",
+        "filepath": "static/odu_cards/030_Oyeku_Irete.png"
+      },
+      {
+        "number": 31,
+        "name": "Oyeku Ose",
+        "filename": "031_Oyeku_Ose.png",
+        "filepath": "static/odu_cards/031_Oyeku_Ose.png"
+      },
+      {
+        "number": 32,
+        "name": "Oyeku Ofun",
+        "filename": "032_Oyeku_Ofun.png",
+        "filepath": "static/odu_cards/032_Oyeku_Ofun.png"
+      },
+      {
+        "number": 33,
+        "name": "Iwori Ogbe",
+        "filename": "033_Iwori_Ogbe.png",
+        "filepath": "static/odu_cards/033_Iwori_Ogbe.png"
+      },
+      {
+        "number": 34,
+        "name": "Iwori Oyeku",
+        "filename": "034_Iwori_Oyeku.png",
+        "filepath": "static/odu_cards/034_Iwori_Oyeku.png"
+      },
+      {
+        "number": 36,
+        "name": "Iwori Idi",
+        "filename": "036_Iwori_Idi.png",
+        "filepath": "static/odu_cards/036_Iwori_Idi.png"
+      },
+      {
+        "number": 37,
+        "name": "Iwori Irosun",
+        "filename": "037_Iwori_Irosun.png",
+        "filepath": "static/odu_cards/037_Iwori_Irosun.png"
+      },
+      {
+        "number": 38,
+        "name": "Iwori Owonrin",
+        "filename": "038_Iwori_Owonrin.png",
+        "filepath": "static/odu_cards/038_Iwori_Owonrin.png"
+      },
+      {
+        "number": 39,
+        "name": "Iwori Obara",
+        "filename": "039_Iwori_Obara.png",
+        "filepath": "static/odu_cards/039_Iwori_Obara.png"
+      },
+      {
+        "number": 40,
+        "name": "Iwori Okanran",
+        "filename": "040_Iwori_Okanran.png",
+        "filepath": "static/odu_cards/040_Iwori_Okanran.png"
+      },
+      {
+        "number": 41,
+        "name": "Iwori Ogunda",
+        "filename": "041_Iwori_Ogunda.png",
+        "filepath": "static/odu_cards/041_Iwori_Ogunda.png"
+      },
+      {
+        "number": 42,
+        "name": "Iwori Osa",
+        "filename": "042_Iwori_Osa.png",
+        "filepath": "static/odu_cards/042_Iwori_Osa.png"
+      },
+      {
+        "number": 43,
+        "name": "Iwori Ika",
+        "filename": "043_Iwori_Ika.png",
+        "filepath": "static/odu_cards/043_Iwori_Ika.png"
+      },
+      {
+        "number": 44,
+        "name": "Iwori Oturupon",
+        "filename": "044_Iwori_Oturupon.png",
+        "filepath": "static/odu_cards/044_Iwori_Oturupon.png"
+      },
+      {
+        "number": 45,
+        "name": "Iwori Otura",
+        "filename": "045_Iwori_Otura.png",
+        "filepath": "static/odu_cards/045_Iwori_Otura.png"
+      },
+      {
+        "number": 46,
+        "name": "Iwori Irete",
+        "filename": "046_Iwori_Irete.png",
+        "filepath": "static/odu_cards/046_Iwori_Irete.png"
+      },
+      {
+        "number": 47,
+        "name": "Iwori Ose",
+        "filename": "047_Iwori_Ose.png",
+        "filepath": "static/odu_cards/047_Iwori_Ose.png"
+      },
+      {
+        "number": 48,
+        "name": "Iwori Ofun",
+        "filename": "048_Iwori_Ofun.png",
+        "filepath": "static/odu_cards/048_Iwori_Ofun.png"
+      },
+      {
+        "number": 49,
+        "name": "Idi Ogbe",
+        "filename": "049_Idi_Ogbe.png",
+        "filepath": "static/odu_cards/049_Idi_Ogbe.png"
+      },
+      {
+        "number": 50,
+        "name": "Idi Oyeku",
+        "filename": "050_Idi_Oyeku.png",
+        "filepath": "static/odu_cards/050_Idi_Oyeku.png"
+      },
+      {
+        "number": 51,
+        "name": "Idi Iwori",
+        "filename": "051_Idi_Iwori.png",
+        "filepath": "static/odu_cards/051_Idi_Iwori.png"
+      },
+      {
+        "number": 53,
+        "name": "Idi Irosun",
+        "filename": "053_Idi_Irosun.png",
+        "filepath": "static/odu_cards/053_Idi_Irosun.png"
+      },
+      {
+        "number": 54,
+        "name": "Idi Owonrin",
+        "filename": "054_Idi_Owonrin.png",
+        "filepath": "static/odu_cards/054_Idi_Owonrin.png"
+      },
+      {
+        "number": 55,
+        "name": "Idi Obara",
+        "filename": "055_Idi_Obara.png",
+        "filepath": "static/odu_cards/055_Idi_Obara.png"
+      },
+      {
+        "number": 56,
+        "name": "Idi Okanran",
+        "filename": "056_Idi_Okanran.png",
+        "filepath": "static/odu_cards/056_Idi_Okanran.png"
+      },
+      {
+        "number": 57,
+        "name": "Idi Ogunda",
+        "filename": "057_Idi_Ogunda.png",
+        "filepath": "static/odu_cards/057_Idi_Ogunda.png"
+      },
+      {
+        "number": 58,
+        "name": "Idi Osa",
+        "filename": "058_Idi_Osa.png",
+        "filepath": "static/odu_cards/058_Idi_Osa.png"
+      },
+      {
+        "number": 59,
+        "name": "Idi Ika",
+        "filename": "059_Idi_Ika.png",
+        "filepath": "static/odu_cards/059_Idi_Ika.png"
+      },
+      {
+        "number": 60,
+        "name": "Idi Oturupon",
+        "filename": "060_Idi_Oturupon.png",
+        "filepath": "static/odu_cards/060_Idi_Oturupon.png"
+      },
+      {
+        "number": 61,
+        "name": "Idi Otura",
+        "filename": "061_Idi_Otura.png",
+        "filepath": "static/odu_cards/061_Idi_Otura.png"
+      },
+      {
+        "number": 62,
+        "name": "Idi Irete",
+        "filename": "062_Idi_Irete.png",
+        "filepath": "static/odu_cards/062_Idi_Irete.png"
+      },
+      {
+        "number": 63,
+        "name": "Idi Ose",
+        "filename": "063_Idi_Ose.png",
+        "filepath": "static/odu_cards/063_Idi_Ose.png"
+      },
+      {
+        "number": 64,
+        "name": "Idi Ofun",
+        "filename": "064_Idi_Ofun.png",
+        "filepath": "static/odu_cards/064_Idi_Ofun.png"
+      },
+      {
+        "number": 65,
+        "name": "Irosun Ogbe",
+        "filename": "065_Irosun_Ogbe.png",
+        "filepath": "static/odu_cards/065_Irosun_Ogbe.png"
+      },
+      {
+        "number": 66,
+        "name": "Irosun Oyeku",
+        "filename": "066_Irosun_Oyeku.png",
+        "filepath": "static/odu_cards/066_Irosun_Oyeku.png"
+      },
+      {
+        "number": 67,
+        "name": "Irosun Iwori",
+        "filename": "067_Irosun_Iwori.png",
+        "filepath": "static/odu_cards/067_Irosun_Iwori.png"
+      },
+      {
+        "number": 68,
+        "name": "Irosun Idi",
+        "filename": "068_Irosun_Idi.png",
+        "filepath": "static/odu_cards/068_Irosun_Idi.png"
+      },
+      {
+        "number": 70,
+        "name": "Irosun Owonrin",
+        "filename": "070_Irosun_Owonrin.png",
+        "filepath": "static/odu_cards/070_Irosun_Owonrin.png"
+      },
+      {
+        "number": 71,
+        "name": "Irosun Obara",
+        "filename": "071_Irosun_Obara.png",
+        "filepath": "static/odu_cards/071_Irosun_Obara.png"
+      },
+      {
+        "number": 72,
+        "name": "Irosun Okanran",
+        "filename": "072_Irosun_Okanran.png",
+        "filepath": "static/odu_cards/072_Irosun_Okanran.png"
+      },
+      {
+        "number": 73,
+        "name": "Irosun Ogunda",
+        "filename": "073_Irosun_Ogunda.png",
+        "filepath": "static/odu_cards/073_Irosun_Ogunda.png"
+      },
+      {
+        "number": 74,
+        "name": "Irosun Osa",
+        "filename": "074_Irosun_Osa.png",
+        "filepath": "static/odu_cards/074_Irosun_Osa.png"
+      },
+      {
+        "number": 75,
+        "name": "Irosun Ika",
+        "filename": "075_Irosun_Ika.png",
+        "filepath": "static/odu_cards/075_Irosun_Ika.png"
+      },
+      {
+        "number": 76,
+        "name": "Irosun Oturupon",
+        "filename": "076_Irosun_Oturupon.png",
+        "filepath": "static/odu_cards/076_Irosun_Oturupon.png"
+      },
+      {
+        "number": 77,
+        "name": "Irosun Otura",
+        "filename": "077_Irosun_Otura.png",
+        "filepath": "static/odu_cards/077_Irosun_Otura.png"
+      },
+      {
+        "number": 78,
+        "name": "Irosun Irete",
+        "filename": "078_Irosun_Irete.png",
+        "filepath": "static/odu_cards/078_Irosun_Irete.png"
+      },
+      {
+        "number": 79,
+        "name": "Irosun Ose",
+        "filename": "079_Irosun_Ose.png",
+        "filepath": "static/odu_cards/079_Irosun_Ose.png"
+      },
+      {
+        "number": 80,
+        "name": "Irosun Ofun",
+        "filename": "080_Irosun_Ofun.png",
+        "filepath": "static/odu_cards/080_Irosun_Ofun.png"
+      },
+      {
+        "number": 81,
+        "name": "Owonrin Ogbe",
+        "filename": "081_Owonrin_Ogbe.png",
+        "filepath": "static/odu_cards/081_Owonrin_Ogbe.png"
+      },
+      {
+        "number": 82,
+        "name": "Owonrin Oyeku",
+        "filename": "082_Owonrin_Oyeku.png",
+        "filepath": "static/odu_cards/082_Owonrin_Oyeku.png"
+      },
+      {
+        "number": 83,
+        "name": "Owonrin Iwori",
+        "filename": "083_Owonrin_Iwori.png",
+        "filepath": "static/odu_cards/083_Owonrin_Iwori.png"
+      },
+      {
+        "number": 84,
+        "name": "Owonrin Idi",
+        "filename": "084_Owonrin_Idi.png",
+        "filepath": "static/odu_cards/084_Owonrin_Idi.png"
+      },
+      {
+        "number": 85,
+        "name": "Owonrin Irosun",
+        "filename": "085_Owonrin_Irosun.png",
+        "filepath": "static/odu_cards/085_Owonrin_Irosun.png"
+      },
+      {
+        "number": 87,
+        "name": "Owonrin Obara",
+        "filename": "087_Owonrin_Obara.png",
+        "filepath": "static/odu_cards/087_Owonrin_Obara.png"
+      },
+      {
+        "number": 88,
+        "name": "Owonrin Okanran",
+        "filename": "088_Owonrin_Okanran.png",
+        "filepath": "static/odu_cards/088_Owonrin_Okanran.png"
+      },
+      {
+        "number": 89,
+        "name": "Owonrin Ogunda",
+        "filename": "089_Owonrin_Ogunda.png",
+        "filepath": "static/odu_cards/089_Owonrin_Ogunda.png"
+      },
+      {
+        "number": 90,
+        "name": "Owonrin Osa",
+        "filename": "090_Owonrin_Osa.png",
+        "filepath": "static/odu_cards/090_Owonrin_Osa.png"
+      },
+      {
+        "number": 91,
+        "name": "Owonrin Ika",
+        "filename": "091_Owonrin_Ika.png",
+        "filepath": "static/odu_cards/091_Owonrin_Ika.png"
+      },
+      {
+        "number": 92,
+        "name": "Owonrin Oturupon",
+        "filename": "092_Owonrin_Oturupon.png",
+        "filepath": "static/odu_cards/092_Owonrin_Oturupon.png"
+      },
+      {
+        "number": 93,
+        "name": "Owonrin Otura",
+        "filename": "093_Owonrin_Otura.png",
+        "filepath": "static/odu_cards/093_Owonrin_Otura.png"
+      },
+      {
+        "number": 94,
+        "name": "Owonrin Irete",
+        "filename": "094_Owonrin_Irete.png",
+        "filepath": "static/odu_cards/094_Owonrin_Irete.png"
+      },
+      {
+        "number": 95,
+        "name": "Owonrin Ose",
+        "filename": "095_Owonrin_Ose.png",
+        "filepath": "static/odu_cards/095_Owonrin_Ose.png"
+      },
+      {
+        "number": 96,
+        "name": "Owonrin Ofun",
+        "filename": "096_Owonrin_Ofun.png",
+        "filepath": "static/odu_cards/096_Owonrin_Ofun.png"
+      },
+      {
+        "number": 97,
+        "name": "Obara Ogbe",
+        "filename": "097_Obara_Ogbe.png",
+        "filepath": "static/odu_cards/097_Obara_Ogbe.png"
+      },
+      {
+        "number": 98,
+        "name": "Obara Oyeku",
+        "filename": "098_Obara_Oyeku.png",
+        "filepath": "static/odu_cards/098_Obara_Oyeku.png"
+      },
+      {
+        "number": 99,
+        "name": "Obara Iwori",
+        "filename": "099_Obara_Iwori.png",
+        "filepath": "static/odu_cards/099_Obara_Iwori.png"
+      },
+      {
+        "number": 100,
+        "name": "Obara Idi",
+        "filename": "100_Obara_Idi.png",
+        "filepath": "static/odu_cards/100_Obara_Idi.png"
+      },
+      {
+        "number": 101,
+        "name": "Obara Irosun",
+        "filename": "101_Obara_Irosun.png",
+        "filepath": "static/odu_cards/101_Obara_Irosun.png"
+      },
+      {
+        "number": 102,
+        "name": "Obara Owonrin",
+        "filename": "102_Obara_Owonrin.png",
+        "filepath": "static/odu_cards/102_Obara_Owonrin.png"
+      },
+      {
+        "number": 104,
+        "name": "Obara Okanran",
+        "filename": "104_Obara_Okanran.png",
+        "filepath": "static/odu_cards/104_Obara_Okanran.png"
+      },
+      {
+        "number": 105,
+        "name": "Obara Ogunda",
+        "filename": "105_Obara_Ogunda.png",
+        "filepath": "static/odu_cards/105_Obara_Ogunda.png"
+      },
+      {
+        "number": 106,
+        "name": "Obara Osa",
+        "filename": "106_Obara_Osa.png",
+        "filepath": "static/odu_cards/106_Obara_Osa.png"
+      },
+      {
+        "number": 107,
+        "name": "Obara Ika",
+        "filename": "107_Obara_Ika.png",
+        "filepath": "static/odu_cards/107_Obara_Ika.png"
+      },
+      {
+        "number": 108,
+        "name": "Obara Oturupon",
+        "filename": "108_Obara_Oturupon.png",
+        "filepath": "static/odu_cards/108_Obara_Oturupon.png"
+      },
+      {
+        "number": 109,
+        "name": "Obara Otura",
+        "filename": "109_Obara_Otura.png",
+        "filepath": "static/odu_cards/109_Obara_Otura.png"
+      },
+      {
+        "number": 110,
+        "name": "Obara Irete",
+        "filename": "110_Obara_Irete.png",
+        "filepath": "static/odu_cards/110_Obara_Irete.png"
+      },
+      {
+        "number": 111,
+        "name": "Obara Ose",
+        "filename": "111_Obara_Ose.png",
+        "filepath": "static/odu_cards/111_Obara_Ose.png"
+      },
+      {
+        "number": 112,
+        "name": "Obara Ofun",
+        "filename": "112_Obara_Ofun.png",
+        "filepath": "static/odu_cards/112_Obara_Ofun.png"
+      },
+      {
+        "number": 113,
+        "name": "Okanran Ogbe",
+        "filename": "113_Okanran_Ogbe.png",
+        "filepath": "static/odu_cards/113_Okanran_Ogbe.png"
+      },
+      {
+        "number": 114,
+        "name": "Okanran Oyeku",
+        "filename": "114_Okanran_Oyeku.png",
+        "filepath": "static/odu_cards/114_Okanran_Oyeku.png"
+      },
+      {
+        "number": 115,
+        "name": "Okanran Iwori",
+        "filename": "115_Okanran_Iwori.png",
+        "filepath": "static/odu_cards/115_Okanran_Iwori.png"
+      },
+      {
+        "number": 116,
+        "name": "Okanran Idi",
+        "filename": "116_Okanran_Idi.png",
+        "filepath": "static/odu_cards/116_Okanran_Idi.png"
+      },
+      {
+        "number": 117,
+        "name": "Okanran Irosun",
+        "filename": "117_Okanran_Irosun.png",
+        "filepath": "static/odu_cards/117_Okanran_Irosun.png"
+      },
+      {
+        "number": 118,
+        "name": "Okanran Owonrin",
+        "filename": "118_Okanran_Owonrin.png",
+        "filepath": "static/odu_cards/118_Okanran_Owonrin.png"
+      },
+      {
+        "number": 119,
+        "name": "Okanran Obara",
+        "filename": "119_Okanran_Obara.png",
+        "filepath": "static/odu_cards/119_Okanran_Obara.png"
+      },
+      {
+        "number": 121,
+        "name": "Okanran Ogunda",
+        "filename": "121_Okanran_Ogunda.png",
+        "filepath": "static/odu_cards/121_Okanran_Ogunda.png"
+      },
+      {
+        "number": 122,
+        "name": "Okanran Osa",
+        "filename": "122_Okanran_Osa.png",
+        "filepath": "static/odu_cards/122_Okanran_Osa.png"
+      },
+      {
+        "number": 123,
+        "name": "Okanran Ika",
+        "filename": "123_Okanran_Ika.png",
+        "filepath": "static/odu_cards/123_Okanran_Ika.png"
+      },
+      {
+        "number": 124,
+        "name": "Okanran Oturupon",
+        "filename": "124_Okanran_Oturupon.png",
+        "filepath": "static/odu_cards/124_Okanran_Oturupon.png"
+      },
+      {
+        "number": 125,
+        "name": "Okanran Otura",
+        "filename": "125_Okanran_Otura.png",
+        "filepath": "static/odu_cards/125_Okanran_Otura.png"
+      },
+      {
+        "number": 126,
+        "name": "Okanran Irete",
+        "filename": "126_Okanran_Irete.png",
+        "filepath": "static/odu_cards/126_Okanran_Irete.png"
+      },
+      {
+        "number": 127,
+        "name": "Okanran Ose",
+        "filename": "127_Okanran_Ose.png",
+        "filepath": "static/odu_cards/127_Okanran_Ose.png"
+      },
+      {
+        "number": 128,
+        "name": "Okanran Ofun",
+        "filename": "128_Okanran_Ofun.png",
+        "filepath": "static/odu_cards/128_Okanran_Ofun.png"
+      },
+      {
+        "number": 129,
+        "name": "Ogunda Ogbe",
+        "filename": "129_Ogunda_Ogbe.png",
+        "filepath": "static/odu_cards/129_Ogunda_Ogbe.png"
+      },
+      {
+        "number": 130,
+        "name": "Ogunda Oyeku",
+        "filename": "130_Ogunda_Oyeku.png",
+        "filepath": "static/odu_cards/130_Ogunda_Oyeku.png"
+      },
+      {
+        "number": 131,
+        "name": "Ogunda Iwori",
+        "filename": "131_Ogunda_Iwori.png",
+        "filepath": "static/odu_cards/131_Ogunda_Iwori.png"
+      },
+      {
+        "number": 132,
+        "name": "Ogunda Idi",
+        "filename": "132_Ogunda_Idi.png",
+        "filepath": "static/odu_cards/132_Ogunda_Idi.png"
+      },
+      {
+        "number": 133,
+        "name": "Ogunda Irosun",
+        "filename": "133_Ogunda_Irosun.png",
+        "filepath": "static/odu_cards/133_Ogunda_Irosun.png"
+      },
+      {
+        "number": 134,
+        "name": "Ogunda Owonrin",
+        "filename": "134_Ogunda_Owonrin.png",
+        "filepath": "static/odu_cards/134_Ogunda_Owonrin.png"
+      },
+      {
+        "number": 135,
+        "name": "Ogunda Obara",
+        "filename": "135_Ogunda_Obara.png",
+        "filepath": "static/odu_cards/135_Ogunda_Obara.png"
+      },
+      {
+        "number": 136,
+        "name": "Ogunda Okanran",
+        "filename": "136_Ogunda_Okanran.png",
+        "filepath": "static/odu_cards/136_Ogunda_Okanran.png"
+      },
+      {
+        "number": 138,
+        "name": "Ogunda Osa",
+        "filename": "138_Ogunda_Osa.png",
+        "filepath": "static/odu_cards/138_Ogunda_Osa.png"
+      },
+      {
+        "number": 139,
+        "name": "Ogunda Ika",
+        "filename": "139_Ogunda_Ika.png",
+        "filepath": "static/odu_cards/139_Ogunda_Ika.png"
+      },
+      {
+        "number": 140,
+        "name": "Ogunda Oturupon",
+        "filename": "140_Ogunda_Oturupon.png",
+        "filepath": "static/odu_cards/140_Ogunda_Oturupon.png"
+      },
+      {
+        "number": 141,
+        "name": "Ogunda Otura",
+        "filename": "141_Ogunda_Otura.png",
+        "filepath": "static/odu_cards/141_Ogunda_Otura.png"
+      },
+      {
+        "number": 142,
+        "name": "Ogunda Irete",
+        "filename": "142_Ogunda_Irete.png",
+        "filepath": "static/odu_cards/142_Ogunda_Irete.png"
+      },
+      {
+        "number": 143,
+        "name": "Ogunda Ose",
+        "filename": "143_Ogunda_Ose.png",
+        "filepath": "static/odu_cards/143_Ogunda_Ose.png"
+      },
+      {
+        "number": 144,
+        "name": "Ogunda Ofun",
+        "filename": "144_Ogunda_Ofun.png",
+        "filepath": "static/odu_cards/144_Ogunda_Ofun.png"
+      },
+      {
+        "number": 145,
+        "name": "Osa Ogbe",
+        "filename": "145_Osa_Ogbe.png",
+        "filepath": "static/odu_cards/145_Osa_Ogbe.png"
+      },
+      {
+        "number": 146,
+        "name": "Osa Oyeku",
+        "filename": "146_Osa_Oyeku.png",
+        "filepath": "static/odu_cards/146_Osa_Oyeku.png"
+      },
+      {
+        "number": 147,
+        "name": "Osa Iwori",
+        "filename": "147_Osa_Iwori.png",
+        "filepath": "static/odu_cards/147_Osa_Iwori.png"
+      },
+      {
+        "number": 148,
+        "name": "Osa Idi",
+        "filename": "148_Osa_Idi.png",
+        "filepath": "static/odu_cards/148_Osa_Idi.png"
+      },
+      {
+        "number": 149,
+        "name": "Osa Irosun",
+        "filename": "149_Osa_Irosun.png",
+        "filepath": "static/odu_cards/149_Osa_Irosun.png"
+      },
+      {
+        "number": 150,
+        "name": "Osa Owonrin",
+        "filename": "150_Osa_Owonrin.png",
+        "filepath": "static/odu_cards/150_Osa_Owonrin.png"
+      },
+      {
+        "number": 151,
+        "name": "Osa Obara",
+        "filename": "151_Osa_Obara.png",
+        "filepath": "static/odu_cards/151_Osa_Obara.png"
+      },
+      {
+        "number": 152,
+        "name": "Osa Okanran",
+        "filename": "152_Osa_Okanran.png",
+        "filepath": "static/odu_cards/152_Osa_Okanran.png"
+      },
+      {
+        "number": 153,
+        "name": "Osa Ogunda",
+        "filename": "153_Osa_Ogunda.png",
+        "filepath": "static/odu_cards/153_Osa_Ogunda.png"
+      },
+      {
+        "number": 155,
+        "name": "Osa Ika",
+        "filename": "155_Osa_Ika.png",
+        "filepath": "static/odu_cards/155_Osa_Ika.png"
+      },
+      {
+        "number": 156,
+        "name": "Osa Oturupon",
+        "filename": "156_Osa_Oturupon.png",
+        "filepath": "static/odu_cards/156_Osa_Oturupon.png"
+      },
+      {
+        "number": 157,
+        "name": "Osa Otura",
+        "filename": "157_Osa_Otura.png",
+        "filepath": "static/odu_cards/157_Osa_Otura.png"
+      },
+      {
+        "number": 158,
+        "name": "Osa Irete",
+        "filename": "158_Osa_Irete.png",
+        "filepath": "static/odu_cards/158_Osa_Irete.png"
+      },
+      {
+        "number": 159,
+        "name": "Osa Ose",
+        "filename": "159_Osa_Ose.png",
+        "filepath": "static/odu_cards/159_Osa_Ose.png"
+      },
+      {
+        "number": 160,
+        "name": "Osa Ofun",
+        "filename": "160_Osa_Ofun.png",
+        "filepath": "static/odu_cards/160_Osa_Ofun.png"
+      },
+      {
+        "number": 161,
+        "name": "Ika Ogbe",
+        "filename": "161_Ika_Ogbe.png",
+        "filepath": "static/odu_cards/161_Ika_Ogbe.png"
+      },
+      {
+        "number": 162,
+        "name": "Ika Oyeku",
+        "filename": "162_Ika_Oyeku.png",
+        "filepath": "static/odu_cards/162_Ika_Oyeku.png"
+      },
+      {
+        "number": 163,
+        "name": "Ika Iwori",
+        "filename": "163_Ika_Iwori.png",
+        "filepath": "static/odu_cards/163_Ika_Iwori.png"
+      },
+      {
+        "number": 164,
+        "name": "Ika Idi",
+        "filename": "164_Ika_Idi.png",
+        "filepath": "static/odu_cards/164_Ika_Idi.png"
+      },
+      {
+        "number": 165,
+        "name": "Ika Irosun",
+        "filename": "165_Ika_Irosun.png",
+        "filepath": "static/odu_cards/165_Ika_Irosun.png"
+      },
+      {
+        "number": 166,
+        "name": "Ika Owonrin",
+        "filename": "166_Ika_Owonrin.png",
+        "filepath": "static/odu_cards/166_Ika_Owonrin.png"
+      },
+      {
+        "number": 167,
+        "name": "Ika Obara",
+        "filename": "167_Ika_Obara.png",
+        "filepath": "static/odu_cards/167_Ika_Obara.png"
+      },
+      {
+        "number": 168,
+        "name": "Ika Okanran",
+        "filename": "168_Ika_Okanran.png",
+        "filepath": "static/odu_cards/168_Ika_Okanran.png"
+      },
+      {
+        "number": 169,
+        "name": "Ika Ogunda",
+        "filename": "169_Ika_Ogunda.png",
+        "filepath": "static/odu_cards/169_Ika_Ogunda.png"
+      },
+      {
+        "number": 170,
+        "name": "Ika Osa",
+        "filename": "170_Ika_Osa.png",
+        "filepath": "static/odu_cards/170_Ika_Osa.png"
+      },
+      {
+        "number": 172,
+        "name": "Ika Oturupon",
+        "filename": "172_Ika_Oturupon.png",
+        "filepath": "static/odu_cards/172_Ika_Oturupon.png"
+      },
+      {
+        "number": 173,
+        "name": "Ika Otura",
+        "filename": "173_Ika_Otura.png",
+        "filepath": "static/odu_cards/173_Ika_Otura.png"
+      },
+      {
+        "number": 174,
+        "name": "Ika Irete",
+        "filename": "174_Ika_Irete.png",
+        "filepath": "static/odu_cards/174_Ika_Irete.png"
+      },
+      {
+        "number": 175,
+        "name": "Ika Ose",
+        "filename": "175_Ika_Ose.png",
+        "filepath": "static/odu_cards/175_Ika_Ose.png"
+      },
+      {
+        "number": 176,
+        "name": "Ika Ofun",
+        "filename": "176_Ika_Ofun.png",
+        "filepath": "static/odu_cards/176_Ika_Ofun.png"
+      },
+      {
+        "number": 177,
+        "name": "Oturupon Ogbe",
+        "filename": "177_Oturupon_Ogbe.png",
+        "filepath": "static/odu_cards/177_Oturupon_Ogbe.png"
+      },
+      {
+        "number": 178,
+        "name": "Oturupon Oyeku",
+        "filename": "178_Oturupon_Oyeku.png",
+        "filepath": "static/odu_cards/178_Oturupon_Oyeku.png"
+      },
+      {
+        "number": 179,
+        "name": "Oturupon Iwori",
+        "filename": "179_Oturupon_Iwori.png",
+        "filepath": "static/odu_cards/179_Oturupon_Iwori.png"
+      },
+      {
+        "number": 180,
+        "name": "Oturupon Idi",
+        "filename": "180_Oturupon_Idi.png",
+        "filepath": "static/odu_cards/180_Oturupon_Idi.png"
+      },
+      {
+        "number": 181,
+        "name": "Oturupon Irosun",
+        "filename": "181_Oturupon_Irosun.png",
+        "filepath": "static/odu_cards/181_Oturupon_Irosun.png"
+      },
+      {
+        "number": 182,
+        "name": "Oturupon Owonrin",
+        "filename": "182_Oturupon_Owonrin.png",
+        "filepath": "static/odu_cards/182_Oturupon_Owonrin.png"
+      },
+      {
+        "number": 183,
+        "name": "Oturupon Obara",
+        "filename": "183_Oturupon_Obara.png",
+        "filepath": "static/odu_cards/183_Oturupon_Obara.png"
+      },
+      {
+        "number": 184,
+        "name": "Oturupon Okanran",
+        "filename": "184_Oturupon_Okanran.png",
+        "filepath": "static/odu_cards/184_Oturupon_Okanran.png"
+      },
+      {
+        "number": 185,
+        "name": "Oturupon Ogunda",
+        "filename": "185_Oturupon_Ogunda.png",
+        "filepath": "static/odu_cards/185_Oturupon_Ogunda.png"
+      },
+      {
+        "number": 186,
+        "name": "Oturupon Osa",
+        "filename": "186_Oturupon_Osa.png",
+        "filepath": "static/odu_cards/186_Oturupon_Osa.png"
+      },
+      {
+        "number": 187,
+        "name": "Oturupon Ika",
+        "filename": "187_Oturupon_Ika.png",
+        "filepath": "static/odu_cards/187_Oturupon_Ika.png"
+      },
+      {
+        "number": 189,
+        "name": "Oturupon Otura",
+        "filename": "189_Oturupon_Otura.png",
+        "filepath": "static/odu_cards/189_Oturupon_Otura.png"
+      },
+      {
+        "number": 190,
+        "name": "Oturupon Irete",
+        "filename": "190_Oturupon_Irete.png",
+        "filepath": "static/odu_cards/190_Oturupon_Irete.png"
+      },
+      {
+        "number": 191,
+        "name": "Oturupon Ose",
+        "filename": "191_Oturupon_Ose.png",
+        "filepath": "static/odu_cards/191_Oturupon_Ose.png"
+      },
+      {
+        "number": 192,
+        "name": "Oturupon Ofun",
+        "filename": "192_Oturupon_Ofun.png",
+        "filepath": "static/odu_cards/192_Oturupon_Ofun.png"
+      },
+      {
+        "number": 193,
+        "name": "Otura Ogbe",
+        "filename": "193_Otura_Ogbe.png",
+        "filepath": "static/odu_cards/193_Otura_Ogbe.png"
+      },
+      {
+        "number": 194,
+        "name": "Otura Oyeku",
+        "filename": "194_Otura_Oyeku.png",
+        "filepath": "static/odu_cards/194_Otura_Oyeku.png"
+      },
+      {
+        "number": 195,
+        "name": "Otura Iwori",
+        "filename": "195_Otura_Iwori.png",
+        "filepath": "static/odu_cards/195_Otura_Iwori.png"
+      },
+      {
+        "number": 196,
+        "name": "Otura Idi",
+        "filename": "196_Otura_Idi.png",
+        "filepath": "static/odu_cards/196_Otura_Idi.png"
+      },
+      {
+        "number": 197,
+        "name": "Otura Irosun",
+        "filename": "197_Otura_Irosun.png",
+        "filepath": "static/odu_cards/197_Otura_Irosun.png"
+      },
+      {
+        "number": 198,
+        "name": "Otura Owonrin",
+        "filename": "198_Otura_Owonrin.png",
+        "filepath": "static/odu_cards/198_Otura_Owonrin.png"
+      },
+      {
+        "number": 199,
+        "name": "Otura Obara",
+        "filename": "199_Otura_Obara.png",
+        "filepath": "static/odu_cards/199_Otura_Obara.png"
+      },
+      {
+        "number": 200,
+        "name": "Otura Okanran",
+        "filename": "200_Otura_Okanran.png",
+        "filepath": "static/odu_cards/200_Otura_Okanran.png"
+      },
+      {
+        "number": 201,
+        "name": "Otura Ogunda",
+        "filename": "201_Otura_Ogunda.png",
+        "filepath": "static/odu_cards/201_Otura_Ogunda.png"
+      },
+      {
+        "number": 202,
+        "name": "Otura Osa",
+        "filename": "202_Otura_Osa.png",
+        "filepath": "static/odu_cards/202_Otura_Osa.png"
+      },
+      {
+        "number": 203,
+        "name": "Otura Ika",
+        "filename": "203_Otura_Ika.png",
+        "filepath": "static/odu_cards/203_Otura_Ika.png"
+      },
+      {
+        "number": 204,
+        "name": "Otura Oturupon",
+        "filename": "204_Otura_Oturupon.png",
+        "filepath": "static/odu_cards/204_Otura_Oturupon.png"
+      },
+      {
+        "number": 206,
+        "name": "Otura Irete",
+        "filename": "206_Otura_Irete.png",
+        "filepath": "static/odu_cards/206_Otura_Irete.png"
+      },
+      {
+        "number": 207,
+        "name": "Otura Ose",
+        "filename": "207_Otura_Ose.png",
+        "filepath": "static/odu_cards/207_Otura_Ose.png"
+      },
+      {
+        "number": 208,
+        "name": "Otura Ofun",
+        "filename": "208_Otura_Ofun.png",
+        "filepath": "static/odu_cards/208_Otura_Ofun.png"
+      },
+      {
+        "number": 209,
+        "name": "Irete Ogbe",
+        "filename": "209_Irete_Ogbe.png",
+        "filepath": "static/odu_cards/209_Irete_Ogbe.png"
+      },
+      {
+        "number": 210,
+        "name": "Irete Oyeku",
+        "filename": "210_Irete_Oyeku.png",
+        "filepath": "static/odu_cards/210_Irete_Oyeku.png"
+      },
+      {
+        "number": 211,
+        "name": "Irete Iwori",
+        "filename": "211_Irete_Iwori.png",
+        "filepath": "static/odu_cards/211_Irete_Iwori.png"
+      },
+      {
+        "number": 212,
+        "name": "Irete Idi",
+        "filename": "212_Irete_Idi.png",
+        "filepath": "static/odu_cards/212_Irete_Idi.png"
+      },
+      {
+        "number": 213,
+        "name": "Irete Irosun",
+        "filename": "213_Irete_Irosun.png",
+        "filepath": "static/odu_cards/213_Irete_Irosun.png"
+      },
+      {
+        "number": 214,
+        "name": "Irete Owonrin",
+        "filename": "214_Irete_Owonrin.png",
+        "filepath": "static/odu_cards/214_Irete_Owonrin.png"
+      },
+      {
+        "number": 215,
+        "name": "Irete Obara",
+        "filename": "215_Irete_Obara.png",
+        "filepath": "static/odu_cards/215_Irete_Obara.png"
+      },
+      {
+        "number": 216,
+        "name": "Irete Okanran",
+        "filename": "216_Irete_Okanran.png",
+        "filepath": "static/odu_cards/216_Irete_Okanran.png"
+      },
+      {
+        "number": 217,
+        "name": "Irete Ogunda",
+        "filename": "217_Irete_Ogunda.png",
+        "filepath": "static/odu_cards/217_Irete_Ogunda.png"
+      },
+      {
+        "number": 218,
+        "name": "Irete Osa",
+        "filename": "218_Irete_Osa.png",
+        "filepath": "static/odu_cards/218_Irete_Osa.png"
+      },
+      {
+        "number": 219,
+        "name": "Irete Ika",
+        "filename": "219_Irete_Ika.png",
+        "filepath": "static/odu_cards/219_Irete_Ika.png"
+      },
+      {
+        "number": 220,
+        "name": "Irete Oturupon",
+        "filename": "220_Irete_Oturupon.png",
+        "filepath": "static/odu_cards/220_Irete_Oturupon.png"
+      },
+      {
+        "number": 221,
+        "name": "Irete Otura",
+        "filename": "221_Irete_Otura.png",
+        "filepath": "static/odu_cards/221_Irete_Otura.png"
+      },
+      {
+        "number": 223,
+        "name": "Irete Ose",
+        "filename": "223_Irete_Ose.png",
+        "filepath": "static/odu_cards/223_Irete_Ose.png"
+      },
+      {
+        "number": 224,
+        "name": "Irete Ofun",
+        "filename": "224_Irete_Ofun.png",
+        "filepath": "static/odu_cards/224_Irete_Ofun.png"
+      },
+      {
+        "number": 225,
+        "name": "Ose Ogbe",
+        "filename": "225_Ose_Ogbe.png",
+        "filepath": "static/odu_cards/225_Ose_Ogbe.png"
+      },
+      {
+        "number": 226,
+        "name": "Ose Oyeku",
+        "filename": "226_Ose_Oyeku.png",
+        "filepath": "static/odu_cards/226_Ose_Oyeku.png"
+      },
+      {
+        "number": 227,
+        "name": "Ose Iwori",
+        "filename": "227_Ose_Iwori.png",
+        "filepath": "static/odu_cards/227_Ose_Iwori.png"
+      },
+      {
+        "number": 228,
+        "name": "Ose Idi",
+        "filename": "228_Ose_Idi.png",
+        "filepath": "static/odu_cards/228_Ose_Idi.png"
+      },
+      {
+        "number": 229,
+        "name": "Ose Irosun",
+        "filename": "229_Ose_Irosun.png",
+        "filepath": "static/odu_cards/229_Ose_Irosun.png"
+      },
+      {
+        "number": 230,
+        "name": "Ose Owonrin",
+        "filename": "230_Ose_Owonrin.png",
+        "filepath": "static/odu_cards/230_Ose_Owonrin.png"
+      },
+      {
+        "number": 231,
+        "name": "Ose Obara",
+        "filename": "231_Ose_Obara.png",
+        "filepath": "static/odu_cards/231_Ose_Obara.png"
+      },
+      {
+        "number": 232,
+        "name": "Ose Okanran",
+        "filename": "232_Ose_Okanran.png",
+        "filepath": "static/odu_cards/232_Ose_Okanran.png"
+      },
+      {
+        "number": 233,
+        "name": "Ose Ogunda",
+        "filename": "233_Ose_Ogunda.png",
+        "filepath": "static/odu_cards/233_Ose_Ogunda.png"
+      },
+      {
+        "number": 234,
+        "name": "Ose Osa",
+        "filename": "234_Ose_Osa.png",
+        "filepath": "static/odu_cards/234_Ose_Osa.png"
+      },
+      {
+        "number": 235,
+        "name": "Ose Ika",
+        "filename": "235_Ose_Ika.png",
+        "filepath": "static/odu_cards/235_Ose_Ika.png"
+      },
+      {
+        "number": 236,
+        "name": "Ose Oturupon",
+        "filename": "236_Ose_Oturupon.png",
+        "filepath": "static/odu_cards/236_Ose_Oturupon.png"
+      },
+      {
+        "number": 237,
+        "name": "Ose Otura",
+        "filename": "237_Ose_Otura.png",
+        "filepath": "static/odu_cards/237_Ose_Otura.png"
+      },
+      {
+        "number": 238,
+        "name": "Ose Irete",
+        "filename": "238_Ose_Irete.png",
+        "filepath": "static/odu_cards/238_Ose_Irete.png"
+      },
+      {
+        "number": 240,
+        "name": "Ose Ofun",
+        "filename": "240_Ose_Ofun.png",
+        "filepath": "static/odu_cards/240_Ose_Ofun.png"
+      },
+      {
+        "number": 241,
+        "name": "Ofun Ogbe",
+        "filename": "241_Ofun_Ogbe.png",
+        "filepath": "static/odu_cards/241_Ofun_Ogbe.png"
+      },
+      {
+        "number": 242,
+        "name": "Ofun Oyeku",
+        "filename": "242_Ofun_Oyeku.png",
+        "filepath": "static/odu_cards/242_Ofun_Oyeku.png"
+      },
+      {
+        "number": 243,
+        "name": "Ofun Iwori",
+        "filename": "243_Ofun_Iwori.png",
+        "filepath": "static/odu_cards/243_Ofun_Iwori.png"
+      },
+      {
+        "number": 244,
+        "name": "Ofun Idi",
+        "filename": "244_Ofun_Idi.png",
+        "filepath": "static/odu_cards/244_Ofun_Idi.png"
+      },
+      {
+        "number": 245,
+        "name": "Ofun Irosun",
+        "filename": "245_Ofun_Irosun.png",
+        "filepath": "static/odu_cards/245_Ofun_Irosun.png"
+      },
+      {
+        "number": 246,
+        "name": "Ofun Owonrin",
+        "filename": "246_Ofun_Owonrin.png",
+        "filepath": "static/odu_cards/246_Ofun_Owonrin.png"
+      },
+      {
+        "number": 247,
+        "name": "Ofun Obara",
+        "filename": "247_Ofun_Obara.png",
+        "filepath": "static/odu_cards/247_Ofun_Obara.png"
+      },
+      {
+        "number": 248,
+        "name": "Ofun Okanran",
+        "filename": "248_Ofun_Okanran.png",
+        "filepath": "static/odu_cards/248_Ofun_Okanran.png"
+      },
+      {
+        "number": 249,
+        "name": "Ofun Ogunda",
+        "filename": "249_Ofun_Ogunda.png",
+        "filepath": "static/odu_cards/249_Ofun_Ogunda.png"
+      },
+      {
+        "number": 250,
+        "name": "Ofun Osa",
+        "filename": "250_Ofun_Osa.png",
+        "filepath": "static/odu_cards/250_Ofun_Osa.png"
+      },
+      {
+        "number": 251,
+        "name": "Ofun Ika",
+        "filename": "251_Ofun_Ika.png",
+        "filepath": "static/odu_cards/251_Ofun_Ika.png"
+      },
+      {
+        "number": 252,
+        "name": "Ofun Oturupon",
+        "filename": "252_Ofun_Oturupon.png",
+        "filepath": "static/odu_cards/252_Ofun_Oturupon.png"
+      },
+      {
+        "number": 253,
+        "name": "Ofun Otura",
+        "filename": "253_Ofun_Otura.png",
+        "filepath": "static/odu_cards/253_Ofun_Otura.png"
+      },
+      {
+        "number": 254,
+        "name": "Ofun Irete",
+        "filename": "254_Ofun_Irete.png",
+        "filepath": "static/odu_cards/254_Ofun_Irete.png"
+      },
+      {
+        "number": 255,
+        "name": "Ofun Ose",
+        "filename": "255_Ofun_Ose.png",
+        "filepath": "static/odu_cards/255_Ofun_Ose.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+# Rebuild Flask HTML Template
+html_template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odu Ifá Collection</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 8px #000;
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid #444;
+        }
+        .card span {
+            display: block;
+            padding: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Odu Ifá Cards</h1>
+    <div class="grid">
+        {% for card in cards %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='odu_cards/' + card) }}" alt="{{ card }}">
+            <span>{{ card.replace('_', ' ').replace('.png', '') }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+"""
+
+# Save template and app
+template_dir = "/mnt/data/replit_integration/templates"
+os.makedirs(template_dir, exist_ok=True)
+with open(os.path.join(template_dir, "odu_cards.html"), "w") as f:
+    f.write(html_template)
+
+# Save Flask app.py
+app_code = """
+from flask import Flask, render_template
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    card_folder = os.path.join(app.static_folder, 'odu_cards')
+    cards = sorted([f for f in os.listdir(card_folder) if f.endswith('.png')])
+    return render_template('odu_cards.html', cards=cards)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+"""
+
+with open("/mnt/data/replit_integration/app.py", "w") as f:
+    f.write(app_code)
+
+# Zip it up
+final_zip_path = "/mnt/data/Odu_Ifa_Replit_App.zip"
+shutil.make_archive(final_zip_path.replace(".zip", ""), 'zip', "/mnt/data/replit_integration")
+
+final_zip_path

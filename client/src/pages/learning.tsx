@@ -14,6 +14,7 @@ import ikinImage from '@assets/image_1752089487782.png';
 import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
 import Complete256OduSystem from '@/components/complete-256-odu-system';
+import AuthenticOduCards from '@/components/authentic-odu-cards';
 
 interface LearningModule {
   id: string;
@@ -260,6 +261,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Àwọn Odù Ifá 256 pípé pẹ̀lú orúkọ ìbílẹ̀",
       icon: <Database className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "authentic-cards",
+      title: "Authentic Excel Cards",
+      titleYoruba: "Àwọn Kádì Excel Òtítọ́",
+      description: "Traditional Odu cards generated from your Excel data",
+      descriptionYoruba: "Àwọn kádì Odù ìbílẹ̀ láti Excel data rẹ",
+      icon: <Sparkles className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -320,7 +330,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 mb-8">
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7 mb-8">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2">
                 {module.icon}
@@ -493,6 +503,12 @@ const Learning: React.FC = () => {
                   {module.id === 'complete-256' && (
                     <div className="space-y-6">
                       <Complete256OduSystem />
+                    </div>
+                  )}
+
+                  {module.id === 'authentic-cards' && (
+                    <div className="space-y-6">
+                      <AuthenticOduCards />
                     </div>
                   )}
 
