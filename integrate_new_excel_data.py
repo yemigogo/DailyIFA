@@ -13,7 +13,7 @@ import re
 
 class NewExcelOduIntegrator:
     def __init__(self):
-        self.excel_path = "attached_assets/Odu_Ifa_Template_1752245951100.xlsx"
+        self.excel_path = "attached_assets/256_ODU_graph_1752246322368.xlsx"
         self.output_dir = "data"
         self.static_dir = "static/odu_cards"
         self.card_manifest_path = "static/odu_cards/card_manifest.json"
@@ -58,95 +58,82 @@ class NewExcelOduIntegrator:
             print(f"Error loading Excel file: {e}")
             return None
     
-    def generate_complete_256_odu_system(self, base_df):
-        """Generate complete 256 Odu system using authentic base patterns"""
-        
-        # Extract base patterns from user's Excel data
-        base_odus = []
-        for idx, row in base_df.iterrows():
-            pattern_lines = []
-            for i in range(1, 5):  # Line1, Line2, Line3, Line4
-                col_name = f'Line{i}'
-                if col_name in row and pd.notna(row[col_name]):
-                    pattern_lines.append(str(row[col_name]).strip())
-            
-            base_odus.append({
-                'number': int(row['Number']) if pd.notna(row['Number']) else idx + 1,
-                'name': str(row['Name']).strip() if pd.notna(row['Name']) else f"Odu {idx + 1}",
-                'pattern': pattern_lines
-            })
-        
-        print(f"Extracted {len(base_odus)} base Odu patterns from Excel")
-        
-        # Traditional 16 Major Odu names (expanding from the 3 provided)
-        major_odu_names = [
-            "ÈJÌOGBÈ", "ÒYÉKÙ MÉJÌ", "IWÒRÌ MÉJÌ", "ÒDÍ MÉJÌ", 
-            "ÌROSÙN MÉJÌ", "ÒWÓNRÍN MÉJÌ", "ÒBÀRÀ MÉJÌ", "ÒKÀNRÀN MÉJÌ",
-            "ÒGÚNDÁ MÉJÌ", "ÒSÁ MÉJÌ", "ÌKÁ MÉJÌ", "ÒTÚRÚPỌ̀N MÉJÌ", 
-            "ÒTÚRÁ MÉJÌ", "ÌRÈTÈ MÉJÌ", "ÒṢÉ MÉJÌ", "ÒFÚN MÉJÌ"
-        ]
-        
-        # Traditional patterns for the 16 Major Odu
-        major_patterns = {
-            "ÈJÌOGBÈ": ["II II", "II II", "II II", "II II"],
-            "ÒYÉKÙ MÉJÌ": ["I I", "I I", "I I", "I I"], 
-            "IWÒRÌ MÉJÌ": ["II II", "I I", "II II", "I I"],
-            "ÒDÍ MÉJÌ": ["I I", "II II", "I I", "II II"],
-            "ÌROSÙN MÉJÌ": ["II II", "II II", "I I", "I I"],
-            "ÒWÓNRÍN MÉJÌ": ["I I", "I I", "II II", "II II"],
-            "ÒBÀRÀ MÉJÌ": ["II II", "I I", "I I", "II II"],
-            "ÒKÀNRÀN MÉJÌ": ["I I", "II II", "II II", "I I"],
-            "ÒGÚNDÁ MÉJÌ": ["II II", "II II", "II II", "I I"],
-            "ÒSÁ MÉJÌ": ["I I", "I I", "I I", "II II"],
-            "ÌKÁ MÉJÌ": ["II II", "I I", "II II", "II II"],
-            "ÒTÚRÚPỌ̀N MÉJÌ": ["I I", "II II", "I I", "I I"],
-            "ÒTÚRÁ MÉJÌ": ["II II", "II II", "I I", "II II"],
-            "ÌRÈTÈ MÉJÌ": ["I I", "I I", "II II", "I I"],
-            "ÒṢÉ MÉJÌ": ["II II", "I I", "I I", "I I"],
-            "ÒFÚN MÉJÌ": ["I I", "II II", "II II", "II II"]
-        }
-        
-        # Update patterns from user's Excel where available
-        for base_odu in base_odus:
-            if base_odu['name'] in major_patterns and base_odu['pattern']:
-                major_patterns[base_odu['name']] = base_odu['pattern']
-                print(f"Updated pattern for {base_odu['name']} from Excel data")
-        
+    def process_complete_256_excel_data(self, df):
+        """Process complete 256 Odu Excel data directly"""
         processed_odus = []
-        odu_counter = 1
         
-        # Generate all 256 Odu combinations (16 x 16 = 256)
-        for i, primary_name in enumerate(major_odu_names):
-            primary_pattern = major_patterns[primary_name]
-            
-            for j, secondary_name in enumerate(major_odu_names):
-                secondary_pattern = major_patterns[secondary_name]
+        print(f"Processing complete Excel data with {len(df)} Odu entries...")
+        
+        # Analyze column structure for the 256 Odu file
+        columns = df.columns.tolist()
+        print(f"Available columns: {columns}")
+        
+        # Identify columns dynamically
+        column_mapping = {}
+        for col in columns:
+            col_lower = str(col).lower()
+            if 'number' in col_lower or 'no' in col_lower or '#' in str(col):
+                column_mapping['number'] = col
+            elif 'name' in col_lower or 'odu' in col_lower:
+                column_mapping['name'] = col
+            elif 'meaning' in col_lower or 'interpretation' in col_lower or 'description' in col_lower:
+                column_mapping['meaning'] = col
+            elif 'pattern' in col_lower or 'mark' in col_lower or 'line' in col_lower:
+                if 'pattern' not in column_mapping:
+                    column_mapping['pattern'] = []
+                if isinstance(column_mapping['pattern'], list):
+                    column_mapping['pattern'].append(col)
+        
+        print(f"Column mapping: {column_mapping}")
+        
+        for idx, row in df.iterrows():
+            try:
+                # Extract number
+                odu_number = idx + 1
+                if 'number' in column_mapping and pd.notna(row[column_mapping['number']]):
+                    try:
+                        odu_number = int(row[column_mapping['number']])
+                    except:
+                        odu_number = idx + 1
                 
-                # Determine Odu name based on traditional naming
-                if i == j:
-                    # Major Odu (same pattern repeated)
-                    odu_name = primary_name
-                    category = "major"
-                else:
-                    # Minor Odu (combination)
-                    odu_name = f"{primary_name.split()[0]}-{secondary_name.split()[0]}"
-                    category = "minor"
+                # Extract name
+                odu_name = f"Odu {odu_number}"
+                if 'name' in column_mapping and pd.notna(row[column_mapping['name']]):
+                    odu_name = str(row[column_mapping['name']]).strip()
                 
-                # Combine patterns (first two lines from primary, last two from secondary)
-                combined_pattern = primary_pattern[:2] + secondary_pattern[2:]
-                pattern_text = "\n".join(combined_pattern)
+                # Extract meaning
+                meaning = "Sacred wisdom and divine guidance"
+                if 'meaning' in column_mapping and pd.notna(row[column_mapping['meaning']]):
+                    meaning = str(row[column_mapping['meaning']]).strip()
                 
-                # Generate meanings based on traditional associations
-                meaning = self.get_traditional_meaning(primary_name, secondary_name, category)
+                # Extract pattern from multiple columns if available
+                pattern_lines = []
+                if 'pattern' in column_mapping and isinstance(column_mapping['pattern'], list):
+                    for pattern_col in column_mapping['pattern']:
+                        if pattern_col in row and pd.notna(row[pattern_col]):
+                            pattern_lines.append(str(row[pattern_col]).strip())
+                
+                # If no pattern columns found, create default pattern
+                if not pattern_lines:
+                    pattern_lines = ["II II", "I I", "II II", "I I"]
+                
+                pattern_text = "\n".join(pattern_lines)
+                
+                # Determine category (first 16 are major, rest are minor)
+                category = "major" if odu_number <= 16 else "minor"
+                
+                # Clean filename
+                safe_name = re.sub(r'[^\w\s-]', '', odu_name).strip()
+                safe_name = re.sub(r'[-\s]+', '_', safe_name)
                 
                 odu_data = {
-                    "number": odu_counter,
+                    "number": odu_number,
                     "name": odu_name,
                     "nameYoruba": odu_name,
                     "meaning": meaning,
                     "meaningYoruba": self.get_yoruba_meaning(odu_name),
                     "pattern": pattern_text,
-                    "patternArray": combined_pattern,
+                    "patternArray": pattern_lines,
                     "guidance": self.generate_guidance(odu_name, meaning),
                     "guidanceYoruba": self.generate_guidance_yoruba(odu_name, meaning),
                     "proverb": self.generate_proverb(odu_name),
@@ -155,22 +142,22 @@ class NewExcelOduIntegrator:
                     "modernApplication": self.generate_modern_application(meaning),
                     "traditionalStory": self.generate_traditional_story(odu_name),
                     "category": category,
-                    "element": self.assign_element(odu_counter),
-                    "orishaConnection": self.assign_orisha(odu_counter),
-                    "primaryOdu": primary_name,
-                    "secondaryOdu": secondary_name,
-                    "filename": f"{odu_counter:03d}_{odu_name.replace(' ', '_').replace('-', '_')}.png",
-                    "filepath": f"static/odu_cards/{odu_counter:03d}_{odu_name.replace(' ', '_').replace('-', '_')}.png"
+                    "element": self.assign_element(odu_number),
+                    "orishaConnection": self.assign_orisha(odu_number),
+                    "filename": f"{odu_number:03d}_{safe_name}.png",
+                    "filepath": f"static/odu_cards/{odu_number:03d}_{safe_name}.png"
                 }
                 
                 processed_odus.append(odu_data)
                 
-                if odu_counter <= 20 or odu_counter % 50 == 0:
-                    print(f"Generated Odu {odu_counter}: {odu_name} ({category})")
+                if odu_number <= 20 or odu_number % 50 == 0:
+                    print(f"Processed Odu {odu_number}: {odu_name} ({category})")
                 
-                odu_counter += 1
+            except Exception as e:
+                print(f"Error processing row {idx}: {e}")
+                continue
         
-        print(f"Successfully generated complete 256 Odu system!")
+        print(f"Successfully processed {len(processed_odus)} authentic Odus from Excel!")
         return processed_odus
     
     def get_traditional_meaning(self, primary, secondary, category):
@@ -209,10 +196,10 @@ class NewExcelOduIntegrator:
     
     def process_odu_data(self, df):
         """Process Excel data into standardized 256 Odu format"""
-        print(f"Processing Excel data with {len(df)} base patterns...")
+        print(f"Processing Excel data with {len(df)} entries...")
         
-        # Generate complete 256 system from base data
-        processed_odus = self.generate_complete_256_odu_system(df)
+        # Process the complete 256 Odu data directly from Excel
+        processed_odus = self.process_complete_256_excel_data(df)
         
         print(f"Successfully processed {len(processed_odus)} Odus")
         return processed_odus
