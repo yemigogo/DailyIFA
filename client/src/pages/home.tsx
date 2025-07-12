@@ -46,18 +46,43 @@ export default function Home() {
   const getTodaysOduCardNumber = () => {
     if (!reading?.odu) return 1;
     
-    // For calendar consistency, always use the Odu ID directly
-    // This ensures each date maps to the same card consistently
-    const cardNumber = reading.odu.id;
+    // Map Odu names to their correct card numbers based on actual card content
+    const oduNameToCardMap: Record<string, number> = {
+      // Major Odu (1-16)
+      'Eji Ogbe': 1, 'Oyeku Meji': 2, 'Iwori Meji': 3, 'Idi Meji': 4,
+      'Irosun Meji': 5, 'Owonrin Meji': 6, 'Obara Meji': 7, 'Okanran Meji': 8,
+      'Ogunda Meji': 9, 'Osa Meji': 10, 'Ika Meji': 11, 'Oturupon Meji': 12,
+      'Otura Meji': 13, 'Irete Meji': 14, 'Ose Meji': 15, 'Ofun Meji': 16,
+      
+      // Combined Odu - map names to cards that actually contain those names
+      'Iwori Odi': 75,  // Found at 075_IWORI_ODI.png
+      'Odi Irosun': 101, // Found at 101_ODI_IROSUN.png  
+      'Irosun Owonrin': 70, // Found at 070_Irosun_Owonrin.png
+      'Owonrin Obara': 87,  // Found at 087_Owonrin_Obara.png
+      'Obara Okanran': 167, // Found at 167_OBARA_OKANRAN.png
+      
+      // Alternative spellings
+      'Òdí Ìwòrì': 75,
+      'Ìwòrì Òdí': 75
+    };
+
+    // Check if we have a specific mapping for this Odu name
+    if (oduNameToCardMap[reading.odu.name]) {
+      const cardNumber = oduNameToCardMap[reading.odu.name];
+      console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
+      return cardNumber;
+    }
     
-    console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" (ID: ${reading.odu.id}) -> Card: ${cardNumber}`);
+    // Fallback: use Odu ID if no specific mapping found
+    const cardNumber = reading.odu.id;
+    console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" (ID: ${reading.odu.id}) -> Using ID as card: ${cardNumber}`);
     
     // Ensure card number is within valid range
     if (cardNumber && cardNumber >= 1 && cardNumber <= 256) {
       return cardNumber;
     }
     
-    // Fallback to card 1 if invalid
+    // Final fallback
     console.log(`Invalid card number ${cardNumber}, using default card 1`);
     return 1;
   };
