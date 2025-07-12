@@ -364,6 +364,172 @@ def health_check():
     """Health check endpoint"""
     return jsonify({"status": "healthy", "service": "Yoruba Calendar Flask App"})
 
+# Gregorian to Yoruba Calendar Conversion Functions
+def calculate_moon_phase_flask(greg_date):
+    """Calculate moon phase for a given date using lunar cycle approximation"""
+    import math
+    
+    # Use synodic month cycle (29.53 days) for moon phase calculation
+    synodic_month = 29.53058868
+    
+    # Known new moon reference (approximate)
+    known_new_moon = datetime(2025, 1, 29, 12, 36)  # January 29, 2025
+    
+    # Calculate days since known new moon
+    days_since_new_moon = (greg_date - known_new_moon).total_seconds() / (24 * 3600)
+    
+    # Calculate position in lunar cycle (0-1)
+    lunar_cycle_position = (days_since_new_moon % synodic_month) / synodic_month
+    
+    # Map to 8 traditional phases based on cycle position
+    if lunar_cycle_position < 0.03 or lunar_cycle_position > 0.97:
+        return "New Moon"
+    elif 0.03 <= lunar_cycle_position < 0.22:
+        return "Waxing Crescent"
+    elif 0.22 <= lunar_cycle_position < 0.28:
+        return "First Quarter"
+    elif 0.28 <= lunar_cycle_position < 0.47:
+        return "Waxing Gibbous"
+    elif 0.47 <= lunar_cycle_position < 0.53:
+        return "Full Moon"
+    elif 0.53 <= lunar_cycle_position < 0.72:
+        return "Waning Gibbous"
+    elif 0.72 <= lunar_cycle_position < 0.78:
+        return "Last Quarter"
+    else:  # 0.78 <= lunar_cycle_position < 0.97
+        return "Waning Crescent"
+
+def gregorian_to_yoruba_date_flask(greg_date):
+    """Convert Gregorian date to Yoruba calendar date"""
+    from datetime import timedelta
+    
+    YORUBA_YEAR_DAYS = 364  # 13 months × 28 days
+    YORUBA_MONTH_DAYS = 28
+    YORUBA_EPOCH = datetime(2025, 1, 1)
+    
+    # Calculate days since Yoruba epoch
+    days_since_epoch = (greg_date - YORUBA_EPOCH).days
+    
+    # Handle negative days (dates before epoch)
+    if days_since_epoch < 0:
+        years_before = abs(days_since_epoch) // YORUBA_YEAR_DAYS + 1
+        adjusted_days = days_since_epoch + (years_before * YORUBA_YEAR_DAYS)
+        yoruba_year = yoruba_calendar["year"] - years_before
+    else:
+        adjusted_days = days_since_epoch
+        yoruba_year = yoruba_calendar["year"] + (adjusted_days // YORUBA_YEAR_DAYS)
+    
+    # Calculate position within current Yoruba year
+    day_in_year = adjusted_days % YORUBA_YEAR_DAYS
+    if day_in_year == 0 and adjusted_days > 0:
+        day_in_year = YORUBA_YEAR_DAYS
+    
+    # Calculate month and day within month
+    month_index = (day_in_year - 1) // YORUBA_MONTH_DAYS
+    day_in_month = ((day_in_year - 1) % YORUBA_MONTH_DAYS) + 1
+    
+    # Ensure valid indices
+    month_index = max(0, min(month_index, len(yoruba_calendar["months"]) - 1))
+    day_in_month = max(1, min(day_in_month, YORUBA_MONTH_DAYS))
+    
+    # Get month data
+    yoruba_month = yoruba_calendar["months"][month_index]
+    
+    # Get day data if available
+    day_data = None
+    if day_in_month <= len(yoruba_month["days"]):
+        day_data = yoruba_month["days"][day_in_month - 1]
+    
+    # Calculate actual moon phase for this date
+    actual_moon_phase = calculate_moon_phase_flask(greg_date)
+    
+    return {
+        "gregorian_date": greg_date.strftime("%Y-%m-%d"),
+        "yoruba_year": yoruba_year,
+        "yoruba_month": yoruba_month["name"],
+        "yoruba_day": day_in_month,
+        "yoruba_day_name": day_data["yoruba_day"] if day_data else f"Day {day_in_month}",
+        "orisha": yoruba_month["orisha"],
+        "theme": yoruba_month["theme"],
+        "color": yoruba_month["color"],
+        "taboos": yoruba_month["taboos"],
+        "activity": day_data["activity"] if day_data else "Traditional observance",
+        "offerings": day_data["offerings"] if day_data else ["traditional offerings"],
+        "moon_phase": actual_moon_phase,
+        "prayer": day_data.get("prayer") if day_data else None,
+        "day_in_year": day_in_year,
+        "month_index": month_index + 1
+    }
+
+@app.route('/convert/<date_str>')
+@app.route('/api/convert/<date_str>')
+def convert_gregorian_to_yoruba(date_str):
+    """Convert Gregorian date to Yoruba calendar date"""
+    try:
+        # Parse date string (YYYY-MM-DD format)
+        greg_date = datetime.strptime(date_str, "%Y-%m-%d")
+        yoruba_date = gregorian_to_yoruba_date_flask(greg_date)
+        return jsonify(yoruba_date)
+    except ValueError:
+        return jsonify({"error": "Invalid date format. Use YYYY-MM-DD"}), 400
+    except Exception as e:
+        return jsonify({"error": f"Conversion failed: {str(e)}"}), 500
+
+@app.route('/convert-range')
+@app.route('/api/convert-range')
+def convert_date_range():
+    """Convert a range of Gregorian dates to Yoruba calendar"""
+    from flask import request
+    from datetime import timedelta
+    try:
+        start_date_str = request.args.get('start_date')
+        end_date_str = request.args.get('end_date')
+        
+        if not start_date_str or not end_date_str:
+            return jsonify({"error": "start_date and end_date parameters required"}), 400
+        
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+        end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
+        
+        if start_date > end_date:
+            return jsonify({"error": "start_date must be before end_date"}), 400
+        
+        # Limit range to prevent excessive data
+        days_diff = (end_date - start_date).days
+        if days_diff > 365:
+            return jsonify({"error": "Date range cannot exceed 365 days"}), 400
+        
+        calendar_range = []
+        current_date = start_date
+        
+        while current_date <= end_date:
+            yoruba_data = gregorian_to_yoruba_date_flask(current_date)
+            calendar_range.append(yoruba_data)
+            current_date += timedelta(days=1)
+        
+        return jsonify({
+            "start_date": start_date_str,
+            "end_date": end_date_str,
+            "total_days": len(calendar_range),
+            "calendar_data": calendar_range
+        })
+        
+    except ValueError:
+        return jsonify({"error": "Invalid date format. Use YYYY-MM-DD"}), 400
+    except Exception as e:
+        return jsonify({"error": f"Conversion failed: {str(e)}"}), 500
+
+@app.route('/today-yoruba')
+@app.route('/api/today-yoruba')
+def today_yoruba():
+    """Get today's date in Yoruba calendar with conversion details"""
+    try:
+        today = datetime.now()
+        yoruba_today = gregorian_to_yoruba_date_flask(today)
+        return jsonify(yoruba_today)
+    except Exception as e:
+        return jsonify({"error": f"Failed to get today's Yoruba date: {str(e)}"}), 500
+
 if __name__ == '__main__':
     print("🌙 Starting Yoruba Lunar Calendar Flask Application...")
     print("📅 Serving traditional 13-month calendar system")

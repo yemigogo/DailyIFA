@@ -1307,6 +1307,24 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // ===== GREGORIAN TO YORUBA CALENDAR CONVERSION API ENDPOINTS =====
+  
+  // Import conversion functions from complete-yoruba-calendar
+  const { 
+    convertGregorianToYoruba, 
+    convertDateRange, 
+    getCompleteToday 
+  } = await import("./complete-yoruba-calendar.js");
+
+  // Convert single Gregorian date to Yoruba calendar
+  app.get("/api/convert/:date", convertGregorianToYoruba);
+  
+  // Convert date range to Yoruba calendar 
+  app.get("/api/convert-range", convertDateRange);
+  
+  // Get today's date in Yoruba calendar with conversion details
+  app.get("/api/today-yoruba", getCompleteToday);
+
   const httpServer = createServer(app);
   return httpServer;
 }

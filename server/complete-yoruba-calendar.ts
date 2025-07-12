@@ -434,3 +434,174 @@ export function getCompleteDayInMonth(req: Request, res: Response) {
     ...day
   });
 }
+
+// Gregorian to Yoruba Calendar Conversion Functions
+function calculateMoonPhase(gregDate: Date): string {
+  // Use synodic month cycle (29.53 days) for moon phase calculation
+  const synodicMonth = 29.53058868;
+  
+  // Known new moon reference (approximate)
+  const knownNewMoon = new Date(2025, 0, 29, 12, 36); // January 29, 2025
+  
+  // Calculate days since known new moon
+  const daysSinceNewMoon = (gregDate.getTime() - knownNewMoon.getTime()) / (24 * 3600 * 1000);
+  
+  // Calculate position in lunar cycle (0-1)
+  const lunarCyclePosition = (daysSinceNewMoon % synodicMonth) / synodicMonth;
+  
+  // Map to 8 traditional phases based on cycle position
+  if (lunarCyclePosition < 0.03 || lunarCyclePosition > 0.97) {
+    return "New Moon";
+  } else if (lunarCyclePosition >= 0.03 && lunarCyclePosition < 0.22) {
+    return "Waxing Crescent";
+  } else if (lunarCyclePosition >= 0.22 && lunarCyclePosition < 0.28) {
+    return "First Quarter";
+  } else if (lunarCyclePosition >= 0.28 && lunarCyclePosition < 0.47) {
+    return "Waxing Gibbous";
+  } else if (lunarCyclePosition >= 0.47 && lunarCyclePosition < 0.53) {
+    return "Full Moon";
+  } else if (lunarCyclePosition >= 0.53 && lunarCyclePosition < 0.72) {
+    return "Waning Gibbous";
+  } else if (lunarCyclePosition >= 0.72 && lunarCyclePosition < 0.78) {
+    return "Last Quarter";
+  } else {
+    return "Waning Crescent";
+  }
+}
+
+function gregorianToYorubaDate(gregDate: Date) {
+  const YORUBA_YEAR_DAYS = 364; // 13 months × 28 days
+  const YORUBA_MONTH_DAYS = 28;
+  const YORUBA_EPOCH = new Date(2025, 0, 1); // January 1, 2025
+  
+  // Calculate days since Yoruba epoch
+  const daysSinceEpoch = Math.floor((gregDate.getTime() - YORUBA_EPOCH.getTime()) / (24 * 3600 * 1000));
+  
+  // Handle negative days (dates before epoch)
+  let adjustedDays: number;
+  let yorubaYear: number;
+  
+  if (daysSinceEpoch < 0) {
+    const yearsBefore = Math.floor(Math.abs(daysSinceEpoch) / YORUBA_YEAR_DAYS) + 1;
+    adjustedDays = daysSinceEpoch + (yearsBefore * YORUBA_YEAR_DAYS);
+    yorubaYear = completeYorubaCalendar.year - yearsBefore;
+  } else {
+    adjustedDays = daysSinceEpoch;
+    yorubaYear = completeYorubaCalendar.year + Math.floor(adjustedDays / YORUBA_YEAR_DAYS);
+  }
+  
+  // Calculate position within current Yoruba year
+  let dayInYear = adjustedDays % YORUBA_YEAR_DAYS;
+  if (dayInYear === 0 && adjustedDays > 0) {
+    dayInYear = YORUBA_YEAR_DAYS;
+  }
+  
+  // Calculate month and day within month
+  const monthIndex = Math.floor((dayInYear - 1) / YORUBA_MONTH_DAYS);
+  const dayInMonth = ((dayInYear - 1) % YORUBA_MONTH_DAYS) + 1;
+  
+  // Ensure valid indices
+  const validMonthIndex = Math.max(0, Math.min(monthIndex, completeYorubaCalendar.months.length - 1));
+  const validDayInMonth = Math.max(1, Math.min(dayInMonth, YORUBA_MONTH_DAYS));
+  
+  // Get month data
+  const yorubaMonth = completeYorubaCalendar.months[validMonthIndex];
+  
+  // Get day data if available
+  const dayData = validDayInMonth <= yorubaMonth.days.length ? 
+    yorubaMonth.days[validDayInMonth - 1] : null;
+  
+  // Calculate actual moon phase for this date
+  const actualMoonPhase = calculateMoonPhase(gregDate);
+  
+  return {
+    gregorian_date: gregDate.toISOString().split('T')[0],
+    yoruba_year: yorubaYear,
+    yoruba_month: yorubaMonth.name,
+    yoruba_day: validDayInMonth,
+    yoruba_day_name: dayData?.yoruba_day || `Day ${validDayInMonth}`,
+    orisha: yorubaMonth.orisha,
+    theme: yorubaMonth.theme,
+    color: yorubaMonth.color,
+    taboos: yorubaMonth.taboos,
+    activity: dayData?.activity || "Traditional observance",
+    offerings: dayData?.offerings || ["traditional offerings"],
+    moon_phase: actualMoonPhase,
+    prayer: dayData?.prayer || null,
+    day_in_year: dayInYear,
+    month_index: validMonthIndex + 1
+  };
+}
+
+// API endpoint for Gregorian to Yoruba conversion
+export function convertGregorianToYoruba(req: Request, res: Response) {
+  try {
+    const dateParam = req.params.date || req.query.date as string;
+    
+    if (!dateParam) {
+      return res.status(400).json({ error: "Date parameter required (YYYY-MM-DD format)" });
+    }
+    
+    const gregDate = new Date(dateParam);
+    
+    if (isNaN(gregDate.getTime())) {
+      return res.status(400).json({ error: "Invalid date format. Use YYYY-MM-DD" });
+    }
+    
+    const yorubaDate = gregorianToYorubaDate(gregDate);
+    res.json(yorubaDate);
+    
+  } catch (error) {
+    console.error('Error converting date:', error);
+    res.status(500).json({ error: "Failed to convert date" });
+  }
+}
+
+// API endpoint for date range conversion
+export function convertDateRange(req: Request, res: Response) {
+  try {
+    const startDate = req.query.start_date as string;
+    const endDate = req.query.end_date as string;
+    
+    if (!startDate || !endDate) {
+      return res.status(400).json({ error: "start_date and end_date parameters required" });
+    }
+    
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+      return res.status(400).json({ error: "Invalid date format. Use YYYY-MM-DD" });
+    }
+    
+    if (start > end) {
+      return res.status(400).json({ error: "start_date must be before end_date" });
+    }
+    
+    // Limit range to prevent excessive data
+    const daysDiff = Math.floor((end.getTime() - start.getTime()) / (24 * 3600 * 1000));
+    if (daysDiff > 365) {
+      return res.status(400).json({ error: "Date range cannot exceed 365 days" });
+    }
+    
+    const calendarRange = [];
+    const currentDate = new Date(start);
+    
+    while (currentDate <= end) {
+      const yorubaData = gregorianToYorubaDate(currentDate);
+      calendarRange.push(yorubaData);
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    
+    res.json({
+      start_date: startDate,
+      end_date: endDate,
+      total_days: calendarRange.length,
+      calendar_data: calendarRange
+    });
+    
+  } catch (error) {
+    console.error('Error converting date range:', error);
+    res.status(500).json({ error: "Failed to convert date range" });
+  }
+}
