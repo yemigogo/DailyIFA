@@ -3,6 +3,7 @@ export interface YorubaDay {
   yoruba_day: string;
   activity: string;
   moon_phase: string;
+  offerings?: string[];
 }
 
 export interface YorubaMonth {
@@ -17,6 +18,39 @@ export interface YorubaCalendar {
   months: YorubaMonth[];
 }
 
+// Helper functions for calendar operations
+export function getMonthInfo(monthName: string): YorubaMonth | null {
+  for (const month of yorubaCalendar2025.months) {
+    if (month.name === monthName) {
+      return month;
+    }
+  }
+  return null;
+}
+
+export function getDayActivities(monthName: string, dayNumber: number): YorubaDay | null {
+  const month = getMonthInfo(monthName);
+  if (month) {
+    for (const day of month.days) {
+      if (day.day === dayNumber) {
+        return day;
+      }
+    }
+  }
+  return null;
+}
+
+export function getTodayInfo(): { month: YorubaMonth; day: YorubaDay } | null {
+  const currentDate = new Date();
+  const monthIndex = Math.floor((currentDate.getMonth()) % 13);
+  const dayInMonth = Math.min(currentDate.getDate(), 28);
+  
+  const month = yorubaCalendar2025.months[monthIndex];
+  const day = month.days[dayInMonth - 1];
+  
+  return month && day ? { month, day } : null;
+}
+
 export const yorubaCalendar2025: YorubaCalendar = {
   "year": 2025,
   "months": [
@@ -25,8 +59,8 @@ export const yorubaCalendar2025: YorubaCalendar = {
       "orisha": "Ọbàtálá",
       "theme": "Purity, New Beginnings",
       "days": [
-        { "day": 1, "yoruba_day": "Ọjọ́-Àìkú", "activity": "New Moon – White cloth offerings to Ọbàtálá", "moon_phase": "New Moon" },
-        { "day": 2, "yoruba_day": "Ọjọ́-Ajé", "activity": "Prosperity prayers and white kola offerings", "moon_phase": "New Moon" },
+        { "day": 1, "yoruba_day": "Ọjọ́-Àìkú", "activity": "New Moon - White cloth offerings to Ọbàtálá", "moon_phase": "New Moon", "offerings": ["white cloth", "coconut", "water"] },
+        { "day": 2, "yoruba_day": "Ọjọ́-Ajé", "activity": "Pray to Èṣù for open roads", "moon_phase": "Waxing Crescent", "offerings": ["palm oil", "kolanut"] },
         { "day": 3, "yoruba_day": "Ọjọ́-Ìṣẹ́gun", "activity": "Call Ṣàngó for strength", "moon_phase": "Waxing Crescent" },
         { "day": 4, "yoruba_day": "Ọjọ́-Rírú", "activity": "Cleansing with white flowers and water", "moon_phase": "Waxing Crescent" },
         { "day": 5, "yoruba_day": "Ọjọ́-Ẹ̀mí", "activity": "Spiritual meditation with Ọbàtálá", "moon_phase": "Waxing Crescent" },
@@ -56,11 +90,11 @@ export const yorubaCalendar2025: YorubaCalendar = {
       ]
     },
     {
-      "name": "Èrèlé",
+      "name": "Èrèlé", 
       "orisha": "Ògún",
-      "theme": "Work, Progress, Iron Will",
+      "theme": "War, Iron, Labor",
       "days": [
-        { "day": 1, "yoruba_day": "Ọjọ́-Ògún", "activity": "New Moon – Iron tools blessing ceremony", "moon_phase": "New Moon" },
+        { "day": 1, "yoruba_day": "Ọjọ́-Àìkú", "activity": "Offer iron tools to Ògún", "moon_phase": "New Moon", "offerings": ["palm oil", "rooster"] },
         { "day": 2, "yoruba_day": "Ọjọ́-Ìṣẹ́", "activity": "Work and labor dedication", "moon_phase": "New Moon" },
         { "day": 3, "yoruba_day": "Ọjọ́-Ìfẹ̀", "activity": "Call upon Ògún for protection", "moon_phase": "Waxing Crescent" },
         { "day": 4, "yoruba_day": "Ọjọ́-Ọ̀nà", "activity": "Path clearing ceremonies", "moon_phase": "Waxing Crescent" },

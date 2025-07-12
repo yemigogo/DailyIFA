@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { yorubaCalendar2025, type YorubaMonth, type YorubaDay } from "@/data/yoruba-calendar-2025";
+import { yorubaCalendar2025, type YorubaMonth, type YorubaDay, getMonthInfo, getDayActivities, getTodayInfo } from "@/data/yoruba-calendar-2025";
 
 interface YorubaCalendarProps {
   showNotifications?: boolean;
@@ -195,6 +195,20 @@ export default function YorubaCalendar({ showNotifications = true }: YorubaCalen
                 <p className="text-amber-700 dark:text-amber-300">
                   {selectedDay.activity}
                 </p>
+                {selectedDay.offerings && selectedDay.offerings.length > 0 && (
+                  <div className="mt-3">
+                    <h5 className="font-medium text-amber-800 dark:text-amber-200 mb-1">
+                      {ts("Offerings", "Ẹbọ")}:
+                    </h5>
+                    <div className="flex flex-wrap gap-1">
+                      {selectedDay.offerings.map((offering, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs bg-amber-200 text-amber-800 dark:bg-amber-800 dark:text-amber-200">
+                          {offering}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </CardContent>
@@ -210,24 +224,45 @@ export default function YorubaCalendar({ showNotifications = true }: YorubaCalen
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {currentMonth.days[currentDay - 1] && (
-            <div className="space-y-2">
-              <p className="font-semibold">
-                {currentMonth.days[currentDay - 1]?.yoruba_day}
-              </p>
-              <p className="text-amber-100">
-                {currentMonth.days[currentDay - 1]?.activity}
-              </p>
-              <div className="flex items-center gap-2 mt-3">
-                <span className="text-2xl">
-                  {getMoonPhaseIcon(currentMonth.days[currentDay - 1]?.moon_phase || "New Moon")}
-                </span>
-                <span className="text-amber-100">
-                  {currentMonth.days[currentDay - 1]?.moon_phase}
-                </span>
+          {(() => {
+            const todayInfo = getTodayInfo();
+            return todayInfo ? (
+              <div className="space-y-2">
+                <p className="font-semibold">
+                  {todayInfo.day.yoruba_day}
+                </p>
+                <p className="text-amber-100">
+                  {todayInfo.day.activity}
+                </p>
+                <div className="flex items-center gap-2 mt-3">
+                  <span className="text-2xl">
+                    {getMoonPhaseIcon(todayInfo.day.moon_phase)}
+                  </span>
+                  <span className="text-amber-100">
+                    {todayInfo.day.moon_phase}
+                  </span>
+                </div>
+                {todayInfo.day.offerings && todayInfo.day.offerings.length > 0 && (
+                  <div className="mt-3">
+                    <p className="text-amber-200 text-sm mb-1">
+                      {ts("Today's Offerings", "Ẹbọ Òní")}:
+                    </p>
+                    <div className="flex flex-wrap gap-1">
+                      {todayInfo.day.offerings.map((offering, index) => (
+                        <Badge key={index} variant="outline" className="text-xs text-amber-100 border-amber-300">
+                          {offering}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-amber-100">
+                {ts("Calendar information not available", "Kò sí ìròyìn kálẹ́ńdà")}
+              </p>
+            );
+          })()}
         </CardContent>
       </Card>
     </div>
