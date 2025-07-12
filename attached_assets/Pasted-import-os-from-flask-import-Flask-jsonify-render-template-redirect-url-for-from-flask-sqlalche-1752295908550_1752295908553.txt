@@ -1,0 +1,146 @@
+import os
+from flask import Flask, jsonify, render_template, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, current_user
+from datetime import datetime
+import math
+
+# Initialize Flask App
+app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-123')
+
+# Database Setup
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yoruba_calendar.db'
+db = SQLAlchemy(app)
+
+# Login Manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# User Model
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    rituals = db.relationship('UserRitual', backref='user', lazy=True)
+
+class UserRitual(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.String(10))  # Format: "MM-DD"
+    notes = db.Column(db.Text)
+
+# ======================
+# COMPLETE 13-MONTH DATA
+# ======================
+
+yoruba_months = [
+    {
+        "name": "Ṣẹ̀rẹ̀",
+        "orisha": "Ọbàtálá",
+        "theme": "Purity, New Beginnings",
+        "emoji": "⚪",
+        "days": [
+            {
+                "day": 1,
+                "yoruba_day": "Ọjọ́-Àìkú",
+                "activity": "New Moon purification ceremony",
+                "offerings": ["white cloth", "coconut water", "cool water"],
+                "taboos": ["salt", "alcohol"]
+            },
+            # ... (all 28 days)
+        ]
+    },
+    # ... (all 13 months)
+]
+
+# ==================
+# LUNAR CALCULATIONS
+# ==================
+
+def calculate_moon_phase(date):
+    """Precise moon phase calculation (simplified)"""
+    year = date.year
+    month = date.month
+    day = date.day
+    
+    # Astronomical calculation (simplified)
+    c = moon_cycle = 29.53
+    age = (year - 2000) * 365.25 + (month - 1) * 29.53 + day
+    phase = (age % moon_cycle) / moon_cycle * 8
+    
+    phases = {
+        0: "🌑 New Moon",
+        1: "🌒 Waxing Crescent",
+        2: "🌓 First Quarter",
+        3: "🌔 Waxing Gibbous",
+        4: "🌕 Full Moon",
+        5: "🌖 Waning Gibbous",
+        6: "🌗 Last Quarter",
+        7: "🌘 Waning Crescent"
+    }
+    return phases.get(math.floor(phase), "🌑")
+
+# ================
+# FLASK ENDPOINTS
+# ================
+
+@app.route('/')
+def home():
+    today = datetime.now()
+    moon = calculate_moon_phase(today)
+    
+    # Get Yoruba date (simplified)
+    yoruba_month = yoruba_months[(today.month - 1) % 13]
+    yoruba_day = today.day % 28 or 28
+    
+    return render_template('index.html',
+                         moon_phase=moon,
+                         month=yoruba_month,
+                         day=yoruba_day)
+
+@app.route('/api/moon-phase')
+def moon_api():
+    return jsonify({
+        "phase": calculate_moon_phase(datetime.now()),
+        "next_full_moon": "2025-01-13"  # Should be calculated
+    })
+
+# ================
+# AUTHENTICATION
+# ================
+
+@app.route('/login')
+def login():
+    # Implement OAuth with Flask-Dance in production
+    user = User.query.filter_by(email="test@example.com").first()
+    login_user(user)
+    return redirect(url_for('home'))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# ================
+# REACT COMPONENTS
+# ================
+
+@app.route('/react-data')
+def react_data():
+    return jsonify({
+        "months": yoruba_months,
+        "current_date": {
+            "gregorian": datetime.now().strftime("%Y-%m-%d"),
+            "yoruba_day": 15,
+            "yoruba_month": "Ṣẹ̀rẹ̀"
+        }
+    })
+
+# Initialize Database
+with app.app_context():
+    db.create_all()
+    if not User.query.first():
+        db.session.add(User(email="test@example.com"))
+        db.session.commit()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

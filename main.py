@@ -12,10 +12,68 @@ import json
 from datetime import datetime, date, timedelta
 import hashlib
 import math
+from flask_sqlalchemy import SQLAlchemy
 
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'ifa-daily-yoruba-wisdom-2025')
+
+# SQLAlchemy Configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ifa_app.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+# SQLAlchemy Models
+class UserRitual(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(50), nullable=False)
+    ritual_notes = db.Column(db.Text)
+    ritual_type = db.Column(db.String(100))
+    orisha = db.Column(db.String(50))
+    date_performed = db.Column(db.DateTime, default=datetime.utcnow)
+    moon_phase = db.Column(db.String(30))
+    offerings = db.Column(db.Text)  # JSON string for offerings list
+    spiritual_outcome = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'ritual_notes': self.ritual_notes,
+            'ritual_type': self.ritual_type,
+            'orisha': self.orisha,
+            'date_performed': self.date_performed.isoformat() if self.date_performed else None,
+            'moon_phase': self.moon_phase,
+            'offerings': json.loads(self.offerings) if self.offerings else [],
+            'spiritual_outcome': self.spiritual_outcome,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+class CalendarEntry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    gregorian_date = db.Column(db.Date, unique=True, nullable=False)
+    yoruba_date = db.Column(db.String(100))
+    orisha = db.Column(db.String(50))
+    moon_phase = db.Column(db.String(30))
+    daily_prayer = db.Column(db.Text)
+    activities = db.Column(db.Text)  # JSON string
+    offerings = db.Column(db.Text)  # JSON string
+    spiritual_guidance = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'gregorian_date': self.gregorian_date.isoformat(),
+            'yoruba_date': self.yoruba_date,
+            'orisha': self.orisha,
+            'moon_phase': self.moon_phase,
+            'daily_prayer': self.daily_prayer,
+            'activities': json.loads(self.activities) if self.activities else [],
+            'offerings': json.loads(self.offerings) if self.offerings else [],
+            'spiritual_guidance': self.spiritual_guidance
+        }
 
 # Database initialization
 def init_db():
@@ -52,6 +110,11 @@ def init_db():
     
     conn.commit()
     conn.close()
+    
+    # Initialize SQLAlchemy tables
+    with app.app_context():
+        db.create_all()
+        print("✓ SQLAlchemy tables created successfully")
 
 def get_db_connection():
     """Get database connection"""
@@ -432,21 +495,158 @@ def api_full_calendar():
 def health_check():
     """Enhanced health check endpoint"""
     yoruba_calendar = load_yoruba_calendar()
+    
+    # Check SQLAlchemy database status
+    try:
+        ritual_count = UserRitual.query.count()
+        calendar_count = CalendarEntry.query.count()
+        sqlalchemy_status = {
+            "sqlalchemy_connected": True,
+            "user_rituals_count": ritual_count,
+            "calendar_entries_count": calendar_count
+        }
+    except Exception as e:
+        sqlalchemy_status = {
+            "sqlalchemy_connected": False,
+            "error": str(e)
+        }
+    
     return jsonify({
         'status': 'healthy',
-        'app': 'Ifá Daily - Enhanced Yoruba Calendar',
+        'app': 'Ifá Daily - Enhanced Yoruba Calendar with SQLAlchemy',
         'features': [
             'Intelligent prayer generation',
             'Astronomical moon phase calculation',
             'Enhanced Yoruba day naming',
             'Spiritual pattern analysis',
-            'Complete calendar system'
+            'Complete calendar system',
+            'SQLAlchemy user ritual tracking',
+            'Calendar entry persistence'
         ],
         'audio_status': 'disabled_pending_authentic_recordings',
         'database': 'connected',
         'calendar_loaded': len(yoruba_calendar.get("months", [])) > 0,
-        'total_calendar_days': sum(len(month.get("days", [])) for month in yoruba_calendar.get("months", []))
+        'total_calendar_days': sum(len(month.get("days", [])) for month in yoruba_calendar.get("months", [])),
+        **sqlalchemy_status
     })
+
+# SQLAlchemy API Endpoints
+@app.route('/api/rituals', methods=['GET', 'POST'])
+def rituals():
+    """Get all rituals or create new ritual"""
+    if request.method == 'GET':
+        user_id = request.args.get('user_id')
+        if user_id:
+            rituals = UserRitual.query.filter_by(user_id=user_id).order_by(UserRitual.created_at.desc()).all()
+        else:
+            rituals = UserRitual.query.order_by(UserRitual.created_at.desc()).limit(20).all()
+        return jsonify([ritual.to_dict() for ritual in rituals])
+    
+    elif request.method == 'POST':
+        data = request.get_json()
+        try:
+            ritual = UserRitual(
+                user_id=data.get('user_id', 'anonymous'),
+                ritual_notes=data.get('ritual_notes'),
+                ritual_type=data.get('ritual_type'),
+                orisha=data.get('orisha'),
+                moon_phase=data.get('moon_phase'),
+                offerings=json.dumps(data.get('offerings', [])) if data.get('offerings') else None,
+                spiritual_outcome=data.get('spiritual_outcome')
+            )
+            db.session.add(ritual)
+            db.session.commit()
+            return jsonify(ritual.to_dict()), 201
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': str(e)}), 400
+
+@app.route('/api/rituals/<int:ritual_id>', methods=['GET', 'PUT', 'DELETE'])
+def ritual_detail(ritual_id):
+    """Get, update, or delete specific ritual"""
+    ritual = UserRitual.query.get_or_404(ritual_id)
+    
+    if request.method == 'GET':
+        return jsonify(ritual.to_dict())
+    
+    elif request.method == 'PUT':
+        data = request.get_json()
+        try:
+            ritual.ritual_notes = data.get('ritual_notes', ritual.ritual_notes)
+            ritual.ritual_type = data.get('ritual_type', ritual.ritual_type)
+            ritual.orisha = data.get('orisha', ritual.orisha)
+            ritual.moon_phase = data.get('moon_phase', ritual.moon_phase)
+            ritual.spiritual_outcome = data.get('spiritual_outcome', ritual.spiritual_outcome)
+            if data.get('offerings'):
+                ritual.offerings = json.dumps(data.get('offerings'))
+            db.session.commit()
+            return jsonify(ritual.to_dict())
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': str(e)}), 400
+    
+    elif request.method == 'DELETE':
+        try:
+            db.session.delete(ritual)
+            db.session.commit()
+            return jsonify({'message': 'Ritual deleted successfully'})
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': str(e)}), 400
+
+@app.route('/api/calendar-entries', methods=['GET', 'POST'])
+def calendar_entries():
+    """Get calendar entries or save today's enhanced data"""
+    if request.method == 'GET':
+        start_date = request.args.get('start_date')
+        end_date = request.args.get('end_date')
+        
+        query = CalendarEntry.query
+        if start_date:
+            query = query.filter(CalendarEntry.gregorian_date >= start_date)
+        if end_date:
+            query = query.filter(CalendarEntry.gregorian_date <= end_date)
+        
+        entries = query.order_by(CalendarEntry.gregorian_date.desc()).limit(30).all()
+        return jsonify([entry.to_dict() for entry in entries])
+    
+    elif request.method == 'POST':
+        # Save today's enhanced calendar data
+        today = datetime.now().date()
+        enhanced_data = gregorian_to_yoruba_enhanced(datetime.now())
+        
+        try:
+            # Check if entry exists
+            existing = CalendarEntry.query.filter_by(gregorian_date=today).first()
+            if existing:
+                # Update existing entry
+                existing.yoruba_date = f"{enhanced_data['yoruba_day']} {enhanced_data['yoruba_month']} {enhanced_data['yoruba_year']}"
+                existing.orisha = enhanced_data['orisha']
+                existing.moon_phase = enhanced_data['moon_phase']
+                existing.daily_prayer = enhanced_data['prayer']
+                existing.activities = json.dumps([enhanced_data['activity']])
+                existing.offerings = json.dumps(enhanced_data['offerings'])
+                existing.spiritual_guidance = enhanced_data['spiritual_guidance']
+                entry = existing
+            else:
+                # Create new entry
+                entry = CalendarEntry(
+                    gregorian_date=today,
+                    yoruba_date=f"{enhanced_data['yoruba_day']} {enhanced_data['yoruba_month']} {enhanced_data['yoruba_year']}",
+                    orisha=enhanced_data['orisha'],
+                    moon_phase=enhanced_data['moon_phase'],
+                    daily_prayer=enhanced_data['prayer'],
+                    activities=json.dumps([enhanced_data['activity']]),
+                    offerings=json.dumps(enhanced_data['offerings']),
+                    spiritual_guidance=enhanced_data['spiritual_guidance']
+                )
+                db.session.add(entry)
+            
+            db.session.commit()
+            return jsonify(entry.to_dict()), 201
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
     # Initialize database
@@ -464,7 +664,12 @@ if __name__ == '__main__':
     🐍 Flask Demo: http://localhost:{port}
     
     🔇 Audio Status: Disabled pending authentic recordings
-    📊 Database: SQLite initialized
+    📊 Database: SQLite + SQLAlchemy initialized
+    
+    📋 SQLAlchemy Features:
+    • UserRitual tracking: /api/rituals
+    • Calendar entries: /api/calendar-entries
+    • Enhanced health check: /health
     """)
     
     # Run the app
