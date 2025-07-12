@@ -248,9 +248,9 @@ if __name__ == '__main__':
     print("🚀 ENHANCED YORUBA CALENDAR DASHBOARD")
     print("====================================")
     print("📱 Features: Moon phases, rituals, notifications, social sharing")
-    print("🔗 URL: http://localhost:5000")
+    print("🔗 URL: http://localhost:8080")
     print("👤 Admin: admin/admin123")
     print("👤 Demo: spiritual_seeker/test123")
     
     initialize_app()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
