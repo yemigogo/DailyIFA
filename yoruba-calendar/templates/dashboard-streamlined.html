@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Odún Calendar{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <!-- Welcome Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-6">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold mb-2">Welcome, {{ user.first_name or user.username }}!</h1>
+            <p class="text-blue-100 mb-3">{{ current_date.strftime('%A, %B %d, %Y') }}</p>
+            <div class="flex justify-center space-x-4 text-sm">
+                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">{{ user.spiritual_path }}</span>
+                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">{{ user.preferred_orisha }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+        <!-- Current Day Card -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">{{ yoruba_data.yoruba_month }} - Day {{ yoruba_data.yoruba_day }}</h2>
+            
+            <!-- Today's Yoruba Day -->
+            <div class="text-4xl mb-4 text-center text-blue-600">
+                {{ yoruba_data.yoruba_day }}
+            </div>
+            
+            <!-- Moon Phase -->
+            <div class="text-xl mb-4 text-center">
+                <div class="text-2xl mb-1">{{ moon_phase.name.split()[0] }}</div>
+                <div class="text-sm text-gray-600">{{ moon_phase.yoruba }}</div>
+            </div>
+            
+            <!-- Orisha of the Day -->
+            <div class="mb-4 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-bold text-gray-800 mb-2">Today's Orisha:</h3>
+                <div class="text-blue-700 text-lg font-medium">{{ yoruba_data.orisha }}</div>
+                <p class="text-sm text-gray-600 mt-1">{{ yoruba_data.theme }}</p>
+            </div>
+            
+            <!-- Today's Activity -->
+            <div class="mb-4">
+                <h3 class="font-bold text-gray-800 mb-2">Today's Activity:</h3>
+                <p class="text-gray-700">{{ yoruba_data.activity }}</p>
+            </div>
+            
+            <!-- Recommended Offerings -->
+            <div class="mb-4">
+                <h3 class="font-bold text-gray-800 mb-2">Recommended Offerings:</h3>
+                <div class="flex flex-wrap gap-2">
+                    {% for offering in yoruba_data.offerings %}
+                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">{{ offering }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Spiritual Guidance -->
+            {% if spiritual_guidance and spiritual_guidance.taboos %}
+            <div class="bg-red-50 border border-red-200 p-3 rounded-lg">
+                <h3 class="font-bold text-red-700 mb-2">Things to Avoid Today:</h3>
+                <ul class="list-disc pl-5 text-red-600 text-sm">
+                    {% for taboo in spiritual_guidance.taboos %}
+                        <li>{{ taboo }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Add Ritual Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Add Personal Practice</h2>
+            
+            <form method="POST" action="{{ url_for('add_ritual') }}" class="space-y-4">
+                <div>
+                    <label for="ritual_type" class="block text-gray-700 font-medium mb-2">Practice Type</label>
+                    <input type="text" id="ritual_type" name="ritual_type" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                           placeholder="e.g., Morning Prayer, Meditation" required>
+                </div>
+                
+                <div>
+                    <label for="orisha" class="block text-gray-700 font-medium mb-2">Orisha Focus</label>
+                    <select id="orisha" name="orisha" 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="{{ user.preferred_orisha }}" selected>{{ user.preferred_orisha }} (Your Preferred)</option>
+                        <option value="Ọbàtálá">Ọbàtálá</option>
+                        <option value="Ògún">Ògún</option>
+                        <option value="Ṣàngó">Ṣàngó</option>
+                        <option value="Ọ̀ṣun">Ọ̀ṣun</option>
+                        <option value="Yemọja">Yemọja</option>
+                        <option value="Ọya">Ọya</option>
+                        <option value="Èṣù">Èṣù</option>
+                        <option value="Òrúnmìlà">Òrúnmìlà</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="note" class="block text-gray-700 font-medium mb-2">Practice Notes</label>
+                    <textarea id="note" name="note" rows="3"
+                              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Describe your spiritual practice or intention..." required></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                    Save Practice
+                </button>
+            </form>
+        </div>
+        
+        <!-- Your Rituals -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">Today's Practices</h2>
+            
+            {% if rituals %}
+                <div class="space-y-3 max-h-96 overflow-y-auto">
+                    {% for ritual in rituals %}
+                    <div class="border border-gray-200 rounded-lg p-4 {% if ritual.completed %}bg-green-50 border-green-200{% endif %}">
+                        <div class="flex justify-between items-start">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800 mb-1">
+                                    {{ ritual.ritual_type }}
+                                    {% if ritual.completed %}
+                                        <span class="text-green-600 text-sm ml-2">✓ Completed</span>
+                                    {% endif %}
+                                </h4>
+                                
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">{{ ritual.orisha }}</span>
+                                    {% if ritual.moon_phase %}
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">{{ ritual.moon_phase }}</span>
+                                    {% endif %}
+                                </div>
+                                
+                                {% if ritual.ritual_notes %}
+                                    <p class="text-gray-600 text-sm mb-2">{{ ritual.ritual_notes }}</p>
+                                {% endif %}
+                                
+                                <small class="text-gray-500">
+                                    Added {{ ritual.created_at.strftime('%I:%M %p') if ritual.created_at else 'recently' }}
+                                </small>
+                            </div>
+                            
+                            <form action="/complete_ritual/{{ ritual.id }}" method="POST" class="ml-3">
+                                <button type="submit" 
+                                        class="text-xs px-3 py-1 rounded border transition-colors
+                                               {% if ritual.completed %}
+                                                   border-gray-400 text-gray-600 hover:bg-gray-50
+                                               {% else %}
+                                                   border-green-500 text-green-600 hover:bg-green-50
+                                               {% endif %}">
+                                    {% if ritual.completed %}Undo{% else %}Complete{% endif %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-8">
+                    <div class="text-gray-400 mb-2">
+                        <svg class="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-500 text-sm">No practices recorded for today</p>
+                    <p class="text-gray-400 text-xs mt-1">Start your spiritual journey by adding your first practice</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Daily Prayer Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg shadow-lg p-8 mt-6">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Daily Prayer / Ìwúre</h2>
+        <div class="text-center italic text-lg leading-relaxed">
+            <p>"{{ yoruba_data.prayer }}"</p>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-xl font-bold mb-6 text-gray-800">Your Spiritual Journey</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                <div class="text-3xl font-bold text-blue-600 mb-2">{{ user.total_rituals }}</div>
+                <div class="text-sm text-gray-600">Total Practices</div>
+            </div>
+            <div class="text-center p-4 bg-green-50 rounded-lg">
+                <div class="text-3xl font-bold text-green-600 mb-2">{{ rituals|selectattr('completed')|list|length }}</div>
+                <div class="text-sm text-gray-600">Completed Today</div>
+            </div>
+            <div class="text-center p-4 bg-yellow-50 rounded-lg">
+                <div class="text-3xl font-bold text-yellow-600 mb-2">{{ (user.created_at and (current_date - user.created_at).days + 1) or 1 }}</div>
+                <div class="text-sm text-gray-600">Days on Journey</div>
+            </div>
+            <div class="text-center p-4 bg-purple-50 rounded-lg">
+                <div class="text-3xl font-bold text-purple-600 mb-2">{{ ((rituals|selectattr('completed')|list|length / (rituals|length if rituals else 1)) * 100)|round|int if rituals else 0 }}%</div>
+                <div class="text-sm text-gray-600">Completion Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="flex justify-center mt-6 space-x-4">
+        <a href="{{ url_for('index') }}" class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+            View Full Calendar
+        </a>
+        <a href="{{ url_for('auth_logout') }}" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+            Logout
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-refresh completion status without page reload
+    const completionForms = document.querySelectorAll('form[action^="/complete_ritual"]');
+    completionForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const button = this.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Updating...';
+        });
+    });
+    
+    // Form validation
+    const addRitualForm = document.querySelector('form[action*="add_ritual"]');
+    if (addRitualForm) {
+        addRitualForm.addEventListener('submit', function(e) {
+            const ritualType = this.querySelector('#ritual_type').value.trim();
+            const note = this.querySelector('#note').value.trim();
+            
+            if (!ritualType || !note) {
+                e.preventDefault();
+                alert('Please fill in both practice type and notes.');
+                return;
+            }
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+        });
+    }
+});
+</script>
+{% endblock %}

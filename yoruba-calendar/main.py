@@ -420,7 +420,7 @@ def dashboard():
         db.func.date(UserRitual.date_performed) == today.date()
     ).all()
     
-    return render_template('dashboard.html',
+    return render_template('dashboard-streamlined.html',
                          current_date=today,
                          yoruba_data=yoruba_data,
                          moon_phase=moon_phase,
