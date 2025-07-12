@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoruba Calendar Dashboard - Enhanced Ifá Daily</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .moon-phase {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        .orisha-card {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            transition: all 0.3s ease;
+        }
+        .orisha-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .prayer-text {
+            background: linear-gradient(45deg, rgba(139, 69, 19, 0.1), rgba(184, 134, 11, 0.1));
+            border-left: 4px solid #b8860b;
+        }
+        .calendar-gradient {
+            background: linear-gradient(135deg, #0f172a, #1e293b, #475569);
+        }
+    </style>
+</head>
+<body class="calendar-gradient min-h-screen text-white">
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-sm border-b border-amber-500/30 p-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-center text-amber-300">
+                🌙 Enhanced Yoruba Calendar Dashboard
+            </h1>
+            <p class="text-center text-amber-100/80 mt-2">
+                Traditional Spiritual Calendar with Intelligent Prayer Generation
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="container mx-auto p-6 space-y-8">
+        <!-- Today's Date Section -->
+        <section class="orisha-card rounded-lg p-6 border border-amber-500/30">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Date Info -->
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-bold text-amber-300 flex items-center gap-2">
+                        📅 Today's Sacred Date
+                    </h2>
+                    
+                    <div class="space-y-2 text-lg">
+                        <div class="flex justify-between">
+                            <span class="text-amber-200">Gregorian:</span>
+                            <span class="font-mono" id="gregorian-date">{{ date.gregorian or 'Loading...' }}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-amber-200">Yoruba Date:</span>
+                            <span class="font-mono" id="yoruba-date">
+                                {{ date.day or '?' }} {{ date.month or 'Loading...' }} {{ date.year or '2025' }}
+                            </span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-amber-200">Day Name:</span>
+                            <span class="italic" id="yoruba-day-name">{{ day.yoruba_day or 'Loading...' }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-200">Moon Phase:</span>
+                            <span class="moon-phase" id="moon-phase">{{ day.moon_phase or '🌙' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orisha Info -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+                        ⚡ Sacred Orisha
+                    </h3>
+                    
+                    <div class="bg-amber-900/20 rounded-lg p-4 border border-amber-500/20">
+                        <h4 class="text-lg font-bold text-amber-200" id="orisha-name">
+                            {{ month.orisha or 'Loading...' }}
+                        </h4>
+                        <p class="text-amber-100/80 italic" id="orisha-theme">
+                            {{ month.theme or 'Loading theme...' }}
+                        </p>
+                        <div class="mt-2">
+                            <span class="text-sm text-amber-200">Sacred Color:</span>
+                            <span class="ml-2 px-2 py-1 rounded text-xs bg-black/30" id="orisha-color">
+                                {{ month.color or 'Loading...' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Today's Activities -->
+        <section class="orisha-card rounded-lg p-6 border border-amber-500/30">
+            <h2 class="text-2xl font-bold text-amber-300 mb-4 flex items-center gap-2">
+                🔮 Today's Spiritual Activities
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Activity & Offerings -->
+                <div class="space-y-4">
+                    <div class="bg-blue-900/20 rounded-lg p-4 border border-blue-500/20">
+                        <h4 class="font-bold text-blue-200 mb-2">Sacred Activity</h4>
+                        <p class="text-blue-100" id="daily-activity">{{ day.activity or 'Standard spiritual devotion' }}</p>
+                    </div>
+                    
+                    <div class="bg-green-900/20 rounded-lg p-4 border border-green-500/20">
+                        <h4 class="font-bold text-green-200 mb-2">Traditional Offerings</h4>
+                        <div class="flex flex-wrap gap-2" id="offerings-list">
+                            {% if day.offerings %}
+                                {% for offering in day.offerings %}
+                                <span class="bg-green-700/30 px-2 py-1 rounded text-sm">{{ offering }}</span>
+                                {% endfor %}
+                            {% else %}
+                                <span class="text-green-300">Loading offerings...</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prayer Section -->
+                <div class="prayer-text rounded-lg p-4">
+                    <h4 class="font-bold text-amber-200 mb-3 flex items-center gap-2">
+                        🙏 Today's Prayer
+                    </h4>
+                    <p class="text-amber-100 italic leading-relaxed" id="daily-prayer">
+                        {{ day.prayer or 'Great Orishas, guide and bless our journey today' }}
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Testing Panel -->
+        <section class="orisha-card rounded-lg p-6 border border-blue-500/30">
+            <h2 class="text-2xl font-bold text-blue-300 mb-4 flex items-center gap-2">
+                🔧 Enhanced Calendar API
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-4">
+                <button onclick="testTodayAPI()" 
+                        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors">
+                    Test Today's Date
+                </button>
+                <button onclick="testConvertAPI()" 
+                        class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition-colors">
+                    Test Date Conversion
+                </button>
+                <button onclick="testRangeAPI()" 
+                        class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded transition-colors">
+                    Test Range Analysis
+                </button>
+            </div>
+            
+            <div class="mt-4 bg-black/50 rounded-lg p-4 font-mono text-sm overflow-auto max-h-60" id="api-results">
+                API results will appear here...
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="text-center">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/" class="bg-amber-600 hover:bg-amber-700 px-6 py-2 rounded transition-colors">
+                    🏠 Home
+                </a>
+                <a href="/api/calendar" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded transition-colors">
+                    📊 Full Calendar API
+                </a>
+                <a href="/health" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded transition-colors">
+                    💚 System Health
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript for API Testing -->
+    <script>
+        // Enhanced API testing functions
+        async function testTodayAPI() {
+            showLoading();
+            try {
+                const response = await fetch('/api/today-enhanced');
+                const data = await response.json();
+                displayResults('Enhanced Today API', data);
+                updateDashboard(data);
+            } catch (error) {
+                displayError('Enhanced Today API', error.message);
+            }
+        }
+
+        async function testConvertAPI() {
+            showLoading();
+            try {
+                const testDate = '2025-12-25'; // Christmas
+                const response = await fetch(`/api/convert-enhanced/${testDate}`);
+                const data = await response.json();
+                displayResults(`Enhanced Convert API (${testDate})`, data);
+            } catch (error) {
+                displayError('Enhanced Convert API', error.message);
+            }
+        }
+
+        async function testRangeAPI() {
+            showLoading();
+            try {
+                const today = new Date().toISOString().split('T')[0];
+                const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                const response = await fetch(`/api/range-enhanced?start_date=${today}&end_date=${tomorrow}`);
+                const data = await response.json();
+                displayResults('Enhanced Range API', data);
+            } catch (error) {
+                displayError('Enhanced Range API', error.message);
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('api-results').innerHTML = '⏳ Loading...';
+        }
+
+        function displayResults(title, data) {
+            const formatted = JSON.stringify(data, null, 2);
+            document.getElementById('api-results').innerHTML = 
+                `<div class="text-green-400 font-bold">${title} - Success</div>\n${formatted}`;
+        }
+
+        function displayError(title, error) {
+            document.getElementById('api-results').innerHTML = 
+                `<div class="text-red-400 font-bold">${title} - Error</div>\n${error}`;
+        }
+
+        function updateDashboard(data) {
+            // Update dashboard with live data
+            if (data.gregorian_date) {
+                document.getElementById('gregorian-date').textContent = data.gregorian_date;
+            }
+            if (data.yoruba_month && data.yoruba_day && data.yoruba_year) {
+                document.getElementById('yoruba-date').textContent = 
+                    `${data.yoruba_day} ${data.yoruba_month} ${data.yoruba_year}`;
+            }
+            if (data.yoruba_day_name) {
+                document.getElementById('yoruba-day-name').textContent = data.yoruba_day_name;
+            }
+            if (data.moon_phase) {
+                document.getElementById('moon-phase').textContent = data.moon_phase;
+            }
+            if (data.orisha) {
+                document.getElementById('orisha-name').textContent = data.orisha;
+            }
+            if (data.theme) {
+                document.getElementById('orisha-theme').textContent = data.theme;
+            }
+            if (data.color) {
+                document.getElementById('orisha-color').textContent = data.color;
+            }
+            if (data.activity) {
+                document.getElementById('daily-activity').textContent = data.activity;
+            }
+            if (data.prayer) {
+                document.getElementById('daily-prayer').textContent = data.prayer;
+            }
+            if (data.offerings && Array.isArray(data.offerings)) {
+                const offeringsHTML = data.offerings.map(offering => 
+                    `<span class="bg-green-700/30 px-2 py-1 rounded text-sm">${offering}</span>`
+                ).join(' ');
+                document.getElementById('offerings-list').innerHTML = offeringsHTML;
+            }
+        }
+
+        // Auto-load today's data on page load
+        window.addEventListener('load', () => {
+            setTimeout(testTodayAPI, 1000);
+        });
+
+        // Add some dynamic effects
+        setInterval(() => {
+            const moonPhase = document.getElementById('moon-phase');
+            if (moonPhase) {
+                moonPhase.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    moonPhase.style.transform = 'scale(1)';
+                }, 200);
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
