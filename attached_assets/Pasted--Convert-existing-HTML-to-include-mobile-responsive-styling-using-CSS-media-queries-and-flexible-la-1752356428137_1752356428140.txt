@@ -1,0 +1,99 @@
+# Convert existing HTML to include mobile-responsive styling using CSS media queries and flexible layout
+ifa_wisdom_mobile_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ifá Wisdom - Ancient Knowledge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            padding: 15px;
+            margin: 0;
+        }
+        h1, h2 {
+            color: #ffcc00;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .highlight {
+            color: #00ffaa;
+            font-weight: bold;
+        }
+        .quote {
+            font-style: italic;
+            color: #cccccc;
+            padding-left: 15px;
+            border-left: 3px solid #ffcc00;
+            margin: 10px 0;
+        }
+        .section {
+            background-color: #1c1c1c;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 5px solid #ffcc00;
+            border-radius: 5px;
+        }
+        ul {
+            padding-left: 18px;
+        }
+        @media (max-width: 600px) {
+            h1, h2 {
+                font-size: 1.2em;
+            }
+            body {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧠 Wisdom (Ancient Knowledge)</h1>
+
+    <p>Ifá is one of the oldest systems of knowledge known to humanity, rooted in the Yoruba civilization of West Africa. Long before written records, Ifá preserved its sacred teachings through oral chants called <span class="highlight">Ẹsẹ Ifá</span>, passed from <span class="highlight">Babaláwo</span> to apprentice for generations.</p>
+
+    <div class="section">
+        <h2>🕰️ Historical Roots</h2>
+        <ul>
+            <li>Ifá emerged from <span class="highlight">Ilé-Ifẹ̀</span>, the spiritual heart of the Yoruba people.</li>
+            <li>Revealed by <span class="highlight">Òrúnmìlà</span>, the Orisha of wisdom and destiny.</li>
+            <li>Wisdom is encoded in 256 sacred patterns called <span class="highlight">Odu Ifá</span>.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🧭 The Wisdom of Ifá</h2>
+        <ul>
+            <li><strong>Ètò àṣẹ</strong> – The law of spiritual cause and effect.</li>
+            <li><strong>Ìwà lẹ̀wà</strong> – “Character is the ultimate beauty.”</li>
+            <li>Nature and all things carry <span class="highlight">àṣẹ</span> – the sacred force of life.</li>
+        </ul>
+        <p class="quote">“Ìwà Pẹ̀lẹ́ ni oríṣà ń gbà” – It is good character the Orisha accepts.</p>
+    </div>
+
+    <div class="section">
+        <h2>🔍 Why Ancient Wisdom Still Matters</h2>
+        <p>Even in today's digital world, Ifá offers answers to timeless questions:</p>
+        <ul>
+            <li>How should I live?</li>
+            <li>How do I align with my purpose?</li>
+            <li>How can I resolve conflict and restore balance?</li>
+        </ul>
+        <p>Ifá wisdom encourages reflection, connection, and spiritual clarity in everyday life.</p>
+    </div>
+
+</body>
+</html>
+'''
+
+# Save the mobile-optimized version
+ifa_wisdom_mobile_path = "/mnt/data/ifa_learning_wisdom_mobile.html"
+with open(ifa_wisdom_mobile_path, "w", encoding="utf-8") as f:
+    f.write(ifa_wisdom_mobile_html)
+
+ifa_wisdom_mobile_path
