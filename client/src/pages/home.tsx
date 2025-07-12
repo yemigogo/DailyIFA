@@ -47,7 +47,7 @@ export default function Home() {
     if (!reading?.odu) return 1;
     
     // Map Odu names to their correct card numbers based on actual card content
-    const oduNameToCardMap: Record<string, number> = {
+    const oduNameToCardMap: Record<string, number | string> = {
       // Major Odu (1-16)
       'Eji Ogbe': 1, 'Oyeku Meji': 2, 'Iwori Meji': 3, 'Idi Meji': 4,
       'Irosun Meji': 5, 'Owonrin Meji': 6, 'Obara Meji': 7, 'Okanran Meji': 8,
