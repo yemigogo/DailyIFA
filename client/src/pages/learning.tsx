@@ -13,8 +13,7 @@ import opaIfaImage from '@assets/image_1752089221750.png';
 import ikinImage from '@assets/image_1752089487782.png';
 import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
-import Complete256OduSystem from '@/components/complete-256-odu-system';
-import AuthenticOduCards from '@/components/authentic-odu-cards';
+
 import OfflineMode from '@/components/offline-mode';
 
 interface LearningModule {
@@ -254,24 +253,7 @@ const Learning: React.FC = () => {
       icon: <Server className="w-5 h-5" />,
       content: []
     },
-    {
-      id: "complete-256",
-      title: "Complete 256 Odu System",
-      titleYoruba: "Àwọn Odù Ifá 256 Pípé",
-      description: "Full traditional Odu system with authentic naming",
-      descriptionYoruba: "Àwọn Odù Ifá 256 pípé pẹ̀lú orúkọ ìbílẹ̀",
-      icon: <Database className="w-5 h-5" />,
-      content: []
-    },
-    {
-      id: "authentic-cards",
-      title: "Authentic Excel Cards",
-      titleYoruba: "Àwọn Kádì Excel Òtítọ́",
-      description: "Traditional Odu cards generated from your Excel data",
-      descriptionYoruba: "Àwọn kádì Odù ìbílẹ̀ láti Excel data rẹ",
-      icon: <Sparkles className="w-5 h-5" />,
-      content: []
-    },
+
     {
       id: "offline-mode",
       title: "Offline Mode",
@@ -340,7 +322,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-10 mb-8">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 mb-8">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -523,21 +505,7 @@ const Learning: React.FC = () => {
                     </div>
                   )}
 
-                  {module.id === 'complete-256' && (
-                    <div className="space-y-6">
-                      <div className="text-center mb-4">
-                        <h3 className="text-lg font-semibold text-spiritual-blue">Complete 256 Odu System</h3>
-                        <p className="text-gray-600">Traditional Yoruba divination system</p>
-                      </div>
-                      <Complete256OduSystem />
-                    </div>
-                  )}
 
-                  {module.id === 'authentic-cards' && (
-                    <div className="space-y-6">
-                      <AuthenticOduCards />
-                    </div>
-                  )}
 
                   {module.id === 'offline-mode' && (
                     <div className="space-y-6">
