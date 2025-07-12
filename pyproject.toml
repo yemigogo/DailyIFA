@@ -23,4 +23,6 @@ dependencies = [
     "flask-migrate>=4.1.0",
     "flask-admin>=1.6.1",
     "pusher>=3.3.3",
+    "pywebpush>=2.0.3",
+    "pytz>=2025.2",
 ]
