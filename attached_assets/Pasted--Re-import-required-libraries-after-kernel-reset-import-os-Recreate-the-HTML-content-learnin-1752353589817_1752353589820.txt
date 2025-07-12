@@ -1,0 +1,75 @@
+# Re-import required libraries after kernel reset
+import os
+
+# Recreate the HTML content
+learning_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction to Ifá</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2, h3 {
+            color: #ffcc00;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .highlight {
+            color: #00ffaa;
+            font-weight: bold;
+        }
+        .card {
+            background-color: #1c1c1c;
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌿 Introduction to Ifá</h1>
+
+    <div class="section">
+        <h2>What is Ifá?</h2>
+        <p>Ifá is a sacred Yoruba spiritual and philosophical system rooted in the divine teachings of <span class="highlight">Òrúnmìlà</span>, the Orisha of wisdom, foresight, and destiny. It is more than divination — it is a holistic guide to living in harmony with <span class="highlight">Ìwà Pẹ̀lẹ́</span> (gentle character), the earth, and ancestral wisdom.</p>
+    </div>
+
+    <div class="section">
+        <h2>✨ Core Elements of Ifá</h2>
+        <div class="card"><strong>Wisdom (Ọgbọ́n):</strong> Timeless knowledge preserved through oral traditions and sacred verses (<em>Ẹsẹ Ifá</em>).</div>
+        <div class="card"><strong>Guidance (Ìtọ́sọ́nà):</strong> Direction from the divine to help navigate life’s crossroads through the Odu Ifá.</div>
+        <div class="card"><strong>Character (Ìwà Pẹ̀lẹ́):</strong> The highest virtue in Ifá, emphasizing patience, humility, and good conduct.</div>
+        <div class="card"><strong>Community (Àjọṣe):</strong> Connection to lineage, elders, initiates, and the global Ifá family.</div>
+        <div class="card"><strong>Destiny (Àyànmọ̀):</strong> The personal spiritual path every soul chooses before birth — revealed and aligned through Ifá divination.</div>
+    </div>
+
+    <div class="section">
+        <h2>🧭 Daily Practice in Ifá</h2>
+        <ul>
+            <li><strong>Ọ̀rọ̀ Òní (Word of the Day):</strong> A proverb or <em>Ẹsẹ Ifá</em> with reflection.</li>
+            <li><strong>Morning Salutation:</strong> Short invocations to Òrúnmìlà or the ancestors (Egúngún).</li>
+            <li><strong>Character Prompt:</strong> “How can I embody Ìwà Pẹ̀lẹ́ today?”</li>
+        </ul>
+    </div>
+
+</body>
+</html>
+'''
+
+# Save the HTML file
+learning_html_path = "/mnt/data/ifa_learning_page.html"
+with open(learning_html_path, "w", encoding="utf-8") as f:
+    f.write(learning_html)
+
+learning_html_path
