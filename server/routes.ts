@@ -4,7 +4,9 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 
 import { oduDatabase } from "./data/odu-database";
-import { insertDailyReadingSchema } from "@shared/schema";
+import { insertDailyReadingSchema, insertUserProfileSchema, insertNotificationSettingsSchema, 
+         insertSpiritualPracticeSchema, insertSharedInsightSchema, insertCalendarEventSchema, 
+         insertOrishaAssessmentSchema, insertThemeCustomizationSchema, insertAudioPreferencesSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 import { generateAll256Odu, getOduPaginated, searchOdu, getOduByCategory, getRandomOdu } from "./odu-generator";
@@ -1324,6 +1326,216 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
   
   // Get today's date in Yoruba calendar with conversion details
   app.get("/api/today-yoruba", getCompleteToday);
+
+  // Enhanced Profile API Routes
+  
+  // User Profile Management
+  app.post("/api/profile", async (req, res) => {
+    try {
+      const profile = insertUserProfileSchema.parse(req.body);
+      const created = await storage.createUserProfile(profile);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/profile/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const profile = await storage.getUserProfile(userId);
+      if (!profile) {
+        return res.status(404).json({ error: "Profile not found" });
+      }
+      res.json(profile);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/profile/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const updates = req.body;
+      const updated = await storage.updateUserProfile(userId, updates);
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Spiritual Practice Tracking
+  app.post("/api/practices", async (req, res) => {
+    try {
+      const practice = insertSpiritualPracticeSchema.parse(req.body);
+      const created = await storage.createSpiritualPractice(practice);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/practices/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const practices = await storage.getSpiritualPractices(userId, limit);
+      res.json(practices);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/practices/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updates = req.body;
+      const updated = await storage.updateSpiritualPractice(parseInt(id), updates);
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/practices/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteSpiritualPractice(parseInt(id));
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Social Features
+  app.post("/api/insights", async (req, res) => {
+    try {
+      const insight = insertSharedInsightSchema.parse(req.body);
+      const created = await storage.createSharedInsight(insight);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/insights/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const isPublic = req.query.isPublic === 'true';
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const insights = await storage.getSharedInsights(userId, isPublic, limit);
+      res.json(insights);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/social/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const connections = await storage.getSocialConnections(userId);
+      res.json(connections);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Calendar Events
+  app.post("/api/calendar", async (req, res) => {
+    try {
+      const event = insertCalendarEventSchema.parse(req.body);
+      const created = await storage.createCalendarEvent(event);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/calendar/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const startDate = req.query.startDate as string;
+      const endDate = req.query.endDate as string;
+      const events = await storage.getCalendarEvents(userId, startDate, endDate);
+      res.json(events);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Achievements
+  app.get("/api/achievements/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const achievements = await storage.getUserAchievements(userId);
+      res.json(achievements);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Notification Settings
+  app.post("/api/notifications", async (req, res) => {
+    try {
+      const settings = insertNotificationSettingsSchema.parse(req.body);
+      const created = await storage.createNotificationSettings(settings);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/notifications/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const settings = await storage.getNotificationSettings(userId);
+      res.json(settings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Theme Customization
+  app.post("/api/themes", async (req, res) => {
+    try {
+      const theme = insertThemeCustomizationSchema.parse(req.body);
+      const created = await storage.createThemeCustomization(theme);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/themes/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const theme = await storage.getThemeCustomization(userId);
+      res.json(theme);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Audio Preferences
+  app.post("/api/audio", async (req, res) => {
+    try {
+      const preferences = insertAudioPreferencesSchema.parse(req.body);
+      const created = await storage.createAudioPreferences(preferences);
+      res.json(created);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/audio/:userId", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const preferences = await storage.getAudioPreferences(userId);
+      res.json(preferences);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
 
   const httpServer = createServer(app);
   return httpServer;

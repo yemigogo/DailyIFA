@@ -2,6 +2,8 @@ import {
   odus, dailyReadings, dailyPrayers, ifaLunarPrayers, divinationLogs, eboRecommendations,
   encyclopediaEntries, hyperlinkableTerms, encyclopediaProgress,
   learningPaths, achievements, learningModules, userProgress,
+  userProfiles, notificationSettings, spiritualPractices, socialConnections, sharedInsights,
+  calendarEvents, orishaAssessments, themeCustomizations, audioPreferences,
   type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu,
   type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer,
   type DivinationLog, type InsertDivinationLog, type DivinationLogWithOdu,
@@ -10,7 +12,13 @@ import {
   type EncyclopediaProgress, type InsertEncyclopediaProgress,
   type LearningPath, type InsertLearningPath, type Achievement, type InsertAchievement,
   type LearningModule, type InsertLearningModule, type UserProgress, type InsertUserProgress,
-  type LearningPathWithModules, type ModuleWithProgress
+  type LearningPathWithModules, type ModuleWithProgress,
+  type UserProfile, type InsertUserProfile, type NotificationSettings, type InsertNotificationSettings,
+  type SpiritualPractice, type InsertSpiritualPractice, type SocialConnection, type InsertSocialConnection,
+  type SharedInsight, type InsertSharedInsight, type CalendarEvent, type InsertCalendarEvent,
+  type OrishaAssessment, type InsertOrishaAssessment, type ThemeCustomization, type InsertThemeCustomization,
+  type AudioPreferences, type InsertAudioPreferences, type UserProfileWithSettings,
+  type SpiritualPracticeWithInsights, type SharedInsightWithOdu, type CalendarEventWithDetails
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, ilike, sql, asc } from "drizzle-orm";
@@ -76,6 +84,54 @@ export interface IStorage {
   createLearningModule(module: InsertLearningModule): Promise<LearningModule>;
   updateModuleProgress(userId: string, moduleId: number, progress: InsertUserProgress): Promise<UserProgress>;
   completeModule(userId: string, moduleId: number, score: number): Promise<UserProgress>;
+
+  // Enhanced Profile methods
+  createUserProfile(profile: InsertUserProfile): Promise<UserProfile>;
+  getUserProfile(userId: string): Promise<UserProfileWithSettings | undefined>;
+  updateUserProfile(userId: string, updates: Partial<UserProfile>): Promise<UserProfile>;
+  
+  // Notification Settings methods
+  createNotificationSettings(settings: InsertNotificationSettings): Promise<NotificationSettings>;
+  getNotificationSettings(userId: string): Promise<NotificationSettings | undefined>;
+  updateNotificationSettings(userId: string, updates: Partial<NotificationSettings>): Promise<NotificationSettings>;
+  
+  // Spiritual Practice methods
+  createSpiritualPractice(practice: InsertSpiritualPractice): Promise<SpiritualPractice>;
+  getSpiritualPractices(userId: string, limit?: number): Promise<SpiritualPracticeWithInsights[]>;
+  updateSpiritualPractice(id: number, updates: Partial<SpiritualPractice>): Promise<SpiritualPractice>;
+  deleteSpiritualPractice(id: number): Promise<void>;
+  
+  // Social Connection methods
+  createSocialConnection(connection: InsertSocialConnection): Promise<SocialConnection>;
+  getSocialConnections(userId: string): Promise<SocialConnection[]>;
+  updateSocialConnection(id: number, updates: Partial<SocialConnection>): Promise<SocialConnection>;
+  
+  // Shared Insights methods
+  createSharedInsight(insight: InsertSharedInsight): Promise<SharedInsight>;
+  getSharedInsights(userId?: string, isPublic?: boolean, limit?: number): Promise<SharedInsightWithOdu[]>;
+  updateSharedInsight(id: number, updates: Partial<SharedInsight>): Promise<SharedInsight>;
+  deleteSharedInsight(id: number): Promise<void>;
+  
+  // Calendar Events methods
+  createCalendarEvent(event: InsertCalendarEvent): Promise<CalendarEvent>;
+  getCalendarEvents(userId: string, startDate?: string, endDate?: string): Promise<CalendarEventWithDetails[]>;
+  updateCalendarEvent(id: number, updates: Partial<CalendarEvent>): Promise<CalendarEvent>;
+  deleteCalendarEvent(id: number): Promise<void>;
+  
+  // Orisha Assessment methods
+  createOrishaAssessment(assessment: InsertOrishaAssessment): Promise<OrishaAssessment>;
+  getOrishaAssessments(userId: string): Promise<OrishaAssessment[]>;
+  getLatestOrishaAssessment(userId: string): Promise<OrishaAssessment | undefined>;
+  
+  // Theme Customization methods
+  createThemeCustomization(theme: InsertThemeCustomization): Promise<ThemeCustomization>;
+  getThemeCustomization(userId: string): Promise<ThemeCustomization | undefined>;
+  updateThemeCustomization(userId: string, updates: Partial<ThemeCustomization>): Promise<ThemeCustomization>;
+  
+  // Audio Preferences methods
+  createAudioPreferences(preferences: InsertAudioPreferences): Promise<AudioPreferences>;
+  getAudioPreferences(userId: string): Promise<AudioPreferences | undefined>;
+  updateAudioPreferences(userId: string, updates: Partial<AudioPreferences>): Promise<AudioPreferences>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -571,6 +627,333 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return progress;
+  }
+
+  // Enhanced Profile methods implementation
+  async createUserProfile(insertProfile: InsertUserProfile): Promise<UserProfile> {
+    const [profile] = await db
+      .insert(userProfiles)
+      .values(insertProfile)
+      .returning();
+    return profile;
+  }
+
+  async getUserProfile(userId: string): Promise<UserProfileWithSettings | undefined> {
+    const [result] = await db
+      .select()
+      .from(userProfiles)
+      .leftJoin(notificationSettings, eq(userProfiles.userId, notificationSettings.userId))
+      .leftJoin(themeCustomizations, eq(userProfiles.userId, themeCustomizations.userId))
+      .leftJoin(audioPreferences, eq(userProfiles.userId, audioPreferences.userId))
+      .where(eq(userProfiles.userId, userId));
+
+    if (!result) return undefined;
+
+    // Get recent practices and achievements
+    const recentPractices = await db
+      .select()
+      .from(spiritualPractices)
+      .where(eq(spiritualPractices.userId, userId))
+      .orderBy(desc(spiritualPractices.createdAt))
+      .limit(5);
+
+    const userAchievements = await db
+      .select()
+      .from(achievements)
+      .where(eq(achievements.userId, userId))
+      .orderBy(desc(achievements.earnedAt));
+
+    const assessments = await db
+      .select()
+      .from(orishaAssessments)
+      .where(eq(orishaAssessments.userId, userId))
+      .orderBy(desc(orishaAssessments.completedAt));
+
+    return {
+      ...result.user_profiles,
+      notificationSettings: result.notification_settings || undefined,
+      themeCustomization: result.theme_customizations || undefined,
+      audioPreferences: result.audio_preferences || undefined,
+      recentPractices,
+      achievements: userAchievements,
+      assessments
+    };
+  }
+
+  async updateUserProfile(userId: string, updates: Partial<UserProfile>): Promise<UserProfile> {
+    const [updated] = await db
+      .update(userProfiles)
+      .set({ ...updates, lastActiveDate: new Date() })
+      .where(eq(userProfiles.userId, userId))
+      .returning();
+    return updated;
+  }
+
+  // Notification Settings methods
+  async createNotificationSettings(insertSettings: InsertNotificationSettings): Promise<NotificationSettings> {
+    const [settings] = await db
+      .insert(notificationSettings)
+      .values(insertSettings)
+      .returning();
+    return settings;
+  }
+
+  async getNotificationSettings(userId: string): Promise<NotificationSettings | undefined> {
+    const [settings] = await db
+      .select()
+      .from(notificationSettings)
+      .where(eq(notificationSettings.userId, userId));
+    return settings || undefined;
+  }
+
+  async updateNotificationSettings(userId: string, updates: Partial<NotificationSettings>): Promise<NotificationSettings> {
+    const [updated] = await db
+      .update(notificationSettings)
+      .set(updates)
+      .where(eq(notificationSettings.userId, userId))
+      .returning();
+    return updated;
+  }
+
+  // Spiritual Practice methods
+  async createSpiritualPractice(insertPractice: InsertSpiritualPractice): Promise<SpiritualPractice> {
+    const [practice] = await db
+      .insert(spiritualPractices)
+      .values(insertPractice)
+      .returning();
+    return practice;
+  }
+
+  async getSpiritualPractices(userId: string, limit = 20): Promise<SpiritualPracticeWithInsights[]> {
+    const results = await db
+      .select()
+      .from(spiritualPractices)
+      .leftJoin(odus, eq(spiritualPractices.orisha, odus.name))
+      .where(eq(spiritualPractices.userId, userId))
+      .orderBy(desc(spiritualPractices.createdAt))
+      .limit(limit);
+
+    return results.map(result => ({
+      ...result.spiritual_practices,
+      relatedOdu: result.odus || undefined
+    }));
+  }
+
+  async updateSpiritualPractice(id: number, updates: Partial<SpiritualPractice>): Promise<SpiritualPractice> {
+    const [updated] = await db
+      .update(spiritualPractices)
+      .set(updates)
+      .where(eq(spiritualPractices.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteSpiritualPractice(id: number): Promise<void> {
+    await db
+      .delete(spiritualPractices)
+      .where(eq(spiritualPractices.id, id));
+  }
+
+  // Social Connection methods
+  async createSocialConnection(insertConnection: InsertSocialConnection): Promise<SocialConnection> {
+    const [connection] = await db
+      .insert(socialConnections)
+      .values(insertConnection)
+      .returning();
+    return connection;
+  }
+
+  async getSocialConnections(userId: string): Promise<SocialConnection[]> {
+    return await db
+      .select()
+      .from(socialConnections)
+      .where(eq(socialConnections.userId, userId))
+      .orderBy(desc(socialConnections.createdAt));
+  }
+
+  async updateSocialConnection(id: number, updates: Partial<SocialConnection>): Promise<SocialConnection> {
+    const [updated] = await db
+      .update(socialConnections)
+      .set(updates)
+      .where(eq(socialConnections.id, id))
+      .returning();
+    return updated;
+  }
+
+  // Shared Insights methods
+  async createSharedInsight(insertInsight: InsertSharedInsight): Promise<SharedInsight> {
+    const [insight] = await db
+      .insert(sharedInsights)
+      .values(insertInsight)
+      .returning();
+    return insight;
+  }
+
+  async getSharedInsights(userId?: string, isPublic?: boolean, limit = 20): Promise<SharedInsightWithOdu[]> {
+    let query = db
+      .select()
+      .from(sharedInsights)
+      .leftJoin(odus, eq(sharedInsights.oduId, odus.id))
+      .leftJoin(userProfiles, eq(sharedInsights.userId, userProfiles.userId));
+
+    if (userId) {
+      query = query.where(eq(sharedInsights.userId, userId));
+    }
+
+    if (isPublic !== undefined) {
+      query = query.where(eq(sharedInsights.isPublic, isPublic));
+    }
+
+    const results = await query
+      .orderBy(desc(sharedInsights.createdAt))
+      .limit(limit);
+
+    return results.map(result => ({
+      ...result.shared_insights,
+      odu: result.odus || undefined,
+      author: result.user_profiles || undefined
+    }));
+  }
+
+  async updateSharedInsight(id: number, updates: Partial<SharedInsight>): Promise<SharedInsight> {
+    const [updated] = await db
+      .update(sharedInsights)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(sharedInsights.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteSharedInsight(id: number): Promise<void> {
+    await db
+      .delete(sharedInsights)
+      .where(eq(sharedInsights.id, id));
+  }
+
+  // Calendar Events methods
+  async createCalendarEvent(insertEvent: InsertCalendarEvent): Promise<CalendarEvent> {
+    const [event] = await db
+      .insert(calendarEvents)
+      .values(insertEvent)
+      .returning();
+    return event;
+  }
+
+  async getCalendarEvents(userId: string, startDate?: string, endDate?: string): Promise<CalendarEventWithDetails[]> {
+    let query = db
+      .select()
+      .from(calendarEvents)
+      .leftJoin(spiritualPractices, eq(calendarEvents.userId, spiritualPractices.userId))
+      .where(eq(calendarEvents.userId, userId));
+
+    if (startDate) {
+      query = query.where(sql`${calendarEvents.date} >= ${startDate}`);
+    }
+
+    if (endDate) {
+      query = query.where(sql`${calendarEvents.date} <= ${endDate}`);
+    }
+
+    const results = await query.orderBy(asc(calendarEvents.date));
+
+    return results.map(result => ({
+      ...result.calendar_events,
+      relatedPractices: result.spiritual_practices ? [result.spiritual_practices] : []
+    }));
+  }
+
+  async updateCalendarEvent(id: number, updates: Partial<CalendarEvent>): Promise<CalendarEvent> {
+    const [updated] = await db
+      .update(calendarEvents)
+      .set(updates)
+      .where(eq(calendarEvents.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteCalendarEvent(id: number): Promise<void> {
+    await db
+      .delete(calendarEvents)
+      .where(eq(calendarEvents.id, id));
+  }
+
+  // Orisha Assessment methods
+  async createOrishaAssessment(insertAssessment: InsertOrishaAssessment): Promise<OrishaAssessment> {
+    const [assessment] = await db
+      .insert(orishaAssessments)
+      .values(insertAssessment)
+      .returning();
+    return assessment;
+  }
+
+  async getOrishaAssessments(userId: string): Promise<OrishaAssessment[]> {
+    return await db
+      .select()
+      .from(orishaAssessments)
+      .where(eq(orishaAssessments.userId, userId))
+      .orderBy(desc(orishaAssessments.completedAt));
+  }
+
+  async getLatestOrishaAssessment(userId: string): Promise<OrishaAssessment | undefined> {
+    const [assessment] = await db
+      .select()
+      .from(orishaAssessments)
+      .where(eq(orishaAssessments.userId, userId))
+      .orderBy(desc(orishaAssessments.completedAt))
+      .limit(1);
+    return assessment || undefined;
+  }
+
+  // Theme Customization methods
+  async createThemeCustomization(insertTheme: InsertThemeCustomization): Promise<ThemeCustomization> {
+    const [theme] = await db
+      .insert(themeCustomizations)
+      .values(insertTheme)
+      .returning();
+    return theme;
+  }
+
+  async getThemeCustomization(userId: string): Promise<ThemeCustomization | undefined> {
+    const [theme] = await db
+      .select()
+      .from(themeCustomizations)
+      .where(eq(themeCustomizations.userId, userId));
+    return theme || undefined;
+  }
+
+  async updateThemeCustomization(userId: string, updates: Partial<ThemeCustomization>): Promise<ThemeCustomization> {
+    const [updated] = await db
+      .update(themeCustomizations)
+      .set(updates)
+      .where(eq(themeCustomizations.userId, userId))
+      .returning();
+    return updated;
+  }
+
+  // Audio Preferences methods
+  async createAudioPreferences(insertPreferences: InsertAudioPreferences): Promise<AudioPreferences> {
+    const [preferences] = await db
+      .insert(audioPreferences)
+      .values(insertPreferences)
+      .returning();
+    return preferences;
+  }
+
+  async getAudioPreferences(userId: string): Promise<AudioPreferences | undefined> {
+    const [preferences] = await db
+      .select()
+      .from(audioPreferences)
+      .where(eq(audioPreferences.userId, userId));
+    return preferences || undefined;
+  }
+
+  async updateAudioPreferences(userId: string, updates: Partial<AudioPreferences>): Promise<AudioPreferences> {
+    const [updated] = await db
+      .update(audioPreferences)
+      .set(updates)
+      .where(eq(audioPreferences.userId, userId))
+      .returning();
+    return updated;
   }
 }
 

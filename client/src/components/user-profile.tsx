@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Crown, Palette, Bell, Moon, Sun, Star } from "lucide-react";
+import { User, Crown, Palette, Bell, Moon, Sun, Star, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import OrishaAssessment from "./orisha-assessment";
+import EnhancedUserProfile from "./enhanced-user-profile";
 
 interface UserProfileProps {
   onThemeChange?: (theme: string) => void;
@@ -97,8 +98,12 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
 
   return (
     <div className="space-y-6">
-      <Tabs defaultValue="basic" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+      <Tabs defaultValue="enhanced" className="w-full">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="enhanced" className="flex items-center gap-2">
+            <Sparkles className="h-4 w-4" />
+            {ts("Enhanced", "Àfihàn")}
+          </TabsTrigger>
           <TabsTrigger value="basic">
             {ts("Basic Info", "Àlàyé Ìpìlẹ̀")}
           </TabsTrigger>
@@ -109,6 +114,10 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
             {ts("Preferences", "Àwọn Ìfẹ́")}
           </TabsTrigger>
         </TabsList>
+
+        <TabsContent value="enhanced" className="mt-6">
+          <EnhancedUserProfile onThemeChange={onThemeChange} currentTheme={currentTheme} />
+        </TabsContent>
 
         <TabsContent value="basic" className="space-y-6">
           {/* Profile Basic Info */}
