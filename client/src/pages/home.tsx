@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -71,7 +71,7 @@ export default function Home() {
     // Check if we have a specific mapping for this Odu name
     if (oduNameToCardMap[reading.odu.name]) {
       const cardNumber = oduNameToCardMap[reading.odu.name];
-      console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
+      console.log(`🎯 HOME PAGE MAPPING: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
       return cardNumber;
     }
     
@@ -90,6 +90,16 @@ export default function Home() {
   };
 
   const currentOduCard = getTodaysOduCardNumber();
+  
+  // Debug current date and card mapping
+  React.useEffect(() => {
+    if (reading?.odu) {
+      console.log(`🗓️ Current Date String: ${dateString}`);
+      console.log(`📅 Reading Date: ${reading.date}`);  
+      console.log(`🎴 Current Card: ${currentOduCard}`);
+      console.log(`🔮 Odu Name: ${reading.odu.name}`);
+    }
+  }, [dateString, reading, currentOduCard]);
   
   // Debug logging
   useEffect(() => {
@@ -179,8 +189,8 @@ export default function Home() {
                   <div className="relative w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden shadow-lg bg-black/5">
                     <img
                       src={typeof currentOduCard === 'string' 
-                        ? `/static/odu_cards/${currentOduCard}.png?t=${Date.now()}`
-                        : `/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`
+                        ? `/static/odu_cards/${currentOduCard}.png?v=${Date.now()}&date=${dateString}`
+                        : `/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${dateString}`
                       }
                       alt={`Today's Authentic Odu Ifá Card: ${reading?.odu?.name || 'Sacred Odu'}`}
                       className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105 border-2 border-sacred-gold/20 rounded-lg"

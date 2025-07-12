@@ -53,7 +53,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
     // Check if we have a specific mapping for this Odu name
     if (oduNameToCardMap[reading.odu.name]) {
       const cardNumber = oduNameToCardMap[reading.odu.name];
-      console.log(`Daily Reading - Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
+      console.log(`🎯 DAILY READING MAPPING: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
       return cardNumber;
     }
     
@@ -163,8 +163,8 @@ export default function DailyReading({ reading }: DailyReadingProps) {
               <div className="relative w-36 h-48 rounded-xl overflow-hidden shadow-lg bg-black/5 border-2 border-sacred-gold/30">
                 <img
                   src={typeof currentOduCard === 'string' 
-                    ? `/static/odu_cards/${currentOduCard}.png?t=${Date.now()}`
-                    : `/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`
+                    ? `/static/odu_cards/${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
+                    : `/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
                   }
                   alt={`Authentic Odu Ifá Card: ${reading.odu.name}`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
