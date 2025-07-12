@@ -1,11 +1,41 @@
 import { useState, useEffect } from "react";
-import { Calendar, Bell, Star, Crown, Moon, Sun } from "lucide-react";
+import { Calendar, Bell, Star, Crown, Moon, Sun, CalendarIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { yorubaCalendar2025, type YorubaMonth, type YorubaDay, getMonthInfo, getDayActivities, getTodayInfo } from "@/data/yoruba-calendar-2025";
+
+// Gregorian to Yoruba month mapping with dual display
+const gregorianToYorubaMapping = [
+  { gregorian: "January", yoruba: "Ṣẹ̀rẹ̀", orisha: "Ọbàtálá", color: "#FFFFFF", textColor: "#000000" },
+  { gregorian: "February", yoruba: "Èrè̀lé", orisha: "Ògún", color: "#228B22", textColor: "#FFFFFF" },
+  { gregorian: "March", yoruba: "Ẹrẹ́nà", orisha: "Ọ̀ṣun", color: "#FFD700", textColor: "#000000" },
+  { gregorian: "April", yoruba: "Ìgbé", orisha: "Ṣàngó", color: "#FF0000", textColor: "#FFFFFF" },
+  { gregorian: "May", yoruba: "Èbìbì", orisha: "Yemọja", color: "#1E90FF", textColor: "#FFFFFF" },
+  { gregorian: "June", yoruba: "Òkúdu", orisha: "Ọya", color: "#9400D3", textColor: "#FFFFFF" },
+  { gregorian: "July", yoruba: "Agẹmọ", orisha: "Èṣù", color: "#000000", textColor: "#FFFFFF" },
+  { gregorian: "August", yoruba: "Ògún", orisha: "Ògún", color: "#228B22", textColor: "#FFFFFF" },
+  { gregorian: "September", yoruba: "Ọwẹ́wẹ̀", orisha: "Ifá", color: "#8B4513", textColor: "#FFFFFF" },
+  { gregorian: "October", yoruba: "Ọ̀wàrà", orisha: "Àgànjú", color: "#A0522D", textColor: "#FFFFFF" },
+  { gregorian: "November", yoruba: "Bélú", orisha: "Olókun", color: "#000080", textColor: "#FFFFFF" },
+  { gregorian: "December", yoruba: "Ọ̀pẹ̀", orisha: "Ọrìṣà Okè", color: "#006400", textColor: "#FFFFFF" },
+  { gregorian: "Odún*", yoruba: "Odún", orisha: "Egúngún", color: "#708090", textColor: "#FFFFFF" } // Intercalary month
+];
+
+// Get current month display
+const getCurrentMonthDisplay = (date = new Date()) => {
+  const gregMonth = date.getMonth(); // 0-indexed (0 = January)
+  
+  // Handle intercalary month (every 3 years)
+  const isIntercalaryYear = (date.getFullYear() % 3 === 0);
+  if (isIntercalaryYear && date.getMonth() === 11 && date.getDate() > 25) {
+    return gregorianToYorubaMapping[12]; // Return Odún month
+  }
+  
+  return gregorianToYorubaMapping[gregMonth];
+};
 
 interface YorubaCalendarProps {
   showNotifications?: boolean;
@@ -17,7 +47,18 @@ export default function YorubaCalendar({ showNotifications = true }: YorubaCalen
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(0);
   const [selectedDay, setSelectedDay] = useState<YorubaDay | null>(null);
+  const [currentMonthDisplay, setCurrentMonthDisplay] = useState(getCurrentMonthDisplay());
   const { ts } = useLanguage();
+
+  // Update month display daily
+  useEffect(() => {
+    const updateMonthDisplay = () => {
+      setCurrentMonthDisplay(getCurrentMonthDisplay());
+    };
+    
+    const dailyInterval = setInterval(updateMonthDisplay, 24 * 60 * 60 * 1000); // Update daily
+    return () => clearInterval(dailyInterval);
+  }, []);
 
   const getCurrentYorubaMonth = (): YorubaMonth => {
     return yorubaCalendar2025.months[selectedMonth];
@@ -61,6 +102,135 @@ export default function YorubaCalendar({ showNotifications = true }: YorubaCalen
 
   return (
     <div className="space-y-6">
+      {/* Gregorian-Yoruba Month Overlay */}
+      <Card 
+        className="border-2 bg-gradient-to-r overflow-hidden"
+        style={{ 
+          borderColor: currentMonthDisplay.color,
+          background: `linear-gradient(135deg, ${currentMonthDisplay.color}22, ${currentMonthDisplay.color}11)`
+        }}
+      >
+        <CardHeader 
+          className="text-center"
+          style={{ 
+            backgroundColor: currentMonthDisplay.color + '20',
+            borderBottom: `2px solid ${currentMonthDisplay.color}`
+          }}
+        >
+          <CardTitle className="flex items-center justify-center gap-2">
+            <CalendarIcon className="h-5 w-5" style={{ color: currentMonthDisplay.color }} />
+            {ts("Gregorian-Yoruba Calendar Alignment", "Ìbámu Kálẹ́ńdà Gírìgórì-Yorùbá")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="text-center">
+              <div 
+                className="rounded-lg p-4 mb-4"
+                style={{ 
+                  backgroundColor: currentMonthDisplay.color + '15',
+                  border: `2px solid ${currentMonthDisplay.color}`
+                }}
+              >
+                <h3 className="text-2xl font-bold mb-2" style={{ color: currentMonthDisplay.color }}>
+                  {currentMonthDisplay.gregorian}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {ts("Gregorian Month", "Òṣù Gírìgórì")}
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div 
+                className="rounded-lg p-4 mb-4"
+                style={{ 
+                  backgroundColor: currentMonthDisplay.color + '20',
+                  border: `2px solid ${currentMonthDisplay.color}`
+                }}
+              >
+                <h3 className="text-2xl font-bold mb-2" style={{ color: currentMonthDisplay.color }}>
+                  {currentMonthDisplay.yoruba}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {ts("Yoruba Month", "Òṣù Yorùbá")}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-4">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+              style={{ 
+                backgroundColor: currentMonthDisplay.color + '20',
+                border: `1px solid ${currentMonthDisplay.color}`
+              }}
+            >
+              <Crown className="h-4 w-4" style={{ color: currentMonthDisplay.color }} />
+              <span className="font-medium" style={{ color: currentMonthDisplay.color }}>
+                {ts("Sacred to", "Mímọ́ fún")} {currentMonthDisplay.orisha}
+              </span>
+            </div>
+          </div>
+          
+          <div className="mt-4 text-center">
+            <p className="text-xs text-muted-foreground">
+              {ts("Traditional 13-month Odun cycle aligned with Gregorian calendar", 
+                  "Ìgbà òṣù mẹ́tàlá àtìjọ́ Odún tí ó bá kálẹ́ńdà Gírìgórì mu")}
+            </p>
+            {currentMonthDisplay.gregorian === "Odún*" && (
+              <p className="text-xs mt-2 font-medium" style={{ color: currentMonthDisplay.color }}>
+                {ts("Intercalary Month - Sacred Time of Ancestors", "Òṣù Àfikún - Àkókò Mímọ́ Àwọn Baba")}
+              </p>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Complete Dual Calendar Grid */}
+      <Card className="border-2 border-blue-200 dark:border-blue-800">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <CalendarIcon className="h-5 w-5 text-blue-600" />
+            {ts("Complete 13-Month Calendar System", "Ètò Kálẹ́ńdà Òṣù Mẹ́tàlá")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            {gregorianToYorubaMapping.map((month, index) => (
+              <div
+                key={index}
+                className="p-3 rounded-lg border-2 transition-all hover:scale-105 cursor-pointer"
+                style={{
+                  borderColor: month.color,
+                  backgroundColor: month.color + '10'
+                }}
+              >
+                <div className="text-center space-y-2">
+                  <h4 className="font-bold text-sm" style={{ color: month.color }}>
+                    {month.gregorian}
+                  </h4>
+                  <h3 className="font-semibold text-base" style={{ color: month.color }}>
+                    {month.yoruba}
+                  </h3>
+                  <div 
+                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium"
+                    style={{
+                      backgroundColor: month.color + '20',
+                      color: month.color
+                    }}
+                  >
+                    <Crown className="h-3 w-3" />
+                    {month.orisha}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Current Month Display */}
       <Card className="border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
         <CardHeader>
