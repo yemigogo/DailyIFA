@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odún Calendar</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1>Today: {{ date.yoruba_day }} {{ date.yoruba_month }} {{ date.yoruba_year }}</h1>
+        <h2>{{ date.yoruba_day_name }} - {{ date.moon_phase }}</h2>
+        <p class="gregorian-date">{{ date.gregorian_date }}</p>
+    </header>
+    
+    <section class="orisha-focus">
+        <h3>{{ date.orisha }}'s Month</h3>
+        <p class="theme">{{ date.theme }}</p>
+        <p class="spiritual-guidance">{{ date.spiritual_guidance }}</p>
+        
+        <div class="offerings">
+            <h4>Today's Offerings:</h4>
+            <ul>
+                {% for item in date.offerings %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="daily-activity">
+            <h4>Today's Activity:</h4>
+            <p>{{ date.activity }}</p>
+        </div>
+        
+        <div class="prayer-section">
+            <h4>Sacred Prayer:</h4>
+            <blockquote>{{ date.prayer }}</blockquote>
+        </div>
+    </section>
+    
+    <nav class="calendar-nav">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/api/today-enhanced">API</a>
+    </nav>
+</body>
+</html>

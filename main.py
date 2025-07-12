@@ -333,6 +333,13 @@ def calendar_dashboard():
                          month=current_month or {"orisha": "Loading...", "theme": "Loading...", "color": "white"},
                          day=current_day)
 
+@app.route('/odun-calendar')
+def odun_calendar():
+    """Simple Odún Calendar based on user template"""
+    today = datetime.now()
+    enhanced_data = gregorian_to_yoruba_enhanced(today)
+    return render_template('odun_calendar.html', date=enhanced_data)
+
 @app.route('/api/today-enhanced')
 def api_today_enhanced():
     """Enhanced today's date with intelligent prayers"""
