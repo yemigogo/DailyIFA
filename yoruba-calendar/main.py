@@ -11,16 +11,38 @@ from datetime import datetime, date, timedelta
 from flask import Flask, render_template, jsonify, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+from flask_migrate import Migrate
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
+import requests
+from urllib.parse import quote
+from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
 
 # Initialize Flask App
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'yoruba-calendar-wisdom-2025')
 
-# Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yoruba_calendar.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Configuration
+app.config.update(
+    SQLALCHEMY_DATABASE_URI='sqlite:///yoruba_calendar.db',
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    MAIL_SERVER=os.getenv('MAIL_SERVER', 'smtp.gmail.com'),
+    MAIL_PORT=int(os.getenv('MAIL_PORT', 587)),
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.getenv('MAIL_PASSWORD')
+)
+
+# Initialize Extensions
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+mail = Mail(app)
+
+# Admin Setup
+admin = Admin(app, name='Odún Calendar Admin', template_mode='bootstrap3')
 
 # Login Manager Setup
 login_manager = LoginManager()
@@ -44,6 +66,9 @@ class User(UserMixin, db.Model):
     preferred_orisha = db.Column(db.String(50), default='Ọbàtálá')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     last_login = db.Column(db.DateTime)
+    
+    # Enhanced user attributes
+    is_admin = db.Column(db.Boolean, default=False)
     
     # Relationships
     rituals = db.relationship('UserRitual', backref='practitioner', lazy=True, cascade='all, delete-orphan')
@@ -105,6 +130,48 @@ class UserRitual(db.Model):
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'practitioner': self.practitioner.username if self.practitioner else None
         }
+
+class Notification(db.Model):
+    """User notification model"""
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    read = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    user = db.relationship('User', backref=db.backref('notifications', lazy=True))
+
+class ImportantDate(db.Model):
+    """Important spiritual dates model"""
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    month = db.Column(db.Integer, nullable=False)
+    day = db.Column(db.Integer, nullable=False)
+    repeat_yearly = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'month': self.month,
+            'day': self.day,
+            'repeat_yearly': self.repeat_yearly
+        }
+
+# Admin Views
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and getattr(current_user, 'is_admin', False)
+
+# Add admin views after all models are defined
+def setup_admin():
+    admin.add_view(AdminModelView(User, db.session))
+    admin.add_view(AdminModelView(UserRitual, db.session))
+    admin.add_view(AdminModelView(Notification, db.session))
+    admin.add_view(AdminModelView(ImportantDate, db.session))
 
 # ==================
 # CALENDAR SYSTEM
@@ -584,6 +651,180 @@ def health_check():
         }), 500
 
 # ==================
+# ENHANCED FEATURES
+# ==================
+
+def send_email_notification(user, subject, message):
+    """Send email notification to user"""
+    try:
+        if app.config['MAIL_USERNAME']:
+            msg = Message(
+                subject,
+                sender=app.config['MAIL_USERNAME'],
+                recipients=[user.email]
+            )
+            msg.body = message
+            mail.send(msg)
+    except Exception as e:
+        app.logger.error(f"Failed to send email: {str(e)}")
+
+def get_social_share_links(date_info):
+    """Generate social media sharing links"""
+    text = f"Today is {date_info.get('yoruba_day', 'a special day')} in the Yoruba calendar. {date_info.get('activity', 'Join our spiritual journey!')}"
+    encoded_text = quote(text)
+    base_url = request.url_root
+    return {
+        'twitter': f"https://twitter.com/intent/tweet?text={encoded_text}&url={base_url}",
+        'facebook': f"https://www.facebook.com/sharer/sharer.php?u={base_url}&quote={encoded_text}",
+        'whatsapp': f"https://wa.me/?text={encoded_text}%20{base_url}",
+        'linkedin': f"https://www.linkedin.com/sharing/share-offsite/?url={base_url}"
+    }
+
+def check_important_dates():
+    """Check for important spiritual dates and notify users"""
+    today = datetime.now()
+    
+    # Convert to Yoruba calendar day
+    yoruba_day = (today.timetuple().tm_yday - 1) % 364 + 1
+    yoruba_month = ((yoruba_day - 1) // 28) + 1
+    yoruba_day_in_month = ((yoruba_day - 1) % 28) + 1
+    
+    # Check for important dates
+    important_dates = ImportantDate.query.filter(
+        ImportantDate.month == yoruba_month,
+        ImportantDate.day == yoruba_day_in_month
+    ).all()
+    
+    if important_dates:
+        users = User.query.filter(User.email.isnot(None)).all()
+        for date in important_dates:
+            for user in users:
+                # Create in-app notification
+                notification = Notification(
+                    user_id=user.id,
+                    message=f"Today is {date.name}: {date.description[:200]}{'...' if len(date.description) > 200 else ''}"
+                )
+                db.session.add(notification)
+                
+                # Send email notification if email is configured
+                send_email_notification(
+                    user,
+                    f"🗓️ Important Date: {date.name}",
+                    f"Today is {date.name} in the Yoruba calendar.\n\n{date.description}\n\nHave a blessed day!"
+                )
+        
+        db.session.commit()
+
+@app.route('/share', methods=['POST'])
+@login_required
+def share():
+    """Handle social media sharing"""
+    platform = request.form.get('platform')
+    today = datetime.now()
+    date_info = gregorian_to_yoruba(today)
+    share_links = get_social_share_links(date_info)
+    
+    if platform in share_links:
+        return redirect(share_links[platform])
+    
+    flash('Sharing link generated successfully!', 'success')
+    return redirect(url_for('dashboard'))
+
+@app.route('/notifications')
+@login_required
+def notifications():
+    """Display user notifications"""
+    notifications = Notification.query.filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
+    return render_template('notifications.html', notifications=notifications)
+
+@app.route('/mark_notification_read/<int:notification_id>', methods=['POST'])
+@login_required
+def mark_notification_read(notification_id):
+    """Mark notification as read"""
+    notification = Notification.query.get_or_404(notification_id)
+    
+    if notification.user_id != current_user.id:
+        flash('Access denied.', 'error')
+        return redirect(url_for('notifications'))
+    
+    notification.read = True
+    db.session.commit()
+    
+    return jsonify({'status': 'success'})
+
+@app.route('/api/notifications')
+@login_required
+def api_notifications():
+    """API endpoint for notifications"""
+    notifications = Notification.query.filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).limit(10).all()
+    return jsonify([{
+        'id': n.id,
+        'message': n.message,
+        'read': n.read,
+        'created_at': n.created_at.isoformat()
+    } for n in notifications])
+
+@app.route('/api/share-links')
+@login_required
+def api_share_links():
+    """API endpoint for social sharing links"""
+    today = datetime.now()
+    date_info = gregorian_to_yoruba(today)
+    share_links = get_social_share_links(date_info)
+    return jsonify(share_links)
+
+# ==================
+# SCHEDULED TASKS
+# ==================
+
+def setup_scheduler():
+    """Setup background scheduler for notifications"""
+    try:
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(
+            func=check_important_dates,
+            trigger='cron',
+            hour=8,
+            minute=0,
+            id='daily_notifications'
+        )
+        scheduler.start()
+        atexit.register(lambda: scheduler.shutdown())
+        print("✓ Background scheduler started for daily notifications")
+    except Exception as e:
+        print(f"⚠️  Scheduler setup failed: {e}")
+
+def initialize_important_dates():
+    """Initialize important spiritual dates"""
+    sample_dates = [
+        ('Ọbàtálá Day', 'Day of purification and new beginnings with the father of all Orishas', 1, 1),
+        ('Ògún Festival', 'Celebration of iron, technology, and the warrior spirit', 2, 15),
+        ('Ṣàngó Thunder Day', 'Day of justice, power, and divine thunder', 3, 10),
+        ('Ọ̀ṣun River Blessing', 'Celebration of love, prosperity, and river goddess', 4, 8),
+        ('Yemọja Ocean Day', 'Motherhood, healing, and ocean mother celebration', 5, 12),
+        ('Ọya Transformation Day', 'Day of change, transformation, and winds of change', 6, 20),
+        ('Èṣù Crossroads Day', 'Communication, messages, and crossroads guidance', 7, 3),
+        ('Ọ̀sányìn Medicine Day', 'Day of herbal medicine and healing knowledge', 9, 18),
+        ('Olókun Wisdom Day', 'Ocean depths wisdom and spiritual mysteries', 10, 25),
+        ('Òrìṣà Òkò Harvest Day', 'Agriculture, fertility, and abundance celebration', 11, 14),
+        ('Ọ̀ṣọ́ọ̀sì Protection Day', 'Day of hunting, protection, and spiritual guardianship', 12, 7),
+        ('Òrúnmìlà Wisdom Day', 'Divination, wisdom, and spiritual knowledge', 13, 16)
+    ]
+    
+    for name, description, month, day in sample_dates:
+        if not ImportantDate.query.filter_by(name=name).first():
+            important_date = ImportantDate(
+                name=name,
+                description=description,
+                month=month,
+                day=day
+            )
+            db.session.add(important_date)
+    
+    db.session.commit()
+    print("✓ Important spiritual dates initialized")
+
+# ==================
 # INITIALIZATION
 # ==================
 
@@ -607,26 +848,43 @@ def init_db():
             db.session.commit()
             print("✓ Default user created with password 'test123'")
         
+        # Initialize important dates and admin setup
+        initialize_important_dates()
+        setup_admin()
+        
         print("✓ Database initialized successfully")
 
 if __name__ == '__main__':
     init_db()
     
+    # Start scheduler for enhanced features
+    setup_scheduler()
+    
     port = int(os.environ.get('PORT', 8080))
     
     print(f"""
-    🌟 Yoruba Calendar Application
-    ===============================
+    🌟 Enhanced Yoruba Calendar Application
+    =======================================
     Starting server on port {port}
     
-    🌙 Features:
+    🌙 Core Features:
     • Traditional Yoruba calendar conversion
     • Astronomical moon phase calculations  
     • User authentication and ritual tracking
     • Daily spiritual guidance with Orisha themes
     • Interactive calendar interface
     
+    ⚡ Enhanced Features:
+    • Social media sharing (Twitter, Facebook, WhatsApp, LinkedIn)
+    • Email notifications for important spiritual dates
+    • In-app notification system
+    • Background scheduler for daily notifications
+    • Admin panel for content management
+    • Important dates calendar with 12 spiritual celebrations
+    
     📱 Access: http://localhost:{port}
+    🔐 Demo Login: username='spiritual_seeker', password='test123'
+    ⚙️  Admin Panel: http://localhost:{port}/admin
     """)
     
     app.run(host='0.0.0.0', port=port, debug=True)
