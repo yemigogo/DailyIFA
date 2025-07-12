@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoruba Calendar - {{ current_date.strftime('%B %d, %Y') if current_date else 'Spiritual Calendar' }}</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoruba-styles.css') }}">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Traditional Yoruba calendar with daily spiritual guidance, moon phases, Orisha associations, and authentic cultural practices.">
+    <meta name="keywords" content="Yoruba calendar, spiritual guidance, Orisha, moon phases, traditional practices, African spirituality">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Yoruba Spiritual Calendar">
+    <meta property="og:description" content="Connect with traditional Yoruba wisdom through daily spiritual guidance and authentic cultural practices.">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sacred-nav">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a href="/" class="nav-brand">🌟 Yoruba Calendar</a>
+                <div class="nav-links">
+                    <a href="/dashboard" class="nav-link">Dashboard</a>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Header Section -->
+        <header class="sacred-card fade-in" style="text-align: center; margin-top: 2rem;">
+            <h1>Traditional Yoruba Calendar</h1>
+            <p>Connect with ancestral wisdom through daily spiritual guidance</p>
+            
+            <!-- Date Navigation -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 1.5rem 0;">
+                <button id="prev-day" class="sacred-button">← Previous</button>
+                <input type="date" id="date-picker" class="sacred-input" style="max-width: 200px;">
+                <button id="next-day" class="sacred-button">Next →</button>
+                <button id="today-btn" class="sacred-button">Today</button>
+            </div>
+        </header>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" style="display: none; text-align: center; margin: 2rem 0;">
+            <div class="moon-phase-large pulse-gold">🌙 Loading...</div>
+        </div>
+
+        <!-- Current Date Display -->
+        <section class="calendar-grid">
+            <!-- Gregorian Date Card -->
+            <div class="sacred-card fade-in">
+                <h3>Gregorian Date</h3>
+                <p id="current-date" style="font-size: 1.2rem; color: var(--yoruba-gold);">
+                    {{ current_date.strftime('%A, %B %d, %Y') if current_date else 'Loading...' }}
+                </p>
+            </div>
+
+            <!-- Yoruba Date Card -->
+            <div class="sacred-card fade-in">
+                <h3>Yoruba Date</h3>
+                <p id="yoruba-date" style="font-size: 1.2rem; color: var(--yoruba-amber);">
+                    {{ yoruba_data.yoruba_day if yoruba_data else 'Loading...' }} 
+                    {{ yoruba_data.yoruba_month if yoruba_data else '' }} 
+                    {{ yoruba_data.yoruba_year if yoruba_data else '' }}
+                </p>
+            </div>
+
+            <!-- Current Orisha Card -->
+            <div class="sacred-card fade-in">
+                <h3>Today's Orisha</h3>
+                <div class="orisha-section">
+                    <span id="orisha-badge" class="orisha-badge">
+                        {{ yoruba_data.orisha if yoruba_data else 'Loading...' }}
+                    </span>
+                    <p style="margin-top: 1rem; font-style: italic;">
+                        Spiritual guidance and protection for today
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moon Phase Section -->
+        <section class="sacred-card fade-in">
+            <h2>Moon Phase & Spiritual Energy</h2>
+            <div class="calendar-grid">
+                <div>
+                    <h4>Current Phase</h4>
+                    <div class="moon-phase-large">
+                        <span id="moon-phase">{{ moon_phase.name if moon_phase else '🌙 Loading...' }}</span>
+                    </div>
+                    <p id="moon-phase-yoruba" style="text-align: center; color: var(--yoruba-amber);">
+                        {{ moon_phase.yoruba if moon_phase else 'Loading...' }}
+                    </p>
+                </div>
+                <div>
+                    <h4>Spiritual Significance</h4>
+                    <p id="moon-spiritual" style="font-style: italic;">
+                        {{ moon_phase.spiritual if moon_phase else 'Loading spiritual guidance...' }}
+                    </p>
+                    <p><strong>Energy Type:</strong> <span id="spiritual-energy">{{ spiritual_guidance.energy if spiritual_guidance else 'Loading...' }}</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Guidance Section -->
+        <section class="calendar-grid">
+            <!-- Daily Activities -->
+            <div class="sacred-card fade-in">
+                <h3>Daily Activities</h3>
+                <div id="daily-activities" class="offerings-list">
+                    {% if yoruba_data and yoruba_data.activity %}
+                        <span class="practice-tag">{{ yoruba_data.activity }}</span>
+                    {% else %}
+                        <span class="practice-tag">Loading activities...</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Daily Offerings -->
+            <div class="sacred-card fade-in">
+                <h3>Recommended Offerings</h3>
+                <div id="daily-offerings" class="offerings-list">
+                    {% if yoruba_data and yoruba_data.offerings %}
+                        {% for offering in yoruba_data.offerings %}
+                            <span class="offering-tag">{{ offering }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="offering-tag">Loading offerings...</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Spiritual Practices -->
+            <div class="sacred-card fade-in">
+                <h3>Spiritual Practices</h3>
+                <div id="spiritual-practices" class="offerings-list">
+                    {% if spiritual_guidance and spiritual_guidance.practices %}
+                        {% for practice in spiritual_guidance.practices %}
+                            <span class="practice-tag">{{ practice }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="practice-tag">Loading practices...</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Taboos -->
+            <div class="sacred-card fade-in">
+                <h3>Things to Avoid Today</h3>
+                <div id="spiritual-taboos" class="taboo-list">
+                    {% if spiritual_guidance and spiritual_guidance.taboos %}
+                        <ul style="margin: 0; padding-left: 1.5rem;">
+                            {% for taboo in spiritual_guidance.taboos %}
+                                <li>{{ taboo }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Loading guidance...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Prayer Section -->
+        <section class="sacred-card fade-in">
+            <h2>Daily Prayer / Ìwúre</h2>
+            <div class="prayer-section">
+                <p id="daily-prayer">
+                    {% if yoruba_data and yoruba_data.prayer %}
+                        {{ yoruba_data.prayer }}
+                    {% else %}
+                        Loading daily prayer...
+                    {% endif %}
+                </p>
+            </div>
+        </section>
+
+        <!-- User Rituals Section -->
+        {% if current_user and current_user.is_authenticated %}
+        <section class="sacred-card fade-in">
+            <h2>Your Spiritual Practices</h2>
+            <div id="user-rituals">
+                <p>Loading your rituals...</p>
+            </div>
+            
+            <!-- Add Ritual Form -->
+            <details style="margin-top: 2rem;">
+                <summary style="cursor: pointer; color: var(--yoruba-gold); font-weight: 600;">Record Today's Practice</summary>
+                <form id="ritual-form" style="margin-top: 1rem;">
+                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <div>
+                            <label for="ritual_type">Practice Type:</label>
+                            <input type="text" id="ritual_type" name="ritual_type" class="sacred-input" 
+                                   placeholder="e.g., Morning Prayer, Ancestor Veneration" required>
+                        </div>
+                        
+                        <div>
+                            <label for="orisha">Orisha Focus:</label>
+                            <select id="orisha" name="orisha" class="sacred-input">
+                                <option value="">Select Orisha</option>
+                                <option value="Ọbàtálá">Ọbàtálá</option>
+                                <option value="Ògún">Ògún</option>
+                                <option value="Ṣàngó">Ṣàngó</option>
+                                <option value="Ọ̀ṣun">Ọ̀ṣun</option>
+                                <option value="Yemọja">Yemọja</option>
+                                <option value="Ọya">Ọya</option>
+                                <option value="Èṣù">Èṣù</option>
+                                <option value="Òrúnmìlà">Òrúnmìlà</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="ritual_notes">Practice Notes:</label>
+                            <textarea id="ritual_notes" name="ritual_notes" class="sacred-input" rows="3"
+                                      placeholder="Describe your spiritual practice or experience..."></textarea>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label for="duration_minutes">Duration (minutes):</label>
+                                <input type="number" id="duration_minutes" name="duration_minutes" class="sacred-input" min="1">
+                            </div>
+                            <div>
+                                <label for="location">Location:</label>
+                                <input type="text" id="location" name="location" class="sacred-input" 
+                                       placeholder="e.g., Home altar, Garden">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="offerings">Offerings (comma-separated):</label>
+                            <input type="text" id="offerings" name="offerings" class="sacred-input"
+                                   placeholder="e.g., water, white candles, flowers">
+                        </div>
+                        
+                        <div>
+                            <label for="spiritual_outcome">Spiritual Outcome:</label>
+                            <textarea id="spiritual_outcome" name="spiritual_outcome" class="sacred-input" rows="2"
+                                      placeholder="How did this practice affect you spiritually?"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="privacy_level">Privacy Level:</label>
+                            <select id="privacy_level" name="privacy_level" class="sacred-input">
+                                <option value="private">Private</option>
+                                <option value="shared">Shared with Community</option>
+                                <option value="community">Public</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="sacred-button">Record Practice</button>
+                    </div>
+                </form>
+            </details>
+        </section>
+        {% else %}
+        <section class="sacred-card fade-in" style="text-align: center;">
+            <h3>Track Your Spiritual Journey</h3>
+            <p>Login to record your daily practices and track your spiritual growth.</p>
+            <a href="/login" class="sacred-button" style="display: inline-block; text-decoration: none; margin-top: 1rem;">
+                Login to Continue
+            </a>
+        </section>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 3rem;">
+        <p>&copy; 2025 Yoruba Calendar. Traditional wisdom for modern spiritual practice.</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            Built with respect for Yoruba culture and ancestral wisdom.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/moon-phases.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar-app.js') }}"></script>
+</body>
+</html>

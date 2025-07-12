@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Yoruba Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoruba-styles.css') }}">
+    <meta name="description" content="Login to your Yoruba Calendar account to track spiritual practices and connect with traditional wisdom.">
+</head>
+<body>
+    <div class="auth-container">
+        <header class="auth-header fade-in">
+            <h1>🌟 Yoruba Calendar</h1>
+            <p>Connect to Your Spiritual Practice</p>
+        </header>
+        
+        <form class="auth-form sacred-card fade-in" method="POST" style="animation-delay: 0.2s;">
+            <h2>Welcome Back</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="email">Email or Username:</label>
+                <input type="text" id="email" name="email" class="sacred-input" required 
+                       placeholder="Enter your email or username">
+            </div>
+            
+            <button type="submit" class="sacred-button">Login</button>
+            
+            <div class="auth-links">
+                <p>New to Yoruba Calendar? <a href="/register">Create Account</a></p>
+                <p><a href="/">Continue as Guest</a></p>
+            </div>
+        </form>
+        
+        <div class="demo-info sacred-card fade-in" style="animation-delay: 0.4s;">
+            <h3>Demo Account</h3>
+            <p>Email: <strong>spiritual_seeker@example.com</strong></p>
+            <p>Username: <strong>spiritual_seeker</strong></p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">
+                Use this account to explore the spiritual practice tracking features.
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+            <p style="font-size: 0.9rem;">
+                "Ẹni tó bá ní ìwà rere, àṣẹ ni yóó ní."<br>
+                <em>Those who have good character will have divine power.</em>
+            </p>
+        </div>
+    </div>
+
+    <!-- Add some interactive elements -->
+    <script>
+        // Add smooth form animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.auth-form');
+            const inputs = form.querySelectorAll('.sacred-input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                    this.parentElement.style.transition = 'transform 0.3s ease';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Add validation feedback
+            form.addEventListener('submit', function(e) {
+                const email = form.querySelector('#email').value.trim();
+                if (!email) {
+                    e.preventDefault();
+                    showNotification('Please enter your email or username', 'error');
+                }
+            });
+        });
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                ${type === 'error' ? 'background: #CC2936;' : 'background: #D4AF37;'}
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

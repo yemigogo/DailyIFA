@@ -1,0 +1,315 @@
+/* Yoruba Calendar Spiritual Styling */
+:root {
+    /* Traditional Yoruba Color Palette */
+    --yoruba-gold: #D4AF37;
+    --yoruba-red: #CC2936;
+    --yoruba-blue: #1B4D72;
+    --yoruba-white: #F8F9FA;
+    --yoruba-black: #2C3E50;
+    --yoruba-green: #27AE60;
+    --yoruba-amber: #F39C12;
+    
+    /* Sacred Gradients */
+    --sacred-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    --moon-gradient: linear-gradient(45deg, #667eea, #764ba2);
+    --earth-gradient: linear-gradient(135deg, #8B4513, #D2691E, #CD853F);
+    
+    /* Text Colors */
+    --text-primary: #F8F9FA;
+    --text-secondary: rgba(248, 249, 252, 0.8);
+    --text-accent: var(--yoruba-gold);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+}
+
+/* Base Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--sacred-gradient);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-accent);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* Layout Components */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.sacred-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.sacred-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--yoruba-gold);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+}
+
+/* Moon Phase Styling */
+.moon-phase {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--moon-gradient);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.moon-phase-large {
+    font-size: 2rem;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--moon-gradient);
+    border-radius: 16px;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+}
+
+/* Orisha Styling */
+.orisha-badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: linear-gradient(135deg, var(--yoruba-red), var(--yoruba-amber));
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.orisha-section {
+    border-left: 4px solid var(--yoruba-gold);
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.calendar-day {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--yoruba-gold);
+}
+
+.calendar-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Spiritual Elements */
+.offerings-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+}
+
+.offering-tag {
+    background: rgba(39, 174, 96, 0.2);
+    border: 1px solid var(--yoruba-green);
+    color: #a7f3d0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 16px;
+    font-size: 0.8rem;
+}
+
+.taboo-list {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: var(--spacing-sm);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.prayer-section {
+    background: var(--earth-gradient);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin: var(--spacing-lg) 0;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* Interactive Elements */
+.sacred-button {
+    background: linear-gradient(135deg, var(--yoruba-gold), var(--yoruba-amber));
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sacred-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.sacred-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--text-primary);
+    padding: var(--spacing-md);
+    border-radius: 6px;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.sacred-input:focus {
+    outline: none;
+    border-color: var(--yoruba-gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Navigation */
+.sacred-nav {
+    background: rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--yoruba-gold);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--yoruba-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGold {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.pulse-gold {
+    animation: pulseGold 2s infinite;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #F8F9FA;
+        --text-secondary: rgba(248, 249, 252, 0.7);
+    }
+}

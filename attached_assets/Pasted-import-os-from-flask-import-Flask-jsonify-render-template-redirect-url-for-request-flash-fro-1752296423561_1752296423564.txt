@@ -1,0 +1,271 @@
+import os
+from flask import Flask, jsonify, render_template, redirect, url_for, request, flash
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from datetime import datetime, timedelta
+import math
+from werkzeug.security import generate_password_hash, check_password_hash
+
+# Initialize Flask App
+app = Flask(__name__)
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-123')
+
+# Database Setup
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yoruba_calendar.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+# Login Manager
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
+# User Model
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True)
+    password_hash = db.Column(db.String(128))
+    rituals = db.relationship('UserRitual', backref='author', lazy=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+class UserRitual(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.String(10))  # Format: "MM-DD"
+    notes = db.Column(db.Text)
+    completed = db.Column(db.Boolean, default=False)
+
+# ======================
+# COMPLETE 13-MONTH DATA
+# ======================
+
+yoruba_months = [
+    # 1. Ṣẹ̀rẹ̀ (Ọbàtálá)
+    {
+        "name": "Ṣẹ̀rẹ̀",
+        "orisha": "Ọbàtálá",
+        "theme": "Purity, New Beginnings",
+        "emoji": "⚪",
+        "color": "#FFFFFF",
+        "taboos": ["salt", "alcohol", "palm oil"],
+        "days": generate_month_days(
+            orisha="Ọbàtálá",
+            special_days={
+                1: ("New Moon Purification", ["white cloth", "cool water"], "Cleanse your home with white cloth"),
+                7: ("Ọbàtálá's Day", ["white flowers", "coconut"], "Offerings at dawn"),
+                15: ("Full Moon Meditation", ["silver coin", "milk"], "Silent reflection under moonlight"),
+                21: ("Ancestral Connection", ["eko", "obi abata"], "Honor your ancestors"),
+                28: ("Dark Moon Rest", [], "No work, only meditation")
+            }
+        )
+    },
+    # 2. Èrè̀lé (Ògún)
+    {
+        "name": "Èrè̀lé",
+        "orisha": "Ògún",
+        "theme": "War, Iron, Labor",
+        "emoji": "⚔️",
+        "color": "#228B22",
+        "taboos": ["lying", "cowardice", "broken tools"],
+        "days": generate_month_days(
+            orisha="Ògún",
+            special_days={
+                1: ("New Iron Blessing", ["palm oil", "rusted metal"], "Anoint your tools"),
+                5: ("Warrior's Convocation", ["gunpowder", "pepper"], "Strength rituals"),
+                15: ("Full Moon Forge", ["molten metal", "rooster"], "Metalworking day"),
+                22: ("Road Clearing", ["machete", "salt"], "Remove obstacles"),
+                28: ("Tools Resting", [], "No tool usage")
+            }
+        )
+    },
+    # ... (All 13 months)
+]
+
+def generate_month_days(orisha: str, special_days: dict):
+    """Generate complete 28-day structure with intelligent defaults"""
+    days = []
+    yoruba_weekdays = ["Àìkú", "Ajé", "Ìṣẹ́gun", "Rírú", "Bọ̀", "Ẹtì", "Àbámẹ́ta"]
+    
+    for day in range(1, 29):
+        # Get pre-defined ritual or use default
+        if day in special_days:
+            activity, offerings, prayer = special_days[day]
+        else:
+            activity = f"Standard {orisha} devotion"
+            offerings = ["water", "kolanut", "candle"]
+            prayer = f"{orisha}, guide me through this day"
+        
+        days.append({
+            "day": day,
+            "yoruba_day": f"Ọjọ́-{yoruba_weekdays[(day-1) % 7]}",
+            "activity": activity,
+            "offerings": offerings,
+            "prayer": prayer,
+            "moon_phase": get_moon_phase(day)
+        })
+    return days
+
+def get_moon_phase(day: int) -> str:
+    """Get moon phase for calendar display"""
+    phases = {
+        1: "🌑 New Moon",
+        8: "🌓 First Quarter",
+        15: "🌕 Full Moon",
+        22: "🌗 Last Quarter",
+        28: "🌑 Dark Moon"
+    }
+    return phases.get(day, "🌔 Waxing" if day < 15 else "🌘 Waning")
+
+# ==================
+# AUTHENTICATION
+# ==================
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        if User.query.filter_by(username=username).first():
+            flash('Username already exists')
+            return redirect(url_for('register'))
+        
+        user = User(username=username)
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        
+        login_user(user)
+        return redirect(url_for('dashboard'))
+    
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        
+        if user and user.check_password(password):
+            login_user(user)
+            return redirect(url_for('dashboard'))
+        
+        flash('Invalid credentials')
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+# ==================
+# MAIN FUNCTIONALITY
+# ==================
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    today = datetime.now()
+    moon_phase = calculate_real_moon_phase(today)
+    
+    # Get Yoruba date (simplified for demo)
+    yoruba_month = yoruba_months[(today.month - 1) % 13]
+    yoruba_day = today.day % 28 or 28
+    
+    # Get user's rituals for today
+    today_str = today.strftime("%m-%d")
+    rituals = UserRitual.query.filter_by(
+        user_id=current_user.id,
+        date=today_str
+    ).all()
+    
+    return render_template('dashboard.html',
+                         current_date=today,
+                         moon_phase=moon_phase,
+                         month=yoruba_month,
+                         day=yoruba_day,
+                         rituals=rituals)
+
+@app.route('/add_ritual', methods=['POST'])
+@login_required
+def add_ritual():
+    note = request.form['note']
+    today = datetime.now().strftime("%m-%d")
+    
+    ritual = UserRitual(
+        user_id=current_user.id,
+        date=today,
+        notes=note,
+        completed=False
+    )
+    db.session.add(ritual)
+    db.session.commit()
+    
+    flash('Ritual added successfully')
+    return redirect(url_for('dashboard'))
+
+# ==================
+# REAL MOON CALCULATIONS
+# ==================
+
+def calculate_real_moon_phase(date):
+    """Precise moon phase calculation using astronomical formulas"""
+    year = date.year
+    month = date.month
+    day = date.day
+    
+    # Convert to Julian Date
+    if month <= 2:
+        year -= 1
+        month += 12
+    a = year // 100
+    b = 2 - a + a // 4
+    jd = int(365.25 * (year + 4716)) + int(30.6001 * (month + 1)) + day + b - 1524.5
+    
+    # Calculate moon age in days
+    days_since_new = jd - 2451549.5
+    moon_cycle = 29.530588853
+    moon_age = (days_since_new % moon_cycle)
+    
+    # Determine phase
+    if moon_age < 1: return "🌑 New Moon"
+    elif moon_age < 7: return "🌒 Waxing Crescent"
+    elif moon_age < 8: return "🌓 First Quarter"
+    elif moon_age < 14: return "🌔 Waxing Gibbous"
+    elif moon_age < 15: return "🌕 Full Moon"
+    elif moon_age < 22: return "🌖 Waning Gibbous"
+    elif moon_age < 23: return "🌗 Last Quarter"
+    else: return "🌘 Waning Crescent"
+
+# ==================
+# INITIALIZATION
+# ==================
+
+with app.app_context():
+    db.create_all()
+    
+    # Create test user if none exists
+    if not User.query.first():
+        test_user = User(username='test')
+        test_user.set_password('test')
+        db.session.add(test_user)
+        db.session.commit()
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

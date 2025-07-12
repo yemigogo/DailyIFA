@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Yoruba Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoruba-styles.css') }}">
+    <meta name="description" content="Create your Yoruba Calendar account to begin tracking your spiritual journey with traditional wisdom.">
+</head>
+<body>
+    <div class="auth-container">
+        <header class="auth-header fade-in">
+            <h1>🌟 Yoruba Calendar</h1>
+            <p>Begin Your Spiritual Journey</p>
+        </header>
+        
+        <form class="auth-form sacred-card fade-in" method="POST" style="animation-delay: 0.2s; max-width: 500px;">
+            <h2>Create Your Account</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" class="sacred-input" required
+                       placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="sacred-input" required
+                       placeholder="Choose a unique username">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" class="sacred-input"
+                           placeholder="Your first name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" class="sacred-input"
+                           placeholder="Your last name">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="spiritual_path">Spiritual Path:</label>
+                <select id="spiritual_path" name="spiritual_path" class="sacred-input">
+                    <option value="Yoruba Traditional">Yoruba Traditional</option>
+                    <option value="Santería">Santería</option>
+                    <option value="Lucumí">Lucumí</option>
+                    <option value="Candomblé">Candomblé</option>
+                    <option value="Ifá">Ifá</option>
+                    <option value="Orisha Tradition">Orisha Tradition</option>
+                    <option value="Exploring">Exploring / Learning</option>
+                    <option value="Other">Other</option>
+                </select>
+                <small style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem; display: block;">
+                    This helps us provide relevant spiritual guidance
+                </small>
+            </div>
+            
+            <div class="form-group">
+                <label for="preferred_orisha">Preferred Orisha:</label>
+                <select id="preferred_orisha" name="preferred_orisha" class="sacred-input">
+                    <option value="Ọbàtálá">Ọbàtálá - Creator, Purity, Wisdom</option>
+                    <option value="Ògún">Ògún - Iron, War, Labor, Technology</option>
+                    <option value="Ṣàngó">Ṣàngó - Thunder, Justice, Virility</option>
+                    <option value="Ọ̀ṣun">Ọ̀ṣun - Love, Beauty, Rivers, Prosperity</option>
+                    <option value="Yemọja">Yemọja - Ocean, Motherhood, Healing</option>
+                    <option value="Ọya">Ọya - Wind, Change, Storms, Transformation</option>
+                    <option value="Èṣù">Èṣù - Crossroads, Communication, Opportunity</option>
+                    <option value="Òrúnmìlà">Òrúnmìlà - Wisdom, Divination, Destiny</option>
+                    <option value="Ọ̀sányìn">Ọ̀sányìn - Medicine, Herbs, Healing</option>
+                    <option value="Olókun">Olókun - Ocean Depths, Wisdom, Wealth</option>
+                    <option value="Òrìṣà Òkò">Òrìṣà Òkò - Agriculture, Fertility</option>
+                    <option value="Ọ̀ṣọ́ọ̀sì">Ọ̀ṣọ́ọ̀sì - Hunting, Forest, Protection</option>
+                    <option value="Exploring">Still Exploring</option>
+                </select>
+                <small style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem; display: block;">
+                    Choose the Orisha you feel most connected to (you can change this later)
+                </small>
+            </div>
+            
+            <button type="submit" class="sacred-button">Create Account</button>
+            
+            <div class="auth-links">
+                <p>Already have an account? <a href="/login">Login</a></p>
+                <p><a href="/">Continue as Guest</a></p>
+            </div>
+        </form>
+        
+        <div style="text-align: center; margin-top: 2rem; max-width: 500px;">
+            <div class="sacred-card fade-in" style="animation-delay: 0.4s; padding: 1.5rem;">
+                <h4 style="color: var(--yoruba-gold); margin-bottom: 1rem;">Your Spiritual Journey Awaits</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+                    Join our community to track your daily spiritual practices, receive personalized guidance based on traditional Yoruba wisdom, and connect with the rhythms of the ancestral calendar.
+                </p>
+                <div style="display: flex; justify-content: space-around; margin-top: 1rem; font-size: 0.8rem; color: var(--text-secondary);">
+                    <span>📅 Daily Guidance</span>
+                    <span>🌙 Moon Phases</span>
+                    <span>🙏 Practice Tracking</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; color: var(--text-secondary);">
+                <p style="font-size: 0.9rem;">
+                    "Kò sí ẹni tí ò lè kọ́, kò sí ẹni tí ò lè kọ́ ẹ̀kọ́."<br>
+                    <em>There is no one who cannot teach, and no one who cannot learn.</em>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.auth-form');
+            const inputs = form.querySelectorAll('.sacred-input');
+            
+            // Add interactive form elements
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = 'var(--yoruba-gold)';
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                const email = form.querySelector('#email').value.trim();
+                const username = form.querySelector('#username').value.trim();
+                
+                if (!email || !username) {
+                    e.preventDefault();
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                if (username.length < 3) {
+                    e.preventDefault();
+                    showNotification('Username must be at least 3 characters long', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = form.querySelector('.sacred-button');
+                submitBtn.textContent = 'Creating Account...';
+                submitBtn.disabled = true;
+            });
+            
+            // Username validation
+            const usernameInput = document.getElementById('username');
+            usernameInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                if (value.length > 0 && value.length < 3) {
+                    this.style.borderColor = '#CC2936';
+                } else {
+                    this.style.borderColor = 'var(--yoruba-gold)';
+                }
+            });
+        });
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                ${type === 'error' ? 'background: #CC2936;' : 'background: #D4AF37;'}
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
