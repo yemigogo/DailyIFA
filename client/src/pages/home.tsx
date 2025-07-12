@@ -60,10 +60,12 @@ export default function Home() {
       'Irosun Owonrin': 70, // Found at 070_Irosun_Owonrin.png
       'Owonrin Obara': 87,  // Found at 087_Owonrin_Obara.png
       'Obara Okanran': 167, // Found at 167_OBARA_OKANRAN.png
+      'Okanran Ogunda': 185, // Found at 185_OKANRAN_OGUNDA.png
+      'Ogunda Osa': 201, // Found at 201_OGUNDA_OSA.png  
+      'Osa Ika': 215, // Found at 215_OSA_IKA.png
       
       // Alternative spellings
-      'Òdí Ìwòrì': 75,
-      'Ìwòrì Òdí': 75
+      'Odi Iwori': 75
     };
 
     // Check if we have a specific mapping for this Odu name
