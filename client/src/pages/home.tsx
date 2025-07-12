@@ -69,15 +69,15 @@ export default function Home() {
     };
 
     // Check if we have a specific mapping for this Odu name
-    if (oduNameToCardMap[reading.odu.name]) {
-      const cardNumber = oduNameToCardMap[reading.odu.name];
-      console.log(`🎯 HOME PAGE MAPPING: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${cardNumber}`);
-      return cardNumber;
+    const mappedCard = oduNameToCardMap[reading.odu.name];
+    if (mappedCard !== undefined) {
+      console.log(`🎯 HOME PAGE MAPPING: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${mappedCard}`);
+      return mappedCard;
     }
     
     // Fallback: use Odu ID if no specific mapping found
     const cardNumber = reading.odu.id;
-    console.log(`Date: ${reading.date}, Odu: "${reading.odu.name}" (ID: ${reading.odu.id}) -> Using ID as card: ${cardNumber}`);
+    console.log(`⚠️ HOME PAGE FALLBACK: Date: ${reading.date}, Odu: "${reading.odu.name}" (ID: ${reading.odu.id}) -> Using ID as card: ${cardNumber}`);
     
     // Ensure card number is within valid range
     if (cardNumber && cardNumber >= 1 && cardNumber <= 256) {
