@@ -1,0 +1,49 @@
+# Add this to your existing calendar code (after the yoruba_months definition)
+
+# Gregorian to Yoruba month mapping with dual display
+gregorian_to_yoruba = [
+    {"gregorian": "January", "yoruba": "Ṣẹ̀rẹ̀", "orisha": "Ọbàtálá", "color": "#FFFFFF"},
+    {"gregorian": "February", "yoruba": "Èrè̀lé", "orisha": "Ògún", "color": "#228B22"},
+    {"gregorian": "March", "yoruba": "Ẹrẹ́nà", "orisha": "Ọ̀ṣun", "color": "#FFD700"},
+    {"gregorian": "April", "yoruba": "Ìgbé", "orisha": "Ṣàngó", "color": "#FF0000"},
+    {"gregorian": "May", "yoruba": "Èbìbì", "orisha": "Yemọja", "color": "#1E90FF"},
+    {"gregorian": "June", "yoruba": "Òkúdu", "orisha": "Ọya", "color": "#9400D3"},
+    {"gregorian": "July", "yoruba": "Agẹmọ", "orisha": "Èṣù", "color": "#000000"},
+    {"gregorian": "August", "yoruba": "Ògún", "orisha": "Ògún", "color": "#228B22"},  # Repeated for harvest
+    {"gregorian": "September", "yoruba": "Ọwẹ́wẹ̀", "orisha": "Ifá", "color": "#8B4513"},
+    {"gregorian": "October", "yoruba": "Ọ̀wàrà", "orisha": "Àgànjú", "color": "#A0522D"},
+    {"gregorian": "November", "yoruba": "Bélú", "orisha": "Olókun", "color": "#000080"},
+    {"gregorian": "December", "yoruba": "Ọ̀pẹ̀", "orisha": "Ọrìṣà Okè", "color": "#006400"},
+    {"gregorian": "December*", "yoruba": "Odún", "orisha": "Egúngún", "color": "#708090"}  # Intercalary month
+]
+
+def get_current_month_display():
+    """Returns both Gregorian and Yoruba months for the current date"""
+    now = datetime.now()
+    greg_month = now.month - 1  # 0-indexed
+    
+    # Handle intercalary month (every 3 years)
+    is_intercalary_year = (now.year % 3 == 0)
+    if is_intercalary_year and now.month == 12 and now.day > 25:
+        return gregorian_to_yoruba[-1]  # Return Odún month
+    
+    return gregorian_to_yoruba[greg_month]
+
+# Example usage in a Flask route:
+@app.route('/current-month')
+def show_current_month():
+    current = get_current_month_display()
+    return render_template('month_display.html', 
+                         gregorian_month=current["gregorian"],
+                         yoruba_month=current["yoruba"],
+                         orisha=current["orisha"],
+                         color=current["color"])
+
+# HTML Template (templates/month_display.html)
+"""
+<div class="month-header" style="background: {{ color }};">
+  <h2 class="gregorian">{{ gregorian_month }}</h2>
+  <h1 class="yoruba">{{ yoruba_month }}</h1>
+  <p class="orisha">Sacred to: {{ orisha }}</p>
+</div>
+"""

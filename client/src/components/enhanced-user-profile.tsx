@@ -122,6 +122,36 @@ const getMoonPhaseGuidance = (phaseIndex: number) => {
   return guidance[phaseIndex];
 };
 
+// Gregorian to Yoruba month mapping with dual display
+const gregorianToYorubaMapping = [
+  { gregorian: "January", yoruba: "Ṣẹ̀rẹ̀", orisha: "Ọbàtálá", color: "#FFFFFF", textColor: "#000000" },
+  { gregorian: "February", yoruba: "Èrè̀lé", orisha: "Ògún", color: "#228B22", textColor: "#FFFFFF" },
+  { gregorian: "March", yoruba: "Ẹrẹ́nà", orisha: "Ọ̀ṣun", color: "#FFD700", textColor: "#000000" },
+  { gregorian: "April", yoruba: "Ìgbé", orisha: "Ṣàngó", color: "#FF0000", textColor: "#FFFFFF" },
+  { gregorian: "May", yoruba: "Èbìbì", orisha: "Yemọja", color: "#1E90FF", textColor: "#FFFFFF" },
+  { gregorian: "June", yoruba: "Òkúdu", orisha: "Ọya", color: "#9400D3", textColor: "#FFFFFF" },
+  { gregorian: "July", yoruba: "Agẹmọ", orisha: "Èṣù", color: "#000000", textColor: "#FFFFFF" },
+  { gregorian: "August", yoruba: "Ògún", orisha: "Ògún", color: "#228B22", textColor: "#FFFFFF" },
+  { gregorian: "September", yoruba: "Ọwẹ́wẹ̀", orisha: "Ifá", color: "#8B4513", textColor: "#FFFFFF" },
+  { gregorian: "October", yoruba: "Ọ̀wàrà", orisha: "Àgànjú", color: "#A0522D", textColor: "#FFFFFF" },
+  { gregorian: "November", yoruba: "Bélú", orisha: "Olókun", color: "#000080", textColor: "#FFFFFF" },
+  { gregorian: "December", yoruba: "Ọ̀pẹ̀", orisha: "Ọrìṣà Okè", color: "#006400", textColor: "#FFFFFF" },
+  { gregorian: "Odún*", yoruba: "Odún", orisha: "Egúngún", color: "#708090", textColor: "#FFFFFF" } // Intercalary month
+];
+
+// Get current month display
+const getCurrentMonthDisplay = (date = new Date()) => {
+  const gregMonth = date.getMonth(); // 0-indexed (0 = January)
+  
+  // Handle intercalary month (every 3 years)
+  const isIntercalaryYear = (date.getFullYear() % 3 === 0);
+  if (isIntercalaryYear && date.getMonth() === 11 && date.getDate() > 25) {
+    return gregorianToYorubaMapping[12]; // Return Odún month
+  }
+  
+  return gregorianToYorubaMapping[gregMonth];
+};
+
 const orishaProfiles = [
   { 
     name: "Ọbàtálá", 
@@ -285,15 +315,25 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
 
   // Moon phase state
   const [currentMoonPhase, setCurrentMoonPhase] = useState(calculateMoonPhase());
+  const [currentMonthDisplay, setCurrentMonthDisplay] = useState(getCurrentMonthDisplay());
 
-  // Update moon phase every hour
+  // Update moon phase every hour and month display daily
   useEffect(() => {
     const updateMoonPhase = () => {
       setCurrentMoonPhase(calculateMoonPhase());
     };
     
+    const updateMonthDisplay = () => {
+      setCurrentMonthDisplay(getCurrentMonthDisplay());
+    };
+    
     const interval = setInterval(updateMoonPhase, 60 * 60 * 1000); // Update every hour
-    return () => clearInterval(interval);
+    const dailyInterval = setInterval(updateMonthDisplay, 24 * 60 * 60 * 1000); // Update daily
+    
+    return () => {
+      clearInterval(interval);
+      clearInterval(dailyInterval);
+    };
   }, []);
 
   const [newInsight, setNewInsight] = useState({
@@ -578,6 +618,93 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
               </div>
             </CardContent>
           </Card>
+
+          {/* Gregorian/Yoruba Month Overlay */}
+          <Card 
+            className="border-2 bg-gradient-to-r overflow-hidden"
+            style={{ 
+              borderColor: currentMonthDisplay.color,
+              background: `linear-gradient(135deg, ${currentMonthDisplay.color}22, ${currentMonthDisplay.color}11)`
+            }}
+          >
+            <CardHeader 
+              className="text-center"
+              style={{ 
+                backgroundColor: currentMonthDisplay.color + '20',
+                borderBottom: `2px solid ${currentMonthDisplay.color}`
+              }}
+            >
+              <CardTitle className="flex items-center justify-center gap-2">
+                <CalendarIcon className="h-5 w-5" style={{ color: currentMonthDisplay.color }} />
+                {ts("Dual Calendar System", "Ètò Kálẹ́ńdà Méjì")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div 
+                    className="rounded-lg p-4 mb-4"
+                    style={{ 
+                      backgroundColor: currentMonthDisplay.color + '15',
+                      border: `2px solid ${currentMonthDisplay.color}`
+                    }}
+                  >
+                    <h3 className="text-2xl font-bold mb-2" style={{ color: currentMonthDisplay.color }}>
+                      {currentMonthDisplay.gregorian}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {ts("Gregorian Month", "Òṣù Gírìgórì")}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div 
+                    className="rounded-lg p-4 mb-4"
+                    style={{ 
+                      backgroundColor: currentMonthDisplay.color + '20',
+                      border: `2px solid ${currentMonthDisplay.color}`
+                    }}
+                  >
+                    <h3 className="text-2xl font-bold mb-2" style={{ color: currentMonthDisplay.color }}>
+                      {currentMonthDisplay.yoruba}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {ts("Yoruba Month", "Òṣù Yorùbá")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center mt-4">
+                <div 
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                  style={{ 
+                    backgroundColor: currentMonthDisplay.color + '20',
+                    border: `1px solid ${currentMonthDisplay.color}`
+                  }}
+                >
+                  <Crown className="h-4 w-4" style={{ color: currentMonthDisplay.color }} />
+                  <span className="font-medium" style={{ color: currentMonthDisplay.color }}>
+                    {ts("Sacred to", "Mímọ́ fún")} {currentMonthDisplay.orisha}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-4 text-center">
+                <p className="text-xs text-muted-foreground">
+                  {ts("Traditional 13-month Odun cycle aligned with Gregorian calendar", 
+                      "Ìgbà òṣù mẹ́tàlá àtìjọ́ Odún tí ó bá kálẹ́ńdà Gírìgórì mu")}
+                </p>
+                {currentMonthDisplay.gregorian === "Odún*" && (
+                  <p className="text-xs mt-2 font-medium" style={{ color: currentMonthDisplay.color }}>
+                    {ts("Intercalary Month - Sacred Time of Ancestors", "Òṣù Àfikún - Àkókò Mímọ́ Àwọn Baba")}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+          
           <Card className="border-amber-200 dark:border-amber-800">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
@@ -1312,11 +1439,90 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
 
         {/* Enhanced Calendar Integration Tab */}
         <TabsContent value="calendar" className="space-y-6">
+          {/* Dual Calendar Year Overview */}
+          <Card className="border-2 border-blue-200 dark:border-blue-800">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CalendarIcon className="h-5 w-5 text-blue-600" />
+                {ts("Gregorian-Yoruba Calendar Overview", "Àkópọ̀ Kálẹ́ńdà Gírìgórì-Yorùbá")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                {gregorianToYorubaMapping.map((month, index) => (
+                  <div
+                    key={index}
+                    className="p-3 rounded-lg border-2 transition-all hover:scale-105 cursor-pointer"
+                    style={{
+                      borderColor: month.color,
+                      backgroundColor: month.color + '10'
+                    }}
+                  >
+                    <div className="text-center space-y-2">
+                      <h4 className="font-bold text-sm" style={{ color: month.color }}>
+                        {month.gregorian}
+                      </h4>
+                      <h3 className="font-semibold text-base" style={{ color: month.color }}>
+                        {month.yoruba}
+                      </h3>
+                      <div 
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium"
+                        style={{
+                          backgroundColor: month.color + '20',
+                          color: month.color
+                        }}
+                      >
+                        <Crown className="h-3 w-3" />
+                        {month.orisha}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-6 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border border-blue-200 dark:border-blue-800">
+                <h4 className="font-semibold mb-2 text-blue-800 dark:text-blue-200">
+                  {ts("Calendar System Features", "Àwọn Ẹ̀yà Ètò Kálẹ́ńdà")}
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <h5 className="font-medium mb-1">{ts("Traditional 13-Month Cycle", "Ìgbà Òṣù Mẹ́tàlá Àtìjọ́")}</h5>
+                    <p className="text-muted-foreground">
+                      {ts("Maintains authentic Yoruba lunar calendar with 28-day months", 
+                          "Ń tọ́jú kálẹ́ńdà òṣùpá Yorùbá gidi pẹ̀lú òṣù ọjọ́ méjìdínlọ́gbọ̀n")}
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="font-medium mb-1">{ts("Orisha Correspondences", "Ìbámu Òrìṣà")}</h5>
+                    <p className="text-muted-foreground">
+                      {ts("Each month aligned with specific Orisha energies", 
+                          "Òṣù kọ̀ọ̀kan ní ìbámu pẹ̀lú agbára Òrìṣà kan pàtó")}
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="font-medium mb-1">{ts("Intercalary Month", "Òṣù Àfikún")}</h5>
+                    <p className="text-muted-foreground">
+                      {ts("Special Odún month every 3 years for ancestral connection", 
+                          "Òṣù Odún pàtàkì ní ọdún mẹ́ta fún ìbáṣepọ̀ baba")}
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="font-medium mb-1">{ts("Modern Integration", "Ìdàpọ̀ Ìgbàlódé")}</h5>
+                    <p className="text-muted-foreground">
+                      {ts("Seamless alignment with Gregorian calendar system", 
+                          "Ìbámu tí kò níláàmì pẹ̀lú ètò kálẹ́ńdà Gírìgórì")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
           <Card className="border-amber-200 dark:border-amber-800">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-                <CalendarIcon className="h-5 w-5" />
-                {ts("Spiritual Calendar & Events", "Kálẹ́ńdà Ẹ̀mí àti Àwọn Ìṣẹ̀lẹ̀")}
+                <Plus className="h-5 w-5" />
+                {ts("Create Spiritual Event", "Dá Ìṣẹ̀lẹ̀ Ẹ̀mí")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
