@@ -8,6 +8,13 @@ import { insertDailyReadingSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 import { generateAll256Odu, getOduPaginated, searchOdu, getOduByCategory, getRandomOdu } from "./odu-generator";
+import { 
+  getMonth, 
+  getToday, 
+  getAllMonths, 
+  getMonthByIndex, 
+  getDayInMonth 
+} from "./yoruba-calendar";
 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -1090,6 +1097,23 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     }
   });
 
+  // ===== YORUBA CALENDAR API ENDPOINTS =====
+  
+  // Get specific month by name
+  app.get("/api/yoruba-calendar/month/:month_name", getMonth);
+  
+  // Get today's Yoruba calendar info
+  app.get("/api/yoruba-calendar/today", getToday);
+  
+  // Get all months
+  app.get("/api/yoruba-calendar/months", getAllMonths);
+  
+  // Get month by index (0-12)
+  app.get("/api/yoruba-calendar/month-index/:index", getMonthByIndex);
+  
+  // Get specific day in month
+  app.get("/api/yoruba-calendar/day/:month_name/:day_number", getDayInMonth);
+
   // Flask Odu Interface route
   app.get("/odu", (req, res) => {
     try {
@@ -1381,8 +1405,6 @@ async function initializeIfaLunarCalendar() {
 function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
-
-
 
 // Initialize encyclopedia data
 async function initializeEncyclopediaData() {
