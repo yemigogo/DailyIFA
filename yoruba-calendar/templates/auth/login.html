@@ -1,113 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Yoruba Calendar</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoruba-styles.css') }}">
-    <meta name="description" content="Login to your Yoruba Calendar account to track spiritual practices and connect with traditional wisdom.">
-</head>
-<body>
-    <div class="auth-container">
-        <header class="auth-header fade-in">
-            <h1>🌟 Yoruba Calendar</h1>
-            <p>Connect to Your Spiritual Practice</p>
-        </header>
+{% extends "base.html" %}
+
+{% block title %}Login - Odún Calendar{% endblock %}
+{% block description %}Login to your Odún Calendar account to track spiritual practices and connect with traditional wisdom.{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-8">
+    <!-- Login Form -->
+    <div class="bg-white rounded-lg shadow-lg p-8">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Welcome Back</h1>
+            <p class="text-gray-600">Connect to Your Spiritual Practice</p>
+        </div>
         
-        <form class="auth-form sacred-card fade-in" method="POST" style="animation-delay: 0.2s;">
-            <h2>Welcome Back</h2>
-            
-            {% if error %}
-            <div class="error-message">{{ error }}</div>
-            {% endif %}
-            
-            <div class="form-group">
-                <label for="email">Email or Username:</label>
-                <input type="text" id="email" name="email" class="sacred-input" required 
+        {% if error %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <form method="POST" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email or Username</label>
+                <input type="text" id="email" name="email" required
+                       class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                        placeholder="Enter your email or username">
             </div>
             
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="sacred-input" required 
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                        placeholder="Enter your password">
             </div>
             
-            <button type="submit" class="sacred-button">Login</button>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors">
+                Login
+            </button>
             
-            <div class="auth-links">
-                <p>New to Yoruba Calendar? <a href="/register">Create Account</a></p>
-                <p><a href="/">Continue as Guest</a></p>
+            <div class="text-center space-y-2 text-sm">
+                <p>New to Odún Calendar? <a href="{{ url_for('auth_register') }}" class="text-blue-600 hover:underline">Create Account</a></p>
+                <p><a href="{{ url_for('index') }}" class="text-gray-600 hover:underline">Continue as Guest</a></p>
             </div>
         </form>
-        
-        <div class="demo-info sacred-card fade-in" style="animation-delay: 0.4s;">
-            <h3>Demo Account</h3>
-            <p>Username: <strong>spiritual_seeker</strong></p>
-            <p>Password: <strong>test123</strong></p>
-            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">
-                Use this account to explore the spiritual practice tracking features.
-            </p>
-        </div>
-        
-        <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
-            <p style="font-size: 0.9rem;">
-                "Ẹni tó bá ní ìwà rere, àṣẹ ni yóó ní."<br>
-                <em>Those who have good character will have divine power.</em>
-            </p>
-        </div>
     </div>
+    
+    <!-- Demo Account Info -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Demo Account</h3>
+        <div class="space-y-1 text-sm">
+            <p><strong>Username:</strong> spiritual_seeker</p>
+            <p><strong>Password:</strong> test123</p>
+        </div>
+        <p class="text-xs text-gray-600 mt-3">
+            Use this account to explore the spiritual practice tracking features.
+        </p>
+    </div>
+    
+    <!-- Spiritual Quote -->
+    <div class="text-center mt-6 text-gray-600">
+        <p class="italic">
+            "Ẹni tó bá ní ìwà rere, àṣẹ ni yóó ní."<br>
+            <span class="text-sm">Those who have good character will have divine power.</span>
+        </p>
+    </div>
+</div>{% endblock %}
 
-    <!-- Add some interactive elements -->
-    <script>
-        // Add smooth form animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('.auth-form');
-            const inputs = form.querySelectorAll('.sacred-input');
-            
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'scale(1.02)';
-                    this.parentElement.style.transition = 'transform 0.3s ease';
-                });
-                
-                input.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'scale(1)';
-                });
-            });
-            
-            // Add validation feedback
-            form.addEventListener('submit', function(e) {
-                const email = form.querySelector('#email').value.trim();
-                if (!email) {
-                    e.preventDefault();
-                    showNotification('Please enter your email or username', 'error');
-                }
-            });
-        });
-        
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                color: white;
-                font-weight: 500;
-                z-index: 1000;
-                transition: all 0.3s ease;
-                ${type === 'error' ? 'background: #CC2936;' : 'background: #D4AF37;'}
-            `;
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-    </script>
-</body>
-</html>

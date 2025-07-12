@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+
+{% block title %}Odún Calendar - {{ current_date.strftime('%B %d, %Y') if current_date else 'Spiritual Calendar' }}{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Header Section -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Odún Yoruba Calendar</h1>
+            <p class="text-gray-600 mb-4">Connect with ancestral wisdom through daily spiritual guidance</p>
+            
+            <!-- Date Navigation -->
+            <div class="flex justify-center items-center space-x-4 mb-4">
+                <button id="prev-day" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                    ← Previous
+                </button>
+                <input type="date" id="date-picker" class="border border-gray-300 rounded px-3 py-2" 
+                       value="{{ current_date.strftime('%Y-%m-%d') if current_date else '' }}">
+                <button id="next-day" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                    Next →
+                </button>
+                <button id="today-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+                    Today
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="hidden text-center py-8">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <p class="mt-2 text-gray-600">Loading calendar data...</p>
+    </div>
+
+    <!-- Main Calendar Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Date Information -->
+        <div class="lg:col-span-1 space-y-6">
+            <!-- Gregorian Date -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Today's Date</h3>
+                <p id="current-date" class="text-xl text-blue-600 font-medium">
+                    {{ current_date.strftime('%A, %B %d, %Y') if current_date else 'Loading...' }}
+                </p>
+            </div>
+
+            <!-- Yoruba Date -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Yoruba Date</h3>
+                <p id="yoruba-date" class="text-xl text-amber-600 font-medium">
+                    {{ yoruba_data.yoruba_day if yoruba_data else 'Loading...' }} 
+                    {{ yoruba_data.yoruba_month if yoruba_data else '' }}
+                </p>
+                <p class="text-sm text-gray-600 mt-2">
+                    Year: {{ yoruba_data.yoruba_year if yoruba_data else 'Loading...' }}
+                </p>
+            </div>
+
+            <!-- Current Orisha -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Today's Orisha</h3>
+                <div class="text-center">
+                    <span id="orisha-badge" class="inline-block bg-red-600 text-white px-4 py-2 rounded-lg font-medium text-lg">
+                        {{ yoruba_data.orisha if yoruba_data else 'Loading...' }}
+                    </span>
+                    <p class="text-sm text-gray-600 mt-3">
+                        {{ yoruba_data.theme if yoruba_data else 'Spiritual guidance and protection for today' }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moon Phase & Guidance -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- Moon Phase -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Moon Phase & Spiritual Energy</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2" id="moon-phase-icon">
+                            {{ moon_phase.name.split()[0] if moon_phase else '🌙' }}
+                        </div>
+                        <h4 id="moon-phase" class="font-medium text-lg text-gray-800">
+                            {{ moon_phase.name if moon_phase else 'Loading...' }}
+                        </h4>
+                        <p id="moon-phase-yoruba" class="text-amber-600 text-sm mt-1">
+                            {{ moon_phase.yoruba if moon_phase else 'Loading...' }}
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-800 mb-2">Spiritual Significance</h4>
+                        <p id="moon-spiritual" class="text-gray-600 italic mb-2">
+                            {{ moon_phase.spiritual if moon_phase else 'Loading spiritual guidance...' }}
+                        </p>
+                        <p class="text-sm">
+                            <strong>Energy Type:</strong> 
+                            <span id="spiritual-energy" class="text-green-600">
+                                {{ spiritual_guidance.energy if spiritual_guidance else 'Loading...' }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Guidance -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Daily Activities -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Daily Activities</h3>
+                    <div id="daily-activities" class="space-y-2">
+                        {% if yoruba_data and yoruba_data.activity %}
+                            <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                {{ yoruba_data.activity }}
+                            </span>
+                        {% else %}
+                            <span class="inline-block bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">
+                                Loading activities...
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Spiritual Practices -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Recommended Practices</h3>
+                    <div id="spiritual-practices" class="space-y-2">
+                        {% if spiritual_guidance and spiritual_guidance.practices %}
+                            {% for practice in spiritual_guidance.practices %}
+                                <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                    {{ practice }}
+                                </span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="inline-block bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">
+                                Loading practices...
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offerings and Taboos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Daily Offerings -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Recommended Offerings</h3>
+                    <div id="daily-offerings" class="space-y-2">
+                        {% if yoruba_data and yoruba_data.offerings %}
+                            {% for offering in yoruba_data.offerings %}
+                                <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                                    {{ offering }}
+                                </span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="inline-block bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">
+                                Loading offerings...
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Things to Avoid -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Things to Avoid Today</h3>
+                    <div id="spiritual-taboos" class="bg-red-50 border-l-4 border-red-400 p-3 rounded">
+                        {% if spiritual_guidance and spiritual_guidance.taboos %}
+                            <ul class="text-sm text-red-700 space-y-1">
+                                {% for taboo in spiritual_guidance.taboos %}
+                                    <li>• {{ taboo }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-sm text-gray-600">Loading guidance...</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Prayer Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg p-8 mt-6">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Daily Prayer / Ìwúre</h2>
+        <div class="text-center italic text-lg leading-relaxed">
+            <p id="daily-prayer">
+                {% if yoruba_data and yoruba_data.prayer %}
+                    "{{ yoruba_data.prayer }}"
+                {% else %}
+                    Loading daily prayer...
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <!-- User Practices Section (for authenticated users) -->
+    {% if current_user and current_user.is_authenticated %}
+    <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Spiritual Practices</h2>
+        
+        <!-- Quick Add Practice -->
+        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+            <h3 class="text-lg font-medium text-gray-800 mb-3">Record Today's Practice</h3>
+            <form action="/add_ritual" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="ritual_type" class="block text-sm font-medium text-gray-700 mb-1">Practice Type</label>
+                        <input type="text" id="ritual_type" name="ritual_type" 
+                               class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="e.g., Morning Prayer, Meditation" required>
+                    </div>
+                    <div>
+                        <label for="orisha" class="block text-sm font-medium text-gray-700 mb-1">Orisha Focus</label>
+                        <select id="orisha" name="orisha" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="{{ current_user.preferred_orisha }}" selected>{{ current_user.preferred_orisha }} (Your Preferred)</option>
+                            <option value="Ọbàtálá">Ọbàtálá</option>
+                            <option value="Ògún">Ògún</option>
+                            <option value="Ṣàngó">Ṣàngó</option>
+                            <option value="Ọ̀ṣun">Ọ̀ṣun</option>
+                            <option value="Yemọja">Yemọja</option>
+                            <option value="Ọya">Ọya</option>
+                            <option value="Èṣù">Èṣù</option>
+                            <option value="Òrúnmìlà">Òrúnmìlà</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="note" class="block text-sm font-medium text-gray-700 mb-1">Practice Notes</label>
+                    <textarea id="note" name="note" rows="2" 
+                              class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              placeholder="Describe your spiritual practice or intention..."></textarea>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">
+                    Record Practice
+                </button>
+            </form>
+        </div>
+
+        <!-- Today's Practices List -->
+        <div id="user-rituals">
+            <p class="text-gray-600">Loading your practices...</p>
+        </div>
+    </div>
+    {% else %}
+    <!-- Call to Action for Non-Authenticated Users -->
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mt-6 text-center">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">Track Your Spiritual Journey</h3>
+        <p class="text-gray-600 mb-4">Login to record your daily practices and track your spiritual growth with personalized guidance.</p>
+        <a href="{{ url_for('auth_login') }}" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors inline-block">
+            Login to Continue
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Enhanced calendar functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize date picker with current date
+    const datePicker = document.getElementById('date-picker');
+    if (!datePicker.value) {
+        datePicker.value = new Date().toISOString().split('T')[0];
+    }
+    
+    // Auto-refresh when date changes
+    datePicker.addEventListener('change', function() {
+        const selectedDate = new Date(this.value);
+        loadDateData(selectedDate);
+    });
+    
+    // Navigation buttons
+    document.getElementById('prev-day')?.addEventListener('click', () => navigateDay(-1));
+    document.getElementById('next-day')?.addEventListener('click', () => navigateDay(1));
+    document.getElementById('today-btn')?.addEventListener('click', () => {
+        const today = new Date();
+        datePicker.value = today.toISOString().split('T')[0];
+        loadDateData(today);
+    });
+    
+    function navigateDay(direction) {
+        const currentDate = new Date(datePicker.value);
+        currentDate.setDate(currentDate.getDate() + direction);
+        datePicker.value = currentDate.toISOString().split('T')[0];
+        loadDateData(currentDate);
+    }
+    
+    async function loadDateData(date) {
+        const loadingIndicator = document.getElementById('loading-indicator');
+        if (loadingIndicator) {
+            loadingIndicator.classList.remove('hidden');
+        }
+        
+        try {
+            const dateStr = date.toISOString().split('T')[0];
+            const response = await fetch(`/api/convert/${dateStr}`);
+            const data = await response.json();
+            
+            // Update UI elements
+            updateCalendarDisplay(date, data);
+            
+            // Load user rituals if authenticated
+            {% if current_user and current_user.is_authenticated %}
+            await loadUserRituals(dateStr);
+            {% endif %}
+            
+        } catch (error) {
+            console.error('Error loading calendar data:', error);
+            showNotification('Failed to load calendar data', 'error');
+        } finally {
+            if (loadingIndicator) {
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+    }
+    
+    function updateCalendarDisplay(date, data) {
+        // Update date displays
+        document.getElementById('current-date').textContent = date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('yoruba-date').textContent = `${data.yoruba_day} ${data.yoruba_month}`;
+        document.getElementById('orisha-badge').textContent = data.orisha;
+        document.getElementById('daily-prayer').textContent = `"${data.prayer}"`;
+        
+        // Update activities and offerings
+        updateTagList('daily-activities', [data.activity], 'bg-blue-100 text-blue-800');
+        updateTagList('daily-offerings', data.offerings, 'bg-yellow-100 text-yellow-800');
+    }
+    
+    function updateTagList(containerId, items, className) {
+        const container = document.getElementById(containerId);
+        if (container && Array.isArray(items)) {
+            container.innerHTML = items.map(item => 
+                `<span class="inline-block ${className} px-3 py-1 rounded-full text-sm">${item}</span>`
+            ).join(' ');
+        }
+    }
+    
+    async function loadUserRituals(dateStr) {
+        try {
+            const response = await fetch(`/api/rituals?date=${dateStr}`);
+            const rituals = await response.json();
+            displayUserRituals(rituals);
+        } catch (error) {
+            console.error('Error loading user rituals:', error);
+        }
+    }
+    
+    function displayUserRituals(rituals) {
+        const container = document.getElementById('user-rituals');
+        if (!container) return;
+        
+        if (rituals.length === 0) {
+            container.innerHTML = '<p class="text-gray-600">No practices recorded for this date.</p>';
+            return;
+        }
+        
+        container.innerHTML = rituals.map(ritual => `
+            <div class="border border-gray-200 rounded-lg p-4 mb-3 ${ritual.completed ? 'bg-green-50' : 'bg-white'}">
+                <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                        <h4 class="font-medium text-gray-800">
+                            ${ritual.ritual_type}
+                            ${ritual.completed ? '<span class="text-green-600 text-sm ml-2">✓ Completed</span>' : ''}
+                        </h4>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">${ritual.orisha}</span>
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">${ritual.moon_phase}</span>
+                        </div>
+                        ${ritual.ritual_notes ? `<p class="text-gray-600 text-sm mt-2">${ritual.ritual_notes}</p>` : ''}
+                    </div>
+                    <form action="/complete_ritual/${ritual.id}" method="POST" class="ml-4">
+                        <button type="submit" class="text-xs px-3 py-1 rounded border ${ritual.completed ? 'border-gray-400 text-gray-600 hover:bg-gray-50' : 'border-green-500 text-green-600 hover:bg-green-50'} transition-colors">
+                            ${ritual.completed ? 'Undo' : 'Complete'}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 px-4 py-3 rounded-lg shadow-lg z-50 ${
+            type === 'error' ? 'bg-red-100 border border-red-400 text-red-700' : 
+            'bg-blue-100 border border-blue-400 text-blue-700'
+        }`;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+});
+</script>
+{% endblock %}

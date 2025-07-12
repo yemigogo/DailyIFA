@@ -397,7 +397,7 @@ def index():
     moon_phase = calculate_moon_phase(current_date)
     spiritual_guidance = get_spiritual_guidance(moon_phase["name"])
     
-    return render_template('index.html',
+    return render_template('odun-calendar.html',
                          current_date=current_date,
                          yoruba_data=yoruba_data,
                          moon_phase=moon_phase,
