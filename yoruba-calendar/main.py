@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-123')
 
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/yoruba_calendar.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yoruba_calendar.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Email Configuration

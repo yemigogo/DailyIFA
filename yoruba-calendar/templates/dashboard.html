@@ -3,256 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Yoruba Calendar</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/yoruba-styles.css') }}">
-    <meta name="description" content="Your personal Yoruba spiritual practice dashboard with daily guidance and ritual tracking.">
+    <title>Enhanced Yoruba Calendar Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sacred-gradient {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 25%, #d35400 50%, #8e44ad 75%, #3498db 100%);
+        }
+        
+        .notification-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="sacred-nav">
-        <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <a href="/" class="nav-brand">🌟 Yoruba Calendar</a>
-                <div class="nav-links">
-                    <span style="color: var(--yoruba-gold);">Welcome, {{ user.first_name or user.username }}!</span>
-                    <a href="/" class="nav-link">Calendar</a>
-                    <a href="/logout" class="nav-link">Logout</a>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="sacred-gradient text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Enhanced Yoruba Calendar</h1>
+            <div class="flex items-center space-x-4">
+                <span>Welcome, {{ user.username }}</span>
+                {% if user.is_admin %}
+                    <a href="{{ url_for('admin_dashboard') }}" class="bg-white text-gray-800 px-4 py-2 rounded">Admin</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="bg-red-500 text-white px-4 py-2 rounded">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="container mx-auto p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Today's Spiritual Information -->
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Today's Spiritual Guidance</h2>
+                
+                <!-- Real Moon Phase Calculations -->
+                <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                    <h3 class="font-semibold text-blue-800 mb-2">🌙 Real Moon Phase</h3>
+                    <p class="text-blue-700">Current Phase: <strong>{{ moon_phase }}</strong></p>
+                    <p class="text-sm text-blue-600">Astronomical calculations with precise lunar cycles</p>
+                </div>
+                
+                <!-- Yoruba Calendar Date -->
+                <div class="bg-green-50 rounded-lg p-4 mb-4">
+                    <h3 class="font-semibold text-green-800 mb-2">📅 Yoruba Calendar</h3>
+                    <p class="text-green-700">Today: <strong>{{ yoruba_date }}</strong></p>
+                    <p class="text-sm text-green-600">Traditional 13-month Yoruba calendar system</p>
+                </div>
+                
+                <!-- Social Media Sharing -->
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <h3 class="font-semibold text-purple-800 mb-2">📱 Social Media Sharing</h3>
+                    <div class="flex space-x-2">
+                        <button onclick="shareToTwitter()" class="bg-blue-500 text-white px-3 py-1 rounded text-sm">Twitter</button>
+                        <button onclick="shareToFacebook()" class="bg-blue-600 text-white px-3 py-1 rounded text-sm">Facebook</button>
+                        <button onclick="shareToWhatsApp()" class="bg-green-600 text-white px-3 py-1 rounded text-sm">WhatsApp</button>
+                        <button onclick="shareToLinkedIn()" class="bg-blue-700 text-white px-3 py-1 rounded text-sm">LinkedIn</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Personal Ritual Tracking -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold mb-4 text-gray-800">Personal Rituals</h2>
+                
+                <!-- Statistics -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-orange-50 rounded-lg p-3 text-center">
+                        <div class="text-2xl font-bold text-orange-600">{{ total_rituals }}</div>
+                        <div class="text-sm text-orange-800">Total Rituals</div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-3 text-center">
+                        <div class="text-2xl font-bold text-green-600">{{ completed_rituals }}</div>
+                        <div class="text-sm text-green-800">Completed</div>
+                    </div>
+                </div>
+                
+                <!-- Add New Ritual -->
+                <div class="mb-4">
+                    <h3 class="font-semibold mb-2">Add New Ritual</h3>
+                    <form id="ritualForm" class="space-y-2">
+                        <input type="text" id="ritualName" placeholder="Ritual name" class="w-full p-2 border rounded">
+                        <select id="orishaSelect" class="w-full p-2 border rounded">
+                            <option value="">Select Orisha</option>
+                            <option value="Ọbàtálá">Ọbàtálá</option>
+                            <option value="Ògún">Ògún</option>
+                            <option value="Ṣàngó">Ṣàngó</option>
+                            <option value="Ọ̀ṣun">Ọ̀ṣun</option>
+                            <option value="Yemọja">Yemọja</option>
+                        </select>
+                        <textarea id="ritualNotes" placeholder="Notes" class="w-full p-2 border rounded" rows="2"></textarea>
+                        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Add Ritual</button>
+                    </form>
+                </div>
+                
+                <!-- Ritual List -->
+                <div class="space-y-2">
+                    {% for ritual in rituals %}
+                    <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                        <div class="flex-1">
+                            <div class="font-medium {{ 'line-through text-gray-500' if ritual.completed }}">
+                                {{ ritual.ritual_name }}
+                            </div>
+                            {% if ritual.orisha %}
+                            <div class="text-sm text-gray-600">{{ ritual.orisha }}</div>
+                            {% endif %}
+                        </div>
+                        <button onclick="toggleRitual({{ ritual.id }})" 
+                                class="ml-2 px-2 py-1 rounded text-sm {{ 'bg-green-500 text-white' if ritual.completed else 'bg-gray-300' }}">
+                            {{ '✓' if ritual.completed else '○' }}
+                        </button>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
-    </nav>
-
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="container" style="margin-top: 1rem;">
-                {% for message in messages %}
-                    <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #a7f3d0; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Header Section -->
-        <header class="sacred-card fade-in" style="text-align: center; margin-top: 2rem;">
-            <h1>Your Spiritual Dashboard</h1>
-            <p>{{ current_date.strftime('%A, %B %d, %Y') }}</p>
+        
+        <!-- Enhanced Feature Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             
-            <!-- Spiritual Path Badge -->
-            <div style="margin: 1rem 0;">
-                <span class="orisha-badge">{{ user.spiritual_path }}</span>
-                <span class="moon-phase" style="margin-left: 1rem;">{{ user.preferred_orisha }}</span>
-            </div>
-        </header>
-
-        <!-- Today's Guidance Section -->
-        <section class="calendar-grid">
-            <!-- Yoruba Date Card -->
-            <div class="sacred-card fade-in">
-                <h3>Today's Yoruba Date</h3>
-                <p style="font-size: 1.2rem; color: var(--yoruba-amber);">
-                    {{ yoruba_data.yoruba_day }} {{ yoruba_data.yoruba_month }}
-                </p>
-                <p><strong>Orisha:</strong> {{ yoruba_data.orisha }}</p>
-                <p><strong>Theme:</strong> {{ yoruba_data.theme }}</p>
-            </div>
-
-            <!-- Moon Phase Card -->
-            <div class="sacred-card fade-in">
-                <h3>Moon Phase</h3>
-                <div class="moon-phase-large">
-                    {{ moon_phase.name }}
-                </div>
-                <p style="text-align: center; color: var(--yoruba-amber);">
-                    {{ moon_phase.yoruba }}
-                </p>
-                <p><em>{{ moon_phase.spiritual }}</em></p>
-            </div>
-
-            <!-- Daily Activity -->
-            <div class="sacred-card fade-in">
-                <h3>Today's Activity</h3>
-                <p style="font-size: 1.1rem;">{{ yoruba_data.activity }}</p>
-                
-                <h4 style="margin-top: 1rem;">Recommended Offerings:</h4>
-                <div class="offerings-list">
-                    {% for offering in yoruba_data.offerings %}
-                        <span class="offering-tag">{{ offering }}</span>
-                    {% endfor %}
+            <!-- Email Notifications -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="font-bold text-gray-800 mb-4">📧 Email Notifications</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm">Email Status:</span>
+                        <span class="notification-badge px-2 py-1 rounded text-xs {{ 'bg-green-100 text-green-800' if user.email_verified else 'bg-yellow-100 text-yellow-800' }}">
+                            {{ 'Verified' if user.email_verified else 'Pending' }}
+                        </span>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        {{ user.email }}
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        Automatic alerts for important spiritual dates
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Daily Prayer -->
-        <section class="sacred-card fade-in">
-            <h2>Today's Prayer / Ìwúre</h2>
-            <div class="prayer-section">
-                <p>{{ yoruba_data.prayer }}</p>
-            </div>
-        </section>
-
-        <!-- Your Rituals Section -->
-        <section class="sacred-card fade-in">
-            <h2>Your Today's Practices</h2>
             
-            <!-- Add New Ritual Form -->
-            <details style="margin-bottom: 2rem;">
-                <summary style="cursor: pointer; color: var(--yoruba-gold); font-weight: 600; margin-bottom: 1rem;">
-                    + Add New Practice
-                </summary>
-                <form action="/add_ritual" method="POST" style="background: rgba(0, 0, 0, 0.2); padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
-                    <div style="display: grid; gap: 1rem;">
-                        <div>
-                            <label for="ritual_type">Practice Type:</label>
-                            <input type="text" id="ritual_type" name="ritual_type" class="sacred-input" 
-                                   placeholder="e.g., Morning Prayer, Meditation" required>
-                        </div>
-                        
-                        <div>
-                            <label for="orisha">Orisha Focus:</label>
-                            <select id="orisha" name="orisha" class="sacred-input">
-                                <option value="{{ user.preferred_orisha }}" selected>{{ user.preferred_orisha }} (Your Preferred)</option>
-                                <option value="Ọbàtálá">Ọbàtálá</option>
-                                <option value="Ògún">Ògún</option>
-                                <option value="Ṣàngó">Ṣàngó</option>
-                                <option value="Ọ̀ṣun">Ọ̀ṣun</option>
-                                <option value="Yemọja">Yemọja</option>
-                                <option value="Ọya">Ọya</option>
-                                <option value="Èṣù">Èṣù</option>
-                                <option value="Òrúnmìlà">Òrúnmìlà</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="note">Practice Notes:</label>
-                            <textarea id="note" name="note" class="sacred-input" rows="3"
-                                      placeholder="Describe your spiritual practice or intention..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="sacred-button">Add Practice</button>
+            <!-- Push Notifications -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="font-bold text-gray-800 mb-4">🔔 Push Notifications</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm">Browser Notifications:</span>
+                        <button id="pushToggle" onclick="togglePushNotifications()" 
+                                class="px-3 py-1 rounded text-xs bg-blue-500 text-white">
+                            Enable
+                        </button>
                     </div>
-                </form>
-            </details>
-
-            <!-- Today's Rituals List -->
-            <div id="rituals-list">
-                {% if rituals %}
-                    {% for ritual in rituals %}
-                        <div class="ritual-entry sacred-card" style="margin-bottom: 1rem; {% if ritual.completed %}opacity: 0.7; background: rgba(16, 185, 129, 0.1);{% endif %}">
-                            <div style="display: flex; justify-content: space-between; align-items: start;">
-                                <div style="flex: 1;">
-                                    <h4 style="margin-bottom: 0.5rem;">
-                                        {{ ritual.ritual_type }}
-                                        {% if ritual.completed %}
-                                            <span style="color: #a7f3d0; font-size: 0.9rem;">✓ Completed</span>
-                                        {% endif %}
-                                    </h4>
-                                    <div style="margin-bottom: 0.5rem;">
-                                        <span class="orisha-badge" style="font-size: 0.8rem;">{{ ritual.orisha }}</span>
-                                        <span class="moon-phase" style="font-size: 0.8rem; margin-left: 0.5rem;">{{ ritual.moon_phase }}</span>
-                                    </div>
-                                    {% if ritual.ritual_notes %}
-                                        <p style="font-size: 0.9rem; color: var(--text-secondary);">{{ ritual.ritual_notes }}</p>
-                                    {% endif %}
-                                    <small style="color: var(--text-secondary);">
-                                        Added {{ ritual.created_at.strftime('%I:%M %p') if ritual.created_at else 'recently' }}
-                                    </small>
-                                </div>
-                                <div>
-                                    <form action="/complete_ritual/{{ ritual.id }}" method="POST" style="display: inline;">
-                                        <button type="submit" style="background: none; border: 1px solid var(--yoruba-gold); color: var(--yoruba-gold); padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">
-                                            {% if ritual.completed %}Undo{% else %}Complete{% endif %}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                        <p>No practices recorded for today.</p>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Start your spiritual journey by adding your first practice above.</p>
+                    <div class="text-xs text-gray-500">
+                        Real-time alerts for spiritual events
                     </div>
-                {% endif %}
+                    <button onclick="testNotification()" 
+                            class="w-full bg-purple-500 text-white py-2 rounded text-sm">
+                        Test Notification
+                    </button>
+                </div>
             </div>
-        </section>
-
-        <!-- Spiritual Guidance Section -->
-        <section class="calendar-grid">
-            <!-- Spiritual Practices -->
-            <div class="sacred-card fade-in">
-                <h3>Recommended Practices</h3>
-                <div class="offerings-list">
-                    {% for practice in spiritual_guidance.practices %}
-                        <span class="practice-tag">{{ practice }}</span>
+            
+            <!-- Important Dates -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="font-bold text-gray-800 mb-4">📅 Important Dates</h3>
+                <div class="space-y-2">
+                    {% for date in important_dates %}
+                    <div class="border-l-4 border-orange-500 pl-3 py-2">
+                        <div class="font-medium text-sm">{{ date.name }}</div>
+                        <div class="text-xs text-gray-600">{{ date.description }}</div>
+                        <div class="text-xs text-gray-500">Month {{ date.month }}, Day {{ date.day }}</div>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Energy Type -->
-            <div class="sacred-card fade-in">
-                <h3>Today's Spiritual Energy</h3>
-                <p style="font-style: italic; font-size: 1.1rem;">{{ spiritual_guidance.energy }}</p>
-            </div>
-
-            <!-- Things to Avoid -->
-            <div class="sacred-card fade-in">
-                <h3>Things to Avoid Today</h3>
-                <div class="taboo-list">
-                    <ul style="margin: 0; padding-left: 1.5rem;">
-                        {% for taboo in spiritual_guidance.taboos %}
-                            <li>{{ taboo }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="sacred-card fade-in">
-            <h2>Your Spiritual Journey</h2>
-            <div class="calendar-grid">
-                <div style="text-align: center;">
-                    <h3 style="color: var(--yoruba-gold); font-size: 2rem;">{{ user.total_rituals }}</h3>
-                    <p>Total Practices Recorded</p>
-                </div>
-                <div style="text-align: center;">
-                    <h3 style="color: var(--yoruba-amber); font-size: 2rem;">{{ rituals|selectattr('completed')|list|length }}</h3>
-                    <p>Completed Today</p>
-                </div>
-                <div style="text-align: center;">
-                    <h3 style="color: var(--yoruba-green); font-size: 2rem;">{{ (user.created_at and (current_date - user.created_at).days + 1) or 1 }}</h3>
-                    <p>Days on Journey</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 3rem;">
-        <p>&copy; 2025 Yoruba Calendar. Traditional wisdom for modern spiritual practice.</p>
-        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
-            "Àṣẹ láyé wa gbé" - May we live with divine power.
-        </p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="{{ url_for('static', filename='js/moon-phases.js') }}"></script>
     <script>
-        // Auto-refresh completed rituals
-        document.addEventListener('DOMContentLoaded', function() {
-            const forms = document.querySelectorAll('form[action^="/complete_ritual"]');
-            forms.forEach(form => {
-                form.addEventListener('submit', function() {
-                    const button = this.querySelector('button');
-                    button.disabled = true;
-                    button.textContent = 'Updating...';
+        // Social Media Sharing Functions
+        function shareToTwitter() {
+            const text = encodeURIComponent("Exploring my spiritual journey with the Enhanced Yoruba Calendar! 🌙✨ #YorubaCalendar #Spirituality");
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        }
+        
+        function shareToFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+        
+        function shareToWhatsApp() {
+            const text = encodeURIComponent("Check out the Enhanced Yoruba Calendar Dashboard! 🌙");
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+        
+        function shareToLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("Enhanced Yoruba Calendar Dashboard");
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`, '_blank');
+        }
+        
+        // Push Notifications
+        function togglePushNotifications() {
+            if ('Notification' in window) {
+                if (Notification.permission === 'granted') {
+                    alert('Push notifications already enabled!');
+                } else {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            document.getElementById('pushToggle').textContent = 'Enabled';
+                            document.getElementById('pushToggle').classList.add('bg-green-500');
+                            document.getElementById('pushToggle').classList.remove('bg-blue-500');
+                        }
+                    });
+                }
+            } else {
+                alert('Push notifications not supported in this browser');
+            }
+        }
+        
+        function testNotification() {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('Yoruba Calendar Alert', {
+                    body: 'Your spiritual practice reminder is here! 🌙',
+                    icon: '/static/icon.png'
                 });
+            } else {
+                alert('Please enable push notifications first');
+            }
+        }
+        
+        // Add Ritual Function
+        document.getElementById('ritualForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('ritualName').value;
+            const orisha = document.getElementById('orishaSelect').value;
+            const notes = document.getElementById('ritualNotes').value;
+            
+            if (!name) {
+                alert('Please enter a ritual name');
+                return;
+            }
+            
+            fetch('/api/add-ritual', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    orisha: orisha,
+                    notes: notes
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error adding ritual');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error adding ritual');
             });
+        });
+        
+        // Toggle Ritual Completion
+        function toggleRitual(ritualId) {
+            fetch(`/api/toggle-ritual/${ritualId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error updating ritual');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error updating ritual');
+            });
+        }
+        
+        // Initialize push notifications status
+        document.addEventListener('DOMContentLoaded', function() {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                document.getElementById('pushToggle').textContent = 'Enabled';
+                document.getElementById('pushToggle').classList.add('bg-green-500');
+                document.getElementById('pushToggle').classList.remove('bg-blue-500');
+            }
         });
     </script>
 </body>

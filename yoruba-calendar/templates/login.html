@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Enhanced Yoruba Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sacred-gradient {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 25%, #d35400 50%, #8e44ad 75%, #3498db 100%);
+        }
+    </style>
+</head>
+<body class="sacred-gradient min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Enhanced Yoruba Calendar</h1>
+            <p class="text-gray-600">Login to access your spiritual dashboard</p>
+        </div>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="mb-4">
+                    {% for message in messages %}
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-2">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                <input type="text" id="username" name="username" required 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input type="password" id="password" name="password" required 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Login
+            </button>
+        </form>
+        
+        <div class="mt-6 text-center text-sm text-gray-600">
+            <div class="mb-4">
+                <h3 class="font-semibold mb-2">Demo Accounts:</h3>
+                <div class="space-y-1">
+                    <div><strong>Admin:</strong> admin / admin123</div>
+                    <div><strong>User:</strong> spiritual_seeker / test123</div>
+                </div>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t">
+                <h3 class="font-semibold mb-2">Enhanced Features:</h3>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div>🌙 Real moon phases</div>
+                    <div>📝 Personal rituals</div>
+                    <div>📧 Email notifications</div>
+                    <div>🔔 Push notifications</div>
+                    <div>📱 Social sharing</div>
+                    <div>⚙️ Admin dashboard</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
