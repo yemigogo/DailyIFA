@@ -2,10 +2,40 @@ import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { spawn } from "child_process";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Start Flask Enhanced Dashboard on port 8080
+console.log('🚀 Starting Enhanced Yoruba Calendar Dashboard on port 8080...');
+const flaskApp = spawn('python3', ['create_enhanced_dashboard.py'], {
+  cwd: path.join(process.cwd(), 'yoruba-calendar'),
+  stdio: 'inherit'
+});
+
+// Redirect all requests to the Enhanced Dashboard
+app.get('/', (req, res) => {
+  res.redirect('http://localhost:8080');
+});
+
+app.get('/dashboard', (req, res) => {
+  res.redirect('http://localhost:8080/dashboard');
+});
+
+app.get('/login', (req, res) => {
+  res.redirect('http://localhost:8080/login');
+});
+
+// Catch-all redirect to Enhanced Dashboard
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api') && !req.path.startsWith('/static')) {
+    res.redirect(`http://localhost:8080${req.path}`);
+    return;
+  }
+  res.status(404).send('Use Enhanced Dashboard at http://localhost:8080');
+});
 
 // Serve audio files statically
 app.use('/audio', express.static(path.join(process.cwd(), 'client/public/audio')));
