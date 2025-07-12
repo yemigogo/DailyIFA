@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - Odún Calendar{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-white mb-2">Admin Dashboard</h1>
+                <p class="text-purple-200">System Management & Analytics</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="{{ url_for('dashboard') }}" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                    User Dashboard
+                </a>
+                <a href="/admin" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    Flask Admin
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-purple-200 text-sm">Total Users</p>
+                        <p class="text-white text-2xl font-bold">{{ stats.total_users }}</p>
+                    </div>
+                    <div class="text-purple-400 text-3xl">👥</div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-blue-200 text-sm">Active Devices</p>
+                        <p class="text-white text-2xl font-bold">{{ stats.active_devices }}</p>
+                    </div>
+                    <div class="text-blue-400 text-3xl">📱</div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-green-200 text-sm">Important Dates</p>
+                        <p class="text-white text-2xl font-bold">{{ stats.important_dates }}</p>
+                    </div>
+                    <div class="text-green-400 text-3xl">📅</div>
+                </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-yellow-200 text-sm">Notifications</p>
+                        <p class="text-white text-2xl font-bold">{{ stats.total_notifications }}</p>
+                    </div>
+                    <div class="text-yellow-400 text-3xl">🔔</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Sections -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Global Notifications -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <h3 class="text-xl font-bold text-white mb-4">📢 Global Notifications</h3>
+                <form method="POST" action="{{ url_for('admin_notify') }}" class="space-y-4">
+                    <div>
+                        <label class="block text-purple-200 text-sm mb-2">Title</label>
+                        <input type="text" name="title" required 
+                               class="w-full px-3 py-2 bg-white/20 border border-purple-300 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                               placeholder="Notification title">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-purple-200 text-sm mb-2">Message</label>
+                        <textarea name="message" required rows="3"
+                                  class="w-full px-3 py-2 bg-white/20 border border-purple-300 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                  placeholder="Your message to all users"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-purple-200 text-sm mb-2">Delivery Method</label>
+                        <select name="notification_type" 
+                                class="w-full px-3 py-2 bg-white/20 border border-purple-300 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="all">All Channels</option>
+                            <option value="in-app">In-App Only</option>
+                            <option value="email">Email Only</option>
+                            <option value="push">Push Only</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-colors">
+                        Send Global Notification
+                    </button>
+                </form>
+            </div>
+
+            <!-- System Actions -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <h3 class="text-xl font-bold text-white mb-4">🛠️ System Actions</h3>
+                <div class="space-y-4">
+                    <form method="POST" action="{{ url_for('admin_test_notifications') if 'admin_test_notifications' in globals() else '#' }}">
+                        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                            🧪 Test Notifications
+                        </button>
+                    </form>
+                    
+                    <form method="POST" action="{{ url_for('admin_check_important_dates') if 'admin_check_important_dates' in globals() else '#' }}">
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors">
+                            📅 Check Important Dates
+                        </button>
+                    </form>
+                    
+                    <button onclick="window.location.reload()" class="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">
+                        🔄 Refresh Dashboard
+                    </button>
+                    
+                    <a href="/admin" class="block w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors text-center">
+                        ⚙️ Database Management
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="mt-8 bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h3 class="text-xl font-bold text-white mb-4">📈 Recent Activity</h3>
+            <div class="space-y-3">
+                {% if recent_activity %}
+                    {% for activity in recent_activity %}
+                        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span class="text-purple-200">{{ activity.message }}</span>
+                            <span class="text-purple-400 text-sm">{{ activity.timestamp }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-8">
+                        <p class="text-purple-300">No recent activity</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

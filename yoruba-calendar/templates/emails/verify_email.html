@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Verify Your Email - Odún Calendar</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #8B5CF6, #3B82F6); color: white; padding: 30px; text-align: center; }
+        .content { padding: 30px; text-align: center; }
+        .welcome-message { font-size: 18px; margin-bottom: 20px; color: #333; }
+        .verification-btn { display: inline-block; background: #8B5CF6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; margin: 20px 0; font-weight: bold; }
+        .footer { background: #F3F4F6; padding: 20px; text-align: center; color: #666; font-size: 14px; }
+        .spiritual-quote { background: #F3F4F6; padding: 20px; border-radius: 8px; margin: 20px 0; font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Odún Calendar</h1>
+            <p>Your spiritual journey begins here</p>
+        </div>
+        
+        <div class="content">
+            <p class="welcome-message">Hello {{ user.username }},</p>
+            
+            <p>Thank you for joining our community dedicated to preserving and sharing Yoruba spiritual traditions. To complete your registration and begin your spiritual journey, please verify your email address.</p>
+            
+            <a href="#" class="verification-btn">Verify My Email</a>
+            
+            <div class="spiritual-quote">
+                "Àṣẹ ni àgbára àti ìmọ̀ tí ó ń ṣàkóso gbogbo ohun tí ó wà."<br>
+                <small>Àṣẹ is the power and knowledge that controls all existence.</small>
+            </div>
+            
+            <p>Once verified, you'll have access to:</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>Daily Yoruba calendar readings</li>
+                <li>Personalized spiritual notifications</li>
+                <li>Traditional Orisha celebrations</li>
+                <li>Community of spiritual practitioners</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>If you didn't create this account, you can safely ignore this email.</p>
+            <p>With spiritual blessings, The Odún Calendar Team</p>
+        </div>
+    </div>
+</body>
+</html>

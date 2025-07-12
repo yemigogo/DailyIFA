@@ -1,0 +1,418 @@
+/* Admin Dashboard CSS */
+
+/* Admin Layout */
+.admin-layout {
+    background: linear-gradient(135deg, #1f2937 0%, #4c1d95 50%, #1e3a8a 100%);
+    min-height: 100vh;
+}
+
+/* Admin Header */
+.admin-header {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+}
+
+.admin-title {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-subtitle {
+    color: #c7d2fe;
+    font-size: 1rem;
+    margin: 0.25rem 0 0 0;
+}
+
+/* Admin Cards */
+.admin-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.admin-stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0.5rem 0;
+}
+
+.admin-stat-label {
+    font-size: 0.875rem;
+    color: #c7d2fe;
+    font-weight: 500;
+}
+
+.admin-stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+/* Admin Form Styles */
+.admin-form {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.admin-form-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.admin-form-group {
+    margin-bottom: 1rem;
+}
+
+.admin-form-label {
+    display: block;
+    color: #c7d2fe;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.admin-form-input,
+.admin-form-select,
+.admin-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.admin-form-input:focus,
+.admin-form-select:focus,
+.admin-form-textarea:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.admin-form-input::placeholder,
+.admin-form-textarea::placeholder {
+    color: rgba(199, 210, 254, 0.6);
+}
+
+/* Admin Buttons */
+.admin-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.admin-btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: #ffffff;
+}
+
+.admin-btn-primary:hover {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.admin-btn-secondary {
+    background: rgba(107, 114, 128, 0.8);
+    color: #ffffff;
+}
+
+.admin-btn-secondary:hover {
+    background: rgba(75, 85, 99, 0.9);
+}
+
+.admin-btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+}
+
+.admin-btn-success:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.admin-btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #ffffff;
+}
+
+.admin-btn-warning:hover {
+    background: linear-gradient(135deg, #d97706, #b45309);
+}
+
+.admin-btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #ffffff;
+}
+
+.admin-btn-danger:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* Admin Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-table th {
+    background: rgba(0, 0, 0, 0.2);
+    color: #c7d2fe;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 0.875rem;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.admin-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.admin-badge-success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+}
+
+.admin-badge-warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+}
+
+.admin-badge-danger {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+
+.admin-badge-info {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+/* Admin Navigation */
+.admin-nav {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.admin-nav-list {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.admin-nav-item {
+    color: #c7d2fe;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.admin-nav-item:hover,
+.admin-nav-item.active {
+    background: rgba(139, 92, 246, 0.2);
+    color: #ffffff;
+}
+
+/* Activity Feed */
+.admin-activity {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.admin-activity-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.admin-activity-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+}
+
+.admin-activity-item:last-child {
+    margin-bottom: 0;
+}
+
+.admin-activity-message {
+    color: #c7d2fe;
+    font-size: 0.875rem;
+}
+
+.admin-activity-time {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
+
+/* Responsive Admin Styles */
+@media (max-width: 768px) {
+    .admin-stat-card {
+        padding: 1rem;
+    }
+    
+    .admin-stat-value {
+        font-size: 2rem;
+    }
+    
+    .admin-form {
+        padding: 1.5rem;
+    }
+    
+    .admin-table {
+        font-size: 0.75rem;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .admin-nav-list {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Dark Mode Toggle for Admin */
+.admin-theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.admin-theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Loading States */
+.admin-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: #c7d2fe;
+}
+
+.admin-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.75rem;
+}
+
+/* Admin Alerts */
+.admin-alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.admin-alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+}
+
+.admin-alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+.admin-alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #fcd34d;
+}
+
+.admin-alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+}

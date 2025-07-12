@@ -1,0 +1,43 @@
+<!-- Yoruba Calendar Component -->
+<div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+    <h3 class="text-xl font-bold text-white mb-4">📅 Yoruba Calendar</h3>
+    
+    <!-- Current Date Display -->
+    <div class="text-center mb-6">
+        <div class="text-2xl font-bold text-purple-300 mb-2">{{ yoruba_date.month }}</div>
+        <div class="text-lg text-purple-200">Day {{ yoruba_date.day }}</div>
+        <div class="text-sm text-purple-400">{{ yoruba_date.orisha }} - {{ yoruba_date.theme }}</div>
+    </div>
+    
+    <!-- Daily Activities -->
+    <div class="space-y-4">
+        <div>
+            <h4 class="text-white font-medium mb-2">Today's Activities:</h4>
+            <div class="flex flex-wrap gap-2">
+                {% for activity in yoruba_date.activities %}
+                    <span class="bg-purple-500/30 text-purple-200 px-3 py-1 rounded-full text-sm">{{ activity }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div>
+            <h4 class="text-white font-medium mb-2">Suggested Offerings:</h4>
+            <div class="flex flex-wrap gap-2">
+                {% for offering in yoruba_date.offerings %}
+                    <span class="bg-blue-500/30 text-blue-200 px-3 py-1 rounded-full text-sm">{{ offering }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="mt-6 flex justify-between items-center">
+        <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+            ← Previous Day
+        </button>
+        <span class="text-purple-200 text-sm">Traditional Calendar</span>
+        <button class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+            Next Day →
+        </button>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+# Placeholder for images directory
+
+This directory will contain:
+- Orisha images and icons
+- Application icons (icon-192.png, icon-512.png, badge-72.png)
+- Background images
+- UI icons and graphics
+
+Add your image assets here.
