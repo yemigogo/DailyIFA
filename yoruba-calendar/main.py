@@ -865,6 +865,126 @@ def device_management():
     """Device management page"""
     return render_template('device_management.html')
 
+@app.route('/admin-dashboard')
+@login_required
+def admin_dashboard():
+    """Admin dashboard page"""
+    if not getattr(current_user, 'is_admin', False):
+        flash('Admin access required', 'error')
+        return redirect(url_for('dashboard'))
+    
+    # Gather statistics
+    stats = {
+        'total_users': User.query.count(),
+        'active_devices': Device.query.filter_by(active=True).count(),
+        'important_dates': ImportantDate.query.count(),
+        'total_notifications': Notification.query.count()
+    }
+    
+    # Recent activity (sample data)
+    recent_activity = [
+        {
+            'message': f'System started successfully with {stats["total_users"]} users',
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        },
+        {
+            'message': f'{stats["active_devices"]} devices currently active',
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        },
+        {
+            'message': f'Scheduler running for {stats["important_dates"]} important dates',
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+    ]
+    
+    return render_template('admin_dashboard.html', stats=stats, recent_activity=recent_activity)
+
+@app.route('/admin/notify', methods=['POST'])
+@login_required
+def admin_notify():
+    """Send notification to all users"""
+    if not getattr(current_user, 'is_admin', False):
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    title = request.form.get('title', 'Admin Notification')
+    message = request.form.get('message', '')
+    notification_type = request.form.get('notification_type', 'all')
+    
+    if not message:
+        flash('Message is required', 'error')
+        return redirect(url_for('admin_dashboard'))
+    
+    users = User.query.all()
+    sent_count = 0
+    
+    for user in users:
+        if notification_type in ['all', 'in-app']:
+            # Create in-app notification
+            notification = Notification(
+                user_id=user.id,
+                message=f"{title}: {message}"
+            )
+            db.session.add(notification)
+        
+        if notification_type in ['all', 'email'] and user.email:
+            # Send email notification
+            send_email_notification(user, title, message)
+        
+        if notification_type in ['all', 'push']:
+            # Send push notification
+            send_push_notification(user, title, message)
+        
+        sent_count += 1
+    
+    db.session.commit()
+    
+    flash(f'Notification sent to {sent_count} users via {notification_type} channel(s)', 'success')
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/test-notifications', methods=['POST'])
+@login_required
+def admin_test_notifications():
+    """Test notification system"""
+    if not getattr(current_user, 'is_admin', False):
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    # Send test notifications to admin
+    test_message = f"🧪 System test notification sent at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    
+    # In-app notification
+    notification = Notification(
+        user_id=current_user.id,
+        message=test_message
+    )
+    db.session.add(notification)
+    
+    # Email notification
+    if current_user.email:
+        send_email_notification(current_user, "🧪 Test Notification", test_message)
+    
+    # Push notification
+    send_push_notification(current_user, "🧪 Test Push", test_message)
+    
+    db.session.commit()
+    
+    flash('Test notifications sent successfully! Check your devices and email.', 'success')
+    return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/check-important-dates', methods=['POST'])
+@login_required
+def admin_check_important_dates():
+    """Manually trigger important dates check"""
+    if not getattr(current_user, 'is_admin', False):
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    try:
+        check_important_dates()
+        flash('Important dates check completed successfully!', 'success')
+    except Exception as e:
+        flash(f'Error checking important dates: {str(e)}', 'error')
+    
+    return redirect(url_for('admin_dashboard'))
+
 @app.route('/mark_notification_read/<int:notification_id>', methods=['POST'])
 @login_required
 def mark_notification_read(notification_id):
@@ -1085,12 +1205,13 @@ def init_db():
                 first_name="Spiritual",
                 last_name="Seeker",
                 spiritual_path="Yoruba Traditional",
-                preferred_orisha="Ọbàtálá"
+                preferred_orisha="Ọbàtálá",
+                is_admin=True  # Make default user an admin
             )
             default_user.set_password("test123")  # Default password for demo
             db.session.add(default_user)
             db.session.commit()
-            print("✓ Default user created with password 'test123'")
+            print("✓ Default admin user created with password 'test123'")
         
         # Initialize important dates and admin setup
         initialize_important_dates()

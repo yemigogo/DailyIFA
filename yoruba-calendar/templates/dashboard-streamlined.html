@@ -262,6 +262,11 @@
         <a href="{{ url_for('device_management') }}" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
             Manage Devices
         </a>
+        {% if current_user.is_admin %}
+        <a href="{{ url_for('admin_dashboard') }}" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+            Admin Panel
+        </a>
+        {% endif %}
         <a href="{{ url_for('auth_logout') }}" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
             Logout
         </a>
