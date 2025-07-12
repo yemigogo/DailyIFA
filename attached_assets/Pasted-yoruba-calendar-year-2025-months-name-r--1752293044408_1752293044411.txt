@@ -1,0 +1,78 @@
+yoruba_calendar = {
+    "year": 2025,
+    "months": [
+        {
+            "name": "Ṣẹ̀rẹ̀",
+            "orisha": "Ọbàtálá",
+            "theme": "Purity, New Beginnings",
+            "days": [
+                {
+                    "day": 1,
+                    "yoruba_day": "Ọjọ́-Àìkú",
+                    "activity": "New Moon - White cloth offerings to Ọbàtálá",
+                    "moon_phase": "New Moon",
+                    "offerings": ["white cloth", "coconut", "water"]
+                },
+                {
+                    "day": 2,
+                    "yoruba_day": "Ọjọ́-Ajé",
+                    "activity": "Pray to Èṣù for open roads",
+                    "moon_phase": "Waxing Crescent",
+                    "offerings": ["palm oil", "kolanut"]
+                },
+                # ... (all 28 days for Ṣẹ̀rẹ̀)
+            ]
+        },
+        {
+            "name": "Èrè̀lé",
+            "orisha": "Ògún",
+            "theme": "War, Iron, Labor",
+            "days": [
+                {
+                    "day": 1,
+                    "yoruba_day": "Ọjọ́-Àìkú",
+                    "activity": "Offer iron tools to Ògún",
+                    "moon_phase": "New Moon",
+                    "offerings": ["palm oil", "rooster"]
+                },
+                # ... (all 28 days for Èrè̀lé)
+            ]
+        },
+        # ... (all 13 months)
+    ]
+}
+
+def get_month_info(month_name):
+    """Get all information for a specific month"""
+    for month in yoruba_calendar["months"]:
+        if month["name"] == month_name:
+            return month
+    return None
+
+def get_day_activities(month_name, day_number):
+    """Get activities for a specific day"""
+    month = get_month_info(month_name)
+    if month:
+        for day in month["days"]:
+            if day["day"] == day_number:
+                return day
+    return None
+
+def display_today():
+    """Example function to display today's info"""
+    # You would replace this with actual date logic
+    today_month = "Ṣẹ̀rẹ̀"
+    today_day = 1
+    
+    day_info = get_day_activities(today_month, today_day)
+    if day_info:
+        print(f"📅 {today_month} - Day {today_day}: {day_info['yoruba_day']}")
+        print(f"Orisha: {get_month_info(today_month)['orisha']}")
+        print(f"Activity: {day_info['activity']}")
+        print(f"Moon: {day_info['moon_phase']}")
+        print(f"Offerings: {', '.join(day_info['offerings'])}")
+    else:
+        print("Date not found in calendar")
+
+# Example usage
+display_today()

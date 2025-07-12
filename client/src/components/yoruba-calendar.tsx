@@ -1,57 +1,30 @@
 import { useState, useEffect } from "react";
-import { Calendar, Bell, Star, Crown } from "lucide-react";
+import { Calendar, Bell, Star, Crown, Moon, Sun } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { yorubaCalendar2025, type YorubaMonth, type YorubaDay } from "@/data/yoruba-calendar-2025";
 
 interface YorubaCalendarProps {
   showNotifications?: boolean;
 }
 
-const yorubaMonths = [
-  { name: "Ṣẹ́rẹ́", english: "January", focus: "New beginnings", orisha: "Ọbàtálá", color: "white" },
-  { name: "Èrèlé", english: "February", focus: "Planning", orisha: "Ògún", color: "green" },
-  { name: "Ẹrẹ̀nà", english: "March", focus: "Growth", orisha: "Ọ̀ṣun", color: "yellow" },
-  { name: "Igbé", english: "April", focus: "Manifestation", orisha: "Ọrunmila", color: "brown" },
-  { name: "Ẹ̀bìbí", english: "May", focus: "Abundance", orisha: "Yemoja", color: "blue" },
-  { name: "Òkúdù", english: "June", focus: "Power", orisha: "Ṣàngó", color: "red" },
-  { name: "Agẹmọ", english: "July", focus: "Wisdom", orisha: "Ọrunmila", color: "brown" },
-  { name: "Ògún", english: "August", focus: "Work", orisha: "Ògún", color: "green" },
-  { name: "Owéwé", english: "September", focus: "Harvest", orisha: "Yemoja", color: "blue" },
-  { name: "Ọ̀wàrà", english: "October", focus: "Gratitude", orisha: "Ọ̀ṣun", color: "yellow" },
-  { name: "Bélú", english: "November", focus: "Transition", orisha: "Ọya", color: "purple" },
-  { name: "Ọ̀pẹ̀", english: "December", focus: "Reflection", orisha: "Ọbàtálá", color: "white" }
-];
 
-const orishaFeastDays = [
-  { orisha: "Ọbàtálá", date: "2025-01-01", description: "New Year blessing", yoruba: "Ọjọ́ Ọbàtálá" },
-  { orisha: "Ògún", date: "2025-02-14", description: "Iron, work, protection", yoruba: "Ọjọ́ Ògún" },
-  { orisha: "Ọ̀ṣun", date: "2025-03-21", description: "Love, fertility, rivers", yoruba: "Ọjọ́ Ọ̀ṣun" },
-  { orisha: "Ṣàngó", date: "2025-06-21", description: "Thunder, lightning, justice", yoruba: "Ọjọ́ Ṣàngó" },
-  { orisha: "Yemoja", date: "2025-09-07", description: "Ocean mother, protection", yoruba: "Ọjọ́ Yemoja" },
-  { orisha: "Ọya", date: "2025-11-02", description: "Wind, change, ancestors", yoruba: "Ọjọ́ Ọya" }
-];
 
 export default function YorubaCalendar({ showNotifications = true }: YorubaCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
+  const [selectedMonth, setSelectedMonth] = useState(0);
+  const [selectedDay, setSelectedDay] = useState<YorubaDay | null>(null);
   const { ts } = useLanguage();
 
-  useEffect(() => {
-    // Calculate upcoming events
-    const today = new Date();
-    const upcoming = orishaFeastDays.filter(event => {
-      const eventDate = new Date(event.date);
-      const daysDiff = Math.ceil((eventDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-      return daysDiff >= 0 && daysDiff <= 30; // Next 30 days
-    });
-    setUpcomingEvents(upcoming);
-  }, []);
+  const getCurrentYorubaMonth = (): YorubaMonth => {
+    return yorubaCalendar2025.months[selectedMonth];
+  };
 
-  const getCurrentYorubaMonth = () => {
-    const monthIndex = currentDate.getMonth();
-    return yorubaMonths[monthIndex];
+  const getCurrentDayInMonth = (): number => {
+    return currentDate.getDate();
   };
 
   const getOrishaColor = (orisha: string) => {
@@ -62,162 +35,201 @@ export default function YorubaCalendar({ showNotifications = true }: YorubaCalen
       "Ọrunmila": "bg-amber-700 text-white",
       "Yemoja": "bg-blue-600 text-white",
       "Ṣàngó": "bg-red-600 text-white",
-      "Ọya": "bg-purple-600 text-white"
+      "Ọya": "bg-purple-600 text-white",
+      "Òrìṣà Òkò": "bg-brown-600 text-white",
+      "Òṣányìn": "bg-green-700 text-white"
     };
     return colors[orisha] || "bg-gray-500 text-white";
   };
 
+  const getMoonPhaseIcon = (phase: string) => {
+    switch (phase) {
+      case "New Moon": return "🌑";
+      case "Waxing Crescent": return "🌒";
+      case "First Quarter": return "🌓";
+      case "Waxing Gibbous": return "🌔";
+      case "Full Moon": return "🌕";
+      case "Waning Gibbous": return "🌖";
+      case "Last Quarter": return "🌗";
+      case "Waning Crescent": return "🌘";
+      default: return "🌙";
+    }
+  };
+
   const currentMonth = getCurrentYorubaMonth();
+  const currentDay = getCurrentDayInMonth();
 
   return (
     <div className="space-y-6">
       {/* Current Month Display */}
-      <Card className="border-amber-200 dark:border-amber-800">
+      <Card className="border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
             <Calendar className="h-5 w-5" />
-            {ts("Yoruba Lunar Calendar", "Kálẹ́ńdà Oṣù Yorùbá")}
+            {ts("Yoruba Sacred Calendar 2025", "Kálẹ́ńdà Mímọ́ Yorùbá 2025")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center space-y-4">
             <div>
-              <h2 className="text-3xl font-bold text-amber-900 dark:text-amber-100">
+              <h2 className="text-3xl font-bold text-amber-900 dark:text-amber-100 mb-2">
                 {currentMonth.name}
               </h2>
-              <p className="text-amber-700 dark:text-amber-300">
-                {currentMonth.english} 2025
+              <p className="text-lg text-amber-700 dark:text-amber-300">
+                {currentMonth.theme}
               </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex items-center justify-center gap-2">
-                <Crown className="h-5 w-5 text-amber-600" />
-                <span className="font-medium text-amber-800 dark:text-amber-200">
-                  {ts("Presiding Orisha:", "Òrìṣà Tó Ń Darí:")}
-                </span>
-                <Badge className={getOrishaColor(currentMonth.orisha)}>
-                  {currentMonth.orisha}
-                </Badge>
-              </div>
-
-              <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
-                <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
-                  {ts("Monthly Focus:", "Àkókò Oṣù:")}
-                </h4>
-                <p className="text-amber-700 dark:text-amber-300">
-                  {currentMonth.focus}
-                </p>
-              </div>
+              <Badge className={`mt-2 ${getOrishaColor(currentMonth.orisha)}`}>
+                {ts("Orisha:", "Òrìṣà:")} {currentMonth.orisha}
+              </Badge>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Upcoming Orisha Feast Days */}
-      {upcomingEvents.length > 0 && (
-        <Card className="border-amber-200 dark:border-amber-800">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-              <Bell className="h-5 w-5" />
-              {ts("Upcoming Orisha Feast Days", "Àwọn Ọjọ́ Àṣe Òrìṣà Tó Ń Bọ̀")}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {upcomingEvents.map((event, index) => {
-              const eventDate = new Date(event.date);
-              const daysUntil = Math.ceil((eventDate.getTime() - new Date().getTime()) / (1000 * 3600 * 24));
-              
-              return (
-                <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-700">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full ${getOrishaColor(event.orisha).split(' ')[0]}`}></div>
-                    <div>
-                      <h4 className="font-semibold text-amber-900 dark:text-amber-100">
-                        {event.yoruba}
-                      </h4>
-                      <p className="text-sm text-amber-700 dark:text-amber-300">
-                        {event.description}
-                      </p>
-                      <p className="text-xs text-amber-600 dark:text-amber-400">
-                        {eventDate.toLocaleDateString()}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-800 dark:text-amber-100">
-                      {daysUntil === 0 ? ts("Today", "Òní") : 
-                       daysUntil === 1 ? ts("Tomorrow", "Ọ̀la") :
-                       `${daysUntil} ${ts("days", "ọjọ́")}`}
-                    </Badge>
-                  </div>
-                </div>
-              );
-            })}
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Monthly Orisha Guide */}
-      <Card className="border-amber-200 dark:border-amber-800">
+      {/* Month Navigation */}
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-            <Star className="h-5 w-5" />
-            {ts("Monthly Orisha Guide", "Ìtọ́sọ́nà Òrìṣà Oṣù")}
+          <CardTitle className="text-spiritual-blue dark:text-sacred-gold">
+            {ts("Select Month", "Yan Oṣù")}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {yorubaMonths.map((month, index) => {
-              const isCurrentMonth = index === currentDate.getMonth();
-              
-              return (
-                <div 
-                  key={index} 
-                  className={`p-3 rounded-lg border text-center transition-all ${
-                    isCurrentMonth 
-                      ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/30 scale-105' 
-                      : 'border-gray-200 dark:border-gray-700 hover:border-amber-300'
-                  }`}
-                >
-                  <div className="space-y-2">
-                    <h4 className={`font-semibold ${isCurrentMonth ? 'text-amber-900 dark:text-amber-100' : 'text-gray-700 dark:text-gray-300'}`}>
-                      {month.name}
-                    </h4>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {month.english}
-                    </p>
-                    <Badge size="sm" className={getOrishaColor(month.orisha)}>
-                      {month.orisha}
-                    </Badge>
-                    <p className="text-xs text-gray-600 dark:text-gray-400">
-                      {month.focus}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+            {yorubaCalendar2025.months.map((month, index) => (
+              <Button
+                key={index}
+                variant={selectedMonth === index ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedMonth(index)}
+                className="text-xs"
+              >
+                {month.name}
+              </Button>
+            ))}
           </div>
         </CardContent>
       </Card>
 
-      {showNotifications && (
-        <Card className="border-amber-200 dark:border-amber-800">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Bell className="h-4 w-4 text-amber-600" />
-                <span className="text-sm text-amber-700 dark:text-amber-300">
-                  {ts("Get daily Ifá notifications", "Gbà ìfiránsẹ́ Ifá ojoojúmọ́")}
-                </span>
+      {/* Calendar Grid */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-spiritual-blue dark:text-sacred-gold">
+            <Crown className="h-5 w-5" />
+            {currentMonth.name} - {currentMonth.theme}
+          </CardTitle>
+          <p className="text-amber-600 dark:text-amber-400">
+            {ts("Sacred to", "Mímọ́ sí")} {currentMonth.orisha}
+          </p>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-7 gap-2">
+            {/* Header */}
+            {['Day', 'Yoruba Day', 'Activity', 'Moon Phase'].slice(0, 4).map((header, i) => (
+              <div key={i} className="text-center font-semibold text-sm text-amber-700 dark:text-amber-300 p-2">
+                {header}
               </div>
-              <Button size="sm" variant="outline" className="border-amber-300">
-                {ts("Enable", "Gba Láàyè")}
-              </Button>
+            ))}
+            
+            {/* Days */}
+            {currentMonth.days.map((day, index) => (
+              <div
+                key={index}
+                className={`p-3 rounded-lg border cursor-pointer transition-all hover:shadow-md ${
+                  currentDay === day.day 
+                    ? 'bg-amber-100 dark:bg-amber-900/30 border-amber-300 dark:border-amber-700' 
+                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+                } ${index % 7 < 4 ? 'col-span-1' : 'col-span-3'}`}
+                onClick={() => setSelectedDay(day)}
+              >
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-amber-900 dark:text-amber-100">
+                      {day.day}
+                    </span>
+                    <span className="text-lg">
+                      {getMoonPhaseIcon(day.moon_phase)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-amber-700 dark:text-amber-300">
+                    {day.yoruba_day}
+                  </div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">
+                    {day.activity.length > 30 ? `${day.activity.substring(0, 30)}...` : day.activity}
+                  </div>
+                  <Badge variant="outline" className="text-xs">
+                    {day.moon_phase}
+                  </Badge>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Selected Day Details */}
+      {selectedDay && (
+        <Card className="border-amber-300 dark:border-amber-700">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
+              <Star className="h-5 w-5" />
+              {selectedDay.yoruba_day} - {ts("Day", "Ọjọ́")} {selectedDay.day}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">{getMoonPhaseIcon(selectedDay.moon_phase)}</span>
+                <div>
+                  <h3 className="font-semibold text-spiritual-blue dark:text-sacred-gold">
+                    {selectedDay.moon_phase}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {selectedDay.activity}
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg">
+                <h4 className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                  {ts("Sacred Activity", "Iṣẹ́ Mímọ́")}
+                </h4>
+                <p className="text-amber-700 dark:text-amber-300">
+                  {selectedDay.activity}
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
       )}
+
+      {/* Today's Sacred Day */}
+      <Card className="bg-gradient-to-r from-spiritual-blue to-sacred-gold text-white">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Sun className="h-5 w-5" />
+            {ts("Today's Sacred Practice", "Iṣẹ́ Mímọ́ Òní")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {currentMonth.days[currentDay - 1] && (
+            <div className="space-y-2">
+              <p className="font-semibold">
+                {currentMonth.days[currentDay - 1]?.yoruba_day}
+              </p>
+              <p className="text-amber-100">
+                {currentMonth.days[currentDay - 1]?.activity}
+              </p>
+              <div className="flex items-center gap-2 mt-3">
+                <span className="text-2xl">
+                  {getMoonPhaseIcon(currentMonth.days[currentDay - 1]?.moon_phase || "New Moon")}
+                </span>
+                <span className="text-amber-100">
+                  {currentMonth.days[currentDay - 1]?.moon_phase}
+                </span>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
-}
+};
