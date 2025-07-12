@@ -25,26 +25,26 @@ export default function DailyReading({ reading }: DailyReadingProps) {
   const { t, ts } = useLanguage();
 
   // Get the same Odu card number used in home page
-  const getOduCardNumber = (): number | string => {
+  const getOduCardNumber = (): number => {
     if (!reading?.odu) return 1;
     
-    // Map Odu names to their correct card numbers based on actual card content
-    const oduNameToCardMap: Record<string, number | string> = {
+    // Map Odu names to their correct card numbers - using numbered cards for consistency
+    const oduNameToCardMap: Record<string, number> = {
       // Major Odu (1-16)
       'Eji Ogbe': 1, 'Oyeku Meji': 2, 'Iwori Meji': 3, 'Idi Meji': 4,
       'Irosun Meji': 5, 'Owonrin Meji': 6, 'Obara Meji': 7, 'Okanran Meji': 8,
       'Ogunda Meji': 9, 'Osa Meji': 10, 'Ika Meji': 11, 'Oturupon Meji': 12,
       'Otura Meji': 13, 'Irete Meji': 14, 'Ose Meji': 15, 'Ofun Meji': 16,
       
-      // Combined Odu - map names to cards that actually contain those names
-      'Iwori Odi': 75,  // Found at 075_IWORI_ODI.png
-      'Odi Irosun': 101, // Found at 101_ODI_IROSUN.png  
-      'Irosun Owonrin': '070_Irosun_Owonrin', // Direct file path - card 70 shows wrong name
-      'Owonrin Obara': '087_Owonrin_Obara',  // Direct file path - card 87 shows wrong name
-      'Obara Okanran': 167, // Found at 167_OBARA_OKANRAN.png
-      'Okanran Ogunda': 185, // Found at 185_OKANRAN_OGUNDA.png
-      'Ogunda Osa': 201, // Found at 201_OGUNDA_OSA.png  
-      'Osa Ika': 215, // Found at 215_OSA_IKA.png
+      // Combined Odu - use numbered cards for consistency
+      'Iwori Odi': 75,  
+      'Odi Irosun': 101,   
+      'Irosun Owonrin': 70, // Use numbered card for consistency
+      'Owonrin Obara': 87,  // Use numbered card for consistency  
+      'Obara Okanran': 167, 
+      'Okanran Ogunda': 185, 
+      'Ogunda Osa': 201,  
+      'Osa Ika': 215,
       
       // Alternative spellings
       'Odi Iwori': 75
@@ -162,10 +162,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
             <div className="flex justify-center mb-4">
               <div className="relative w-36 h-48 rounded-xl overflow-hidden shadow-lg bg-black/5 border-2 border-sacred-gold/30">
                 <img
-                  src={typeof currentOduCard === 'string' 
-                    ? `/static/odu_cards/${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
-                    : `/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
-                  }
+                  src={`/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`}
                   alt={`Authentic Odu Ifá Card: ${reading.odu.name}`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
                   onError={(e) => {
