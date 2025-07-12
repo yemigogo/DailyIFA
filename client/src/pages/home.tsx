@@ -57,8 +57,8 @@ export default function Home() {
       // Combined Odu - map names to cards that actually contain those names
       'Iwori Odi': 75,  // Found at 075_IWORI_ODI.png
       'Odi Irosun': 101, // Found at 101_ODI_IROSUN.png  
-      'Irosun Owonrin': 70, // Found at 070_Irosun_Owonrin.png
-      'Owonrin Obara': 87,  // Found at 087_Owonrin_Obara.png
+      'Irosun Owonrin': '070_Irosun_Owonrin', // Direct file path - card 70 shows wrong name
+      'Owonrin Obara': '087_Owonrin_Obara',  // Direct file path - card 87 shows wrong name
       'Obara Okanran': 167, // Found at 167_OBARA_OKANRAN.png
       'Okanran Ogunda': 185, // Found at 185_OKANRAN_OGUNDA.png
       'Ogunda Osa': 201, // Found at 201_OGUNDA_OSA.png  
@@ -178,19 +178,22 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden shadow-lg bg-black/5">
                     <img
-                      src={`/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`}
+                      src={typeof currentOduCard === 'string' 
+                        ? `/static/odu_cards/${currentOduCard}.png?t=${Date.now()}`
+                        : `/static/odu_cards/odu_card_${currentOduCard}.png?t=${Date.now()}`
+                      }
                       alt={`Today's Authentic Odu Ifá Card: ${reading?.odu?.name || 'Sacred Odu'}`}
                       className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105 border-2 border-sacred-gold/20 rounded-lg"
                       onError={(e) => {
-                        console.error(`Failed to load authentic Odu card: odu_card_${currentOduCard}.png`);
+                        console.error(`Failed to load authentic Odu card: ${currentOduCard}`);
                       }}
                       onLoad={() => {
-                        console.log(`Successfully loaded authentic Odu card: odu_card_${currentOduCard}.png for "${reading?.odu?.name}"`);
+                        console.log(`Successfully loaded authentic Odu card: ${currentOduCard} for "${reading?.odu?.name}"`);
                       }}
                     />
                     {/* Overlay with card number */}
                     <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md font-semibold">
-                      {currentOduCard}/256
+                      {typeof currentOduCard === 'string' ? currentOduCard.split('_')[0] : currentOduCard}/256
                     </div>
                   </div>
                 </div>
