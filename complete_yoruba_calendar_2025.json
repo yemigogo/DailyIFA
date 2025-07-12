@@ -1,0 +1,3841 @@
+{
+  "year": 2025,
+  "months": [
+    {
+      "name": "Ṣẹ̀rẹ̀",
+      "orisha": "Ọbàtálá",
+      "theme": "Purity, New Beginnings",
+      "color": "white",
+      "taboos": [
+        "salt",
+        "alcohol",
+        "palm oil"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "White cloth meditation",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "white cloth",
+            "water"
+          ],
+          "prayer": "Ọbàtálá, guide me through this sacred cycle of purity, new beginnings"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Purity rituals",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "coconut",
+            "white beads"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Cleansing ceremonies",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "water",
+            "cowrie shells"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Peace offerings",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "white beads",
+            "white candles"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Elder wisdom",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "cowrie shells",
+            "white flowers"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Community unity",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "white candles",
+            "white kola"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Spiritual reflection",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "white flowers",
+            "coconut water"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Clarity seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "white kola",
+            "white light"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Divine connection",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "coconut water",
+            "white cloth"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Sacred rest",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "white light",
+            "coconut"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "White light meditation",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "white cloth",
+            "water"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Ancestral honors",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "coconut",
+            "white beads"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Peaceful gathering",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "water",
+            "cowrie shells"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "white beads",
+            "white candles"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Sacred cleansing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "cowrie shells",
+            "white flowers"
+          ],
+          "prayer": "At this full moon, Ọbàtálá, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Unity prayers",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "white candles",
+            "white kola"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Wisdom sharing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "white flowers",
+            "coconut water"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Pure water rituals",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "white kola",
+            "white light"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "White flower offerings",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "coconut water",
+            "white cloth"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Sacred silence",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "white light",
+            "coconut"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Community healing",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "white cloth",
+            "water"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Peace making",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "coconut",
+            "white beads"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Spirit cleansing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "water",
+            "cowrie shells"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Divine gratitude",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "white beads",
+            "white candles"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Sacred preparation",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "cowrie shells",
+            "white flowers"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Rest and renewal",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "white candles",
+            "white kola"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Final cleansing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "white flowers",
+            "coconut water"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Deep reflection",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "white kola",
+            "white light"
+          ],
+          "prayer": "Ọbàtálá, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Èrèlé",
+      "orisha": "Ògún",
+      "theme": "War, Iron, Labor",
+      "color": "green/black",
+      "taboos": [
+        "laziness",
+        "dull tools"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Tool blessing",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "palm oil",
+            "iron tools"
+          ],
+          "prayer": "Ògún, guide me through this sacred cycle of war, iron, labor"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Iron purification",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "rooster",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Work preparation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "iron tools",
+            "iron nails"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Strength building",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "palm wine",
+            "metal objects"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Path clearing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "iron nails",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Obstacle removal",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "metal objects",
+            "machete"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Metal working",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "red palm oil",
+            "iron filings"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Tool sharpening",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "machete",
+            "cool water"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Work dedication",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "iron filings",
+            "palm oil"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Labor blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "cool water",
+            "rooster"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Strength seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "palm oil",
+            "iron tools"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Tool maintenance",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "rooster",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Iron ceremonies",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "iron tools",
+            "iron nails"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon forging",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "palm wine",
+            "metal objects"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Work completion",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "iron nails",
+            "red palm oil"
+          ],
+          "prayer": "At this full moon, Ògún, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Tool blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "metal objects",
+            "machete"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Strength renewal",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "red palm oil",
+            "iron filings"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Metal purification",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "machete",
+            "cool water"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Work planning",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "iron filings",
+            "palm oil"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Tool preparation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "cool water",
+            "rooster"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Labor dedication",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "palm oil",
+            "iron tools"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Strength building",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "rooster",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Tool blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "iron tools",
+            "iron nails"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Work completion",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "palm wine",
+            "metal objects"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Metal working",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "iron nails",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Tool rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "metal objects",
+            "machete"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Work reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "red palm oil",
+            "iron filings"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Tool preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "machete",
+            "cool water"
+          ],
+          "prayer": "Ògún, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ẹrẹ̀nà",
+      "orisha": "Ṣàngó",
+      "theme": "Thunder, Fire, Justice",
+      "color": "red/white",
+      "taboos": [
+        "injustice",
+        "lies"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Thunder calling",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "red palm oil",
+            "bitter kola"
+          ],
+          "prayer": "Ṣàngó, guide me through this sacred cycle of thunder, fire, justice"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Fire ceremonies",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "banana",
+            "red cloth"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Justice seeking",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "bitter kola",
+            "fire wood"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Truth speaking",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "red cloth",
+            "thunder stones"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Power building",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "fire wood",
+            "red candles"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Lightning meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "thunder stones",
+            "dried corn"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Fire blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "red candles",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Justice work",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "dried corn",
+            "red flowers"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Thunder drums",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "palm wine",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Power seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "red flowers",
+            "banana"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Fire ceremonies",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "red palm oil",
+            "bitter kola"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Lightning calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "banana",
+            "red cloth"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Thunder dancing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "bitter kola",
+            "fire wood"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon fire",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "red cloth",
+            "thunder stones"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Justice rituals",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "fire wood",
+            "red candles"
+          ],
+          "prayer": "At this full moon, Ṣàngó, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Power building",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "thunder stones",
+            "dried corn"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Fire blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "red candles",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Thunder calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "dried corn",
+            "red flowers"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Lightning work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "palm wine",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Fire meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "red flowers",
+            "banana"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Power seeking",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "red palm oil",
+            "bitter kola"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Thunder ceremonies",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "banana",
+            "red cloth"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Fire blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "bitter kola",
+            "fire wood"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Lightning calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "red cloth",
+            "thunder stones"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Thunder work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "fire wood",
+            "red candles"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Fire rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "thunder stones",
+            "dried corn"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Power reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "red candles",
+            "palm wine"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Thunder preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "dried corn",
+            "red flowers"
+          ],
+          "prayer": "Ṣàngó, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ìgbè",
+      "orisha": "Ọya",
+      "theme": "Winds, Change, Transformation",
+      "color": "maroon/purple",
+      "taboos": [
+        "stagnation",
+        "fear of change"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Wind calling",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "purple cloth",
+            "wind chimes"
+          ],
+          "prayer": "Ọya, guide me through this sacred cycle of winds, change, transformation"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Change embracing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "eggplant",
+            "maroon beads"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Transformation ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "wind chimes",
+            "purple candles"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Wind meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "maroon beads",
+            "dried leaves"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Change preparation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "purple candles",
+            "tornado shells"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Wind ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "dried leaves",
+            "wind instruments"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Transformation work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "tornado shells",
+            "purple flowers"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Change seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "wind instruments",
+            "storm water"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Wind blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "purple flowers",
+            "purple cloth"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Transformation prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "storm water",
+            "eggplant"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Wind calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "purple cloth",
+            "wind chimes"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Change ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "eggplant",
+            "maroon beads"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Transformation ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "wind chimes",
+            "purple candles"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon winds",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "maroon beads",
+            "dried leaves"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Change blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "purple candles",
+            "tornado shells"
+          ],
+          "prayer": "At this full moon, Ọya, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Wind meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "dried leaves",
+            "wind instruments"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Transformation work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "tornado shells",
+            "purple flowers"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Change calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "wind instruments",
+            "storm water"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Wind blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "purple flowers",
+            "purple cloth"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Transformation seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "storm water",
+            "eggplant"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Change preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "purple cloth",
+            "wind chimes"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Wind ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "eggplant",
+            "maroon beads"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Transformation blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "wind chimes",
+            "purple candles"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Change calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "maroon beads",
+            "dried leaves"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Wind work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "purple candles",
+            "tornado shells"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Change rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "dried leaves",
+            "wind instruments"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Wind reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "tornado shells",
+            "purple flowers"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Transformation preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "wind instruments",
+            "storm water"
+          ],
+          "prayer": "Ọya, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ebi",
+      "orisha": "Yemọja",
+      "theme": "Waters, Motherhood, Fertility",
+      "color": "blue/white",
+      "taboos": [
+        "harming children",
+        "polluting water"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Water blessing",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "blue cloth",
+            "ocean water"
+          ],
+          "prayer": "Yemọja, guide me through this sacred cycle of waters, motherhood, fertility"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Mother prayers",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "fish",
+            "blue beads"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Fertility ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "ocean water",
+            "shells"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Ocean calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "blue beads",
+            "blue candles"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Mother meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "shells",
+            "water plants"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Water ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "blue candles",
+            "mother symbols"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Mother blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "water plants",
+            "blue flowers"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Fertility seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "mother symbols",
+            "sea salt"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Ocean prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "blue flowers",
+            "blue cloth"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Mother work",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "sea salt",
+            "fish"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Water calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "blue cloth",
+            "ocean water"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Mother ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "fish",
+            "blue beads"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Fertility ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "ocean water",
+            "shells"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon waters",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "blue beads",
+            "blue candles"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Mother blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "shells",
+            "water plants"
+          ],
+          "prayer": "At this full moon, Yemọja, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Water meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "blue candles",
+            "mother symbols"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Mother work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "water plants",
+            "blue flowers"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Fertility calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "mother symbols",
+            "sea salt"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Ocean blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "blue flowers",
+            "blue cloth"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Mother seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "sea salt",
+            "fish"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Water preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "blue cloth",
+            "ocean water"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Mother ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "fish",
+            "blue beads"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Fertility blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "ocean water",
+            "shells"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Ocean calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "blue beads",
+            "blue candles"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Mother work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "shells",
+            "water plants"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Water rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "blue candles",
+            "mother symbols"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Mother reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "water plants",
+            "blue flowers"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Fertility preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "mother symbols",
+            "sea salt"
+          ],
+          "prayer": "Yemọja, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Òkúdu",
+      "orisha": "Ọ̀ṣun",
+      "theme": "Rivers, Love, Prosperity",
+      "color": "yellow/gold",
+      "taboos": [
+        "hatred",
+        "greed"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "River blessing",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "honey",
+            "gold jewelry"
+          ],
+          "prayer": "Ọ̀ṣun, guide me through this sacred cycle of rivers, love, prosperity"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Love ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "yellow cloth",
+            "yellow flowers"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Prosperity ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "gold jewelry",
+            "river water"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "River calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "yellow flowers",
+            "yellow beads"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Love meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "river water",
+            "gold coins"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "River ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "yellow beads",
+            "sweet perfume"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Love blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "gold coins",
+            "golden candles"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Prosperity seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "sweet perfume",
+            "yellow fruits"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "River prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "golden candles",
+            "honey"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Love work",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "yellow fruits",
+            "yellow cloth"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "River calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "honey",
+            "gold jewelry"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Love ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "yellow cloth",
+            "yellow flowers"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Prosperity ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "gold jewelry",
+            "river water"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon rivers",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "yellow flowers",
+            "yellow beads"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Love blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "river water",
+            "gold coins"
+          ],
+          "prayer": "At this full moon, Ọ̀ṣun, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "River meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "yellow beads",
+            "sweet perfume"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Love work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "gold coins",
+            "golden candles"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Prosperity calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "sweet perfume",
+            "yellow fruits"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "River blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "golden candles",
+            "honey"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Love seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "yellow fruits",
+            "yellow cloth"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "River preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "honey",
+            "gold jewelry"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Love ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "yellow cloth",
+            "yellow flowers"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Prosperity blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "gold jewelry",
+            "river water"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "River calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "yellow flowers",
+            "yellow beads"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Love work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "river water",
+            "gold coins"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "River rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "yellow beads",
+            "sweet perfume"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Love reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "gold coins",
+            "golden candles"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Prosperity preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "sweet perfume",
+            "yellow fruits"
+          ],
+          "prayer": "Ọ̀ṣun, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Agẹmọ",
+      "orisha": "Èṣù",
+      "theme": "Crossroads, Communication, Opportunity",
+      "color": "black/red",
+      "taboos": [
+        "closed minds",
+        "refusing guidance"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Crossroads ritual",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "palm oil",
+            "candies"
+          ],
+          "prayer": "Èṣù, guide me through this sacred cycle of crossroads, communication, opportunity"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Message carrying",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "kolanut",
+            "rum"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Opportunity seeking",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "candies",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Path opening",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "rum",
+            "crossroad dirt"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Communication blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "red palm oil",
+            "pennies"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Crossroads ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "crossroad dirt",
+            "cigars"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Message work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "pennies",
+            "hot peppers"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Opportunity ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "cigars",
+            "black coffee"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Path blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "hot peppers",
+            "palm oil"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Communication seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "black coffee",
+            "kolanut"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Crossroads calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "palm oil",
+            "candies"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Message ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "kolanut",
+            "rum"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Opportunity ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "candies",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon crossroads",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "rum",
+            "crossroad dirt"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Path blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "red palm oil",
+            "pennies"
+          ],
+          "prayer": "At this full moon, Èṣù, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Crossroads meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "crossroad dirt",
+            "cigars"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Message work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "pennies",
+            "hot peppers"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Opportunity calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "cigars",
+            "black coffee"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Path blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "hot peppers",
+            "palm oil"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Communication seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "black coffee",
+            "kolanut"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Crossroads preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "palm oil",
+            "candies"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Message ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "kolanut",
+            "rum"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Opportunity blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "candies",
+            "red palm oil"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Path calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "rum",
+            "crossroad dirt"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Communication work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "red palm oil",
+            "pennies"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Crossroads rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "crossroad dirt",
+            "cigars"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Message reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "pennies",
+            "hot peppers"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Opportunity preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "cigars",
+            "black coffee"
+          ],
+          "prayer": "Èṣù, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ògún",
+      "orisha": "Ọ̀sányìn",
+      "theme": "Healing, Herbs, Medicine",
+      "color": "green/white",
+      "taboos": [
+        "ignoring illness",
+        "refusing healing"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Herb gathering",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "healing herbs",
+            "green candles"
+          ],
+          "prayer": "Ọ̀sányìn, guide me through this sacred cycle of healing, herbs, medicine"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Healing ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "medicinal plants",
+            "herb bundles"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Medicine preparation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "green candles",
+            "healing stones"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Plant blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "herb bundles",
+            "plant medicine"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Healing meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "healing stones",
+            "green cloth"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Herb ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "plant medicine",
+            "herb tea"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Healing work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "green cloth",
+            "forest leaves"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Medicine seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "herb tea",
+            "healing water"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Plant prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "forest leaves",
+            "healing herbs"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Healing blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "healing water",
+            "medicinal plants"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Herb calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "healing herbs",
+            "green candles"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Healing ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "medicinal plants",
+            "herb bundles"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Medicine ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "green candles",
+            "healing stones"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon healing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "herb bundles",
+            "plant medicine"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Plant blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "healing stones",
+            "green cloth"
+          ],
+          "prayer": "At this full moon, Ọ̀sányìn, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Herb meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "plant medicine",
+            "herb tea"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Healing work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "green cloth",
+            "forest leaves"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Medicine calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "herb tea",
+            "healing water"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Plant blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "forest leaves",
+            "healing herbs"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Healing seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "healing water",
+            "medicinal plants"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Herb preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "healing herbs",
+            "green candles"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Healing ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "medicinal plants",
+            "herb bundles"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Medicine blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "green candles",
+            "healing stones"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Plant calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "herb bundles",
+            "plant medicine"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Healing work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "healing stones",
+            "green cloth"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Herb rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "plant medicine",
+            "herb tea"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Healing reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "green cloth",
+            "forest leaves"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Medicine preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "herb tea",
+            "healing water"
+          ],
+          "prayer": "Ọ̀sányìn, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Owèwè",
+      "orisha": "Olókun",
+      "theme": "Ocean Depths, Wisdom, Mysteries",
+      "color": "deep blue/white",
+      "taboos": [
+        "shallow thinking",
+        "disrespecting ocean"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Ocean meditation",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "ocean water",
+            "pearls"
+          ],
+          "prayer": "Olókun, guide me through this sacred cycle of ocean depths, wisdom, mysteries"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Deep wisdom",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "deep blue cloth",
+            "sea shells"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Mystery seeking",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "pearls",
+            "deep blue candles"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Ocean calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "sea shells",
+            "ocean plants"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Wisdom meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "deep blue candles",
+            "whale songs"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Ocean ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "ocean plants",
+            "deep water"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Wisdom work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "whale songs",
+            "ocean crystals"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Mystery ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "deep water",
+            "blue gems"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Ocean prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "ocean crystals",
+            "ocean water"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Wisdom blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "blue gems",
+            "deep blue cloth"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Ocean calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "ocean water",
+            "pearls"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Wisdom ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "deep blue cloth",
+            "sea shells"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Mystery ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "pearls",
+            "deep blue candles"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon ocean",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "sea shells",
+            "ocean plants"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Wisdom blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "deep blue candles",
+            "whale songs"
+          ],
+          "prayer": "At this full moon, Olókun, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Ocean meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "ocean plants",
+            "deep water"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Wisdom work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "whale songs",
+            "ocean crystals"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Mystery calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "deep water",
+            "blue gems"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Ocean blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "ocean crystals",
+            "ocean water"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Wisdom seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "blue gems",
+            "deep blue cloth"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Ocean preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "ocean water",
+            "pearls"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Wisdom ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "deep blue cloth",
+            "sea shells"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Mystery blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "pearls",
+            "deep blue candles"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Ocean calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "sea shells",
+            "ocean plants"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Wisdom work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "deep blue candles",
+            "whale songs"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Ocean rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "ocean plants",
+            "deep water"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Wisdom reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "whale songs",
+            "ocean crystals"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Mystery preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "deep water",
+            "blue gems"
+          ],
+          "prayer": "Olókun, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ọ̀wàrà",
+      "orisha": "Òrìṣà Òkò",
+      "theme": "Agriculture, Earth, Harvest",
+      "color": "brown/green",
+      "taboos": [
+        "wasting food",
+        "neglecting land"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Earth blessing",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "yams",
+            "earth"
+          ],
+          "prayer": "Òrìṣà Òkò, guide me through this sacred cycle of agriculture, earth, harvest"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Farming ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "farming tools",
+            "brown cloth"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Harvest preparation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "earth",
+            "harvest fruits"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Earth calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "brown cloth",
+            "seeds"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Farming meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "harvest fruits",
+            "farming implements"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Earth ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "seeds",
+            "soil"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Farming work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "farming implements",
+            "green plants"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Harvest seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "soil",
+            "harvest offerings"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Earth prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "green plants",
+            "yams"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Farming blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "harvest offerings",
+            "farming tools"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Earth calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "yams",
+            "earth"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Farming ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "farming tools",
+            "brown cloth"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Harvest ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "earth",
+            "harvest fruits"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon farming",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "brown cloth",
+            "seeds"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Earth blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "harvest fruits",
+            "farming implements"
+          ],
+          "prayer": "At this full moon, Òrìṣà Òkò, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Earth meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "seeds",
+            "soil"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Farming work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "farming implements",
+            "green plants"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Harvest calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "soil",
+            "harvest offerings"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Earth blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "green plants",
+            "yams"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Farming seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "harvest offerings",
+            "farming tools"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Earth preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "yams",
+            "earth"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Farming ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "farming tools",
+            "brown cloth"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Harvest blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "earth",
+            "harvest fruits"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Earth calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "brown cloth",
+            "seeds"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Farming work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "harvest fruits",
+            "farming implements"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Earth rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "seeds",
+            "soil"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Farming reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "farming implements",
+            "green plants"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Harvest preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "soil",
+            "harvest offerings"
+          ],
+          "prayer": "Òrìṣà Òkò, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Bélú",
+      "orisha": "Ọ̀ṣọ́ọ̀sì",
+      "theme": "Hunting, Forest, Tracking",
+      "color": "green/brown",
+      "taboos": [
+        "destroying forests",
+        "wasteful hunting"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Forest calling",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "forest fruits",
+            "green cloth"
+          ],
+          "prayer": "Ọ̀ṣọ́ọ̀sì, guide me through this sacred cycle of hunting, forest, tracking"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Hunting ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "hunting arrows",
+            "forest plants"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Tracking ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "green cloth",
+            "hunting tools"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Forest blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "forest plants",
+            "animal tracks"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Hunting meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "hunting tools",
+            "forest leaves"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Forest ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "animal tracks",
+            "wild honey"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Hunting work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "forest leaves",
+            "hunting charms"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Tracking seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "wild honey",
+            "forest water"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Forest prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "hunting charms",
+            "forest fruits"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Hunting blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "forest water",
+            "hunting arrows"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Forest calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "forest fruits",
+            "green cloth"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Hunting ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "hunting arrows",
+            "forest plants"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Tracking ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "green cloth",
+            "hunting tools"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon hunting",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "forest plants",
+            "animal tracks"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Forest blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "hunting tools",
+            "forest leaves"
+          ],
+          "prayer": "At this full moon, Ọ̀ṣọ́ọ̀sì, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Forest meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "animal tracks",
+            "wild honey"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Hunting work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "forest leaves",
+            "hunting charms"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Tracking calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "wild honey",
+            "forest water"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Forest blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "hunting charms",
+            "forest fruits"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Hunting seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "forest water",
+            "hunting arrows"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Forest preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "forest fruits",
+            "green cloth"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Hunting ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "hunting arrows",
+            "forest plants"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Tracking blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "green cloth",
+            "hunting tools"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Forest calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "forest plants",
+            "animal tracks"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Hunting work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "hunting tools",
+            "forest leaves"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Forest rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "animal tracks",
+            "wild honey"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Hunting reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "forest leaves",
+            "hunting charms"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Tracking preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "wild honey",
+            "forest water"
+          ],
+          "prayer": "Ọ̀ṣọ́ọ̀sì, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ọ̀pẹ̀",
+      "orisha": "Ọba",
+      "theme": "River Unity, Marriage, Loyalty",
+      "color": "yellow/brown",
+      "taboos": [
+        "betrayal",
+        "breaking vows"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "River unity",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "river water",
+            "unity symbols"
+          ],
+          "prayer": "Ọba, guide me through this sacred cycle of river unity, marriage, loyalty"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Marriage blessing",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "yellow flowers",
+            "marriage rings"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Loyalty ritual",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "unity symbols",
+            "loyalty tokens"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Unity calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "marriage rings",
+            "unity candles"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Marriage meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "loyalty tokens",
+            "river stones"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Unity ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "unity candles",
+            "marriage symbols"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Marriage work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "river stones",
+            "unity cloth"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Loyalty seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "marriage symbols",
+            "loyalty offerings"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Unity prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "unity cloth",
+            "river water"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Marriage blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "loyalty offerings",
+            "yellow flowers"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Unity calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "river water",
+            "unity symbols"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Marriage ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "yellow flowers",
+            "marriage rings"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Loyalty ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "unity symbols",
+            "loyalty tokens"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon unity",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "marriage rings",
+            "unity candles"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Marriage blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "loyalty tokens",
+            "river stones"
+          ],
+          "prayer": "At this full moon, Ọba, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Unity meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "unity candles",
+            "marriage symbols"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Marriage work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "river stones",
+            "unity cloth"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Loyalty calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "marriage symbols",
+            "loyalty offerings"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Unity blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "unity cloth",
+            "river water"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Marriage seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "loyalty offerings",
+            "yellow flowers"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Unity preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "river water",
+            "unity symbols"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Marriage ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "yellow flowers",
+            "marriage rings"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Loyalty blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "unity symbols",
+            "loyalty tokens"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Unity calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "marriage rings",
+            "unity candles"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Marriage work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "loyalty tokens",
+            "river stones"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Unity rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "unity candles",
+            "marriage symbols"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Marriage reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "river stones",
+            "unity cloth"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Loyalty preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "marriage symbols",
+            "loyalty offerings"
+          ],
+          "prayer": "Ọba, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    },
+    {
+      "name": "Ọ̀pẹ̀lú",
+      "orisha": "Òrúnmìlà",
+      "theme": "Wisdom, Divination, Knowledge",
+      "color": "green/yellow",
+      "taboos": [
+        "ignorance",
+        "refusing wisdom"
+      ],
+      "days": [
+        {
+          "day": 1,
+          "yoruba_day": "Ọjọ́-Àìkú",
+          "activity": "Divination ritual",
+          "moon_phase": "New Moon",
+          "offerings": [
+            "palm nuts",
+            "green and yellow beads"
+          ],
+          "prayer": "Òrúnmìlà, guide me through this sacred cycle of wisdom, divination, knowledge"
+        },
+        {
+          "day": 2,
+          "yoruba_day": "Ọjọ́-Ajé",
+          "activity": "Wisdom seeking",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "divination tools",
+            "wisdom symbols"
+          ]
+        },
+        {
+          "day": 3,
+          "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
+          "activity": "Knowledge ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "green and yellow beads",
+            "oracle bones"
+          ]
+        },
+        {
+          "day": 4,
+          "yoruba_day": "Ọjọ́-Rírú",
+          "activity": "Oracle calling",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "wisdom symbols",
+            "divination cloth"
+          ]
+        },
+        {
+          "day": 5,
+          "yoruba_day": "Ọjọ́-Ẹ̀mí",
+          "activity": "Wisdom meditation",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "oracle bones",
+            "wisdom water"
+          ]
+        },
+        {
+          "day": 6,
+          "yoruba_day": "Ọjọ́-Ẹ̀tà",
+          "activity": "Oracle ceremony",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "divination cloth",
+            "knowledge symbols"
+          ]
+        },
+        {
+          "day": 7,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta",
+          "activity": "Wisdom work",
+          "moon_phase": "Waxing Crescent",
+          "offerings": [
+            "wisdom water",
+            "oracle tools"
+          ]
+        },
+        {
+          "day": 8,
+          "yoruba_day": "Ọjọ́-Ìjọ̀",
+          "activity": "Knowledge seeking",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "knowledge symbols",
+            "wisdom offerings"
+          ]
+        },
+        {
+          "day": 9,
+          "yoruba_day": "Ọjọ́-Ìsàn",
+          "activity": "Oracle prayer",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "oracle tools",
+            "palm nuts"
+          ]
+        },
+        {
+          "day": 10,
+          "yoruba_day": "Ọjọ́-Àdún",
+          "activity": "Wisdom blessing",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "wisdom offerings",
+            "divination tools"
+          ]
+        },
+        {
+          "day": 11,
+          "yoruba_day": "Ọjọ́-Ìdí",
+          "activity": "Oracle calling",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "palm nuts",
+            "green and yellow beads"
+          ]
+        },
+        {
+          "day": 12,
+          "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
+          "activity": "Wisdom ritual",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "divination tools",
+            "wisdom symbols"
+          ]
+        },
+        {
+          "day": 13,
+          "yoruba_day": "Ọjọ́-Ìlú",
+          "activity": "Knowledge ceremony",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "green and yellow beads",
+            "oracle bones"
+          ]
+        },
+        {
+          "day": 14,
+          "yoruba_day": "Ọjọ́-Ìfẹ́",
+          "activity": "Full moon divination",
+          "moon_phase": "Waxing Gibbous",
+          "offerings": [
+            "wisdom symbols",
+            "divination cloth"
+          ]
+        },
+        {
+          "day": 15,
+          "yoruba_day": "Ọjọ́-Ìmọ̀",
+          "activity": "Oracle blessing",
+          "moon_phase": "Full Moon",
+          "offerings": [
+            "oracle bones",
+            "wisdom water"
+          ],
+          "prayer": "At this full moon, Òrúnmìlà, let your power shine through me"
+        },
+        {
+          "day": 16,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
+          "activity": "Oracle meditation",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "divination cloth",
+            "knowledge symbols"
+          ]
+        },
+        {
+          "day": 17,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
+          "activity": "Wisdom work",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "wisdom water",
+            "oracle tools"
+          ]
+        },
+        {
+          "day": 18,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
+          "activity": "Knowledge calling",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "knowledge symbols",
+            "wisdom offerings"
+          ]
+        },
+        {
+          "day": 19,
+          "yoruba_day": "Ọjọ́-Àbámọ́kàn",
+          "activity": "Oracle blessing",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "oracle tools",
+            "palm nuts"
+          ]
+        },
+        {
+          "day": 20,
+          "yoruba_day": "Ọjọ́-Àbámọ́rin",
+          "activity": "Wisdom seeking",
+          "moon_phase": "Waning Gibbous",
+          "offerings": [
+            "wisdom offerings",
+            "divination tools"
+          ]
+        },
+        {
+          "day": 21,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Oracle preparation",
+          "moon_phase": "First Quarter",
+          "offerings": [
+            "palm nuts",
+            "green and yellow beads"
+          ]
+        },
+        {
+          "day": 22,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
+          "activity": "Wisdom ceremony",
+          "moon_phase": "Last Quarter",
+          "offerings": [
+            "divination tools",
+            "wisdom symbols"
+          ]
+        },
+        {
+          "day": 23,
+          "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
+          "activity": "Knowledge blessing",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "green and yellow beads",
+            "oracle bones"
+          ]
+        },
+        {
+          "day": 24,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
+          "activity": "Oracle calling",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "wisdom symbols",
+            "divination cloth"
+          ]
+        },
+        {
+          "day": 25,
+          "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
+          "activity": "Wisdom work",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "oracle bones",
+            "wisdom water"
+          ]
+        },
+        {
+          "day": 26,
+          "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
+          "activity": "Oracle rest",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "divination cloth",
+            "knowledge symbols"
+          ]
+        },
+        {
+          "day": 27,
+          "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
+          "activity": "Wisdom reflection",
+          "moon_phase": "Waning Crescent",
+          "offerings": [
+            "wisdom water",
+            "oracle tools"
+          ]
+        },
+        {
+          "day": 28,
+          "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
+          "activity": "Knowledge preparation",
+          "moon_phase": "Dark Moon",
+          "offerings": [
+            "knowledge symbols",
+            "wisdom offerings"
+          ],
+          "prayer": "Òrúnmìlà, as this cycle ends, prepare my spirit for renewal"
+        }
+      ]
+    }
+  ]
+}

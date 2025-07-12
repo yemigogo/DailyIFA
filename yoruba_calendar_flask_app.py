@@ -10,222 +10,39 @@ import json
 
 app = Flask(__name__)
 
-# Complete Yoruba Lunar Calendar Data
-yoruba_calendar = {
-    "year": 2025,
-    "months": [
-        {
-            "name": "Ṣẹ̀rẹ̀",
-            "orisha": "Ọbàtálá",
-            "theme": "Purity, New Beginnings",
-            "color": "white",
-            "taboos": ["salt", "alcohol", "palm oil"],
-            "days": [
-                {
-                    "day": 1, "yoruba_day": "Ọjọ́-Àìkú",
-                    "activity": "New Moon - White cloth offerings",
-                    "moon_phase": "New Moon",
-                    "offerings": ["white cloth", "coconut", "water"],
-                    "prayer": "Ọbàtálá, cleanse my path as I begin this cycle"
-                },
-                {
-                    "day": 2, "yoruba_day": "Ọjọ́-Ajé",
-                    "activity": "Èṣù offerings at crossroads",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["palm oil", "kolanut", "candies"]
-                },
-                {
-                    "day": 3, "yoruba_day": "Ọjọ́-Ìṣẹ́gun",
-                    "activity": "Call Ṣàngó for strength",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["red palm oil", "banana"]
-                },
-                {
-                    "day": 4, "yoruba_day": "Ọjọ́-Rírú",
-                    "activity": "Cleansing with white flowers",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["white flowers", "water"]
-                },
-                {
-                    "day": 5, "yoruba_day": "Ọjọ́-Ẹ̀mí",
-                    "activity": "Spiritual meditation with Ọbàtálá",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["white candle", "coconut water"]
-                },
-                {
-                    "day": 6, "yoruba_day": "Ọjọ́-Ẹ̀tà",
-                    "activity": "Community gathering for purity rituals",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["white beads", "cowrie shells"]
-                },
-                {
-                    "day": 7, "yoruba_day": "Ọjọ́-Àbámẹ́ta",
-                    "activity": "Rest and reflection",
-                    "moon_phase": "First Quarter",
-                    "offerings": ["quiet prayer", "white light"]
-                },
-                {
-                    "day": 8, "yoruba_day": "Ọjọ́-Ìjọ̀",
-                    "activity": "Group prayers for new year blessings",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["communal feast", "shared prayers"]
-                },
-                {
-                    "day": 9, "yoruba_day": "Ọjọ́-Ìsàn",
-                    "activity": "Honor ancestors with white offerings",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["white cloth for ancestors", "cool water"]
-                },
-                {
-                    "day": 10, "yoruba_day": "Ọjọ́-Àdún",
-                    "activity": "Festival preparations begin",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["festival foods", "white decorations"]
-                },
-                {
-                    "day": 11, "yoruba_day": "Ọjọ́-Ìdí",
-                    "activity": "Foundation setting for year ahead",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["foundation stones", "white chalk"]
-                },
-                {
-                    "day": 12, "yoruba_day": "Ọjọ́-Ọ̀sẹ̀",
-                    "activity": "Weekly market day offerings",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["white beads", "cowrie shells"]
-                },
-                {
-                    "day": 13, "yoruba_day": "Ọjọ́-Ìlú",
-                    "activity": "Community drum ceremonies",
-                    "moon_phase": "Waxing Gibbous",
-                    "offerings": ["drum music", "white kola"]
-                },
-                {
-                    "day": 14, "yoruba_day": "Ọjọ́-Ìfẹ́",
-                    "activity": "Full Moon – Love and unity ceremonies",
-                    "moon_phase": "Full Moon",
-                    "offerings": ["love offerings", "unity prayers"]
-                },
-                {
-                    "day": 15, "yoruba_day": "Ọjọ́-Ìmọ̀",
-                    "activity": "Full Moon peak - Spiritual cleansing",
-                    "moon_phase": "Full Moon",
-                    "offerings": ["full moon water", "white candles"]
-                },
-                {
-                    "day": 16, "yoruba_day": "Ọjọ́-Àbámẹ́rìn",
-                    "activity": "Beginning of wisdom teachings",
-                    "moon_phase": "Waning Gibbous",
-                    "offerings": ["wisdom texts", "white chalk"]
-                },
-                {
-                    "day": 17, "yoruba_day": "Ọjọ́-Àbámẹ́ta-odún",
-                    "activity": "Elder teachings and guidance",
-                    "moon_phase": "Waning Gibbous",
-                    "offerings": ["respect to elders", "white kola"]
-                },
-                {
-                    "day": 18, "yoruba_day": "Ọjọ́-Àbámẹ́jọ",
-                    "activity": "Community storytelling",
-                    "moon_phase": "Waning Gibbous",
-                    "offerings": ["storytelling circles", "shared wisdom"]
-                },
-                {
-                    "day": 19, "yoruba_day": "Ọjọ́-Àbámọ́kàn",
-                    "activity": "Individual reflection and meditation",
-                    "moon_phase": "Waning Gibbous",
-                    "offerings": ["personal prayer", "quiet contemplation"]
-                },
-                {
-                    "day": 20, "yoruba_day": "Ọjọ́-Àbámọ́rin",
-                    "activity": "Healing ceremonies begin",
-                    "moon_phase": "Waning Gibbous",
-                    "offerings": ["healing herbs", "white light"]
-                },
-                {
-                    "day": 21, "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
-                    "activity": "Third quarter - Release and letting go",
-                    "moon_phase": "Last Quarter",
-                    "offerings": ["release rituals", "cleansing water"]
-                },
-                {
-                    "day": 22, "yoruba_day": "Ọjọ́-Àbámẹ́jì-ìlọ́",
-                    "activity": "Preparation for new cycle",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["preparation items", "white cloth"]
-                },
-                {
-                    "day": 23, "yoruba_day": "Ọjọ́-Àbámẹ́ta-ìlọ́",
-                    "activity": "Spiritual cleansing continues",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["cleansing herbs", "pure water"]
-                },
-                {
-                    "day": 24, "yoruba_day": "Ọjọ́-Àbámẹ́rin-ìlọ́",
-                    "activity": "Final preparations",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["final offerings", "gratitude prayers"]
-                },
-                {
-                    "day": 25, "yoruba_day": "Ọjọ́-Àbámẹ́rùn-ìlọ́",
-                    "activity": "Gratitude and thanksgiving",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["thanksgiving feast", "gratitude prayers"]
-                },
-                {
-                    "day": 26, "yoruba_day": "Ọjọ́-Àbámẹ́fà-ìlọ́",
-                    "activity": "Rest and contemplation",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["rest offerings", "quiet prayer"]
-                },
-                {
-                    "day": 27, "yoruba_day": "Ọjọ́-Àbámẹ́je-ìlọ́",
-                    "activity": "Final cleansing before dark moon",
-                    "moon_phase": "Waning Crescent",
-                    "offerings": ["final cleansing", "white light"]
-                },
-                {
-                    "day": 28, "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
-                    "activity": "Dark Moon - Deep rest and renewal",
-                    "moon_phase": "Dark Moon",
-                    "offerings": ["deep rest", "renewal prayers"],
-                    "prayer": "Ọbàtálá, as this cycle ends, prepare my spirit for new beginnings"
-                }
-            ]
-        },
-        {
-            "name": "Èrèlé",
-            "orisha": "Ògún",
-            "theme": "War, Iron, Labor",
-            "color": "green/black",
-            "taboos": ["laziness", "dull tools"],
-            "days": [
-                {
-                    "day": 1, "yoruba_day": "Ọjọ́-Àìkú",
-                    "activity": "New Moon - Iron tool purification",
-                    "moon_phase": "New Moon",
-                    "offerings": ["palm oil", "rooster", "rusted metal"],
-                    "prayer": "Ògún, sharpen my tools and clear my path"
-                },
-                {
-                    "day": 2, "yoruba_day": "Ọjọ́-Ajé",
-                    "activity": "Blessing of work tools",
-                    "moon_phase": "Waxing Crescent",
-                    "offerings": ["iron nails", "palm wine"]
-                },
-                # Abbreviated for brevity - would include all 28 days
-                {
-                    "day": 28, "yoruba_day": "Ọjọ́-Àbámẹ́jọ-ìlọ́",
-                    "activity": "Dark Moon - Tool rest and maintenance",
-                    "moon_phase": "Dark Moon",
-                    "offerings": ["cool water for tools", "palm oil"],
-                    "prayer": "Ògún, let our tools rest and be ready for new work"
-                }
-            ]
-        }
-        # Note: In full implementation, would include all 13 months
-    ]
-}
+# Load Complete Yoruba Lunar Calendar Data from generated JSON
+import json
+import os
+
+# Load complete calendar data
+try:
+    with open('complete_yoruba_calendar_2025.json', 'r', encoding='utf-8') as f:
+        yoruba_calendar = json.load(f)
+        print(f"✅ Loaded complete calendar with {len(yoruba_calendar['months'])} months and {sum(len(month['days']) for month in yoruba_calendar['months'])} total days")
+except FileNotFoundError:
+    print("⚠️ Complete calendar file not found, using fallback data")
+    # Fallback to basic calendar data if file not found
+    yoruba_calendar = {
+        "year": 2025,
+        "months": [
+            {
+                "name": "Ṣẹ̀rẹ̀",
+                "orisha": "Ọbàtálá",
+                "theme": "Purity, New Beginnings",
+                "color": "white",
+                "taboos": ["salt", "alcohol", "palm oil"],
+                "days": [
+                    {
+                        "day": 1, "yoruba_day": "Ọjọ́-Àìkú",
+                        "activity": "New Moon - White cloth offerings",
+                        "moon_phase": "New Moon",
+                        "offerings": ["white cloth", "coconut", "water"],
+                        "prayer": "Ọbàtálá, cleanse my path as I begin this cycle"
+                    }
+                ]
+            }
+        ]
+    }
 
 # Lunar Phase Calculator (Enhanced)
 def get_moon_phase(day):
