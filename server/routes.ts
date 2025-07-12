@@ -874,7 +874,7 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
           const bNum = parseInt(b.match(/^odu_card_(\d+)\.png$/)?.[1] || '0');
           return aNum - bNum;
         })
-        .slice(0, 20); // Limit to first 20 for display
+        ; // Show all 256 cards
         
       // Create card objects with metadata
       const cards = oduCardFiles.map(filename => {
