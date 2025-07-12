@@ -260,6 +260,89 @@ const Learning: React.FC = () => {
       ]
     },
     {
+      id: "wisdom",
+      title: "Wisdom (Ancient Knowledge)",
+      titleYoruba: "Ọgbọ́n (Ìmọ̀ Àtijọ́)",
+      description: "Timeless wisdom from ancient Yoruba civilization",
+      descriptionYoruba: "Ọgbọ́n àìlópin láti ọmọ Yorùbá àtijọ́",
+      icon: <Brain className="w-5 h-5" />,
+      content: [
+        {
+          title: "Ancient Knowledge System",
+          titleYoruba: "Ètò Ìmọ̀ Àtijọ́",
+          text: "Ifá is one of the oldest systems of knowledge known to humanity, rooted in the Yoruba civilization of West Africa. Long before written records, Ifá preserved its sacred teachings through oral chants called Ẹsẹ Ifá, passed from Babaláwo to apprentice for generations.",
+          textYoruba: "Ifá jẹ́ ọ̀kan lára àwọn ètò ìmọ̀ àtijọ́ tí ènìyàn mọ̀, tí ó gbẹsẹ̀ sí ọmọ Yorùbá ní Ìwọ̀ oorùn Áfríkà. Kí àwọn ìwé tó dé, Ifá ti pa àwọn ẹ̀kọ́ rẹ̀ mọ́ nípasẹ̀ àwọn orin mímọ́ tí a ń pè ní Ẹsẹ Ifá."
+        },
+        {
+          title: "Historical Roots",
+          titleYoruba: "Àwọn Gbòngbò Ìtàn",
+          historicalPoints: [
+            {
+              point: "Ifá emerged from Ilé-Ifẹ̀, the spiritual heart of the Yoruba people.",
+              pointYoruba: "Ifá ti Ilé-Ifẹ̀ jáde, ọkàn ẹ̀mí àwọn ọmọ Yorùbá.",
+              highlight: "Ilé-Ifẹ̀"
+            },
+            {
+              point: "Revealed by Òrúnmìlà, the Orisha of wisdom and destiny.",
+              pointYoruba: "Òrúnmìlà ló fihàn, Òrìṣà ọgbọ́n àti àyànmọ̀.",
+              highlight: "Òrúnmìlà"
+            },
+            {
+              point: "Wisdom is encoded in 256 sacred patterns called Odu Ifá.",
+              pointYoruba: "Ọgbọ́n wà nínú àwọn àpẹẹrẹ mímọ́ 256 tí a ń pè ní Odù Ifá.",
+              highlight: "Odu Ifá"
+            }
+          ]
+        },
+        {
+          title: "The Wisdom of Ifá",
+          titleYoruba: "Ọgbọ́n Ifá",
+          wisdomPrinciples: [
+            {
+              principle: "Ètò àṣẹ",
+              meaning: "The law of spiritual cause and effect.",
+              meaningYoruba: "Òfin ìdí àti èsì ẹ̀mí."
+            },
+            {
+              principle: "Ìwà lẹ̀wà",
+              meaning: "Character is the ultimate beauty.",
+              meaningYoruba: "Ìwà ni ẹwà tí ó ga jù."
+            },
+            {
+              principle: "àṣẹ",
+              meaning: "Nature and all things carry àṣẹ – the sacred force of life.",
+              meaningYoruba: "Àdáyébá àti gbogbo nǹkan ló ní àṣẹ – agbára mímọ́ ẹ̀mí.",
+              highlight: "àṣẹ"
+            }
+          ],
+          sacredQuote: "Ìwà Pẹ̀lẹ́ ni oríṣà ń gbà",
+          sacredQuoteTranslation: "It is good character the Orisha accepts."
+        },
+        {
+          title: "Why Ancient Wisdom Still Matters",
+          titleYoruba: "Ìdí Tí Ọgbọ́n Àtijọ́ Ṣe Ṣe Pàtàkì Síbẹ̀",
+          modernRelevance: "Even in today's digital world, Ifá offers answers to timeless questions:",
+          modernRelevanceYoruba: "Bí ó tilẹ̀ jẹ́ pé wa ń gbé ní àsìkò dijítálì, Ifá ṣì ń fún wa ní ìdáhùn sí àwọn ìbéèrè àìlópin:",
+          timelessQuestions: [
+            {
+              question: "How should I live?",
+              questionYoruba: "Báwo ni mo ṣe gbé ayé mi?"
+            },
+            {
+              question: "How do I align with my purpose?",
+              questionYoruba: "Báwo ni mo ṣe lè bá èrò mi mu?"
+            },
+            {
+              question: "How can I resolve conflict and restore balance?",
+              questionYoruba: "Báwo ni mo ṣe lè yanjú àríyànjiyàn kí n sì mú ìwọ̀ntúnwọ̀nsí padà?"
+            }
+          ],
+          conclusion: "Ifá wisdom encourages reflection, connection, and spiritual clarity in everyday life.",
+          conclusionYoruba: "Ọgbọ́n Ifá ń gba ìrònú, àsopọ̀, àti ìmọ̀ ẹ̀mí níyànjú nínú ìgbé ayé ojoojúmọ́."
+        }
+      ]
+    },
+    {
       id: "odu",
       title: "The 256 Odu Ifá",
       titleYoruba: "Àwọn Odù Ifá 256",
@@ -382,7 +465,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8 mb-8">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9 mb-8">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -471,6 +554,108 @@ const Learning: React.FC = () => {
                                     </CardContent>
                                   </Card>
                                 ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {module.id === 'wisdom' && (
+                    <div className="space-y-8">
+                      {module.content.map((section: any, index: number) => (
+                        <div key={index} className="space-y-6">
+                          {section.text && (
+                            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-lg border-l-4 border-l-indigo-500">
+                              <h3 className="text-xl font-semibold mb-3 text-indigo-800 dark:text-indigo-200">
+                                🧠 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {language === 'yoruba' ? section.textYoruba : section.text}
+                              </p>
+                            </div>
+                          )}
+                          
+                          {section.historicalPoints && (
+                            <div className="space-y-4">
+                              <h3 className="text-xl font-semibold mb-4 text-indigo-800 dark:text-indigo-200">
+                                🕰️ {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <div className="space-y-3">
+                                {section.historicalPoints.map((point: any, pointIndex: number) => (
+                                  <Card key={pointIndex} className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border-l-4 border-l-yellow-500">
+                                    <CardContent className="p-4">
+                                      <p className="text-gray-700 dark:text-gray-300">
+                                        {language === 'yoruba' ? point.pointYoruba : point.point.replace(point.highlight, `__${point.highlight}__`)}
+                                      </p>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {section.wisdomPrinciples && (
+                            <div className="space-y-4">
+                              <h3 className="text-xl font-semibold mb-4 text-indigo-800 dark:text-indigo-200">
+                                🧭 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <div className="space-y-3">
+                                {section.wisdomPrinciples.map((principle: any, principleIndex: number) => (
+                                  <Card key={principleIndex} className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 border-l-4 border-l-green-500">
+                                    <CardContent className="p-4">
+                                      <div className="flex items-start gap-3">
+                                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div>
+                                          <h4 className="font-semibold text-green-700 dark:text-green-300 mb-1">
+                                            {principle.principle}
+                                          </h4>
+                                          <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                            {language === 'yoruba' ? principle.meaningYoruba : principle.meaning}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                              {section.sacredQuote && (
+                                <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 p-4 rounded-lg border-l-4 border-l-amber-500 mt-4">
+                                  <blockquote className="italic text-amber-700 dark:text-amber-300 text-center">
+                                    "{section.sacredQuote}"
+                                  </blockquote>
+                                  <p className="text-amber-600 dark:text-amber-400 text-sm text-center mt-2">
+                                    {section.sacredQuoteTranslation}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          
+                          {section.timelessQuestions && (
+                            <div className="space-y-4">
+                              <h3 className="text-xl font-semibold mb-4 text-indigo-800 dark:text-indigo-200">
+                                🔍 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                                {language === 'yoruba' ? section.modernRelevanceYoruba : section.modernRelevance}
+                              </p>
+                              <div className="space-y-3">
+                                {section.timelessQuestions.map((q: any, qIndex: number) => (
+                                  <Card key={qIndex} className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-l-4 border-l-purple-500">
+                                    <CardContent className="p-4">
+                                      <p className="text-purple-700 dark:text-purple-300 font-medium">
+                                        {language === 'yoruba' ? q.questionYoruba : q.question}
+                                      </p>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 rounded-lg border-l-4 border-l-blue-500 mt-4">
+                                <p className="text-blue-700 dark:text-blue-300 text-center">
+                                  {language === 'yoruba' ? section.conclusionYoruba : section.conclusion}
+                                </p>
                               </div>
                             </div>
                           )}
