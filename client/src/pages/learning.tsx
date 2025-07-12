@@ -166,6 +166,8 @@ const Learning: React.FC = () => {
     }
   ];
 
+  console.log("Learning modules loading...");
+  
   const learningModules: LearningModule[] = [
     {
       id: "introduction",
