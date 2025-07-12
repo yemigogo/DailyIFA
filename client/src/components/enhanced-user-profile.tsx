@@ -34,6 +34,94 @@ interface EnhancedUserProfileProps {
 // Mock user ID for demo - in real app this would come from auth
 const DEMO_USER_ID = "demo-user-1";
 
+// Moon phase calculation function
+const calculateMoonPhase = (date = new Date()) => {
+  const newMoon = new Date("2024-01-11T11:57:00.000Z").getTime(); // Known new moon
+  const synodicMonth = 29.53058868 * 24 * 60 * 60 * 1000; // Synodic month in milliseconds
+  
+  const daysSinceNewMoon = (date.getTime() - newMoon) / (24 * 60 * 60 * 1000);
+  const phase = ((daysSinceNewMoon % synodicMonth) / synodicMonth) * 8;
+  
+  const phases = [
+    { name: "New Moon", yoruba: "Òṣùpá Tuntun", icon: "🌑", percentage: 0 },
+    { name: "Waxing Crescent", yoruba: "Òṣùpá Kékeré", icon: "🌒", percentage: 12.5 },
+    { name: "First Quarter", yoruba: "Òṣùpá Ìdajì Àkọ́kọ́", icon: "🌓", percentage: 25 },
+    { name: "Waxing Gibbous", yoruba: "Òṣùpá Ńlá Sí", icon: "🌔", percentage: 37.5 },
+    { name: "Full Moon", yoruba: "Òṣùpá Kíkún", icon: "🌕", percentage: 50 },
+    { name: "Waning Gibbous", yoruba: "Òṣùpá Ńlá Kúrò", icon: "🌖", percentage: 62.5 },
+    { name: "Last Quarter", yoruba: "Òṣùpá Ìdajì Ìkẹhìn", icon: "🌗", percentage: 75 },
+    { name: "Waning Crescent", yoruba: "Òṣùpá Kékeré Kúrò", icon: "🌘", percentage: 87.5 }
+  ];
+  
+  const phaseIndex = Math.floor(phase) % 8;
+  const currentPhase = phases[phaseIndex];
+  const illumination = Math.abs(Math.cos(((daysSinceNewMoon % synodicMonth) / synodicMonth) * 2 * Math.PI)) * 100;
+  
+  return {
+    ...currentPhase,
+    illumination: Math.round(illumination),
+    daysInCycle: Math.round((daysSinceNewMoon % synodicMonth)),
+    nextPhase: phases[(phaseIndex + 1) % 8],
+    spiritualGuidance: getMoonPhaseGuidance(phaseIndex)
+  };
+};
+
+// Spiritual guidance based on moon phase
+const getMoonPhaseGuidance = (phaseIndex: number) => {
+  const guidance = [
+    { 
+      energy: "New beginnings, intention setting",
+      yoruba: "Ìbẹ̀rẹ̀ tuntun, gbígbé ète kalẹ̀",
+      practice: "Meditation, goal setting, cleansing rituals",
+      orisha: "Ọbàtálá - for clarity and new paths"
+    },
+    {
+      energy: "Growth, taking action",
+      yoruba: "Ìdàgbàsókè, ṣíṣe",
+      practice: "Active work toward goals, learning",
+      orisha: "Ògún - for progress and determination"
+    },
+    {
+      energy: "Decision making, balance",
+      yoruba: "Ṣíṣe ìpinnu, ìwọntúnwọnsí",
+      practice: "Evaluate progress, make adjustments",
+      orisha: "Ifá - for wisdom and guidance"
+    },
+    {
+      energy: "Refinement, preparation",
+      yoruba: "Ìmúdára, ìgbóradì",
+      practice: "Fine-tune plans, gather resources",
+      orisha: "Ọ̀ṣun - for refinement and abundance"
+    },
+    {
+      energy: "Manifestation, completion",
+      yoruba: "Ìmúṣẹ, ìparí",
+      practice: "Harvest results, celebrate achievements",
+      orisha: "Ṣàngó - for power and manifestation"
+    },
+    {
+      energy: "Gratitude, sharing wisdom",
+      yoruba: "Ọpẹ́, pínpín ọgbọ́n",
+      practice: "Share knowledge, express gratitude",
+      orisha: "Yemọja - for nurturing and wisdom sharing"
+    },
+    {
+      energy: "Release, forgiveness",
+      yoruba: "Ìdásílẹ̀, ìdáríjì",
+      practice: "Let go of what no longer serves",
+      orisha: "Ọya - for transformation and release"
+    },
+    {
+      energy: "Rest, reflection, introspection",
+      yoruba: "Ìsinmi, ìrònú, ìwòkẹ́hìn",
+      practice: "Rest, reflect on lessons learned",
+      orisha: "Èṣù - for introspection and messages"
+    }
+  ];
+  
+  return guidance[phaseIndex];
+};
+
 const orishaProfiles = [
   { 
     name: "Ọbàtálá", 
@@ -194,6 +282,19 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
     audioQuality: "high",
     downloadForOffline: false
   });
+
+  // Moon phase state
+  const [currentMoonPhase, setCurrentMoonPhase] = useState(calculateMoonPhase());
+
+  // Update moon phase every hour
+  useEffect(() => {
+    const updateMoonPhase = () => {
+      setCurrentMoonPhase(calculateMoonPhase());
+    };
+    
+    const interval = setInterval(updateMoonPhase, 60 * 60 * 1000); // Update every hour
+    return () => clearInterval(interval);
+  }, []);
 
   const [newInsight, setNewInsight] = useState({
     title: "",
@@ -411,6 +512,72 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
 
         {/* Basic Info Tab - Enhanced */}
         <TabsContent value="basic" className="space-y-6">
+          {/* Moon Phase Card */}
+          <Card className="border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Moon className="h-5 w-5 text-amber-600" />
+                {ts("Current Moon Phase", "Òṣùpá Lówólọ́wọ́")}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="text-6xl mb-2">{currentMoonPhase.icon}</div>
+                  <h3 className="text-lg font-semibold text-amber-800 dark:text-amber-200">
+                    {currentMoonPhase.name}
+                  </h3>
+                  <p className="text-sm text-amber-600 dark:text-amber-400 mb-4">
+                    {currentMoonPhase.yoruba}
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span>{ts("Illumination", "Ìmọ́lẹ̀")}</span>
+                      <span className="font-medium">{currentMoonPhase.illumination}%</span>
+                    </div>
+                    <Progress value={currentMoonPhase.illumination} className="h-2" />
+                    <p className="text-xs text-muted-foreground">
+                      {ts("Day", "Ọjọ́")} {currentMoonPhase.daysInCycle} {ts("of cycle", "nínú ìgbà")}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                      {ts("Spiritual Energy", "Agbára Ẹ̀mí")}
+                    </h4>
+                    <p className="text-sm mb-2">{currentMoonPhase.spiritualGuidance.energy}</p>
+                    <p className="text-xs text-muted-foreground italic">
+                      {currentMoonPhase.spiritualGuidance.yoruba}
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                      {ts("Recommended Practice", "Àdáṣe Ìtẹ̀lọ́rùn")}
+                    </h4>
+                    <p className="text-sm">{currentMoonPhase.spiritualGuidance.practice}</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">
+                      {ts("Orisha Connection", "Ìsọ̀pọ̀ Òrìṣà")}
+                    </h4>
+                    <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+                      {currentMoonPhase.spiritualGuidance.orisha}
+                    </Badge>
+                  </div>
+                  
+                  <div className="pt-2 border-t border-amber-200 dark:border-amber-800">
+                    <p className="text-xs text-muted-foreground">
+                      {ts("Next Phase", "Òṣùpá Tí Ń Bọ̀")}: {currentMoonPhase.nextPhase.name} {currentMoonPhase.nextPhase.icon}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
           <Card className="border-amber-200 dark:border-amber-800">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
