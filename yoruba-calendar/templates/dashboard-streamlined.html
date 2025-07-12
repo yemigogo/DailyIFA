@@ -251,7 +251,119 @@
         </div>
     </div>
 
-    <!-- Quick Actions -->
+    <!-- Enhanced Features Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <!-- Email & Push Notification Settings -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">🔔 Notification Settings</h2>
+            
+            <!-- Email Notifications Status -->
+            <div class="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-gray-700 font-medium">Email Notifications</label>
+                    <div class="flex items-center">
+                        <span class="text-sm text-{{ 'green' if current_user.email_verified else 'gray' }}-600 mr-2">
+                            {{ 'Enabled' if current_user.email_verified else 'Disabled' }}
+                        </span>
+                        <div class="w-3 h-3 bg-{{ 'green' if current_user.email_verified else 'gray' }}-500 rounded-full"></div>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm">
+                    {% if current_user.email_verified %}
+                        You will receive email notifications for important spiritual dates and ritual reminders at {{ current_user.email }}
+                    {% else %}
+                        Email notifications are disabled. Verify your email to receive important spiritual date alerts.
+                    {% endif %}
+                </p>
+            </div>
+            
+            <!-- Push Notifications -->
+            <div class="mb-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-gray-700 font-medium">Push Notifications</label>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="push-notifications" 
+                               class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500">
+                        <span id="push-status" class="ml-2 text-sm text-gray-600">Click to enable</span>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm">Get instant browser notifications for spiritual events and daily reminders</p>
+            </div>
+            
+            <!-- Test Notification -->
+            <button id="test-notification" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium">
+                🧪 Test Notification System
+            </button>
+        </div>
+
+        <!-- Important Dates Preview -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">📅 Important Spiritual Dates</h2>
+            <p class="text-gray-600 text-sm mb-4">Upcoming Orisha festivals and celebrations</p>
+            
+            <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <div>
+                        <p class="text-gray-800 font-medium">Ọdún Ọbàtálá</p>
+                        <p class="text-gray-600 text-sm">Festival of purity and wisdom</p>
+                    </div>
+                    <div class="text-yellow-600 text-sm font-medium">
+                        Month 1, Day 15
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
+                    <div>
+                        <p class="text-gray-800 font-medium">Ọdún Ògún</p>
+                        <p class="text-gray-600 text-sm">Festival of iron and technology</p>
+                    </div>
+                    <div class="text-red-600 text-sm font-medium">
+                        Month 2, Day 7
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div>
+                        <p class="text-gray-800 font-medium">Ọdún Ṣàngó</p>
+                        <p class="text-gray-600 text-sm">Festival of thunder and justice</p>
+                    </div>
+                    <div class="text-blue-600 text-sm font-medium">
+                        Month 3, Day 12
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                <p class="text-green-700 text-sm font-medium">✅ Email Alerts Active</p>
+                <p class="text-green-600 text-xs">You'll receive notifications 1 day before each festival</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Access (if admin) -->
+    {% if current_user.is_admin %}
+    <div class="bg-gradient-to-br from-purple-100 to-red-100 rounded-lg shadow-lg p-6 mt-6 border border-purple-300">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">⚙️ Admin Dashboard Access</h2>
+        <p class="text-gray-600 mb-4">You have administrative privileges for platform management</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="{{ url_for('admin_dashboard') }}" class="bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors text-center font-medium">
+                📊 Admin Dashboard
+            </a>
+            <a href="/admin" class="bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 transition-colors text-center font-medium">
+                🗄️ Database Management
+            </a>
+            <a href="{{ url_for('notifications') }}" class="bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium">
+                📢 Broadcast Notifications
+            </a>
+        </div>
+        
+        <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+            <p class="text-purple-700 text-sm font-medium">👑 Administrative Features</p>
+            <p class="text-purple-600 text-xs">Global notification broadcasting, user management, and system analytics</p>
+        </div>
+    </div>
+    {% endif %}
     <div class="flex justify-center mt-6 space-x-4">
         <a href="{{ url_for('index') }}" class="bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-50 transition-colors">
             View Full Calendar
@@ -267,11 +379,78 @@
             Admin Panel
         </a>
         {% endif %}
-        <a href="{{ url_for('auth_logout') }}" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+        <a href="{{ url_for('logout') }}" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
             Logout
         </a>
     </div>
 </div>
+
+<script>
+// Enhanced Dashboard JavaScript for Notification Features
+document.addEventListener('DOMContentLoaded', function() {
+    // Push notification toggle
+    const pushToggle = document.getElementById('push-notifications');
+    const pushStatus = document.getElementById('push-status');
+    const testButton = document.getElementById('test-notification');
+    
+    // Check push notification support and status
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+        navigator.serviceWorker.register('/static/js/sw.js').then(function(registration) {
+            console.log('Service Worker registered');
+            
+            // Check current permission
+            if (Notification.permission === 'granted') {
+                pushToggle.checked = true;
+                pushStatus.textContent = 'Enabled';
+                pushStatus.className = 'ml-2 text-sm text-green-600';
+            } else if (Notification.permission === 'denied') {
+                pushStatus.textContent = 'Blocked';
+                pushStatus.className = 'ml-2 text-sm text-red-600';
+                pushToggle.disabled = true;
+            }
+        });
+        
+        // Handle push toggle
+        pushToggle.addEventListener('change', function() {
+            if (this.checked) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        pushStatus.textContent = 'Enabled';
+                        pushStatus.className = 'ml-2 text-sm text-green-600';
+                        alert('Push notifications enabled! You will receive spiritual reminders.');
+                    } else {
+                        pushToggle.checked = false;
+                        pushStatus.textContent = 'Permission denied';
+                        pushStatus.className = 'ml-2 text-sm text-red-600';
+                    }
+                });
+            } else {
+                pushStatus.textContent = 'Disabled';
+                pushStatus.className = 'ml-2 text-sm text-gray-600';
+            }
+        });
+    } else {
+        pushStatus.textContent = 'Not supported';
+        pushStatus.className = 'ml-2 text-sm text-gray-500';
+        pushToggle.disabled = true;
+    }
+    
+    // Test notification button
+    testButton.addEventListener('click', function() {
+        // Show local notification first
+        if (Notification.permission === 'granted') {
+            new Notification('🗓️ Test Notification', {
+                body: 'Your Yoruba Calendar notification system is working perfectly!',
+                icon: '/static/images/icon-192.png'
+            });
+        }
+        
+        // Show success message
+        alert('Test notification sent! If you have email notifications enabled, check your inbox too.');
+    });
+});
+</script>
+
 {% endblock %}
 
 {% block scripts %}

@@ -381,29 +381,72 @@ def home():
 @login_required
 def dashboard():
     today = datetime.now()
-    yoruba_date = convert_to_yoruba_date(today)
+    
+    # Convert to Yoruba calendar format
+    day_of_year = today.timetuple().tm_yday
+    yoruba_month = ((day_of_year - 1) // 28) + 1
+    yoruba_day = ((day_of_year - 1) % 28) + 1
+    
+    # Yoruba month names
+    yoruba_months = ['Ṣẹ̀rẹ̀', 'Èrèlé', 'Ẹrẹ̀nà', 'Ìgbè', 'Ebi', 'Òkúdu', 
+                     'Agẹmọ', 'Ògún', 'Owèwè', 'Ọ̀wàrà', 'Bélú', 'Ọ̀pẹ̀', 'Ọ̀pẹ̀lú']
+    
+    # Orisha cycle (4-day rotation)
+    orisha_cycle = ['Ọbàtálá', 'Ògún', 'Ṣàngó', 'Ọya']
+    orisha_themes = {
+        'Ọbàtálá': 'Peace, wisdom, and clarity',
+        'Ògún': 'Strength, technology, and progress',
+        'Ṣàngó': 'Justice, fire, and transformation',
+        'Ọya': 'Change, wind, and spiritual growth'
+    }
+    
+    current_orisha = orisha_cycle[day_of_year % 4]
+    
+    # Moon phase calculation
+    moon_phase_names = ['New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous',
+                       'Full Moon', 'Waning Gibbous', 'Last Quarter', 'Waning Crescent']
+    moon_phase_index = (day_of_year // 4) % 8
+    
+    yoruba_data = {
+        'yoruba_month': yoruba_months[yoruba_month - 1] if yoruba_month <= 13 else 'Ọ̀pẹ̀lú',
+        'yoruba_day': yoruba_day,
+        'orisha': current_orisha,
+        'theme': orisha_themes[current_orisha],
+        'activity': f'Meditation and prayers to {current_orisha}',
+        'offerings': ['Water', 'White cloth', 'Candles', 'Prayers'],
+        'prayer': f'Àṣẹ {current_orisha}, guide me through this day with wisdom and strength.'
+    }
     
     # Get user notifications
-    notifications = Notification.query.filter_by(
-        user_id=current_user.id,
-        read=False
-    ).order_by(Notification.created_at.desc()).limit(5).all()
+    notifications = []
+    if hasattr(current_user, 'id'):
+        notifications = Notification.query.filter_by(
+            user_id=current_user.id,
+            read=False
+        ).order_by(Notification.created_at.desc()).limit(5).all()
     
     # Get today's rituals
-    today_str = today.strftime("%m-%d")
-    rituals = UserRitual.query.filter_by(
-        user_id=current_user.id,
-        date=today_str
-    ).all()
+    rituals = []
+    if hasattr(current_user, 'id'):
+        today_str = today.strftime("%Y-%m-%d")
+        rituals = UserRitual.query.filter_by(
+            user_id=current_user.id,
+            date=today_str
+        ).all()
     
-    # Get sharing links
-    sharing_links = get_sharing_links(f"Today's Yoruba Calendar: {yoruba_date['month']} {yoruba_date['day']}")
+    # Moon phase data
+    moon_phase = {
+        'name': moon_phase_names[moon_phase_index],
+        'yoruba': 'Òṣupá'  # Moon in Yoruba
+    }
     
     return render_template('dashboard-streamlined.html',
-                         yoruba_date=yoruba_date,
+                         yoruba_data=yoruba_data,
                          rituals=rituals,
                          notifications=notifications,
-                         sharing_links=sharing_links)
+                         moon_phase=moon_phase,
+                         current_date=today,
+                         user=current_user)
 
 @app.route('/notifications')
 @login_required
