@@ -1000,6 +1000,17 @@ def mark_notification_read(notification_id):
     
     return jsonify({'status': 'success'})
 
+@app.route('/mark_all_notifications_read', methods=['POST'])
+@login_required
+def mark_all_notifications_read():
+    """Mark all notifications as read"""
+    notifications = Notification.query.filter_by(user_id=current_user.id, read=False).all()
+    for notification in notifications:
+        notification.read = True
+    db.session.commit()
+    flash(f'Marked {len(notifications)} notifications as read', 'success')
+    return redirect(url_for('notifications'))
+
 @app.route('/api/notifications')
 @login_required
 def api_notifications():
