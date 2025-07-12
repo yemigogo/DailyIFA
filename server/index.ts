@@ -8,33 +8,52 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Start Flask Enhanced Dashboard on port 8080
-console.log('🚀 Starting Enhanced Yoruba Calendar Dashboard on port 8080...');
-const flaskApp = spawn('python3', ['create_enhanced_dashboard.py'], {
-  cwd: path.join(process.cwd(), 'yoruba-calendar'),
-  stdio: 'inherit'
-});
-
-// Redirect all requests to the Enhanced Dashboard
+// Enhanced Dashboard message and redirect
 app.get('/', (req, res) => {
-  res.redirect('http://localhost:8080');
-});
-
-app.get('/dashboard', (req, res) => {
-  res.redirect('http://localhost:8080/dashboard');
-});
-
-app.get('/login', (req, res) => {
-  res.redirect('http://localhost:8080/login');
-});
-
-// Catch-all redirect to Enhanced Dashboard
-app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api') && !req.path.startsWith('/static')) {
-    res.redirect(`http://localhost:8080${req.path}`);
-    return;
-  }
-  res.status(404).send('Use Enhanced Dashboard at http://localhost:8080');
+  res.send(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Enhanced Yoruba Calendar Dashboard</title>
+      <meta charset="utf-8">
+      <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #8B4513, #DAA520); color: white; text-align: center; padding: 50px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .btn { background: #FFD700; color: #8B4513; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; margin: 10px; }
+        .btn:hover { background: #FFA500; }
+        .feature { background: rgba(255,255,255,0.1); padding: 20px; margin: 20px 0; border-radius: 8px; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>🚀 Enhanced Yoruba Calendar Dashboard</h1>
+        <p>Your complete spiritual practice platform with 7 advanced features:</p>
+        
+        <div class="feature">
+          <h3>🌙 Real Moon Phase Calculations</h3>
+          <h3>📝 Personal Ritual Tracking</h3>
+          <h3>📧 Email Notifications</h3>
+          <h3>📱 Social Media Sharing</h3>
+          <h3>🔔 Push Notifications</h3>
+          <h3>⚙️ Admin Dashboard</h3>
+          <h3>📅 Important Spiritual Dates</h3>
+        </div>
+        
+        <p><strong>Demo Accounts:</strong></p>
+        <p>Admin: admin / admin123</p>
+        <p>User: spiritual_seeker / test123</p>
+        
+        <a href="http://localhost:8080" class="btn">Access Enhanced Dashboard</a>
+        <a href="http://localhost:8080/login" class="btn">Login</a>
+        
+        <p style="margin-top: 30px; font-size: 14px;">
+          The Enhanced Dashboard runs on port 8080 with all your requested features.<br>
+          Click the button above to access the full application.
+        </p>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
 // Serve audio files statically
