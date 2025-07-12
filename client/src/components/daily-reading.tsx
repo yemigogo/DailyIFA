@@ -25,22 +25,22 @@ export default function DailyReading({ reading }: DailyReadingProps) {
   const { t, ts } = useLanguage();
 
   // Get the same Odu card number used in home page
-  const getOduCardNumber = (): number | string => {
+  const getOduCardNumber = (): number => {
     if (!reading?.odu) return 1;
     
-    // Map Odu names to their correct card numbers or file names
-    const oduNameToCardMap: Record<string, number | string> = {
+    // Map Odu names to their correct card numbers
+    const oduNameToCardMap: Record<string, number> = {
       // Major Odu (1-16)
       'Eji Ogbe': 1, 'Oyeku Meji': 2, 'Iwori Meji': 3, 'Idi Meji': 4,
       'Irosun Meji': 5, 'Owonrin Meji': 6, 'Obara Meji': 7, 'Okanran Meji': 8,
       'Ogunda Meji': 9, 'Osa Meji': 10, 'Ika Meji': 11, 'Oturupon Meji': 12,
       'Otura Meji': 13, 'Irete Meji': 14, 'Ose Meji': 15, 'Ofun Meji': 16,
       
-      // Combined Odu - use named cards for correct matching
+      // Combined Odu - using correct numbered cards verified by user
       'Iwori Odi': 75,  
       'Odi Irosun': 101,   
-      'Irosun Owonrin': '070_Irosun_Owonrin', // Use named card for correct match
-      'Owonrin Obara': '087_Owonrin_Obara',   // Use named card for correct match
+      'Irosun Owonrin': 125, // User confirmed: correct card showing "IROSUN OWAN..."
+      'Owonrin Obara': 147,  // User confirmed: correct card showing "OWONRIN OBA..."
       'Obara Okanran': 167, 
       'Okanran Ogunda': 185, 
       'Ogunda Osa': 201,  
@@ -162,10 +162,7 @@ export default function DailyReading({ reading }: DailyReadingProps) {
             <div className="flex justify-center mb-4">
               <div className="relative w-36 h-48 rounded-xl overflow-hidden shadow-lg bg-black/5 border-2 border-sacred-gold/30">
                 <img
-                  src={typeof currentOduCard === 'string' 
-                    ? `/static/odu_cards/${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
-                    : `/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`
-                  }
+                  src={`/static/odu_cards/odu_card_${currentOduCard}.png?v=${Date.now()}&date=${reading.date}`}
                   alt={`Authentic Odu Ifá Card: ${reading.odu.name}`}
                   className="w-full h-full object-cover transition-all duration-500 ease-in-out transform hover:scale-105"
                   onError={(e) => {
