@@ -22,7 +22,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-123')
 
 # Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///yoruba_calendar.db').replace('postgres://', 'postgresql://')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/yoruba_calendar.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Email Configuration
@@ -41,14 +41,20 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 admin = Admin(app, name='Odún Admin', template_mode='bootstrap3')
 
-# Pusher Configuration
-pusher_client = Pusher(
-    app_id=os.environ.get('PUSHER_APP_ID', 'test'),
-    key=os.environ.get('PUSHER_KEY', 'test'),
-    secret=os.environ.get('PUSHER_SECRET', 'test'),
-    cluster=os.environ.get('PUSHER_CLUSTER', 'us2'),
-    ssl=True
-)
+# Pusher Configuration (disabled for demo)
+pusher_client = None
+if os.environ.get('PUSHER_APP_ID') and os.environ.get('PUSHER_KEY'):
+    try:
+        pusher_client = Pusher(
+            app_id=os.environ.get('PUSHER_APP_ID'),
+            key=os.environ.get('PUSHER_KEY'),
+            secret=os.environ.get('PUSHER_SECRET'),
+            cluster=os.environ.get('PUSHER_CLUSTER', 'us2'),
+            ssl=True
+        )
+    except:
+        print("Pusher not configured - using local notifications only")
+        pusher_client = None
 
 # ======================
 # MODELS
