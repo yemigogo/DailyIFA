@@ -8,9 +8,10 @@ import os
 import json
 import math
 from datetime import datetime, date, timedelta
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -32,10 +33,11 @@ login_manager.login_message = 'Please log in to access your spiritual practice t
 # ==================
 
 class User(UserMixin, db.Model):
-    """User model for authentication and profile management"""
+    """Enhanced user model with password authentication and spiritual preferences"""
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100), unique=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128))
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     spiritual_path = db.Column(db.String(100), default='Yoruba Traditional')
@@ -45,6 +47,14 @@ class User(UserMixin, db.Model):
     
     # Relationships
     rituals = db.relationship('UserRitual', backref='practitioner', lazy=True, cascade='all, delete-orphan')
+    
+    def set_password(self, password):
+        """Hash and set user password"""
+        self.password_hash = generate_password_hash(password)
+    
+    def check_password(self, password):
+        """Check if provided password matches hash"""
+        return check_password_hash(self.password_hash, password)
     
     def to_dict(self):
         return {
@@ -61,7 +71,7 @@ class User(UserMixin, db.Model):
         }
 
 class UserRitual(db.Model):
-    """User ritual tracking model"""
+    """Enhanced user ritual tracking with completion status"""
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ritual_notes = db.Column(db.Text)
@@ -74,6 +84,7 @@ class UserRitual(db.Model):
     duration_minutes = db.Column(db.Integer)
     location = db.Column(db.String(100))
     privacy_level = db.Column(db.String(20), default='private')
+    completed = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def to_dict(self):
@@ -90,6 +101,7 @@ class UserRitual(db.Model):
             'duration_minutes': self.duration_minutes,
             'location': self.location,
             'privacy_level': self.privacy_level,
+            'completed': self.completed,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'practitioner': self.practitioner.username if self.practitioner else None
         }
@@ -122,15 +134,25 @@ YORUBA_DAYS = [
 ]
 
 def calculate_moon_phase(date_obj):
-    """Calculate moon phase for a given date"""
-    # Simplified lunar calculation
-    synodic_month = 29.53058868
-    new_moon_reference = datetime(2000, 1, 6)  # Known new moon
+    """Calculate moon phase using astronomical formulas"""
+    year = date_obj.year
+    month = date_obj.month
+    day = date_obj.day
     
-    days_since_reference = (date_obj - new_moon_reference).days
-    moon_cycle = days_since_reference % synodic_month
-    phase_percentage = moon_cycle / synodic_month
+    # Convert to Julian Date for precise calculation
+    if month <= 2:
+        year -= 1
+        month += 12
+    a = year // 100
+    b = 2 - a + a // 4
+    jd = int(365.25 * (year + 4716)) + int(30.6001 * (month + 1)) + day + b - 1524.5
     
+    # Calculate moon age in days
+    days_since_new = jd - 2451549.5
+    moon_cycle = 29.530588853
+    moon_age = (days_since_new % moon_cycle)
+    
+    # Enhanced phase determination with Yoruba names
     phases = [
         {"name": "🌑 New Moon", "yoruba": "Òṣùpá Tuntun", "spiritual": "New beginnings, purification"},
         {"name": "🌒 Waxing Crescent", "yoruba": "Òṣùpá Gbígbé", "spiritual": "Growth, intention setting"},
@@ -142,8 +164,23 @@ def calculate_moon_phase(date_obj):
         {"name": "🌘 Waning Crescent", "yoruba": "Òṣùpá Ńkú", "spiritual": "Rest, reflection"}
     ]
     
-    phase_index = int(phase_percentage * 8) % 8
-    return phases[phase_index]
+    # Precise phase mapping
+    if moon_age < 1: 
+        return phases[0]  # New Moon
+    elif moon_age < 7: 
+        return phases[1]  # Waxing Crescent
+    elif moon_age < 8: 
+        return phases[2]  # First Quarter
+    elif moon_age < 14: 
+        return phases[3]  # Waxing Gibbous
+    elif moon_age < 15: 
+        return phases[4]  # Full Moon
+    elif moon_age < 22: 
+        return phases[5]  # Waning Gibbous
+    elif moon_age < 23: 
+        return phases[6]  # Last Quarter
+    else: 
+        return phases[7]  # Waning Crescent
 
 def gregorian_to_yoruba(greg_date):
     """Convert Gregorian date to Yoruba calendar"""
@@ -251,17 +288,18 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def auth_login():
-    """Login page"""
+    """Enhanced login with password authentication"""
     if request.method == 'POST':
         data = request.get_json() if request.is_json else request.form
         identifier = data.get('email', '').strip()
+        password = data.get('password', '')
         
         # Find user by email or username
         user = User.query.filter(
             (User.email == identifier) | (User.username == identifier)
         ).first()
         
-        if user:
+        if user and (not user.password_hash or user.check_password(password)):
             user.last_login = datetime.utcnow()
             db.session.commit()
             login_user(user)
@@ -273,19 +311,20 @@ def auth_login():
                     'user': user.to_dict()
                 })
             else:
-                return redirect(url_for('index'))
+                return redirect(url_for('dashboard'))
         else:
-            error_msg = 'User not found'
+            error_msg = 'Invalid username or password'
             if request.is_json:
-                return jsonify({'status': 'error', 'message': error_msg}), 404
+                return jsonify({'status': 'error', 'message': error_msg}), 401
             else:
+                flash(error_msg)
                 return render_template('auth/login.html', error=error_msg)
     
     return render_template('auth/login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def auth_register():
-    """Registration page"""
+    """Enhanced registration with password security"""
     if request.method == 'POST':
         data = request.get_json() if request.is_json else request.form
         
@@ -299,6 +338,11 @@ def auth_register():
             if existing_user:
                 raise ValueError('Email or username already exists')
             
+            # Validate password
+            password = data.get('password', '')
+            if len(password) < 6:
+                raise ValueError('Password must be at least 6 characters long')
+            
             user = User(
                 email=data.get('email'),
                 username=data.get('username'),
@@ -307,6 +351,7 @@ def auth_register():
                 spiritual_path=data.get('spiritual_path', 'Yoruba Traditional'),
                 preferred_orisha=data.get('preferred_orisha', 'Ọbàtálá')
             )
+            user.set_password(password)
             
             db.session.add(user)
             db.session.commit()
@@ -319,7 +364,8 @@ def auth_register():
                     'user': user.to_dict()
                 }), 201
             else:
-                return redirect(url_for('index'))
+                flash('Account created successfully!')
+                return redirect(url_for('dashboard'))
                 
         except Exception as e:
             db.session.rollback()
@@ -327,6 +373,7 @@ def auth_register():
             if request.is_json:
                 return jsonify({'status': 'error', 'message': error_msg}), 400
             else:
+                flash(error_msg)
                 return render_template('auth/register.html', error=error_msg)
     
     return render_template('auth/register.html')
@@ -359,8 +406,27 @@ def index():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    """User dashboard"""
-    return redirect(url_for('index'))
+    """Enhanced user dashboard with today's spiritual guidance"""
+    today = datetime.now()
+    yoruba_data = gregorian_to_yoruba(today)
+    moon_phase = calculate_moon_phase(today)
+    spiritual_guidance = get_spiritual_guidance(moon_phase["name"])
+    
+    # Get user's rituals for today
+    today_str = today.strftime("%m-%d")
+    rituals = UserRitual.query.filter_by(
+        user_id=current_user.id
+    ).filter(
+        db.func.date(UserRitual.date_performed) == today.date()
+    ).all()
+    
+    return render_template('dashboard.html',
+                         current_date=today,
+                         yoruba_data=yoruba_data,
+                         moon_phase=moon_phase,
+                         spiritual_guidance=spiritual_guidance,
+                         rituals=rituals,
+                         user=current_user)
 
 # ==================
 # API ENDPOINTS
@@ -436,6 +502,52 @@ def api_rituals():
             db.session.rollback()
             return jsonify({'error': str(e)}), 400
 
+@app.route('/add_ritual', methods=['POST'])
+@login_required
+def add_ritual():
+    """Quick ritual addition for dashboard"""
+    try:
+        note = request.form.get('note', '')
+        ritual_type = request.form.get('ritual_type', 'Daily Practice')
+        orisha = request.form.get('orisha', current_user.preferred_orisha)
+        
+        current_moon = calculate_moon_phase(datetime.now())
+        
+        ritual = UserRitual(
+            user_id=current_user.id,
+            ritual_notes=note,
+            ritual_type=ritual_type,
+            orisha=orisha,
+            moon_phase=current_moon['name'],
+            completed=False
+        )
+        
+        db.session.add(ritual)
+        db.session.commit()
+        
+        flash('Ritual added successfully!')
+        return redirect(url_for('dashboard'))
+        
+    except Exception as e:
+        flash(f'Error adding ritual: {str(e)}')
+        return redirect(url_for('dashboard'))
+
+@app.route('/complete_ritual/<int:ritual_id>', methods=['POST'])
+@login_required
+def complete_ritual(ritual_id):
+    """Mark ritual as completed"""
+    ritual = UserRitual.query.get_or_404(ritual_id)
+    
+    if ritual.user_id != current_user.id:
+        flash('Access denied')
+        return redirect(url_for('dashboard'))
+    
+    ritual.completed = not ritual.completed
+    db.session.commit()
+    
+    flash('Ritual status updated!')
+    return redirect(url_for('dashboard'))
+
 @app.route('/api/user/profile')
 @login_required
 def api_user_profile():
@@ -490,9 +602,10 @@ def init_db():
                 spiritual_path="Yoruba Traditional",
                 preferred_orisha="Ọbàtálá"
             )
+            default_user.set_password("test123")  # Default password for demo
             db.session.add(default_user)
             db.session.commit()
-            print("✓ Default user created")
+            print("✓ Default user created with password 'test123'")
         
         print("✓ Database initialized successfully")
 
