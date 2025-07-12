@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Ifá Daily</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="auth-container">
+        <header class="auth-header">
+            <h1>🌟 Ifá Daily</h1>
+            <p>Join the Spiritual Community</p>
+        </header>
+        
+        <form class="auth-form" method="POST">
+            <h2>Create Account</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="spiritual_path">Spiritual Path:</label>
+                <select id="spiritual_path" name="spiritual_path">
+                    <option value="Yoruba Traditional">Yoruba Traditional</option>
+                    <option value="Santería">Santería</option>
+                    <option value="Lucumí">Lucumí</option>
+                    <option value="Candomblé">Candomblé</option>
+                    <option value="Ifá">Ifá</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="preferred_orisha">Preferred Orisha:</label>
+                <select id="preferred_orisha" name="preferred_orisha">
+                    <option value="Ọbàtálá">Ọbàtálá - Purity, Wisdom</option>
+                    <option value="Ògún">Ògún - Iron, War, Labor</option>
+                    <option value="Ṣàngó">Ṣàngó - Thunder, Justice</option>
+                    <option value="Ọ̀ṣun">Ọ̀ṣun - Love, Rivers, Beauty</option>
+                    <option value="Yemọja">Yemọja - Ocean, Motherhood</option>
+                    <option value="Ọya">Ọya - Wind, Change</option>
+                    <option value="Èṣù">Èṣù - Crossroads, Communication</option>
+                    <option value="Òrúnmìlà">Òrúnmìlà - Wisdom, Divination</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="auth-button">Create Account</button>
+            
+            <div class="auth-links">
+                <p>Already have an account? <a href="/login">Login</a></p>
+                <p><a href="/">Continue as Guest</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -6,13 +6,14 @@ Comprehensive bilingual Yoruba spiritual guidance application
 
 import os
 import sys
-from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask import Flask, render_template, jsonify, request, send_from_directory, redirect, url_for
 import sqlite3
 import json
 from datetime import datetime, date, timedelta
 import hashlib
 import math
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -23,10 +24,44 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ifa_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# Login Manager Setup
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+login_manager.login_message = 'Please log in to access your spiritual practice tracking.'
+
 # SQLAlchemy Models
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    spiritual_path = db.Column(db.String(100))  # e.g., "Yoruba Traditional", "Santería", etc.
+    preferred_orisha = db.Column(db.String(50))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    last_login = db.Column(db.DateTime)
+    
+    # Relationships
+    rituals = db.relationship('UserRitual', backref='practitioner', lazy=True, cascade='all, delete-orphan')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'username': self.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'spiritual_path': self.spiritual_path,
+            'preferred_orisha': self.preferred_orisha,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'last_login': self.last_login.isoformat() if self.last_login else None,
+            'total_rituals': len(self.rituals)
+        }
+
 class UserRitual(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String(50), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ritual_notes = db.Column(db.Text)
     ritual_type = db.Column(db.String(100))
     orisha = db.Column(db.String(50))
@@ -34,6 +69,9 @@ class UserRitual(db.Model):
     moon_phase = db.Column(db.String(30))
     offerings = db.Column(db.Text)  # JSON string for offerings list
     spiritual_outcome = db.Column(db.Text)
+    duration_minutes = db.Column(db.Integer)  # Duration of ritual/practice
+    location = db.Column(db.String(100))  # Where the ritual was performed
+    privacy_level = db.Column(db.String(20), default='private')  # private, shared, community
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def to_dict(self):
@@ -47,7 +85,11 @@ class UserRitual(db.Model):
             'moon_phase': self.moon_phase,
             'offerings': json.loads(self.offerings) if self.offerings else [],
             'spiritual_outcome': self.spiritual_outcome,
-            'created_at': self.created_at.isoformat() if self.created_at else None
+            'duration_minutes': self.duration_minutes,
+            'location': self.location,
+            'privacy_level': self.privacy_level,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'practitioner': self.practitioner.username if self.practitioner else None
         }
 
 class CalendarEntry(db.Model):
@@ -114,6 +156,21 @@ def init_db():
     # Initialize SQLAlchemy tables
     with app.app_context():
         db.create_all()
+        
+        # Create default user if none exists
+        if not User.query.first():
+            default_user = User(
+                email="spiritual_seeker@example.com",
+                username="spiritual_seeker",
+                first_name="Spiritual",
+                last_name="Seeker",
+                spiritual_path="Yoruba Traditional",
+                preferred_orisha="Ọbàtálá"
+            )
+            db.session.add(default_user)
+            db.session.commit()
+            print("✓ Default user created")
+        
         print("✓ SQLAlchemy tables created successfully")
 
 def get_db_connection():
@@ -530,29 +587,146 @@ def health_check():
         **sqlalchemy_status
     })
 
-# SQLAlchemy API Endpoints
+# Authentication endpoints
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Simple login system (demo - in production use OAuth)"""
+    if request.method == 'POST':
+        data = request.get_json() if request.is_json else request.form
+        email = data.get('email')
+        username = data.get('username')
+        
+        # Find user by email or username
+        user = None
+        if email:
+            user = User.query.filter_by(email=email).first()
+        elif username:
+            user = User.query.filter_by(username=username).first()
+        
+        if user:
+            user.last_login = datetime.utcnow()
+            db.session.commit()
+            login_user(user)
+            
+            if request.is_json:
+                return jsonify({
+                    'status': 'success',
+                    'message': 'Logged in successfully',
+                    'user': user.to_dict()
+                })
+            else:
+                return redirect(url_for('dashboard'))
+        else:
+            if request.is_json:
+                return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            else:
+                return render_template('login.html', error='User not found')
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    """Logout current user"""
+    logout_user()
+    return redirect(url_for('home'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    """Register new user"""
+    if request.method == 'POST':
+        data = request.get_json() if request.is_json else request.form
+        
+        try:
+            user = User(
+                email=data.get('email'),
+                username=data.get('username'),
+                first_name=data.get('first_name', ''),
+                last_name=data.get('last_name', ''),
+                spiritual_path=data.get('spiritual_path', 'Yoruba Traditional'),
+                preferred_orisha=data.get('preferred_orisha', 'Ọbàtálá')
+            )
+            db.session.add(user)
+            db.session.commit()
+            
+            login_user(user)
+            
+            if request.is_json:
+                return jsonify({
+                    'status': 'success',
+                    'message': 'Account created successfully',
+                    'user': user.to_dict()
+                }), 201
+            else:
+                return redirect(url_for('dashboard'))
+                
+        except Exception as e:
+            db.session.rollback()
+            if request.is_json:
+                return jsonify({'status': 'error', 'message': str(e)}), 400
+            else:
+                return render_template('register.html', error=str(e))
+    
+    return render_template('register.html')
+
+@app.route('/api/user/profile')
+@login_required
+def user_profile():
+    """Get current user profile"""
+    return jsonify(current_user.to_dict())
+
+@app.route('/api/user/profile', methods=['PUT'])
+@login_required
+def update_profile():
+    """Update user profile"""
+    data = request.get_json()
+    try:
+        current_user.first_name = data.get('first_name', current_user.first_name)
+        current_user.last_name = data.get('last_name', current_user.last_name)
+        current_user.spiritual_path = data.get('spiritual_path', current_user.spiritual_path)
+        current_user.preferred_orisha = data.get('preferred_orisha', current_user.preferred_orisha)
+        db.session.commit()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Profile updated successfully',
+            'user': current_user.to_dict()
+        })
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 400
+
+# Enhanced SQLAlchemy API Endpoints with Authentication
 @app.route('/api/rituals', methods=['GET', 'POST'])
 def rituals():
     """Get all rituals or create new ritual"""
     if request.method == 'GET':
-        user_id = request.args.get('user_id')
-        if user_id:
-            rituals = UserRitual.query.filter_by(user_id=user_id).order_by(UserRitual.created_at.desc()).all()
+        # If user is logged in, show their rituals; otherwise show public ones
+        if current_user.is_authenticated:
+            rituals = UserRitual.query.filter_by(user_id=current_user.id).order_by(UserRitual.created_at.desc()).all()
         else:
-            rituals = UserRitual.query.order_by(UserRitual.created_at.desc()).limit(20).all()
+            # Show community/shared rituals for non-authenticated users
+            rituals = UserRitual.query.filter_by(privacy_level='community').order_by(UserRitual.created_at.desc()).limit(10).all()
         return jsonify([ritual.to_dict() for ritual in rituals])
     
     elif request.method == 'POST':
         data = request.get_json()
         try:
             ritual = UserRitual(
-                user_id=data.get('user_id', 'anonymous'),
+                user_id=current_user.id if current_user.is_authenticated else None,
                 ritual_notes=data.get('ritual_notes'),
                 ritual_type=data.get('ritual_type'),
                 orisha=data.get('orisha'),
                 moon_phase=data.get('moon_phase'),
                 offerings=json.dumps(data.get('offerings', [])) if data.get('offerings') else None,
-                spiritual_outcome=data.get('spiritual_outcome')
+                spiritual_outcome=data.get('spiritual_outcome'),
+                duration_minutes=data.get('duration_minutes'),
+                location=data.get('location'),
+                privacy_level=data.get('privacy_level', 'private')
             )
             db.session.add(ritual)
             db.session.commit()
@@ -566,10 +740,18 @@ def ritual_detail(ritual_id):
     """Get, update, or delete specific ritual"""
     ritual = UserRitual.query.get_or_404(ritual_id)
     
+    # Check access permissions
+    if ritual.privacy_level == 'private' and (not current_user.is_authenticated or current_user.id != ritual.user_id):
+        return jsonify({'error': 'Access denied'}), 403
+    
     if request.method == 'GET':
         return jsonify(ritual.to_dict())
     
     elif request.method == 'PUT':
+        # Only owner can update
+        if not current_user.is_authenticated or current_user.id != ritual.user_id:
+            return jsonify({'error': 'Access denied'}), 403
+            
         data = request.get_json()
         try:
             ritual.ritual_notes = data.get('ritual_notes', ritual.ritual_notes)
@@ -577,6 +759,9 @@ def ritual_detail(ritual_id):
             ritual.orisha = data.get('orisha', ritual.orisha)
             ritual.moon_phase = data.get('moon_phase', ritual.moon_phase)
             ritual.spiritual_outcome = data.get('spiritual_outcome', ritual.spiritual_outcome)
+            ritual.duration_minutes = data.get('duration_minutes', ritual.duration_minutes)
+            ritual.location = data.get('location', ritual.location)
+            ritual.privacy_level = data.get('privacy_level', ritual.privacy_level)
             if data.get('offerings'):
                 ritual.offerings = json.dumps(data.get('offerings'))
             db.session.commit()
@@ -586,6 +771,10 @@ def ritual_detail(ritual_id):
             return jsonify({'error': str(e)}), 400
     
     elif request.method == 'DELETE':
+        # Only owner can delete
+        if not current_user.is_authenticated or current_user.id != ritual.user_id:
+            return jsonify({'error': 'Access denied'}), 403
+            
         try:
             db.session.delete(ritual)
             db.session.commit()

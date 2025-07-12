@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Ifá Daily</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="auth-container">
+        <header class="auth-header">
+            <h1>🌟 Ifá Daily</h1>
+            <p>Connect to Your Spiritual Practice</p>
+        </header>
+        
+        <form class="auth-form" method="POST">
+            <h2>Login</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="email">Email or Username:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            
+            <button type="submit" class="auth-button">Login</button>
+            
+            <div class="auth-links">
+                <p>New to Ifá Daily? <a href="/register">Create Account</a></p>
+                <p><a href="/">Continue as Guest</a></p>
+            </div>
+        </form>
+        
+        <div class="demo-info">
+            <h3>Demo Account</h3>
+            <p>Email: <strong>spiritual_seeker@example.com</strong></p>
+            <p>Username: <strong>spiritual_seeker</strong></p>
+        </div>
+    </div>
+</body>
+</html>
