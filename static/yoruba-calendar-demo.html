@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Yoruba Calendar - Ifá Daily</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(244, 208, 63, 0.1);
+            border-radius: 15px;
+            border: 2px solid #f4d03f;
+        }
+        
+        .header h1 {
+            color: #f4d03f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .today-info {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #3498db;
+        }
+        
+        .today-info h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .orisha-section {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .offerings-section {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .offerings-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .offering-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .month-card {
+            background: rgba(52, 73, 94, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #34495e;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .month-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(244, 208, 63, 0.3);
+            border-color: #f4d03f;
+        }
+        
+        .month-card h3 {
+            color: #f4d03f;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .month-orisha {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .month-theme {
+            color: #ecf0f1;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #f4d03f;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+        
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .prayer-text {
+            background: rgba(241, 196, 15, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f1c40f;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .moon-phase {
+            background: rgba(155, 89, 182, 0.2);
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            border: 1px solid #9b59b6;
+        }
+        
+        .day-details {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(44, 62, 80, 0.5);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌙 Traditional Yoruba Calendar 🌙</h1>
+            <p>Àkókò Yorùbá Àtìjọ́ - Ancient Time Keeping of the Yoruba People</p>
+        </div>
+        
+        <div class="today-info">
+            <h2>📅 Today's Sacred Information</h2>
+            <div id="today-content">
+                <div class="loading">Loading today's sacred calendar information...</div>
+            </div>
+        </div>
+        
+        <div class="month-grid" id="months-grid">
+            <div class="loading">Loading traditional Yoruba months...</div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch today's calendar information
+        async function loadTodayInfo() {
+            try {
+                const response = await fetch('/api/yoruba-calendar/today');
+                const data = await response.json();
+                
+                const todayContent = document.getElementById('today-content');
+                todayContent.innerHTML = `
+                    <div class="orisha-section">
+                        <h3>🔥 Today: ${data.date}</h3>
+                        <p><strong>Yoruba Day:</strong> ${data.yoruba_day}</p>
+                        <p><strong>Orisha of Today:</strong> ${data.orisha}</p>
+                        <p><strong>Sacred Activity:</strong> ${data.activity}</p>
+                        <div class="moon-phase">🌙 ${data.moon_phase}</div>
+                    </div>
+                    
+                    <div class="offerings-section">
+                        <h4>🎁 Sacred Offerings for Today</h4>
+                        <div class="offerings-list">
+                            ${data.offerings ? data.offerings.map(offering => 
+                                `<span class="offering-badge">${offering}</span>`
+                            ).join('') : '<span class="offering-badge">No specific offerings today</span>'}
+                        </div>
+                    </div>
+                    
+                    <div class="day-details">
+                        <p><strong>Month Theme:</strong> ${data.theme}</p>
+                        <p><strong>Sacred Color:</strong> ${data.color}</p>
+                        ${data.taboos ? `<p><strong>Taboos:</strong> ${data.taboos.join(', ')}</p>` : ''}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading today info:', error);
+                document.getElementById('today-content').innerHTML = 
+                    '<div class="error">Failed to load today\'s calendar information</div>';
+            }
+        }
+        
+        // Fetch all months
+        async function loadMonths() {
+            try {
+                const response = await fetch('/api/yoruba-calendar/months');
+                const data = await response.json();
+                
+                const monthsGrid = document.getElementById('months-grid');
+                monthsGrid.innerHTML = data.months.map(month => `
+                    <div class="month-card" onclick="showMonthDetails('${month.name}')">
+                        <h3>${month.name}</h3>
+                        <div class="month-orisha">🔥 Sacred to: ${month.orisha}</div>
+                        <div class="month-theme">${month.theme}</div>
+                        <p><strong>Sacred Color:</strong> ${month.color}</p>
+                        <p><strong>Days in Month:</strong> ${month.days.length}</p>
+                        ${month.taboos ? `<p><strong>Monthly Taboos:</strong> ${month.taboos.join(', ')}</p>` : ''}
+                        <div style="margin-top: 15px;">
+                            <small>Click to view detailed daily activities</small>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading months:', error);
+                document.getElementById('months-grid').innerHTML = 
+                    '<div class="error">Failed to load traditional Yoruba months</div>';
+            }
+        }
+        
+        // Show detailed month information
+        async function showMonthDetails(monthName) {
+            try {
+                const response = await fetch(`/api/yoruba-calendar/month/${encodeURIComponent(monthName)}`);
+                const month = await response.json();
+                
+                // Create a modal or replace content to show detailed month view
+                const detailsHtml = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; overflow: auto; padding: 20px;">
+                        <div style="max-width: 800px; margin: 0 auto; background: #2c3e50; padding: 30px; border-radius: 15px; border: 2px solid #f4d03f;">
+                            <div style="text-align: right; margin-bottom: 20px;">
+                                <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close ✕</button>
+                            </div>
+                            <h2 style="color: #f4d03f; text-align: center;">${month.name} - Month of ${month.orisha}</h2>
+                            <p style="text-align: center; color: #3498db; font-size: 1.2rem;">${month.theme}</p>
+                            
+                            <div style="margin: 20px 0;">
+                                <h3 style="color: #2ecc71;">Daily Activities (${month.days.length} days):</h3>
+                                <div style="max-height: 400px; overflow-y: auto;">
+                                    ${month.days.map(day => `
+                                        <div style="margin: 15px 0; padding: 15px; background: rgba(52, 73, 94, 0.5); border-radius: 8px;">
+                                            <strong style="color: #f4d03f;">Day ${day.day} - ${day.yoruba_day}</strong>
+                                            <p style="margin: 8px 0;">${day.activity}</p>
+                                            <div style="margin: 10px 0;">
+                                                <span style="background: rgba(155, 89, 182, 0.2); padding: 5px 10px; border-radius: 15px; font-size: 0.9rem;">${day.moon_phase}</span>
+                                            </div>
+                                            ${day.offerings ? `
+                                                <div style="margin: 10px 0;">
+                                                    <strong>Offerings:</strong> ${day.offerings.join(', ')}
+                                                </div>
+                                            ` : ''}
+                                            ${day.prayer ? `
+                                                <div class="prayer-text">
+                                                    "${day.prayer}"
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', detailsHtml);
+            } catch (error) {
+                console.error('Error loading month details:', error);
+                alert('Failed to load month details');
+            }
+        }
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTodayInfo();
+            loadMonths();
+        });
+    </script>
+</body>
+</html>

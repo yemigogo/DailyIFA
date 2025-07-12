@@ -1114,6 +1114,11 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
   // Get specific day in month
   app.get("/api/yoruba-calendar/day/:month_name/:day_number", getDayInMonth);
 
+  // Yoruba Calendar Demo Page
+  app.get("/yoruba-calendar", (req, res) => {
+    res.sendFile('yoruba-calendar-demo.html', { root: 'static' });
+  });
+
   // Flask Odu Interface route
   app.get("/odu", (req, res) => {
     try {
