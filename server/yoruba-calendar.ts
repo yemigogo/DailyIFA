@@ -301,33 +301,62 @@ const yorubaCalendar: YorubaCalendarData = {
 };
 
 // Lunar Phase Calculator
+// Lunar Phase Calculator (Enhanced from Flask example)
 export function getMoonPhase(day: number): string {
   if (day === 1) return "New Moon";
   if (day === 15) return "Full Moon";
   if (day === 28) return "Dark Moon";
-  if (day >= 2 && day <= 14) return "Waxing Moon";
+  if (day >= 2 && day <= 7) return "Waxing Crescent";
+  if (day >= 8 && day <= 14) return "Waxing Gibbous";
+  if (day === 7 || day === 21) return "First Quarter";
+  if (day === 14 || day === 22) return "Last Quarter";
+  if (day >= 16 && day <= 21) return "Waning Gibbous";
+  if (day >= 22 && day <= 27) return "Waning Crescent";
   return "Waning Moon";
 }
 
-// Current Yoruba Date Calculator
+// Current Yoruba Date Calculator (Enhanced from Flask example)
 export function getYorubaDate(): {
   month: string;
   day: number;
   yoruba_day: string;
   orisha: string;
+  activity: string;
+  offerings: string[];
+  moon_phase: string;
+  theme: string;
+  color: string;
+  taboos?: string[];
 } {
   const currentDate = new Date();
-  const monthIndex = Math.floor(currentDate.getMonth() % 13);
-  const dayInMonth = Math.min(currentDate.getDate(), 28);
   
-  const month = yorubaCalendar.months[monthIndex] || yorubaCalendar.months[0];
-  const dayData = month.days[dayInMonth - 1] || month.days[0];
+  // Enhanced mapping to current Yoruba calendar
+  // Uses day of year for more accurate cycle representation
+  const startOfYear = new Date(currentDate.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((currentDate.getTime() - startOfYear.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  
+  // Calculate which 28-day cycle we're in (13 months of 28 days = 364 days)
+  const cycleLength = 28;
+  const totalCycles = 13;
+  const adjustedDay = ((dayOfYear - 1) % (cycleLength * totalCycles)) + 1;
+  
+  const monthIndex = Math.floor((adjustedDay - 1) / cycleLength) % totalCycles;
+  const dayInMonth = ((adjustedDay - 1) % cycleLength) + 1;
+  
+  const currentMonth = yorubaCalendar.months[monthIndex];
+  const currentDay = currentMonth.days[Math.min(dayInMonth - 1, currentMonth.days.length - 1)];
   
   return {
-    month: month.name,
+    month: currentMonth.name,
     day: dayInMonth,
-    yoruba_day: dayData.yoruba_day,
-    orisha: month.orisha
+    yoruba_day: currentDay.yoruba_day,
+    orisha: currentMonth.orisha,
+    activity: currentDay.activity,
+    offerings: currentDay.offerings || [],
+    moon_phase: getMoonPhase(dayInMonth),
+    theme: currentMonth.theme,
+    color: currentMonth.color,
+    taboos: currentMonth.taboos
   };
 }
 
@@ -344,31 +373,24 @@ export function getMonth(req: Request, res: Response) {
 }
 
 export function getToday(req: Request, res: Response) {
-  const yorubaDate = getYorubaDate();
-  const monthData = yorubaCalendar.months.find(m => m.name === yorubaDate.month);
-  
-  if (!monthData) {
-    return res.status(404).json({ error: "Month data not found" });
+  try {
+    const yorubaDate = getYorubaDate();
+    
+    res.json({
+      date: `${yorubaDate.day} ${yorubaDate.month}`,
+      yoruba_day: yorubaDate.yoruba_day,
+      orisha: yorubaDate.orisha,
+      activity: yorubaDate.activity,
+      offerings: yorubaDate.offerings,
+      moon_phase: yorubaDate.moon_phase,
+      taboos: yorubaDate.taboos || [],
+      theme: yorubaDate.theme,
+      color: yorubaDate.color
+    });
+  } catch (error) {
+    console.error('Error getting today\'s data:', error);
+    res.status(500).json({ error: "Failed to get today's calendar data" });
   }
-  
-  const dayData = monthData.days.find(d => d.day === yorubaDate.day);
-  
-  if (!dayData) {
-    return res.status(404).json({ error: "Day data not found" });
-  }
-  
-  res.json({
-    date: `${yorubaDate.day} ${yorubaDate.month}`,
-    yoruba_day: yorubaDate.yoruba_day,
-    orisha: yorubaDate.orisha,
-    activity: dayData.activity,
-    offerings: dayData.offerings || [],
-    prayer: dayData.prayer,
-    moon_phase: getMoonPhase(yorubaDate.day),
-    taboos: monthData.taboos || [],
-    theme: monthData.theme,
-    color: monthData.color
-  });
 }
 
 export function getAllMonths(req: Request, res: Response) {

@@ -1,0 +1,99 @@
+from flask import Flask, jsonify, render_template
+from datetime import datetime
+
+app = Flask(__name__)
+
+# Complete Yoruba Lunar Calendar Data
+yoruba_calendar = {
+    "year": 2025,
+    "months": [
+        {
+            "name": "Ṣẹ̀rẹ̀",
+            "orisha": "Ọbàtálá",
+            "theme": "Purity, New Beginnings",
+            "color": "white",
+            "taboos": ["salt", "alcohol", "palm oil"],
+            "days": [
+                {
+                    "day": 1, "yoruba_day": "Ọjọ́-Àìkú",
+                    "activity": "New Moon - White cloth offerings",
+                    "moon_phase": "New Moon",
+                    "offerings": ["white cloth", "coconut", "water"],
+                    "prayer": "Ọbàtálá, cleanse my path as I begin this cycle"
+                },
+                {
+                    "day": 2, "yoruba_day": "Ọjọ́-Ajé",
+                    "activity": "Èṣù offerings at crossroads",
+                    "moon_phase": "Waxing Crescent",
+                    "offerings": ["palm oil", "kolanut", "candies"]
+                },
+                # Days 3-28...
+            ]
+        },
+        {
+            "name": "Èrè̀lé",
+            "orisha": "Ògún",
+            "theme": "War, Iron, Labor",
+            "color": "green/black",
+            "days": [
+                {
+                    "day": 1, "yoruba_day": "Ọjọ́-Àìkú",
+                    "activity": "New Moon - Iron tool purification",
+                    "offerings": ["palm oil", "rooster", "rusted metal"]
+                },
+                # Days 2-28...
+            ]
+        },
+        # Months 3-13...
+    ]
+}
+
+# Lunar Phase Calculator (Simplified)
+def get_moon_phase(day):
+    if day == 1: return "New Moon"
+    elif day == 15: return "Full Moon"
+    elif day == 28: return "Dark Moon"
+    elif 2 <= day <= 14: return "Waxing Moon"
+    else: return "Waning Moon"
+
+# Current Yoruba Date Calculator
+def get_yoruba_date():
+    # This is a placeholder - real implementation would convert Gregorian to lunar
+    return {
+        "month": "Ṣẹ̀rẹ̀",
+        "day": 1,
+        "yoruba_day": "Ọjọ́-Àìkú",
+        "orisha": "Ọbàtálá"
+    }
+
+# Flask Routes
+@app.route('/')
+def home():
+    today = get_yoruba_date()
+    return render_template('index.html', 
+                         month=today['month'],
+                         day=today['day'],
+                         orisha=today['orisha'])
+
+@app.route('/api/month/<month_name>')
+def get_month(month_name):
+    month = next((m for m in yoruba_calendar["months"] if m["name"] == month_name), None)
+    return jsonify(month) if month else ("Month not found", 404)
+
+@app.route('/api/today')
+def today():
+    yoruba_date = get_yoruba_date()
+    month_data = next(m for m in yoruba_calendar["months"] if m["name"] == yoruba_date["month"])
+    day_data = next(d for d in month_data["days"] if d["day"] == yoruba_date["day"])
+    
+    return jsonify({
+        "date": f"{yoruba_date['day']} {yoruba_date['month']}",
+        "yoruba_day": yoruba_date['yoruba_day'],
+        "orisha": yoruba_date['orisha'],
+        "activity": day_data["activity"],
+        "offerings": day_data.get("offerings", []),
+        "moon_phase": get_moon_phase(yoruba_date["day"])
+    })
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
