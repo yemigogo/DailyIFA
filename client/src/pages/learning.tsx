@@ -178,8 +178,68 @@ const Learning: React.FC = () => {
         {
           title: "What is Ifá?",
           titleYoruba: "Kí ni Ifá?",
-          text: "Ifá is an ancient Yoruba system of divination and spiritual guidance that connects practitioners with divine wisdom through the Oracle of Òrúnmìlà.",
+          text: "Ifá is a sacred Yoruba spiritual and philosophical system rooted in the divine teachings of Òrúnmìlà, the Orisha of wisdom, foresight, and destiny. It is more than divination — it is a holistic guide to living in harmony with Ìwà Pẹ̀lẹ́ (gentle character), the earth, and ancestral wisdom.",
           textYoruba: "Ifá jẹ́ ẹ̀tọ́ àtijọ́ Yorùbá fún fífá àti ìtọ́nisọ́nà ẹ̀mí tí ó so àwọn oníṣe pọ̀ mọ́ ọgbọ́n òrìṣà nípasẹ̀ Òrúnmìlà."
+        },
+        {
+          title: "Core Elements of Ifá",
+          titleYoruba: "Àwọn Ẹ̀yà Pàtàkì Ifá",
+          elements: [
+            {
+              name: "Wisdom (Ọgbọ́n)",
+              description: "Timeless knowledge preserved through oral traditions and sacred verses (Ẹsẹ Ifá).",
+              nameYoruba: "Ọgbọ́n",
+              descriptionYoruba: "Ìmọ̀ àtijọ́ tí a pa mọ́ nípasẹ̀ àṣà ẹnu àti àwọn ẹsẹ mímọ́ (Ẹsẹ Ifá)."
+            },
+            {
+              name: "Guidance (Ìtọ́sọ́nà)",
+              description: "Direction from the divine to help navigate life's crossroads through the Odu Ifá.",
+              nameYoruba: "Ìtọ́sọ́nà",
+              descriptionYoruba: "Ìtọ́sọ́nà láti ọ̀run láti ṣe ìrànlọ́wọ́ nínú àwọn ọ̀nà ayé nípasẹ̀ Odù Ifá."
+            },
+            {
+              name: "Character (Ìwà Pẹ̀lẹ́)",
+              description: "The highest virtue in Ifá, emphasizing patience, humility, and good conduct.",
+              nameYoruba: "Ìwà Pẹ̀lẹ́",
+              descriptionYoruba: "Ìwà tí ó ga jù nínú Ifá, tí ó tẹnu mọ́ sùúrù, ìrẹ̀lẹ̀, àti ìwà rere."
+            },
+            {
+              name: "Community (Àjọṣe)",
+              description: "Connection to lineage, elders, initiates, and the global Ifá family.",
+              nameYoruba: "Àjọṣe",
+              descriptionYoruba: "Àsopọ̀ pẹ̀lú ìdílé, àwọn àgbà, àwọn ìyàwó, àti ẹbí Ifá gbogbo ayé."
+            },
+            {
+              name: "Destiny (Àyànmọ̀)",
+              description: "The personal spiritual path every soul chooses before birth — revealed and aligned through Ifá divination.",
+              nameYoruba: "Àyànmọ̀",
+              descriptionYoruba: "Ọ̀nà ẹ̀mí tí gbogbo ẹ̀mí yan kí ó tó bí — tí a fihàn àti tí a mu pọ̀ nípasẹ̀ fífá Ifá."
+            }
+          ]
+        },
+        {
+          title: "Daily Practice in Ifá",
+          titleYoruba: "Ìṣe Ojoojúmọ́ nínú Ifá",
+          practices: [
+            {
+              name: "Ọ̀rọ̀ Òní (Word of the Day)",
+              description: "A proverb or Ẹsẹ Ifá with reflection.",
+              nameYoruba: "Ọ̀rọ̀ Òní",
+              descriptionYoruba: "Òwe tàbí Ẹsẹ Ifá pẹ̀lú ìrònú."
+            },
+            {
+              name: "Morning Salutation",
+              description: "Short invocations to Òrúnmìlà or the ancestors (Egúngún).",
+              nameYoruba: "Ìkíni Òwúrọ̀",
+              descriptionYoruba: "Àwọn ìpè kúkúrú sí Òrúnmìlà tàbí àwọn baba (Egúngún)."
+            },
+            {
+              name: "Character Prompt",
+              description: "How can I embody Ìwà Pẹ̀lẹ́ today?",
+              nameYoruba: "Ìbéèrè Ìwà",
+              descriptionYoruba: "Báwo ni mo ṣe lè ṣe àfihàn Ìwà Pẹ̀lẹ́ lónìí?"
+            }
+          ]
         }
       ]
     },
@@ -344,6 +404,81 @@ const Learning: React.FC = () => {
                   </p>
                 </CardHeader>
                 <CardContent>
+                  {module.id === 'introduction' && (
+                    <div className="space-y-8">
+                      {module.content.map((section: any, index: number) => (
+                        <div key={index} className="space-y-6">
+                          {section.text && (
+                            <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 p-6 rounded-lg border-l-4 border-l-amber-500">
+                              <h3 className="text-xl font-semibold mb-3 text-amber-800 dark:text-amber-200">
+                                🌿 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {language === 'yoruba' ? section.textYoruba : section.text}
+                              </p>
+                            </div>
+                          )}
+                          
+                          {section.elements && (
+                            <div className="space-y-4">
+                              <h3 className="text-xl font-semibold mb-4 text-amber-800 dark:text-amber-200">
+                                ✨ {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {section.elements.map((element: any, elemIndex: number) => (
+                                  <Card key={elemIndex} className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-l-4 border-l-amber-500">
+                                    <CardContent className="p-4">
+                                      <div className="flex items-start gap-3">
+                                        <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div>
+                                          <h4 className="font-semibold text-amber-700 dark:text-amber-300 mb-2">
+                                            {language === 'yoruba' ? element.nameYoruba : element.name}
+                                          </h4>
+                                          <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                            {language === 'yoruba' ? element.descriptionYoruba : element.description}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {section.practices && (
+                            <div className="space-y-4">
+                              <h3 className="text-xl font-semibold mb-4 text-amber-800 dark:text-amber-200">
+                                🧭 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <div className="space-y-3">
+                                {section.practices.map((practice: any, practiceIndex: number) => (
+                                  <Card key={practiceIndex} className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-l-4 border-l-blue-500">
+                                    <CardContent className="p-4">
+                                      <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                                          <BookOpen className="w-4 h-4 text-blue-600" />
+                                        </div>
+                                        <div className="flex-1">
+                                          <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-1">
+                                            {language === 'yoruba' ? practice.nameYoruba : practice.name}
+                                          </h4>
+                                          <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                            {language === 'yoruba' ? practice.descriptionYoruba : practice.description}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   {module.id === 'odu' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {majorOdu.map((odu) => (
