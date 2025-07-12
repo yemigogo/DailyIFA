@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}Device Management - Odún Calendar{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-lg p-6 mb-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Device Management</h1>
+                <p class="text-indigo-100">Manage your notification devices and push preferences</p>
+            </div>
+            <div class="text-right">
+                <a href="{{ url_for('dashboard') }}" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-colors">
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Device Registration -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Register New Device</h2>
+        <form id="deviceForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Device Name</label>
+                <input type="text" id="deviceName" name="device_name" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="Enter device name (e.g., iPhone, Desktop)">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Platform</label>
+                <select id="platform" name="platform" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="web">Web Browser</option>
+                    <option value="ios">iOS Device</option>
+                    <option value="android">Android Device</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                Register Device
+            </button>
+        </form>
+    </div>
+
+    <!-- Registered Devices -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Your Registered Devices</h2>
+        <div id="devicesList" class="space-y-4">
+            <!-- Devices will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Push Notification Test -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Test Notifications</h2>
+        <p class="text-gray-600 mb-4">Send a test notification to verify your device setup</p>
+        <button onclick="testNotifications()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            Send Test Notification
+        </button>
+    </div>
+</div>
+
+<script>
+// Load user devices
+function loadDevices() {
+    fetch('/api/devices')
+        .then(response => response.json())
+        .then(devices => {
+            const devicesList = document.getElementById('devicesList');
+            if (devices.length === 0) {
+                devicesList.innerHTML = '<p class="text-gray-500">No devices registered yet.</p>';
+                return;
+            }
+            
+            devicesList.innerHTML = devices.map(device => `
+                <div class="border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                            ${getPlatformIcon(device.platform)}
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">${device.device_name}</h3>
+                            <p class="text-sm text-gray-500">${device.platform} • Active</p>
+                        </div>
+                    </div>
+                    <button onclick="removeDevice(${device.id})" 
+                            class="text-red-600 hover:text-red-800 px-3 py-1 rounded border border-red-300 hover:border-red-400 transition-colors">
+                        Remove
+                    </button>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error('Error loading devices:', error));
+}
+
+function getPlatformIcon(platform) {
+    switch(platform) {
+        case 'ios':
+            return '📱';
+        case 'android':
+            return '🤖';
+        case 'web':
+            return '🌐';
+        default:
+            return '📱';
+    }
+}
+
+// Register device
+document.getElementById('deviceForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    // Generate a unique token for demo purposes
+    formData.append('token', `device_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+    
+    fetch('/register_device', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Device registered successfully!');
+            this.reset();
+            loadDevices();
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to register device');
+    });
+});
+
+// Remove device
+function removeDevice(deviceId) {
+    if (confirm('Are you sure you want to remove this device?')) {
+        fetch(`/unregister_device/${deviceId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Device removed successfully!');
+                loadDevices();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to remove device');
+        });
+    }
+}
+
+// Test notifications
+function testNotifications() {
+    fetch('/api/test-notification', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Test notifications sent! Check your email and devices.');
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to send test notification');
+    });
+}
+
+// Load devices on page load
+document.addEventListener('DOMContentLoaded', loadDevices);
+</script>
+{% endblock %}

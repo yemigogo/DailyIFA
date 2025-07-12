@@ -20,6 +20,11 @@ import requests
 from urllib.parse import quote
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
+try:
+    import pusher
+    PUSHER_AVAILABLE = True
+except ImportError:
+    PUSHER_AVAILABLE = False
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -33,13 +38,33 @@ app.config.update(
     MAIL_PORT=int(os.getenv('MAIL_PORT', 587)),
     MAIL_USE_TLS=True,
     MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
-    MAIL_PASSWORD=os.getenv('MAIL_PASSWORD')
+    MAIL_PASSWORD=os.getenv('MAIL_PASSWORD'),
+    PUSHER_APP_ID=os.getenv('PUSHER_APP_ID'),
+    PUSHER_KEY=os.getenv('PUSHER_KEY'),
+    PUSHER_SECRET=os.getenv('PUSHER_SECRET'),
+    PUSHER_CLUSTER=os.getenv('PUSHER_CLUSTER', 'us2')
 )
 
 # Initialize Extensions
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 mail = Mail(app)
+
+# Initialize Pusher if available
+pusher_client = None
+if PUSHER_AVAILABLE and app.config.get('PUSHER_APP_ID'):
+    try:
+        pusher_client = pusher.Pusher(
+            app_id=app.config['PUSHER_APP_ID'],
+            key=app.config['PUSHER_KEY'],
+            secret=app.config['PUSHER_SECRET'],
+            cluster=app.config['PUSHER_CLUSTER'],
+            ssl=True
+        )
+        print("✓ Pusher real-time notifications initialized")
+    except Exception as e:
+        print(f"⚠️  Pusher initialization failed: {e}")
+        pusher_client = None
 
 # Admin Setup
 admin = Admin(app, name='Odún Calendar Admin', template_mode='bootstrap3')
@@ -161,6 +186,40 @@ class ImportantDate(db.Model):
             'repeat_yearly': self.repeat_yearly
         }
 
+class Device(db.Model):
+    """User device model for push notifications"""
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    token = db.Column(db.String(255), nullable=False)
+    platform = db.Column(db.String(50), nullable=False)  # 'ios', 'android', 'web'
+    device_name = db.Column(db.String(100))
+    active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    last_used = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    user = db.relationship('User', backref=db.backref('devices', lazy=True))
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'platform': self.platform,
+            'device_name': self.device_name,
+            'active': self.active,
+            'last_used': self.last_used.isoformat() if self.last_used else None
+        }
+
+class PushNotificationLog(db.Model):
+    """Log of sent push notifications"""
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    platform = db.Column(db.String(50))
+    status = db.Column(db.String(50), default='sent')  # 'sent', 'delivered', 'failed'
+    sent_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    user = db.relationship('User', backref=db.backref('push_logs', lazy=True))
+
 # Admin Views
 class AdminModelView(ModelView):
     def is_accessible(self):
@@ -172,6 +231,8 @@ def setup_admin():
     admin.add_view(AdminModelView(UserRitual, db.session))
     admin.add_view(AdminModelView(Notification, db.session))
     admin.add_view(AdminModelView(ImportantDate, db.session))
+    admin.add_view(AdminModelView(Device, db.session))
+    admin.add_view(AdminModelView(PushNotificationLog, db.session))
 
 # ==================
 # CALENDAR SYSTEM
@@ -657,7 +718,7 @@ def health_check():
 def send_email_notification(user, subject, message):
     """Send email notification to user"""
     try:
-        if app.config['MAIL_USERNAME']:
+        if app.config.get('MAIL_USERNAME') and user.email:
             msg = Message(
                 subject,
                 sender=app.config['MAIL_USERNAME'],
@@ -665,8 +726,49 @@ def send_email_notification(user, subject, message):
             )
             msg.body = message
             mail.send(msg)
+            print(f"✓ Email sent to {user.email}: {subject}")
     except Exception as e:
         app.logger.error(f"Failed to send email: {str(e)}")
+
+def send_push_notification(user, title, message):
+    """Send push notification to user's devices"""
+    if not pusher_client:
+        return
+    
+    try:
+        # Send to user's channel
+        pusher_client.trigger(
+            f'user_{user.id}',
+            'notification',
+            {
+                'title': title,
+                'message': message,
+                'timestamp': datetime.now().isoformat()
+            }
+        )
+        
+        # Log the notification
+        log_entry = PushNotificationLog(
+            user_id=user.id,
+            title=title,
+            message=message,
+            platform='pusher',
+            status='sent'
+        )
+        db.session.add(log_entry)
+        db.session.commit()
+        
+        print(f"✓ Push notification sent to user {user.id}: {title}")
+    except Exception as e:
+        app.logger.error(f"Failed to send push notification: {str(e)}")
+
+def send_realtime_update(channel, event, data):
+    """Send real-time updates via Pusher"""
+    if pusher_client:
+        try:
+            pusher_client.trigger(channel, event, data)
+        except Exception as e:
+            app.logger.error(f"Failed to send realtime update: {str(e)}")
 
 def get_social_share_links(date_info):
     """Generate social media sharing links"""
@@ -696,7 +798,7 @@ def check_important_dates():
     ).all()
     
     if important_dates:
-        users = User.query.filter(User.email.isnot(None)).all()
+        users = User.query.all()
         for date in important_dates:
             for user in users:
                 # Create in-app notification
@@ -706,14 +808,34 @@ def check_important_dates():
                 )
                 db.session.add(notification)
                 
-                # Send email notification if email is configured
-                send_email_notification(
+                # Send email notification if configured
+                if user.email:
+                    send_email_notification(
+                        user,
+                        f"🗓️ Important Date: {date.name}",
+                        f"Today is {date.name} in the Yoruba calendar.\n\n{date.description}\n\nHave a blessed day!"
+                    )
+                
+                # Send push notification
+                send_push_notification(
                     user,
-                    f"🗓️ Important Date: {date.name}",
-                    f"Today is {date.name} in the Yoruba calendar.\n\n{date.description}\n\nHave a blessed day!"
+                    f"🗓️ {date.name}",
+                    f"{date.description[:100]}{'...' if len(date.description) > 100 else ''}"
+                )
+                
+                # Send realtime update to user's dashboard
+                send_realtime_update(
+                    f'user_{user.id}',
+                    'important_date',
+                    {
+                        'name': date.name,
+                        'description': date.description,
+                        'date': today.strftime('%Y-%m-%d')
+                    }
                 )
         
         db.session.commit()
+        print(f"✓ Processed {len(important_dates)} important dates for {len(users)} users")
 
 @app.route('/share', methods=['POST'])
 @login_required
@@ -736,6 +858,12 @@ def notifications():
     """Display user notifications"""
     notifications = Notification.query.filter_by(user_id=current_user.id).order_by(Notification.created_at.desc()).all()
     return render_template('notifications.html', notifications=notifications)
+
+@app.route('/devices')
+@login_required
+def device_management():
+    """Device management page"""
+    return render_template('device_management.html')
 
 @app.route('/mark_notification_read/<int:notification_id>', methods=['POST'])
 @login_required
@@ -772,6 +900,122 @@ def api_share_links():
     date_info = gregorian_to_yoruba(today)
     share_links = get_social_share_links(date_info)
     return jsonify(share_links)
+
+@app.route('/register_device', methods=['POST'])
+@login_required
+def register_device():
+    """Register user device for push notifications"""
+    data = request.get_json() or request.form
+    token = data.get('token')
+    platform = data.get('platform', 'web')
+    device_name = data.get('device_name', f'{platform.title()} Device')
+    
+    if not token:
+        return jsonify({'error': 'Device token required'}), 400
+    
+    # Check if device already exists
+    existing_device = Device.query.filter_by(
+        user_id=current_user.id, 
+        token=token
+    ).first()
+    
+    if existing_device:
+        # Update existing device
+        existing_device.active = True
+        existing_device.last_used = datetime.utcnow()
+        existing_device.device_name = device_name
+    else:
+        # Create new device
+        device = Device(
+            user_id=current_user.id,
+            token=token,
+            platform=platform,
+            device_name=device_name
+        )
+        db.session.add(device)
+    
+    db.session.commit()
+    
+    # Send welcome push notification
+    send_push_notification(
+        current_user,
+        "Welcome to Odún Calendar!",
+        "You'll now receive spiritual guidance and important date notifications."
+    )
+    
+    return jsonify({'status': 'success', 'message': 'Device registered successfully'})
+
+@app.route('/api/devices')
+@login_required
+def api_user_devices():
+    """Get user's registered devices"""
+    devices = Device.query.filter_by(user_id=current_user.id, active=True).all()
+    return jsonify([device.to_dict() for device in devices])
+
+@app.route('/unregister_device/<int:device_id>', methods=['DELETE'])
+@login_required
+def unregister_device(device_id):
+    """Unregister a user device"""
+    device = Device.query.filter_by(id=device_id, user_id=current_user.id).first()
+    
+    if not device:
+        return jsonify({'error': 'Device not found'}), 404
+    
+    device.active = False
+    db.session.commit()
+    
+    return jsonify({'status': 'success', 'message': 'Device unregistered'})
+
+@app.route('/api/pusher/auth', methods=['POST'])
+@login_required
+def pusher_auth():
+    """Authenticate user for Pusher channels"""
+    if not pusher_client:
+        return jsonify({'error': 'Push notifications not available'}), 503
+    
+    socket_id = request.form['socket_id']
+    channel_name = request.form['channel_name']
+    
+    # Only allow access to user's own channel
+    if channel_name != f'user_{current_user.id}':
+        return jsonify({'error': 'Unauthorized'}), 403
+    
+    auth = pusher_client.authenticate(
+        channel=channel_name,
+        socket_id=socket_id
+    )
+    
+    return jsonify(auth)
+
+@app.route('/api/test-notification', methods=['POST'])
+@login_required
+def test_notification():
+    """Test notification system (for development)"""
+    if not current_user.is_admin:
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    # Send test notifications
+    send_email_notification(
+        current_user,
+        "🧪 Test Notification",
+        "This is a test email notification from the Odún Calendar system."
+    )
+    
+    send_push_notification(
+        current_user,
+        "🧪 Test Push",
+        "This is a test push notification from the Odún Calendar system."
+    )
+    
+    # Create in-app notification
+    notification = Notification(
+        user_id=current_user.id,
+        message="🧪 Test in-app notification - system is working correctly!"
+    )
+    db.session.add(notification)
+    db.session.commit()
+    
+    return jsonify({'status': 'success', 'message': 'Test notifications sent'})
 
 # ==================
 # SCHEDULED TASKS
