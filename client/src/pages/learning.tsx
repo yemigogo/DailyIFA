@@ -20,8 +20,8 @@ import SpiritualAudioSystem from '@/components/spiritual-audio-system';
 import EnhancedSharingSystem from '@/components/enhanced-sharing-system';
 import ComprehensiveSystemTest from '@/components/comprehensive-system-test';
 import SystemVerification from '@/components/system-verification';
-import Yemoja432HzHealing from '@/components/yemoja-432hz-healing';
-import Obatala963HzHealing from '@/components/obatala-963hz-healing';
+import { Yemoja432HzHealing } from '@/components/yemoja-432hz-healing';
+import { Obatala963HzHealing } from '@/components/obatala-963hz-healing';
 import Sango528HzHealing from '@/components/sango-528hz-healing';
 
 import OfflineMode from '@/components/offline-mode';

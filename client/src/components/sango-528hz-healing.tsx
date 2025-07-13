@@ -792,4 +792,5 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
   );
 };
 
+export { Sango528HzHealing };
 export default Sango528HzHealing;
