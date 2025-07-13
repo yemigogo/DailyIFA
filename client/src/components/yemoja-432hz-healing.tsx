@@ -18,7 +18,9 @@ import {
   Sparkles,
   ChevronRight,
   CheckCircle,
-  Info
+  Info,
+  Upload,
+  Music
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
@@ -93,6 +95,12 @@ export const Yemoja432HzHealing: React.FC = () => {
   const oscillatorRef = useRef<OscillatorNode | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const audioElementRef = useRef<HTMLAudioElement | null>(null);
+  const [useAuthenticAudio, setUseAuthenticAudio] = useState(false);
+  const [uploadedTracks, setUploadedTracks] = useState<{morning: File[], evening: File[]}>({
+    morning: [],
+    evening: []
+  });
 
   const ts = (english: string, yoruba: string) => 
     language === 'yoruba' ? yoruba : english;
@@ -103,6 +111,66 @@ export const Yemoja432HzHealing: React.FC = () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
+
+  // Authentic 432Hz audio sources for Yemoja water healing
+  const authentic432HzSources = {
+    morning: [
+      "https://www.youtube.com/watch?v=wGHQ2sPFfXk", // 432Hz Water Meditation
+      "https://www.youtube.com/watch?v=i11MakqVr7c", // 432Hz Ocean Waves
+      "https://www.youtube.com/watch?v=sUHKjej4CRM", // 432Hz Healing Water
+    ],
+    evening: [
+      "https://www.youtube.com/watch?v=YQQ2StSwg_s", // 432Hz Moon Water
+      "https://www.youtube.com/watch?v=E2bMQi2vRHs", // 432Hz Night Healing
+      "https://www.youtube.com/watch?v=5qap5aO4i9A", // 432Hz Deep Water
+    ]
+  };
+
+  const tryAuthenticAudio = (type: 'morning' | 'evening') => {
+    // First try uploaded local files
+    const userTracks = uploadedTracks[type];
+    if (userTracks.length > 0) {
+      const randomTrack = userTracks[Math.floor(Math.random() * userTracks.length)];
+      const audio = new Audio();
+      audio.volume = volume;
+      audio.loop = true;
+      
+      const objectUrl = URL.createObjectURL(randomTrack);
+      audio.src = objectUrl;
+      
+      audio.addEventListener('loadeddata', () => {
+        setUseAuthenticAudio(true);
+        audioElementRef.current = audio;
+        
+        toast({
+          title: ts('Authentic Track Loaded', 'Orin Òtítọ́ Ti Gbà'),
+          description: ts(`Playing: ${randomTrack.name}`, `Ń dún: ${randomTrack.name}`),
+        });
+      });
+      
+      audio.addEventListener('error', () => {
+        setUseAuthenticAudio(false);
+        generate432HzTone();
+      });
+      
+      audio.play().catch(() => {
+        setUseAuthenticAudio(false);
+        generate432HzTone();
+      });
+      
+      return;
+    }
+    
+    // Fallback to synthetic generation for demo purposes
+    setUseAuthenticAudio(false);
+    generate432HzTone();
+    
+    toast({
+      title: ts('Synthetic 432Hz Active', 'Ìṣẹ̀dá 432Hz Ń Ṣiṣẹ́'),
+      description: ts('Upload your own 432Hz tracks for authentic healing experience', 
+                     'Gbé àwọn orin 432Hz tirẹ sókè fún ìrírí ìwòsàn òtítọ́'),
+    });
+  };
 
   const generate432HzTone = () => {
     if (!audioContextRef.current) {
@@ -165,10 +233,11 @@ export const Yemoja432HzHealing: React.FC = () => {
     if (!session) return;
     
     setIsPlaying(true);
-    const tones = generate432HzTone();
+    
+    // Try authentic audio first, fallback to synthetic
+    tryAuthenticAudio(session.type);
     
     const ritual = yemojaRituals[session.type];
-    const stepDuration = (ritual.duration * 60 * 1000) / ritual.steps.length;
     
     // Progress tracking
     const progressInterval = setInterval(() => {
@@ -194,6 +263,13 @@ export const Yemoja432HzHealing: React.FC = () => {
   const stopHealing = () => {
     setIsPlaying(false);
     
+    // Stop authentic audio if playing
+    if (audioElementRef.current) {
+      audioElementRef.current.pause();
+      audioElementRef.current = null;
+    }
+    
+    // Stop synthetic audio if playing
     if (oscillatorRef.current) {
       oscillatorRef.current.stop();
       oscillatorRef.current = null;
@@ -208,6 +284,8 @@ export const Yemoja432HzHealing: React.FC = () => {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
+    
+    setUseAuthenticAudio(false);
   };
 
   const completeRitual = () => {
@@ -240,6 +318,13 @@ export const Yemoja432HzHealing: React.FC = () => {
 
   const updateVolume = (newVolume: number) => {
     setVolume(newVolume);
+    
+    // Update authentic audio volume
+    if (audioElementRef.current) {
+      audioElementRef.current.volume = newVolume;
+    }
+    
+    // Update synthetic audio volume
     if (gainNodeRef.current) {
       gainNodeRef.current.gain.value = newVolume;
     }
@@ -252,6 +337,42 @@ export const Yemoja432HzHealing: React.FC = () => {
     if (session.currentStep < ritual.steps.length - 1) {
       setSession(prev => prev ? { ...prev, currentStep: prev.currentStep + 1 } : null);
     }
+  };
+
+  const handleFileUpload = (files: FileList | null, type: 'morning' | 'evening') => {
+    if (!files) return;
+    
+    const audioFiles = Array.from(files).filter(file => 
+      file.type.startsWith('audio/') || file.name.match(/\.(mp3|wav|ogg|m4a)$/i)
+    );
+    
+    if (audioFiles.length === 0) {
+      toast({
+        title: ts('Invalid Files', 'Àwọn Fáìlì Tí Kò Tọ́'),
+        description: ts('Please upload audio files (MP3, WAV, OGG, M4A)', 
+                       'Jọ̀wọ́ gbé àwọn fáìlì orin sókè (MP3, WAV, OGG, M4A)'),
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    setUploadedTracks(prev => ({
+      ...prev,
+      [type]: [...prev[type], ...audioFiles]
+    }));
+    
+    toast({
+      title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
+      description: ts(`Added ${audioFiles.length} tracks for ${type} ritual`, 
+                     `Àwọn orin ${audioFiles.length} ti di kún fún àṣẹ ${type}`),
+    });
+  };
+
+  const removeTrack = (type: 'morning' | 'evening', index: number) => {
+    setUploadedTracks(prev => ({
+      ...prev,
+      [type]: prev[type].filter((_, i) => i !== index)
+    }));
   };
 
   const waterScienceInfo = {
@@ -288,10 +409,14 @@ export const Yemoja432HzHealing: React.FC = () => {
       </Card>
 
       <Tabs defaultValue="rituals" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="rituals" className="flex items-center gap-2">
             <Droplets className="w-4 h-4" />
             {ts('Rituals', 'Àṣẹ')}
+          </TabsTrigger>
+          <TabsTrigger value="audio" className="flex items-center gap-2">
+            <Music className="w-4 h-4" />
+            {ts('Audio', 'Orin')}
           </TabsTrigger>
           <TabsTrigger value="science" className="flex items-center gap-2">
             <Info className="w-4 h-4" />
@@ -399,6 +524,125 @@ export const Yemoja432HzHealing: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        <TabsContent value="audio" className="space-y-6">
+          <Card className="border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Upload className="w-5 h-5 text-purple-600" />
+                {ts('Upload Authentic 432Hz Tracks', 'Gbé Àwọn Orin 432Hz Òtítọ́ Sókè')}
+              </CardTitle>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                {ts('Upload your own 432Hz water healing tracks for the most authentic experience', 
+                    'Gbé àwọn orin ìwòsàn omi 432Hz tirẹ sókè fún ìrírí òtítọ́ jùlọ')}
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* Morning Tracks Upload */}
+              <div className="space-y-4">
+                <h3 className="font-semibold text-amber-800 dark:text-amber-200 flex items-center gap-2">
+                  <Sun className="w-4 h-4" />
+                  {ts('Morning Ritual Tracks', 'Àwọn Orin Àṣẹ Òwúrọ̀')}
+                </h3>
+                
+                <div className="border-2 border-dashed border-amber-300 rounded-lg p-6 text-center hover:border-amber-400 transition-colors">
+                  <input
+                    type="file"
+                    multiple
+                    accept="audio/*"
+                    onChange={(e) => handleFileUpload(e.target.files, 'morning')}
+                    className="hidden"
+                    id="morning-upload"
+                  />
+                  <label htmlFor="morning-upload" className="cursor-pointer">
+                    <Upload className="w-8 h-8 mx-auto mb-2 text-amber-500" />
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {ts('Click to upload morning healing tracks', 'Tẹ láti gbé àwọn orin ìwòsàn òwúrọ̀ sókè')}
+                    </p>
+                  </label>
+                </div>
+                
+                {uploadedTracks.morning.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium">{ts('Uploaded Tracks:', 'Àwọn Orin Tí A Gbà Sókè:')}</p>
+                    {uploadedTracks.morning.map((file, index) => (
+                      <div key={index} className="flex items-center justify-between bg-amber-50 p-2 rounded">
+                        <span className="text-sm">{file.name}</span>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => removeTrack('morning', index)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          ×
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Evening Tracks Upload */}
+              <div className="space-y-4">
+                <h3 className="font-semibold text-indigo-800 dark:text-indigo-200 flex items-center gap-2">
+                  <Moon className="w-4 h-4" />
+                  {ts('Evening Ritual Tracks', 'Àwọn Orin Àṣẹ Alẹ́')}
+                </h3>
+                
+                <div className="border-2 border-dashed border-indigo-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors">
+                  <input
+                    type="file"
+                    multiple
+                    accept="audio/*"
+                    onChange={(e) => handleFileUpload(e.target.files, 'evening')}
+                    className="hidden"
+                    id="evening-upload"
+                  />
+                  <label htmlFor="evening-upload" className="cursor-pointer">
+                    <Upload className="w-8 h-8 mx-auto mb-2 text-indigo-500" />
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {ts('Click to upload evening healing tracks', 'Tẹ láti gbé àwọn orin ìwòsàn alẹ́ sókè')}
+                    </p>
+                  </label>
+                </div>
+                
+                {uploadedTracks.evening.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium">{ts('Uploaded Tracks:', 'Àwọn Orin Tí A Gbà Sókè:')}</p>
+                    {uploadedTracks.evening.map((file, index) => (
+                      <div key={index} className="flex items-center justify-between bg-indigo-50 p-2 rounded">
+                        <span className="text-sm">{file.name}</span>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => removeTrack('evening', index)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          ×
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Recommended Tracks Info */}
+              <Card className="bg-white/50 dark:bg-black/20">
+                <CardHeader>
+                  <CardTitle className="text-sm text-purple-800 dark:text-purple-200">
+                    {ts('Recommended 432Hz Sources', 'Àwọn Orísun 432Hz Tí A Ṣe Àfidájú')}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2 text-xs">
+                  <p>• {ts('YouTube: Search "432Hz water meditation" and download with youtube-dl', 'YouTube: Wá "432Hz water meditation" kí o sì gbà sílẹ̀ pẹ̀lú youtube-dl')}</p>
+                  <p>• {ts('Spotify: Look for "432Hz Healing" playlists and use recording software', 'Spotify: Wá àwọn playlist "432Hz Healing" kí o sì lo software ìgbóhùn')}</p>
+                  <p>• {ts('SoundCloud: Many free 432Hz tracks available for download', 'SoundCloud: Ọ̀pọ̀lọpọ̀ orin 432Hz ọ̀fẹ́ wà fún ìgbà sílẹ̀')}</p>
+                  <p>• {ts('Local recordings: Record yourself chanting with 432Hz tuning', 'Àwọn ìgbóhùn agbègbè: Gba ara rẹ sílẹ̀ tí o ń kọrin pẹ̀lú ìgbọ̀nsí 432Hz')}</p>
+                </CardContent>
+              </Card>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         <TabsContent value="science" className="space-y-6">
@@ -524,9 +768,24 @@ export const Yemoja432HzHealing: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="text-sm text-gray-600 dark:text-gray-300">
+                  <div className="text-sm text-gray-600 dark:text-gray-300 space-y-2">
                     <p>{ts('Playing 432Hz with harmonic overtones for water healing', 
                           'Ń dún 432Hz pẹ̀lú àwọn ìgbọ̀nsí ìbámu fún ìwòsàn omi')}</p>
+                    
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${useAuthenticAudio ? 'bg-green-500' : 'bg-blue-500'}`}></div>
+                      <span className="text-xs">
+                        {useAuthenticAudio 
+                          ? ts('Authentic 432Hz Track', 'Orin 432Hz Òtítọ́')
+                          : ts('Synthetic 432Hz Generation', 'Ìṣẹ̀dá 432Hz')
+                        }
+                      </span>
+                    </div>
+                    
+                    <p className="text-xs italic">
+                      {ts('Note: For authentic tracks, upload local 432Hz files or use streaming services', 
+                          'Àkíyèsí: Fún orin òtítọ́, gbé àwọn fáìlì 432Hz àgbègbè sókè tàbí lo àwọn iṣẹ́ streaming')}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
