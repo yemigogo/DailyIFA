@@ -1115,6 +1115,53 @@ export const Yemoja432HzHealing: React.FC = () => {
                     )}
                   </div>
 
+                  {/* EMERGENCY DEBUG: Direct Audio Test */}
+                  {session && uploadedTracks[session.type].length > 0 && (
+                    <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                      <h4 className="font-medium text-yellow-800 mb-2">🔧 Debug Test</h4>
+                      <Button
+                        onClick={() => {
+                          console.log('=== EMERGENCY DIRECT TEST ===');
+                          const tracks = uploadedTracks[session.type];
+                          console.log(`Available tracks: ${tracks.length}`);
+                          
+                          if (tracks.length > 0) {
+                            const file = tracks[0];
+                            console.log(`Testing: ${file.name}`);
+                            
+                            // Create completely new audio element
+                            const testAudio = new Audio();
+                            const url = URL.createObjectURL(file);
+                            testAudio.src = url;
+                            testAudio.volume = 0.8;
+                            
+                            testAudio.onloadeddata = () => console.log('✓ Data loaded');
+                            testAudio.oncanplaythrough = () => console.log('✓ Can play through');
+                            testAudio.onerror = (e) => console.error('✗ Error:', e);
+                            
+                            testAudio.play().then(() => {
+                              console.log('✅ SUCCESS: Audio is playing!');
+                              alert('SUCCESS: Your audio file is working!');
+                              
+                              // Stop after 3 seconds
+                              setTimeout(() => {
+                                testAudio.pause();
+                                URL.revokeObjectURL(url);
+                              }, 3000);
+                            }).catch(err => {
+                              console.error('❌ FAILED:', err);
+                              alert(`FAILED: ${err.message}`);
+                            });
+                          }
+                        }}
+                        variant="outline"
+                        className="border-yellow-300 text-yellow-700 hover:bg-yellow-100"
+                      >
+                        🧪 Test First Track
+                      </Button>
+                    </div>
+                  )}
+
                   <div className="flex items-center gap-4">
                     <Button
                       onClick={isPlaying ? stopHealing : startHealing}
