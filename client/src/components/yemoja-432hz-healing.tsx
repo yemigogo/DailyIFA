@@ -1115,13 +1115,88 @@ export const Yemoja432HzHealing: React.FC = () => {
                     )}
                   </div>
 
-                  {/* EMERGENCY DEBUG: Direct Audio Test */}
-                  {session && uploadedTracks[session.type].length > 0 && (
-                    <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
-                      <h4 className="font-medium text-yellow-800 mb-2">🔧 Debug Test</h4>
+                  {/* RELIABLE YOUTUBE AUDIO OPTION */}
+                  <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
+                    <h4 className="font-medium text-green-800 mb-2 flex items-center">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      {ts('Reliable 432Hz Audio', 'Orin 432Hz Tó Dára')}
+                    </h4>
+                    <p className="text-sm text-green-700 mb-3">
+                      {ts('Open authentic 432Hz healing audio in new tab (most reliable method)', 
+                          'Ṣí orin ìwòsàn 432Hz òtítọ́ ní tab tuntun (ọ̀nà tó dára jùlọ)')}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
                       <Button
                         onClick={() => {
-                          console.log('=== EMERGENCY DIRECT TEST ===');
+                          const url = "https://www.youtube.com/watch?v=LXxjt1mXJoM&autoplay=1";
+                          window.open(url, '_blank');
+                          console.log('Opened reliable 432Hz audio in new tab');
+                          
+                          toast({
+                            title: ts('Audio Opened', 'Orin Ti Ṣí'),
+                            description: ts('432Hz healing audio opened in new tab', 'Orin ìwòsàn 432Hz ti ṣí ní tab tuntun'),
+                          });
+                        }}
+                        className="bg-green-600 hover:bg-green-700"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        {ts('Open 432Hz Audio', 'Ṣí Orin 432Hz')}
+                      </Button>
+                      
+                      <Button
+                        onClick={() => {
+                          const url = "https://www.youtube.com/watch?v=ze-pxwMJpLo&t=65s&autoplay=1";
+                          window.open(url, '_blank');
+                          console.log('Opened user-preferred 432Hz track');
+                          
+                          toast({
+                            title: ts('Your Preferred Track', 'Orin Tí O Fẹ́ràn'),
+                            description: ts('Opening your selected 432Hz track', 'Ń ṣí orin 432Hz tí o yàn'),
+                          });
+                        }}
+                        variant="outline"
+                        className="border-green-300 text-green-700 hover:bg-green-50"
+                      >
+                        <Music className="w-4 h-4 mr-2" />
+                        {ts('Your Track', 'Orin Rẹ')}
+                      </Button>
+                    </div>
+                    <div className="text-xs text-green-600 mt-2">
+                      {ts('Click "Allow" when browser asks for audio permission', 
+                          'Tẹ "Allow" nígbà tí ayẹwo bá béèrè fún àṣẹ orin')}
+                    </div>
+                    
+                    {/* Python-style Meditation Timer */}
+                    {session && (
+                      <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <h5 className="text-sm font-medium text-blue-800 mb-2">
+                          {ts('7-Minute Healing Timer', 'Àkókò Ìwòsàn Ìṣẹ́jú Méje')}
+                        </h5>
+                        <div className="text-center">
+                          <div className="text-2xl font-mono text-blue-700 mb-1">
+                            {Math.floor(timeRemaining / 60).toString().padStart(2, '0')}:{(timeRemaining % 60).toString().padStart(2, '0')}
+                          </div>
+                          <div className="text-xs text-blue-600">
+                            {ts('remaining', 'tó kù')}
+                          </div>
+                        </div>
+                        <div className="text-xs text-blue-700 mt-2 space-y-1">
+                          <div>1. {ts('Allow audio in your browser', 'Gbà orin láàyè nínú ayẹwo rẹ')}</div>
+                          <div>2. {ts('Chant: "Yemọja omi ire, fi àlà bá mi"', 'Kọrin: "Yemọja omi ire, fi àlà bá mi"')}</div>
+                          <div>3. {ts('Hold your water vessel', 'Mú ohun èlò omi rẹ')}</div>
+                          <div>4. {ts('Follow the timer below', 'Tẹ̀lé àkókò tó wà nísàlẹ̀')}</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* DEBUG: Direct Audio Test for uploaded files */}
+                  {session && uploadedTracks[session.type].length > 0 && (
+                    <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                      <h4 className="font-medium text-yellow-800 mb-2">🔧 Test Uploaded Files</h4>
+                      <Button
+                        onClick={() => {
+                          console.log('=== TESTING UPLOADED FILES ===');
                           const tracks = uploadedTracks[session.type];
                           console.log(`Available tracks: ${tracks.length}`);
                           
@@ -1129,35 +1204,36 @@ export const Yemoja432HzHealing: React.FC = () => {
                             const file = tracks[0];
                             console.log(`Testing: ${file.name}`);
                             
-                            // Create completely new audio element
                             const testAudio = new Audio();
                             const url = URL.createObjectURL(file);
                             testAudio.src = url;
                             testAudio.volume = 0.8;
                             
-                            testAudio.onloadeddata = () => console.log('✓ Data loaded');
-                            testAudio.oncanplaythrough = () => console.log('✓ Can play through');
-                            testAudio.onerror = (e) => console.error('✗ Error:', e);
-                            
                             testAudio.play().then(() => {
-                              console.log('✅ SUCCESS: Audio is playing!');
-                              alert('SUCCESS: Your audio file is working!');
+                              console.log('✅ SUCCESS: Uploaded file works!');
+                              toast({
+                                title: ts('File Working!', 'Fáìlì Ń Ṣiṣẹ́!'),
+                                description: ts('Your uploaded file plays correctly', 'Fáìlì tí o gbé sókè ń dún dáadáa'),
+                              });
                               
-                              // Stop after 3 seconds
                               setTimeout(() => {
                                 testAudio.pause();
                                 URL.revokeObjectURL(url);
                               }, 3000);
                             }).catch(err => {
                               console.error('❌ FAILED:', err);
-                              alert(`FAILED: ${err.message}`);
+                              toast({
+                                title: ts('Upload Issue', 'Ìṣòro Ìgbésókè'),
+                                description: ts('Use YouTube option above for reliable audio', 'Lo àṣàyàn YouTube tó wà lókè fún orin tó dára'),
+                                variant: "destructive",
+                              });
                             });
                           }
                         }}
                         variant="outline"
                         className="border-yellow-300 text-yellow-700 hover:bg-yellow-100"
                       >
-                        🧪 Test First Track
+                        🧪 Test Uploaded File
                       </Button>
                     </div>
                   )}
