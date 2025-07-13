@@ -264,16 +264,20 @@ export const Yemoja432HzHealing: React.FC = () => {
               // Keep the audio element ready for manual start
               return;
             }
-            setUseAuthenticAudio(false);
-            generate432HzTone();
+            // Do NOT fallback to synthetic when authentic tracks are available
+            console.log('Audio autoplay blocked but authentic track is ready for manual play');
           });
         }
       });
       
       audio.addEventListener('error', (e) => {
-        console.error('Audio error:', e);
-        setUseAuthenticAudio(false);
-        generate432HzTone();
+        console.error('Audio loading error:', e);
+        toast({
+          title: ts('Audio File Error', 'Àṣìṣe Fáìlì Orin'),
+          description: ts('Try a different file or check the format', 'Gbìyànjú fáìlì mìíràn tàbí ṣàyẹ̀wò fọ́mà'),
+          variant: "destructive",
+        });
+        // Keep authentic mode but don't auto-fallback to synthetic
       });
       
       // Load the audio
@@ -1086,22 +1090,48 @@ export const Yemoja432HzHealing: React.FC = () => {
                     </Button>
                     
                     {/* Manual audio control for uploaded tracks */}
-                    {useAuthenticAudio && audioElementRef.current && (
+                    {session && uploadedTracks[session.type].length > 0 && (
                       <Button
                         onClick={() => {
-                          if (audioElementRef.current) {
-                            if (audioElementRef.current.paused) {
-                              audioElementRef.current.play().catch(console.error);
-                            } else {
+                          console.log('Force play button clicked');
+                          const tracks = uploadedTracks[session.type];
+                          if (tracks.length > 0) {
+                            const track = tracks[0]; // Use first track for immediate play
+                            const audio = new Audio();
+                            const objectUrl = URL.createObjectURL(track);
+                            audio.src = objectUrl;
+                            audio.volume = volume;
+                            audio.loop = true;
+                            
+                            // Stop any existing audio
+                            if (audioElementRef.current) {
                               audioElementRef.current.pause();
                             }
+                            
+                            audioElementRef.current = audio;
+                            setUseAuthenticAudio(true);
+                            
+                            audio.play().then(() => {
+                              console.log('✓ Force play successful');
+                              toast({
+                                title: ts('Playing Your Track', 'Ń Dún Orin Rẹ'),
+                                description: ts(`Now playing: ${track.name}`, `Ń dún: ${track.name}`),
+                              });
+                            }).catch((error) => {
+                              console.error('Force play failed:', error);
+                              toast({
+                                title: ts('Playback Error', 'Àṣìṣe Ìdún'),
+                                description: ts('Unable to play this audio file', 'Kò lè dún fáìlì orin yìí'),
+                                variant: "destructive",
+                              });
+                            });
                           }
                         }}
                         variant="outline"
                         className="border-green-300 text-green-600 hover:bg-green-50"
                       >
                         <Volume2 className="w-4 h-4 mr-1" />
-                        {ts('Force Play', 'Mu Dún')}
+                        {ts('Force Play Uploaded', 'Mu Dún Tí A Gbà')}
                       </Button>
                     )}
                     
