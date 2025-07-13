@@ -23,6 +23,7 @@ import {
   User,
   Sparkles
 } from 'lucide-react';
+import OrishaAvatarCreator from './orisha-avatar-creator';
 
 // ======================
 // COSMIC REALMS DATABASE
