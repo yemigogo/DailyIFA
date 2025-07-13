@@ -382,6 +382,11 @@ export const Obatala963HzHealing: React.FC = () => {
       </div>
       
       <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+        {/* Image Banner - Mobile responsive */}
+        <div className="w-full h-32 md:h-48 bg-gradient-to-r from-purple-900 via-pink-900 to-purple-900 rounded-lg border border-pink-300/20 flex items-center justify-center">
+          <Crown className="w-12 h-12 md:w-16 md:h-16 text-pink-200 opacity-60" />
+        </div>
+
         {/* Header Section with HTML template styling - Mobile optimized */}
         <div className="text-center py-4 md:py-6 border-l-4 border-pink-300 bg-gray-800/50 rounded-lg p-4 md:p-6">
           <h1 className="text-2xl md:text-4xl font-bold text-white flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 mb-3 md:mb-4">
@@ -434,7 +439,7 @@ export const Obatala963HzHealing: React.FC = () => {
             🙏 {ts('Daily Affirmation', 'Àdúrà Ojoojúmọ́')}
           </h2>
           <div className="bg-gradient-to-r from-pink-900/30 to-purple-900/30 p-4 rounded-lg border border-pink-300/20">
-            <p className="text-blue-100 italic text-base md:text-lg leading-relaxed text-center">
+            <p className="italic text-base md:text-lg leading-relaxed text-center" style={{ color: '#aaffdd' }}>
               {ts(
                 '"I walk in the light of Òbàtálá. Peace surrounds me. Clarity fills my spirit."',
                 '"Màa rìn nínú ìmọ́lẹ̀ Òbàtálá. Àlàáfíà yí mi ká. Ìmọ́lẹ̀ kún inú ẹ̀mí mi."'
@@ -449,18 +454,12 @@ export const Obatala963HzHealing: React.FC = () => {
         </div>
 
         {/* Audio Section from HTML template - Mobile optimized */}
-        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg">
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg" style={{ backgroundColor: '#161616' }}>
           <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
-            🎧 {ts('Listen to Òbàtálá Meditation Music', 'Gbọ́ Orin Àṣẹ Òbàtálá')}
+            🎧 {ts('Listen Now', 'Gbọ́ Nísinsin')}
           </h2>
-          <p className="text-blue-100 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
-            {ts(
-              'This 963Hz frequency awakens deep peace, clarity, and spiritual alignment. It connects you to Òbàtálá, the Orisha of wisdom, light, and serenity.',
-              'Ìgbọ̀nsí 963Hz yìí ń dá àlàáfíà jinlẹ̀, ìmọ́lẹ̀, àti ìbáṣepọ̀ ẹ̀mí. Ó so ọ́ pọ̀ mọ́ Òbàtálá, Òrìṣà ọgbọ́n, ìmọ́lẹ̀, àti ìdákẹ́jẹ́.'
-            )}
-          </p>
           
-          {/* Audio Players for offline support - Mobile responsive */}
+          {/* HTML5 Audio Player - Mobile responsive */}
           <div className="space-y-3 md:space-y-4">
             <audio 
               controls 
