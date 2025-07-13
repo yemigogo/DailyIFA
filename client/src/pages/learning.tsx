@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download, Waves } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
@@ -20,6 +20,7 @@ import SpiritualAudioSystem from '@/components/spiritual-audio-system';
 import EnhancedSharingSystem from '@/components/enhanced-sharing-system';
 import ComprehensiveSystemTest from '@/components/comprehensive-system-test';
 import SystemVerification from '@/components/system-verification';
+import Yemoja432HzHealing from '@/components/yemoja-432hz-healing';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -561,6 +562,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Ní ìrírí ìwòsàn nípasẹ̀ àwọn ìgbọ̀nsí mímọ́ àti gbígbọn ẹ̀mí",
       icon: <Volume2 className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "yemoja-432hz",
+      title: "Yemọja 432Hz Water Healing",
+      titleYoruba: "Ìwòsàn Omi Yemọja 432Hz",
+      description: "Sacred water rituals at the healing frequency of 432Hz with authentic Yoruba traditions",
+      descriptionYoruba: "Àwọn àṣẹ omi mímọ́ ní ìgbọ̀nsí ìwòsàn 432Hz pẹ̀lú àṣà Yorùbá òtítọ́",
+      icon: <Waves className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -621,7 +631,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-12 mb-8 overflow-x-auto">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-13 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -1153,6 +1163,10 @@ const Learning: React.FC = () => {
                         <SystemVerification />
                       </div>
                     </div>
+                  )}
+
+                  {module.id === 'yemoja-432hz' && (
+                    <Yemoja432HzHealing />
                   )}
                 </CardContent>
               </Card>
