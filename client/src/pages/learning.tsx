@@ -358,6 +358,54 @@ const Learning: React.FC = () => {
               descriptionYoruba: "Òfin ìpìlẹ̀ pé ìṣe òtítọ́ ń mú ọmọ ènìyàn bá ojúrere àti ààbò òrìṣà mu"
             }
           ]
+        },
+        {
+          title: "Discover Your Realm",
+          titleYoruba: "Ṣàwárí Àgbáyé Rẹ",
+          text: "Take this spiritual assessment to discover which realm of the Yorùbá cosmology you're most aligned with:",
+          textYoruba: "Ṣe àyẹ̀wò ẹ̀mí yìí láti ṣàwárí àgbáyé wo nínú àgbáyé Yorùbá tí o bá mu jùlọ:",
+          realmQuiz: [
+            {
+              question: "You prefer solving conflicts",
+              questionYoruba: "O fẹ́ràn yanju àwọn ìjà",
+              realm: "Ayé (Earthly Realm)",
+              realmYoruba: "Ayé (Àgbáyé Ilẹ̀)",
+              description: "You are grounded in practical wisdom and worldly matters",
+              descriptionYoruba: "O dá lórí ọgbọ́n tó ṣe pàtàkì àti àwọn ọ̀rọ̀ ayé"
+            },
+            {
+              question: "You dream of ancestors often",
+              questionYoruba: "O máa ń lá àlá àwọn baba nígbà gbogbo",
+              realm: "Ọ̀nà (Ancestral Paths)",
+              realmYoruba: "Ọ̀nà (Àwọn Ọ̀nà Àwọn Baba)",
+              description: "You have a strong connection to spiritual lineage and inherited wisdom",
+              descriptionYoruba: "O ní ìbáṣepọ̀ tó lágbára pẹ̀lú ìran ẹ̀mí àti ọgbọ́n tí a jogún"
+            },
+            {
+              question: "You crave spiritual knowledge",
+              questionYoruba: "O ń fẹ́ ìmọ̀ ẹ̀mí",
+              realm: "Òrun (Heavenly Realm)",
+              realmYoruba: "Òrun (Àgbáyé Ọ̀run)",
+              description: "You are naturally drawn to divine wisdom and higher consciousness",
+              descriptionYoruba: "O ní ìfẹ́ àdánidá sí ọgbọ́n òrìṣà àti ìmọ̀lára gíga"
+            },
+            {
+              question: "You feel most peaceful near water",
+              questionYoruba: "O ní àlàáfíà jùlọ ní ẹ̀bá omi",
+              realm: "Ilẹ̀-Ọkùn (Oceanic Abyss)",
+              realmYoruba: "Ilẹ̀-Ọkùn (Ọ̀gbun Òkun)",
+              description: "You resonate with deep emotional wisdom and primordial energies",
+              descriptionYoruba: "O bá ọgbọ́n ìmọ̀lára jíjìn àti agbára àtètè mu"
+            },
+            {
+              question: "You often contemplate your life purpose",
+              questionYoruba: "O máa ń ronú nípa ète ayé rẹ",
+              realm: "Àjàlá-Òrun (Gate of Rebirth)",
+              realmYoruba: "Àjàlá-Òrun (Ẹnu-ọ̀nà Àtúnbí)",
+              description: "You are deeply connected to destiny and soul purpose",
+              descriptionYoruba: "O ní ìbáṣepọ̀ jíjìn pẹ̀lú àyànmọ̀ àti ète ẹ̀mí"
+            }
+          ]
         }
       ]
     },
@@ -795,6 +843,60 @@ const Learning: React.FC = () => {
                                       </CardContent>
                                     </Card>
                                   ))}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {section.realmQuiz && (
+                            <div className="space-y-6">
+                              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-6 rounded-lg border-l-4 border-l-purple-500">
+                                <h3 className="text-xl font-semibold mb-3 text-purple-800 dark:text-purple-200">
+                                  🔮 {language === 'yoruba' ? section.titleYoruba : section.title}
+                                </h3>
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                                  {language === 'yoruba' ? section.textYoruba : section.text}
+                                </p>
+                                
+                                <div className="space-y-4">
+                                  {section.realmQuiz.map((quiz: any, quizIndex: number) => (
+                                    <Card key={quizIndex} className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-l-4 border-l-purple-500 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                                      <CardContent className="p-5">
+                                        <div className="flex items-start gap-4">
+                                          <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">
+                                              {quizIndex + 1}
+                                            </span>
+                                          </div>
+                                          <div className="flex-1">
+                                            <div className="mb-3">
+                                              <h4 className="font-semibold text-purple-700 dark:text-purple-300 text-base mb-1">
+                                                {language === 'yoruba' ? quiz.questionYoruba : quiz.question}
+                                              </h4>
+                                              <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-800 dark:text-purple-100">
+                                                ➜ {language === 'yoruba' ? quiz.realmYoruba : quiz.realm}
+                                              </div>
+                                            </div>
+                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                              {language === 'yoruba' ? quiz.descriptionYoruba : quiz.description}
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  ))}
+                                </div>
+                                
+                                <div className="mt-6 p-4 bg-purple-100/50 dark:bg-purple-900/30 rounded-lg">
+                                  <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">
+                                    {language === 'yoruba' ? '✨ Ìtọ́nisọ́nà' : '✨ Spiritual Guidance'}
+                                  </h4>
+                                  <p className="text-purple-700 dark:text-purple-300 text-sm">
+                                    {language === 'yoruba' 
+                                      ? 'Gbogbo àgbáyé ló wà nínú wa. Àyẹ̀wò yìí ń ṣe ìtọ́nisọ́nà fún ọ láti mọ ibi tí ẹ̀mí rẹ gbé lé.' 
+                                      : 'All realms exist within us. This assessment helps guide you to understand where your spirit feels most at home.'
+                                    }
+                                  </p>
                                 </div>
                               </div>
                             </div>
