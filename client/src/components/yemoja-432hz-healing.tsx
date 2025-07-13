@@ -469,17 +469,28 @@ export const Yemoja432HzHealing: React.FC = () => {
   };
 
   const handleFileUpload = (files: FileList | null, type: 'morning' | 'evening') => {
-    if (!files) return;
+    console.log(`handleFileUpload called with:`, { files, type });
     
-    const audioFiles = Array.from(files).filter(file => 
-      file.type.startsWith('audio/') || file.name.match(/\.(mp3|wav|ogg|m4a|aac|flac)$/i)
-    );
+    if (!files || files.length === 0) {
+      console.log('No files provided');
+      return;
+    }
+    
+    const audioFiles = Array.from(files).filter(file => {
+      const isAudioType = file.type.startsWith('audio/');
+      const isAudioExtension = file.name.match(/\.(mp3|wav|ogg|m4a|aac|flac)$/i);
+      console.log(`File ${file.name}: type=${file.type}, size=${file.size}, isAudio=${isAudioType || isAudioExtension}`);
+      return isAudioType || isAudioExtension;
+    });
+    
+    console.log(`Found ${audioFiles.length} audio files out of ${files.length} total files`);
     
     if (audioFiles.length === 0) {
+      console.log('No valid audio files found');
       toast({
         title: ts('Invalid Files', 'Àwọn Fáìlì Tí Kò Tọ́'),
-        description: ts('Please upload audio files (MP3, WAV, OGG, M4A)', 
-                       'Jọ̀wọ́ gbé àwọn fáìlì orin sókè (MP3, WAV, OGG, M4A)'),
+        description: ts('Please upload audio files (MP3, WAV, OGG, M4A, AAC, FLAC)', 
+                       'Jọ̀wọ́ gbé àwọn fáìlì orin sókè (MP3, WAV, OGG, M4A, AAC, FLAC)'),
         variant: "destructive",
       });
       return;
@@ -488,10 +499,14 @@ export const Yemoja432HzHealing: React.FC = () => {
     console.log(`Processing ${audioFiles.length} audio files for ${type} ritual`);
     
     // Add files immediately for better user experience
-    setUploadedTracks(prev => ({
-      ...prev,
-      [type]: [...prev[type], ...audioFiles]
-    }));
+    setUploadedTracks(prev => {
+      const newState = {
+        ...prev,
+        [type]: [...prev[type], ...audioFiles]
+      };
+      console.log('Updated uploaded tracks:', newState);
+      return newState;
+    });
     
     toast({
       title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
@@ -506,12 +521,12 @@ export const Yemoja432HzHealing: React.FC = () => {
       testAudio.src = objectUrl;
       
       testAudio.addEventListener('canplaythrough', () => {
-        console.log(`File ${index + 1} (${file.name}) is ready to play`);
+        console.log(`✓ File ${index + 1} (${file.name}) is ready to play`);
         URL.revokeObjectURL(objectUrl);
       });
       
       testAudio.addEventListener('error', (e) => {
-        console.error(`File ${index + 1} (${file.name}) failed to load:`, e);
+        console.error(`✗ File ${index + 1} (${file.name}) failed to load:`, e);
         URL.revokeObjectURL(objectUrl);
       });
       
@@ -701,8 +716,11 @@ export const Yemoja432HzHealing: React.FC = () => {
                   <input
                     type="file"
                     multiple
-                    accept="audio/*"
-                    onChange={(e) => handleFileUpload(e.target.files, 'morning')}
+                    accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac"
+                    onChange={(e) => {
+                      console.log('Morning file input changed:', e.target.files);
+                      handleFileUpload(e.target.files, 'morning');
+                    }}
                     className="hidden"
                     id="morning-upload"
                   />
@@ -710,6 +728,9 @@ export const Yemoja432HzHealing: React.FC = () => {
                     <Upload className="w-8 h-8 mx-auto mb-2 text-amber-500" />
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       {ts('Click to upload morning healing tracks', 'Tẹ láti gbé àwọn orin ìwòsàn òwúrọ̀ sókè')}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {ts('Supports: MP3, WAV, OGG, M4A, AAC, FLAC', 'Àtìlẹ́yìn: MP3, WAV, OGG, M4A, AAC, FLAC')}
                     </p>
                   </label>
                 </div>
@@ -719,15 +740,48 @@ export const Yemoja432HzHealing: React.FC = () => {
                     <p className="text-sm font-medium">{ts('Uploaded Tracks:', 'Àwọn Orin Tí A Gbà Sókè:')}</p>
                     {uploadedTracks.morning.map((file, index) => (
                       <div key={index} className="flex items-center justify-between bg-amber-50 p-2 rounded">
-                        <span className="text-sm">{file.name}</span>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => removeTrack('morning', index)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          ×
-                        </Button>
+                        <div className="flex-1">
+                          <span className="text-sm">{file.name}</span>
+                          <div className="text-xs text-gray-500">
+                            {Math.round(file.size / 1024)} KB • {file.type || 'unknown type'}
+                          </div>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => {
+                              console.log('Testing audio playback for:', file.name);
+                              const testAudio = new Audio();
+                              const objectUrl = URL.createObjectURL(file);
+                              testAudio.src = objectUrl;
+                              testAudio.volume = 0.5;
+                              testAudio.addEventListener('canplaythrough', () => {
+                                console.log('Audio ready, attempting to play');
+                                testAudio.play().then(() => {
+                                  console.log('Audio playing successfully');
+                                  setTimeout(() => {
+                                    testAudio.pause();
+                                    URL.revokeObjectURL(objectUrl);
+                                  }, 3000);
+                                }).catch(console.error);
+                              });
+                              testAudio.addEventListener('error', console.error);
+                              testAudio.load();
+                            }}
+                            className="text-green-600 hover:text-green-700"
+                          >
+                            ▶
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => removeTrack('morning', index)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            ×
+                          </Button>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -745,8 +799,11 @@ export const Yemoja432HzHealing: React.FC = () => {
                   <input
                     type="file"
                     multiple
-                    accept="audio/*"
-                    onChange={(e) => handleFileUpload(e.target.files, 'evening')}
+                    accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac"
+                    onChange={(e) => {
+                      console.log('Evening file input changed:', e.target.files);
+                      handleFileUpload(e.target.files, 'evening');
+                    }}
                     className="hidden"
                     id="evening-upload"
                   />
@@ -754,6 +811,9 @@ export const Yemoja432HzHealing: React.FC = () => {
                     <Upload className="w-8 h-8 mx-auto mb-2 text-indigo-500" />
                     <p className="text-sm text-gray-600 dark:text-gray-300">
                       {ts('Click to upload evening healing tracks', 'Tẹ láti gbé àwọn orin ìwòsàn alẹ́ sókè')}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {ts('Supports: MP3, WAV, OGG, M4A, AAC, FLAC', 'Àtìlẹ́yìn: MP3, WAV, OGG, M4A, AAC, FLAC')}
                     </p>
                   </label>
                 </div>
@@ -763,15 +823,48 @@ export const Yemoja432HzHealing: React.FC = () => {
                     <p className="text-sm font-medium">{ts('Uploaded Tracks:', 'Àwọn Orin Tí A Gbà Sókè:')}</p>
                     {uploadedTracks.evening.map((file, index) => (
                       <div key={index} className="flex items-center justify-between bg-indigo-50 p-2 rounded">
-                        <span className="text-sm">{file.name}</span>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => removeTrack('evening', index)}
-                          className="text-red-500 hover:text-red-700"
-                        >
-                          ×
-                        </Button>
+                        <div className="flex-1">
+                          <span className="text-sm">{file.name}</span>
+                          <div className="text-xs text-gray-500">
+                            {Math.round(file.size / 1024)} KB • {file.type || 'unknown type'}
+                          </div>
+                        </div>
+                        <div className="flex gap-1">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => {
+                              console.log('Testing audio playback for:', file.name);
+                              const testAudio = new Audio();
+                              const objectUrl = URL.createObjectURL(file);
+                              testAudio.src = objectUrl;
+                              testAudio.volume = 0.5;
+                              testAudio.addEventListener('canplaythrough', () => {
+                                console.log('Audio ready, attempting to play');
+                                testAudio.play().then(() => {
+                                  console.log('Audio playing successfully');
+                                  setTimeout(() => {
+                                    testAudio.pause();
+                                    URL.revokeObjectURL(objectUrl);
+                                  }, 3000);
+                                }).catch(console.error);
+                              });
+                              testAudio.addEventListener('error', console.error);
+                              testAudio.load();
+                            }}
+                            className="text-green-600 hover:text-green-700"
+                          >
+                            ▶
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => removeTrack('evening', index)}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            ×
+                          </Button>
+                        </div>
                       </div>
                     ))}
                   </div>
