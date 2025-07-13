@@ -382,9 +382,17 @@ export const Obatala963HzHealing: React.FC = () => {
       </div>
       
       <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
-        {/* Image Banner - Mobile responsive */}
-        <div className="w-full h-32 md:h-48 bg-gradient-to-r from-purple-900 via-pink-900 to-purple-900 rounded-lg border border-pink-300/20 flex items-center justify-center">
-          <Crown className="w-12 h-12 md:w-16 md:h-16 text-pink-200 opacity-60" />
+        {/* Authentic Òbàtálá Image Banner - Mobile responsive */}
+        <div className="w-full h-48 md:h-64 rounded-lg overflow-hidden border border-pink-300/20 shadow-lg">
+          <img 
+            src="/static/images/obatala_authentic.png" 
+            alt="Òbàtálá - Orisha of Divine Wisdom and Light"
+            className="w-full h-full object-cover"
+            style={{
+              objectPosition: 'center',
+              filter: 'brightness(0.9) contrast(1.1)'
+            }}
+          />
         </div>
 
         {/* Header Section with HTML template styling - Mobile optimized */}
