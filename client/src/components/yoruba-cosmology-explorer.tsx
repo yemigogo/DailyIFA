@@ -174,8 +174,20 @@ export const YorubaCosmologyExplorer: React.FC = () => {
     quizzesTaken: 0,
     bestScore: 0,
     lastStudied: '',
-    totalTimeSpent: 0
+    totalTimeSpent: 0,
+    meditationSessions: 0,
+    avatarsCreated: 0
   });
+  
+  // Avatar Creator State
+  const [avatarStep, setAvatarStep] = useState(0);
+  const [avatarAnswers, setAvatarAnswers] = useState<string[]>([]);
+  const [createdAvatar, setCreatedAvatar] = useState<OrishaAvatar | null>(null);
+  
+  // Meditation Timer State  
+  const [meditationActive, setMeditationActive] = useState(false);
+  const [meditationTime, setMeditationTime] = useState(0);
+  const [selectedDuration, setSelectedDuration] = useState(300);
   const [sessionStart, setSessionStart] = useState<Date | null>(null);
 
   // Load progress from localStorage
