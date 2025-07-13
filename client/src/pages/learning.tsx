@@ -52,7 +52,7 @@ interface GlossaryTerm {
 const Learning: React.FC = () => {
   const { language, ts } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedModule, setSelectedModule] = useState<string>('cosmology-explorer');
+  const [selectedModule, setSelectedModule] = useState<string>('spiritual-audio');
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
 
   const playAudio = (audioUrl: string, id: string) => {
