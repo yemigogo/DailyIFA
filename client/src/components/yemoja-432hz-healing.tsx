@@ -101,6 +101,8 @@ export const Yemoja432HzHealing: React.FC = () => {
     morning: [],
     evening: []
   });
+  const [crystalAnimation, setCrystalAnimation] = useState(false);
+  const crystalCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const ts = (english: string, yoruba: string) => 
     language === 'yoruba' ? yoruba : english;
@@ -111,6 +113,87 @@ export const Yemoja432HzHealing: React.FC = () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
+
+  // Water crystal animation effect
+  useEffect(() => {
+    if (!crystalAnimation || !crystalCanvasRef.current) return;
+
+    const canvas = crystalCanvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    canvas.width = 400;
+    canvas.height = 400;
+
+    let animationId: number;
+    let frame = 0;
+
+    const drawCrystalFormation = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Create gradient background
+      const gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 200);
+      gradient.addColorStop(0, 'rgba(173, 216, 230, 0.3)');
+      gradient.addColorStop(1, 'rgba(0, 100, 150, 0.1)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw multiple crystal formations
+      const crystalCount = 6;
+      for (let i = 0; i < crystalCount; i++) {
+        const angle = (i * Math.PI * 2) / crystalCount + frame * 0.01;
+        const x = 200 + Math.cos(angle) * (80 + Math.sin(frame * 0.02) * 20);
+        const y = 200 + Math.sin(angle) * (80 + Math.cos(frame * 0.02) * 20);
+        
+        drawCrystal(ctx, x, y, 30 + Math.sin(frame * 0.03 + i) * 10, angle);
+      }
+
+      // Central crystal
+      drawCrystal(ctx, 200, 200, 50 + Math.sin(frame * 0.02) * 15, frame * 0.005);
+
+      frame++;
+      animationId = requestAnimationFrame(drawCrystalFormation);
+    };
+
+    const drawCrystal = (ctx: CanvasRenderingContext2D, x: number, y: number, size: number, rotation: number) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+
+      // Crystal structure with 6 points
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = (i * Math.PI) / 3;
+        const px = Math.cos(angle) * size;
+        const py = Math.sin(angle) * size;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+
+      // Crystal gradient
+      const crystalGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
+      crystalGradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+      crystalGradient.addColorStop(0.6, 'rgba(173, 216, 230, 0.6)');
+      crystalGradient.addColorStop(1, 'rgba(0, 100, 150, 0.3)');
+      
+      ctx.fillStyle = crystalGradient;
+      ctx.fill();
+      
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.restore();
+    };
+
+    drawCrystalFormation();
+
+    return () => {
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }, [crystalAnimation]);
 
   // Authentic 432Hz audio sources for Yemoja water healing
   const authentic432HzSources = {
@@ -233,6 +316,7 @@ export const Yemoja432HzHealing: React.FC = () => {
     if (!session) return;
     
     setIsPlaying(true);
+    setCrystalAnimation(true);
     
     // Try authentic audio first, fallback to synthetic
     tryAuthenticAudio(session.type);
@@ -262,6 +346,7 @@ export const Yemoja432HzHealing: React.FC = () => {
 
   const stopHealing = () => {
     setIsPlaying(false);
+    setCrystalAnimation(false);
     
     // Stop authentic audio if playing
     if (audioElementRef.current) {
@@ -678,6 +763,60 @@ export const Yemoja432HzHealing: React.FC = () => {
                       </li>
                     ))}
                   </ol>
+                </CardContent>
+              </Card>
+
+              {/* Water Crystal Visualization */}
+              <Card className="bg-white/50 dark:bg-black/20">
+                <CardHeader>
+                  <CardTitle className="text-lg text-cyan-800 dark:text-cyan-200 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    {ts('Interactive Water Crystal Formation', 'Ìdàgbàsókè Kírísítálì Omi Ìbáṣepọ̀')}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col lg:flex-row gap-6 items-center">
+                    <div className="flex-1 space-y-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {ts('Dr. Masaru Emoto\'s groundbreaking research demonstrated that water crystals respond to sound vibrations. Positive frequencies like 432Hz create harmonious, symmetrical patterns.', 
+                            'Ìwádìí ìlọ́sísẹ́ Dr. Masaru Emoto fihàn pé àwọn kírísítálì omi ń dahùn sí àwọn gbígbọ̀n. Àwọn ìgbọ̀nsí rere bí 432Hz ń ṣẹ̀dá àwọn àpẹẹrẹ ìrẹ̀pọ̀ àti símétrìkì.')}
+                      </p>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => setCrystalAnimation(!crystalAnimation)}
+                          className="text-cyan-600 border-cyan-300 hover:bg-cyan-50 dark:hover:bg-cyan-900/20"
+                        >
+                          <Sparkles className="w-4 h-4 mr-1" />
+                          {crystalAnimation ? 
+                            ts('Stop Crystal Animation', 'Dá Ìṣíṣe Kírísítálì Dúró') : 
+                            ts('Start Crystal Animation', 'Bẹ̀rẹ̀ Ìṣíṣe Kírísítálì')
+                          }
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="relative">
+                      <canvas
+                        ref={crystalCanvasRef}
+                        className="border-2 border-cyan-200 rounded-lg bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 shadow-lg"
+                        width={400}
+                        height={400}
+                        style={{ width: '240px', height: '240px' }}
+                      />
+                      {!crystalAnimation && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/10 dark:bg-white/10 rounded-lg backdrop-blur-sm">
+                          <div className="text-center">
+                            <Sparkles className="w-12 h-12 mx-auto mb-3 text-cyan-400 animate-pulse" />
+                            <p className="text-sm text-cyan-600 dark:text-cyan-300 font-medium">
+                              {ts('Click to witness crystal formation', 'Tẹ láti rí ìdàgbàsókè kírísítálì')}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </CardContent>
