@@ -3,7 +3,7 @@ import {
   encyclopediaEntries, hyperlinkableTerms, encyclopediaProgress,
   learningPaths, achievements, learningModules, userProgress,
   userProfiles, notificationSettings, spiritualPractices, socialConnections, sharedInsights,
-  calendarEvents, orishaAssessments, themeCustomizations, audioPreferences,
+  calendarEvents, orishaAssessments, themeCustomizations, audioPreferences, cosmologyProgress,
   type Odu, type InsertOdu, type DailyReading, type InsertDailyReading, type DailyReadingWithOdu,
   type DailyPrayer, type InsertDailyPrayer, type IfaLunarPrayer, type InsertIfaLunarPrayer,
   type DivinationLog, type InsertDivinationLog, type DivinationLogWithOdu,
@@ -18,7 +18,8 @@ import {
   type SharedInsight, type InsertSharedInsight, type CalendarEvent, type InsertCalendarEvent,
   type OrishaAssessment, type InsertOrishaAssessment, type ThemeCustomization, type InsertThemeCustomization,
   type AudioPreferences, type InsertAudioPreferences, type UserProfileWithSettings,
-  type SpiritualPracticeWithInsights, type SharedInsightWithOdu, type CalendarEventWithDetails
+  type SpiritualPracticeWithInsights, type SharedInsightWithOdu, type CalendarEventWithDetails,
+  type CosmologyProgress, type InsertCosmologyProgress
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, or, ilike, sql, asc } from "drizzle-orm";
@@ -132,6 +133,17 @@ export interface IStorage {
   createAudioPreferences(preferences: InsertAudioPreferences): Promise<AudioPreferences>;
   getAudioPreferences(userId: string): Promise<AudioPreferences | undefined>;
   updateAudioPreferences(userId: string, updates: Partial<AudioPreferences>): Promise<AudioPreferences>;
+  
+  // Cosmology progress tracking methods
+  logCosmologyProgress(progress: InsertCosmologyProgress): Promise<CosmologyProgress>;
+  getCosmologyProgress(userId: string): Promise<CosmologyProgress[]>;
+  getCosmologyProgressStats(userId: string): Promise<{
+    totalSessions: number;
+    completedSections: number;
+    totalTimeSpent: number;
+    lastStudySession?: Date;
+    progressBySection: Record<string, number>;
+  }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -954,6 +966,59 @@ export class DatabaseStorage implements IStorage {
       .where(eq(audioPreferences.userId, userId))
       .returning();
     return updated;
+  }
+
+  // ===== COSMOLOGY PROGRESS TRACKING METHODS =====
+
+  async logCosmologyProgress(progress: InsertCosmologyProgress): Promise<CosmologyProgress> {
+    const [newProgress] = await db
+      .insert(cosmologyProgress)
+      .values(progress)
+      .returning();
+    return newProgress;
+  }
+
+  async getCosmologyProgress(userId: string): Promise<CosmologyProgress[]> {
+    return await db
+      .select()
+      .from(cosmologyProgress)
+      .where(eq(cosmologyProgress.userId, userId))
+      .orderBy(desc(cosmologyProgress.completedAt));
+  }
+
+  async getCosmologyProgressStats(userId: string): Promise<{
+    totalSessions: number;
+    completedSections: number;
+    totalTimeSpent: number;
+    lastStudySession?: Date;
+    progressBySection: Record<string, number>;
+  }> {
+    const progressData = await db
+      .select()
+      .from(cosmologyProgress)
+      .where(eq(cosmologyProgress.userId, userId))
+      .orderBy(desc(cosmologyProgress.completedAt));
+
+    const totalSessions = progressData.length;
+    const completedSections = new Set(progressData.map(p => p.sectionId)).size;
+    const totalTimeSpent = progressData.reduce((sum, p) => sum + (p.timeSpent || 0), 0);
+    const lastStudySession = progressData.length > 0 ? progressData[0].completedAt : undefined;
+
+    const progressBySection: Record<string, number> = {};
+    progressData.forEach(p => {
+      if (!progressBySection[p.sectionId]) {
+        progressBySection[p.sectionId] = 0;
+      }
+      progressBySection[p.sectionId]++;
+    });
+
+    return {
+      totalSessions,
+      completedSections,
+      totalTimeSpent,
+      lastStudySession,
+      progressBySection
+    };
   }
 }
 

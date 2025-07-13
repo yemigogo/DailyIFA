@@ -1,0 +1,135 @@
+import random
+from datetime import datetime
+
+# ======================
+# COSMIC REALMS DATABASE
+# ======================
+realms = {
+    "Òrun": {
+        "description": "The 7-layered heavenly realm where Orishas dwell",
+        "orishas": ["Ọbàtálá", "Olódùmarè", "Òrúnmìlà"],
+        "symbol": "⬆️",
+        "color": "#4B0082",
+        "gate": "Àjàlá-Òrun (Gate of Rebirth)"
+    },
+    "Ayé": {
+        "description": "Earthly marketplace where souls fulfill destinies",
+        "orishas": ["Ṣàngó", "Ọ̀ṣun", "Ọya"],
+        "symbol": "🌍",
+        "color": "#228B22",
+        "gate": "Ilẹ̀-Ifẹ̀ (Sacred City)"
+    },
+    "Ilẹ̀-Ọkùn": {
+        "description": "Oceanic abyss ruled by Olókun",
+        "orishas": ["Olókun", "Yemọja"],
+        "symbol": "🌊",
+        "color": "#1E90FF",
+        "gate": "Ọ̀nà Ilẹ̀ (Path to the Deep)"
+    }
+}
+
+# ======================
+# INTERACTIVE FUNCTIONS
+# ======================
+def explore_realm(name):
+    realm = realms[name]
+    print(f"\n{realm['symbol']} {name.upper()} {realm['symbol']}")
+    print(f"Color: {realm['color']}")
+    print(f"Gate: {realm['gate']}")
+    print(f"Orishas: {', '.join(realm['orishas'])}")
+    print(f"\nDESCRIPTION:\n{realm['description']}")
+    
+    # Generate random Yorùbá proverb about this realm
+    proverbs = {
+        "Òrun": ["Òrun ni àṣẹ wà, ayé ni a ó ṣe", "Heaven holds authority, Earth executes it"],
+        "Ayé": ["Ayé lọja, òrun nilẹ̀", "Earth is a market, Heaven is home"],
+        "Ilẹ̀-Ọkùn": ["Olókun ṣe ilẹ̀ adiye", "Olókun makes the ocean floor solid"]
+    }
+    prov = random.choice(proverbs[name])
+    print(f"\nWISDOM: '{prov[0]}'\n({prov[1]})")
+
+def cosmic_quiz():
+    questions = [
+        {
+            "q": "Where do souls choose their destiny before birth?",
+            "options": ["Ayé", "Òrun", "Ilẹ̀-Ọkùn"],
+            "a": 1
+        },
+        {
+            "q": "Which realm connects to all others through the palm tree?",
+            "options": ["Ayé", "Òrun", "Both"],
+            "a": 2
+        }
+    ]
+    
+    score = 0
+    for i, q in enumerate(questions):
+        print(f"\n{i+1}. {q['q']}")
+        for j, opt in enumerate(q['options']):
+            print(f"  {j+1}) {opt}")
+        
+        while True:
+            try:
+                ans = int(input("Your answer (1-3): ")) - 1
+                if ans == q['a']:
+                    print("✅ Correct!")
+                    score += 1
+                else:
+                    print(f"❌ The answer was: {q['options'][q['a']]}")
+                break
+            except:
+                print("Please enter 1, 2 or 3")
+    
+    print(f"\nYour score: {score}/{len(questions)}")
+    if score == len(questions):
+        print("You're a cosmology master! Àṣẹ!")
+    else:
+        print("Study the realms again with: explore_realm('Òrun')")
+
+# ======================
+# MAIN PROGRAM
+# ======================
+print("""
+██████  ██████  ██████  ██    ██ ██████  
+██   ██ ██   ██ ██   ██  ██  ██  ██   ██ 
+██████  ██████  ██████    ████   ██████  
+██      ██      ██         ██    ██      
+██      ██      ██         ██    ██      
+                                         
+       YORÙBÁ COSMOLOGY EXPLORER
+""")
+
+while True:
+    print("\nMAIN MENU")
+    print("1. Explore Realms")
+    print("2. Take Quiz")
+    print("3. Save Progress")
+    print("4. Exit")
+    
+    choice = input("Choose (1-4): ")
+    
+    if choice == "1":
+        print("\nAVAILABLE REALMS:")
+        for name in realms:
+            print(f"- {name} ({realms[name]['symbol']})")
+        
+        realm = input("\nEnter realm name: ").capitalize()
+        if realm in realms:
+            explore_realm(realm)
+        else:
+            print("Invalid realm! Try: Òrun, Ayé, or Ilẹ̀-Ọkùn")
+    
+    elif choice == "2":
+        cosmic_quiz()
+    
+    elif choice == "3":
+        with open("cosmology_progress.txt", "a") as f:
+            f.write(f"Studied on {datetime.now()}\n")
+        print("Progress saved!")
+    
+    elif choice == "4":
+        print("Odabo! (Goodbye)")
+        break
+    
+    else:
+        print("Invalid choice")

@@ -13,6 +13,7 @@ import opaIfaImage from '@assets/image_1752089221750.png';
 import ikinImage from '@assets/image_1752089487782.png';
 import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
+import CosmologyProgressTracker from '@/components/cosmology-progress-tracker';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -729,6 +730,10 @@ const Learning: React.FC = () => {
                           
                           {section.cosmologyStructure && (
                             <div className="space-y-6">
+                              <CosmologyProgressTracker 
+                                sectionId="spiritual_universe"
+                                sectionTitle={language === 'yoruba' ? section.titleYoruba : section.title}
+                              />
                               <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-lg border-l-4 border-l-indigo-500">
                                 <h3 className="text-xl font-semibold mb-3 text-indigo-800 dark:text-indigo-200">
                                   ✨ {language === 'yoruba' ? section.titleYoruba : section.title}
@@ -768,6 +773,10 @@ const Learning: React.FC = () => {
                           
                           {section.spiritDomains && (
                             <div className="space-y-6">
+                              <CosmologyProgressTracker 
+                                sectionId="spirit_domains"
+                                sectionTitle={language === 'yoruba' ? section.titleYoruba : section.title}
+                              />
                               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 p-6 rounded-lg border-l-4 border-l-emerald-500">
                                 <h3 className="text-xl font-semibold mb-3 text-emerald-800 dark:text-emerald-200">
                                   ✨ {language === 'yoruba' ? section.titleYoruba : section.title}
@@ -810,6 +819,10 @@ const Learning: React.FC = () => {
                           
                           {section.cosmicLaws && (
                             <div className="space-y-6">
+                              <CosmologyProgressTracker 
+                                sectionId="cosmic_laws"
+                                sectionTitle={language === 'yoruba' ? section.titleYoruba : section.title}
+                              />
                               <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 p-6 rounded-lg border-l-4 border-l-amber-500">
                                 <h3 className="text-xl font-semibold mb-3 text-amber-800 dark:text-amber-200">
                                   ⚖️ {language === 'yoruba' ? section.titleYoruba : section.title}
@@ -850,6 +863,10 @@ const Learning: React.FC = () => {
                           
                           {section.realmQuiz && (
                             <div className="space-y-6">
+                              <CosmologyProgressTracker 
+                                sectionId="realm_quiz"
+                                sectionTitle={language === 'yoruba' ? section.titleYoruba : section.title}
+                              />
                               <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-6 rounded-lg border-l-4 border-l-purple-500">
                                 <h3 className="text-xl font-semibold mb-3 text-purple-800 dark:text-purple-200">
                                   🔮 {language === 'yoruba' ? section.titleYoruba : section.title}

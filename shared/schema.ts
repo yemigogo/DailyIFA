@@ -503,5 +503,27 @@ export type CalendarEventWithDetails = CalendarEvent & {
   relatedPractices?: SpiritualPractice[];
 };
 
+// Learning Progress Tracking System
+export const cosmologyProgress = pgTable("cosmology_progress", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  sectionId: text("section_id").notNull(), // "spiritual_universe", "spirit_domains", "cosmic_laws", "realm_quiz"
+  sectionTitle: text("section_title").notNull(),
+  completedAt: timestamp("completed_at").defaultNow(),
+  timeSpent: integer("time_spent"), // in seconds
+  notes: text("notes"),
+  language: text("language").default("english"), // "english" or "yoruba"
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertCosmologyProgressSchema = createInsertSchema(cosmologyProgress).omit({
+  id: true,
+  completedAt: true,
+  createdAt: true,
+});
+
+export type CosmologyProgress = typeof cosmologyProgress.$inferSelect;
+export type InsertCosmologyProgress = z.infer<typeof insertCosmologyProgressSchema>;
+
 // Re-export encyclopedia types
 export * from "./encyclopedia-schema";

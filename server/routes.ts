@@ -6,7 +6,8 @@ import { storage } from "./storage";
 import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema, insertUserProfileSchema, insertNotificationSettingsSchema, 
          insertSpiritualPracticeSchema, insertSharedInsightSchema, insertCalendarEventSchema, 
-         insertOrishaAssessmentSchema, insertThemeCustomizationSchema, insertAudioPreferencesSchema } from "@shared/schema";
+         insertOrishaAssessmentSchema, insertThemeCustomizationSchema, insertAudioPreferencesSchema,
+         insertCosmologyProgressSchema } from "@shared/schema";
 import { format } from "date-fns";
 import { generateIfaLunarCalendar } from "./data/ifa-lunar-calendar";
 import { generateAll256Odu, getOduPaginated, searchOdu, getOduByCategory, getRandomOdu } from "./odu-generator";
@@ -705,6 +706,44 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
     } catch (error) {
       console.error("Error initializing learning modules:", error);
       res.status(500).json({ message: "Failed to initialize learning modules" });
+    }
+  });
+
+  // ===== COSMOLOGY PROGRESS TRACKING API ENDPOINTS =====
+  
+  // Log cosmology study session
+  app.post('/api/cosmology-progress', async (req, res) => {
+    try {
+      const progressData = insertCosmologyProgressSchema.parse(req.body);
+      const progress = await storage.logCosmologyProgress(progressData);
+      res.json(progress);
+    } catch (error) {
+      console.error("Error logging cosmology progress:", error);
+      res.status(500).json({ message: "Failed to log cosmology progress" });
+    }
+  });
+
+  // Get user's cosmology progress
+  app.get('/api/cosmology-progress/:userId', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const progress = await storage.getCosmologyProgress(userId);
+      res.json(progress);
+    } catch (error) {
+      console.error("Error fetching cosmology progress:", error);
+      res.status(500).json({ message: "Failed to fetch cosmology progress" });
+    }
+  });
+
+  // Get cosmology progress statistics
+  app.get('/api/cosmology-progress/:userId/stats', async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const stats = await storage.getCosmologyProgressStats(userId);
+      res.json(stats);
+    } catch (error) {
+      console.error("Error fetching cosmology stats:", error);
+      res.status(500).json({ message: "Failed to fetch cosmology stats" });
     }
   });
 
