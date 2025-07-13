@@ -1,0 +1,181 @@
+import random
+from datetime import datetime
+from time import sleep
+from vpython import *  # 3D visualization
+import json
+
+# ======================
+# COSMIC DATABASE
+# ======================
+orishas = {
+    "Ṣàngó": {"element": "fire", "color": vector(1,0,0), "symbol": "⚡"},
+    "Ọ̀ṣun": {"element": "water", "color": vector(1,1,0), "symbol": "🌊"},
+    "Ògún": {"element": "iron", "color": vector(0,0.5,0), "symbol": "⚔️"},
+    "Ọbàtálá": {"element": "air", "color": vector(1,1,1), "symbol": "☁️"},
+    "Yemọja": {"element": "water", "color": vector(0,0,1), "symbol": "🌍"}
+}
+
+cosmic_realms = {
+    "Òrun": {"position": vector(0,5,0), "size": vector(10,0.2,10), "color": vector(0.5,0,0.8)},
+    "Ayé": {"position": vector(0,0,0), "size": vector(12,0.2,12), "color": vector(0,0.6,0)},
+    "Ilẹ̀-Ọkùn": {"position": vector(0,-5,0), "size": vector(15,0.2,15), "color": vector(0,0,0.5)}
+}
+
+# ======================
+# 3D COSMIC VISUALIZATION
+# ======================
+def show_cosmos():
+    scene = canvas(title="Yorùbá Cosmology", width=800, height=600)
+    
+    # Create realms
+    for name, realm in cosmic_realms.items():
+        box(pos=realm["position"], size=realm["size"], color=realm["color"], 
+            texture={"Òrun": "https://i.imgur.com/J5SQ5QX.jpg",
+                    "Ayé": "https://i.imgur.com/3Q7Y5Qj.jpg",
+                    "Ilẹ̀-Ọkùn": "https://i.imgur.com/8Z7QZ9Q.jpg"}.get(name))
+        text(text=name, pos=realm["position"]+vector(0,1,0), color=color.white)
+    
+    # Add connecting palm tree
+    cylinder(pos=vector(0,-5,0), axis=vector(0,10,0), radius=0.5, 
+            texture="https://i.imgur.com/5Q7Y5Qj.jpg")
+    
+    # Animate Orishas
+    orisha_spheres = []
+    for name, data in orishas.items():
+        s = sphere(pos=vector(random.uniform(-4,4), random.uniform(-4,4), random.uniform(-4,4)),
+                  radius=0.5, color=data["color"], texture=data["symbol"])
+        orisha_spheres.append(s)
+    
+    # Animation loop
+    while True:
+        for s in orisha_spheres:
+            s.pos.x += random.uniform(-0.1,0.1)
+            s.pos.z += random.uniform(-0.1,0.1)
+            rate(30)
+
+# ======================
+# ANCESTRAL MEDITATION TIMER
+# ======================
+def ancestral_meditation():
+    durations = {
+        "beginner": 5,
+        "intermediate": 15,
+        "advanced": 30
+    }
+    
+    print("\nSelect Meditation Level:")
+    for level in durations:
+        print(f"- {level.capitalize()} ({durations[level]} minutes)")
+    
+    level = input("Your choice: ").lower()
+    if level not in durations:
+        print("Invalid choice! Using beginner level.")
+        level = "beginner"
+    
+    mins = durations[level]
+    print(f"\nMeditation started for {mins} minutes...")
+    print("Focus on this prayer:\n'Ibá ọ, àwọn baba ńlá wa (Honor to you, great ancestors)'")
+    
+    for remaining in range(mins*60, 0, -1):
+        mins, secs = divmod(remaining, 60)
+        print(f"{mins:02d}:{secs:02d}", end="\r")
+        sleep(1)
+    
+    print("\nMeditation complete! Àṣẹ!")
+
+# ======================
+# ORISHA AVATAR CREATOR
+# ======================
+def create_avatar():
+    elements = {
+        "fire": ["Ṣàngó", "Ọya"],
+        "water": ["Ọ̀ṣun", "Yemọja"],
+        "earth": ["Ọbàtálá", "Àgẹmọ"],
+        "air": ["Ọ̀rúnmìlà", "Òrìṣà Oko"]
+    }
+    
+    print("\n\033[1mOrisha Avatar Creator\033[0m")
+    print("Answer 3 questions to reveal your spiritual avatar:")
+    
+    # Question 1: Birth season
+    season = input("1. Your birth season (rainy/dry/harmattan): ").lower()
+    if "rain" in season:
+        primary_element = "water"
+    elif "harm" in season:
+        primary_element = "air"
+    else:
+        primary_element = "fire" if random.random() > 0.5 else "earth"
+    
+    # Question 2: Personality
+    personality = input("2. Your approach to problems (quick/thoughtful/adaptable): ").lower()
+    if "quick" in personality:
+        secondary_element = "fire"
+    elif "thought" in personality:
+        secondary_element = "earth"
+    else:
+        secondary_element = "air" if random.random() > 0.5 else "water"
+    
+    # Question 3: Life focus
+    focus = input("3. Your life focus (justice/wisdom/creation/balance): ").lower()
+    focus_map = {
+        "just": "Ṣàngó",
+        "wis": "Ọ̀rúnmìlà",
+        "cre": "Ọbàtálá",
+        "bal": "Èṣù"
+    }
+    for k,v in focus_map.items():
+        if k in focus:
+            chosen_orisha = v
+            break
+    else:
+        chosen_orisha = random.choice(elements[primary_element])
+    
+    # Generate avatar
+    avatar = {
+        "orisha": chosen_orisha,
+        "elements": f"{primary_element}-{secondary_element}",
+        "symbol": orishas.get(chosen_orisha, {}).get("symbol", "✨"),
+        "message": f"You embody {chosen_orisha}'s {orishas[chosen_orisha]['element']} energy"
+    }
+    
+    # Display results
+    print(f"\n{'='*40}")
+    print(f"Your Orisha Avatar: {avatar['orisha']} {avatar['symbol']}")
+    print(f"Elemental Balance: {avatar['elements']}")
+    print(f"Message: {avatar['message']}")
+    print(f"{'='*40}")
+    
+    # Save to file
+    with open("orisha_avatar.json", "w") as f:
+        json.dump(avatar, f)
+    print("Avatar saved to orisha_avatar.json")
+
+# ======================
+# MAIN MENU
+# ======================
+def main():
+    while True:
+        print("""
+        \033[1mYORÙBÁ SPIRITUAL SUITE\033[0m
+        1. 3D Cosmic Visualization
+        2. Ancestral Meditation Timer
+        3. Orisha Avatar Creator
+        4. Exit
+        """)
+        
+        choice = input("Choose (1-4): ")
+        
+        if choice == "1":
+            show_cosmos()
+        elif choice == "2":
+            ancestral_meditation()
+        elif choice == "3":
+            create_avatar()
+        elif choice == "4":
+            print("Odabo! (Goodbye)")
+            break
+        else:
+            print("Invalid choice")
+
+if __name__ == "__main__":
+    main()

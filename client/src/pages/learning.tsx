@@ -49,7 +49,7 @@ interface GlossaryTerm {
 const Learning: React.FC = () => {
   const { language, ts } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedModule, setSelectedModule] = useState<string>('introduction');
+  const [selectedModule, setSelectedModule] = useState<string>('cosmology-explorer');
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
 
   const playAudio = (audioUrl: string, id: string) => {
@@ -626,7 +626,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-10 mb-8">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 lg:grid-cols-10 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
