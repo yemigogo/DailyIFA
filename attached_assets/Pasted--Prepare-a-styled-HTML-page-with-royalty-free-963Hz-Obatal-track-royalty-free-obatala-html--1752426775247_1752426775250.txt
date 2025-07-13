@@ -1,0 +1,73 @@
+# Prepare a styled HTML page with royalty-free 963Hz Obatalá track
+
+royalty_free_obatala_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obatalá Love & Healing – 963Hz (Royalty-Free)</title>
+  <style>
+    body {
+      background-color: #0b0b0b;
+      color: #e7f7ff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #ffffff;
+    }
+    .section {
+      background-color: #1a1a1a;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-left: 5px solid #9df;
+      border-radius: 6px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+    a {
+      color: #7fd0ff;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🕊️ Obatalá – Divine Love & Healing Frequency (963Hz)</h1>
+
+<div class="section">
+  <h2>🌸 Why 963Hz?</h2>
+  <p>The 963Hz frequency is known for its spiritual healing qualities, aligning with the divine energy of Obatalá. It helps activate the crown chakra and brings clarity, peace, and DNA repair.</p>
+</div>
+
+<div class="section">
+  <h2>🎧 Listen to Royalty-Free 963Hz Meditation</h2>
+  <p>This royalty-free track was sourced from Pixabay and is safe for app and mobile use. Download and store as <code>/static/audio/obatala_963hz_free.mp3</code> for local access:</p>
+  <audio controls>
+    <source src="/static/audio/obatala_963hz_free.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<div class="section">
+  <h2>✨ Healing Benefits</h2>
+  <ul>
+    <li>Emotional healing & inner peace</li>
+    <li>Spiritual clarity & DNA repair</li>
+    <li>Restores calm & divine presence</li>
+  </ul>
+</div>
+
+</body>
+</html>
+'''
+
+# Save the HTML file
+royalty_free_html_path = "/mnt/data/obatala_love_healing_963hz_free.html"
+with open(royalty_free_html_path, "w", encoding="utf-8") as f:
+    f.write(royalty_free_obatala_html)
+
+royalty_free_html_path

@@ -249,6 +249,28 @@ export const Obatala963HzHealing: React.FC = () => {
       }
     }
     
+    // Try royalty-free Obatalá audio
+    try {
+      console.log('Attempting royalty-free Obatalá 963Hz audio');
+      const audio = new Audio('/static/audio/obatala_963hz_free.mp3');
+      audio.volume = volume;
+      audio.loop = true;
+      
+      await audio.play();
+      
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+      }
+      audioElementRef.current = audio;
+      setUseAuthenticAudio(true);
+      setIsPlaying(true);
+      
+      console.log('✓ Using royalty-free Obatalá 963Hz audio');
+      return;
+    } catch (error) {
+      console.error('Royalty-free audio failed:', error);
+    }
+    
     // Fallback to synthetic 963Hz
     console.log('Using synthetic 963Hz generation');
     
@@ -526,11 +548,45 @@ export const Obatala963HzHealing: React.FC = () => {
         </TabsContent>
 
         <TabsContent value="audio" className="space-y-6">
+          <Card className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 border-pink-300/30">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-white">
+                <Music className="w-5 h-5" />
+                {ts('Royalty-Free 963Hz Audio', 'Orin 963Hz Tí Kò Ní Òfin')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="bg-gray-800/60 p-4 rounded-lg border border-pink-300/30">
+                <p className="text-blue-100 text-sm leading-relaxed mb-3">
+                  {ts(
+                    'This component includes royalty-free 963Hz Obatalá healing audio sourced from Pixabay. The audio will automatically play if available at:',
+                    'Ẹ̀ka yìí ní orin ìwòsàn Òbàtálá 963Hz tí kò ní òfin tí a gbà láti Pixabay. Orin yóò ṣe adàkọ́ láìfọwọ́yí tí ó bá wà ní:'
+                  )}
+                </p>
+                <code className="text-pink-300 text-xs bg-gray-900/50 px-2 py-1 rounded">
+                  /static/audio/obatala_963hz_free.mp3
+                </code>
+              </div>
+              
+              <div className="bg-gray-800/60 p-4 rounded-lg border border-pink-300/30">
+                <h4 className="font-medium text-white mb-2 flex items-center gap-2">
+                  <Crown className="w-4 h-4 text-pink-300" />
+                  {ts('Audio Priority Order', 'Ìlànà Orin')}
+                </h4>
+                <ol className="text-blue-100 text-sm space-y-1">
+                  <li>1. {ts('Uploaded authentic tracks', 'Àwọn orin òtítọ́ tí a gbé sókè')}</li>
+                  <li>2. {ts('Royalty-free Obatalá 963Hz audio', 'Orin Òbàtálá 963Hz tí kò ní òfin')}</li>
+                  <li>3. {ts('Synthetic 963Hz generation', 'Ìpilẹ̀ṣẹ̀ 963Hz àgb')}</li>
+                </ol>
+              </div>
+            </CardContent>
+          </Card>
+          
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Upload className="w-5 h-5" />
-                {ts('Upload 963Hz Tracks', 'Gbé Àwọn Orin 963Hz Sókè')}
+                {ts('Upload Custom 963Hz Tracks', 'Gbé Àwọn Orin 963Hz Àkànṣe Sókè')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
