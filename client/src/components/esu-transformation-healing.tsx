@@ -164,7 +164,7 @@ export default function EsuTransformationHealing() {
   const downloadCard = async () => {
     try {
       // Import the asset image path
-      const imageUrl = (await import('@assets/image_1752430300487.png')).default;
+      const imageUrl = (await import('@assets/image_1752430755508.png')).default;
       
       // Create a canvas to download the image
       const canvas = document.createElement('canvas');
@@ -223,7 +223,7 @@ export default function EsuTransformationHealing() {
           <div className="flex items-center gap-3">
             <Flame className="w-8 h-8 md:w-12 md:h-12 text-red-400" />
             <img 
-              src="/assets/image_1752430300487.png" 
+              src="/assets/image_1752430755508.png" 
               alt="Èṣù Guardian"
               className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-400 shadow-lg"
             />
@@ -250,7 +250,7 @@ export default function EsuTransformationHealing() {
         {/* Èṣù Transformation Card Display */}
         <div className="w-full rounded-lg overflow-hidden border border-red-500/20 shadow-lg">
           <img 
-            src="/assets/image_1752430300487.png" 
+            src="/assets/image_1752430755508.png" 
             alt="Èṣù - Guardian of Crossroads and Fire Transformation"
             className="w-full h-auto object-contain"
             style={{
