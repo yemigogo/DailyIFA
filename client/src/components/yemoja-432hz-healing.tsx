@@ -20,7 +20,9 @@ import {
   CheckCircle,
   Info,
   Upload,
-  Music
+  Music,
+  ExternalLink,
+  Plus
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
@@ -878,11 +880,43 @@ export const Yemoja432HzHealing: React.FC = () => {
                     {ts('Recommended 432Hz Sources', 'Àwọn Orísun 432Hz Tí A Ṣe Àfidájú')}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-xs">
-                  <p>• {ts('YouTube: Search "432Hz water meditation" and download with youtube-dl', 'YouTube: Wá "432Hz water meditation" kí o sì gbà sílẹ̀ pẹ̀lú youtube-dl')}</p>
-                  <p>• {ts('Spotify: Look for "432Hz Healing" playlists and use recording software', 'Spotify: Wá àwọn playlist "432Hz Healing" kí o sì lo software ìgbóhùn')}</p>
-                  <p>• {ts('SoundCloud: Many free 432Hz tracks available for download', 'SoundCloud: Ọ̀pọ̀lọpọ̀ orin 432Hz ọ̀fẹ́ wà fún ìgbà sílẹ̀')}</p>
-                  <p>• {ts('Local recordings: Record yourself chanting with 432Hz tuning', 'Àwọn ìgbóhùn agbègbè: Gba ara rẹ sílẹ̀ tí o ń kọrin pẹ̀lú ìgbọ̀nsí 432Hz')}</p>
+                <CardContent className="space-y-3 text-xs">
+                  {/* Featured Track */}
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-3 rounded-lg border border-blue-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Sparkles className="w-4 h-4 text-blue-600" />
+                      <span className="font-semibold text-blue-800 dark:text-blue-200">
+                        {ts('Featured 432Hz Track', 'Orin 432Hz Àṣàyàn')}
+                      </span>
+                    </div>
+                    <p className="text-blue-700 dark:text-blue-300 mb-2">
+                      {ts('Pure 432Hz Water Healing Frequency - Perfect for Yemoja rituals', 
+                          'Ìgbọ̀nsí Ìwòsàn Omi 432Hz Mímọ́ - Pípé fún àwọn àṣẹ Yemọja')}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => window.open('https://www.youtube.com/watch?v=ze-pxwMJpLo&t=65s', '_blank')}
+                        className="border-blue-300 text-blue-600 hover:bg-blue-50 text-xs"
+                      >
+                        <ExternalLink className="w-3 h-3 mr-1" />
+                        {ts('Listen on YouTube', 'Gbọ́ lórí YouTube')}
+                      </Button>
+                      <span className="text-xs text-blue-600">
+                        {ts('Use download tools to save locally', 'Lo àwọn irinṣẹ́ ìgbàsílẹ̀ láti tọ́jú sí agbègbè')}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Other Sources */}
+                  <div className="space-y-2">
+                    <p className="font-medium text-gray-700 dark:text-gray-300">{ts('Other Sources:', 'Àwọn Orísun Mìíràn:')}</p>
+                    <p>• {ts('YouTube-DL: Download the featured track with `youtube-dl "https://www.youtube.com/watch?v=ze-pxwMJpLo"`', 'YouTube-DL: Gbà orin àṣàyàn sílẹ̀ pẹ̀lú `youtube-dl "https://www.youtube.com/watch?v=ze-pxwMJpLo"`')}</p>
+                    <p>• {ts('Browser Extensions: Use audio downloaders for YouTube videos', 'Àwọn Ẹ̀rọ Àfikún Aláṣẹ: Lo àwọn olùgbàsílẹ̀ orin fún àwọn fídíò YouTube')}</p>
+                    <p>• {ts('Screen Recording: Record audio while playing the YouTube track', 'Ìgbóhùn Ojú-ẹ̀rọ: Gba orin sílẹ̀ nígbà tí o ń mu orin YouTube náà dún')}</p>
+                    <p>• {ts('Mobile Apps: Use audio recording apps to capture the healing frequency', 'Àwọn Ẹ̀rọ Ìbánisọ̀rọ̀: Lo àwọn ẹ̀rọ ìgbóhùn láti gba ìgbọ̀nsí ìwòsàn náà')}</p>
+                  </div>
                 </CardContent>
               </Card>
             </CardContent>
