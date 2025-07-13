@@ -209,11 +209,13 @@ export const Yemoja432HzHealing: React.FC = () => {
       "https://www.youtube.com/watch?v=wGHQ2sPFfXk", // 432Hz Water Meditation
       "https://www.youtube.com/watch?v=i11MakqVr7c", // 432Hz Ocean Waves
       "https://www.youtube.com/watch?v=sUHKjej4CRM", // 432Hz Healing Water
+      "https://www.youtube.com/watch?v=ze-pxwMJpLo", // User's 432Hz Track
     ],
     evening: [
       "https://www.youtube.com/watch?v=YQQ2StSwg_s", // 432Hz Moon Water
       "https://www.youtube.com/watch?v=E2bMQi2vRHs", // 432Hz Night Healing
       "https://www.youtube.com/watch?v=5qap5aO4i9A", // 432Hz Deep Water
+      "https://www.youtube.com/watch?v=ze-pxwMJpLo", // User's 432Hz Track
     ]
   };
 
@@ -243,14 +245,27 @@ export const Yemoja432HzHealing: React.FC = () => {
           description: ts(`Playing: ${randomTrack.name}`, `Ń dún: ${randomTrack.name}`),
         });
         
-        // Start playback immediately
-        audio.play().then(() => {
-          console.log('Audio playback started successfully');
-        }).catch((error) => {
-          console.error('Audio play failed:', error);
-          setUseAuthenticAudio(false);
-          generate432HzTone();
-        });
+        // Start playback immediately with user interaction handling
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            console.log('Audio playback started successfully');
+          }).catch((error) => {
+            console.error('Audio play failed:', error);
+            // Handle autoplay restrictions
+            if (error.name === 'NotAllowedError') {
+              console.log('Autoplay blocked - user interaction required');
+              toast({
+                title: ts('Click to Start Audio', 'Tẹ Láti Bẹ̀rẹ̀ Orin'),
+                description: ts('Browser requires user interaction to play audio', 'Awọn ayẹwo ayẹwo nilo ibaraẹnisọrọ olumulo lati mu orin'),
+              });
+              // Keep the audio element ready for manual start
+              return;
+            }
+            setUseAuthenticAudio(false);
+            generate432HzTone();
+          });
+        }
       });
       
       audio.addEventListener('error', (e) => {
@@ -470,49 +485,34 @@ export const Yemoja432HzHealing: React.FC = () => {
       return;
     }
     
-    // Test each audio file before adding
-    const validFiles: File[] = [];
-    let processedCount = 0;
+    console.log(`Processing ${audioFiles.length} audio files for ${type} ritual`);
     
-    audioFiles.forEach(file => {
+    // Add files immediately for better user experience
+    setUploadedTracks(prev => ({
+      ...prev,
+      [type]: [...prev[type], ...audioFiles]
+    }));
+    
+    toast({
+      title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
+      description: ts(`Added ${audioFiles.length} tracks for ${type} ritual`, 
+                     `Àwọn orin ${audioFiles.length} ti di kún fún àṣẹ ${type}`),
+    });
+    
+    // Test playability in background
+    audioFiles.forEach((file, index) => {
       const testAudio = new Audio();
       const objectUrl = URL.createObjectURL(file);
       testAudio.src = objectUrl;
       
       testAudio.addEventListener('canplaythrough', () => {
-        validFiles.push(file);
-        processedCount++;
-        
-        if (processedCount === audioFiles.length) {
-          if (validFiles.length > 0) {
-            setUploadedTracks(prev => ({
-              ...prev,
-              [type]: [...prev[type], ...validFiles]
-            }));
-            
-            toast({
-              title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
-              description: ts(`Added ${validFiles.length} valid tracks for ${type} ritual`, 
-                             `Àwọn orin ${validFiles.length} tí ó tọ́ ti di kún fún àṣẹ ${type}`),
-            });
-          }
-        }
-        
+        console.log(`File ${index + 1} (${file.name}) is ready to play`);
         URL.revokeObjectURL(objectUrl);
       });
       
-      testAudio.addEventListener('error', () => {
-        processedCount++;
+      testAudio.addEventListener('error', (e) => {
+        console.error(`File ${index + 1} (${file.name}) failed to load:`, e);
         URL.revokeObjectURL(objectUrl);
-        
-        if (processedCount === audioFiles.length && validFiles.length === 0) {
-          toast({
-            title: ts('Upload Failed', 'Gbígbé Sókè Kùnà'),
-            description: ts('No valid audio files found. Please check your files.', 
-                           'Kò sí fáìlì orin tí ó tọ́. Jọ̀wọ́ ṣàyẹ̀wò àwọn fáìlì rẹ.'),
-            variant: "destructive",
-          });
-        }
       });
       
       testAudio.load();
@@ -957,6 +957,26 @@ export const Yemoja432HzHealing: React.FC = () => {
                       {isPlaying ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
                       {isPlaying ? ts('Stop', 'Dúró') : ts('Play', 'Dún')}
                     </Button>
+                    
+                    {/* Manual audio control for uploaded tracks */}
+                    {useAuthenticAudio && audioElementRef.current && (
+                      <Button
+                        onClick={() => {
+                          if (audioElementRef.current) {
+                            if (audioElementRef.current.paused) {
+                              audioElementRef.current.play().catch(console.error);
+                            } else {
+                              audioElementRef.current.pause();
+                            }
+                          }
+                        }}
+                        variant="outline"
+                        className="border-green-300 text-green-600 hover:bg-green-50"
+                      >
+                        <Volume2 className="w-4 h-4 mr-1" />
+                        {ts('Force Play', 'Mu Dún')}
+                      </Button>
+                    )}
                     
                     <div className="flex items-center gap-2 flex-1">
                       <VolumeX className="w-4 h-4" />
