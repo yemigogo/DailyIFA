@@ -346,38 +346,94 @@ export const Obatala963HzHealing: React.FC = () => {
     : 100)) : 0;
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <Card className="border-white/20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold flex items-center justify-center gap-3">
-            <Bird className="w-8 h-8 text-white" />
-            <span className="bg-gradient-to-r from-gray-600 to-white bg-clip-text text-transparent">
-              {ts('Òbàtálá 963Hz Divine Healing', 'Ìwòsàn Òrìṣà Òbàtálá 963Hz')}
-            </span>
-            <Crown className="w-8 h-8 text-gray-300" />
-          </CardTitle>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
-            {ts('The God Frequency for soul purification and divine wisdom', 
-                'Ìgbọ̀nsí Ọlọ́run fún ìmọ́tótó ẹ̀mí àti ọgbọ́n òrìṣà')}
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-blue-50 p-6">
+      <div className="max-w-6xl mx-auto space-y-6">
+        {/* Header Section with HTML template styling */}
+        <div className="text-center py-8 border-l-4 border-pink-300 bg-gray-800/50 rounded-lg p-6">
+          <h1 className="text-4xl font-bold text-white flex items-center justify-center gap-4 mb-4">
+            🕊️ <span>{ts('Òbàtálá – Love & Healing Frequency (963Hz)', 'Òbàtálá – Ìgbọ̀nsí Ìfẹ́ & Ìwòsàn (963Hz)')}</span> <Crown className="w-10 h-10 text-pink-300" />
+          </h1>
+        </div>
+
+        {/* Divine Frequency Section */}
+        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            🌸 {ts('Divine Frequency – 963Hz', 'Ìgbọ̀nsí Òrìṣà – 963Hz')}
+          </h2>
+          <p className="text-blue-100 leading-relaxed">
+            {ts(
+              'This frequency, known as the "God Frequency," is deeply connected with inner healing, crown chakra activation, and soul-level purification. It perfectly resonates with the energy of Obatalá – Orisha of clarity, peace, and divine wisdom.',
+              'Ìgbọ̀nsí yìí, tí a mọ̀ sí "Ìgbọ̀nsí Ọlọ́run," ní ìbátan jinlẹ̀ pẹ̀lú ìwòsàn inú, jíjí adé chakra, àti ìmọ́tótó ẹ̀mí. Ó bára mu pẹ̀lú agbára Òbàtálá – Òrìṣà ìmọ́lẹ̀, àlàáfíà, àti ọgbọ́n òrìṣà.'
+            )}
           </p>
-        </CardHeader>
-      </Card>
+        </div>
+
+        {/* Benefits Section from HTML template */}
+        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            ✨ {ts('Benefits of Òbàtálá Frequency', 'Àwọn Àǹfààní Ìgbọ̀nsí Òbàtálá')}
+          </h2>
+          <ul className="space-y-3 text-blue-100">
+            <li className="flex items-center gap-3">
+              <Heart className="w-5 h-5 text-pink-300 flex-shrink-0" />
+              {ts('Emotional peace and clarity', 'Àlàáfíà ẹ̀mí àti ìmọ́lẹ̀')}
+            </li>
+            <li className="flex items-center gap-3">
+              <Sparkles className="w-5 h-5 text-pink-300 flex-shrink-0" />
+              {ts('Deep spiritual healing and release', 'Ìwòsàn ẹ̀mí jinlẹ̀ àti ìtúsílẹ̀')}
+            </li>
+            <li className="flex items-center gap-3">
+              <Crown className="w-5 h-5 text-pink-300 flex-shrink-0" />
+              {ts('DNA repair and crown chakra awakening', 'Àtúnṣe DNA àti jíjí adé chakra')}
+            </li>
+          </ul>
+        </div>
+
+        {/* Audio Section from HTML template */}
+        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+            🎧 {ts('Listen to Òbàtálá Meditation Music', 'Gbọ́ Orin Àṣẹ Òbàtálá')}
+          </h2>
+          <p className="text-blue-100 leading-relaxed mb-6">
+            {ts(
+              'Play the meditation below, tuned to 963Hz, to enter a space of peace, healing, and universal love:',
+              'Dún orin àṣẹ yìí tí a tò sí 963Hz, láti wọ inú àlàáfíà, ìwòsàn, àti ìfẹ́ gbogbo ayé:'
+            )}
+          </p>
+          
+          {/* Audio Players for offline support */}
+          <div className="space-y-4">
+            <audio 
+              controls 
+              className="w-full rounded-lg bg-gray-700 border border-pink-300/30"
+              style={{ filter: 'hue-rotate(280deg) saturate(1.2)' }}
+            >
+              <source src="/static/audio/obatala_963hz.mp3" type="audio/mpeg" />
+              {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
+            </audio>
+            
+            <p className="text-sm text-blue-200 italic">
+              {ts('Note: Audio files will be served from your local static folder for offline support', 
+                  'Àkíyèsí: Àwọn fáìlì orin yóò wá láti fódà static rẹ fún àtìlẹyìn aláìníìṣípọ̀n')}
+            </p>
+          </div>
+        </div>
 
       <Tabs defaultValue="rituals" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-white/50 dark:bg-gray-800/50">
-          <TabsTrigger value="rituals" className="flex items-center gap-2">
+        <TabsList className="grid w-full grid-cols-4 bg-gray-800/80 border border-pink-300/30">
+          <TabsTrigger value="rituals" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
             <Crown className="w-4 h-4" />
             {ts('Rituals', 'Àṣẹ')}
           </TabsTrigger>
-          <TabsTrigger value="audio" className="flex items-center gap-2">
+          <TabsTrigger value="audio" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
             <Music className="w-4 h-4" />
             {ts('Audio', 'Orin')}
           </TabsTrigger>
-          <TabsTrigger value="science" className="flex items-center gap-2">
+          <TabsTrigger value="science" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
             <Star className="w-4 h-4" />
             {ts('Science', 'Sáyẹnsì')}
           </TabsTrigger>
-          <TabsTrigger value="session" className="flex items-center gap-2">
+          <TabsTrigger value="session" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
             <Clock className="w-4 h-4" />
             {ts('Session', 'Ìgbà')}
           </TabsTrigger>
@@ -386,12 +442,12 @@ export const Obatala963HzHealing: React.FC = () => {
         <TabsContent value="rituals" className="space-y-6">
           <div className="grid md:grid-cols-3 gap-6">
             {Object.entries(obatalaRituals).map(([type, ritual]) => (
-              <Card key={type} className="border-gray-200 hover:border-gray-300 transition-colors">
+              <Card key={type} className="bg-gray-800/60 border border-pink-300/30 hover:border-pink-300/50 transition-colors">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    {type === 'purification' && <Sparkles className="w-5 h-5 text-white" />}
-                    {type === 'healing' && <Heart className="w-5 h-5 text-red-400" />}
-                    {type === 'wisdom' && <Crown className="w-5 h-5 text-yellow-500" />}
+                  <CardTitle className="flex items-center gap-2 text-lg text-white">
+                    {type === 'purification' && <Sparkles className="w-5 h-5 text-pink-300" />}
+                    {type === 'healing' && <Heart className="w-5 h-5 text-pink-300" />}
+                    {type === 'wisdom' && <Crown className="w-5 h-5 text-pink-300" />}
                     {ts(type.charAt(0).toUpperCase() + type.slice(1), 
                         type === 'purification' ? 'Ìmọ́tótó' : 
                         type === 'healing' ? 'Ìwòsàn' : 'Ọgbọ́n')}
@@ -399,24 +455,24 @@ export const Obatala963HzHealing: React.FC = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <h4 className="font-medium">{ts('Steps', 'Àwọn Ìgbésẹ̀')}</h4>
+                    <h4 className="font-medium text-blue-100">{ts('Steps', 'Àwọn Ìgbésẹ̀')}</h4>
                     <ul className="text-sm space-y-1">
                       {(language === 'yoruba' ? ritual.stepsYoruba : ritual.steps).map((step, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <span className="text-gray-400 font-mono text-xs mt-0.5">{index + 1}.</span>
-                          <span>{step}</span>
+                          <span className="text-pink-300 font-mono text-xs mt-0.5">{index + 1}.</span>
+                          <span className="text-blue-100">{step}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <Badge variant="outline" className="bg-gray-50">
+                    <Badge variant="outline" className="bg-pink-300/20 border-pink-300/50 text-white">
                       {ritual.duration} {ts('min', 'ìṣẹ́jú')} • 963Hz
                     </Badge>
                     <Button
                       onClick={() => startRitual(type as 'purification' | 'healing' | 'wisdom')}
-                      className="bg-gray-600 hover:bg-gray-700"
+                      className="bg-pink-600 hover:bg-pink-700 text-white"
                       disabled={session?.isActive}
                     >
                       {ts('Start', 'Bẹ̀rẹ̀')}
@@ -670,12 +726,12 @@ export const Obatala963HzHealing: React.FC = () => {
                   </div>
 
                   {/* RELIABLE YOUTUBE AUDIO OPTION */}
-                  <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
-                    <h4 className="font-medium text-purple-800 mb-2 flex items-center">
-                      <ExternalLink className="w-4 h-4 mr-2" />
+                  <div className="bg-gray-800/60 border border-pink-300/30 p-4 rounded-lg">
+                    <h4 className="font-medium text-white mb-2 flex items-center">
+                      <ExternalLink className="w-4 h-4 mr-2 text-pink-300" />
                       {ts('Reliable 963Hz Audio', 'Orin 963Hz Tó Dára')}
                     </h4>
-                    <p className="text-sm text-purple-700 mb-3">
+                    <p className="text-sm text-blue-100 mb-3">
                       {ts('Open authentic 963Hz God Frequency in new tab (most reliable)', 
                           'Ṣí ìgbọ̀nsí Ọlọ́run 963Hz òtítọ́ ní tab tuntun (tó dára jùlọ)')}
                     </p>
@@ -690,7 +746,7 @@ export const Obatala963HzHealing: React.FC = () => {
                             description: ts('God Frequency opened in new tab', 'Ìgbọ̀nsí Ọlọ́run ti ṣí ní tab tuntun'),
                           });
                         }}
-                        className="bg-purple-600 hover:bg-purple-700"
+                        className="bg-pink-600 hover:bg-pink-700 text-white"
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         {ts('Open 963Hz God Frequency', 'Ṣí Ìgbọ̀nsí Ọlọ́run 963Hz')}
@@ -707,7 +763,7 @@ export const Obatala963HzHealing: React.FC = () => {
                           });
                         }}
                         variant="outline"
-                        className="border-purple-300 text-purple-700 hover:bg-purple-50"
+                        className="border-pink-300/50 text-pink-300 hover:bg-pink-300/20"
                       >
                         <Music className="w-4 h-4 mr-2" />
                         {ts('Alternative Track', 'Orin Mìíràn')}
@@ -716,20 +772,20 @@ export const Obatala963HzHealing: React.FC = () => {
                     
                     {/* Divine Timer */}
                     {session && (
-                      <div className="mt-4 p-3 bg-white rounded-lg border border-purple-200">
-                        <h5 className="text-sm font-medium text-purple-800 mb-2">
+                      <div className="mt-4 p-3 bg-gray-700/60 rounded-lg border border-pink-300/30">
+                        <h5 className="text-sm font-medium text-white mb-2">
                           {ts(`${obatalaRituals[session.type].duration}-Minute Divine Timer`, 
                               `Àkókò Òrìṣà Ìṣẹ́jú ${obatalaRituals[session.type].duration}`)}
                         </h5>
                         <div className="text-center">
-                          <div className="text-2xl font-mono text-purple-700 mb-1">
+                          <div className="text-2xl font-mono text-pink-300 mb-1">
                             {Math.floor(timeRemaining / 60).toString().padStart(2, '0')}:{(timeRemaining % 60).toString().padStart(2, '0')}
                           </div>
-                          <div className="text-xs text-purple-600">
+                          <div className="text-xs text-blue-200">
                             {ts('remaining', 'tó kù')}
                           </div>
                         </div>
-                        <div className="text-xs text-purple-700 mt-2 space-y-1">
+                        <div className="text-xs text-blue-100 mt-2 space-y-1">
                           <div>1. {ts('Allow audio in your browser', 'Gbà orin láàyè nínú ayẹwo rẹ')}</div>
                           <div>2. {ts('Chant: "Òbàtálá bàbá mi, mú kí inú mi mọ́"', 'Kọrin: "Òbàtálá bàbá mi, mú kí inú mi mọ́"')}</div>
                           <div>3. {ts('Focus on crown chakra', 'Dójúkọ adé chakra')}</div>
@@ -781,6 +837,7 @@ export const Obatala963HzHealing: React.FC = () => {
           )}
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 };
