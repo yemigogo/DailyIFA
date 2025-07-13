@@ -203,15 +203,19 @@ export default function OrunmilaWisdomHealing() {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a0a', color: '#e0f7ff' }} className="p-3 md:p-6">
+    <div className="min-h-screen p-3 md:p-6" style={{ backgroundColor: '#0a0a0a', color: '#e0f7ff' }}>
       {/* Mobile-First Header with HTML Template Styling */}
       <div className="max-w-2xl mx-auto">
-        {/* Optional Banner Image Placeholder */}
-        <div className="w-full h-48 md:h-64 rounded-lg mb-4 bg-gradient-to-r from-blue-900/40 to-cyan-900/40 border border-cyan-500/20 flex items-center justify-center">
-          <div className="text-center">
-            <Eye className="w-12 h-12 md:w-16 md:h-16 text-cyan-400 mx-auto mb-2" />
-            <p className="text-cyan-300 text-sm md:text-base">Òrúnmìlà Banner</p>
-          </div>
+        {/* Òrúnmìlà Banner Image */}
+        <div className="w-full rounded-lg mb-4 overflow-hidden">
+          <img 
+            src="/static/images/orunmila_banner.jpg" 
+            alt="Òrúnmìlà - Intuition & Divine Wisdom"
+            className="w-full h-48 md:h-64 object-cover"
+            style={{
+              filter: 'brightness(0.9) contrast(1.1)'
+            }}
+          />
         </div>
 
         {/* Title Section - HTML Template Style */}
@@ -225,7 +229,7 @@ export default function OrunmilaWisdomHealing() {
         </div>
         
         {/* Daily Affirmation - HTML Template Style */}
-        <div className="text-center py-3 md:py-4 rounded-lg border-l-4 border-cyan-500" style={{ backgroundColor: '#161616' }} className="p-4 mb-4">
+        <div className="text-center py-3 md:py-4 rounded-lg border-l-4 border-cyan-500 p-4 mb-4" style={{ backgroundColor: '#161616' }}>
           <h2 className="text-white text-lg md:text-xl mb-3">🙏 Daily Affirmation</h2>
           <div className="space-y-2">
             <p className="italic" style={{ color: '#aaffdd' }}>
