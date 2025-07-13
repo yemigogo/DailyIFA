@@ -304,67 +304,103 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
   }, []);
 
   return (
-    <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-blue-50 p-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="relative">
-              <Zap className="w-8 h-8 text-red-400" />
-              <Flame className="w-5 h-5 text-orange-400 absolute -top-1 -right-1" />
+    <div className="w-full bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-screen text-blue-50 p-3 md:p-6">
+      <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+        {/* Daily Thunder Affirmation Section - Mobile-first */}
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-red-400 rounded-lg mb-4 md:mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
+            🙏 {ts('Daily Thunder Affirmation', 'Àdúrà Àrá Ojoojúmọ́')}
+          </h2>
+          <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 p-4 rounded-lg border border-red-300/20">
+            <p className="text-blue-100 italic text-base md:text-lg leading-relaxed text-center">
+              {ts(
+                '"Thunder courses through my veins. I am strong, courageous, and transforming with Ṣàngó\'s fire."',
+                '"Àrá ń sàn nínú iṣan ara mi. Mo lágbára, mo ní ìgbòyà, mo sì ń yípadà pẹ̀lú iná Ṣàngó."'
+              )}
+            </p>
+            <div className="mt-3 pt-3 border-t border-red-300/20">
+              <p className="text-xs md:text-sm text-red-200 text-center">
+                {ts('Declare this with power during 528Hz thunder meditation', 'Kéde èyí pẹ̀lú agbára ní àsìkò àṣẹ àrá 528Hz')}
+              </p>
             </div>
-            <h1 className="text-3xl font-bold text-white">
-              {ts('Ṣàngó 528Hz Thunder & Fire Healing', 'Ìwòsàn Àrá àti Iná Ṣàngó 528Hz')}
+          </div>
+        </div>
+
+        <div className="text-center mb-6 md:mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
+            <div className="relative">
+              <Zap className="w-6 h-6 md:w-8 md:h-8 text-red-400" />
+              <Flame className="w-4 h-4 md:w-5 md:h-5 text-orange-400 absolute -top-1 -right-1" />
+            </div>
+            <h1 className="text-2xl md:text-3xl font-bold text-white text-center">
+              {ts('Ṣàngó 528Hz Thunder & Fire', 'Ìwòsàn Àrá àti Iná Ṣàngó 528Hz')}
             </h1>
           </div>
-          <p className="text-lg text-blue-100 max-w-3xl mx-auto">
-            {ts('Harness the transformative power of Ṣàngó, Orisha of thunder, fire, and justice. Experience courage, leadership, and personal transformation through 528Hz love frequency and authentic thunder rituals.',
-                'Lo agbára ìyípadà Ṣàngó, Òrìṣà àrá, iná, àti òdodo. Ní ìrírí ìgbòyà, àṣẹ, àti ìyípadà ara ẹni nípa ìgbọ̀nsí ìfẹ́ 528Hz àti àwọn àjọ àrá òtítọ́.')}
+          <p className="text-sm md:text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            {ts('Transform through 528Hz love frequency and authentic thunder power rituals.',
+                'Yípadà nípa ìgbọ̀nsí ìfẹ́ 528Hz àti àwọn àjọ agbára àrá òtítọ́.')}
           </p>
         </div>
 
-        {/* Benefits Section */}
-        <div className="mb-8 bg-gray-800/60 border border-pink-300/30 rounded-lg p-6 border-l-4 border-l-red-500">
-          <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <Heart className="w-6 h-6 text-red-400" />
-            {ts('Ṣàngó Thunder Healing Benefits', 'Àwọn Àǹfààní Ìwòsàn Àrá Ṣàngó')}
+        {/* Benefits Section - Mobile optimized */}
+        <div className="mb-6 md:mb-8 bg-gray-800/60 border border-pink-300/30 rounded-lg p-4 md:p-6 border-l-4 border-l-red-500">
+          <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 flex items-center gap-2">
+            <Heart className="w-5 h-5 md:w-6 md:h-6 text-red-400" />
+            {ts('Benefits', 'Àwọn Àǹfààní')}
           </h3>
-          <div className="grid md:grid-cols-2 gap-4 text-blue-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-blue-100">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-red-400" />
-                <span>{ts('Personal Transformation', 'Ìyípadà Ara Ẹni')}</span>
+                <Zap className="w-3 h-3 md:w-4 md:h-4 text-red-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('Personal Transformation', 'Ìyípadà Ara Ẹni')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Flame className="w-4 h-4 text-orange-400" />
-                <span>{ts('Courage & Confidence', 'Ìgbòyà àti Ìgbẹ́kẹ̀lé')}</span>
+                <Flame className="w-3 h-3 md:w-4 md:h-4 text-orange-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('Courage & Confidence', 'Ìgbòyà àti Ìgbẹ́kẹ̀lé')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Crown className="w-4 h-4 text-yellow-400" />
-                <span>{ts('Leadership Power', 'Agbára Àṣẹ')}</span>
+                <Crown className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('Leadership Power', 'Agbára Àṣẹ')}</span>
               </div>
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Heart className="w-4 h-4 text-pink-400" />
-                <span>{ts('528Hz Love Frequency', 'Ìgbọ̀nsí Ìfẹ́ 528Hz')}</span>
+                <Heart className="w-3 h-3 md:w-4 md:h-4 text-pink-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('528Hz Love Frequency', 'Ìgbọ̀nsí Ìfẹ́ 528Hz')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Timer className="w-4 h-4 text-blue-400" />
-                <span>{ts('Justice & Balance', 'Òdodo àti Ìdọ̀gba')}</span>
+                <Timer className="w-3 h-3 md:w-4 md:h-4 text-blue-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('Justice & Balance', 'Òdodo àti Ìdọ̀gba')}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Music className="w-4 h-4 text-purple-400" />
-                <span>{ts('Thunder Energy Activation', 'Ìmúlẹ̀ Agbára Àrá')}</span>
+                <Music className="w-3 h-3 md:w-4 md:h-4 text-purple-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">{ts('Thunder Energy', 'Agbára Àrá')}</span>
               </div>
             </div>
           </div>
         </div>
 
         <Tabs defaultValue="rituals" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-gray-700/50 border border-pink-300/30">
-            <TabsTrigger value="rituals" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white">
-              <Zap className="w-4 h-4 mr-2" />
-              {ts('Rituals', 'Àwọn Àjọ')}
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-700/50 border border-pink-300/30">
+            <TabsTrigger value="rituals" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
+              <Zap className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden sm:inline">{ts('Rituals', 'Àṣẹ')}</span>
+              <span className="sm:hidden">⚡</span>
+            </TabsTrigger>
+            <TabsTrigger value="audio" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
+              <Music className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden sm:inline">{ts('Audio', 'Orin')}</span>
+              <span className="sm:hidden">🎵</span>
+            </TabsTrigger>
+            <TabsTrigger value="session" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
+              <Timer className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden sm:inline">{ts('Session', 'Ìgbà')}</span>
+              <span className="sm:hidden">⏰</span>
+            </TabsTrigger>
+            <TabsTrigger value="science" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
+              <Heart className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="hidden sm:inline">{ts('Science', 'Sáyẹ́nsì')}</span>
+              <span className="sm:hidden">💖</span>
             </TabsTrigger>
             <TabsTrigger value="audio" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white">
               <Music className="w-4 h-4 mr-2" />

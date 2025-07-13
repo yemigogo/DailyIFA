@@ -575,15 +575,37 @@ export const Yemoja432HzHealing: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="space-y-4 md:space-y-6 p-3 md:p-6">
+      {/* Daily Affirmation Section - Mobile-first */}
+      <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-cyan-300 rounded-lg mb-4 md:mb-6">
+        <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
+          🙏 {ts('Daily Water Blessing', 'Ìbùkún Omi Ojoojúmọ́')}
+        </h2>
+        <div className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 p-4 rounded-lg border border-cyan-300/20">
+          <p className="text-blue-100 italic text-base md:text-lg leading-relaxed text-center">
+            {ts(
+              '"Waters of Yemọja flow through me. I am cleansed, healed, and renewed with each breath."',
+              '"Omi Yemọja ń sàn nínú mi. Mo ti di mímọ́, mo ti san, mo sì ti di tuntun pẹ̀lú gbogbo èémí."'
+            )}
+          </p>
+          <div className="mt-3 pt-3 border-t border-cyan-300/20">
+            <p className="text-xs md:text-sm text-cyan-200 text-center">
+              {ts('Speak this blessing while touching water during 432Hz meditation', 'Sọ ìbùkún yìí nígbà tí o bá fi ọwọ́ kan omi ní àsìkò àṣẹ 432Hz')}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Header - Mobile optimized */}
       <Card className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white border-none">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-2xl">
-            <Waves className="w-8 h-8" />
-            {ts('Yemọja 432Hz Water Healing', 'Ìwòsàn Omi Yemọja 432Hz')}
+        <CardHeader className="p-4 md:p-6">
+          <CardTitle className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-xl md:text-2xl">
+            <Waves className="w-6 h-6 md:w-8 md:h-8" />
+            <span className="text-center md:text-left">
+              {ts('Yemọja 432Hz Water Healing', 'Ìwòsàn Omi Yemọja 432Hz')}
+            </span>
           </CardTitle>
-          <p className="text-blue-100">
+          <p className="text-blue-100 text-sm md:text-base text-center md:text-left">
             {ts('Sacred water rituals at the healing frequency of 432Hz', 
                 'Àwọn àṣẹ omi mímọ́ ní ìgbọ̀nsí ìwòsàn 432Hz')}
           </p>
@@ -591,22 +613,26 @@ export const Yemoja432HzHealing: React.FC = () => {
       </Card>
 
       <Tabs defaultValue="rituals" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="rituals" className="flex items-center gap-2">
-            <Droplets className="w-4 h-4" />
-            {ts('Rituals', 'Àṣẹ')}
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-800/80 border border-cyan-300/30">
+          <TabsTrigger value="rituals" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-cyan-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Droplets className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Rituals', 'Àṣẹ')}</span>
+            <span className="sm:hidden">💧</span>
           </TabsTrigger>
-          <TabsTrigger value="audio" className="flex items-center gap-2">
-            <Music className="w-4 h-4" />
-            {ts('Audio', 'Orin')}
+          <TabsTrigger value="audio" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-cyan-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Music className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Audio', 'Orin')}</span>
+            <span className="sm:hidden">🎵</span>
           </TabsTrigger>
-          <TabsTrigger value="science" className="flex items-center gap-2">
-            <Info className="w-4 h-4" />
-            {ts('Science', 'Sáyẹ́nsì')}
+          <TabsTrigger value="science" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-cyan-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Info className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Science', 'Sáyẹ́nsì')}</span>
+            <span className="sm:hidden">🔬</span>
           </TabsTrigger>
-          <TabsTrigger value="session" className="flex items-center gap-2">
-            <Heart className="w-4 h-4" />
-            {ts('Session', 'Ìgbà')}
+          <TabsTrigger value="session" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-cyan-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Heart className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Session', 'Ìgbà')}</span>
+            <span className="sm:hidden">❤️</span>
           </TabsTrigger>
         </TabsList>
 
