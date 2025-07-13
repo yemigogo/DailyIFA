@@ -19,6 +19,7 @@ import CosmicRealms3D from '@/components/cosmic-realms-3d';
 import SpiritualAudioSystem from '@/components/spiritual-audio-system';
 import EnhancedSharingSystem from '@/components/enhanced-sharing-system';
 import ComprehensiveSystemTest from '@/components/comprehensive-system-test';
+import SystemVerification from '@/components/system-verification';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -1149,7 +1150,7 @@ const Learning: React.FC = () => {
                       
                       {/* Comprehensive System Test */}
                       <div className="mt-8 border-t pt-8">
-                        <ComprehensiveSystemTest />
+                        <SystemVerification />
                       </div>
                     </div>
                   )}
