@@ -1,0 +1,73 @@
+# Create a styled HTML page for Obatalá - Love & Healing with 963Hz frequency and offline audio support
+
+obatala_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obatalá Love & Healing – 963Hz</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: #e6f7ff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 15px;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      color: #ffffff;
+    }
+    .section {
+      background-color: #1f1f1f;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #ffccff;
+      border-radius: 6px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+    a {
+      color: #99ccff;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🕊️ Obatalá – Love & Healing Frequency (963Hz)</h1>
+
+<div class="section">
+  <h2>🌸 Divine Frequency – 963Hz</h2>
+  <p>This frequency, known as the “God Frequency,” is deeply connected with inner healing, crown chakra activation, and soul-level purification. It perfectly resonates with the energy of Obatalá – Orisha of clarity, peace, and divine wisdom.</p>
+</div>
+
+<div class="section">
+  <h2>🎧 Listen to Obatalá Meditation Music</h2>
+  <p>Play the meditation below, tuned to 963Hz, to enter a space of peace, healing, and universal love:</p>
+  <audio controls>
+    <source src="/static/audio/obatala_963hz.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<div class="section">
+  <h2>✨ Benefits of Obatalá Frequency</h2>
+  <ul>
+    <li>Emotional peace and clarity</li>
+    <li>Deep spiritual healing and release</li>
+    <li>DNA repair and crown chakra awakening</li>
+  </ul>
+</div>
+
+</body>
+</html>
+'''
+
+# Save the HTML file
+obatala_file_path = "/mnt/data/obatala_love_healing_963hz.html"
+with open(obatala_file_path, "w", encoding="utf-8") as f:
+    f.write(obatala_html)
+
+obatala_file_path
