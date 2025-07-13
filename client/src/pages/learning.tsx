@@ -259,6 +259,44 @@ const Learning: React.FC = () => {
           titleYoruba: "Olódùmarè",
           text: "The Supreme Being, source of all existence and divine authority",
           textYoruba: "Ọlọ́run Gíga, orísun gbogbo ohun alààyè àti àṣẹ òrìṣà"
+        },
+        {
+          title: "The Spiritual Universe Structure",
+          titleYoruba: "Ètò Àgbáyé Ẹ̀mí",
+          text: "The Yorùbá cosmological framework reveals five interconnected realms that form the complete spiritual universe:",
+          textYoruba: "Ìlànà àgbáyé Yorùbá fihàn àwọn àgbáyé márùn-ún tí wọ́n so ara wọn pọ̀ tí wọ́n sì dá àgbáyé ẹ̀mí pípé:",
+          cosmologyStructure: [
+            {
+              realm: "ÒRUN (Heavenly Realm)",
+              realmYoruba: "ÒRUN (Àgbáyé Ọ̀run)",
+              description: "The divine heaven where Olódùmarè resides with the Òrìṣà and blessed ancestors",
+              descriptionYoruba: "Ọ̀run mímọ́ níbi tí Olódùmarè ń gbé pẹ̀lú àwọn Òrìṣà àti àwọn egun ìbùkún"
+            },
+            {
+              realm: "Àjàlá-Òrun (Gate of Rebirth)",
+              realmYoruba: "Àjàlá-Òrun (Ẹnu-ọ̀nà Àtúnbí)",
+              description: "The celestial portal where souls choose their destiny before entering earthly life",
+              descriptionYoruba: "Àlà ọ̀run níbi tí àwọn ẹ̀mí ti ń yan àyànmọ̀ wọn kí wọ́n tó wọ ayé"
+            },
+            {
+              realm: "Ayé (Earthly Realm)",
+              realmYoruba: "Ayé (Àgbáyé Ilẹ̀)",
+              description: "The physical world where humans live, learn, and fulfill their spiritual purpose",
+              descriptionYoruba: "Àgbáyé tí àwọn ènìyàn ń gbé, tí wọ́n ń kọ́, tí wọ́n sì ń mú ète ẹ̀mí wọn ṣẹ"
+            },
+            {
+              realm: "Ilẹ̀-Ọkùn (Oceanic Abyss)",
+              realmYoruba: "Ilẹ̀-Ọkùn (Ọ̀gbun Òkun)",
+              description: "The deep oceanic realm of Olókun, source of wisdom, wealth, and primordial waters",
+              descriptionYoruba: "Àgbáyé òkun jíjìn ti Olókun, orísun ọgbọ́n, ọrọ̀, àti omi àtètè"
+            },
+            {
+              realm: "Ọ̀nà (Ancestral Paths)",
+              realmYoruba: "Ọ̀nà (Àwọn Ọ̀nà Àwọn Baba)",
+              description: "The sacred pathways connecting all realms, traveled by ancestors and spiritual messengers",
+              descriptionYoruba: "Àwọn ọ̀nà mímọ́ tí ó so gbogbo àgbáyé pọ̀, tí àwọn baba àti àwọn ìránṣẹ́ ẹ̀mí ń rìn"
+            }
+          ]
         }
       ]
     },
@@ -557,6 +595,64 @@ const Learning: React.FC = () => {
                                     </CardContent>
                                   </Card>
                                 ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {module.id === 'cosmology' && (
+                    <div className="space-y-8">
+                      {module.content.map((section: any, index: number) => (
+                        <div key={index} className="space-y-6">
+                          {section.text && !section.cosmologyStructure && (
+                            <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-6 rounded-lg border-l-4 border-l-purple-500">
+                              <h3 className="text-xl font-semibold mb-3 text-purple-800 dark:text-purple-200">
+                                🌌 {language === 'yoruba' ? section.titleYoruba : section.title}
+                              </h3>
+                              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                {language === 'yoruba' ? section.textYoruba : section.text}
+                              </p>
+                            </div>
+                          )}
+                          
+                          {section.cosmologyStructure && (
+                            <div className="space-y-6">
+                              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-lg border-l-4 border-l-indigo-500">
+                                <h3 className="text-xl font-semibold mb-3 text-indigo-800 dark:text-indigo-200">
+                                  ✨ {language === 'yoruba' ? section.titleYoruba : section.title}
+                                </h3>
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                                  {language === 'yoruba' ? section.textYoruba : section.text}
+                                </p>
+                                
+                                <div className="space-y-4">
+                                  {section.cosmologyStructure.map((realm: any, realmIndex: number) => (
+                                    <div key={realmIndex} className="relative">
+                                      <Card className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-l-4 border-l-spiritual-blue">
+                                        <CardContent className="p-4">
+                                          <div className="flex items-center gap-3 mb-2">
+                                            <div className="w-3 h-3 bg-spiritual-blue rounded-full"></div>
+                                            <h4 className="font-bold text-spiritual-blue dark:text-sacred-gold text-lg">
+                                              {language === 'yoruba' ? realm.realmYoruba : realm.realm}
+                                            </h4>
+                                          </div>
+                                          <p className="text-gray-600 dark:text-gray-400 text-sm pl-6">
+                                            {language === 'yoruba' ? realm.descriptionYoruba : realm.description}
+                                          </p>
+                                        </CardContent>
+                                      </Card>
+                                      
+                                      {realmIndex < section.cosmologyStructure.length - 1 && (
+                                        <div className="flex justify-center my-2">
+                                          <div className="w-0.5 h-4 bg-gradient-to-b from-spiritual-blue to-sacred-gold"></div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
                           )}
