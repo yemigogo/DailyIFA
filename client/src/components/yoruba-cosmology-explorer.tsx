@@ -14,7 +14,14 @@ import {
   BookOpen,
   Star,
   Clock,
-  CheckCircle
+  CheckCircle,
+  Zap,
+  Droplets,
+  Sword,
+  Wind,
+  Timer,
+  User,
+  Sparkles
 } from 'lucide-react';
 
 // ======================
@@ -125,12 +132,37 @@ interface ExplorerProgress {
   bestScore: number;
   lastStudied: string;
   totalTimeSpent: number;
+  meditationSessions: number;
+  avatarsCreated: number;
 }
+
+interface OrishaAvatar {
+  orisha: string;
+  element: string;
+  symbol: string;
+  color: string;
+  message: string;
+  created: string;
+}
+
+// ======================
+// ORISHA DATABASE
+// ======================
+const orishas = {
+  "Ṣàngó": { element: "fire", color: "#DC2626", symbol: "⚡", icon: Zap },
+  "Ọ̀ṣun": { element: "water", color: "#EAB308", symbol: "🌊", icon: Droplets },
+  "Ògún": { element: "iron", color: "#059669", symbol: "⚔️", icon: Sword },
+  "Ọbàtálá": { element: "air", color: "#E5E7EB", symbol: "☁️", icon: Wind },
+  "Yemọja": { element: "water", color: "#2563EB", symbol: "🌍", icon: Globe },
+  "Ọya": { element: "wind", color: "#7C3AED", symbol: "🌪️", icon: Wind },
+  "Ọ̀rúnmìlà": { element: "wisdom", color: "#F59E0B", symbol: "👁️", icon: BookOpen },
+  "Èṣù": { element: "crossroads", color: "#EF4444", symbol: "🛤️", icon: Star }
+};
 
 export const YorubaCosmologyExplorer: React.FC = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
-  const [currentView, setCurrentView] = useState<'menu' | 'explore' | 'quiz' | 'progress'>('menu');
+  const [currentView, setCurrentView] = useState<'menu' | 'explore' | 'quiz' | 'progress' | 'avatar' | 'meditation'>('menu');
   const [selectedRealm, setSelectedRealm] = useState<string | null>(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -255,37 +287,83 @@ export const YorubaCosmologyExplorer: React.FC = () => {
         <div className="absolute -top-2 right-1/3 text-emerald-300 opacity-50 animate-float animation-delay-2000">✨</div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card 
-          className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 border-purple-200 hover:border-purple-400"
+          className="cursor-pointer hover:shadow-2xl transition-all duration-500 border-2 border-purple-200 hover:border-purple-400 group relative overflow-hidden"
           onClick={() => setCurrentView('explore')}
         >
-          <CardContent className="p-6 text-center">
-            <BookOpen className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">
-              {language === 'yoruba' ? 'Ṣe Àyẹ̀wò Àwọn Àgbáyé' : 'Explore Realms'}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardContent className="p-6 text-center relative z-10">
+            <div className="transform group-hover:scale-110 transition-transform duration-300">
+              <BookOpen className="h-12 w-12 text-purple-600 mx-auto mb-4 drop-shadow-lg" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2 group-hover:text-purple-700 transition-colors">
+              {language === 'yoruba' ? 'Àwọn Àgbáyé' : 'Cosmic Realms'}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
+            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
               {language === 'yoruba' 
-                ? 'Kọ́ nípa Òrun, Ayé, àti Ilẹ̀-Ọkùn' 
-                : 'Learn about Òrun, Ayé, and Ilẹ̀-Ọkùn'}
+                ? 'Òrun, Ayé, Ilẹ̀-Ọkùn' 
+                : 'Explore the three realms'}
             </p>
           </CardContent>
         </Card>
 
         <Card 
-          className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 border-emerald-200 hover:border-emerald-400"
+          className="cursor-pointer hover:shadow-2xl transition-all duration-500 border-2 border-emerald-200 hover:border-emerald-400 group relative overflow-hidden"
           onClick={startQuiz}
         >
-          <CardContent className="p-6 text-center">
-            <Trophy className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardContent className="p-6 text-center relative z-10">
+            <div className="transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+              <Trophy className="h-12 w-12 text-emerald-600 mx-auto mb-4 drop-shadow-lg" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2 group-hover:text-emerald-700 transition-colors">
               {language === 'yoruba' ? 'Ìdánwò Àgbáyé' : 'Cosmic Quiz'}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
+            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
               {language === 'yoruba' 
-                ? 'Dán ìmọ̀ àgbáyé rẹ wò' 
-                : 'Test your cosmic knowledge'}
+                ? 'Dán ìmọ̀ rẹ wò' 
+                : 'Test your knowledge'}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card 
+          className="cursor-pointer hover:shadow-2xl transition-all duration-500 border-2 border-amber-200 hover:border-amber-400 group relative overflow-hidden"
+          onClick={() => setCurrentView('avatar')}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardContent className="p-6 text-center relative z-10">
+            <div className="transform group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-300">
+              <User className="h-12 w-12 text-amber-600 mx-auto mb-4 drop-shadow-lg" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2 group-hover:text-amber-700 transition-colors">
+              {language === 'yoruba' ? 'Òrìṣà Àwòrán' : 'Orisha Avatar'}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+              {language === 'yoruba' 
+                ? 'Rí Òrìṣà rẹ' 
+                : 'Discover your Orisha'}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card 
+          className="cursor-pointer hover:shadow-2xl transition-all duration-500 border-2 border-blue-200 hover:border-blue-400 group relative overflow-hidden"
+          onClick={() => setCurrentView('meditation')}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardContent className="p-6 text-center relative z-10">
+            <div className="transform group-hover:scale-110 transition-transform duration-300">
+              <Timer className="h-12 w-12 text-blue-600 mx-auto mb-4 drop-shadow-lg" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-700 transition-colors">
+              {language === 'yoruba' ? 'Ìpamọ́ Ọkàn' : 'Meditation'}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+              {language === 'yoruba' 
+                ? 'Tútù ọkàn rẹ' 
+                : 'Peaceful contemplation'}
             </p>
           </CardContent>
         </Card>
@@ -593,6 +671,338 @@ export const YorubaCosmologyExplorer: React.FC = () => {
     );
   };
 
+  // Avatar Creator Functions
+  const avatarQuestions = [
+    {
+      en: "What season were you born in?",
+      yo: "Ìgbà wo ni a bí ọ?",
+      options: [
+        { en: "Rainy Season", yo: "Àkókò Òjò", element: "water" },
+        { en: "Dry Season", yo: "Àkókò Ẹ̀ẹ̀rùn", element: "fire" },
+        { en: "Harmattan", yo: "Àkókò Harmattan", element: "air" },
+        { en: "Transition", yo: "Àkókò Ìyípadà", element: "earth" }
+      ]
+    },
+    {
+      en: "How do you approach challenges?",
+      yo: "Báwo ni o ṣe ń kojú ìṣòro?",
+      options: [
+        { en: "Quick & Direct", yo: "Kíákíá àti Tààrà", element: "fire" },
+        { en: "Thoughtful & Patient", yo: "Pẹ̀lẹ́pẹ̀lẹ́ àti Sùúrù", element: "earth" },
+        { en: "Adaptable & Flowing", yo: "Ọlọ́gbọ́n àti Ṣàn", element: "water" },
+        { en: "Strategic & Wise", yo: "Ọgbọ́n àti Òye", element: "air" }
+      ]
+    },
+    {
+      en: "What calls to your spirit?",
+      yo: "Kí ni ó ń pe ẹ̀mí rẹ?",
+      options: [
+        { en: "Justice & Truth", yo: "Òtítọ́ àti Òdodo", orisha: "Ṣàngó" },
+        { en: "Love & Beauty", yo: "Ìfẹ́ àti Ẹwà", orisha: "Ọ̀ṣun" },
+        { en: "Strength & Work", yo: "Agbára àti Iṣẹ́", orisha: "Ògún" },
+        { en: "Wisdom & Peace", yo: "Ọgbọ́n àti Àlàáfíà", orisha: "Ọbàtálá" },
+        { en: "Motherhood & Ocean", yo: "Ìyá àti Òkun", orisha: "Yemọja" },
+        { en: "Transformation", yo: "Ìyípadà", orisha: "Ọya" },
+        { en: "Divine Knowledge", yo: "Ìmọ̀ Ọlọ́run", orisha: "Ọ̀rúnmìlà" },
+        { en: "Communication", yo: "Ìbánisọ̀rọ̀", orisha: "Èṣù" }
+      ]
+    }
+  ];
+
+  const createOrisha = () => {
+    const elements = avatarAnswers.slice(0, 2);
+    const lastAnswer = avatarAnswers[2];
+    
+    let chosenOrisha = lastAnswer;
+    if (!chosenOrisha || !orishas[chosenOrisha]) {
+      // Default based on elements
+      const elementCounts = { fire: 0, water: 0, earth: 0, air: 0 };
+      elements.forEach(el => elementCounts[el]++);
+      const dominantElement = Object.keys(elementCounts).reduce((a, b) => 
+        elementCounts[a] > elementCounts[b] ? a : b
+      );
+      
+      const elementToOrisha = {
+        fire: "Ṣàngó",
+        water: "Ọ̀ṣun", 
+        earth: "Ọbàtálá",
+        air: "Ọya"
+      };
+      chosenOrisha = elementToOrisha[dominantElement];
+    }
+
+    const orishaData = orishas[chosenOrisha];
+    const avatar: OrishaAvatar = {
+      orisha: chosenOrisha,
+      element: orishaData.element,
+      symbol: orishaData.symbol,
+      color: orishaData.color,
+      message: language === 'yoruba' 
+        ? `O ní agbára ${chosenOrisha} nínú ẹ̀mí rẹ`
+        : `You embody the ${orishaData.element} energy of ${chosenOrisha}`,
+      created: new Date().toISOString()
+    };
+
+    setCreatedAvatar(avatar);
+    
+    // Update progress
+    const newProgress = { ...progress, avatarsCreated: progress.avatarsCreated + 1 };
+    saveProgress(newProgress);
+
+    toast({
+      title: language === 'yoruba' ? 'Òrìṣà Rẹ Ti Hàn!' : 'Your Orisha Revealed!',
+      description: `${chosenOrisha} ${orishaData.symbol}`,
+    });
+  };
+
+  const renderAvatarView = () => {
+    if (createdAvatar) {
+      const orishaData = orishas[createdAvatar.orisha];
+      return (
+        <div className="text-center space-y-6">
+          <Button 
+            onClick={() => setCurrentView('menu')} 
+            variant="outline" 
+            className="mb-4"
+          >
+            ← {language === 'yoruba' ? 'Padà' : 'Back'}
+          </Button>
+          
+          <Card className="max-w-md mx-auto" style={{ borderColor: createdAvatar.color }}>
+            <CardContent className="p-8 text-center">
+              <div className="mb-6">
+                {React.createElement(orishaData.icon, { 
+                  className: "h-20 w-20 mx-auto mb-4", 
+                  style: { color: createdAvatar.color } 
+                })}
+              </div>
+              
+              <h2 className="text-3xl font-bold mb-2" style={{ color: createdAvatar.color }}>
+                {createdAvatar.orisha}
+              </h2>
+              
+              <p className="text-4xl mb-4">{createdAvatar.symbol}</p>
+              
+              <Badge 
+                variant="secondary" 
+                className="mb-4"
+                style={{ backgroundColor: createdAvatar.color + '20', color: createdAvatar.color }}
+              >
+                {language === 'yoruba' ? `Ohun ${createdAvatar.element}` : `Element: ${createdAvatar.element}`}
+              </Badge>
+              
+              <p className="text-gray-600 dark:text-gray-300 italic">
+                "{createdAvatar.message}"
+              </p>
+              
+              <div className="mt-6 space-y-2">
+                <Button 
+                  onClick={() => {
+                    setCreatedAvatar(null);
+                    setAvatarStep(0);
+                    setAvatarAnswers([]);
+                  }}
+                  style={{ backgroundColor: createdAvatar.color }}
+                  className="w-full"
+                >
+                  {language === 'yoruba' ? 'Tún Ṣe' : 'Create Another'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    if (avatarStep < avatarQuestions.length) {
+      const question = avatarQuestions[avatarStep];
+      return (
+        <div className="space-y-6">
+          <Button 
+            onClick={() => setCurrentView('menu')} 
+            variant="outline" 
+            className="mb-4"
+          >
+            ← {language === 'yoruba' ? 'Padà' : 'Back'}
+          </Button>
+          
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-center">
+                {language === 'yoruba' ? 'Òrìṣà Àwòrán Asọ̀rọ́' : 'Orisha Avatar Creator'}
+              </CardTitle>
+              <Progress value={(avatarStep / avatarQuestions.length) * 100} className="mt-2" />
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <h3 className="text-xl font-semibold text-center">
+                {language === 'yoruba' ? question.yo : question.en}
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {question.options.map((option, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    className="h-auto p-4 text-left"
+                    onClick={() => {
+                      const newAnswers = [...avatarAnswers];
+                      newAnswers[avatarStep] = option.element || option.orisha;
+                      setAvatarAnswers(newAnswers);
+                      
+                      if (avatarStep === avatarQuestions.length - 1) {
+                        createOrisha();
+                      } else {
+                        setAvatarStep(avatarStep + 1);
+                      }
+                    }}
+                  >
+                    <div>
+                      <div className="font-medium">
+                        {language === 'yoruba' ? option.yo : option.en}
+                      </div>
+                    </div>
+                  </Button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const renderMeditationView = () => {
+    const formatTime = (seconds: number) => {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    return (
+      <div className="space-y-6">
+        <Button 
+          onClick={() => setCurrentView('menu')} 
+          variant="outline" 
+          className="mb-4"
+        >
+          ← {language === 'yoruba' ? 'Padà' : 'Back'}
+        </Button>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-center">
+              {language === 'yoruba' ? 'Ìpamọ́ Ọkàn Àwọn Baba' : 'Ancestral Meditation'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6 text-center">
+            {!meditationActive ? (
+              <>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {language === 'yoruba' 
+                    ? 'Yan àkókò fún ìpamọ́ ọkàn rẹ' 
+                    : 'Choose your meditation duration'}
+                </p>
+                
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    { duration: 300, label: language === 'yoruba' ? '5 Ìṣẹ́jú' : '5 Minutes' },
+                    { duration: 900, label: language === 'yoruba' ? '15 Ìṣẹ́jú' : '15 Minutes' },
+                    { duration: 1800, label: language === 'yoruba' ? '30 Ìṣẹ́jú' : '30 Minutes' }
+                  ].map(({ duration, label }) => (
+                    <Button
+                      key={duration}
+                      variant={selectedDuration === duration ? "default" : "outline"}
+                      onClick={() => setSelectedDuration(duration)}
+                    >
+                      {label}
+                    </Button>
+                  ))}
+                </div>
+                
+                <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200">
+                  <CardContent className="p-4">
+                    <p className="text-sm italic text-blue-700 dark:text-blue-300">
+                      {language === 'yoruba' 
+                        ? '"Ibá ọ, àwọn baba ńlá wa"'
+                        : '"Honor to you, great ancestors"'}
+                    </p>
+                    <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                      {language === 'yoruba' 
+                        ? 'Ọ̀rọ̀ àdúrà láti lo'
+                        : 'Prayer to focus on'}
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Button 
+                  onClick={() => {
+                    setMeditationActive(true);
+                    setMeditationTime(selectedDuration);
+                  }}
+                  size="lg"
+                  className="w-full"
+                >
+                  {language === 'yoruba' ? 'Bẹ̀rẹ̀ Ìpamọ́' : 'Begin Meditation'}
+                </Button>
+              </>
+            ) : (
+              <>
+                <div className="text-6xl font-mono mb-4">
+                  {formatTime(meditationTime)}
+                </div>
+                
+                <div className="w-32 h-32 mx-auto border-4 border-blue-300 rounded-full animate-cosmic-pulse flex items-center justify-center">
+                  <Timer className="h-16 w-16 text-blue-600" />
+                </div>
+                
+                <Button 
+                  onClick={() => {
+                    setMeditationActive(false);
+                    setMeditationTime(0);
+                    const newProgress = { ...progress, meditationSessions: progress.meditationSessions + 1 };
+                    saveProgress(newProgress);
+                    toast({
+                      title: language === 'yoruba' ? 'Ìpamọ́ Parí!' : 'Meditation Complete!',
+                      description: language === 'yoruba' ? 'Àṣẹ!' : 'May you be blessed!',
+                    });
+                  }}
+                  variant="outline"
+                >
+                  {language === 'yoruba' ? 'Parí' : 'End Session'}
+                </Button>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
+  // Meditation timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (meditationActive && meditationTime > 0) {
+      interval = setInterval(() => {
+        setMeditationTime(time => {
+          if (time <= 1) {
+            setMeditationActive(false);
+            const newProgress = { ...progress, meditationSessions: progress.meditationSessions + 1 };
+            saveProgress(newProgress);
+            toast({
+              title: language === 'yoruba' ? 'Ìpamọ́ Parí!' : 'Meditation Complete!',
+              description: language === 'yoruba' ? 'Àṣẹ!' : 'May you be blessed!',
+            });
+            return 0;
+          }
+          return time - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [meditationActive, meditationTime, progress, language, toast]);
+
   return (
     <div className="max-w-4xl mx-auto p-6 relative">
       {/* Enhanced background with cosmic theme */}
@@ -606,6 +1016,8 @@ export const YorubaCosmologyExplorer: React.FC = () => {
       {currentView === 'explore' && renderExploreView()}
       {currentView === 'quiz' && renderQuizView()}
       {currentView === 'progress' && renderProgressView()}
+      {currentView === 'avatar' && renderAvatarView()}
+      {currentView === 'meditation' && renderMeditationView()}
     </div>
   );
 };
