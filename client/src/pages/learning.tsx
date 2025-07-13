@@ -16,6 +16,7 @@ import FlaskOduCards from '@/components/flask-odu-cards';
 import CosmologyProgressTracker from '@/components/cosmology-progress-tracker';
 import { YorubaCosmologyExplorer } from '@/components/yoruba-cosmology-explorer';
 import CosmicRealms3D from '@/components/cosmic-realms-3d';
+import SpiritualAudioSystem from '@/components/spiritual-audio-system';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -548,6 +549,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Àfihàn 3D àwọn àgbáyé Òrun, Ayé, àti Ilẹ̀-Ọkùn pẹ̀lú àwọn òrìṣà tí ń lọ́",
       icon: <Play className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "spiritual-audio",
+      title: "Sacred Frequency Healing",
+      titleYoruba: "Ìwòsàn Ìgbọ̀nsí Mímọ́",
+      description: "Experience healing through sacred sound frequencies and spiritual vibrations",
+      descriptionYoruba: "Ní ìrírí ìwòsàn nípasẹ̀ àwọn ìgbọ̀nsí mímọ́ àti gbígbọn ẹ̀mí",
+      icon: <Volume2 className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -608,7 +618,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-11 mb-8 overflow-x-auto">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-12 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -1129,6 +1139,10 @@ const Learning: React.FC = () => {
 
                   {module.id === 'cosmic-realms-3d' && (
                     <CosmicRealms3D />
+                  )}
+
+                  {module.id === 'spiritual-audio' && (
+                    <SpiritualAudioSystem />
                   )}
                 </CardContent>
               </Card>
