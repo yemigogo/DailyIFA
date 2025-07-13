@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download, Waves, Crown, Zap } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download, Waves, Crown, Zap, Flame } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
@@ -23,6 +23,7 @@ import SystemVerification from '@/components/system-verification';
 import { Yemoja432HzHealing } from '@/components/yemoja-432hz-healing';
 import { Obatala963HzHealing } from '@/components/obatala-963hz-healing';
 import Sango528HzHealing from '@/components/sango-528hz-healing';
+import EsuTransformationHealing from '@/components/esu-transformation-healing';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -591,6 +592,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Ìyípadà ìgbọ̀nsí ìfẹ́ pẹ̀lú agbára àrá, ìgbòyà, àti agbára àṣẹ",
       icon: <Zap className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "esu-transformation",
+      title: "Èṣù Transformation Healing",
+      titleYoruba: "Ìwòsàn Ìyípadà Èṣù",
+      description: "Guardian of crossroads - fire frequencies for transformation, path opening, and breaking limitations",
+      descriptionYoruba: "Ọ̀gà Oríta - àwọn ìgbọ̀nsí iná fún ìyípadà, ṣísí ọ̀nà, àti fífó àwọn ìdíwọ́n",
+      icon: <Flame className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -651,7 +661,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-15 mb-8 overflow-x-auto">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-16 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -1195,6 +1205,10 @@ const Learning: React.FC = () => {
 
                   {module.id === 'sango-528hz' && (
                     <Sango528HzHealing />
+                  )}
+
+                  {module.id === 'esu-transformation' && (
+                    <EsuTransformationHealing />
                   )}
                 </CardContent>
               </Card>
