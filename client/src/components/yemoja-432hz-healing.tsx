@@ -101,6 +101,14 @@ export const Yemoja432HzHealing: React.FC = () => {
     morning: [],
     evening: []
   });
+  
+  // Debug: Log track changes
+  useEffect(() => {
+    console.log('Uploaded tracks changed:', {
+      morning: uploadedTracks.morning.length,
+      evening: uploadedTracks.evening.length
+    });
+  }, [uploadedTracks]);
   const [crystalAnimation, setCrystalAnimation] = useState(false);
   const crystalCanvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -212,8 +220,12 @@ export const Yemoja432HzHealing: React.FC = () => {
   const tryAuthenticAudio = (type: 'morning' | 'evening') => {
     // First try uploaded local files
     const userTracks = uploadedTracks[type];
+    console.log(`Trying authentic audio for ${type}. Found ${userTracks.length} tracks`);
+    
     if (userTracks.length > 0) {
       const randomTrack = userTracks[Math.floor(Math.random() * userTracks.length)];
+      console.log(`Selected track: ${randomTrack.name}, size: ${randomTrack.size} bytes`);
+      
       const audio = new Audio();
       audio.volume = volume;
       audio.loop = true;
@@ -221,7 +233,8 @@ export const Yemoja432HzHealing: React.FC = () => {
       const objectUrl = URL.createObjectURL(randomTrack);
       audio.src = objectUrl;
       
-      audio.addEventListener('loadeddata', () => {
+      audio.addEventListener('canplaythrough', () => {
+        console.log('Audio ready to play');
         setUseAuthenticAudio(true);
         audioElementRef.current = audio;
         
@@ -229,22 +242,31 @@ export const Yemoja432HzHealing: React.FC = () => {
           title: ts('Authentic Track Loaded', 'Orin Òtítọ́ Ti Gbà'),
           description: ts(`Playing: ${randomTrack.name}`, `Ń dún: ${randomTrack.name}`),
         });
+        
+        // Start playback immediately
+        audio.play().then(() => {
+          console.log('Audio playback started successfully');
+        }).catch((error) => {
+          console.error('Audio play failed:', error);
+          setUseAuthenticAudio(false);
+          generate432HzTone();
+        });
       });
       
-      audio.addEventListener('error', () => {
+      audio.addEventListener('error', (e) => {
+        console.error('Audio error:', e);
         setUseAuthenticAudio(false);
         generate432HzTone();
       });
       
-      audio.play().catch(() => {
-        setUseAuthenticAudio(false);
-        generate432HzTone();
-      });
+      // Load the audio
+      audio.load();
       
       return;
     }
     
     // Fallback to synthetic generation for demo purposes
+    console.log('No uploaded tracks found, falling back to synthetic');
     setUseAuthenticAudio(false);
     generate432HzTone();
     
@@ -317,6 +339,13 @@ export const Yemoja432HzHealing: React.FC = () => {
     
     setIsPlaying(true);
     setCrystalAnimation(true);
+    
+    // Debug: Check if we have uploaded tracks
+    const userTracks = uploadedTracks[session.type];
+    console.log(`Starting ${session.type} healing - Found ${userTracks.length} uploaded tracks`);
+    if (userTracks.length > 0) {
+      console.log('Track names:', userTracks.map(f => f.name));
+    }
     
     // Try authentic audio first, fallback to synthetic
     tryAuthenticAudio(session.type);
@@ -428,7 +457,7 @@ export const Yemoja432HzHealing: React.FC = () => {
     if (!files) return;
     
     const audioFiles = Array.from(files).filter(file => 
-      file.type.startsWith('audio/') || file.name.match(/\.(mp3|wav|ogg|m4a)$/i)
+      file.type.startsWith('audio/') || file.name.match(/\.(mp3|wav|ogg|m4a|aac|flac)$/i)
     );
     
     if (audioFiles.length === 0) {
@@ -441,15 +470,52 @@ export const Yemoja432HzHealing: React.FC = () => {
       return;
     }
     
-    setUploadedTracks(prev => ({
-      ...prev,
-      [type]: [...prev[type], ...audioFiles]
-    }));
+    // Test each audio file before adding
+    const validFiles: File[] = [];
+    let processedCount = 0;
     
-    toast({
-      title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
-      description: ts(`Added ${audioFiles.length} tracks for ${type} ritual`, 
-                     `Àwọn orin ${audioFiles.length} ti di kún fún àṣẹ ${type}`),
+    audioFiles.forEach(file => {
+      const testAudio = new Audio();
+      const objectUrl = URL.createObjectURL(file);
+      testAudio.src = objectUrl;
+      
+      testAudio.addEventListener('canplaythrough', () => {
+        validFiles.push(file);
+        processedCount++;
+        
+        if (processedCount === audioFiles.length) {
+          if (validFiles.length > 0) {
+            setUploadedTracks(prev => ({
+              ...prev,
+              [type]: [...prev[type], ...validFiles]
+            }));
+            
+            toast({
+              title: ts('Tracks Uploaded', 'Àwọn Orin Ti Gbà Sókè'),
+              description: ts(`Added ${validFiles.length} valid tracks for ${type} ritual`, 
+                             `Àwọn orin ${validFiles.length} tí ó tọ́ ti di kún fún àṣẹ ${type}`),
+            });
+          }
+        }
+        
+        URL.revokeObjectURL(objectUrl);
+      });
+      
+      testAudio.addEventListener('error', () => {
+        processedCount++;
+        URL.revokeObjectURL(objectUrl);
+        
+        if (processedCount === audioFiles.length && validFiles.length === 0) {
+          toast({
+            title: ts('Upload Failed', 'Gbígbé Sókè Kùnà'),
+            description: ts('No valid audio files found. Please check your files.', 
+                           'Kò sí fáìlì orin tí ó tọ́. Jọ̀wọ́ ṣàyẹ̀wò àwọn fáìlì rẹ.'),
+            variant: "destructive",
+          });
+        }
+      });
+      
+      testAudio.load();
     });
   };
 
