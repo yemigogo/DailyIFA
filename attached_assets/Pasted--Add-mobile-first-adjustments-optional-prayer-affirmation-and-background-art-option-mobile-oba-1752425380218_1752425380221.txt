@@ -1,0 +1,89 @@
+# Add mobile-first adjustments + optional prayer/affirmation and background art option
+
+mobile_obatala_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Obatalá 963Hz Healing</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 15px;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #0a0a0a;
+      color: #e0f7ff;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #fff;
+    }
+    .section {
+      background: #161616;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 5px solid #88ccee;
+      border-radius: 6px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .affirmation {
+      font-style: italic;
+      color: #aaffdd;
+      padding-top: 10px;
+    }
+    .image-banner {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/static/images/obatala_banner.jpg" alt="Obatalá Banner" class="image-banner"/>
+
+    <h1>🕊️ Obatalá – Divine Love & Healing (963Hz)</h1>
+
+    <div class="section">
+      <h2>🌸 Why 963Hz?</h2>
+      <p>This frequency awakens deep peace, clarity, and spiritual alignment. It connects you to Obatalá, the Orisha of wisdom, light, and serenity.</p>
+    </div>
+
+    <div class="section">
+      <h2>🎧 Listen Now</h2>
+      <audio controls>
+        <source src="/static/audio/obatala_963hz_free.mp3" type="audio/mpeg">
+        Your browser does not support this audio player.
+      </audio>
+    </div>
+
+    <div class="section">
+      <h2>✨ Benefits</h2>
+      <ul>
+        <li>Emotional & energetic healing</li>
+        <li>Peaceful mind & heart</li>
+        <li>Crown chakra alignment</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🙏 Daily Affirmation</h2>
+      <p class="affirmation">"I walk in the light of Obatalá. Peace surrounds me. Clarity fills my spirit."</p>
+    </div>
+  </div>
+</body>
+</html>
+'''
+
+mobile_html_path = "/mnt/data/obatala_love_healing_mobile.html"
+with open(mobile_html_path, "w", encoding="utf-8") as f:
+    f.write(mobile_obatala_html)
+
+mobile_html_path

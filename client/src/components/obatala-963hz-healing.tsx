@@ -346,133 +346,174 @@ export const Obatala963HzHealing: React.FC = () => {
     : 100)) : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-blue-50 p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
-        {/* Header Section with HTML template styling */}
-        <div className="text-center py-8 border-l-4 border-pink-300 bg-gray-800/50 rounded-lg p-6">
-          <h1 className="text-4xl font-bold text-white flex items-center justify-center gap-4 mb-4">
-            🕊️ <span>{ts('Òbàtálá – Love & Healing Frequency (963Hz)', 'Òbàtálá – Ìgbọ̀nsí Ìfẹ́ & Ìwòsàn (963Hz)')}</span> <Crown className="w-10 h-10 text-pink-300" />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-blue-50 p-3 md:p-6">
+      {/* Optional Background Image Banner - Mobile responsive */}
+      <div className="max-w-4xl mx-auto mb-4 md:mb-6">
+        <div className="w-full h-24 md:h-32 bg-gradient-to-r from-purple-900/40 to-pink-900/40 rounded-lg border border-pink-300/20 flex items-center justify-center">
+          <div className="text-center text-pink-200">
+            <Crown className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-1 opacity-60" />
+            <p className="text-xs opacity-80">
+              {ts('Òbàtálá Divine Light', 'Ìmọ́lẹ̀ Òbàtálá')}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+        {/* Header Section with HTML template styling - Mobile optimized */}
+        <div className="text-center py-4 md:py-6 border-l-4 border-pink-300 bg-gray-800/50 rounded-lg p-4 md:p-6">
+          <h1 className="text-2xl md:text-4xl font-bold text-white flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 mb-3 md:mb-4">
+            <div className="flex items-center gap-2">
+              🕊️ <Crown className="w-6 h-6 md:w-10 md:h-10 text-pink-300" />
+            </div>
+            <span className="text-center leading-tight">
+              {ts('Òbàtálá – Love & Healing (963Hz)', 'Òbàtálá – Ìfẹ́ & Ìwòsàn (963Hz)')}
+            </span>
           </h1>
         </div>
 
-        {/* Divine Frequency Section */}
-        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
-          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-            🌸 {ts('Divine Frequency – 963Hz', 'Ìgbọ̀nsí Òrìṣà – 963Hz')}
+        {/* Divine Frequency Section - Mobile optimized */}
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
+            🌸 {ts('Why 963Hz?', 'Kí Nìdí 963Hz?')}
           </h2>
-          <p className="text-blue-100 leading-relaxed">
+          <p className="text-blue-100 leading-relaxed text-sm md:text-base">
             {ts(
-              'This frequency, known as the "God Frequency," is deeply connected with inner healing, crown chakra activation, and soul-level purification. It perfectly resonates with the energy of Obatalá – Orisha of clarity, peace, and divine wisdom.',
-              'Ìgbọ̀nsí yìí, tí a mọ̀ sí "Ìgbọ̀nsí Ọlọ́run," ní ìbátan jinlẹ̀ pẹ̀lú ìwòsàn inú, jíjí adé chakra, àti ìmọ́tótó ẹ̀mí. Ó bára mu pẹ̀lú agbára Òbàtálá – Òrìṣà ìmọ́lẹ̀, àlàáfíà, àti ọgbọ́n òrìṣà.'
+              'This frequency awakens deep peace, clarity, and spiritual alignment. It connects you to Òbàtálá, the Orisha of wisdom, light, and serenity.',
+              'Ìgbọ̀nsí yìí ń dá àlàáfíà jinlẹ̀, ìmọ́lẹ̀, àti ìbáṣepọ̀ ẹ̀mí. Ó so ọ́ pọ̀ mọ́ Òbàtálá, Òrìṣà ọgbọ́n, ìmọ́lẹ̀, àti ìdákẹ́jẹ́.'
             )}
           </p>
         </div>
 
-        {/* Benefits Section from HTML template */}
-        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
-          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-            ✨ {ts('Benefits of Òbàtálá Frequency', 'Àwọn Àǹfààní Ìgbọ̀nsí Òbàtálá')}
+        {/* Benefits Section from HTML template - Mobile optimized */}
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
+            ✨ {ts('Benefits', 'Àwọn Àǹfààní')}
           </h2>
-          <ul className="space-y-3 text-blue-100">
-            <li className="flex items-center gap-3">
-              <Heart className="w-5 h-5 text-pink-300 flex-shrink-0" />
-              {ts('Emotional peace and clarity', 'Àlàáfíà ẹ̀mí àti ìmọ́lẹ̀')}
+          <ul className="space-y-2 md:space-y-3 text-blue-100">
+            <li className="flex items-center gap-2 md:gap-3">
+              <Heart className="w-4 h-4 md:w-5 md:h-5 text-pink-300 flex-shrink-0" />
+              <span className="text-sm md:text-base">{ts('Emotional & energetic healing', 'Ìwòsàn ẹ̀mí àti agbára')}</span>
             </li>
-            <li className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-pink-300 flex-shrink-0" />
-              {ts('Deep spiritual healing and release', 'Ìwòsàn ẹ̀mí jinlẹ̀ àti ìtúsílẹ̀')}
+            <li className="flex items-center gap-2 md:gap-3">
+              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-pink-300 flex-shrink-0" />
+              <span className="text-sm md:text-base">{ts('Peaceful mind & heart', 'Àlàáfíà ọkàn àti inú')}</span>
             </li>
-            <li className="flex items-center gap-3">
-              <Crown className="w-5 h-5 text-pink-300 flex-shrink-0" />
-              {ts('DNA repair and crown chakra awakening', 'Àtúnṣe DNA àti jíjí adé chakra')}
+            <li className="flex items-center gap-2 md:gap-3">
+              <Crown className="w-4 h-4 md:w-5 md:h-5 text-pink-300 flex-shrink-0" />
+              <span className="text-sm md:text-base">{ts('Crown chakra alignment', 'Ìbára mu adé chakra')}</span>
             </li>
           </ul>
         </div>
 
-        {/* Audio Section from HTML template */}
-        <div className="bg-gray-800/60 p-6 border-l-4 border-pink-300 rounded-lg">
-          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+        {/* Daily Affirmation Section - Mobile-first from HTML template */}
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
+            🙏 {ts('Daily Affirmation', 'Àdúrà Ojoojúmọ́')}
+          </h2>
+          <div className="bg-gradient-to-r from-pink-900/30 to-purple-900/30 p-4 rounded-lg border border-pink-300/20">
+            <p className="text-blue-100 italic text-base md:text-lg leading-relaxed text-center">
+              {ts(
+                '"I walk in the light of Òbàtálá. Peace surrounds me. Clarity fills my spirit."',
+                '"Màa rìn nínú ìmọ́lẹ̀ Òbàtálá. Àlàáfíà yí mi ká. Ìmọ́lẹ̀ kún inú ẹ̀mí mi."'
+              )}
+            </p>
+            <div className="mt-3 pt-3 border-t border-pink-300/20">
+              <p className="text-xs md:text-sm text-pink-200 text-center">
+                {ts('Repeat this affirmation during your 963Hz meditation', 'Tún àdúrà yìí ní àsìkò àṣẹ 963Hz rẹ')}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Audio Section from HTML template - Mobile optimized */}
+        <div className="bg-gray-800/60 p-4 md:p-6 border-l-4 border-pink-300 rounded-lg">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
             🎧 {ts('Listen to Òbàtálá Meditation Music', 'Gbọ́ Orin Àṣẹ Òbàtálá')}
           </h2>
-          <p className="text-blue-100 leading-relaxed mb-6">
+          <p className="text-blue-100 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
             {ts(
-              'Play the meditation below, tuned to 963Hz, to enter a space of peace, healing, and universal love:',
-              'Dún orin àṣẹ yìí tí a tò sí 963Hz, láti wọ inú àlàáfíà, ìwòsàn, àti ìfẹ́ gbogbo ayé:'
+              'This 963Hz frequency awakens deep peace, clarity, and spiritual alignment. It connects you to Òbàtálá, the Orisha of wisdom, light, and serenity.',
+              'Ìgbọ̀nsí 963Hz yìí ń dá àlàáfíà jinlẹ̀, ìmọ́lẹ̀, àti ìbáṣepọ̀ ẹ̀mí. Ó so ọ́ pọ̀ mọ́ Òbàtálá, Òrìṣà ọgbọ́n, ìmọ́lẹ̀, àti ìdákẹ́jẹ́.'
             )}
           </p>
           
-          {/* Audio Players for offline support */}
-          <div className="space-y-4">
+          {/* Audio Players for offline support - Mobile responsive */}
+          <div className="space-y-3 md:space-y-4">
             <audio 
               controls 
-              className="w-full rounded-lg bg-gray-700 border border-pink-300/30"
+              className="w-full rounded-lg bg-gray-700 border border-pink-300/30 h-10 md:h-12"
               style={{ filter: 'hue-rotate(280deg) saturate(1.2)' }}
             >
               <source src="/static/audio/obatala_963hz.mp3" type="audio/mpeg" />
               {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
             </audio>
             
-            <p className="text-sm text-blue-200 italic">
+            <p className="text-xs md:text-sm text-blue-200 italic">
               {ts('Note: Audio files will be served from your local static folder for offline support', 
                   'Àkíyèsí: Àwọn fáìlì orin yóò wá láti fódà static rẹ fún àtìlẹyìn aláìníìṣípọ̀n')}
             </p>
           </div>
         </div>
 
-      <Tabs defaultValue="rituals" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 bg-gray-800/80 border border-pink-300/30">
-          <TabsTrigger value="rituals" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
-            <Crown className="w-4 h-4" />
-            {ts('Rituals', 'Àṣẹ')}
+      <Tabs defaultValue="rituals" className="space-y-4 md:space-y-6">
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-800/80 border border-pink-300/30">
+          <TabsTrigger value="rituals" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Crown className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Rituals', 'Àṣẹ')}</span>
+            <span className="sm:hidden">🕊️</span>
           </TabsTrigger>
-          <TabsTrigger value="audio" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
-            <Music className="w-4 h-4" />
-            {ts('Audio', 'Orin')}
+          <TabsTrigger value="audio" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Music className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Audio', 'Orin')}</span>
+            <span className="sm:hidden">🎧</span>
           </TabsTrigger>
-          <TabsTrigger value="science" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
-            <Star className="w-4 h-4" />
-            {ts('Science', 'Sáyẹnsì')}
+          <TabsTrigger value="science" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Star className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Science', 'Sáyẹnsì')}</span>
+            <span className="sm:hidden">⚡</span>
           </TabsTrigger>
-          <TabsTrigger value="session" className="flex items-center gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white">
-            <Clock className="w-4 h-4" />
-            {ts('Session', 'Ìgbà')}
+          <TabsTrigger value="session" className="flex items-center gap-1 md:gap-2 text-blue-100 data-[state=active]:bg-pink-300/20 data-[state=active]:text-white text-xs md:text-sm">
+            <Clock className="w-3 h-3 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">{ts('Session', 'Ìgbà')}</span>
+            <span className="sm:hidden">⏰</span>
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="rituals" className="space-y-6">
-          <div className="grid md:grid-cols-3 gap-6">
+        <TabsContent value="rituals" className="space-y-4 md:space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {Object.entries(obatalaRituals).map(([type, ritual]) => (
               <Card key={type} className="bg-gray-800/60 border border-pink-300/30 hover:border-pink-300/50 transition-colors">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg text-white">
-                    {type === 'purification' && <Sparkles className="w-5 h-5 text-pink-300" />}
-                    {type === 'healing' && <Heart className="w-5 h-5 text-pink-300" />}
-                    {type === 'wisdom' && <Crown className="w-5 h-5 text-pink-300" />}
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base md:text-lg text-white">
+                    {type === 'purification' && <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-pink-300" />}
+                    {type === 'healing' && <Heart className="w-4 h-4 md:w-5 md:h-5 text-pink-300" />}
+                    {type === 'wisdom' && <Crown className="w-4 h-4 md:w-5 md:h-5 text-pink-300" />}
                     {ts(type.charAt(0).toUpperCase() + type.slice(1), 
                         type === 'purification' ? 'Ìmọ́tótó' : 
                         type === 'healing' ? 'Ìwòsàn' : 'Ọgbọ́n')}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 md:space-y-4 pt-0">
                   <div className="space-y-2">
-                    <h4 className="font-medium text-blue-100">{ts('Steps', 'Àwọn Ìgbésẹ̀')}</h4>
-                    <ul className="text-sm space-y-1">
+                    <h4 className="font-medium text-blue-100 text-sm md:text-base">{ts('Steps', 'Àwọn Ìgbésẹ̀')}</h4>
+                    <ul className="text-xs md:text-sm space-y-1">
                       {(language === 'yoruba' ? ritual.stepsYoruba : ritual.steps).map((step, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <span className="text-pink-300 font-mono text-xs mt-0.5">{index + 1}.</span>
-                          <span className="text-blue-100">{step}</span>
+                          <span className="text-pink-300 font-mono text-xs mt-0.5 flex-shrink-0">{index + 1}.</span>
+                          <span className="text-blue-100 leading-relaxed">{step}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <Badge variant="outline" className="bg-pink-300/20 border-pink-300/50 text-white">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2">
+                    <Badge variant="outline" className="bg-pink-300/20 border-pink-300/50 text-white text-xs">
                       {ritual.duration} {ts('min', 'ìṣẹ́jú')} • 963Hz
                     </Badge>
                     <Button
                       onClick={() => startRitual(type as 'purification' | 'healing' | 'wisdom')}
-                      className="bg-pink-600 hover:bg-pink-700 text-white"
+                      className="bg-pink-600 hover:bg-pink-700 text-white text-sm px-4 py-2 w-full sm:w-auto"
                       disabled={session?.isActive}
                     >
                       {ts('Start', 'Bẹ̀rẹ̀')}
