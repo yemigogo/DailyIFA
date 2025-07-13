@@ -184,11 +184,14 @@ export const YorubaCosmologyExplorer: React.FC = () => {
   const [avatarAnswers, setAvatarAnswers] = useState<string[]>([]);
   const [createdAvatar, setCreatedAvatar] = useState<OrishaAvatar | null>(null);
   
-  // Meditation Timer State  
+  // Enhanced Meditation Timer State  
   const [meditationActive, setMeditationActive] = useState(false);
   const [meditationTime, setMeditationTime] = useState(0);
   const [selectedDuration, setSelectedDuration] = useState(300);
   const [sessionStart, setSessionStart] = useState<Date | null>(null);
+  const [meditationLevel, setMeditationLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const [chimeEnabled, setChimeEnabled] = useState(true);
+  const [lastChime, setLastChime] = useState(0);
 
   // Load progress from localStorage
   useEffect(() => {
@@ -919,18 +922,41 @@ export const YorubaCosmologyExplorer: React.FC = () => {
                 
                 <div className="grid grid-cols-3 gap-4">
                   {[
-                    { duration: 300, label: language === 'yoruba' ? '5 Ìṣẹ́jú' : '5 Minutes' },
-                    { duration: 900, label: language === 'yoruba' ? '15 Ìṣẹ́jú' : '15 Minutes' },
-                    { duration: 1800, label: language === 'yoruba' ? '30 Ìṣẹ́jú' : '30 Minutes' }
-                  ].map(({ duration, label }) => (
+                    { duration: 300, label: language === 'yoruba' ? '5 Ìṣẹ́jú' : '5 Minutes', level: 'beginner' },
+                    { duration: 900, label: language === 'yoruba' ? '15 Ìṣẹ́jú' : '15 Minutes', level: 'intermediate' },
+                    { duration: 1800, label: language === 'yoruba' ? '30 Ìṣẹ́jú' : '30 Minutes', level: 'advanced' }
+                  ].map(({ duration, label, level }) => (
                     <Button
                       key={duration}
                       variant={selectedDuration === duration ? "default" : "outline"}
-                      onClick={() => setSelectedDuration(duration)}
+                      onClick={() => {
+                        setSelectedDuration(duration);
+                        setMeditationLevel(level as 'beginner' | 'intermediate' | 'advanced');
+                      }}
+                      className="flex flex-col items-center p-4 h-auto"
                     >
-                      {label}
+                      <div className="text-lg">{label}</div>
+                      <div className="text-xs opacity-70 capitalize">{level}</div>
                     </Button>
                   ))}
+                </div>
+                
+                {/* Enhanced Chime Settings */}
+                <div className="flex items-center justify-center gap-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={chimeEnabled}
+                      onChange={(e) => setChimeEnabled(e.target.checked)}
+                      className="rounded"
+                    />
+                    <span className="text-sm">
+                      {language === 'yoruba' ? 'Agogo ìpamọ́' : 'Meditation Chimes'}
+                    </span>
+                  </label>
+                  <div className="text-xs text-gray-500">
+                    {language === 'yoruba' ? 'Agogo ní gbogbo ìṣẹ́jú márùn-ún' : 'Chimes every 5 minutes'}
+                  </div>
                 </div>
                 
                 <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200">
@@ -961,12 +987,23 @@ export const YorubaCosmologyExplorer: React.FC = () => {
               </>
             ) : (
               <>
-                <div className="text-6xl font-mono mb-4">
-                  {formatTime(meditationTime)}
+                <div className="space-y-4">
+                  <div className="text-xs uppercase tracking-wider text-gray-500">
+                    {meditationLevel} • {chimeEnabled ? '🔔 Chimes On' : '🔕 Chimes Off'}
+                  </div>
+                  <div className="text-6xl font-mono mb-4 text-blue-600 dark:text-blue-400">
+                    {formatTime(meditationTime)}
+                  </div>
                 </div>
                 
-                <div className="w-32 h-32 mx-auto border-4 border-blue-300 rounded-full animate-cosmic-pulse flex items-center justify-center">
-                  <Timer className="h-16 w-16 text-blue-600" />
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <div className="w-32 h-32 border-4 border-blue-300 rounded-full animate-cosmic-pulse flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+                    <Timer className="h-16 w-16 text-blue-600" />
+                  </div>
+                  {/* Progress ring */}
+                  <div className="absolute inset-0 rounded-full" style={{
+                    background: `conic-gradient(#3B82F6 ${((selectedDuration - meditationTime) / selectedDuration) * 360}deg, transparent 0deg)`
+                  }}></div>
                 </div>
                 
                 <Button 
@@ -992,13 +1029,35 @@ export const YorubaCosmologyExplorer: React.FC = () => {
     );
   };
 
-  // Meditation timer effect
+  // Enhanced meditation timer with chimes
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (meditationActive && meditationTime > 0) {
       interval = setInterval(() => {
         setMeditationTime(time => {
           if (time <= 1) {
+            // Completion chime
+            if (chimeEnabled) {
+              try {
+                const audioContext = new AudioContext();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 528; // Love frequency
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 2);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 2);
+              } catch (e) {
+                console.log('Web Audio API not supported');
+              }
+            }
+            
             setMeditationActive(false);
             const newProgress = { ...progress, meditationSessions: progress.meditationSessions + 1 };
             saveProgress(newProgress);
@@ -1008,12 +1067,36 @@ export const YorubaCosmologyExplorer: React.FC = () => {
             });
             return 0;
           }
+          
+          // Interval chimes (every 5 minutes = 300 seconds)
+          if (chimeEnabled && time % 300 === 0 && time !== lastChime) {
+            try {
+              const audioContext = new AudioContext();
+              const oscillator = audioContext.createOscillator();
+              const gainNode = audioContext.createGain();
+              
+              oscillator.connect(gainNode);
+              gainNode.connect(audioContext.destination);
+              
+              oscillator.frequency.value = 432; // Healing frequency
+              oscillator.type = 'triangle';
+              gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+              gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1);
+              
+              oscillator.start();
+              oscillator.stop(audioContext.currentTime + 1);
+              setLastChime(time);
+            } catch (e) {
+              console.log('Chime audio not supported');
+            }
+          }
+          
           return time - 1;
         });
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [meditationActive, meditationTime, progress, language, toast]);
+  }, [meditationActive, meditationTime, progress, language, toast, chimeEnabled, lastChime, saveProgress]);
 
   return (
     <div className="max-w-4xl mx-auto p-6 relative">

@@ -2,18 +2,82 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Pause, RotateCcw, Maximize2 } from 'lucide-react';
+import { Play, Pause, RotateCcw, Maximize2, Volume2, VolumeX, Download, Share2 } from 'lucide-react';
 
-// Orisha data with authentic associations
+// Enhanced Orisha data with sound and spiritual properties
 const ORISHAS = {
-  'Ọbàtálá': { color: '#FFFFFF', realm: 'orun', symbol: '☁️', domain: 'Creation, Wisdom' },
-  'Ṣàngó': { color: '#CC2244', realm: 'aye', symbol: '⚡', domain: 'Thunder, Justice' },
-  'Ọ̀ṣun': { color: '#FFD700', realm: 'aye', symbol: '🌊', domain: 'Love, Rivers' },
-  'Ògún': { color: '#228B22', realm: 'aye', symbol: '⚔️', domain: 'Iron, War' },
-  'Yemọja': { color: '#4169E1', realm: 'ile_okun', symbol: '🌍', domain: 'Ocean, Motherhood' },
-  'Olókun': { color: '#000080', realm: 'ile_okun', symbol: '🐚', domain: 'Deep Ocean' },
-  'Ọya': { color: '#8B008B', realm: 'orun', symbol: '🌪️', domain: 'Winds, Change' },
-  'Ọ̀rúnmìlà': { color: '#FFD700', realm: 'orun', symbol: '👁️', domain: 'Wisdom, Divination' }
+  'Ọbàtálá': { 
+    color: '#FFFFFF', 
+    realm: 'orun', 
+    symbol: '☁️', 
+    domain: 'Creation, Wisdom',
+    element: 'air',
+    sound: '/static/audio/tibetan-singing-bowl.mp3',
+    blessing: 'May Ọbàtálá grant you clarity and wisdom'
+  },
+  'Ṣàngó': { 
+    color: '#CC2244', 
+    realm: 'aye', 
+    symbol: '⚡', 
+    domain: 'Thunder, Justice',
+    element: 'fire',
+    sound: '/static/audio/thunder-sound.mp3',
+    blessing: 'May Ṣàngó bring you courage and justice'
+  },
+  'Ọ̀ṣun': { 
+    color: '#FFD700', 
+    realm: 'aye', 
+    symbol: '🌊', 
+    domain: 'Love, Rivers',
+    element: 'water',
+    sound: '/static/audio/river-flow.mp3',
+    blessing: 'May Ọ̀ṣun fill your life with love and abundance'
+  },
+  'Ògún': { 
+    color: '#228B22', 
+    realm: 'aye', 
+    symbol: '⚔️', 
+    domain: 'Iron, War',
+    element: 'iron',
+    sound: '/static/audio/metal-forge.mp3',
+    blessing: 'May Ògún give you strength and determination'
+  },
+  'Yemọja': { 
+    color: '#4169E1', 
+    realm: 'ile_okun', 
+    symbol: '🌍', 
+    domain: 'Ocean, Motherhood',
+    element: 'water',
+    sound: '/static/audio/ocean-waves.mp3',
+    blessing: 'May Yemọja nurture and protect you'
+  },
+  'Olókun': { 
+    color: '#000080', 
+    realm: 'ile_okun', 
+    symbol: '🐚', 
+    domain: 'Deep Ocean',
+    element: 'water',
+    sound: '/static/audio/deep-ocean.mp3',
+    blessing: 'May Olókun reveal the mysteries of wisdom'
+  },
+  'Ọya': { 
+    color: '#8B008B', 
+    realm: 'orun', 
+    symbol: '🌪️', 
+    domain: 'Winds, Change',
+    element: 'air',
+    sound: '/static/audio/wind-storm.mp3',
+    blessing: 'May Ọya bring you transformation and renewal'
+  },
+  'Ọ̀rúnmìlà': { 
+    color: '#FFD700', 
+    realm: 'orun', 
+    symbol: '👁️', 
+    domain: 'Wisdom, Divination',
+    element: 'wisdom',
+    sound: '/static/audio/ancestral-chant.mp3',
+    blessing: 'May Ọ̀rúnmìlà guide your spiritual path'
+  }
 };
 
 interface CosmicRealm3DProps {
@@ -23,9 +87,13 @@ interface CosmicRealm3DProps {
 export function CosmicRealms3D({ className = "" }: CosmicRealm3DProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [selectedOrisha, setSelectedOrisha] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'overview' | 'focused'>('overview');
+  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState<string | null>(null);
+  const [showAvatarCreator, setShowAvatarCreator] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -310,8 +378,108 @@ export function CosmicRealms3D({ className = "" }: CosmicRealm3DProps) {
       const distance = Math.sqrt((x - orishaX) ** 2 + (y - orishaY) ** 2);
       if (distance < 20) {
         setSelectedOrisha(selectedOrisha === name ? null : name);
+        // Play Orisha sound if enabled
+        if (soundEnabled) {
+          playOrishaSound(name);
+        }
       }
     });
+  };
+
+  // Enhanced audio functionality
+  const playOrishaSound = (orisha: string) => {
+    if (!soundEnabled) return;
+    
+    const data = ORISHAS[orisha];
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    
+    // Create new audio instance for Orisha sound
+    audioRef.current = new Audio(data.sound);
+    audioRef.current.volume = 0.3;
+    audioRef.current.play().catch(() => {
+      console.log('Audio playback requires user interaction');
+    });
+    
+    setCurrentAudio(orisha);
+    
+    // Auto-stop after 3 seconds
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setCurrentAudio(null);
+      }
+    }, 3000);
+  };
+
+  // Avatar creation functionality
+  const createShareableAvatar = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 400;
+    canvas.height = 400;
+    const ctx = canvas.getContext('2d');
+    
+    if (!ctx) return;
+    
+    // Create avatar background
+    const gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 200);
+    gradient.addColorStop(0, '#4A148C');
+    gradient.addColorStop(1, '#000051');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 400, 400);
+    
+    // Add selected Orisha or random one
+    const targetOrisha = selectedOrisha || Object.keys(ORISHAS)[Math.floor(Math.random() * Object.keys(ORISHAS).length)];
+    const orishaData = ORISHAS[targetOrisha];
+    
+    // Draw Orisha symbol
+    ctx.fillStyle = orishaData.color;
+    ctx.font = 'bold 80px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(orishaData.symbol, 200, 220);
+    
+    // Add text
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 24px serif';
+    ctx.fillText(`Your Orisha Guide: ${targetOrisha}`, 200, 300);
+    
+    ctx.font = '16px serif';
+    ctx.fillText(orishaData.blessing, 200, 340);
+    
+    ctx.font = '12px serif';
+    ctx.fillText('Generated by Yorùbá Cosmic Realms', 200, 380);
+    
+    // Download avatar
+    const link = document.createElement('a');
+    link.download = `orisha-avatar-${targetOrisha.toLowerCase()}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+    
+    setShowAvatarCreator(false);
+  };
+
+  // Share functionality
+  const shareCosmicExperience = async () => {
+    const shareData = {
+      title: 'Yorùbá Cosmic Realms Experience',
+      text: selectedOrisha 
+        ? `I just connected with ${selectedOrisha} in the Yorùbá Cosmic Realms! ${ORISHAS[selectedOrisha].blessing}`
+        : 'Explore the mystical Yorùbá Cosmic Realms - three sacred dimensions with floating Orisha spheres!',
+      url: window.location.href
+    };
+    
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      // Fallback to clipboard
+      navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+      alert('Experience shared to clipboard!');
+    }
   };
 
   return (
@@ -335,6 +503,30 @@ export function CosmicRealms3D({ className = "" }: CosmicRealm3DProps) {
                 className="border-purple-500/50 hover:bg-purple-500/20"
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSoundEnabled(!soundEnabled)}
+                className={`border-purple-500/50 hover:bg-purple-500/20 ${soundEnabled ? 'bg-purple-500/30' : ''}`}
+              >
+                {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={createShareableAvatar}
+                className="border-purple-500/50 hover:bg-purple-500/20"
+              >
+                <Download className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={shareCosmicExperience}
+                className="border-purple-500/50 hover:bg-purple-500/20"
+              >
+                <Share2 className="w-4 h-4" />
               </Button>
               <Button
                 variant="outline"
@@ -386,58 +578,96 @@ export function CosmicRealms3D({ className = "" }: CosmicRealm3DProps) {
         </CardContent>
       </Card>
 
-      {/* Selected Orisha Details */}
+      {/* Enhanced Selected Orisha Details */}
       {selectedOrisha && (
         <Card className="bg-gradient-to-r from-slate-800 to-slate-700 border-purple-500/30">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
-              <span className="text-2xl">{ORISHAS[selectedOrisha].symbol}</span>
-              <div>
+              <span className="text-3xl">{ORISHAS[selectedOrisha].symbol}</span>
+              <div className="flex-1">
                 <div className="text-xl font-bold text-purple-300">{selectedOrisha}</div>
                 <div className="text-sm text-gray-400">{ORISHAS[selectedOrisha].domain}</div>
+                <div className="text-xs text-blue-300 mt-1">Element: {ORISHAS[selectedOrisha].element}</div>
               </div>
+              {currentAudio === selectedOrisha && (
+                <Badge variant="secondary" className="bg-green-500/20 text-green-300">
+                  🔊 Playing Sound
+                </Badge>
+              )}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Badge 
-                  style={{ backgroundColor: ORISHAS[selectedOrisha].color + '40', color: '#FFFFFF' }}
-                  className="border-0"
-                >
-                  Sacred Color
+              <div className="text-purple-200">{ORISHAS[selectedOrisha].blessing}</div>
+              
+              <div className="flex gap-2 flex-wrap">
+                <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
+                  Realm: {ORISHAS[selectedOrisha].realm}
                 </Badge>
-                <Badge variant="outline" className="border-purple-500/50 text-purple-300">
-                  {ORISHAS[selectedOrisha].realm === 'orun' ? 'Heavenly Realm' : 
-                   ORISHAS[selectedOrisha].realm === 'aye' ? 'Earthly Realm' : 'Oceanic Realm'}
+                <Badge variant="secondary" className="bg-blue-500/20 text-blue-300">
+                  Element: {ORISHAS[selectedOrisha].element}
                 </Badge>
+                {soundEnabled && (
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => playOrishaSound(selectedOrisha)}
+                    className="border-purple-500/50 hover:bg-purple-500/20"
+                  >
+                    🔊 Play Sacred Sound
+                  </Button>
+                )}
               </div>
-              <p className="text-gray-300 text-sm">
-                {selectedOrisha} governs {ORISHAS[selectedOrisha].domain.toLowerCase()} and resides in the{' '}
-                {ORISHAS[selectedOrisha].realm === 'orun' ? 'heavenly realm of Òrun' : 
-                 ORISHAS[selectedOrisha].realm === 'aye' ? 'earthly marketplace of Ayé' : 
-                 'oceanic depths of Ilẹ̀-Ọkùn'}.
-              </p>
             </div>
           </CardContent>
         </Card>
       )}
 
-      {/* Instructions */}
+      {/* Enhanced Instructions with New Features */}
       <Card className="bg-slate-800/50 border-purple-500/30">
         <CardContent className="pt-6">
-          <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-300">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-300">
             <div className="text-center">
-              <div className="text-purple-400 font-semibold mb-1">Òrun (Purple)</div>
-              <div>Divine realm where Orishas of wisdom and spiritual power reside</div>
+              <div className="text-purple-400 font-semibold mb-2 flex items-center justify-center gap-1">
+                <Volume2 className="w-4 h-4" />
+                Sacred Sounds
+              </div>
+              <div>Enable audio to hear each Orisha's sacred sound when clicked</div>
             </div>
             <div className="text-center">
-              <div className="text-green-400 font-semibold mb-1">Ayé (Green)</div>
-              <div>Earthly marketplace with floating Orisha spheres in eternal dance</div>
+              <div className="text-blue-400 font-semibold mb-2 flex items-center justify-center gap-1">
+                <Download className="w-4 h-4" />
+                Avatar Creator
+              </div>
+              <div>Generate and download your personalized Orisha avatar image</div>
             </div>
             <div className="text-center">
-              <div className="text-blue-400 font-semibold mb-1">Ilẹ̀-Ọkùn (Blue)</div>
-              <div>Oceanic abyss with flowing currents and deep water mysteries</div>
+              <div className="text-green-400 font-semibold mb-2 flex items-center justify-center gap-1">
+                <Share2 className="w-4 h-4" />
+                Share Experience
+              </div>
+              <div>Share your cosmic journey and Orisha connections with others</div>
+            </div>
+            <div className="text-center">
+              <div className="text-amber-400 font-semibold mb-2">Interactive Realms</div>
+              <div>Click floating Orisha spheres to explore their domains and blessings</div>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-gray-600">
+            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-400">
+              <div className="text-center">
+                <div className="text-purple-400 font-semibold mb-1">Òrun (Purple)</div>
+                <div>Divine realm where Orishas of wisdom and spiritual power reside</div>
+              </div>
+              <div className="text-center">
+                <div className="text-green-400 font-semibold mb-1">Ayé (Green)</div>
+                <div>Earthly marketplace with floating Orisha spheres in eternal dance</div>
+              </div>
+              <div className="text-center">
+                <div className="text-blue-400 font-semibold mb-1">Ilẹ̀-Ọkùn (Blue)</div>
+                <div>Oceanic abyss with flowing currents and deep water mysteries</div>
+              </div>
             </div>
           </div>
         </CardContent>
