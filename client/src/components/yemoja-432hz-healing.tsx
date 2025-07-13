@@ -286,15 +286,16 @@ export const Yemoja432HzHealing: React.FC = () => {
       return;
     }
     
-    // Fallback to synthetic generation for demo purposes
-    console.log('No uploaded tracks found, falling back to synthetic');
+    // This should ONLY happen if no tracks are uploaded
+    console.log('⚠ WARNING: Using synthetic because no tracks uploaded');
     setUseAuthenticAudio(false);
     generate432HzTone();
     
     toast({
-      title: ts('Synthetic 432Hz Active', 'Ìṣẹ̀dá 432Hz Ń Ṣiṣẹ́'),
-      description: ts('Upload your own 432Hz tracks for authentic healing experience', 
-                     'Gbé àwọn orin 432Hz tirẹ sókè fún ìrírí ìwòsàn òtítọ́'),
+      title: ts('Upload Audio Files', 'Gbé Fáìlì Orin Sókè'),
+      description: ts('Add your 432Hz tracks in Audio tab for authentic experience', 
+                     'Fi àwọn orin 432Hz sí Audio tab fún ìrírí òtítọ́'),
+      variant: "default",
     });
   };
 
@@ -363,13 +364,22 @@ export const Yemoja432HzHealing: React.FC = () => {
     
     // Debug: Check if we have uploaded tracks
     const userTracks = uploadedTracks[session.type];
-    console.log(`Starting ${session.type} healing - Found ${userTracks.length} uploaded tracks`);
-    if (userTracks.length > 0) {
-      console.log('Track names:', userTracks.map(f => f.name));
-    }
+    console.log(`=== STARTING HEALING SESSION ===`);
+    console.log(`Session type: ${session.type}`);
+    console.log(`Found ${userTracks.length} uploaded tracks`);
+    console.log('Track details:', userTracks.map(f => ({ name: f.name, size: f.size, type: f.type })));
+    console.log(`useAuthenticAudio state: ${useAuthenticAudio}`);
     
-    // Try authentic audio first, fallback to synthetic
-    tryAuthenticAudio(session.type);
+    // CRITICAL: Only try authentic if we have tracks
+    if (userTracks.length > 0) {
+      console.log('✓ Using uploaded tracks - NO SYNTHETIC');
+      setUseAuthenticAudio(true);
+      tryAuthenticAudio(session.type);
+    } else {
+      console.log('✗ No uploaded tracks - using synthetic fallback');
+      setUseAuthenticAudio(false);
+      generate432HzTone();
+    }
     
     const ritual = yemojaRituals[session.type];
     
@@ -1080,6 +1090,31 @@ export const Yemoja432HzHealing: React.FC = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {/* Audio Mode Status */}
+                  <div className={`p-3 rounded-lg border text-sm ${
+                    useAuthenticAudio 
+                      ? 'bg-green-50 border-green-200 text-green-800' 
+                      : 'bg-orange-50 border-orange-200 text-orange-800'
+                  }`}>
+                    <div className="flex items-center">
+                      <Music className="w-4 h-4 mr-2" />
+                      <span className="font-medium">
+                        {useAuthenticAudio 
+                          ? ts('🎵 Playing Your Files', '🎵 Ń Dún Àwọn Fáìlì Rẹ')
+                          : ts('🔧 Demo Mode (Upload Files)', '🔧 Ọ̀nà Àpẹẹrẹ (Gbé Fáìlì Sókè)')
+                        }
+                      </span>
+                    </div>
+                    {session && (
+                      <div className="text-xs mt-1">
+                        {uploadedTracks[session.type].length > 0 
+                          ? ts(`${uploadedTracks[session.type].length} tracks available`, `àwọn orin ${uploadedTracks[session.type].length} wà`)
+                          : ts('Upload 432Hz files in Audio tab', 'Gbé àwọn fáìlì 432Hz sí Audio tab')
+                        }
+                      </div>
+                    )}
+                  </div>
+
                   <div className="flex items-center gap-4">
                     <Button
                       onClick={isPlaying ? stopHealing : startHealing}
