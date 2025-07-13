@@ -15,6 +15,7 @@ import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
 import CosmologyProgressTracker from '@/components/cosmology-progress-tracker';
 import { YorubaCosmologyExplorer } from '@/components/yoruba-cosmology-explorer';
+import CosmicRealms3D from '@/components/cosmic-realms-3d';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -565,6 +566,15 @@ const Learning: React.FC = () => {
       description: "Interactive Yorùbá cosmic realms exploration with quizzes",
       descriptionYoruba: "Àyẹ̀wò àwọn àgbáyé kọ́smíkì Yorùbá pẹ̀lú àwọn ìdánwò",
       icon: <Globe className="w-5 h-5" />,
+      content: []
+    },
+    {
+      id: "cosmic-realms-3d",
+      title: "3D Cosmic Realms",
+      titleYoruba: "Àwọn Àgbáyé 3D",
+      description: "Interactive 3D visualization of Òrun, Ayé, and Ilẹ̀-Ọkùn with floating Orisha spheres",
+      descriptionYoruba: "Àfihàn 3D àwọn àgbáyé Òrun, Ayé, àti Ilẹ̀-Ọkùn pẹ̀lú àwọn òrìṣà tí ń lọ́",
+      icon: <Play className="w-5 h-5" />,
       content: []
     }
   ];
@@ -1185,6 +1195,10 @@ const Learning: React.FC = () => {
 
                   {module.id === 'cosmology-explorer' && (
                     <YorubaCosmologyExplorer />
+                  )}
+
+                  {module.id === 'cosmic-realms-3d' && (
+                    <CosmicRealms3D />
                   )}
                 </CardContent>
               </Card>
