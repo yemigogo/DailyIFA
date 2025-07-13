@@ -326,6 +326,38 @@ const Learning: React.FC = () => {
               spirits: ["Ará Òrun", "Egúngún"]
             }
           ]
+        },
+        {
+          title: "Cosmic Laws",
+          titleYoruba: "Àwọn Òfin Àgbáyé",
+          text: "The spiritual universe operates according to fundamental laws that govern the flow of divine energy and human interaction with the sacred:",
+          textYoruba: "Àgbáyé ẹ̀mí ń ṣiṣẹ́ gẹ́gẹ́ bí àwọn òfin ìpìlẹ̀ tí ó ń ṣàkóso ṣíṣàn agbára òrìṣà àti ìbáṣepọ̀ ọmọ ènìyàn pẹ̀lú ohun mímọ́:",
+          cosmicLaws: [
+            {
+              law: "Àṣẹ",
+              lawYoruba: "Àṣẹ",
+              meaning: "Divine authority flows through spoken words",
+              meaningYoruba: "Àṣẹ òrìṣà ń sàn nípasẹ̀ àwọn ọ̀rọ̀ tí a sọ",
+              description: "The sacred force that manifests divine will through conscious speech and intention",
+              descriptionYoruba: "Agbára mímọ́ tí ó ń ṣàfihàn ìfẹ́ òrìṣà nípasẹ̀ ọ̀rọ̀ àti èrò"
+            },
+            {
+              law: "Ètùtù",
+              lawYoruba: "Ètùtù",
+              meaning: "Every action has equal reaction (spiritual karma)",
+              meaningYoruba: "Gbogbo ìṣe ní ìdáhùn dọ́gba (ìpadàbọ̀ ẹ̀mí)",
+              description: "The cosmic principle ensuring all actions return to their source with equal measure",
+              descriptionYoruba: "Ìlànà àgbáyé tí ó ń rí dájú pé gbogbo ìṣe dá padà sí orísun rẹ̀ pẹ̀lú ìwọ̀n kan náà"
+            },
+            {
+              law: "Ìwà",
+              lawYoruba: "Ìwà",
+              meaning: "Good character attracts Orisha blessings",
+              meaningYoruba: "Ìwà rere ń fa ìbùkún òrìṣà",
+              description: "The fundamental law that righteous conduct aligns one with divine favor and protection",
+              descriptionYoruba: "Òfin ìpìlẹ̀ pé ìṣe òtítọ́ ń mú ọmọ ènìyàn bá ojúrere àti ààbò òrìṣà mu"
+            }
+          ]
         }
       ]
     },
@@ -718,6 +750,46 @@ const Learning: React.FC = () => {
                                                 {spirit}
                                               </span>
                                             ))}
+                                          </div>
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {section.cosmicLaws && (
+                            <div className="space-y-6">
+                              <div className="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 p-6 rounded-lg border-l-4 border-l-amber-500">
+                                <h3 className="text-xl font-semibold mb-3 text-amber-800 dark:text-amber-200">
+                                  ⚖️ {language === 'yoruba' ? section.titleYoruba : section.title}
+                                </h3>
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                                  {language === 'yoruba' ? section.textYoruba : section.text}
+                                </p>
+                                
+                                <div className="space-y-4">
+                                  {section.cosmicLaws.map((law: any, lawIndex: number) => (
+                                    <Card key={lawIndex} className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-l-4 border-l-amber-500">
+                                      <CardContent className="p-5">
+                                        <div className="flex items-start gap-4">
+                                          <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
+                                          </div>
+                                          <div className="flex-1">
+                                            <div className="flex items-center gap-3 mb-2">
+                                              <h4 className="font-bold text-amber-700 dark:text-amber-300 text-lg">
+                                                {language === 'yoruba' ? law.lawYoruba : law.law}
+                                              </h4>
+                                            </div>
+                                            <p className="text-amber-600 dark:text-amber-400 font-medium mb-2 italic">
+                                              "{language === 'yoruba' ? law.meaningYoruba : law.meaning}"
+                                            </p>
+                                            <p className="text-gray-600 dark:text-gray-400 text-sm">
+                                              {language === 'yoruba' ? law.descriptionYoruba : law.description}
+                                            </p>
                                           </div>
                                         </div>
                                       </CardContent>
