@@ -238,15 +238,21 @@ export const YorubaCosmologyExplorer: React.FC = () => {
 
   const renderMenu = () => (
     <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+      <div className="text-center mb-8 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-lg blur-xl"></div>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-4 relative z-10 animate-gradient">
           {language === 'yoruba' ? 'ÀWỌN ÀGBÁYÉ YORÙBÁ' : 'YORÙBÁ COSMOLOGY EXPLORER'}
         </h2>
-        <p className="text-gray-600 dark:text-gray-300">
+        <p className="text-gray-600 dark:text-gray-300 relative z-10 text-lg">
           {language === 'yoruba' 
             ? 'Ṣe àyẹ̀wò àwọn àgbáyé àtijọ́ Yorùbá' 
             : 'Explore the ancient Yorùbá cosmic realms'}
         </p>
+        
+        {/* Floating cosmic symbols */}
+        <div className="absolute top-0 left-1/4 text-purple-300 opacity-50 animate-float">⭐</div>
+        <div className="absolute top-4 right-1/4 text-blue-300 opacity-50 animate-float animation-delay-1000">🌙</div>
+        <div className="absolute -top-2 right-1/3 text-emerald-300 opacity-50 animate-float animation-delay-2000">✨</div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -421,31 +427,62 @@ export const YorubaCosmologyExplorer: React.FC = () => {
           {Object.entries(cosmicRealms).map(([name, realm]) => (
             <Card 
               key={name}
-              className="cursor-pointer hover:shadow-lg transition-all duration-300 border-2 hover:scale-105"
-              style={{ borderColor: realm.color + '40' }}
+              className="cursor-pointer hover:shadow-2xl transition-all duration-500 border-2 hover:scale-105 group relative overflow-hidden backdrop-blur-sm"
+              style={{ 
+                borderColor: realm.color + '60',
+                background: `linear-gradient(135deg, ${realm.color}15, ${realm.color}05, transparent)`
+              }}
               onClick={() => exploreRealm(name)}
             >
-              <CardContent className="p-6 text-center">
-                <div className="mb-4">
+              {/* Animated background glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 animate-pulse"
+                style={{ 
+                  background: `radial-gradient(circle at 50% 50%, ${realm.color}40, transparent 70%)` 
+                }}
+              />
+              
+              <CardContent className="p-6 text-center relative z-10">
+                <div className="mb-4 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   {React.createElement(realm.icon, { 
-                    className: "h-16 w-16 mx-auto", 
+                    className: "h-16 w-16 mx-auto drop-shadow-lg filter group-hover:drop-shadow-2xl", 
                     style: { color: realm.color } 
                   })}
                 </div>
-                <h3 className="text-xl font-bold mb-2">{name}</h3>
-                <p className="text-3xl mb-2">{realm.symbol}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                
+                <h3 className="text-xl font-bold mb-2 group-hover:text-shadow-lg transition-all duration-300" 
+                    style={{ color: realm.color }}>
+                  {name}
+                </h3>
+                
+                <p className="text-3xl mb-2 group-hover:animate-bounce" style={{ color: realm.color }}>
+                  {realm.symbol}
+                </p>
+                
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                   {language === 'yoruba' ? realm.descriptionYoruba : realm.description}
                 </p>
+                
                 <div className="mt-4">
-                  {progress.realmsExplored.includes(name) && (
-                    <Badge variant="secondary" className="text-xs">
+                  {progress.realmsExplored.includes(name) ? (
+                    <Badge variant="secondary" className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-green-300 shadow-md text-xs">
                       <CheckCircle className="h-3 w-3 mr-1" />
                       {language === 'yoruba' ? 'Ti Ṣe Àyẹ̀wò' : 'Explored'}
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="group-hover:shadow-lg transition-shadow duration-300 text-xs" 
+                           style={{ borderColor: realm.color, color: realm.color }}>
+                      <Star className="h-3 w-3 mr-1" />
+                      {language === 'yoruba' ? 'Ṣe Àyẹ̀wò' : 'Explore'}
                     </Badge>
                   )}
                 </div>
               </CardContent>
+              
+              {/* Corner decoration */}
+              <div className="absolute top-2 right-2 opacity-20 group-hover:opacity-40 transition-opacity">
+                <div className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: realm.color }}></div>
+              </div>
             </Card>
           ))}
         </div>
@@ -557,10 +594,18 @@ export const YorubaCosmologyExplorer: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6 relative">
+      {/* Enhanced background with cosmic theme */}
+      <div className="fixed inset-0 -z-10 overflow-hidden opacity-30">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-32 h-32 bg-emerald-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+      </div>
+      
       {currentView === 'menu' && renderMenu()}
       {currentView === 'explore' && renderExploreView()}
       {currentView === 'quiz' && renderQuizView()}
+      {currentView === 'progress' && renderProgressView()}
     </div>
   );
 };
