@@ -297,6 +297,35 @@ const Learning: React.FC = () => {
               descriptionYoruba: "Àwọn ọ̀nà mímọ́ tí ó so gbogbo àgbáyé pọ̀, tí àwọn baba àti àwọn ìránṣẹ́ ẹ̀mí ń rìn"
             }
           ]
+        },
+        {
+          title: "Spirits by Domain",
+          titleYoruba: "Àwọn Ẹ̀mí Gẹ́gẹ́ bí Agbègbè",
+          text: "The spiritual universe is populated by different categories of beings, each serving specific roles in maintaining cosmic balance:",
+          textYoruba: "Àgbáyé ẹ̀mí kún fún oríṣìí àwọn ẹ̀dá, ọ̀kọ̀ọ̀kan ń ṣe iṣẹ́ pàtó nínú dídúró ìwọ̀ntúnwọ̀sì àgbáyé:",
+          spiritDomains: [
+            {
+              domain: "Irúnmalẹ̀ (Light Beings)",
+              domainYoruba: "Irúnmalẹ̀ (Àwọn Ẹ̀mí Ìmọ́lẹ̀)",
+              description: "Divine light beings who emanate pure spiritual energy and guide humanity toward enlightenment",
+              descriptionYoruba: "Àwọn ẹ̀mí ìmọ́lẹ̀ òrìṣà tí wọ́n ń tan agbára ẹ̀mí mímọ́ tí wọ́n sì ń darí ọmọ ènìyàn sí ìmọ̀lára",
+              spirits: ["Ọbàtálá", "Ọ̀ṣun", "Ṣàngó"]
+            },
+            {
+              domain: "Ajogun (Chaos Forces)",
+              domainYoruba: "Ajogun (Àwọn Agbára Rúdurùdu)",
+              description: "Challenging forces that test human character and spiritual growth through obstacles and trials",
+              descriptionYoruba: "Àwọn agbára nira tí wọ́n ń dán ìwà ọmọ ènìyàn àti ìdàgbàsókè ẹ̀mí wò nípasẹ̀ àwọn ìdiwọ́ àti ìdánwò",
+              spirits: ["Ìyà", "Àrùn", "Òfò"]
+            },
+            {
+              domain: "Ẹgbẹ́ Ọ̀run (Ancestors)",
+              domainYoruba: "Ẹgbẹ́ Ọ̀run (Àwọn Baba)",
+              description: "Elevated souls of the departed who watch over their descendants and provide wisdom from the spiritual realm",
+              descriptionYoruba: "Àwọn ẹ̀mí tí wọ́n ti gbéga ti àwọn tí wọ́n ti kú tí wọ́n ń ṣọ́ àwọn ọmọ wọn tí wọ́n sì ń fún ni ọgbọ́n láti àgbáyé ẹ̀mí",
+              spirits: ["Ará Òrun", "Egúngún"]
+            }
+          ]
         }
       ]
     },
@@ -651,6 +680,48 @@ const Learning: React.FC = () => {
                                         </div>
                                       )}
                                     </div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {section.spiritDomains && (
+                            <div className="space-y-6">
+                              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 p-6 rounded-lg border-l-4 border-l-emerald-500">
+                                <h3 className="text-xl font-semibold mb-3 text-emerald-800 dark:text-emerald-200">
+                                  ✨ {language === 'yoruba' ? section.titleYoruba : section.title}
+                                </h3>
+                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                                  {language === 'yoruba' ? section.textYoruba : section.text}
+                                </p>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                  {section.spiritDomains.map((domain: any, domainIndex: number) => (
+                                    <Card key={domainIndex} className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-l-4 border-l-emerald-500">
+                                      <CardContent className="p-4">
+                                        <div className="mb-3">
+                                          <h4 className="font-bold text-emerald-700 dark:text-emerald-300 text-lg mb-2">
+                                            {language === 'yoruba' ? domain.domainYoruba : domain.domain}
+                                          </h4>
+                                          <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                                            {language === 'yoruba' ? domain.descriptionYoruba : domain.description}
+                                          </p>
+                                        </div>
+                                        <div className="space-y-2">
+                                          <h5 className="font-semibold text-emerald-600 dark:text-emerald-400 text-sm">
+                                            {language === 'yoruba' ? 'Àwọn Ẹ̀mí:' : 'Spirits:'}
+                                          </h5>
+                                          <div className="flex flex-wrap gap-2">
+                                            {domain.spirits.map((spirit: string, spiritIndex: number) => (
+                                              <span key={spiritIndex} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-800 dark:text-emerald-100">
+                                                {spirit}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </div>
+                                      </CardContent>
+                                    </Card>
                                   ))}
                                 </div>
                               </div>
