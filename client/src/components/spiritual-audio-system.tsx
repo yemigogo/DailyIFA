@@ -3,9 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
-import { Volume2, VolumeX, Play, Pause, RotateCcw, Download, Share2 } from 'lucide-react';
+import { Volume2, VolumeX, Play, Pause, RotateCcw, Download, Share2, Clock, Timer } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import EnhancedSharingSystem from './enhanced-sharing-system';
 
 interface SpiritualAudioSystemProps {
   className?: string;
@@ -99,6 +100,11 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
   const [gainNode, setGainNode] = useState<GainNode | null>(null);
+  const [meditationTimer, setMeditationTimer] = useState(0);
+  const [meditationDuration, setMeditationDuration] = useState(15); // minutes
+  const [meditationLevel, setMeditationLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const [isMeditating, setIsMeditating] = useState(false);
+  const [showSharing, setShowSharing] = useState(false);
 
   useEffect(() => {
     // Initialize Web Audio API
@@ -127,6 +133,33 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
     }
     return () => clearInterval(interval);
   }, [isPlaying, currentTrack]);
+
+  // Meditation timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isMeditating) {
+      interval = setInterval(() => {
+        setMeditationTimer(prev => {
+          const newTime = prev + 1;
+          const totalSeconds = meditationDuration * 60;
+          
+          // Play interval chime every 5 minutes (300 seconds)
+          if (newTime % 300 === 0 && newTime < totalSeconds) {
+            playChime(432); // Earth healing frequency for intervals
+          }
+          
+          // Complete meditation
+          if (newTime >= totalSeconds) {
+            completeMeditation();
+            return 0;
+          }
+          
+          return newTime;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isMeditating, meditationDuration]);
 
   const playFrequency = (track: AudioTrack) => {
     if (!audioContext) return;
@@ -237,6 +270,65 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
         description: language === 'yoruba' ? 'Ìfojúsíi ti wa ní àdàkò' : 'Frequency info copied to clipboard',
       });
     });
+  };
+
+  const playChime = (frequency: number) => {
+    if (!audioContext) return;
+    
+    try {
+      const chimeOsc = audioContext.createOscillator();
+      const chimeGain = audioContext.createGain();
+      
+      chimeOsc.connect(chimeGain);
+      chimeGain.connect(audioContext.destination);
+      
+      chimeOsc.frequency.value = frequency;
+      chimeOsc.type = 'sine';
+      
+      // Quick chime envelope
+      chimeGain.gain.setValueAtTime(0, audioContext.currentTime);
+      chimeGain.gain.linearRampToValueAtTime(volume[0] * 0.3, audioContext.currentTime + 0.1);
+      chimeGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1.5);
+      
+      chimeOsc.start();
+      chimeOsc.stop(audioContext.currentTime + 1.5);
+      
+    } catch (error) {
+      console.error('Error playing chime:', error);
+    }
+  };
+
+  const startMeditation = () => {
+    setIsMeditating(true);
+    setMeditationTimer(0);
+    
+    toast({
+      title: language === 'yoruba' ? 'Ìpamọ́ bẹ̀rẹ̀' : 'Meditation Started',
+      description: `${meditationDuration} ${language === 'yoruba' ? 'ìṣẹ́jú' : 'minutes'} - ${meditationLevel}`,
+    });
+  };
+
+  const stopMeditation = () => {
+    setIsMeditating(false);
+    setMeditationTimer(0);
+  };
+
+  const completeMeditation = () => {
+    setIsMeditating(false);
+    playChime(528); // Love frequency for completion
+    
+    toast({
+      title: language === 'yoruba' ? 'Ìpamọ́ parí!' : 'Meditation Complete!',
+      description: language === 'yoruba' 
+        ? 'Ó ti parí ìpamọ́ rẹ. Ẹ kú iṣẹ́!' 
+        : 'You have completed your meditation session. Well done!',
+    });
+  };
+
+  const formatMeditationTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -351,6 +443,122 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
               </Card>
             ))}
           </div>
+
+          {/* Enhanced Meditation Timer */}
+          <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 border-indigo-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Timer className="w-5 h-5 text-indigo-600" />
+                {language === 'yoruba' ? 'Àkànṣe Ìpamọ́ Gíga' : 'Enhanced Meditation Timer'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Meditation Level Selection */}
+              <div>
+                <label className="text-sm font-medium mb-2 block">
+                  {language === 'yoruba' ? 'Yan Ìpele Ìpamọ́' : 'Select Meditation Level'}
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  {['beginner', 'intermediate', 'advanced'].map((level) => (
+                    <Button
+                      key={level}
+                      variant={meditationLevel === level ? "default" : "outline"}
+                      onClick={() => setMeditationLevel(level as any)}
+                      className="text-xs"
+                    >
+                      {language === 'yoruba' 
+                        ? (level === 'beginner' ? 'Ìbẹ̀rẹ̀' : level === 'intermediate' ? 'Àárín' : 'Gíga')
+                        : level.charAt(0).toUpperCase() + level.slice(1)
+                      }
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Duration Selection */}
+              <div>
+                <label className="text-sm font-medium mb-2 block">
+                  {language === 'yoruba' ? 'Àkókò (Ìṣẹ́jú)' : 'Duration (Minutes)'}
+                </label>
+                <div className="grid grid-cols-4 gap-2">
+                  {[5, 15, 30, 60].map((duration) => (
+                    <Button
+                      key={duration}
+                      variant={meditationDuration === duration ? "default" : "outline"}
+                      onClick={() => setMeditationDuration(duration)}
+                      className="text-xs"
+                    >
+                      {duration}m
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Meditation Display */}
+              {isMeditating && (
+                <div className="text-center space-y-4">
+                  <div className="text-4xl font-mono">
+                    {formatMeditationTime(meditationTimer)}
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="h-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-1000"
+                      style={{ 
+                        width: `${(meditationTimer / (meditationDuration * 60)) * 100}%`
+                      }}
+                    ></div>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                    {language === 'yoruba' 
+                      ? '"Ibá ọ, àwọn baba ńlá wa" - Ọ̀wọ̀ fún àwọn baba wa'
+                      : '"Honor to you, great ancestors" - Traditional meditation prayer'
+                    }
+                  </p>
+                </div>
+              )}
+
+              {/* Meditation Controls */}
+              <div className="flex gap-2 justify-center">
+                {!isMeditating ? (
+                  <Button onClick={startMeditation} className="bg-indigo-600 hover:bg-indigo-700">
+                    <Play className="w-4 h-4 mr-2" />
+                    {language === 'yoruba' ? 'Bẹ̀rẹ̀ Ìpamọ́' : 'Start Meditation'}
+                  </Button>
+                ) : (
+                  <Button onClick={stopMeditation} variant="outline">
+                    <Pause className="w-4 h-4 mr-2" />
+                    {language === 'yoruba' ? 'Dá Ìpamọ́ Dúró' : 'Stop Meditation'}
+                  </Button>
+                )}
+                <Button 
+                  onClick={() => setShowSharing(!showSharing)} 
+                  variant="outline"
+                >
+                  <Share2 className="w-4 h-4 mr-2" />
+                  {language === 'yoruba' ? 'Pín' : 'Share'}
+                </Button>
+              </div>
+
+              <p className="text-xs text-center text-gray-500">
+                {language === 'yoruba' 
+                  ? '⏰ Chimes ní ìṣẹ́jú márùn-ún (432Hz), Gong ní ìparí (528Hz)'
+                  : '⏰ Interval chimes every 5 minutes (432Hz), Completion gong (528Hz)'
+                }
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Enhanced Sharing System */}
+          {showSharing && (
+            <EnhancedSharingSystem 
+              spiritualContent={{
+                type: currentTrack ? 'frequency' : 'meditation',
+                title: currentTrack ? currentTrack.name : 'Meditation Session',
+                description: currentTrack ? currentTrack.description : `${meditationDuration} minute ${meditationLevel} meditation`,
+                data: currentTrack || { duration: meditationDuration, level: meditationLevel }
+              }}
+            />
+          )}
 
           {/* Instructions */}
           <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200">

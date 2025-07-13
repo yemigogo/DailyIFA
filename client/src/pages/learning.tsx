@@ -17,6 +17,7 @@ import CosmologyProgressTracker from '@/components/cosmology-progress-tracker';
 import { YorubaCosmologyExplorer } from '@/components/yoruba-cosmology-explorer';
 import CosmicRealms3D from '@/components/cosmic-realms-3d';
 import SpiritualAudioSystem from '@/components/spiritual-audio-system';
+import EnhancedSharingSystem from '@/components/enhanced-sharing-system';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
