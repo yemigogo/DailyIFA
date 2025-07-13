@@ -50,7 +50,7 @@ interface GlossaryTerm {
 const Learning: React.FC = () => {
   const { language, ts } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedModule, setSelectedModule] = useState<string>('cosmic-realms-3d');
+  const [selectedModule, setSelectedModule] = useState<string>('cosmology-explorer');
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
 
   const playAudio = (audioUrl: string, id: string) => {
