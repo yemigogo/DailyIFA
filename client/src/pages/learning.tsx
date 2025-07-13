@@ -14,6 +14,7 @@ import ikinImage from '@assets/image_1752089487782.png';
 import OduVisualization from '@/components/odu-visualization';
 import FlaskOduCards from '@/components/flask-odu-cards';
 import CosmologyProgressTracker from '@/components/cosmology-progress-tracker';
+import { YorubaCosmologyExplorer } from '@/components/yoruba-cosmology-explorer';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -556,6 +557,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Gba àwọn ohun èlò sílẹ̀ fún lílo láìsí ìntánẹ́ẹ̀tì",
       icon: <Download className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "cosmology-explorer",
+      title: "Cosmology Explorer",
+      titleYoruba: "Àyẹ̀wò Àgbáyé",
+      description: "Interactive Yorùbá cosmic realms exploration with quizzes",
+      descriptionYoruba: "Àyẹ̀wò àwọn àgbáyé kọ́smíkì Yorùbá pẹ̀lú àwọn ìdánwò",
+      icon: <Globe className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -616,7 +626,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9 mb-8">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-10 mb-8">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -1171,6 +1181,10 @@ const Learning: React.FC = () => {
                         </Card>
                       </div>
                     </div>
+                  )}
+
+                  {module.id === 'cosmology-explorer' && (
+                    <YorubaCosmologyExplorer />
                   )}
                 </CardContent>
               </Card>
