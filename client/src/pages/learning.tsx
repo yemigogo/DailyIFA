@@ -91,26 +91,7 @@ const Learning: React.FC = () => {
     }
   ];
 
-  const yorubaBasics = [
-    {
-      category: "Greetings",
-      phrases: [
-        { yoruba: "Ẹ kú àárọ̀", english: "Good morning", audio: "/static/audio/pronunciation/eku_aaro.mp3" },
-        { yoruba: "Ẹ kú ọ̀sán", english: "Good afternoon", audio: "/static/audio/pronunciation/eku_osan.mp3" },
-        { yoruba: "Ẹ kú alẹ́", english: "Good evening", audio: "/static/audio/pronunciation/eku_ale.mp3" },
-        { yoruba: "Báwo ni?", english: "How are you?", audio: "/static/audio/pronunciation/bawo_ni.mp3" }
-      ]
-    },
-    {
-      category: "Orisha Names",
-      phrases: [
-        { yoruba: "Òrúnmìlà", english: "Oracle of Ifá", audio: "/static/audio/pronunciation/orunmila_oriki_authentic.mp3" },
-        { yoruba: "Ṣàngó", english: "Thunder deity", audio: "/static/audio/pronunciation/sango_oriki_authentic.mp3" },
-        { yoruba: "Ògún", english: "Iron deity", audio: "/static/audio/pronunciation/ogun_oriki_authentic.mp3" },
-        { yoruba: "Ọbàtálá", english: "Creator deity", audio: "/static/audio/pronunciation/obatala.mp3" }
-      ]
-    }
-  ];
+
 
   const glossaryTerms: GlossaryTerm[] = [
     {
@@ -514,15 +495,6 @@ const Learning: React.FC = () => {
       content: []
     },
     {
-      id: "language",
-      title: "Yoruba Language Basics",
-      titleYoruba: "Ìpilẹ̀ Èdè Yorùbá",
-      description: "Essential phrases and pronunciation",
-      descriptionYoruba: "Àwọn ọ̀rọ̀ pàtàkì àti bí a ṣe máa sọ wọ́n",
-      icon: <Volume2 className="w-5 h-5" />,
-      content: yorubaBasics
-    },
-    {
       id: "tools",
       title: "Tools of Divination",
       titleYoruba: "Àwọn Ohun Èlò Fífá",
@@ -636,7 +608,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-12 mb-8 overflow-x-auto">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-11 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -964,49 +936,7 @@ const Learning: React.FC = () => {
                     </div>
                   )}
 
-                  {module.id === 'language' && (
-                    <div className="space-y-6">
-                      {yorubaBasics.map((section, index) => (
-                        <div key={index}>
-                          <h3 className="text-xl font-semibold mb-4 text-spiritual-blue dark:text-sacred-gold">
-                            {section.category}
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {section.phrases.map((phrase, phraseIndex) => (
-                              <Card key={phraseIndex} className="hover:shadow-md transition-shadow">
-                                <CardContent className="p-4">
-                                  <div className="flex items-center justify-between">
-                                    <div>
-                                      <p className="font-medium text-spiritual-blue dark:text-sacred-gold">
-                                        {phrase.yoruba}
-                                      </p>
-                                      <p className="text-gray-600 dark:text-gray-300">
-                                        {phrase.english}
-                                      </p>
-                                    </div>
-                                    {phrase.audio && (
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() => playAudio(phrase.audio, `${index}-${phraseIndex}`)}
-                                        className="ml-2"
-                                      >
-                                        {playingAudio === `${index}-${phraseIndex}` ? (
-                                          <Volume2 className="w-4 h-4 animate-pulse" />
-                                        ) : (
-                                          <Play className="w-4 h-4" />
-                                        )}
-                                      </Button>
-                                    )}
-                                  </div>
-                                </CardContent>
-                              </Card>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+
 
                   {module.id === 'tools' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
