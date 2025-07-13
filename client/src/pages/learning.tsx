@@ -18,6 +18,7 @@ import { YorubaCosmologyExplorer } from '@/components/yoruba-cosmology-explorer'
 import CosmicRealms3D from '@/components/cosmic-realms-3d';
 import SpiritualAudioSystem from '@/components/spiritual-audio-system';
 import EnhancedSharingSystem from '@/components/enhanced-sharing-system';
+import ComprehensiveSystemTest from '@/components/comprehensive-system-test';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -1143,7 +1144,14 @@ const Learning: React.FC = () => {
                   )}
 
                   {module.id === 'spiritual-audio' && (
-                    <SpiritualAudioSystem />
+                    <div className="space-y-8">
+                      <SpiritualAudioSystem />
+                      
+                      {/* Comprehensive System Test */}
+                      <div className="mt-8 border-t pt-8">
+                        <ComprehensiveSystemTest />
+                      </div>
+                    </div>
                   )}
                 </CardContent>
               </Card>
