@@ -272,27 +272,113 @@ export const Yemoja432HzHealing: React.FC = () => {
       
       audio.addEventListener('error', (e) => {
         console.error('Audio loading error:', e);
-        toast({
-          title: ts('Audio File Error', 'Àṣìṣe Fáìlì Orin'),
-          description: ts('Try a different file or check the format', 'Gbìyànjú fáìlì mìíràn tàbí ṣàyẹ̀wò fọ́mà'),
-          variant: "destructive",
-        });
-        // Keep authentic mode but don't auto-fallback to synthetic
+        // Try royalty-free fallback
+        tryRoyaltyFreeAudio(type);
       });
-      
-      // Load the audio
-      audio.load();
       
       return;
     }
     
-    // This should ONLY happen if no tracks are uploaded
-    console.log('⚠ WARNING: Using synthetic because no tracks uploaded');
+    // Try royalty-free Yemoja 432Hz audio
+    tryRoyaltyFreeAudio(type);
+  };
+
+  const tryRoyaltyFreeAudio = (type: 'morning' | 'evening') => {
+    const royaltyFreeFile = type === 'morning' ? 
+      '/static/audio/yemoja_432hz_morning_free.mp3' : 
+      '/static/audio/yemoja_432hz_evening_free.mp3';
+    
+    console.log(`Attempting royalty-free Yemoja 432Hz audio: ${royaltyFreeFile}`);
+    
+    const audio = new Audio(royaltyFreeFile);
+    audio.volume = volume;
+    audio.loop = true;
+    
+    audio.addEventListener('canplaythrough', () => {
+      console.log('Royalty-free audio ready to play');
+      setUseAuthenticAudio(true);
+      audioElementRef.current = audio;
+      
+      toast({
+        title: ts('Royalty-Free 432Hz Loaded', 'Orin 432Hz Tí Kò Ní Òfin Ti Gbà'),
+        description: ts(`Playing Yemoja ${type} healing`, `Ń dún ìwòsàn Yemọja ${type}`),
+      });
+      
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Royalty-free audio playback started successfully');
+        }).catch((error) => {
+          console.error('Royalty-free audio play failed:', error);
+          // Fallback to synthetic
+          console.log('Falling back to synthetic 432Hz generation');
+          generate432HzAudio();
+        });
+      }
+    });
+      
+      audio.addEventListener('error', (e) => {
+        console.error('Audio loading error:', e);
+        // Try royalty-free fallback
+        tryRoyaltyFreeAudio(type);
+      });
+      
+      return;
+    }
+    
+    // Try royalty-free Yemoja 432Hz audio
+    tryRoyaltyFreeAudio(type);
+  };
+
+  const tryRoyaltyFreeAudio = (type: 'morning' | 'evening') => {
+    const royaltyFreeFile = type === 'morning' ? 
+      '/static/audio/yemoja_432hz_morning_free.mp3' : 
+      '/static/audio/yemoja_432hz_evening_free.mp3';
+    
+    console.log(`Attempting royalty-free Yemoja 432Hz audio: ${royaltyFreeFile}`);
+    
+    const audio = new Audio(royaltyFreeFile);
+    audio.volume = volume;
+    audio.loop = true;
+    
+    audio.addEventListener('canplaythrough', () => {
+      console.log('Royalty-free audio ready to play');
+      setUseAuthenticAudio(true);
+      audioElementRef.current = audio;
+      
+      toast({
+        title: ts('Royalty-Free 432Hz Loaded', 'Orin 432Hz Tí Kò Ní Òfin Ti Gbà'),
+        description: ts(`Playing Yemoja ${type} healing`, `Ń dún ìwòsàn Yemọja ${type}`),
+      });
+      
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('Royalty-free audio playback started successfully');
+        }).catch((error) => {
+          console.error('Royalty-free audio play failed:', error);
+          // Fallback to synthetic
+          console.log('Falling back to synthetic 432Hz generation');
+          generate432HzAudio();
+        });
+      }
+    });
+    
+    audio.addEventListener('error', (e) => {
+      console.error('Royalty-free audio loading error:', e);
+      // Fallback to synthetic
+      console.log('Falling back to synthetic 432Hz generation');
+      generate432HzAudio();
+    });
+  };
+
+  const generate432HzAudio = () => {
+    console.log('Generating synthetic 432Hz audio');
     setUseAuthenticAudio(false);
     generate432HzTone();
     
     toast({
-      title: ts('Upload Audio Files', 'Gbé Fáìlì Orin Sókè'),
+      title: ts('Synthetic 432Hz Generated', 'Orin 432Hz Àgbélẹ̀wá Ti Jáde'),
       description: ts('Add your 432Hz tracks in Audio tab for authentic experience', 
                      'Fi àwọn orin 432Hz sí Audio tab fún ìrírí òtítọ́'),
       variant: "default",

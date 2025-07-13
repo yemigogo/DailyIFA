@@ -121,8 +121,69 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
     }
   };
 
-  // 528Hz Love Frequency Generator for Ṣàngó's compassionate fire
+  // 528Hz Love Frequency Generator for Ṣàngó's compassionate fire with 3-tier audio system
   const start528HzHealing = async () => {
+    console.log('=== STARTING 528HZ ṢÀNGÓ HEALING ===');
+    
+    // Try uploaded authentic tracks first
+    if (uploadedTracks.length > 0) {
+      console.log(`Found ${uploadedTracks.length} uploaded tracks`);
+      const randomTrack = uploadedTracks[Math.floor(Math.random() * uploadedTracks.length)];
+      
+      try {
+        const audio = new Audio(randomTrack.url);
+        audio.volume = volume;
+        audio.loop = true;
+        
+        await audio.play();
+        
+        if (audioElementRef.current) {
+          audioElementRef.current.pause();
+        }
+        audioElementRef.current = audio;
+        setIsPlaying(true);
+        
+        toast({
+          title: ts('Authentic 528Hz Track Loaded', 'Orin 528Hz Òtítọ́ Ti Gbà'),
+          description: ts(`Playing: ${randomTrack.name}`, `Ń dún: ${randomTrack.name}`),
+        });
+        
+        console.log('✓ Using uploaded authentic 528Hz audio');
+        return;
+      } catch (error) {
+        console.error('Uploaded audio failed:', error);
+      }
+    }
+    
+    // Try royalty-free Sango 528Hz audio
+    try {
+      console.log('Attempting royalty-free Ṣàngó 528Hz audio');
+      const audio = new Audio('/static/audio/sango_528hz_free.mp3');
+      audio.volume = volume;
+      audio.loop = true;
+      
+      await audio.play();
+      
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+      }
+      audioElementRef.current = audio;
+      setIsPlaying(true);
+      
+      toast({
+        title: ts('Royalty-Free 528Hz Loaded', 'Orin 528Hz Tí Kò Ní Òfin Ti Gbà'),
+        description: ts('Playing Ṣàngó thunder healing', 'Ń dún ìwòsàn àrá Ṣàngó'),
+      });
+      
+      console.log('✓ Using royalty-free Ṣàngó 528Hz audio');
+      return;
+    } catch (error) {
+      console.error('Royalty-free audio failed:', error);
+    }
+    
+    // Fallback to synthetic 528Hz generation
+    console.log('Using synthetic 528Hz generation');
+    
     try {
       if (!audioContextRef.current) {
         audioContextRef.current = new AudioContext();
