@@ -161,18 +161,47 @@ export default function EsuTransformationHealing() {
     }
   };
 
-  const downloadCard = () => {
-    const link = document.createElement('a');
-    link.href = '/static/images/esu_transformation_card.png';
-    link.download = 'Esu_Transformation_Card.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    toast({
-      title: "Card Downloaded",
-      description: "Èṣù Transformation Card saved to your device",
-    });
+  const downloadCard = async () => {
+    try {
+      // Import the asset image path
+      const imageUrl = (await import('@assets/image_1752430300487.png')).default;
+      
+      // Create a canvas to download the image
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx?.drawImage(img, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Esu_Fire_Transformation_Card.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+          }
+        });
+      };
+      
+      img.src = imageUrl;
+      
+      toast({
+        title: "Card Downloaded",
+        description: "Èṣù Fire Transformation Card saved to your device",
+      });
+    } catch (error) {
+      toast({
+        title: "Download Error",
+        description: "Unable to download card. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   useEffect(() => {
@@ -214,8 +243,8 @@ export default function EsuTransformationHealing() {
         {/* Èṣù Transformation Card Display */}
         <div className="w-full rounded-lg overflow-hidden border border-red-500/20 shadow-lg">
           <img 
-            src="/static/images/esu_transformation_card.png" 
-            alt="Èṣù - Guardian of Crossroads and Transformation"
+            src="/assets/image_1752430300487.png" 
+            alt="Èṣù - Guardian of Crossroads and Fire Transformation"
             className="w-full h-auto object-contain"
             style={{
               maxHeight: '600px',
