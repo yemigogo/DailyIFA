@@ -1,0 +1,90 @@
+# Create a mobile-first HTML version of the Òrúnmìlà card
+
+orunmila_html = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Òrúnmìlà – Intuition & Wisdom</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #e0f7ff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 15px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #ffffff;
+    }
+    .section {
+      background: #161616;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 5px solid #88ccee;
+      border-radius: 6px;
+    }
+    .affirmation {
+      font-style: italic;
+      color: #aaffdd;
+      padding-top: 10px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .image-banner {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/static/images/orunmila_banner.jpg" alt="Òrúnmìlà Banner" class="image-banner"/>
+
+    <h1>🔮 Òrúnmìlà – Intuition & Wisdom</h1>
+
+    <div class="section">
+      <h2>🌌 Inner Sight & Spiritual Guidance</h2>
+      <ul>
+        <li>Custodian of divine wisdom</li>
+        <li>Master of intuitive sight</li>
+        <li>Seer of destinies and hidden truths</li>
+        <li>Channel for Orí (divine consciousness)</li>
+        <li>Bringer of spiritual balance and insight</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🎧 Soundtrack for Meditation</h2>
+      <p>Play this soft ambient background while meditating or studying Ifá teachings.</p>
+      <audio controls>
+        <source src="/static/audio/orunmila_ambience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <div class="section">
+      <h2>🙏 Daily Affirmation</h2>
+      <p class="affirmation">"Orunmila, open my mind to divine insight."</p>
+      <p class="affirmation">"My path is clear; my spirit is guided."</p>
+      <p class="affirmation">"I awaken the intuition within me."</p>
+    </div>
+  </div>
+</body>
+</html>
+'''
+
+# Save HTML file
+orunmila_html_path = "/mnt/data/orunmila_intuition_mobile.html"
+with open(orunmila_html_path, "w", encoding="utf-8") as f:
+    f.write(orunmila_html)
+
+orunmila_html_path
