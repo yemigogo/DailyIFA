@@ -22,6 +22,7 @@ import ComprehensiveSystemTest from '@/components/comprehensive-system-test';
 import SystemVerification from '@/components/system-verification';
 import Yemoja432HzHealing from '@/components/yemoja-432hz-healing';
 import Obatala963HzHealing from '@/components/obatala-963hz-healing';
+import Sango528HzHealing from '@/components/sango-528hz-healing';
 
 import OfflineMode from '@/components/offline-mode';
 import { WisdomSection } from '@/components/wisdom-section';
@@ -581,6 +582,15 @@ const Learning: React.FC = () => {
       descriptionYoruba: "Ìgbọ̀nsí Ọlọ́run fún ìmọ́tótó ẹ̀mí, jíjí adé chakra, àti ọgbọ́n òrìṣà",
       icon: <Crown className="w-5 h-5" />,
       content: []
+    },
+    {
+      id: "sango-528hz",
+      title: "Ṣàngó 528Hz Thunder & Fire Healing",
+      titleYoruba: "Ìwòsàn Àrá àti Iná Ṣàngó 528Hz",
+      description: "Love frequency transformation with thunder power, courage, and leadership energy",
+      descriptionYoruba: "Ìyípadà ìgbọ̀nsí ìfẹ́ pẹ̀lú agbára àrá, ìgbòyà, àti agbára àṣẹ",
+      icon: <Zap className="w-5 h-5" />,
+      content: []
     }
   ];
 
@@ -641,7 +651,7 @@ const Learning: React.FC = () => {
         </Card>
 
         <Tabs value={selectedModule} onValueChange={setSelectedModule} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-14 mb-8 overflow-x-auto">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 lg:grid-cols-15 mb-8 overflow-x-auto">
             {learningModules.map((module) => (
               <TabsTrigger key={module.id} value={module.id} className="flex items-center gap-2 text-xs">
                 {module.icon}
@@ -1181,6 +1191,10 @@ const Learning: React.FC = () => {
 
                   {module.id === 'obatala-963hz' && (
                     <Obatala963HzHealing />
+                  )}
+
+                  {module.id === 'sango-528hz' && (
+                    <Sango528HzHealing />
                   )}
                 </CardContent>
               </Card>
