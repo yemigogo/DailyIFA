@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download, Waves, Crown } from 'lucide-react';
+import { BookOpen, Volume2, Search, Star, Users, Scroll, Brain, Globe, Play, ChevronRight, Sparkles, Server, Database, Download, Waves, Crown, Zap } from 'lucide-react';
 import { Link } from 'wouter';
 import opeleChainImage from '@assets/image_1752086728408.png';
 import oponIfaImage from '@assets/image_1752087156776.png';
