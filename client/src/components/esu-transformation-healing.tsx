@@ -220,7 +220,14 @@ export default function EsuTransformationHealing() {
       {/* Header Section */}
       <div className="text-center py-4 md:py-6 border-l-4 border-red-500 bg-gray-800/60 rounded-lg p-4 md:p-6 mb-4 md:mb-6">
         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 mb-3 md:mb-4">
-          <Flame className="w-8 h-8 md:w-12 md:h-12 text-red-400" />
+          <div className="flex items-center gap-3">
+            <Flame className="w-8 h-8 md:w-12 md:h-12 text-red-400" />
+            <img 
+              src="/assets/image_1752430300487.png" 
+              alt="Èṣù Guardian"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-400 shadow-lg"
+            />
+          </div>
           <div>
             <h1 className="text-2xl md:text-4xl font-bold text-red-200 mb-1 md:mb-2">
               Èṣù Transformation Healing
