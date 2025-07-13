@@ -25,4 +25,5 @@ dependencies = [
     "pusher>=3.3.3",
     "pywebpush>=2.0.3",
     "pytz>=2025.2",
+    "vpython>=7.6.5",
 ]
