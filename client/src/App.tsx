@@ -9,7 +9,7 @@ import Home from "@/pages/home";
 import History from "@/pages/history";
 import Learn from "@/pages/learn";
 import Learning from "@/pages/learning";
-import LearningTest from "@/pages/learning-test";
+
 import LearningSimple from "@/pages/learning-simple";
 import ProblemSearch from "@/pages/problem-search";
 import DailyPrayers from "@/pages/daily-prayers";
@@ -28,7 +28,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/learning-test" component={LearningTest} />
+
       <Route path="/learning" component={Learning} />
       <Route path="/history" component={History} />
       <Route path="/learn" component={Learn} />
