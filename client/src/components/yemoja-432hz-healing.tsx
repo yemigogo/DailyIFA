@@ -424,7 +424,7 @@ export const Yemoja432HzHealing: React.FC = () => {
           <CardTitle className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-xl md:text-2xl">
             <Waves className="w-6 h-6 md:w-8 md:h-8" />
             <span className="text-center md:text-left">
-              {ts('Yemọja 432Hz Water Healing', 'Ìwòsàn Omi Yemọja 432Hz')}
+              {ts('Yemọja 432Hz Water Healing + Water Loop', 'Ìwòsàn Omi Yemọja 432Hz + Omi Títún')}
             </span>
           </CardTitle>
           <p className="text-blue-100 text-sm md:text-base text-center md:text-left">
@@ -445,7 +445,7 @@ export const Yemoja432HzHealing: React.FC = () => {
             <Heart className="w-4 h-4 md:w-5 md:h-5" />
             <span className="hidden md:inline">{ts('Meditation', 'Ìjìnlẹ̀')}</span>
             <span className="md:hidden">🧘</span>
-            <Badge variant="secondary" className="absolute -top-1 -right-1 text-xs px-1 py-0.5 bg-green-500 text-white">NEW</Badge>
+            <Badge variant="secondary" className="absolute -top-1 -right-1 text-xs px-1 py-0.5 bg-red-500 text-white animate-pulse">UPDATED</Badge>
           </TabsTrigger>
           <TabsTrigger value="audio" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
             <Music className="w-4 h-4 md:w-5 md:h-5" />
