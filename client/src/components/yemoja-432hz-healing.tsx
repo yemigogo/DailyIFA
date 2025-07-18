@@ -434,17 +434,18 @@ export const Yemoja432HzHealing: React.FC = () => {
       </Card>
 
       {/* Main Content Tabs - Mobile-first */}
-      <Tabs defaultValue="rituals" className="w-full">
+      <Tabs defaultValue="meditation" className="w-full">
         <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-1 md:gap-2 h-auto p-1">
           <TabsTrigger value="rituals" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
             <Droplets className="w-4 h-4 md:w-5 md:h-5" />
             <span className="hidden md:inline">{ts('Rituals', 'Àṣẹ')}</span>
             <span className="md:hidden">💧</span>
           </TabsTrigger>
-          <TabsTrigger value="meditation" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
+          <TabsTrigger value="meditation" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2 relative">
             <Heart className="w-4 h-4 md:w-5 md:h-5" />
             <span className="hidden md:inline">{ts('Meditation', 'Ìjìnlẹ̀')}</span>
             <span className="md:hidden">🧘</span>
+            <Badge variant="secondary" className="absolute -top-1 -right-1 text-xs px-1 py-0.5 bg-green-500 text-white">NEW</Badge>
           </TabsTrigger>
           <TabsTrigger value="audio" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
             <Music className="w-4 h-4 md:w-5 md:h-5" />
