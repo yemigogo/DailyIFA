@@ -583,21 +583,48 @@ export const Yemoja432HzHealing: React.FC = () => {
                 />
               </div>
 
-              {/* Audio Player */}
-              <Card className="bg-white/50 dark:bg-gray-800/50">
-                <CardHeader>
-                  <CardTitle className="text-lg">{ts('Listen to Meditation', 'Gbọ́ Ìjìnlẹ̀')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <audio 
-                    controls 
-                    className="w-full"
-                    src="/static/audio/Yemoja_Meditation_10min_Soft.mp3"
-                  >
-                    {ts('Your browser does not support the audio element.', 'Browser rẹ kò ṣe àtìlẹ́yìn fún ohun tí a gbé.')}
-                  </audio>
-                </CardContent>
-              </Card>
+              {/* Audio Players */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="bg-white/50 dark:bg-gray-800/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{ts('10-Minute Guided Meditation', 'Ìjìnlẹ̀ Tí A Tọ́ Sí (10 Ìṣẹ́jú)')}</CardTitle>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {ts('Complete meditation with prayers', 'Ìjìnlẹ̀ pípé pẹ̀lú àwọn àdúrà')}
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <audio 
+                      controls 
+                      className="w-full"
+                      src="/static/audio/Yemoja_Meditation_10min_Soft.mp3"
+                    >
+                      {ts('Your browser does not support the audio element.', 'Browser rẹ kò ṣe àtìlẹ́yìn fún ohun tí a gbé.')}
+                    </audio>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-blue-50/50 dark:bg-blue-900/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{ts('Water Loop Meditation', 'Ìjìnlẹ̀ Omi Títún')}</CardTitle>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                      {ts('Continuous water sounds for extended meditation', 'Ohùn omi títún fún ìjìnlẹ̀ gígùn')}
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <audio 
+                      controls 
+                      loop
+                      className="w-full"
+                      src="/static/audio/water_loop.wav"
+                    >
+                      {ts('Your browser does not support the audio element.', 'Browser rẹ kò ṣe àtìlẹ́yìn fún ohun tí a gbé.')}
+                    </audio>
+                    <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">
+                      {ts('Perfect for extended meditation sessions', 'Dára fún àwọn ìjìnlẹ̀ gígùn')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
 
               {/* Yoruba Prayers */}
               <Card className="bg-cyan-50 dark:bg-cyan-900/20">
@@ -652,29 +679,55 @@ export const Yemoja432HzHealing: React.FC = () => {
               </div>
 
               {/* Instructions */}
-              <Card className="bg-blue-100 dark:bg-blue-900/30">
-                <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">{ts('Meditation Instructions', 'Àwọn Ìlànà Ìjìnlẹ̀')}</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">1.</span>
-                      <span>{ts('Find a quiet space near water if possible', 'Wá ibi ìdákẹ́jẹ́ tí omi bá wà níbẹ̀ bí ó bá ṣe é ṣe')}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">2.</span>
-                      <span>{ts('Listen to the 10-minute guided meditation', 'Gbọ́ ìjìnlẹ̀ tí a tọ́ sí fún ìṣẹ́jú mẹ́wàá')}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">3.</span>
-                      <span>{ts('Repeat the Yoruba prayers along with the audio', 'Tún àwọn àdúrà Yorùbá náà sọ pẹ̀lú ohùn náà')}</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-600 font-bold">4.</span>
-                      <span>{ts('Visualize flowing water cleansing your spirit', 'Fojú inú rí omi tí ń sàn tí ń fọ ẹ̀mí rẹ')}</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card className="bg-blue-100 dark:bg-blue-900/30">
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold mb-2">{ts('Guided Meditation (10 min)', 'Ìjìnlẹ̀ Tí A Tọ́ Sí (10 ìṣẹ́jú)')}</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">1.</span>
+                        <span>{ts('Find a quiet space near water if possible', 'Wá ibi ìdákẹ́jẹ́ tí omi bá wà níbẹ̀ bí ó bá ṣe é ṣe')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">2.</span>
+                        <span>{ts('Listen to the 10-minute guided meditation', 'Gbọ́ ìjìnlẹ̀ tí a tọ́ sí fún ìṣẹ́jú mẹ́wàá')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">3.</span>
+                        <span>{ts('Repeat the Yoruba prayers along with the audio', 'Tún àwọn àdúrà Yorùbá náà sọ pẹ̀lú ohùn náà')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">4.</span>
+                        <span>{ts('Visualize flowing water cleansing your spirit', 'Fojú inú rí omi tí ń sàn tí ń fọ ẹ̀mí rẹ')}</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-cyan-100 dark:bg-cyan-900/30">
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold mb-2">{ts('Water Loop Meditation', 'Ìjìnlẹ̀ Omi Títún')}</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-600 font-bold">1.</span>
+                        <span>{ts('Play the water loop audio with repeat enabled', 'Ṣí ohùn omi títún pẹ̀lú ìtúnsọ')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-600 font-bold">2.</span>
+                        <span>{ts('Meditate for as long as desired', 'Ṣe ìjìnlẹ̀ fún àkókò tí o bá fẹ́')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-600 font-bold">3.</span>
+                        <span>{ts('Focus on the flowing water sounds', 'Gbojú sórí ohùn omi tí ń ṣàn')}</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-cyan-600 font-bold">4.</span>
+                        <span>{ts('Use the Yoruba prayers as mantras', 'Lo àwọn àdúrà Yorùbá gẹ́gẹ́ bí mantra')}</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

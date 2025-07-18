@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yemoja Meditation</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="/static/Yemoja_Title.png" alt="Yemoja Title" class="image"/>
+    <audio controls loop autoplay>
+      <source src="/static/water_loop.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+    <div id="subtitles" class="subtitle-box"></div>
+    <img src="/static/Yemoja_Closing.png" alt="Yemoja Closing" class="image"/>
+  </div>
+  <script>
+    fetch('/subtitles/yoruba.srt')
+      .then(response => response.text())
+      .then(data => {
+        const box = document.getElementById('subtitles');
+        box.innerHTML = data
+          .replace(/\d+\n/g, '')
+          .replace(/(\d{2}:\d{2}:\d{2},\d{3}) --> (\d{2}:\d{2}:\d{2},\d{3})/g, '<br>')
+          .replace(/\n{2,}/g, '<br><br>');
+      });
+  </script>
+</body>
+</html>
