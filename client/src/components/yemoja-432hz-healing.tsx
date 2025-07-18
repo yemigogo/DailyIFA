@@ -435,11 +435,16 @@ export const Yemoja432HzHealing: React.FC = () => {
 
       {/* Main Content Tabs - Mobile-first */}
       <Tabs defaultValue="rituals" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1 md:gap-2 h-auto p-1">
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-1 md:gap-2 h-auto p-1">
           <TabsTrigger value="rituals" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
             <Droplets className="w-4 h-4 md:w-5 md:h-5" />
             <span className="hidden md:inline">{ts('Rituals', 'Àṣẹ')}</span>
             <span className="md:hidden">💧</span>
+          </TabsTrigger>
+          <TabsTrigger value="meditation" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
+            <Heart className="w-4 h-4 md:w-5 md:h-5" />
+            <span className="hidden md:inline">{ts('Meditation', 'Ìjìnlẹ̀')}</span>
+            <span className="md:hidden">🧘</span>
           </TabsTrigger>
           <TabsTrigger value="audio" className="text-xs md:text-sm p-2 md:p-3 flex flex-col md:flex-row items-center gap-1 md:gap-2">
             <Music className="w-4 h-4 md:w-5 md:h-5" />
@@ -553,6 +558,124 @@ export const Yemoja432HzHealing: React.FC = () => {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        {/* Meditation Tab */}
+        <TabsContent value="meditation" className="space-y-4 md:space-y-6">
+          <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl md:text-2xl">
+                <Heart className="w-6 h-6 text-blue-600" />
+                {ts('Yemoja Meditation - 10 Minutes', 'Ìjìnlẹ̀ Yemoja - Ìṣẹ́jú Mẹ́wàá')}
+              </CardTitle>
+              <p className="text-blue-700 dark:text-blue-300">
+                {ts('Authentic guided meditation with sacred Yoruba prayers', 'Ìjìnlẹ̀ tí a tọ́ sí pẹ̀lú àwọn àdúrà Yorùbá mímọ́')}
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Title Image */}
+              <div className="text-center">
+                <img 
+                  src="/static/images/Yemoja_Title.png" 
+                  alt="Yemoja Meditation Title"
+                  className="w-full max-w-lg mx-auto rounded-lg shadow-md"
+                />
+              </div>
+
+              {/* Audio Player */}
+              <Card className="bg-white/50 dark:bg-gray-800/50">
+                <CardHeader>
+                  <CardTitle className="text-lg">{ts('Listen to Meditation', 'Gbọ́ Ìjìnlẹ̀')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <audio 
+                    controls 
+                    className="w-full"
+                    src="/static/audio/Yemoja_Meditation_10min_Soft.mp3"
+                  >
+                    {ts('Your browser does not support the audio element.', 'Browser rẹ kò ṣe àtìlẹ́yìn fún ohun tí a gbé.')}
+                  </audio>
+                </CardContent>
+              </Card>
+
+              {/* Yoruba Prayers */}
+              <Card className="bg-cyan-50 dark:bg-cyan-900/20">
+                <CardHeader>
+                  <CardTitle className="text-lg">{ts('Sacred Prayers (Yoruba)', 'Àwọn Àdúrà Mímọ́ (Yorùbá)')}</CardTitle>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {ts('Follow along with these authentic Yoruba prayers during meditation', 'Tẹ̀lé àwọn àdúrà Yorùbá òtítọ́ wọ̀nyí ní àsìkò ìjìnlẹ̀')}
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid gap-4">
+                    <div className="p-4 bg-white/70 dark:bg-gray-800/70 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{ts('Opening Prayer', 'Àdúrà Ìbẹ̀rẹ̀')}</h4>
+                      <p className="text-sm italic mb-1">"Ìyá omi, má bọ̀, má gbà mí"</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{ts('Mother of waters, come to me, save me', 'Ìyá omi, wá sí ọ̀dọ̀ mi, gbà mí')}</p>
+                    </div>
+                    
+                    <div className="p-4 bg-white/70 dark:bg-gray-800/70 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{ts('Release Prayer', 'Àdúrà Ìtúsílẹ̀')}</h4>
+                      <p className="text-sm italic mb-1">"Pẹ̀lú ìgbi omi kọọkan, mo fi ohun tí kò yẹ mí sílẹ̀"</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{ts('With each wave, I release what no longer serves me', 'Pẹ̀lú ìgbi kọọkan, mo fi ohun tí kò yẹ mí sílẹ̀')}</p>
+                    </div>
+                    
+                    <div className="p-4 bg-white/70 dark:bg-gray-800/70 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{ts('Flow Prayer', 'Àdúrà Ìsàn')}</h4>
+                      <p className="text-sm italic mb-1">"Bí omi ṣe ń rìnrìn àjò rẹ̀, àlàáfíà ń padà tọ mí wá"</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{ts('As water flows on its journey, peace returns to me', 'Bí omi ṣe ń rìnrìn àjò rẹ̀, àlàáfíà ń padà tọ mí wá')}</p>
+                    </div>
+                    
+                    <div className="p-4 bg-white/70 dark:bg-gray-800/70 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{ts('Healing Prayer', 'Àdúrà Ìwòsàn')}</h4>
+                      <p className="text-sm italic mb-1">"Yemoja, omi àlàáfíà, omi ìwòsàn"</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{ts('Yemoja, water of peace, water of healing', 'Yemoja, omi àlàáfíà, omi ìwòsàn')}</p>
+                    </div>
+                    
+                    <div className="p-4 bg-white/70 dark:bg-gray-800/70 rounded-lg">
+                      <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">{ts('Closing Prayer', 'Àdúrà Ìparí')}</h4>
+                      <p className="text-sm italic mb-1">"Olókun omi, Yemoja má bá wa gbe. Àṣẹ"</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">{ts('Olokun of waters, Yemoja support us. Ashe', 'Olókun omi, Yemoja má bá wa gbe. Àṣẹ')}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Closing Image */}
+              <div className="text-center">
+                <img 
+                  src="/static/images/Yemoja_Closing.png" 
+                  alt="Yemoja Meditation Closing"
+                  className="w-full max-w-lg mx-auto rounded-lg shadow-md"
+                />
+              </div>
+
+              {/* Instructions */}
+              <Card className="bg-blue-100 dark:bg-blue-900/30">
+                <CardContent className="p-4">
+                  <h4 className="font-semibold mb-2">{ts('Meditation Instructions', 'Àwọn Ìlànà Ìjìnlẹ̀')}</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold">1.</span>
+                      <span>{ts('Find a quiet space near water if possible', 'Wá ibi ìdákẹ́jẹ́ tí omi bá wà níbẹ̀ bí ó bá ṣe é ṣe')}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold">2.</span>
+                      <span>{ts('Listen to the 10-minute guided meditation', 'Gbọ́ ìjìnlẹ̀ tí a tọ́ sí fún ìṣẹ́jú mẹ́wàá')}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold">3.</span>
+                      <span>{ts('Repeat the Yoruba prayers along with the audio', 'Tún àwọn àdúrà Yorùbá náà sọ pẹ̀lú ohùn náà')}</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-blue-600 font-bold">4.</span>
+                      <span>{ts('Visualize flowing water cleansing your spirit', 'Fojú inú rí omi tí ń sàn tí ń fọ ẹ̀mí rẹ')}</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* Audio Tab */}
