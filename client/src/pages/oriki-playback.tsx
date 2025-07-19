@@ -254,7 +254,7 @@ export default function OrikiPlayback() {
               <option value="sango">Ṣàngó ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="yemaya">Yemọja ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="oshun">Ọ̀ṣun ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
-              <option value="elegba">Èṣù Ẹlẹ́gbára</option>
+              <option value="elegba">Èṣù Ẹlẹ́gbára ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="oya">Ọya ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="oshosi">Ọ̀ṣọ́ọ̀sì</option>
               <option value="olokun">Olókun ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
@@ -270,7 +270,7 @@ export default function OrikiPlayback() {
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
                   Oríkì {selectedOriki.orisha}
-                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'ogun-extended' || selectedOriki.id === 'sango' || selectedOriki.id === 'orunmila') && (
+                  {(selectedOriki.id === 'olokun' || selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'ogun-extended' || selectedOriki.id === 'sango' || selectedOriki.id === 'orunmila' || selectedOriki.id === 'elegba') && (
                     <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                       ⭐ {ts("Authentic", "Òtítọ́")}
                     </Badge>
