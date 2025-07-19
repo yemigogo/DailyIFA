@@ -74,8 +74,11 @@ const orikiData: OrikiVerse[] = [
   {
     id: "elegba",
     orisha: "Èṣù Ẹlẹ́gbára",
-    text: "Ẹlẹ́gbára, onílẹ̀ kúrò. Alágbára orírun ọ̀nà. \nKeeper of the crossroads, opener of doors.",
-    audioUrl: "/static/audio/elegba.mp3"
+    text: "Èṣù Ẹlẹ́gbára, òrìṣà tí ó ṣí ìlẹ̀kùn. Alágbára oríta, onílù àti ẹ̀gbẹ́. \nÈṣù Ẹlẹ́gbára, deity who opens doors. Guardian of crossroads, divine messenger and protector.",
+    audioUrl: "/static/audio/esu_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 87.5,
+    authenticMarker: "🎵 Authentic Nigerian Oriki Recording"
   },
   {
     id: "oya",
