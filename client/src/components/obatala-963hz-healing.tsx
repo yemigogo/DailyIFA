@@ -467,8 +467,52 @@ export const Obatala963HzHealing: React.FC = () => {
             🎧 {ts('Listen Now', 'Gbọ́ Nísinsin')}
           </h2>
           
-          {/* HTML5 Audio Player - Mobile responsive */}
+          {/* Authentic Obatala Audio by Ibrahim Chatta */}
+          <div className="space-y-4 mb-6">
+            <div className="bg-gradient-to-br from-white/10 to-pink-900/20 p-4 rounded-lg border border-pink-300/30">
+              <div className="flex items-center gap-2 mb-3">
+                <Crown className="w-5 h-5 text-pink-300" />
+                <h3 className="text-lg font-semibold text-white">
+                  {ts('Authentic Obatala Praise by Ibrahim Chatta', 'Ìyìn Òbàtálá Òtítọ́ látọwọ́ Ibrahim Chatta')}
+                </h3>
+                <Badge className="bg-pink-600/80 text-white text-xs animate-pulse">NEW</Badge>
+              </div>
+              
+              <p className="text-sm text-pink-200 mb-3">
+                {ts('Featuring Asabi Okin Afenapa - Traditional Yoruba praise for the Orisha of divine light and healing', 
+                    'Pẹ̀lú Asabi Okin Afenapa - Ìyìn Yorùbá àtọwọ́dọ́wọ́ fún Òrìṣà ìmọ́lẹ̀ àti ìwòsàn')}
+              </p>
+              
+              <audio 
+                controls 
+                preload="metadata"
+                className="w-full rounded-lg bg-gray-700 border border-pink-300/30 h-10 md:h-12 mb-3"
+                style={{ filter: 'hue-rotate(280deg) saturate(1.2)' }}
+                onError={(e) => {
+                  console.error('Obatala authentic audio loading error:', e);
+                  const target = e.target as HTMLAudioElement;
+                  console.log('Failed source:', target.src);
+                }}
+              >
+                <source src="/static/audio/obatala_ibrahim_chatta_authentic.mp3" type="audio/mpeg" />
+                {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
+              </audio>
+              
+              <div className="bg-black/30 p-3 rounded border border-pink-500/20">
+                <p className="text-xs text-pink-200">
+                  <strong>{ts('Cultural Context:', 'Àṣà Àgbéyẹ̀wò:')}</strong> {ts('Traditional praise chants (Oriki) invoke Obatala\'s divine presence for purification, healing, and spiritual elevation. Listen with reverence for authentic spiritual connection.', 
+                    'Àwọn orin ìyìn àtọwọ́dọ́wọ́ (Oriki) ń pe ipò òrìṣà Òbàtálá fún ìmọ́tótó, ìwòsàn, àti ìgbésókè ẹ̀mí. Gbọ́ pẹ̀lú ọ̀wọ̀ fún àjọpọ̀ ẹ̀mí òtítọ́.')}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Original 963Hz Audio Player - Mobile responsive */}
           <div className="space-y-3 md:space-y-4">
+            <h3 className="text-lg font-medium text-white flex items-center gap-2">
+              <Heart className="w-4 h-4 text-pink-300" />
+              {ts('963Hz Healing Frequency', 'Ìgbọ̀nsí Ìwòsàn 963Hz')}
+            </h3>
             <audio 
               controls 
               className="w-full rounded-lg bg-gray-700 border border-pink-300/30 h-10 md:h-12"
