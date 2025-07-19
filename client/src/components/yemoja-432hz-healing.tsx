@@ -824,77 +824,7 @@ export const Yemoja432HzHealing: React.FC = () => {
               </CardContent>
             </Card>
 
-            {/* Audio Controls */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Volume2 className="w-5 h-5" />
-                  {ts('Audio Controls', 'Àwọn Ìṣàkóso Orin')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Button
-                      onClick={isPlaying ? stopHealing : startHealing}
-                      className="flex-1"
-                      variant={isPlaying ? "destructive" : "default"}
-                    >
-                      {isPlaying ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
-                      {isPlaying ? ts('Stop', 'Dákẹ́') : ts('Play 432Hz', 'Dún 432Hz')}
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <VolumeX className="w-4 h-4" />
-                    <input
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      value={volume}
-                      onChange={(e) => updateVolume(parseFloat(e.target.value))}
-                      className="flex-1"
-                    />
-                    <Volume2 className="w-4 h-4" />
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-sm">{ts('Audio Priority System', 'Ètò Àṣẹ Orin')}</h4>
-                  <div className="space-y-1 text-xs">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span>1. {ts('Uploaded tracks (highest quality)', 'Àwọn orin tí a gbà (tó dára jù)')}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span>2. {ts('Royalty-free Pixabay audio', 'Orin Pixabay tí kò ní owó')}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      <span>3. {ts('Synthetic 432Hz generation', 'Ìṣẹ̀dá 432Hz àgbélẹ̀wá')}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className={`w-2 h-2 rounded-full ${useAuthenticAudio ? 'bg-green-500' : 'bg-purple-500'}`}></div>
-                    <span className="text-sm font-medium">
-                      {useAuthenticAudio 
-                        ? ts('Currently: Authentic Audio', 'Lọ́wọ́lọ́wọ́: Orin Òtítọ́')
-                        : ts('Currently: Synthetic Audio', 'Lọ́wọ́lọ́wọ́: Orin Àgbélẹ̀wá')
-                      }
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
-                    {ts('System automatically uses the best available audio source for optimal healing experience', 
-                        'Ètò náà máa lo orísun orin tó dára jù fún ìrírí ìwòsàn tó dára jù')}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
 
             {/* Authentic Yemoja Cantigas Audio */}
             <Card className="bg-gradient-to-br from-cyan-900/80 to-blue-900/80 border border-cyan-300/30">
