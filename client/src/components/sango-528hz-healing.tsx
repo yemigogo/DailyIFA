@@ -394,7 +394,7 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
               <Flame className="w-4 h-4 md:w-5 md:h-5 text-orange-400 absolute -top-1 -right-1" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white text-center">
-              {ts('Ṣàngó 528Hz Thunder & Fire', 'Ìwòsàn Àrá àti Iná Ṣàngó 528Hz')}
+              {ts('Ṣàngó 528Hz Thunder & Fire + Oriki', 'Ìwòsàn Àrá àti Iná Ṣàngó 528Hz + Oriki')}
             </h1>
           </div>
           <p className="text-sm md:text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
@@ -448,10 +448,11 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
               <span className="hidden sm:inline">{ts('Rituals', 'Àṣẹ')}</span>
               <span className="sm:hidden">⚡</span>
             </TabsTrigger>
-            <TabsTrigger value="audio" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
+            <TabsTrigger value="audio" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2 relative">
               <Music className="w-3 h-3 md:w-4 md:h-4" />
-              <span className="hidden sm:inline">{ts('Audio', 'Orin')}</span>
+              <span className="hidden sm:inline">{ts('Audio + Oriki', 'Orin + Oriki')}</span>
               <span className="sm:hidden">🎵</span>
+              <Badge variant="secondary" className="absolute -top-1 -right-1 text-xs px-1 py-0.5 bg-red-500 text-white animate-pulse">NEW</Badge>
             </TabsTrigger>
             <TabsTrigger value="session" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white text-xs md:text-sm flex items-center gap-1 md:gap-2">
               <Timer className="w-3 h-3 md:w-4 md:h-4" />
@@ -463,18 +464,7 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
               <span className="hidden sm:inline">{ts('Science', 'Sáyẹ́nsì')}</span>
               <span className="sm:hidden">💖</span>
             </TabsTrigger>
-            <TabsTrigger value="audio" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white">
-              <Music className="w-4 h-4 mr-2" />
-              {ts('Audio', 'Orin')}
-            </TabsTrigger>
-            <TabsTrigger value="science" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white">
-              <Flame className="w-4 h-4 mr-2" />
-              {ts('Fire Science', 'Ìmọ̀ Iná')}
-            </TabsTrigger>
-            <TabsTrigger value="session" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white">
-              <Timer className="w-4 h-4 mr-2" />
-              {ts('Session', 'Ìgbà')}
-            </TabsTrigger>
+
           </TabsList>
 
           <TabsContent value="rituals" className="space-y-6">
@@ -529,21 +519,33 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
                   <CardTitle className="text-white">{ts('Offline Audio Support', 'Àtìlẹ́yìn Orin Aláìlórí')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="bg-gray-700/60 border border-pink-300/30 p-4 rounded-lg">
-                    <h4 className="font-medium text-white mb-2">
-                      {ts('Local 528Hz Audio', 'Orin 528Hz Ìbílẹ̀')}
+                  <div className="bg-gradient-to-br from-red-900/80 to-orange-900/80 border border-red-300/30 p-4 rounded-lg">
+                    <h4 className="font-medium text-white mb-2 flex items-center gap-2">
+                      <Flame className="w-4 h-4 text-red-400" />
+                      {ts('Authentic Ṣàngó Oriki', 'Oriki Ṣàngó Òtítọ́')}
                     </h4>
+                    <p className="text-xs text-red-200 mb-3">
+                      {ts('By Omidan Ifabusayo Ayoka - Traditional Thunder Praise', 'Nípa Omidan Ifabusayo Ayoka - Ìyìn Àrá Ìbílẹ̀')}
+                    </p>
                     <audio 
                       controls 
                       className="w-full"
                       ref={audioElementRef}
                     >
-                      <source src="/static/audio/sango_528hz.mp3" type="audio/mpeg" />
+                      <source src="/static/audio/sango_oriki_authentic.mp3" type="audio/mpeg" />
                       {ts('Your browser does not support audio playback', 'Ayẹwo rẹ kò ṣe àtìlẹ́yìn fún dídún orin')}
                     </audio>
-                    <p className="text-xs text-blue-200 mt-2">
-                      {ts('For offline use when internet is unavailable', 'Fún lílo aláìlórí nígbà tí íńtánẹ́ẹ̀tì kò sí')}
-                    </p>
+                    <div className="mt-3 space-y-2">
+                      <p className="text-xs text-red-200 font-medium">
+                        {ts('Traditional Oriki (Praise Chant)', 'Oriki Ìbílẹ̀ (Orin Ìyìn)')}
+                      </p>
+                      <p className="text-xs text-red-300 italic">
+                        "Kabíyèsí Ṣàngó Olukòso oooo"
+                      </p>
+                      <p className="text-xs text-red-200">
+                        {ts('Listen while meditating with 528Hz frequency for authentic spiritual connection', 'Gbọ́ nígbà tí o bá ń ṣe ìjìnlẹ̀ pẹ̀lú 528Hz fún ìsopọ̀ ẹ̀mí òtítọ́')}
+                      </p>
+                    </div>
                   </div>
 
                   {/* File Upload Section */}
