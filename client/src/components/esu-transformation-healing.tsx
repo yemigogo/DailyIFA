@@ -231,7 +231,7 @@ export default function EsuTransformationHealing() {
           </div>
           <div>
             <h1 className="text-2xl md:text-4xl font-bold text-red-200 mb-1 md:mb-2">
-              Èṣù Transformation Healing + Oriki
+              Èṣù Transformation Healing
             </h1>
             <p className="text-lg md:text-xl text-red-300 italic">
               ìwòsàn àti ìyípadà Èṣù
@@ -263,15 +263,19 @@ export default function EsuTransformationHealing() {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="rituals" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-gray-800/50 border border-red-500/20">
+          <TabsList className="grid w-full grid-cols-3 md:grid-cols-5 bg-gray-800/50 border border-red-500/20">
             <TabsTrigger value="rituals" className="text-xs md:text-sm">
               <span className="hidden md:inline">Transformation Rituals</span>
               <span className="md:hidden">🔥 Rituals</span>
             </TabsTrigger>
-            <TabsTrigger value="audio" className="text-xs md:text-sm relative">
-              <span className="hidden md:inline">Fire Frequencies + Oriki</span>
-              <span className="md:hidden">🎵 Audio</span>
+            <TabsTrigger value="oriki" className="text-xs md:text-sm relative">
+              <span className="hidden md:inline">Oriki</span>
+              <span className="md:hidden">🎤 Oriki</span>
               <span className="absolute -top-1 -right-1 text-xs px-1 py-0.5 bg-red-500 text-white rounded animate-pulse">NEW</span>
+            </TabsTrigger>
+            <TabsTrigger value="audio" className="text-xs md:text-sm">
+              <span className="hidden md:inline">Fire Frequencies</span>
+              <span className="md:hidden">🎵 Audio</span>
             </TabsTrigger>
             <TabsTrigger value="affirmations" className="text-xs md:text-sm">
               <span className="hidden md:inline">Sacred Affirmations</span>
@@ -308,6 +312,50 @@ export default function EsuTransformationHealing() {
                 </Card>
               ))}
             </div>
+          </TabsContent>
+
+          <TabsContent value="oriki" className="space-y-4 md:space-y-6">
+            {/* Authentic Èṣù Oriki Audio */}
+            <Card className="bg-gradient-to-br from-red-900/80 to-orange-900/80 border border-red-300/30">
+              <CardHeader>
+                <CardTitle className="text-red-200 flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-red-400" />
+                  🎤 Authentic Èṣù Ẹlẹ́gbára Oriki
+                </CardTitle>
+                <CardDescription className="text-red-300">
+                  Traditional praise chant for the Guardian of Crossroads and Divine Messenger
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-lg border border-red-500/20">
+                  <p className="text-xs text-red-200 mb-3 font-medium">
+                    Traditional Yoruba Oriki (Praise Chant)
+                  </p>
+                  <audio 
+                    controls 
+                    className="w-full mb-3"
+                    style={{ filter: 'sepia(20%) hue-rotate(-10deg) saturate(1.2)' }}
+                  >
+                    <source src="/static/audio/esu_oriki_authentic.mp3" type="audio/mpeg" />
+                    Your browser does not support audio playback
+                  </audio>
+                  <div className="space-y-2">
+                    <p className="text-xs text-red-300 italic">
+                      "Èṣù Ẹlẹ́gbára, òrìṣà tí ó ṣí ìlẹ̀kùn..."
+                    </p>
+                    <p className="text-xs text-red-200">
+                      Listen to this traditional Oriki while meditating with transformation frequencies for authentic spiritual connection to Èṣù's crossroads energy.
+                    </p>
+                    <div className="mt-3 p-2 bg-red-900/20 rounded border border-red-500/20">
+                      <p className="text-xs text-red-200 font-medium mb-1">Spiritual Practice:</p>
+                      <p className="text-xs text-red-300">
+                        Play this Oriki during crossroads meditation or when seeking to remove obstacles and open new pathways in your life.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="audio" className="space-y-4 md:space-y-6">
@@ -406,48 +454,6 @@ export default function EsuTransformationHealing() {
                     <span className="hidden md:inline">Download Card</span>
                     <span className="md:hidden">Download</span>
                   </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Authentic Èṣù Oriki Audio */}
-            <Card className="bg-gradient-to-br from-red-900/80 to-orange-900/80 border border-red-300/30">
-              <CardHeader>
-                <CardTitle className="text-red-200 flex items-center gap-2">
-                  <Flame className="w-5 h-5 text-red-400" />
-                  🎤 Authentic Èṣù Ẹlẹ́gbára Oriki
-                </CardTitle>
-                <CardDescription className="text-red-300">
-                  Traditional praise chant for the Guardian of Crossroads and Divine Messenger
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="bg-black/30 p-4 rounded-lg border border-red-500/20">
-                  <p className="text-xs text-red-200 mb-3 font-medium">
-                    Traditional Yoruba Oriki (Praise Chant)
-                  </p>
-                  <audio 
-                    controls 
-                    className="w-full mb-3"
-                    style={{ filter: 'sepia(20%) hue-rotate(-10deg) saturate(1.2)' }}
-                  >
-                    <source src="/static/audio/esu_oriki_authentic.mp3" type="audio/mpeg" />
-                    Your browser does not support audio playback
-                  </audio>
-                  <div className="space-y-2">
-                    <p className="text-xs text-red-300 italic">
-                      "Èṣù Ẹlẹ́gbára, òrìṣà tí ó ṣí ìlẹ̀kùn..."
-                    </p>
-                    <p className="text-xs text-red-200">
-                      Listen to this traditional Oriki while meditating with transformation frequencies for authentic spiritual connection to Èṣù's crossroads energy.
-                    </p>
-                    <div className="mt-3 p-2 bg-red-900/20 rounded border border-red-500/20">
-                      <p className="text-xs text-red-200 font-medium mb-1">Spiritual Practice:</p>
-                      <p className="text-xs text-red-300">
-                        Play this Oriki during crossroads meditation or when seeking to remove obstacles and open new pathways in your life.
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
             </Card>
