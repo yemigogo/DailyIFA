@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Flame, Volume2, VolumeX, Download, Share2, Play, Pause, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slider } from '@/components/ui/slider';
