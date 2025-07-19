@@ -384,6 +384,78 @@ export default function EsuTransformationHealing() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Second Authentic Èṣù Oriki Audio - Laalu */}
+            <Card className="bg-gradient-to-br from-orange-900/80 to-red-900/80 border border-orange-300/30">
+              <CardHeader>
+                <CardTitle className="text-orange-200 flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-orange-400" />
+                  🎤 Oriki Èṣù Laalu - Omidan Ayoka
+                  <Badge className="bg-emerald-100 text-emerald-800 text-xs animate-pulse">NEW</Badge>
+                </CardTitle>
+                <CardDescription className="text-orange-300">
+                  Traditional Laalu praise chant by Omidan Ifabusayo Ayoka (7.7MB)
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-lg border border-orange-500/20">
+                  <p className="text-xs text-orange-200 mb-3 font-medium">
+                    Authentic Yoruba Oriki - Èṣù Laalu Tradition
+                  </p>
+                  <audio 
+                    controls 
+                    preload="metadata"
+                    className="w-full mb-3"
+                    style={{ filter: 'sepia(20%) hue-rotate(10deg) saturate(1.2)' }}
+                    onError={(e) => {
+                      console.error('Laalu Oriki audio loading error:', e);
+                      const target = e.target as HTMLAudioElement;
+                      console.log('Failed source:', target.src);
+                    }}
+                    onCanPlay={() => console.log('Èṣù Laalu Oriki audio ready to play')}
+                  >
+                    <source src="/static/audio/esu_laalu_oriki_authentic.mp3" type="audio/mpeg" />
+                    <source src="/static/audio/esu_laalu_oriki_authentic.mp3" type="audio/mp3" />
+                    Your browser does not support audio playback. <a href="/static/audio/esu_laalu_oriki_authentic.mp3" target="_blank" className="text-orange-300 underline">Download the Laalu Oriki audio file</a>
+                  </audio>
+                  
+                  {/* Audio Test Button */}
+                  <div className="flex gap-2 mb-3">
+                    <button 
+                      onClick={() => {
+                        const audio = new Audio('/static/audio/esu_laalu_oriki_authentic.mp3');
+                        audio.play().catch(e => console.error('Direct Laalu audio play error:', e));
+                      }}
+                      className="px-3 py-1 bg-orange-600 hover:bg-orange-700 text-white text-xs rounded"
+                    >
+                      Test Laalu Audio
+                    </button>
+                    <a 
+                      href="/static/audio/esu_laalu_oriki_authentic.mp3" 
+                      target="_blank"
+                      className="px-3 py-1 bg-orange-800 hover:bg-orange-900 text-white text-xs rounded"
+                    >
+                      Direct Link
+                    </a>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-xs text-orange-300 italic">
+                      "Oriki Èṣù Laalu by Omidan Ifabusayo Ayoka..."
+                    </p>
+                    <p className="text-xs text-orange-200">
+                      Traditional Laalu praise chant celebrating Èṣù's power to remove obstacles and transform situations.
+                    </p>
+                    <div className="mt-3 p-2 bg-orange-900/20 rounded border border-orange-500/20">
+                      <p className="text-xs text-orange-200 font-medium mb-1">Traditional Practice:</p>
+                      <p className="text-xs text-orange-300">
+                        This Laalu tradition honors Èṣù's transformative powers. Use during life transitions or when seeking major changes.
+                      </p>
+                      <p className="text-xs text-orange-400 mt-2 font-medium">Artist: Omidan Ifabusayo Ayoka</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="audio" className="space-y-4 md:space-y-6">
