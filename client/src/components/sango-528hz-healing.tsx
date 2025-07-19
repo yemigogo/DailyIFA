@@ -387,6 +387,34 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
           </div>
         </div>
 
+        {/* Authentic Ṣàngó Thunder & Fire Artwork */}
+        <div className="mb-6 md:mb-8 relative">
+          <div className="relative overflow-hidden rounded-xl border-2 border-red-400/30 shadow-2xl">
+            <img 
+              src="/static/images/sango_thunder_artwork.webp" 
+              alt={ts('Ṣàngó - Orisha of Thunder, Fire, and Divine Justice', 'Ṣàngó - Òrìṣà Àrá, Iná, àti Òdodo Ọlọ́run')}
+              className="w-full h-48 md:h-64 object-cover object-center filter brightness-90 contrast-110"
+              style={{ filter: 'brightness(0.95) contrast(1.1) saturate(1.2)' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="w-5 h-5 text-yellow-400" />
+                <Badge className="bg-red-600/80 text-white text-xs backdrop-blur-sm">
+                  {ts('Authentic Thunder Art', 'Àwòrán Àrá Òtítọ́')}
+                </Badge>
+              </div>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-1 drop-shadow-lg">
+                {ts('Ṣàngó - Master of Thunder & Fire', 'Ṣàngó - Ọga Àrá àti Iná')}
+              </h2>
+              <p className="text-xs md:text-sm text-red-200 drop-shadow-md">
+                {ts('Divine king wielding thunder axe (Oṣé), channeling justice and transformation power', 
+                    'Ọba òrun tí ó mú àáké àrá (Oṣé), tí ó ń ṣàkóso òdodo àti agbára ìyípadà')}
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="text-center mb-6 md:mb-8">
           <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
             <div className="relative">
