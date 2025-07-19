@@ -393,11 +393,11 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
             <img 
               src="/static/images/sango_thunder_artwork.webp" 
               alt={ts('Ṣàngó - Orisha of Thunder, Fire, and Divine Justice', 'Ṣàngó - Òrìṣà Àrá, Iná, àti Òdodo Ọlọ́run')}
-              className="w-full h-48 md:h-64 object-cover object-center filter brightness-90 contrast-110"
+              className="w-full h-64 md:h-80 object-contain bg-gradient-to-br from-orange-900/60 to-red-900/60"
               style={{ filter: 'brightness(0.95) contrast(1.1) saturate(1.2)' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 pointer-events-none">
               <div className="flex items-center gap-2 mb-2">
                 <Zap className="w-5 h-5 text-yellow-400" />
                 <Badge className="bg-red-600/80 text-white text-xs backdrop-blur-sm">
