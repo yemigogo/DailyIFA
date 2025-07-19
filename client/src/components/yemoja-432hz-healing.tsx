@@ -895,6 +895,78 @@ export const Yemoja432HzHealing: React.FC = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Authentic Yemoja Cantigas Audio */}
+            <Card className="bg-gradient-to-br from-cyan-900/80 to-blue-900/80 border border-cyan-300/30">
+              <CardHeader>
+                <CardTitle className="text-cyan-200 flex items-center gap-2">
+                  <Waves className="w-5 h-5 text-cyan-400" />
+                  🎤 {ts('Yemoja Cantigas', 'Orin Yemoja')}
+                  <Badge className="bg-emerald-100 text-emerald-800 text-xs animate-pulse">NEW</Badge>
+                </CardTitle>
+                <p className="text-cyan-300 text-sm">
+                  {ts('Authentic Cantigas de Yemaya - Traditional water praise songs (7.7MB)', 'Orin Yemoja Òtítọ́ - Àwọn orin ìyìn omi àtọwọ́dọ́wọ́ (7.7MB)')}
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-lg border border-cyan-500/20">
+                  <p className="text-xs text-cyan-200 mb-3 font-medium">
+                    {ts('Traditional Cantigas de Yemaya', 'Orin Yemoja Àtọwọ́dọ́wọ́')}
+                  </p>
+                  <audio 
+                    controls 
+                    preload="metadata"
+                    className="w-full mb-3"
+                    style={{ filter: 'sepia(10%) hue-rotate(180deg) saturate(1.2)' }}
+                    onError={(e) => {
+                      console.error('Yemoja Cantigas audio loading error:', e);
+                      const target = e.target as HTMLAudioElement;
+                      console.log('Failed source:', target.src);
+                    }}
+                    onCanPlay={() => console.log('Yemoja Cantigas audio ready to play')}
+                  >
+                    <source src="/static/audio/yemoja_cantigas_authentic.mp3" type="audio/mpeg" />
+                    <source src="/static/audio/yemoja_cantigas_authentic.mp3" type="audio/mp3" />
+                    {ts('Your browser does not support audio playback.', 'Àṣáwòrán rẹ kò ṣàtìlẹ́yìn dídún orin.')} <a href="/static/audio/yemoja_cantigas_authentic.mp3" target="_blank" className="text-cyan-300 underline">{ts('Download the Cantigas audio file', 'Gbà fáìlì orin Cantigas')}</a>
+                  </audio>
+                  
+                  {/* Audio Test Buttons */}
+                  <div className="flex gap-2 mb-3">
+                    <button 
+                      onClick={() => {
+                        const audio = new Audio('/static/audio/yemoja_cantigas_authentic.mp3');
+                        audio.play().catch(e => console.error('Direct Cantigas audio play error:', e));
+                      }}
+                      className="px-3 py-1 bg-cyan-600 hover:bg-cyan-700 text-white text-xs rounded"
+                    >
+                      {ts('Test Cantigas Audio', 'Ṣàyẹ̀wò Orin Cantigas')}
+                    </button>
+                    <a 
+                      href="/static/audio/yemoja_cantigas_authentic.mp3" 
+                      target="_blank"
+                      className="px-3 py-1 bg-cyan-800 hover:bg-cyan-900 text-white text-xs rounded"
+                    >
+                      {ts('Direct Link', 'Ọ̀nà Tàárà')}
+                    </a>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <p className="text-xs text-cyan-300 italic">
+                      {ts('"Cantigas de Yemaya - Traditional water praise songs..."', '"Orin Yemoja - Àwọn orin ìyìn omi àtọwọ́dọ́wọ́..."')}
+                    </p>
+                    <p className="text-xs text-cyan-200">
+                      {ts('Traditional Cantigas celebrating Yemoja\'s dominion over waters, emotions, and maternal protection.', 'Orin àtọwọ́dọ́wọ́ tí ń ṣàjọyọ̀ ìjọba Yemoja lórí omi, ìmọ̀lára, àti àabo ìyá.')}
+                    </p>
+                    <div className="mt-3 p-2 bg-cyan-900/20 rounded border border-cyan-500/20">
+                      <p className="text-xs text-cyan-200 font-medium mb-1">{ts('Spiritual Practice:', 'Àṣẹ Ẹ̀mí:')}</p>
+                      <p className="text-xs text-cyan-300">
+                        {ts('Play these Cantigas during water meditation or when calling upon Yemoja\'s nurturing energy for emotional healing.', 'Dún àwọn Cantigas yìí nígbà àṣẹ omi tàbí nígbà tí o bá ń pe agbára tọ́jú Yemoja fún ìwòsàn ìmọ̀lára.')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </TabsContent>
 
