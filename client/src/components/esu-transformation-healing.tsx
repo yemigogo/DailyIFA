@@ -333,12 +333,40 @@ export default function EsuTransformationHealing() {
                   </p>
                   <audio 
                     controls 
+                    preload="metadata"
                     className="w-full mb-3"
                     style={{ filter: 'sepia(20%) hue-rotate(-10deg) saturate(1.2)' }}
+                    onError={(e) => {
+                      console.error('Audio loading error:', e);
+                      const target = e.target as HTMLAudioElement;
+                      console.log('Failed source:', target.src);
+                    }}
+                    onCanPlay={() => console.log('Èṣù Oriki audio ready to play')}
                   >
                     <source src="/static/audio/esu_oriki_authentic.mp3" type="audio/mpeg" />
-                    Your browser does not support audio playback
+                    <source src="/static/audio/esu_oriki_authentic.mp3" type="audio/mp3" />
+                    Your browser does not support audio playback. <a href="/static/audio/esu_oriki_authentic.mp3" target="_blank" className="text-red-300 underline">Download the Oriki audio file</a>
                   </audio>
+                  
+                  {/* Audio Test Button */}
+                  <div className="flex gap-2 mb-3">
+                    <button 
+                      onClick={() => {
+                        const audio = new Audio('/static/audio/esu_oriki_authentic.mp3');
+                        audio.play().catch(e => console.error('Direct audio play error:', e));
+                      }}
+                      className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded"
+                    >
+                      Test Audio
+                    </button>
+                    <a 
+                      href="/static/audio/esu_oriki_authentic.mp3" 
+                      target="_blank"
+                      className="px-3 py-1 bg-red-800 hover:bg-red-900 text-white text-xs rounded"
+                    >
+                      Direct Link
+                    </a>
+                  </div>
                   <div className="space-y-2">
                     <p className="text-xs text-red-300 italic">
                       "Èṣù Ẹlẹ́gbára, òrìṣà tí ó ṣí ìlẹ̀kùn..."
