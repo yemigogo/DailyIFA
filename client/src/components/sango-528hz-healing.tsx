@@ -391,8 +391,8 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
         <div className="mb-6 md:mb-8 relative">
           <div className="relative overflow-hidden rounded-xl border-2 border-red-400/30 shadow-2xl">
             <img 
-              src="/static/images/sango_thunder_artwork.webp" 
-              alt={ts('Ṣàngó - Orisha of Thunder, Fire, and Divine Justice', 'Ṣàngó - Òrìṣà Àrá, Iná, àti Òdodo Ọlọ́run')}
+              src="/static/images/sango_thunder_artwork_with_text.png" 
+              alt={ts('Ṣàngó with Yoruba text: Kàkà kí Sàngó jà, kó kú ní! - Orisha of Thunder, Fire, and Divine Justice', 'Ṣàngó pẹ̀lú ọ̀rọ̀ Yorùbá: Kàkà kí Sàngó jà, kó kú ní! - Òrìṣà Àrá, Iná, àti Òdodo Ọlọ́run')}
               className="w-full h-64 md:h-80 object-contain bg-gradient-to-br from-orange-900/60 to-red-900/60"
               style={{ filter: 'brightness(0.95) contrast(1.1) saturate(1.2)' }}
             />
@@ -407,9 +407,12 @@ const Sango528HzHealing: React.FC<SangoHealingProps> = ({ language }) => {
               <h2 className="text-lg md:text-xl font-bold text-white mb-1 drop-shadow-lg">
                 {ts('Ṣàngó - Master of Thunder & Fire', 'Ṣàngó - Ọga Àrá àti Iná')}
               </h2>
+              <p className="text-xs md:text-sm text-yellow-200 drop-shadow-md font-medium mb-1">
+                {ts('"Kàkà kí Sàngó jà, kó kú ní!" - Better for Sango to fight than to die!', '"Kàkà kí Sàngó jà, kó kú ní!" - Dára kí Sàngó já ju kí ó kú lọ!')}
+              </p>
               <p className="text-xs md:text-sm text-red-200 drop-shadow-md">
-                {ts('Divine king wielding thunder axe (Oṣé), channeling justice and transformation power', 
-                    'Ọba òrun tí ó mú àáké àrá (Oṣé), tí ó ń ṣàkóso òdodo àti agbára ìyípadà')}
+                {ts('Divine king wielding thunder axe (Oṣé), embodying courage and warrior spirit', 
+                    'Ọba òrun tí ó mú àáké àrá (Oṣé), tí ó jẹ́ àpẹẹrẹ ìgbòyà àti ẹ̀mí jagunjagun')}
               </p>
             </div>
           </div>
