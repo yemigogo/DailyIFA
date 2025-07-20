@@ -225,6 +225,69 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* YouTube Video Integration */}
+      <Card className="mb-8 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Play className="h-6 w-6 text-blue-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎥 {ts("Educational Video: Yoruba Spiritual Wisdom", "Fídíò Ẹ̀kọ́: Ọgbọ́n Ẹ̀mí Yorùbá")}
+            </CardTitle>
+            <Badge className="bg-blue-600 text-white text-xs">VIDEO</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Comprehensive video guide exploring Yoruba spiritual traditions and sacred knowledge systems",
+              "Itọ́nisọ́nà fídíò tí ó kójọ nípa àṣà ẹ̀mí Yorùbá àti ètò ìmọ̀ mímọ́"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                {ts("Yoruba Spiritual Education Video", "Fídíò Ẹ̀kọ́ Ẹ̀mí Yorùbá")}
+              </h3>
+              <p className="text-blue-700 dark:text-blue-200 text-sm mb-4">
+                {ts(
+                  "This educational video provides insights into Yoruba spiritual practices, traditional wisdom, and sacred teachings that complement our audio learning resources.",
+                  "Fídíò ẹ̀kọ́ yìí ń fún wa ní òye sí àṣà ẹ̀mí Yorùbá, ọgbọ́n ìbílẹ̀, àti ẹ̀kọ́ mímọ́ tí ó bá àwọn ohun èlò ẹ̀kọ́ ohùn wa mu."
+                )}
+              </p>
+              
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/b4X4BgAh_0Q"
+                  title="Yoruba Spiritual Wisdom"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
+                ></iframe>
+              </div>
+              
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded border border-blue-300/20 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Volume2 className="w-4 h-4 text-blue-600 dark:text-blue-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-blue-800 dark:text-blue-200">
+                      <strong>{ts('Multimedia Learning:', 'Ẹ̀kọ́ Amóhunmáwòrán:')}</strong> {ts('This video complements our authentic audio collection by providing visual context and deeper understanding of Yoruba spiritual traditions. Use it alongside our audio resources for a comprehensive learning experience.', 
+                        'Fídíò yìí ń ṣàfikún sí ìkójọ ohùn òtítọ́ wa nípa fífún wa ní àyíká àwòrán àti òye jíjìn sí àṣà ẹ̀mí Yorùbá. Lo ọ́ pẹ̀lú àwọn ohun èlò ohùn wa fún ìrírí ẹ̀kọ́ tí ó ní ìdámọ̀.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
         <CardContent className="p-6">
