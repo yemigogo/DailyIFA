@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import OrishaAssessment from "./orisha-assessment";
-import EnhancedUserProfile from "./enhanced-user-profile";
+// import EnhancedUserProfile from "./enhanced-user-profile";
 
 interface UserProfileProps {
   onThemeChange?: (theme: string) => void;
@@ -116,7 +116,10 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
         </TabsList>
 
         <TabsContent value="enhanced" className="mt-6">
-          <EnhancedUserProfile onThemeChange={onThemeChange} currentTheme={currentTheme} />
+          {/* <EnhancedUserProfile onThemeChange={onThemeChange} currentTheme={currentTheme} /> */}
+          <div className="text-center py-8">
+            <p className="text-amber-700 dark:text-amber-300">Enhanced features temporarily disabled</p>
+          </div>
         </TabsContent>
 
         <TabsContent value="basic" className="space-y-6">
