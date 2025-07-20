@@ -31,62 +31,62 @@ interface OrishaResult {
 const questions: Question[] = [
   {
     id: 1,
-    text: "Which element calls to your spirit most strongly?",
-    yoruba: "Èwo nínú àwọn erùpẹ̀ yìí ló ń pe ẹ̀mí rẹ jùlọ?",
+    text: "When you're stressed, what do you do to cope?",
+    yoruba: "Nígbà tí àárẹ̀ bá mú ọ, kí ni o má ń ṣe láti kojú rẹ̀?",
     options: [
-      { text: "Ocean depths and flowing waters", yoruba: "Ìjìnlẹ̀ òkun àti omi tí ń sàn", orisha: "yemoja", points: 3 },
-      { text: "Thunder, lightning, and fire", yoruba: "Àrá, mọ̀nàmọ́ná, àti iná", orisha: "sango", points: 3 },
-      { text: "Pure light and divine wisdom", yoruba: "Ìmọ́lẹ̀ mímọ́ àti ọgbọ́n Ọ̀run", orisha: "obatala", points: 3 },
-      { text: "Iron, war, and transformation", yoruba: "Irin, ogun, àti ìyípadà", orisha: "ogun", points: 3 },
-      { text: "Fresh water, love, and beauty", yoruba: "Omi tutù, ìfẹ́, àti ẹwà", orisha: "osun", points: 3 }
+      { text: "Retreat and meditate quietly", yoruba: "Yẹra kí n sì ṣàlò ní ìdákẹ́jẹ́", orisha: "obatala", points: 2 },
+      { text: "Get angry and take action", yoruba: "Bínú kí n sì gbé ìgbésẹ̀", orisha: "sango", points: 2 },
+      { text: "Seek advice from friends", yoruba: "Béèrè ìmọ̀ràn lọ́wọ́ àwọn ọ̀rẹ́", orisha: "orunmila", points: 2 },
+      { text: "Turn to music, dance, or creativity", yoruba: "Yí sí orin, ijó, tàbí ìṣẹ̀dá", orisha: "yemoja", points: 2 },
+      { text: "Focus on work or survival", yoruba: "Fojú kan iṣẹ́ tàbí ìwàláàyè", orisha: "ogun", points: 2 }
     ]
   },
   {
     id: 2,
-    text: "How do you handle life's challenges?",
-    yoruba: "Báwo ni o ṣe ń kojú àwọn ìṣòro ayé?",
+    text: "Which of these words resonates most with you?",
+    yoruba: "Èwo nínú àwọn ọ̀rọ̀ wọ̀nyí ló dún mọ́ ọ jù?",
     options: [
-      { text: "With fierce determination and direct action", yoruba: "Pẹ̀lú ìpinnu líle àti ìṣe tààrà", orisha: "ogun", points: 3 },
-      { text: "Through patient wisdom and calm reflection", yoruba: "Nípa ọgbọ́n sùúrù àti ìrònú ìdákẹ́jẹ́", orisha: "obatala", points: 3 },
-      { text: "With emotional flow and adaptation", yoruba: "Pẹ̀lú ṣíṣàn ẹ̀dùn àti ìbámu", orisha: "yemoja", points: 3 },
-      { text: "Through passionate energy and leadership", yoruba: "Nípa agbára ìtara àti olórí", orisha: "sango", points: 3 },
-      { text: "With love, diplomacy, and grace", yoruba: "Pẹ̀lú ìfẹ́, ìgbéjọ́pọ̀, àti oore-ọ̀fẹ́", orisha: "osun", points: 3 }
+      { text: "Peace", yoruba: "Àlàáfíà", orisha: "obatala", points: 2 },
+      { text: "Strength", yoruba: "Agbára", orisha: "sango", points: 2 },
+      { text: "Love", yoruba: "Ìfẹ́", orisha: "osun", points: 2 },
+      { text: "Wisdom", yoruba: "Ọgbọ́n", orisha: "orunmila", points: 2 },
+      { text: "Protection", yoruba: "Ààbò", orisha: "oya", points: 2 }
     ]
   },
   {
     id: 3,
-    text: "What role do you naturally take in groups?",
-    yoruba: "Iru ipa wo ni o maa n gba ninu awon eniyan?",
+    text: "You feel most alive when…",
+    yoruba: "O ní ìmọ̀lára ayé jù nígbà tí...",
     options: [
-      { text: "The protector and defender", yoruba: "Aṣáábò àti alágbéde", orisha: "ogun", points: 3 },
-      { text: "The wise counselor and mediator", yoruba: "Olùgbọ́n àti alárinrin", orisha: "obatala", points: 3 },
-      { text: "The nurturer and emotional support", yoruba: "Olùtọ́jú àti atilẹyìn ẹ̀dùn", orisha: "yemoja", points: 3 },
-      { text: "The natural leader and motivator", yoruba: "Olórí àdáyébá àti amilóyè", orisha: "sango", points: 3 },
-      { text: "The peacemaker and harmonizer", yoruba: "Aláàfíà àti amuṣẹpọ̀", orisha: "osun", points: 3 }
+      { text: "In nature or near water", yoruba: "Nínú àyíká tàbí nítòsí omi", orisha: "osun", points: 1 },
+      { text: "Solving problems or giving advice", yoruba: "Ń yọ́ ìṣòro tàbí fún ni ní ìmọ̀ràn", orisha: "orunmila", points: 2 },
+      { text: "Defending someone or standing up for justice", yoruba: "Ń gbèjà ẹnìkan tàbí dìde fún òdodo", orisha: "sango", points: 2 },
+      { text: "Creating or expressing yourself", yoruba: "Ń ṣẹ̀dá tàbí fi ara rẹ hàn", orisha: "yemoja", points: 1 },
+      { text: "Working with tools or building something", yoruba: "Ń ṣiṣẹ́ pẹ̀lú ohun èlò tàbí kọ́ nǹkan", orisha: "ogun", points: 2 }
     ]
   },
   {
     id: 4,
-    text: "Which time of day resonates with your energy?",
-    yoruba: "Àkókò wo ọjọ́ ni agbára rẹ dára jù?",
+    text: "What kind of relationships do you value most?",
+    yoruba: "Irú ìbáṣepọ̀ wo ni o mọ̀ ọ́n jù?",
     options: [
-      { text: "Dawn - the time of new beginnings", yoruba: "Àfẹ̀mọ́júmọ́ - àkókò ìbẹ̀rẹ̀ tuntun", orisha: "obatala", points: 3 },
-      { text: "Midday - when the sun is strongest", yoruba: "Ọ̀sán gangan - nígbà tí òòrùn le jù", orisha: "sango", points: 3 },
-      { text: "Evening - the reflective twilight", yoruba: "Alẹ́ - àkókò ìṣàlò", orisha: "yemoja", points: 3 },
-      { text: "Night - the time of deep work", yoruba: "Òru - àkókò iṣẹ́ jíjìn", orisha: "ogun", points: 3 },
-      { text: "Sunset - the golden hour", yoruba: "Ìwọ̀ òòrùn - wákàtí ìgòlọ́", orisha: "osun", points: 3 }
+      { text: "Deep, meaningful, and peaceful", yoruba: "Jíjìn, tí ó ní ìtumọ̀, àti àlàáfíà", orisha: "obatala", points: 2 },
+      { text: "Passionate and intense", yoruba: "Ìtara àti kíkan", orisha: "sango", points: 2 },
+      { text: "Loving and nurturing", yoruba: "Ìfẹ́ àti ìtọ́jú", orisha: "osun", points: 2 },
+      { text: "Intellectual and spiritual", yoruba: "Ọgbọ́n àti ẹ̀mí", orisha: "orunmila", points: 2 },
+      { text: "Protective and loyal", yoruba: "Ìṣáábò àti òtítọ́", orisha: "oya", points: 2 }
     ]
   },
   {
     id: 5,
-    text: "What drives your deepest passions?",
-    yoruba: "Kí ni ó ń ru ìfẹ́ rẹ jíjìn sí ṣíṣe?",
+    text: "What is your approach to conflict?",
+    yoruba: "Báwo ni o ṣe ń kojú ìjà?",
     options: [
-      { text: "Justice and protecting the innocent", yoruba: "Ìdájọ́ òdodo àti ààbò aláìṣẹ̀", orisha: "ogun", points: 3 },
-      { text: "Peace, wisdom, and spiritual growth", yoruba: "Àlàáfíà, ọgbọ́n, àti ìdàgbàsókè ẹ̀mí", orisha: "obatala", points: 3 },
-      { text: "Caring for others and emotional healing", yoruba: "Ìtọ́jú àwọn ẹlòmíràn àti ìwòsàn ẹ̀dùn", orisha: "yemoja", points: 3 },
-      { text: "Achievement, power, and recognition", yoruba: "Àṣeyọrí, agbára, àti ìdámọ̀", orisha: "sango", points: 3 },
-      { text: "Love, beauty, and artistic expression", yoruba: "Ìfẹ́, ẹwà, àti ìfihàn ọnà", orisha: "osun", points: 3 }
+      { text: "Avoid it and seek harmony", yoruba: "Yí kúrò kí n sì wá ìṣọ̀kan", orisha: "obatala", points: 2 },
+      { text: "Face it head-on", yoruba: "Kojú rẹ̀ tààrà", orisha: "sango", points: 2 },
+      { text: "Try to mediate and bring peace", yoruba: "Gbìyànjú láti ṣàgbò àti mú àlàáfíà wá", orisha: "osun", points: 2 },
+      { text: "Analyze and strategize", yoruba: "Ṣàyẹ̀wò kí n sì gbèrò", orisha: "orunmila", points: 2 },
+      { text: "Use strength or strategy to overcome", yoruba: "Lo agbára tàbí ọgbọ́n láti borí", orisha: "ogun", points: 2 }
     ]
   }
 ];
@@ -95,57 +95,90 @@ const orishaProfiles: Record<string, OrishaResult> = {
   obatala: {
     name: "Òbàtálá",
     yoruba: "Òbàtálá - Òrìṣà Àlá",
-    description: "The father of the Orishas, deity of wisdom, peace, and purity. You embody calm leadership, spiritual wisdom, and the pursuit of higher truth.",
-    yorubaDescription: "Baba àwọn Òrìṣà, òrìṣà ọgbọ́n, àlàáfíà, àti mímọ́. O jẹ́ aṣojú ìdárí ìdákẹ́jẹ́, ọgbọ́n ẹ̀mí, àti wíwá òtítọ́ gíga.",
-    dailyGuidance: "Seek wisdom before action. Practice patience and meditation. Your calm presence heals others.",
-    yorubaDailyGuidance: "Wá ọgbọ́n kí o tó ṣe ohunkóhun. Ṣe àdáṣe sùúrù àti ìṣàlò. Ìwà rẹ tí ó dákẹ́ ń wo àwọn ẹlòmíràn sàn.",
+    description: "The father of the Orishas, deity of wisdom, peace, and purity. You are calm, intellectual, and diplomatic.",
+    yorubaDescription: "Baba àwọn Òrìṣà, òrìṣà ọgbọ́n, àlàáfíà, àti mímọ́. O jẹ́ onírọ́ra, olóye, àti onífàájì.",
+    dailyGuidance: "Seek peace. Let go of ego. Walk in truth.",
+    yorubaDailyGuidance: "Wá àlàáfíà. Fi ìgbéraga sílẹ̀. Rìn nínú òtítọ́.",
     icon: Crown,
     color: "white",
     domain: ["Wisdom", "Peace", "Purity", "Justice", "Spiritual Leadership"]
   },
-  yemoja: {
-    name: "Yemọja",
-    yoruba: "Yemọja - Ìyá Àwọn Omo Eja",
-    description: "Mother of Waters, the nurturing ocean goddess. You possess deep emotional wisdom, protective instincts, and healing powers.",
-    yorubaDescription: "Ìyá Omi, òrìṣà òkun alágbára. O ní ọgbọ́n ẹ̀dùn jíjìn, ìwà ìṣáábò, àti agbára ìwòsàn.",
-    dailyGuidance: "Trust your intuition. Nurture those around you. Like water, flow around obstacles with grace.",
-    yorubaDailyGuidance: "Gbẹ́kẹ̀lé ọgbọ́n inú rẹ. Tọ́jú àwọn tí ó yí ọ ká. Bí omi, máa gba ibi tí ó ṣòro kọjá pẹ̀lú ọlá.",
-    icon: Waves,
-    color: "blue",
-    domain: ["Motherhood", "Emotional Healing", "Intuition", "Protection", "Fertility"]
-  },
   sango: {
     name: "Ṣàngó",
     yoruba: "Ṣàngó - Ọba Aláṣẹ",
-    description: "God of thunder and fire, the royal warrior. You embody passion, leadership, justice, and transformative power.",
-    yorubaDescription: "Òrìṣà àrá àti iná, jagunjagun ọba. O jẹ́ aṣojú ìtara, ìdarí, ìdájọ́ òdodo, àti agbára ìyípadà.",
-    dailyGuidance: "Channel your passion constructively. Lead by example. Your fire can light the way for others.",
-    yorubaDailyGuidance: "Lo ìtara rẹ ní ọ̀nà tí ó dára. Ṣe aṣíwájú nípa àpẹẹrẹ. Iná rẹ lè ṣe ìtọ́nisọ́nà fún àwọn ẹlòmíràn.",
+    description: "God of thunder and fire, the royal warrior. You are bold, fiery, and charismatic.",
+    yorubaDescription: "Òrìṣà àrá àti iná, jagunjagun ọba. O jẹ́ onígboyà, eléèérí, àti òṣelú.",
+    dailyGuidance: "Stand tall. Defend what is right. Harness your power.",
+    yorubaDailyGuidance: "Dúró gbàngàn. Gbe ohun tí ó tọ́ ró. Lo agbára rẹ.",
     icon: Zap,
     color: "red",
     domain: ["Leadership", "Justice", "Passion", "Transformation", "Royal Power"]
   },
-  ogun: {
-    name: "Ògún",
-    yoruba: "Ògún - Òrìṣà Irin",
-    description: "God of iron and war, the divine blacksmith. You possess determination, technological mastery, and protective strength.",
-    yorubaDescription: "Òrìṣà irin àti ogun, alágbẹ̀dé òrun. O ní ìpinnu, ìmọ̀ ẹ̀rọ, àti agbára ìṣáábò.",
-    dailyGuidance: "Work with determination and skill. Protect what you love. Your strength builds the foundation for others.",
-    yorubaDailyGuidance: "Ṣiṣẹ́ pẹ̀lú ìpinnu àti ọgbọ́n. Dáàbò bo ohun tí o fẹ́ràn. Agbára rẹ ń ṣe ìpìlẹ̀ fún àwọn ẹlòmíràn.",
-    icon: Mountain,
-    color: "green",
-    domain: ["Technology", "Protection", "Hard Work", "Innovation", "Strength"]
-  },
   osun: {
     name: "Òṣun",
     yoruba: "Òṣun - Òrìṣà Omi Tutù",
-    description: "Goddess of fresh water, love, and fertility. You embody grace, diplomatic wisdom, and the power of love to heal.",
-    yorubaDescription: "Òrìṣà omi tutù, ìfẹ́, àti ìbísí. O jẹ́ aṣojú ọlá, ọgbọ́n ìgbéjọ́pọ̀, àti agbára ìfẹ́ láti wo sàn.",
-    dailyGuidance: "Lead with love and diplomacy. Your grace and beauty inspire others. Create harmony wherever you go.",
-    yorubaDailyGuidance: "Ṣe aṣíwájú pẹ̀lú ìfẹ́ àti ìgbéjọ́pọ̀. Ọlá àti ẹwà rẹ ń fún àwọn ẹlòmíràn ní ìmísí. Ṣe ìṣẹ̀pọ̀ níbikíbi tí o bá lọ.",
+    description: "Goddess of fresh water, love, and fertility. You are sensual, nurturing, and artistic.",
+    yorubaDescription: "Òrìṣà omi tutù, ìfẹ́, àti ìbísí. O jẹ́ adùn, olùtọ́jú, àti onímọ̀ ọnà.",
+    dailyGuidance: "Open your heart. Trust your intuition. Let abundance flow.",
+    yorubaDailyGuidance: "Ṣí ọkàn rẹ. Gbẹ́kẹ̀lé àkọsílẹ̀ rẹ. Jẹ́ kí ọ̀pọ̀lọpọ̀ sàn.",
     icon: Heart,
     color: "yellow",
     domain: ["Love", "Diplomacy", "Beauty", "Healing", "Abundance"]
+  },
+  yemoja: {
+    name: "Yemọja",
+    yoruba: "Yemọja - Ìyá Àwọn Omo Eja",
+    description: "Mother of Waters, the nurturing ocean goddess. You are nurturing, emotional, and powerful.",
+    yorubaDescription: "Ìyá Omi, òrìṣà òkun alágbára. O jẹ́ olùtọ́jú, oníìrí, àti alágbára.",
+    dailyGuidance: "Honor your inner ocean. Protect your family. Flow with life.",
+    yorubaDailyGuidance: "Bu ọlá fún òkun inú rẹ. Dáàbò bo ìdílé rẹ. Bá ayé lọ.",
+    icon: Waves,
+    color: "blue",
+    domain: ["Motherhood", "Emotional Healing", "Intuition", "Protection", "Fertility"]
+  },
+  orunmila: {
+    name: "Òrúnmìlà",
+    yoruba: "Òrúnmìlà - Òrìṣà Ìfá",
+    description: "God of wisdom and divination, keeper of destiny. You are analytical, spiritual, and insightful.",
+    yorubaDescription: "Òrìṣà ọgbọ́n àti àfọ̀ṣẹ, atọ́jú àyànmọ́. O jẹ́ aṣeṣàyẹ́wò, ẹlẹ́mìí, àti onírísí.",
+    dailyGuidance: "Seek truth. Follow your destiny. Speak with wisdom.",
+    yorubaDailyGuidance: "Wá òtítọ́. Tẹ̀lé àyànmọ́ rẹ. Sọ̀rọ̀ pẹ̀lú ọgbọ́n.",
+    icon: Star,
+    color: "green",
+    domain: ["Wisdom", "Divination", "Truth", "Destiny", "Spiritual Guidance"]
+  },
+  ogun: {
+    name: "Ògún",
+    yoruba: "Ògún - Òrìṣà Irin",
+    description: "God of iron and war, the divine blacksmith. You are practical, focused, and loyal.",
+    yorubaDescription: "Òrìṣà irin àti ogun, alágbẹ̀dé òrun. O jẹ́ òní, ọlọ́kàn-lé, àti olóòtítọ́.",
+    dailyGuidance: "Clear the path. Build with strength. Honor your tools.",
+    yorubaDailyGuidance: "Ṣí ọ̀nà. Kọ́ pẹ̀lú agbára. Bu ọlá fún ohun èlò rẹ.",
+    icon: Mountain,
+    color: "black",
+    domain: ["Technology", "Protection", "Hard Work", "Innovation", "Strength"]
+  },
+  oya: {
+    name: "Òyá",
+    yoruba: "Òyá - Òrìṣà Afẹ́fẹ́",
+    description: "Goddess of winds and storms, guardian of the cemetery. You are fierce, independent, and intuitive.",
+    yorubaDescription: "Òrìṣà afẹ́fẹ́ àti ìjì, ọlọ́dẹ isà òkú. O jẹ́ aburú, alómìnira, àti onírísí.",
+    dailyGuidance: "Embrace change. Protect what's sacred. Burn what must go.",
+    yorubaDailyGuidance: "Gbà ìyípadà. Dáàbò bo ohun mímọ́. Sun ohun tí ó gbọdọ̀ lọ.",
+    icon: Wind,
+    color: "maroon",
+    domain: ["Change", "Transformation", "Protection", "Independence", "Spirit Guide"]
+  },
+  eshu: {
+    name: "Èṣù",
+    yoruba: "Èṣù - Òrìṣà Òrita",
+    description: "Guardian of crossroads and messenger of the gods. You are mischievous, clever, and spiritual.",
+    yorubaDescription: "Olùṣọ́ òrita àti ikọ̀ àwọn òrìṣà. O jẹ́ aráyé, ọlọ́gbọ́n, àti ẹlẹ́mìí.",
+    dailyGuidance: "Choose wisely. Walk the crossroads. Speak with purpose.",
+    yorubaDailyGuidance: "Yan dáadáa. Rìn òrita. Sọ̀rọ̀ pẹ̀lú èròngbà.",
+    icon: Sparkles,
+    color: "black/red",
+    domain: ["Communication", "Crossroads", "Choices", "Trickster", "Divine Messenger"]
   }
 };
 
@@ -157,7 +190,10 @@ export default function AdvancedOrishaAssessment() {
     yemoja: 0,
     sango: 0,
     ogun: 0,
-    osun: 0
+    osun: 0,
+    orunmila: 0,
+    oya: 0,
+    eshu: 0
   });
   const [hasAncestralConnection, setHasAncestralConnection] = useState<string>('');
   const [isYoruba, setIsYoruba] = useState(false);
@@ -205,7 +241,10 @@ export default function AdvancedOrishaAssessment() {
       yemoja: 0,
       sango: 0,
       ogun: 0,
-      osun: 0
+      osun: 0,
+      orunmila: 0,
+      oya: 0,
+      eshu: 0
     });
     setHasAncestralConnection('');
   };
