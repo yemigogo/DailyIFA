@@ -388,7 +388,7 @@ export default function AudioManagement() {
                   className="w-full mb-4"
                   preload="metadata"
                 >
-                  <source src="/attached_assets/Ifá Divination_ How Yoruba Priests Speak to the Spirit World (1)_1752980955260.mp3" type="audio/mpeg" />
+                  <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
                   {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
                 </audio>
                 
