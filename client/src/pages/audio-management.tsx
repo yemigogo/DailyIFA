@@ -351,6 +351,75 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* Tunde Kelani Documentary Audio */}
+      <Card className="mb-8 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Volume2 className="h-6 w-6 text-amber-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎬 {ts("Ifá: Mystery or Science? - Tunde Kelani Documentary", "Ifá: Àṣírí tàbí Sáyẹ́nsì? - Fídíò Tunde Kelani")}
+            </CardTitle>
+            <Badge className="bg-amber-600 text-white text-xs">DOCUMENTARY</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Authentic documentary audio exploring the profound depths of Ifá wisdom and traditional knowledge systems by renowned filmmaker Tunde Kelani",
+              "Ohùn fídíò òtítọ́ tí ó ń ṣàwárí ìjìnlẹ̀ ọgbọ́n Ifá àti ètò ìmọ̀ ìbílẹ̀ láti ọ̀dọ̀ olùṣe fílìmù olókìkí Tunde Kelani"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                {ts("Traditional Ifá Documentary Audio", "Ohùn Fídíò Ifá Ìbílẹ̀")}
+              </h3>
+              <p className="text-amber-700 dark:text-amber-200 text-sm mb-4">
+                {ts(
+                  "This documentary audio segment by acclaimed Nigerian filmmaker Tunde Kelani delves into the intersection of traditional Ifá wisdom and modern understanding, exploring whether ancient knowledge systems constitute mystery or science.",
+                  "Ohùn fídíò yìí láti ọ̀dọ̀ olùṣe fílìmù Nàíjíríà olókìkí Tunde Kelani ń ṣàwárí ibi tí ọgbọ́n Ifá ìbílẹ̀ àti òye òde òní ti pàdé, ó ń ṣàwárí bóyá ètò ìmọ̀ àtijọ́ jẹ́ àṣírí tàbí sáyẹ́nsì."
+                )}
+              </p>
+              
+              <div className="bg-amber-100 dark:bg-amber-900/30 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+                <audio 
+                  controls 
+                  className="w-full mb-4"
+                  preload="metadata"
+                >
+                  <source src="/attached_assets/Ifa_ Mystery or Science_ Yoruba documentary by Tunde Kelani - 2_1752980851230.mp3" type="audio/mpeg" />
+                  {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
+                </audio>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Mic className="w-4 h-4 text-amber-600 dark:text-amber-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-amber-800 dark:text-amber-200">
+                      <strong>{ts('Documentary Insight:', 'Òye Fídíò:')}</strong> {ts('This authentic audio from Tunde Kelani\'s acclaimed documentary provides scholarly perspectives on Ifá tradition, bridging ancient wisdom with contemporary understanding. Perfect for those seeking deeper intellectual engagement with Yoruba spiritual systems.', 
+                        'Ohùn òtítọ́ yìí láti fídíò olókìkí Tunde Kelani ń fún wa ní ìwòye ọmọ-ilé ẹ̀kọ́ sórí àṣà Ifá, ó ń so ọgbọ́n àtijọ́ pọ̀ mọ́ òye òde òní. Ó dára fún àwọn tí ó ń wá ìfarahàn òye jíjìn pẹ̀lú ètò ẹ̀mí Yorùbá.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 p-3 rounded border border-amber-300/30">
+                <h4 className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                  {ts("About Tunde Kelani", "Nípa Tunde Kelani")}
+                </h4>
+                <p className="text-xs text-amber-700 dark:text-amber-200">
+                  {ts(
+                    "Renowned Nigerian filmmaker and cultural documentarian known for his authentic portrayals of Yoruba traditions and indigenous knowledge systems. His works bridge traditional wisdom with contemporary discourse.",
+                    "Olùṣe fílìmù Nàíjíríà olókìkí àti òṣèré àṣà tí a mọ̀ fún àwọn àfihàn òtítọ́ rẹ̀ nípa àṣà Yorùbá àti ètò ìmọ̀ ìbílẹ̀. Àwọn iṣẹ́ rẹ̀ ń so ọgbọ́n ìbílẹ̀ pọ̀ mọ́ àríyànjiyàn òde òní."
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
         <CardContent className="p-6">
