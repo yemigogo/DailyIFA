@@ -515,7 +515,7 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
   return (
     <div className="space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
           <TabsTrigger value="basic" className="flex items-center gap-1">
             <User className="h-4 w-4" />
             <span className="hidden sm:inline">{ts("Basic", "Ìpìlẹ̀")}</span>
@@ -536,17 +536,9 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
             <CalendarIcon className="h-4 w-4" />
             <span className="hidden sm:inline">{ts("Calendar", "Kálẹ́ńdà")}</span>
           </TabsTrigger>
-          <TabsTrigger value="assessment" className="flex items-center gap-1">
-            <Crown className="h-4 w-4" />
-            <span className="hidden sm:inline">{ts("Orisha", "Òrìṣà")}</span>
-          </TabsTrigger>
           <TabsTrigger value="themes" className="flex items-center gap-1">
             <Palette className="h-4 w-4" />
             <span className="hidden sm:inline">{ts("Themes", "Àwọ̀")}</span>
-          </TabsTrigger>
-          <TabsTrigger value="audio" className="flex items-center gap-1">
-            <Volume2 className="h-4 w-4" />
-            <span className="hidden sm:inline">{ts("Audio", "Ohùn")}</span>
           </TabsTrigger>
         </TabsList>
 
@@ -1720,28 +1712,6 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
         </TabsContent>
 
         {/* Continue with remaining tabs... */}
-        {/* I'll create the remaining tabs (assessment, themes, audio) in the next part */}
-        
-        {/* Advanced Orisha Assessment Tab */}
-        <TabsContent value="assessment" className="space-y-6">
-          <Card className="border-amber-200 dark:border-amber-800">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-                <Crown className="h-5 w-5" />
-                {ts("Advanced Orisha Assessment", "Àyẹ̀wò Òrìṣà Àfihàn")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="text-center py-8 text-amber-600">
-                <Crown className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                <h3 className="text-lg font-medium mb-2">{ts("Enhanced Assessment Coming Soon", "Àyẹ̀wò Àfihàn Ń Bọ̀")}</h3>
-                <p className="text-sm max-w-md mx-auto">
-                  {ts("A comprehensive multi-dimensional assessment to discover your spiritual alignments with detailed personality, elemental, and spiritual compatibility analysis.", "Àyẹ̀wò tí ó kún fun láti ṣàwárí ìbámu ẹ̀mí rẹ pẹ̀lú àlàyé ìwà, ọmọ ẹ̀dá, àti ìwádìí ìbámu ẹ̀mí.")}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
 
         {/* Enhanced Theme Customization Tab */}
         <TabsContent value="themes" className="space-y-6">
@@ -1922,234 +1892,6 @@ export default function EnhancedUserProfile({ onThemeChange, currentTheme = "lig
                       placeholder="#d97706"
                       className="flex-1"
                     />
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* Enhanced Audio Preferences Tab */}
-        <TabsContent value="audio" className="space-y-6">
-          <Card className="border-amber-200 dark:border-amber-800">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-amber-900 dark:text-amber-100">
-                <Volume2 className="h-5 w-5" />
-                {ts("Enhanced Audio Preferences", "Ètò Ohùn Àfihàn")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Audio Controls */}
-              <div className="space-y-4">
-                <h4 className="font-medium flex items-center gap-2">
-                  <Speaker className="h-4 w-4" />
-                  {ts("Audio Controls", "Ìṣàkoso Ohùn")}
-                </h4>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Label>{ts("Pronunciation Audio", "Ohùn Sísọ")}</Label>
-                      <p className="text-sm text-amber-600 dark:text-amber-400">
-                        {ts("Enable Yoruba pronunciation guides", "Mu ìtọ́sọ̀nà sísọ Yorùbá ṣiṣẹ́")}
-                      </p>
-                    </div>
-                    <Switch
-                      checked={audioPreferences.pronunciationEnabled}
-                      onCheckedChange={(checked) => setAudioPreferences(prev => ({ ...prev, pronunciationEnabled: checked }))}
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Label>{ts("Auto-play Audio", "Ìdásílẹ̀ Fúnra")}</Label>
-                      <p className="text-sm text-amber-600 dark:text-amber-400">
-                        {ts("Automatically play pronunciations", "Dá sísọ sílẹ̀ fúnrarẹ̀")}
-                      </p>
-                    </div>
-                    <Switch
-                      checked={audioPreferences.autoPlay}
-                      onCheckedChange={(checked) => setAudioPreferences(prev => ({ ...prev, autoPlay: checked }))}
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Label>{ts("Background Sounds", "Àwọn Ohùn Ẹ̀yìn")}</Label>
-                      <p className="text-sm text-amber-600 dark:text-amber-400">
-                        {ts("Traditional spiritual background sounds", "Àwọn ohùn ẹ̀yìn ẹ̀mí àtìjọ́")}
-                      </p>
-                    </div>
-                    <Switch
-                      checked={audioPreferences.backgroundSounds}
-                      onCheckedChange={(checked) => setAudioPreferences(prev => ({ ...prev, backgroundSounds: checked }))}
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <Label>{ts("Download for Offline", "Gba fún Àìsínípò")}</Label>
-                      <p className="text-sm text-amber-600 dark:text-amber-400">
-                        {ts("Cache audio files for offline use", "Tọ́jú àwọn fáìlì ohùn fún lílò lórí")}
-                      </p>
-                    </div>
-                    <Switch
-                      checked={audioPreferences.downloadForOffline}
-                      onCheckedChange={(checked) => setAudioPreferences(prev => ({ ...prev, downloadForOffline: checked }))}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <Separator />
-
-              {/* Volume and Quality Settings */}
-              <div className="space-y-4">
-                <h4 className="font-medium flex items-center gap-2">
-                  <Settings className="h-4 w-4" />
-                  {ts("Audio Settings", "Ètò Ohùn")}
-                </h4>
-                
-                <div className="space-y-4">
-                  <div>
-                    <Label>{ts("Volume", "Ìwọ̀n Ohùn")} ({audioPreferences.volume}%)</Label>
-                    <Slider
-                      value={[audioPreferences.volume]}
-                      onValueChange={([value]) => setAudioPreferences(prev => ({ ...prev, volume: value }))}
-                      max={100}
-                      min={0}
-                      step={5}
-                      className="w-full mt-2"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label>{ts("Speech Rate", "Ìyára Ọ̀rọ̀")}</Label>
-                      <Select 
-                        value={audioPreferences.speechRate} 
-                        onValueChange={(value) => setAudioPreferences(prev => ({ ...prev, speechRate: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {speechRates.map((rate) => (
-                            <SelectItem key={rate.id} value={rate.id}>
-                              <div className="flex items-center gap-2">
-                                <span>{rate.name}</span>
-                                <span className="text-xs text-amber-600">({rate.yoruba})</span>
-                              </div>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div>
-                      <Label>{ts("Voice Gender", "Akọ/Abo Ohùn")}</Label>
-                      <Select 
-                        value={audioPreferences.voiceGender} 
-                        onValueChange={(value) => setAudioPreferences(prev => ({ ...prev, voiceGender: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="any">{ts("Any", "Èyíkéyìí")}</SelectItem>
-                          <SelectItem value="male">{ts("Male", "Akọ")}</SelectItem>
-                          <SelectItem value="female">{ts("Female", "Abo")}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label>{ts("Audio Quality", "Ìdára Ohùn")}</Label>
-                      <Select 
-                        value={audioPreferences.audioQuality} 
-                        onValueChange={(value) => setAudioPreferences(prev => ({ ...prev, audioQuality: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {audioQualities.map((quality) => (
-                            <SelectItem key={quality.id} value={quality.id}>
-                              <div className="flex items-center gap-2">
-                                <span>{quality.name}</span>
-                                <span className="text-xs text-amber-600">({quality.yoruba})</span>
-                              </div>
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    
-                    <div>
-                      <Label>{ts("Sound Theme", "Kókó Ohùn")}</Label>
-                      <Select 
-                        value={audioPreferences.soundTheme} 
-                        onValueChange={(value) => setAudioPreferences(prev => ({ ...prev, soundTheme: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="traditional">{ts("Traditional", "Àtìjọ́")}</SelectItem>
-                          <SelectItem value="modern">{ts("Modern", "Òde-òní")}</SelectItem>
-                          <SelectItem value="nature">{ts("Nature", "Àdáyébá")}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label>{ts("Pronunciation Dialect", "Èdè Sísọ")}</Label>
-                    <Select 
-                      value={audioPreferences.pronunciation_dialect} 
-                      onValueChange={(value) => setAudioPreferences(prev => ({ ...prev, pronunciation_dialect: value }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="yoruba_nigeria">{ts("Nigerian Yoruba", "Yorùbá Nàìjíríà")}</SelectItem>
-                        <SelectItem value="yoruba_benin">{ts("Benin Yoruba", "Yorùbá Bẹ̀nẹ̀")}</SelectItem>
-                        <SelectItem value="yoruba_togo">{ts("Togo Yoruba", "Yorùbá Togo")}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </div>
-
-              <Separator />
-
-              {/* Audio Test */}
-              <div className="space-y-4">
-                <h4 className="font-medium flex items-center gap-2">
-                  <Play className="h-4 w-4" />
-                  {ts("Test Audio Settings", "Dán Ètò Ohùn Wò")}
-                </h4>
-                
-                <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20">
-                  <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
-                    {ts("Test your audio settings with a sample pronunciation", "Dán ètò ohùn rẹ wò pẹ̀lú àpẹẹrẹ sísọ")}
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <Button variant="outline" size="sm">
-                      <Play className="h-4 w-4 mr-2" />
-                      {ts("Test: 'Ifá'", "Dánwò: 'Ifá'")}
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Play className="h-4 w-4 mr-2" />
-                      {ts("Test: 'Òrìṣà'", "Dánwò: 'Òrìṣà'")}
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Play className="h-4 w-4 mr-2" />
-                      {ts("Test: 'Àṣẹ'", "Dánwò: 'Àṣẹ'")}
-                    </Button>
                   </div>
                 </div>
               </div>
