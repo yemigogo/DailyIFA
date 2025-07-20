@@ -173,6 +173,64 @@ export default function AudioManagement() {
         </p>
       </div>
 
+      {/* Featured: Sophie Oluwole - Oro Isiti */}
+      <ResponsiveCard animation="fade" className="mb-8 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Volume2 className="h-6 w-6 text-purple-600" />
+            <CardTitle className="text-spiritual-blue dark:text-white">
+              🎓 {ts("Featured: Sophie Oluwole - Oro Isiti", "Àkọ́kọ́: Sophie Oluwole - Oro Isiti")}
+            </CardTitle>
+            <Badge className="bg-purple-600/80 text-white text-xs animate-pulse">FEATURED</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Renowned Nigerian philosopher discussing Yoruba philosophy and indigenous knowledge systems",
+              "Ọmọluwabi onímọ̀-ìjìnlẹ̀ Nàìjíríà tó ń sọ̀rọ̀ nípa ìmọ̀-ìjìnlẹ̀ Yorùbá àti ètò ìmọ̀ ìbílẹ̀"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+            <div className="flex items-start gap-4">
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-purple-900 dark:text-purple-100 mb-2">
+                  {ts("Combined Sophie Oluwole - Oro Isiti Discourse", "Ọ̀rọ̀ Sophie Oluwole - Oro Isiti Ti A Da Pọ̀")}
+                </h3>
+                <p className="text-purple-700 dark:text-purple-200 text-sm mb-3">
+                  {ts(
+                    "Authentic discourse on Yoruba philosophical traditions and indigenous wisdom systems by Prof. Sophie Oluwole, Nigeria's first female professor of philosophy.",
+                    "Ọ̀rọ̀ òtítọ́ nípa àṣà ìmọ̀-ìjìnlẹ̀ Yorùbá àti ètò ọgbọ́n ìbílẹ̀ látọwọ́ Prof. Sophie Oluwole, obìnrin àkọ́kọ́ tó jẹ́ prófésọ̀ ìmọ̀-ìjìnlẹ̀ ní Nàìjíríà."
+                  )}
+                </p>
+                
+                <audio 
+                  controls 
+                  preload="metadata"
+                  className="w-full rounded-lg bg-purple-100 dark:bg-purple-800 border border-purple-300/30 h-12 mb-3"
+                  style={{ filter: 'hue-rotate(270deg) saturate(1.2)' }}
+                  onError={(e) => {
+                    console.error('Sophie Oluwole audio loading error:', e);
+                    const target = e.target as HTMLAudioElement;
+                    console.log('Failed source:', target.src);
+                  }}
+                >
+                  <source src="/static/audio/sophie_oluwole_oro_isiti_combined.mp3" type="audio/mpeg" />
+                  {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
+                </audio>
+
+                <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded border border-purple-300/20">
+                  <p className="text-xs text-purple-800 dark:text-purple-200">
+                    <strong>{ts('Academic Context:', 'Àyíká Ẹ̀kọ́:')}</strong> {ts('Prof. Sophie Oluwole (1935-2018) was a pioneering philosopher who championed indigenous African knowledge systems. Her work on Oro Isiti (philosophy) demonstrates the depth and sophistication of Yoruba intellectual traditions, bridging ancient wisdom with contemporary academic discourse.', 
+                      'Prof. Sophie Oluwole (1935-2018) jẹ́ onímọ̀-ìjìnlẹ̀ àkọ́kọ́ tó mú kí ètò ìmọ̀ Áfíríkà ìbílẹ̀ gbé jáde. Iṣẹ́ rẹ̀ lórí Oro Isiti (ìmọ̀-ìjìnlẹ̀) fi hàn bí àṣà ìmọ̀ Yorùbá ṣe jin àti pé ó mọ́gbọ́n, ó sì da ọgbọ́n àtijọ́ pọ̀ mọ́ ìjírọrò ẹ̀kọ́ òde òní.')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </ResponsiveCard>
+
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
         <CardContent className="p-6">
