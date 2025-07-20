@@ -18,6 +18,15 @@ interface OrikiVerse {
 
 const orikiData: OrikiVerse[] = [
   {
+    id: "olodumare",
+    orisha: "Olódùmarè",
+    text: "Olódùmarè, Olórun àti Elédà gbogbo nǹkan. Ọba àwọn ọba, Ọlọ́run òkè ọ̀run. \nOlódùmarè, God Almighty and Creator of all things. King of all kings, God of the highest heaven.",
+    audioUrl: "/static/audio/olodumare_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 180.0,
+    authenticMarker: "🎵 Authentic Oriki - The Almighty Creator"
+  },
+  {
     id: "orunmila",
     orisha: "Òrúnmìlà",
     text: "Ẹlẹ́rìí ìpín, agbani nímọ̀ràn, alábáyọ̀. \nThe witness to destiny, provider of wise counsel, bringer of joy.",
