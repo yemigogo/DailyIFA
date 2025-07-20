@@ -32,8 +32,8 @@ const orikiData: OrikiVerse[] = [
     text: "Ẹlẹ́rìí ìpín, agbani nímọ̀ràn, alábáyọ̀. \nThe witness to destiny, provider of wise counsel, bringer of joy.",
     audioUrl: "/static/audio/orunmila_oriki_authentic_new.mp3",
     isAuthentic: true,
-    duration: 240.0,
-    authenticMarker: "🎵 Authentic Ifá Chant - Traditional House of Worship International"
+    duration: 300.0,
+    authenticMarker: "🎵 Authentic Ṣàngó Oriki by Omidan Ifabusayo Ayoka - Kabíyèsí Ṣàngó Olukòso"
   },
   {
     id: "ogun",
