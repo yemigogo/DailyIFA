@@ -57,10 +57,10 @@ const orikiData: OrikiVerse[] = [
     id: "sango",
     orisha: "Ṣàngó",
     text: "Ọba koso! Aláàfin tó mọ̀ràn ogun, kabiyesi Olú Ayé. \nThe king did not hang! Thunder lord, ruler of war and the world.",
-    audioUrl: "/static/audio/pronunciation/sango_oriki_authentic.mp3",
+    audioUrl: "/static/audio/sango_oriki_authentic_new.mp3",
     isAuthentic: true,
-    duration: 35.4,
-    authenticMarker: "🎵 Authentic Nigerian Recording"
+    duration: 300.0,
+    authenticMarker: "🎵 Authentic Ṣàngó Oriki by Omidan Ifabusayo Ayoka - Kabíyèsí Ṣàngó Olukòso"
   },
   {
     id: "yemaya",
