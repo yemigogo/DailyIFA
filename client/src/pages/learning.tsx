@@ -981,21 +981,84 @@ const Learning: React.FC = () => {
                   {module.id === 'wisdom' && <WisdomSection />}
 
                   {module.id === 'odu' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {majorOdu.map((odu) => (
-                        <Card key={odu.id} className="border-l-4 border-l-spiritual-blue">
-                          <CardHeader>
-                            <CardTitle className="text-lg">{odu.name}</CardTitle>
-                            <Badge variant="outline">{odu.category}</Badge>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-gray-700 dark:text-gray-300 mb-3">{odu.meaning}</p>
-                            <blockquote className="italic text-amber-700 dark:text-amber-300 border-l-2 border-amber-300 pl-4">
-                              {odu.proverb}
-                            </blockquote>
-                          </CardContent>
-                        </Card>
-                      ))}
+                    <div className="space-y-8">
+                      {/* YouTube Video Integration */}
+                      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-lg border border-indigo-200 dark:border-indigo-700">
+                        <div className="text-center mb-6">
+                          <h3 className="text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-2">
+                            🎥 {ts("The 256 Odu Ifá: Sacred Wisdom Collection", "Àwọn Odù Ifá 256: Ìkójọ Ọgbọ́n Mímọ́")}
+                          </h3>
+                          <p className="text-indigo-700 dark:text-indigo-300 text-lg">
+                            {ts(
+                              "Explore the complete sacred patterns of Ifá divination through this comprehensive video guide",
+                              "Ṣàwárí àwọn àpẹẹrẹ mímọ́ pípé ti fífá Ifá nípasẹ̀ itọ́nisọ́nà fídíò yìí"
+                            )}
+                          </p>
+                        </div>
+                        
+                        <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                          <iframe
+                            className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                            src="https://www.youtube.com/embed/k94DmrbmY6Q"
+                            title="The 256 Odu Ifá"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            style={{
+                              border: 'none',
+                              borderRadius: '8px',
+                              boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                            }}
+                          ></iframe>
+                        </div>
+                        
+                        <div className="mt-6 bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-indigo-300/30">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-800 rounded-full flex items-center justify-center flex-shrink-0">
+                              <Play className="w-6 h-6 text-indigo-600 dark:text-indigo-300" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-indigo-900 dark:text-indigo-100 mb-2">
+                                {ts("About This Video", "Nípa Fídíò Yìí")}
+                              </h4>
+                              <p className="text-indigo-700 dark:text-indigo-200 text-sm leading-relaxed">
+                                {ts(
+                                  "This educational video provides insights into the 256 sacred Odu patterns that form the foundation of Ifá divination system. Learn about the structure, meanings, and spiritual significance of these ancient wisdom teachings.",
+                                  "Fídíò ẹ̀kọ́ yìí ń fún wa ní òye sí àwọn àpẹẹrẹ Odù mímọ́ 256 tí ó jẹ́ ìpilẹ̀ ètò fífá Ifá. Kọ́ nípa ètò, ìtumọ̀, àti pàtàkì ẹ̀mí àwọn ẹ̀kọ́ ọgbọ́n àtijọ́ wọ̀nyí."
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Traditional Odu Cards Grid */}
+                      <div className="space-y-4">
+                        <div className="text-center">
+                          <h3 className="text-xl font-semibold text-spiritual-blue dark:text-sacred-gold mb-2">
+                            {ts("Major Odu Patterns", "Àwọn Àpẹẹrẹ Odù Pàtàkì")}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-400">
+                            {ts("The 16 primary Odu that form the foundation of all divination", "Àwọn Odù àkọ́kọ́ mẹ́rìndínlógún tí ó jẹ́ ìpilẹ̀ gbogbo fífá")}
+                          </p>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {majorOdu.map((odu) => (
+                            <Card key={odu.id} className="border-l-4 border-l-spiritual-blue hover:shadow-lg transition-shadow">
+                              <CardHeader>
+                                <CardTitle className="text-lg">{odu.name}</CardTitle>
+                                <Badge variant="outline">{odu.category}</Badge>
+                              </CardHeader>
+                              <CardContent>
+                                <p className="text-gray-700 dark:text-gray-300 mb-3">{odu.meaning}</p>
+                                <blockquote className="italic text-amber-700 dark:text-amber-300 border-l-2 border-amber-300 pl-4">
+                                  {odu.proverb}
+                                </blockquote>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   )}
 
