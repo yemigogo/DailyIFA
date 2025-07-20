@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Play, Pause, CheckCircle, Volume2, Mic, Loader2 } from "lucide-react";
+import { Upload, Play, Pause, CheckCircle, Volume2, Mic, Loader2, BookOpen } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ResponsiveCard from "@/components/responsive-card";
 import { useToast } from "@/hooks/use-toast";
