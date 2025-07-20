@@ -38,20 +38,11 @@ const orikiData: OrikiVerse[] = [
   {
     id: "ogun",
     orisha: "Ògún",
-    text: "Alágbède méjì, onírin tí ngbé orí lẹ̀sẹ̀. \nBlacksmith of iron, warrior who carries iron on his head.",
-    audioUrl: "/static/audio/pronunciation/ogun_oriki_authentic.mp3",
+    text: "Ògún láákáayé, onírin-an, alágbède gbogbo ohun. Alágbède méjì, onírin tí ngbé orí lẹ̀sẹ̀. \nÒgun of all the world, master of iron, blacksmith of all things. Warrior who carries iron on his head.",
+    audioUrl: "/static/audio/ogun_oriki_authentic_new.mp3",
     isAuthentic: true,
-    duration: 26.3,
-    authenticMarker: "🎵 Authentic Nigerian Recording"
-  },
-  {
-    id: "ogun-extended",
-    orisha: "Ògún (Extended Oríkì)",
-    text: "Ògún láákáayé, onírin-an, alágbède gbogbo ohun. \nOníṣe ogun, jagún-jagun alágbára. \nÒgun of all the world, master of iron, blacksmith of all things. \nMaker of war tools, mighty warrior champion.",
-    audioUrl: "/static/audio/pronunciation/ogun_oriki_2_authentic.mp3",
-    isAuthentic: true,
-    duration: 129.0,
-    authenticMarker: "🎵 Extended Authentic Recording"
+    duration: 240.0,
+    authenticMarker: "🎵 Authentic Oriki by Alabi Ogundepo - Praise of the God of Iron"
   },
   {
     id: "obatala",
