@@ -288,6 +288,69 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* Third YouTube Video Integration */}
+      <Card className="mb-8 bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Play className="h-6 w-6 text-teal-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎥 {ts("Advanced Yoruba Studies Video", "Fídíò Ẹ̀kọ́ Yorùbá Gíga")}
+            </CardTitle>
+            <Badge className="bg-teal-600 text-white text-xs">ADVANCED</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Deep dive into advanced Yoruba spiritual concepts and traditional knowledge systems",
+              "Ìwádi jíjìn sí àwọn èrò ẹ̀mí Yorùbá gíga àti ètò ìmọ̀ ìbílẹ̀"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-teal-900 dark:text-teal-100 mb-2">
+                {ts("Advanced Yoruba Knowledge Systems", "Ètò Ìmọ̀ Yorùbá Gíga")}
+              </h3>
+              <p className="text-teal-700 dark:text-teal-200 text-sm mb-4">
+                {ts(
+                  "This advanced video explores deeper aspects of Yoruba spirituality and traditional knowledge, perfect for those seeking comprehensive understanding of indigenous wisdom systems.",
+                  "Fídíò gíga yìí ń ṣàwárí àwọn abala jíjìn ti ẹ̀mí Yorùbá àti ìmọ̀ ìbílẹ̀, ó dára fún àwọn tí ó ń wá òye pípé nípa ètò ọgbọ́n ìbílẹ̀."
+                )}
+              </p>
+              
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/S7RvqBpqcNY"
+                  title="Advanced Yoruba Knowledge Systems"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
+                ></iframe>
+              </div>
+              
+              <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded border border-teal-300/20 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-teal-100 dark:bg-teal-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-teal-600 dark:text-teal-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-teal-800 dark:text-teal-200">
+                      <strong>{ts('Progressive Learning:', 'Ẹ̀kọ́ Ìlọsíwájú:')}</strong> {ts('This video represents the next level in your Yoruba spiritual education journey. Combined with our audio resources and previous videos, it creates a comprehensive multimedia learning path from basic concepts to advanced knowledge systems.', 
+                        'Fídíò yìí dúró fún ipele tókàn nínú ìrìn ẹ̀kọ́ ẹ̀mí Yorùbá rẹ. Tí a bá da pọ̀ mọ́ àwọn ohun èlò ohùn wa àti àwọn fídíò tẹ́lẹ̀, ó ń ṣẹ̀dá ọ̀nà ẹ̀kọ́ amóhunmáwòrán tí ó kún láti àwọn èrò ìpilẹ̀ dé ètò ìmọ̀ gíga.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
         <CardContent className="p-6">
