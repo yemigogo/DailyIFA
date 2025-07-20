@@ -31,7 +31,7 @@ interface OrishaResult {
 const questions: Question[] = [
   {
     id: 1,
-    text: "When you're stressed, what do you do to cope?",
+    text: "When you're stressed, what do you cope with?",
     yoruba: "Nígbà tí àárẹ̀ bá mú ọ, kí ni o má ń ṣe láti kojú rẹ̀?",
     options: [
       { text: "Retreat and meditate quietly", yoruba: "Yẹra kí n sì ṣàlò ní ìdákẹ́jẹ́", orisha: "obatala", points: 2 },
@@ -87,6 +87,66 @@ const questions: Question[] = [
       { text: "Try to mediate and bring peace", yoruba: "Gbìyànjú láti ṣàgbò àti mú àlàáfíà wá", orisha: "osun", points: 2 },
       { text: "Analyze and strategize", yoruba: "Ṣàyẹ̀wò kí n sì gbèrò", orisha: "orunmila", points: 2 },
       { text: "Use strength or strategy to overcome", yoruba: "Lo agbára tàbí ọgbọ́n láti borí", orisha: "ogun", points: 2 }
+    ]
+  },
+  {
+    id: 6,
+    text: "Which element feels most connected to your spirit?",
+    yoruba: "Èwo nínú àwọn erùpẹ̀ ló ní ìsopọ̀ pẹ̀lú ẹ̀mí rẹ jù?",
+    options: [
+      { text: "Air", yoruba: "Afẹ́fẹ́", orisha: "orunmila", points: 2 },
+      { text: "Fire", yoruba: "Iná", orisha: "sango", points: 2 },
+      { text: "Water", yoruba: "Omi", orisha: "osun", points: 1 },
+      { text: "Earth", yoruba: "Ilẹ̀", orisha: "oya", points: 1 },
+      { text: "Metal", yoruba: "Irin", orisha: "ogun", points: 2 }
+    ]
+  },
+  {
+    id: 7,
+    text: "Which of these colors draws you the most?",
+    yoruba: "Èwo nínú àwọn àwọ̀ wọ̀nyí ló fà ọ́ jù?",
+    options: [
+      { text: "White", yoruba: "Funfun", orisha: "obatala", points: 2 },
+      { text: "Red", yoruba: "Pupa", orisha: "sango", points: 1 },
+      { text: "Yellow/Gold", yoruba: "Ofeefee/Wúrà", orisha: "osun", points: 2 },
+      { text: "Green", yoruba: "Aláwọ̀ ewé", orisha: "orunmila", points: 1 },
+      { text: "Black", yoruba: "Dúdú", orisha: "eshu", points: 1 }
+    ]
+  },
+  {
+    id: 8,
+    text: "What kind of environment do you thrive in?",
+    yoruba: "Irú àyíká wo ni o má ń gbèrú sí?",
+    options: [
+      { text: "Quiet, organized, and peaceful", yoruba: "Ìdákẹ́, tí ó ṣètò, àti àlàáfíà", orisha: "obatala", points: 2 },
+      { text: "High energy and action", yoruba: "Agbára gíga àti ìṣe", orisha: "sango", points: 2 },
+      { text: "Creative and expressive", yoruba: "Ìṣẹ̀dá àti ìfihàn", orisha: "yemoja", points: 1 },
+      { text: "Spiritual and intellectual", yoruba: "Ẹ̀mí àti ọgbọ́n", orisha: "orunmila", points: 2 },
+      { text: "Nature or industrial settings", yoruba: "Àyíká tàbí ibi iṣẹ́ ìlé-iṣẹ́", orisha: "ogun", points: 2 }
+    ]
+  },
+  {
+    id: 9,
+    text: "Which of these animals do you feel connected to?",
+    yoruba: "Èwo nínú àwọn ẹranko wọ̀nyí ni o ní ìsopọ̀ pẹ̀lú?",
+    options: [
+      { text: "Dove", yoruba: "Àdàbà", orisha: "obatala", points: 2 },
+      { text: "Lion", yoruba: "Kìnìún", orisha: "sango", points: 2 },
+      { text: "Peacock", yoruba: "Ọ̀kín", orisha: "osun", points: 2 },
+      { text: "Owl", yoruba: "Òwìwí", orisha: "orunmila", points: 2 },
+      { text: "Elephant", yoruba: "Erin", orisha: "oya", points: 2 }
+    ]
+  },
+  {
+    id: 10,
+    text: "What do you most want in life?",
+    yoruba: "Kí ni o fẹ́ jù nínú ayé?",
+    options: [
+      { text: "Peace and clarity", yoruba: "Àlàáfíà àti kíkọ́", orisha: "obatala", points: 2 },
+      { text: "Power and justice", yoruba: "Agbára àti òdodo", orisha: "sango", points: 2 },
+      { text: "Love and abundance", yoruba: "Ìfẹ́ àti ọ̀pọ̀lọpọ̀", orisha: "osun", points: 2 },
+      { text: "Knowledge and destiny", yoruba: "Ìmọ̀ àti àyànmọ́", orisha: "orunmila", points: 2 },
+      { text: "Protection and survival", yoruba: "Ààbò àti ìwàláàyè", orisha: "ogun", points: 1 }
     ]
   }
 ];
@@ -257,6 +317,34 @@ export default function AdvancedOrishaAssessment() {
   const getSupportingOrishas = () => {
     const sortedOrishas = Object.entries(scores).sort(([,a], [,b]) => b - a);
     return sortedOrishas.slice(1, 3).map(([orisha]) => orisha);
+  };
+
+  const getMeditation = (orishaKey: string): string => {
+    const meditations: Record<string, string> = {
+      obatala: "Sit quietly and breathe deeply. Visualize white light surrounding you, bringing peace and clarity.",
+      sango: "Stand tall and feel your inner strength. Imagine lightning clearing away all doubts.",
+      osun: "Close your eyes and imagine flowing water. Let it carry away stress and bring joy.",
+      yemoja: "Visualize the ocean. Feel its depth and power. Let it protect and nurture you.",
+      orunmila: "Focus on your destiny. Ask for guidance and listen to your inner voice.",
+      ogun: "Visualize yourself building something strong. Honor your tools and your path.",
+      oya: "Feel the wind and the fire. Let go of what no longer serves you.",
+      eshu: "Walk the crossroads in your mind. Choose your words and actions wisely."
+    };
+    return meditations[orishaKey] || meditations.obatala;
+  };
+
+  const getAffirmation = (orishaKey: string): string => {
+    const affirmations: Record<string, string> = {
+      obatala: "I walk in peace. I speak with truth. I hold space for clarity.",
+      sango: "I am strong. I am just. I stand in my power.",
+      osun: "I open my heart to love. Abundance flows to me.",
+      yemoja: "I honor my inner ocean. I protect what I love.",
+      orunmila: "I follow my destiny. I speak with wisdom.",
+      ogun: "I build with purpose. I honor my tools.",
+      oya: "I embrace change. I burn what no longer serves me.",
+      eshu: "I speak with purpose. I walk the crossroads with clarity."
+    };
+    return affirmations[orishaKey] || affirmations.obatala;
   };
 
   const renderCurrentScreen = () => {
@@ -472,8 +560,8 @@ export default function AdvancedOrishaAssessment() {
           </h3>
           <p className="text-gray-600 dark:text-gray-300">
             {ts(
-              `Connect with ${primaryOrisha.name} through 10 minutes of peaceful meditation. Focus on their energy and guidance.`,
-              `Darapọ̀ mọ́ ${primaryOrisha.name} nípa ìṣàlò àlàáfíà ìṣẹ́jú 10. Fojú kan agbára àti ìtọ́nisọ́nà wọn.`
+              getMeditation(primaryOrishaKey),
+              getMeditation(primaryOrishaKey)
             )}
           </p>
         </div>
@@ -483,16 +571,19 @@ export default function AdvancedOrishaAssessment() {
             {ts("Spiritual Calendar:", "Kálẹ́ńdà Ẹ̀mí:")}
           </h3>
           <ul className="text-gray-600 dark:text-gray-300 space-y-1">
-            <li>• {ts("Morning prayer to", "Àdúrà òwúrọ̀ sí")} {primaryOrisha.name}</li>
-            <li>• {ts("Weekly offering day: Friday", "Ọjọ́ ẹ̀bọ ọ̀sẹ̀: Ẹtì")}</li>
-            <li>• {ts("Monthly ritual: New moon meditation", "Àṣẹ oṣù: Ìṣàlò òṣùpá tuntun")}</li>
+            <li>• <strong>{ts("Òṣun Festival (Iboshe Òṣun):", "Àjọ̀dún Òṣun (Iboshe Òṣun):")}</strong> {ts("August 15", "Oṣù Kẹjọ Ọjọ́ 15")}</li>
+            <li>• <strong>{ts("Ṣàngó Day:", "Ọjọ́ Ṣàngó:")}</strong> {ts("Every Saturday", "Gbogbo Ọjọ́ Àbámẹ́ta")}</li>
+            <li>• <strong>{ts("Òbàtálá Day:", "Ọjọ́ Òbàtálá:")}</strong> {ts("Every Monday", "Gbogbo Ọjọ́ Ajé")}</li>
+            <li>• <strong>{ts("Ògún Day:", "Ọjọ́ Ògún:")}</strong> {ts("Every Tuesday", "Gbogbo Ọjọ́ Ìṣẹ́gun")}</li>
+            <li>• <strong>{ts("Òyá Day:", "Ọjọ́ Òyá:")}</strong> {ts("Every Tuesday", "Gbogbo Ọjọ́ Ìṣẹ́gun")}</li>
+            <li>• <strong>{ts("Èṣù Crossroads Ritual:", "Àṣẹ Òrita Èṣù:")}</strong> {ts("First Friday of each month", "Ẹtì àkọ́kọ́ oṣọ̀ọ̀kan")}</li>
           </ul>
         </div>
 
         <div className="space-y-3">
           <button 
             onClick={() => {
-              const affirmation = ts(primaryOrisha.dailyGuidance, primaryOrisha.yorubaDailyGuidance);
+              const affirmation = ts(getAffirmation(primaryOrishaKey), getAffirmation(primaryOrishaKey));
               if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(affirmation);
                 utterance.rate = 0.8;

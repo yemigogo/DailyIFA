@@ -1,0 +1,243 @@
+let currentQuestionIndex = 0;
+let scores = {};
+let currentScreen = 'welcome';
+
+const orishas = {
+  Obatala: { score: 0, color: "White", symbol: "Dove", guidance: "Seek peace. Let go of ego. Walk in truth." },
+  Changó: { score: 0, color: "Red", symbol: "Axe", guidance: "Stand tall. Defend what is right. Harness your power." },
+  Oshun: { score: 0, color: "Yellow", symbol: "Mirror", guidance: "Open your heart. Trust your intuition. Let abundance flow." },
+  Yemoja: { score: 0, color: "Blue", symbol: "Fish", guidance: "Honor your inner ocean. Protect your family. Flow with life." },
+  Orunmila: { score: 0, color: "Green", symbol: "Opam", guidance: "Seek truth. Follow your destiny. Speak with wisdom." },
+  Ogun: { score: 0, color: "Black", symbol: "Machete", guidance: "Clear the path. Build with strength. Honor your tools." },
+  Oya: { score: 0, color: "Maroon", symbol: "Storm", guidance: "Embrace change. Protect what’s sacred. Burn what must go." },
+  Eshu: { score: 0, color: "Black/Red", symbol: "Calabash", guidance: "Choose wisely. Walk the crossroads. Speak with purpose." }
+};
+
+const questions = [
+  {
+    text: "When you're stressed, what do you cope with?",
+    answers: [
+      { text: "Retreat and meditate quietly", orisha: "Obatala", points: 2 },
+      { text: "Get angry and take action", orisha: "Changó", points: 2 },
+      { text: "Seek advice from friends", orisha: "Orunmila", points: 2 },
+      { text: "Turn to music, dance, or creativity", orisha: "Yemoja", points: 2 },
+      { text: "Focus on work or survival", orisha: "Ogun", points: 2 }
+    ]
+  },
+  {
+    text: "Which of these words resonates most with you?",
+    answers: [
+      { text: "Peace", orisha: "Obatala", points: 2 },
+      { text: "Strength", orisha: "Changó", points: 2 },
+      { text: "Love", orisha: "Oshun", points: 2 },
+      { text: "Wisdom", orisha: "Orunmila", points: 2 },
+      { text: "Protection", orisha: "Oya", points: 2 }
+    ]
+  },
+  {
+    text: "You feel most alive when…",
+    answers: [
+      { text: "In nature or near water", orisha: "Oshun", points: 1 },
+      { text: "Solving problems or giving advice", orisha: "Orunmila", points: 2 },
+      { text: "Defending someone or standing up for justice", orisha: "Changó", points: 2 },
+      { text: "Creating or expressing yourself", orisha: "Yemoja", points: 1 },
+      { text: "Working with tools or building something", orisha: "Ogun", points: 2 }
+    ]
+  },
+  {
+    text: "What kind of relationships do you value most?",
+    answers: [
+      { text: "Deep, meaningful, and peaceful", orisha: "Obatala", points: 2 },
+      { text: "Passionate and intense", orisha: "Changó", points: 2 },
+      { text: "Loving and nurturing", orisha: "Oshun", points: 2 },
+      { text: "Intellectual and spiritual", orisha: "Orunmila", points: 2 },
+      { text: "Protective and loyal", orisha: "Oya", points: 2 }
+    ]
+  },
+  {
+    text: "What is your approach to conflict?",
+    answers: [
+      { text: "Avoid it and seek harmony", orisha: "Obatala", points: 2 },
+      { text: "Face it head-on", orisha: "Changó", points: 2 },
+      { text: "Try to mediate and bring peace", orisha: "Oshun", points: 2 },
+      { text: "Analyze and strategize", orisha: "Orunmila", points: 2 },
+      { text: "Use strength or strategy to overcome", orisha: "Ogun", points: 2 }
+    ]
+  },
+  {
+    text: "Which element feels most connected to your spirit?",
+    answers: [
+      { text: "Air", orisha: "Orunmila", points: 2 },
+      { text: "Fire", orisha: "Changó", points: 2 },
+      { text: "Water", orisha: "Oshun", points: 1 },
+      { text: "Earth", orisha: "Oya", points: 1 },
+      { text: "Metal", orisha: "Ogun", points: 2 }
+    ]
+  },
+  {
+    text: "Which of these colors draws you the most?",
+    answers: [
+      { text: "White", orisha: "Obatala", points: 2 },
+      { text: "Red", orisha: "Changó", points: 1 },
+      { text: "Yellow/Gold", orisha: "Oshun", points: 2 },
+      { text: "Green", orisha: "Orunmila", points: 1 },
+      { text: "Black", orisha: "Eshu", points: 1 }
+    ]
+  },
+  {
+    text: "What kind of environment do you thrive in?",
+    answers: [
+      { text: "Quiet, organized, and peaceful", orisha: "Obatala", points: 2 },
+      { text: "High energy and action", orisha: "Changó", points: 2 },
+      { text: "Creative and expressive", orisha: "Yemoja", points: 1 },
+      { text: "Spiritual and intellectual", orisha: "Orunmila", points: 2 },
+      { text: "Nature or industrial settings", orisha: "Ogun", points: 2 }
+    ]
+  },
+  {
+    text: "Which of these animals do you feel connected to?",
+    answers: [
+      { text: "Dove", orisha: "Obatala", points: 2 },
+      { text: "Lion", orisha: "Changó", points: 2 },
+      { text: "Peacock", orisha: "Oshun", points: 2 },
+      { text: "Owl", orisha: "Orunmila", points: 2 },
+      { text: "Elephant", orisha: "Oya", points: 2 }
+    ]
+  },
+  {
+    text: "What do you most want in life?",
+    answers: [
+      { text: "Peace and clarity", orisha: "Obatala", points: 2 },
+      { text: "Power and justice", orisha: "Changó", points: 2 },
+      { text: "Love and abundance", orisha: "Oshun", points: 2 },
+      { text: "Knowledge and destiny", orisha: "Orunmila", points: 2 },
+      { text: "Protection and survival", orisha: "Ogun", points: 1 }
+    ]
+  }
+];
+
+const spiritualCalendar = {
+  "Oshun Festival (Iboshe Oshun)": "August 15",
+  "Changó Day": "Every Saturday",
+  "Obatala Day": "Every Monday",
+  "Ogun Day": "Every Tuesday",
+  "Oya Day": "Every Tuesday",
+  "Eshu Crossroads Ritual": "First Friday of each month"
+};
+
+const meditations = {
+  Obatala: "Sit quietly and breathe deeply. Visualize white light surrounding you, bringing peace and clarity.",
+  Changó: "Stand tall and feel your inner strength. Imagine lightning clearing away all doubts.",
+  Oshun: "Close your eyes and imagine flowing water. Let it carry away stress and bring joy.",
+  Yemoja: "Visualize the ocean. Feel its depth and power. Let it protect and nurture you.",
+  Orunmila: "Focus on your destiny. Ask for guidance and listen to your inner voice.",
+  Ogun: "Visualize yourself building something strong. Honor your tools and your path.",
+  Oya: "Feel the wind and the fire. Let go of what no longer serves you.",
+  Eshu: "Walk the crossroads in your mind. Choose your words and actions wisely."
+};
+
+const affirmations = {
+  Obatala: "I walk in peace. I speak with truth. I hold space for clarity.",
+  Changó: "I am strong. I am just. I stand in my power.",
+  Oshun: "I open my heart to love. Abundance flows to me.",
+  Yemoja: "I honor my inner ocean. I protect what I love.",
+  Orunmila: "I follow my destiny. I speak with wisdom.",
+  Ogun: "I build with purpose. I honor my tools.",
+  Oya: "I embrace change. I burn what no longer serves me.",
+  Eshu: "I speak with purpose. I walk the crossroads with clarity."
+};
+
+function showAncestral() {
+  document.querySelector('.welcome').classList.add('hidden');
+  document.querySelector('.ancestral').classList.remove('hidden');
+}
+
+function nextStep() {
+  document.querySelector('.ancestral').classList.add('hidden');
+  document.querySelector('.quiz').classList.remove('hidden');
+  showQuestion();
+}
+
+function showQuestion() {
+  const container = document.getElementById('question-container');
+  container.innerHTML = '';
+
+  if (currentQuestionIndex >= questions.length) {
+    showResults();
+    return;
+  }
+
+  const q = questions[currentQuestionIndex];
+  const questionEl = document.createElement('h2');
+  questionEl.textContent = q.text;
+  container.appendChild(questionEl);
+
+  q.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.textContent = answer.text;
+    btn.onclick = () => {
+      scores[answer.orisha] = (scores[answer.orisha] || 0) + answer.points;
+      currentQuestionIndex++;
+      showQuestion();
+    };
+    container.appendChild(btn);
+  });
+}
+
+function showResults() {
+  document.querySelector('.quiz').classList.add('hidden');
+  document.querySelector('.results').classList.remove('hidden');
+
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const primary = sorted[0][0];
+  const supporting = sorted.slice(1, 3).map(([name]) => name);
+
+  document.getElementById('primary-orisha').textContent = primary;
+  document.getElementById('orisha-description').textContent = `You are ${primaryDescription(primary)}.`;
+  document.getElementById('daily-guidance').textContent = `💬 Daily Guidance: ${orishas[primary].guidance}`;
+  document.getElementById('daily-meditation').textContent = meditations[primary];
+
+  const list = document.getElementById('supporting-orishas');
+  list.innerHTML = '';
+  supporting.forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    list.appendChild(li);
+  });
+
+  const calendarList = document.getElementById('calendar-list');
+  calendarList.innerHTML = '';
+  Object.entries(spiritualCalendar).forEach(([name, date]) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${name}</strong>: ${date}`;
+    calendarList.appendChild(li);
+  });
+
+  document.getElementById('speak-btn').onclick = () => speakAffirmation(primary);
+}
+
+function speakAffirmation(orisha) {
+  const msg = new SpeechSynthesisUtterance();
+  msg.text = affirmations[orisha];
+  window.speechSynthesis.speak(msg);
+}
+
+function primaryDescription(orisha) {
+  switch (orisha) {
+    case 'Obatala': return 'calm, intellectual, and diplomatic.';
+    case 'Changó': return 'bold, fiery, and charismatic.';
+    case 'Oshun': return 'sensual, nurturing, and artistic.';
+    case 'Yemoja': return 'nurturing, emotional, and powerful.';
+    case 'Orunmila': return 'analytical, spiritual, and insightful.';
+    case 'Ogun': return 'practical, focused, and loyal.';
+    case 'Oya': return 'fierce, independent, and intuitive.';
+    case 'Eshu': return 'mischievous, clever, and spiritual.';
+  }
+}
+
+function restart() {
+  currentQuestionIndex = 0;
+  scores = {};
+  document.querySelector('.results').classList.add('hidden');
+  document.querySelector('.welcome').classList.remove('hidden');
+}
