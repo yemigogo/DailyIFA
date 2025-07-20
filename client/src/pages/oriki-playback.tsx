@@ -97,7 +97,10 @@ const orikiData: OrikiVerse[] = [
     id: "olokun",
     orisha: "Olókun",
     text: "Olókun fi ayé ṣe 'bùkún, oní agbára omi tó jinlẹ̀. \nOlókun, who blesses the world, ruler of the deep ocean's power.",
-    audioUrl: "/static/audio/pronunciation/olokun.mp3"
+    audioUrl: "/static/audio/olokun_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 180.0,
+    authenticMarker: "🎵 Authentic Oriki Recording - Aje Olokun Prayer for Mondays"
   },
 
 
@@ -241,7 +244,7 @@ export default function OrikiPlayback() {
               <option value="oshun">Ọ̀ṣun ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="elegba">Èṣù Ẹlẹ́gbára ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="oya">Ọya ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
-              <option value="olokun">Olókun</option>
+              <option value="olokun">Olókun ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
               <option value="olodumare">Olódùmarè ⭐ {ts("(Authentic Audio)", "(Ohùn Òtítọ́)")}</option>
             </select>
           </div>
@@ -252,7 +255,7 @@ export default function OrikiPlayback() {
               <div className="text-gray-800 dark:text-gray-200 italic bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
                 <h3 className="font-bold text-lg mb-3 text-spiritual-blue dark:text-sacred-gold flex items-center gap-2">
                   Oríkì {selectedOriki.orisha}
-                  {(selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'sango' || selectedOriki.id === 'orunmila' || selectedOriki.id === 'elegba' || selectedOriki.id === 'olodumare') && (
+                  {(selectedOriki.id === 'oya' || selectedOriki.id === 'yemaya' || selectedOriki.id === 'oshun' || selectedOriki.id === 'obatala' || selectedOriki.id === 'ogun' || selectedOriki.id === 'sango' || selectedOriki.id === 'orunmila' || selectedOriki.id === 'elegba' || selectedOriki.id === 'olodumare' || selectedOriki.id === 'olokun') && (
                     <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                       ⭐ {ts("Authentic", "Òtítọ́")}
                     </Badge>
@@ -268,9 +271,6 @@ export default function OrikiPlayback() {
           {/* Audio Player */}
           {selectedOriki && (
             <div className="mb-4">
-              <div className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                Audio Source: {selectedOriki.audioUrl}
-              </div>
               <audio
                 ref={audioRef}
                 src={selectedOriki.audioUrl}
@@ -279,29 +279,16 @@ export default function OrikiPlayback() {
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
-                onError={(e) => {
-                  console.error('Audio error:', e);
-                  console.error('Audio URL:', selectedOriki.audioUrl);
-                }}
-                onLoadStart={() => console.log('Audio loading started for:', selectedOriki.audioUrl)}
-                onCanPlay={() => console.log('Audio can play:', selectedOriki.audioUrl)}
               />
               
               <div className="flex items-center justify-center gap-4 mb-4">
                 <Button
                   onClick={() => {
                     if (audioRef.current) {
-                      console.log('Button clicked, audio state:', {
-                        src: audioRef.current.src,
-                        readyState: audioRef.current.readyState,
-                        paused: audioRef.current.paused
-                      });
                       if (isPlaying) {
                         audioRef.current.pause();
                       } else {
-                        audioRef.current.play().catch(e => {
-                          console.error('Play failed:', e);
-                        });
+                        audioRef.current.play();
                       }
                     }
                   }}
