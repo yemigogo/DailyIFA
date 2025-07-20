@@ -222,130 +222,124 @@ export default function AdvancedOrishaAssessment() {
 
   if (currentScreen === 'welcome') {
     return (
-      <Card className="max-w-2xl mx-auto bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
-        <CardHeader className="text-center pb-4">
-          <div className="flex justify-center mb-4">
-            <Sparkles className="h-12 w-12 text-purple-600 dark:text-purple-400" />
+      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 text-center" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div className="flex justify-center mb-6">
+          <Sparkles className="h-12 w-12 text-red-500" />
+        </div>
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+          {ts("Discover Your Orisha", "Ṣàwárí Òrìṣà Rẹ")}
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
+          {ts(
+            "Begin your spiritual journey to find your divine connection.",
+            "Bẹ̀rẹ̀ ìrìnàjò ẹ̀mí rẹ láti wa ìsopọ̀ Ọ̀run rẹ."
+          )}
+        </p>
+        
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center justify-center gap-4">
+            <Button
+              variant={!isYoruba ? "default" : "outline"}
+              onClick={() => setIsYoruba(false)}
+              className="px-6"
+            >
+              English
+            </Button>
+            <Button
+              variant={isYoruba ? "default" : "outline"}
+              onClick={() => setIsYoruba(true)}
+              className="px-6"
+            >
+              Yorùbá
+            </Button>
           </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            {ts("Discover Your Orisha", "Ṣàwárí Òrìṣà Rẹ")}
-          </CardTitle>
-          <CardDescription className="text-lg mt-4">
-            {ts(
-              "Begin your spiritual journey to find your divine connection through authentic Yoruba wisdom.",
-              "Bẹ̀rẹ̀ ìrìnàjò ẹ̀mí rẹ láti wa ìsopọ̀ Ọ̀run rẹ nípa ọgbọ́n Yorùbá òtítọ́."
-            )}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="text-center">
-          <div className="space-y-4 mb-6">
-            <div className="flex items-center justify-center gap-4">
-              <Button
-                variant={!isYoruba ? "default" : "outline"}
-                onClick={() => setIsYoruba(false)}
-                className="btn-touch"
-              >
-                English
-              </Button>
-              <Button
-                variant={isYoruba ? "default" : "outline"}
-                onClick={() => setIsYoruba(true)}
-                className="btn-touch"
-              >
-                Yorùbá
-              </Button>
-            </div>
-          </div>
-          <Button 
-            onClick={showAncestral}
-            className="btn-touch text-lg px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
-          >
-            {ts("Start Assessment", "Bẹ̀rẹ̀ Ìdánwò")}
-          </Button>
-        </CardContent>
-      </Card>
+        </div>
+        
+        <button 
+          onClick={showAncestral}
+          className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
+        >
+          {ts("Start Assessment", "Bẹ̀rẹ̀ Ìdánwò")}
+        </button>
+      </div>
     );
   }
 
   if (currentScreen === 'ancestral') {
     return (
-      <Card className="max-w-2xl mx-auto bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-amber-900 dark:text-amber-100">
-            {ts("Your Spiritual Roots", "Gbòngbò Ẹ̀mí Rẹ")}
-          </CardTitle>
-          <CardDescription className="text-lg mt-4">
-            {ts(
-              "Do you have a cultural or ancestral connection to the Orishas or Yoruba traditions?",
-              "Ṣé o ní ìbátan àṣà tàbí ìdílé pẹ̀lú àwọn Òrìṣà tàbí àṣà Yorùbá?"
-            )}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Button 
+      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 text-center" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+          {ts("Your Spiritual Roots", "Gbòngbò Ẹ̀mí Rẹ")}
+        </h2>
+        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
+          {ts(
+            "Do you have a cultural or ancestral connection to the Orishas?",
+            "Ṣé o ní ìbátan àṣà tàbí ìdílé pẹ̀lú àwọn Òrìṣà?"
+          )}
+        </p>
+        
+        <div className="space-y-3">
+          <button 
             onClick={() => nextStep('yes')}
-            className="w-full btn-touch text-lg py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
           >
             {ts("Yes, I do", "Bẹ́ẹ̀ni, mo ní")}
-          </Button>
-          <Button 
+          </button>
+          <button 
             onClick={() => nextStep('maybe')}
-            className="w-full btn-touch text-lg py-3 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700"
+            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
           >
             {ts("Not sure", "Mi ò mọ̀")}
-          </Button>
-          <Button 
+          </button>
+          <button 
             onClick={() => nextStep('no')}
-            className="w-full btn-touch text-lg py-3 bg-gradient-to-r from-gray-600 to-slate-600 hover:from-gray-700 hover:to-slate-700"
+            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
           >
             {ts("No", "Bẹ́ẹ̀kọ́")}
-          </Button>
-        </CardContent>
-      </Card>
+          </button>
+        </div>
+      </div>
     );
   }
 
   if (currentScreen === 'quiz') {
     const question = questions[currentQuestion];
     return (
-      <Card className="max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
-        <CardHeader>
-          <div className="flex items-center justify-between mb-4">
-            <Badge variant="outline" className="text-sm">
-              {ts(`Question ${currentQuestion + 1} of ${questions.length}`, `Ìbéèrè ${currentQuestion + 1} nínú ${questions.length}`)}
-            </Badge>
-            <div className="flex gap-1">
-              {questions.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-3 h-3 rounded-full ${
-                    index <= currentQuestion ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'
-                  }`}
-                />
-              ))}
-            </div>
+      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div className="flex items-center justify-between mb-6">
+          <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+            {ts(`Question ${currentQuestion + 1} of ${questions.length}`, `Ìbéèrè ${currentQuestion + 1} nínú ${questions.length}`)}
+          </span>
+          <div className="flex gap-1">
+            {questions.map((_, index) => (
+              <div
+                key={index}
+                className={`w-3 h-3 rounded-full ${
+                  index <= currentQuestion ? 'bg-red-500' : 'bg-gray-200 dark:bg-gray-600'
+                }`}
+              />
+            ))}
           </div>
-          <CardTitle className="text-xl font-bold text-blue-900 dark:text-blue-100">
-            {ts(question.text, question.yoruba)}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
+        </div>
+        
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+          {ts(question.text, question.yoruba)}
+        </h2>
+        
+        <div className="space-y-3">
           {question.options.map((option, index) => (
-            <Button
+            <button
               key={index}
               onClick={() => handleAnswer(option)}
-              variant="outline"
-              className="w-full text-left p-4 h-auto justify-start bg-white/50 dark:bg-black/30 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-blue-200 dark:border-blue-700"
+              className="w-full p-4 text-left bg-gray-50 dark:bg-gray-700 hover:bg-red-50 dark:hover:bg-red-900/20 border border-gray-200 dark:border-gray-600 rounded-lg cursor-pointer transition-colors"
             >
-              <div>
-                <div className="font-medium text-blue-900 dark:text-blue-100">
-                  {ts(option.text, option.yoruba)}
-                </div>
+              <div className="font-medium text-gray-800 dark:text-white">
+                {ts(option.text, option.yoruba)}
               </div>
-            </Button>
+            </button>
           ))}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     );
   }
 
@@ -356,71 +350,55 @@ export default function AdvancedOrishaAssessment() {
     const IconComponent = primaryOrisha.icon;
 
     return (
-      <Card className="max-w-2xl mx-auto bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className={`p-4 rounded-full bg-${primaryOrisha.color}-100 dark:bg-${primaryOrisha.color}-900/30`}>
-              <IconComponent className={`h-12 w-12 text-${primaryOrisha.color}-600 dark:text-${primaryOrisha.color}-400`} />
-            </div>
+      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 text-center" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+        <div className="flex justify-center mb-6">
+          <div className="p-4 rounded-full bg-red-100 dark:bg-red-900/30">
+            <IconComponent className="h-12 w-12 text-red-600 dark:text-red-400" />
           </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            {ts("Your Orisha is:", "Òrìṣà Rẹ Ni:")} {primaryOrisha.name}
-          </CardTitle>
-          <CardDescription className="text-lg mt-4">
-            {ts(primaryOrisha.description, primaryOrisha.yorubaDescription)}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-100 mb-3">
-              {ts("Spiritual Domains:", "Àwọn Agbègbè Ẹ̀mí:")}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {primaryOrisha.domain.map((domain, index) => (
-                <Badge key={index} variant="secondary" className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200">
-                  {domain}
-                </Badge>
-              ))}
-            </div>
-          </div>
+        </div>
+        
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+          {ts("Your Orisha is:", "Òrìṣà Rẹ Ni:")} <span className="text-red-600">{primaryOrisha.name}</span>
+        </h2>
+        
+        <p className="text-gray-600 dark:text-gray-300 mb-6">
+          {ts(primaryOrisha.description, primaryOrisha.yorubaDescription)}
+        </p>
 
-          <div>
-            <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-100 mb-3">
-              {ts("Supporting Orishas:", "Àwọn Òrìṣà Atìlẹ́yìn:")}
-            </h3>
-            <div className="grid grid-cols-2 gap-3">
-              {supportingOrishas.map((orishaKey) => {
-                const orisha = orishaProfiles[orishaKey];
-                const SupportIcon = orisha.icon;
-                return (
-                  <div key={orishaKey} className="flex items-center gap-2 p-3 rounded-lg bg-white/50 dark:bg-black/30 border border-emerald-200 dark:border-emerald-700">
-                    <SupportIcon className={`h-5 w-5 text-${orisha.color}-600 dark:text-${orisha.color}-400`} />
-                    <span className="font-medium text-emerald-900 dark:text-emerald-100">{orisha.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+        <div className="text-left mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">
+            {ts("Supporting Orishas:", "Àwọn Òrìṣà Atìlẹ́yìn:")}
+          </h3>
+          <ul className="space-y-2">
+            {supportingOrishas.map((orishaKey) => {
+              const orisha = orishaProfiles[orishaKey];
+              const SupportIcon = orisha.icon;
+              return (
+                <li key={orishaKey} className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <SupportIcon className="h-5 w-5 text-red-600 dark:text-red-400" />
+                  <span className="font-medium text-gray-800 dark:text-white">{orisha.name}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
-          <div className="bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
-            <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
-              {ts("Daily Guidance:", "Ìtọ́nisọ́nà Ojoojúmọ́:")}
-            </h3>
-            <p className="text-emerald-800 dark:text-emerald-200">
-              {ts(primaryOrisha.dailyGuidance, primaryOrisha.yorubaDailyGuidance)}
-            </p>
-          </div>
+        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6 text-left">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+            {ts("Daily Guidance:", "Ìtọ́nisọ́nà Ojoojúmọ́:")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            {ts(primaryOrisha.dailyGuidance, primaryOrisha.yorubaDailyGuidance)}
+          </p>
+        </div>
 
-          <div className="text-center">
-            <Button 
-              onClick={restart}
-              className="btn-touch text-lg px-8 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700"
-            >
-              {ts("Retake Assessment", "Túnṣe Ìdánwò")}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+        <button 
+          onClick={restart}
+          className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
+        >
+          {ts("Retake Assessment", "Túnṣe Ìdánwò")}
+        </button>
+      </div>
     );
   }
 
