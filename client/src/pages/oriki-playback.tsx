@@ -268,6 +268,9 @@ export default function OrikiPlayback() {
           {/* Audio Player */}
           {selectedOriki && (
             <div className="mb-4">
+              <div className="mb-2 text-sm text-gray-600 dark:text-gray-400">
+                Audio Source: {selectedOriki.audioUrl}
+              </div>
               <audio
                 ref={audioRef}
                 src={selectedOriki.audioUrl}
@@ -276,16 +279,29 @@ export default function OrikiPlayback() {
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
+                onError={(e) => {
+                  console.error('Audio error:', e);
+                  console.error('Audio URL:', selectedOriki.audioUrl);
+                }}
+                onLoadStart={() => console.log('Audio loading started for:', selectedOriki.audioUrl)}
+                onCanPlay={() => console.log('Audio can play:', selectedOriki.audioUrl)}
               />
               
               <div className="flex items-center justify-center gap-4 mb-4">
                 <Button
                   onClick={() => {
                     if (audioRef.current) {
+                      console.log('Button clicked, audio state:', {
+                        src: audioRef.current.src,
+                        readyState: audioRef.current.readyState,
+                        paused: audioRef.current.paused
+                      });
                       if (isPlaying) {
                         audioRef.current.pause();
                       } else {
-                        audioRef.current.play();
+                        audioRef.current.play().catch(e => {
+                          console.error('Play failed:', e);
+                        });
                       }
                     }
                   }}
