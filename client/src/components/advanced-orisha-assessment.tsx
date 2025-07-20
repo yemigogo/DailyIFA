@@ -422,7 +422,7 @@ export default function AdvancedOrishaAssessment() {
           </ul>
         </div>
 
-        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6 text-left">
+        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 text-left">
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
             {ts("Daily Guidance:", "Ìtọ́nisọ́nà Ojoojúmọ́:")}
           </h3>
@@ -431,12 +431,54 @@ export default function AdvancedOrishaAssessment() {
           </p>
         </div>
 
-        <button 
-          onClick={restart}
-          className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
-        >
-          {ts("Retake Assessment", "Túnṣe Ìdánwò")}
-        </button>
+        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 text-left">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+            {ts("Meditation:", "Ìṣàlò:")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            {ts(
+              `Connect with ${primaryOrisha.name} through 10 minutes of peaceful meditation. Focus on their energy and guidance.`,
+              `Darapọ̀ mọ́ ${primaryOrisha.name} nípa ìṣàlò àlàáfíà ìṣẹ́jú 10. Fojú kan agbára àti ìtọ́nisọ́nà wọn.`
+            )}
+          </p>
+        </div>
+
+        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 text-left">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+            {ts("Spiritual Calendar:", "Kálẹ́ńdà Ẹ̀mí:")}
+          </h3>
+          <ul className="text-gray-600 dark:text-gray-300 space-y-1">
+            <li>• {ts("Morning prayer to", "Àdúrà òwúrọ̀ sí")} {primaryOrisha.name}</li>
+            <li>• {ts("Weekly offering day: Friday", "Ọjọ́ ẹ̀bọ ọ̀sẹ̀: Ẹtì")}</li>
+            <li>• {ts("Monthly ritual: New moon meditation", "Àṣẹ oṣù: Ìṣàlò òṣùpá tuntun")}</li>
+          </ul>
+        </div>
+
+        <div className="space-y-3">
+          <button 
+            onClick={() => {
+              const affirmation = ts(primaryOrisha.dailyGuidance, primaryOrisha.yorubaDailyGuidance);
+              if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(affirmation);
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                speechSynthesis.speak(utterance);
+              } else {
+                alert(ts("Speech not supported in this browser", "Òhun kò ṣiṣẹ́ nínú brúsa yìí"));
+              }
+            }}
+            className="w-full py-3 px-6 text-lg font-medium bg-gray-600 hover:bg-gray-700 text-white border-none rounded-lg cursor-pointer transition-colors flex items-center justify-center gap-2"
+          >
+            🔊 {ts("Speak Affirmation", "Sọ Ìjẹ́rìísí")}
+          </button>
+          
+          <button 
+            onClick={restart}
+            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
+          >
+            {ts("Retake Assessment", "Túnṣe Ìdánwò")}
+          </button>
+        </div>
       </div>
     );
   }
