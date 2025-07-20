@@ -84,7 +84,10 @@ const orikiData: OrikiVerse[] = [
     id: "oya",
     orisha: "Ọya",
     text: "Oya Ìyá, alágbára afẹ́fẹ́. Ọya tó fẹ̀ ẹ̀mí sẹ̀yìn. \nMother of wind, fierce one who sweeps souls to the ancestors.",
-    audioUrl: "/static/audio/pronunciation/oya.mp3"
+    audioUrl: "/static/audio/oya_oriki_authentic.mp3",
+    isAuthentic: true,
+    duration: 120.0,
+    authenticMarker: "🎵 Authentic Oriki Recording - God of the Storm"
   },
 
   {
