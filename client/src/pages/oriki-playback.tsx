@@ -57,7 +57,10 @@ const orikiData: OrikiVerse[] = [
     id: "obatala",
     orisha: "Ọbàtálá",
     text: "Baba funfun, alágba fún-fún tí ń bọ̀ láti ọ̀run. \nThe white-robed father, the elder in pure white from heaven.",
-    audioUrl: "/static/audio/pronunciation/obatala.mp3"
+    audioUrl: "/static/audio/obatala_oriki_combined_authentic.mp3",
+    isAuthentic: true,
+    duration: 591.8,
+    authenticMarker: "🎵 Combined Authentic Oriki & Praises"
   },
   {
     id: "sango",
