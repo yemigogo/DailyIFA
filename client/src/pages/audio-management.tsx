@@ -420,6 +420,75 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* Ifá Divination Audio */}
+      <Card className="mb-8 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Volume2 className="h-6 w-6 text-emerald-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🔮 {ts("Ifá Divination: How Yoruba Priests Speak to the Spirit World", "Ifá Àfọ̀ṣẹ: Bí Àwọn Àlùfáà Yorùbá Ṣe Ń Bá Ayé Ẹ̀mí Sọ̀rọ̀")}
+            </CardTitle>
+            <Badge className="bg-emerald-600 text-white text-xs">DIVINATION</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Authentic audio exploring the sacred art of Ifá divination and the spiritual communication practices of traditional Yoruba priests",
+              "Ohùn òtítọ́ tí ó ń ṣàwárí iṣẹ́ mímọ́ àfọ̀ṣẹ Ifá àti àwọn ìṣe ìbánisọ̀rọ̀ ẹ̀mí ti àwọn àlùfáà Yorùbá ìbílẹ̀"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
+                {ts("Sacred Divination Practices Audio", "Ohùn Àwọn Ìṣe Àfọ̀ṣẹ Mímọ́")}
+              </h3>
+              <p className="text-emerald-700 dark:text-emerald-200 text-sm mb-4">
+                {ts(
+                  "This comprehensive audio guide reveals the profound spiritual practices of Ifá divination, exploring how traditional Yoruba priests communicate with the spirit world through sacred rituals and ancient wisdom.",
+                  "Itọ́nisọ́nà ohùn tí ó kún yìí ń ṣàfihàn àwọn ìṣe ẹ̀mí jíjìn ti àfọ̀ṣẹ Ifá, ó ń ṣàwárí bí àwọn àlùfáaa Yorùbá ìbílẹ̀ ṣe ń bá ayé ẹ̀mí sọ̀rọ̀ nípa àwọn ìjọ́sìn mímọ́ àti ọgbọ́n àtijọ́."
+                )}
+              </p>
+              
+              <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
+                <audio 
+                  controls 
+                  className="w-full mb-4"
+                  preload="metadata"
+                >
+                  <source src="/attached_assets/Ifá Divination_ How Yoruba Priests Speak to the Spirit World (1)_1752980955260.mp3" type="audio/mpeg" />
+                  {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
+                </audio>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Mic className="w-4 h-4 text-emerald-600 dark:text-emerald-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-emerald-800 dark:text-emerald-200">
+                      <strong>{ts('Spiritual Communication:', 'Ìbánisọ̀rọ̀ Ẹ̀mí:')}</strong> {ts('This authentic audio provides deep insights into the sacred art of Ifá divination, revealing how traditional priests establish communication with the spirit world through time-honored practices and spiritual protocols.', 
+                        'Ohùn òtítọ́ yìí ń fún wa ní òye jíjìn sí iṣẹ́ mímọ́ àfọ̀ṣẹ Ifá, ó ń ṣàfihàn bí àwọn àlùfáà ìbílẹ̀ ṣe ń ṣètò ìbánisọ̀rọ̀ pẹ̀lú ayé ẹ̀mí nípa àwọn ìṣe tí a ti ń ṣe láti ìgbà àtijọ́ àti ìlànà ẹ̀mí.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 p-3 rounded border border-emerald-300/30">
+                <h4 className="text-sm font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
+                  {ts("Sacred Divination Insights", "Òye Àfọ̀ṣẹ Mímọ́")}
+                </h4>
+                <p className="text-xs text-emerald-700 dark:text-emerald-200">
+                  {ts(
+                    "Learn about the intricate spiritual processes, ritual preparations, and sacred protocols that enable traditional Yoruba priests to access divine wisdom and communicate with ancestral spirits through Ifá divination.",
+                    "Kọ́ nípa àwọn ìlànà ẹ̀mí tí ó níye lórí, ìmúrasílẹ̀ ìjọ́sìn, àti àwọn ìlànà mímọ́ tí ó jẹ́ kí àwọn àlùfáaa Yorùbá ìbílẹ̀ lè wọlé sí ọgbọ́n Ọ̀run àti bá àwọn ẹ̀mí àwọn baba ńlá sọ̀rọ̀ nípa àfọ̀ṣẹ Ifá."
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
         <CardContent className="p-6">
