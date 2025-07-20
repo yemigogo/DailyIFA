@@ -259,24 +259,32 @@ export default function AdvancedOrishaAssessment() {
     return sortedOrishas.slice(1, 3).map(([orisha]) => orisha);
   };
 
-  if (currentScreen === 'welcome') {
-    return (
-      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 text-center" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-        <div className="flex justify-center mb-6">
-          <Sparkles className="h-12 w-12 text-red-500" />
-        </div>
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-          {ts("Discover Your Orisha", "Ṣàwárí Òrìṣà Rẹ")}
-        </h1>
-        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
-          {ts(
-            "Begin your spiritual journey to find your divine connection.",
-            "Bẹ̀rẹ̀ ìrìnàjò ẹ̀mí rẹ láti wa ìsopọ̀ Ọ̀run rẹ."
-          )}
-        </p>
-        
-        <div className="space-y-3 mb-6">
-          <div className="flex items-center justify-center gap-4">
+  const renderCurrentScreen = () => {
+    if (currentScreen === 'welcome') {
+      return (
+        <div style={{
+          display: 'block',
+          padding: '40px 20px',
+          background: 'white',
+          borderRadius: '12px',
+          margin: '20px auto',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          textAlign: 'center'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+            <Sparkles style={{ height: '48px', width: '48px', color: '#d94f43' }} />
+          </div>
+          <h1 style={{ fontSize: '2rem', fontWeight: 'bold', color: '#333', marginBottom: '16px' }}>
+            {ts("Discover Your Orisha", "Ṣàwárí Òrìṣà Rẹ")}
+          </h1>
+          <p style={{ color: '#666', fontSize: '18px', marginBottom: '32px' }}>
+            {ts(
+              "Begin your spiritual journey to find your divine connection.",
+              "Bẹ̀rẹ̀ ìrìnàjò ẹ̀mí rẹ láti wa ìsopọ̀ Ọ̀run rẹ."
+            )}
+          </p>
+          
+          <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'center', gap: '16px' }}>
             <Button
               variant={!isYoruba ? "default" : "outline"}
               onClick={() => setIsYoruba(false)}
@@ -292,54 +300,81 @@ export default function AdvancedOrishaAssessment() {
               Yorùbá
             </Button>
           </div>
+          
+          <button 
+            onClick={showAncestral}
+            style={{
+              display: 'block',
+              width: '100%',
+              margin: '10px auto',
+              padding: '12px',
+              fontSize: '16px',
+              border: 'none',
+              borderRadius: '8px',
+              backgroundColor: '#d94f43',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#c43d31'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#d94f43'}
+          >
+            {ts("Start Assessment", "Bẹ̀rẹ̀ Ìdánwò")}
+          </button>
         </div>
-        
-        <button 
-          onClick={showAncestral}
-          className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
-        >
-          {ts("Start Assessment", "Bẹ̀rẹ̀ Ìdánwò")}
-        </button>
-      </div>
-    );
-  }
+      );
+    }
 
-  if (currentScreen === 'ancestral') {
-    return (
-      <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-10 text-center" style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
-          {ts("Your Spiritual Roots", "Gbòngbò Ẹ̀mí Rẹ")}
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
-          {ts(
-            "Do you have a cultural or ancestral connection to the Orishas?",
-            "Ṣé o ní ìbátan àṣà tàbí ìdílé pẹ̀lú àwọn Òrìṣà?"
-          )}
-        </p>
-        
-        <div className="space-y-3">
-          <button 
-            onClick={() => nextStep('yes')}
-            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
-          >
-            {ts("Yes, I do", "Bẹ́ẹ̀ni, mo ní")}
-          </button>
-          <button 
-            onClick={() => nextStep('maybe')}
-            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
-          >
-            {ts("Not sure", "Mi ò mọ̀")}
-          </button>
-          <button 
-            onClick={() => nextStep('no')}
-            className="w-full py-3 px-6 text-lg font-medium bg-red-500 hover:bg-red-600 text-white border-none rounded-lg cursor-pointer transition-colors"
-          >
-            {ts("No", "Bẹ́ẹ̀kọ́")}
-          </button>
+    if (currentScreen === 'ancestral') {
+      return (
+        <div style={{
+          display: 'block',
+          padding: '40px 20px',
+          background: 'white',
+          borderRadius: '12px',
+          margin: '20px auto',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#333', marginBottom: '16px' }}>
+            {ts("Your Spiritual Roots", "Gbòngbò Ẹ̀mí Rẹ")}
+          </h2>
+          <p style={{ color: '#666', fontSize: '18px', marginBottom: '32px' }}>
+            {ts(
+              "Do you have a cultural or ancestral connection to the Orishas?",
+              "Ṣé o ní ìbátan àṣà tàbí ìdílé pẹ̀lú àwọn Òrìṣà?"
+            )}
+          </p>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {['yes', 'maybe', 'no'].map((option, index) => (
+              <button 
+                key={option}
+                onClick={() => nextStep(option)}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  margin: '10px auto',
+                  padding: '12px',
+                  fontSize: '16px',
+                  border: 'none',
+                  borderRadius: '8px',
+                  backgroundColor: '#d94f43',
+                  color: 'white',
+                  cursor: 'pointer'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#c43d31'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#d94f43'}
+              >
+                {ts(
+                  option === 'yes' ? "Yes, I do" : option === 'maybe' ? "Not sure" : "No",
+                  option === 'yes' ? "Bẹ́ẹ̀ni, mo ní" : option === 'maybe' ? "Mi ò mọ̀" : "Bẹ́ẹ̀kọ́"
+                )}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 
   if (currentScreen === 'quiz') {
     const question = questions[currentQuestion];
@@ -483,5 +518,28 @@ export default function AdvancedOrishaAssessment() {
     );
   }
 
-  return null;
+    return null;
+  };
+
+  return (
+    <div style={{
+      fontFamily: "'Segoe UI', sans-serif",
+      background: '#f5f5f5',
+      margin: 0,
+      padding: 0,
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <div style={{
+        maxWidth: '500px',
+        margin: 'auto',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        {renderCurrentScreen()}
+      </div>
+    </div>
+  );
 }
