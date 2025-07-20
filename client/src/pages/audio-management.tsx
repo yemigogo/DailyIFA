@@ -174,14 +174,14 @@ export default function AudioManagement() {
       </div>
 
       {/* Featured: Sophie Oluwole - Oro Isiti */}
-      <ResponsiveCard animation="fade" className="mb-8 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
+      <Card className="mb-8 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
         <CardHeader className="pb-4">
           <div className="flex items-center gap-3 mb-2">
             <Volume2 className="h-6 w-6 text-purple-600" />
-            <CardTitle className="text-spiritual-blue dark:text-white">
+            <CardTitle className="text-gray-900 dark:text-white">
               🎓 {ts("Featured: Sophie Oluwole - Oro Isiti", "Àkọ́kọ́: Sophie Oluwole - Oro Isiti")}
             </CardTitle>
-            <Badge className="bg-purple-600/80 text-white text-xs animate-pulse">FEATURED</Badge>
+            <Badge className="bg-purple-600 text-white text-xs">FEATURED</Badge>
           </div>
           <CardDescription className="text-lg">
             {ts(
@@ -208,12 +208,6 @@ export default function AudioManagement() {
                   controls 
                   preload="metadata"
                   className="w-full rounded-lg bg-purple-100 dark:bg-purple-800 border border-purple-300/30 h-12 mb-3"
-                  style={{ filter: 'hue-rotate(270deg) saturate(1.2)' }}
-                  onError={(e) => {
-                    console.error('Sophie Oluwole audio loading error:', e);
-                    const target = e.target as HTMLAudioElement;
-                    console.log('Failed source:', target.src);
-                  }}
                 >
                   <source src="/static/audio/sophie_oluwole_oro_isiti_combined.mp3" type="audio/mpeg" />
                   {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
@@ -229,7 +223,7 @@ export default function AudioManagement() {
             </div>
           </div>
         </CardContent>
-      </ResponsiveCard>
+      </Card>
 
       {/* Statistics */}
       <ResponsiveCard animation="fade" className="mb-8">
