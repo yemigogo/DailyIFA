@@ -33,6 +33,13 @@ interface OduPattern {
   image?: string;
 }
 
+interface ApiResponse {
+  totalOdus: number;
+  majorOdus: number;
+  minorOdus: number;
+  odus: Complete256Odu[];
+}
+
 interface Complete256Odu {
   id: number;
   name: string;
@@ -55,7 +62,7 @@ const OduVisualization: React.FC = () => {
   const [selectedCompleteOdu, setSelectedCompleteOdu] = useState<number>(1);
 
   // Fetch all 256 Odu from API
-  const { data: complete256Odu, isLoading: isLoadingComplete } = useQuery({
+  const { data: complete256Odu, isLoading: isLoadingComplete } = useQuery<ApiResponse>({
     queryKey: ['/api/odus/all-256'],
     enabled: viewMode === 'complete'
   });
@@ -447,7 +454,7 @@ const OduVisualization: React.FC = () => {
                                 {ts("Spiritual Focus", "Àìtọ́jú Ẹ̀mí")}
                               </h4>
                               <div className="flex flex-wrap gap-2">
-                                {selectedOduData.spiritualFocus?.map((focus, index) => (
+                                {selectedOduData.spiritualFocus?.map((focus: string, index: number) => (
                                   <Badge key={index} variant="outline" className="text-xs">
                                     {focus}
                                   </Badge>
