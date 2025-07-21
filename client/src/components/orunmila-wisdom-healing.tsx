@@ -20,13 +20,15 @@ export default function OrunmilaWisdomHealing() {
 
   // Òrúnmìlà wisdom frequencies - divine consciousness and intuition
   const wisdomFrequencies = [
-    { freq: 741, name: "Awakening", color: "from-amber-900 to-yellow-900", description: "Spiritual awakening and consciousness" },
+    { freq: 741, name: "Awakening", color: "from-amber-900 to-yellow-900", description: "Spiritual awakening and consciousness", audioUrl: "/static/audio/orunmila_741hz_awakening.mp3" },
     { freq: 852, name: "Intuition", color: "from-yellow-900 to-gold", description: "Enhanced intuitive abilities" },
     { freq: 963, name: "Divine Mind", color: "from-gold to-amber-800", description: "Connection to divine wisdom" },
     { freq: 1111, name: "Unity", color: "from-amber-800 to-yellow-800", description: "Cosmic consciousness alignment" },
   ];
 
   const [selectedFrequency, setSelectedFrequency] = useState(wisdomFrequencies[0]);
+  const [isAuthenticAudioPlaying, setIsAuthenticAudioPlaying] = useState(false);
+  const authenticAudioRef = useRef<HTMLAudioElement>(null);
 
   // Yoruba affirmations for Òrúnmìlà
   const yorubaAffirmations = [
@@ -129,14 +131,35 @@ export default function OrunmilaWisdomHealing() {
       oscillatorRef.current.stop();
       oscillatorRef.current = null;
     }
+    if (authenticAudioRef.current) {
+      authenticAudioRef.current.pause();
+      authenticAudioRef.current.currentTime = 0;
+    }
     setIsPlaying(false);
+    setIsAuthenticAudioPlaying(false);
   };
 
   const togglePlayback = () => {
-    if (isPlaying) {
-      stopFrequency();
+    if (selectedFrequency.audioUrl) {
+      toggleAuthenticAudio();
     } else {
-      playFrequency(selectedFrequency.freq);
+      if (isPlaying) {
+        stopFrequency();
+      } else {
+        playFrequency(selectedFrequency.freq);
+      }
+    }
+  };
+
+  const toggleAuthenticAudio = () => {
+    if (!authenticAudioRef.current) return;
+    
+    if (isAuthenticAudioPlaying) {
+      authenticAudioRef.current.pause();
+      setIsAuthenticAudioPlaying(false);
+    } else {
+      authenticAudioRef.current.play();
+      setIsAuthenticAudioPlaying(true);
     }
   };
 
@@ -144,6 +167,9 @@ export default function OrunmilaWisdomHealing() {
     setVolume(newVolume);
     if (gainNodeRef.current) {
       gainNodeRef.current.gain.setValueAtTime(newVolume[0] / 100 * 0.3, audioContextRef.current!.currentTime);
+    }
+    if (authenticAudioRef.current) {
+      authenticAudioRef.current.volume = newVolume[0] / 100;
     }
   };
 
@@ -362,7 +388,7 @@ export default function OrunmilaWisdomHealing() {
                         size="sm"
                         className="bg-cyan-600 hover:bg-cyan-500 text-black"
                       >
-                        {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                        {(selectedFrequency.audioUrl ? isAuthenticAudioPlaying : isPlaying) ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                       </Button>
                       <Button
                         onClick={stopFrequency}
@@ -372,8 +398,20 @@ export default function OrunmilaWisdomHealing() {
                       >
                         <RotateCcw className="w-4 h-4" />
                       </Button>
+                      {selectedFrequency.audioUrl && (
+                        <span className="text-xs text-amber-300 font-semibold">⭐ Authentic</span>
+                      )}
                     </div>
                   </div>
+
+                  {selectedFrequency.audioUrl && (
+                    <div className="mb-3 p-3 rounded-lg border border-amber-500/30" style={{ backgroundColor: '#1a1a0a' }}>
+                      <p className="text-sm text-amber-300 mb-2">🎵 Authentic Òrúnmìlà Instrumental - 741Hz Awakening</p>
+                      <p className="text-xs" style={{ color: '#e0f7ff' }}>
+                        This track combines traditional Òrúnmìlà wisdom with 741Hz frequency for spiritual awakening
+                      </p>
+                    </div>
+                  )}
 
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
@@ -485,6 +523,22 @@ export default function OrunmilaWisdomHealing() {
             </Card>
           </TabsContent>
         </Tabs>
+        
+        {/* Hidden audio element for authentic 741Hz track */}
+        {selectedFrequency.audioUrl && (
+          <audio
+            ref={authenticAudioRef}
+            src={selectedFrequency.audioUrl}
+            onEnded={() => setIsAuthenticAudioPlaying(false)}
+            onLoadedData={() => {
+              if (authenticAudioRef.current) {
+                authenticAudioRef.current.volume = volume[0] / 100;
+              }
+            }}
+            preload="metadata"
+            loop
+          />
+        )}
       </div>
     </div>
   );
