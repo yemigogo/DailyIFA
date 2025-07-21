@@ -311,7 +311,7 @@ export default function OrunmilaWisdomHealing() {
                 Play this soft ambient background while meditating or studying Ifá teachings.
               </p>
               <audio controls className="w-full h-10 md:h-12">
-                <source src="/static/audio/orunmila_ambience.mp3" type="audio/mpeg" />
+                <source src="/static/audio/orunmila_wisdom_authentic.mp3" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             </div>
