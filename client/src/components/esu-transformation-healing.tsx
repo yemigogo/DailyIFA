@@ -22,13 +22,15 @@ export default function EsuTransformationHealing() {
 
   // Èṣù transformation frequencies - fire and transformation energy
   const transformationFrequencies = [
-    { freq: 285, name: "Transformation", color: "from-red-900 to-orange-900" },
-    { freq: 417, name: "Change", color: "from-orange-900 to-yellow-900" },
-    { freq: 741, name: "Awakening", color: "from-yellow-900 to-red-900" },
-    { freq: 852, name: "Intuition", color: "from-red-800 to-orange-800" },
+    { freq: 285, name: "Transformation", color: "from-red-900 to-orange-900", audioUrl: "/static/audio/esu_285hz_transformation.mp3" },
+    { freq: 417, name: "Change", color: "from-orange-900 to-yellow-900", audioUrl: "/static/audio/esu_417hz_change.mp3" },
+    { freq: 741, name: "Awakening", color: "from-yellow-900 to-red-900", audioUrl: "/static/audio/esu_741hz_awakening.mp3" },
+    { freq: 852, name: "Intuition", color: "from-red-800 to-orange-800", audioUrl: "/static/audio/esu_852hz_intuition.mp3" },
   ];
 
   const [selectedFrequency, setSelectedFrequency] = useState(transformationFrequencies[0]);
+  const [isAuthenticAudioPlaying, setIsAuthenticAudioPlaying] = useState(false);
+  const authenticAudioRef = useRef<HTMLAudioElement>(null);
 
   // Yoruba affirmations for Èṣù
   const yorubaAffirmations = [
@@ -123,14 +125,35 @@ export default function EsuTransformationHealing() {
       oscillatorRef.current.stop();
       oscillatorRef.current = null;
     }
+    if (authenticAudioRef.current) {
+      authenticAudioRef.current.pause();
+      authenticAudioRef.current.currentTime = 0;
+    }
     setIsPlaying(false);
+    setIsAuthenticAudioPlaying(false);
   };
 
   const togglePlayback = () => {
-    if (isPlaying) {
-      stopFrequency();
+    if (selectedFrequency.audioUrl) {
+      toggleAuthenticAudio();
     } else {
-      playFrequency(selectedFrequency.freq);
+      if (isPlaying) {
+        stopFrequency();
+      } else {
+        playFrequency(selectedFrequency.freq);
+      }
+    }
+  };
+
+  const toggleAuthenticAudio = () => {
+    if (!authenticAudioRef.current) return;
+    
+    if (isAuthenticAudioPlaying) {
+      authenticAudioRef.current.pause();
+      setIsAuthenticAudioPlaying(false);
+    } else {
+      authenticAudioRef.current.play();
+      setIsAuthenticAudioPlaying(true);
     }
   };
 
@@ -138,6 +161,9 @@ export default function EsuTransformationHealing() {
     setVolume(newVolume);
     if (gainNodeRef.current) {
       gainNodeRef.current.gain.setValueAtTime(newVolume[0] / 100 * 0.3, audioContextRef.current!.currentTime);
+    }
+    if (authenticAudioRef.current) {
+      authenticAudioRef.current.volume = newVolume[0] / 100;
     }
   };
 
@@ -484,9 +510,20 @@ export default function EsuTransformationHealing() {
                     >
                       <span className="text-xs md:text-sm font-semibold">{freq.freq}Hz</span>
                       <span className="text-xs">{freq.name}</span>
+                      {freq.audioUrl && <span className="text-xs text-amber-300">⭐ Orchestral</span>}
                     </Button>
                   ))}
                 </div>
+
+                {/* Authentic Audio Information */}
+                {selectedFrequency.audioUrl && (
+                  <div className="p-4 rounded-lg border border-amber-500/30 bg-gradient-to-r from-amber-900/20 to-orange-900/20">
+                    <p className="text-sm text-amber-300 mb-2 font-semibold">🎼 Authentic 3-Minute Orchestral Track</p>
+                    <p className="text-xs text-amber-200">
+                      This {selectedFrequency.freq}Hz {selectedFrequency.name} frequency features a professionally composed 3-minute orchestral arrangement designed for transformation meditation and spiritual practice.
+                    </p>
+                  </div>
+                )}
 
                 {/* Audio Controls */}
                 <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
@@ -498,7 +535,7 @@ export default function EsuTransformationHealing() {
                         : 'bg-red-600 hover:bg-red-700'
                     }`}
                   >
-                    {isPlaying ? 
+                    {(selectedFrequency.audioUrl ? isAuthenticAudioPlaying : isPlaying) ? 
                       <Pause className="w-5 h-5 md:w-6 md:h-6" /> : 
                       <Play className="w-5 h-5 md:w-6 md:h-6" />
                     }
@@ -626,6 +663,22 @@ export default function EsuTransformationHealing() {
             </Card>
           </TabsContent>
         </Tabs>
+        
+        {/* Hidden audio element for authentic orchestral tracks */}
+        {selectedFrequency.audioUrl && (
+          <audio
+            ref={authenticAudioRef}
+            src={selectedFrequency.audioUrl}
+            onEnded={() => setIsAuthenticAudioPlaying(false)}
+            onLoadedData={() => {
+              if (authenticAudioRef.current) {
+                authenticAudioRef.current.volume = volume[0] / 100;
+              }
+            }}
+            preload="metadata"
+            loop
+          />
+        )}
       </div>
     </div>
   );
