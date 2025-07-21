@@ -1277,7 +1277,7 @@ const Learning: React.FC = () => {
                   )}
 
                   {module.id === 'sango-528hz' && (
-                    <Sango528HzHealing />
+                    <Sango528HzHealing language={language} />
                   )}
 
                   {module.id === 'esu-transformation' && (

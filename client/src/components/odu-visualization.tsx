@@ -36,15 +36,14 @@ interface OduPattern {
 interface Complete256Odu {
   id: number;
   name: string;
-  traditional_name: string;
-  yoruba_name: string;
+  nameYoruba: string;
   pattern: string;
-  spiritual_meaning: string;
+  meaning: string;
   guidance: string;
-  modern_application: string;
   category: string;
-  primary_odu: string;
-  secondary_odu: string;
+  spiritualFocus: string[];
+  proverb: string;
+  audioUrl: string;
 }
 
 const OduVisualization: React.FC = () => {
@@ -289,8 +288,9 @@ const OduVisualization: React.FC = () => {
   // Filter complete 256 Odu based on search
   const filteredComplete256 = complete256Odu?.odus?.filter((odu: Complete256Odu) =>
     odu.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    odu.traditional_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    odu.spiritual_meaning.toLowerCase().includes(searchTerm.toLowerCase())
+    odu.nameYoruba.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    odu.meaning.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    odu.guidance.toLowerCase().includes(searchTerm.toLowerCase())
   ) || [];
 
   return (
@@ -386,13 +386,13 @@ const OduVisualization: React.FC = () => {
                       >
                         <CardContent className="p-4">
                           <div className="flex items-start justify-between mb-2">
-                            <h4 className="font-semibold text-sm">{odu.traditional_name}</h4>
+                            <h4 className="font-semibold text-sm">{language === 'yoruba' ? odu.nameYoruba : odu.name}</h4>
                             <Badge variant={odu.category === 'major' ? 'default' : 'secondary'} className="text-xs">
                               {odu.category}
                             </Badge>
                           </div>
                           <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
-                            {odu.spiritual_meaning.substring(0, 60)}...
+                            {odu.meaning.substring(0, 60)}...
                           </p>
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-mono text-gray-500">#{odu.id}</span>
@@ -415,7 +415,7 @@ const OduVisualization: React.FC = () => {
                           <div className="space-y-4">
                             <div className="flex items-center justify-between">
                               <h3 className="text-xl font-bold text-spiritual-blue dark:text-sacred-gold">
-                                {selectedOduData.traditional_name}
+                                {language === 'yoruba' ? selectedOduData.nameYoruba : selectedOduData.name}
                               </h3>
                               <div className="flex gap-2">
                                 <Badge variant={selectedOduData.category === 'major' ? 'default' : 'secondary'}>
@@ -430,7 +430,7 @@ const OduVisualization: React.FC = () => {
                                   {ts("Spiritual Meaning", "Ìtumọ̀ Ẹ̀mí")}
                                 </h4>
                                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                  {selectedOduData.spiritual_meaning}
+                                  {selectedOduData.meaning}
                                 </p>
                               </div>
                               <div>
@@ -444,10 +444,22 @@ const OduVisualization: React.FC = () => {
                             </div>
                             <div>
                               <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                                {ts("Modern Application", "Ìlò Ìgbàlódé")}
+                                {ts("Spiritual Focus", "Àìtọ́jú Ẹ̀mí")}
                               </h4>
-                              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                {selectedOduData.modern_application}
+                              <div className="flex flex-wrap gap-2">
+                                {selectedOduData.spiritualFocus?.map((focus, index) => (
+                                  <Badge key={index} variant="outline" className="text-xs">
+                                    {focus}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                {ts("Traditional Proverb", "Òwe Àtijọ́")}
+                              </h4>
+                              <p className="text-gray-600 dark:text-gray-400 text-sm italic">
+                                "{selectedOduData.proverb}"
                               </p>
                             </div>
                             <div className="flex items-center gap-4 pt-4 border-t">
@@ -458,16 +470,16 @@ const OduVisualization: React.FC = () => {
                                 </div>
                               </div>
                               <div className="text-center">
-                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Primary</span>
-                                <div className="text-sm text-gray-600 dark:text-gray-400">
-                                  {selectedOduData.primary_odu}
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Category</span>
+                                <div className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+                                  {selectedOduData.category}
                                 </div>
                               </div>
-                              {selectedOduData.secondary_odu && (
+                              {selectedOduData.audioUrl && (
                                 <div className="text-center">
-                                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Secondary</span>
-                                  <div className="text-sm text-gray-600 dark:text-gray-400">
-                                    {selectedOduData.secondary_odu}
+                                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Audio</span>
+                                  <div className="text-sm text-green-600 dark:text-green-400">
+                                    Available
                                   </div>
                                 </div>
                               )}
