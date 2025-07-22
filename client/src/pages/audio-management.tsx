@@ -478,6 +478,69 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* Sixth YouTube Video Integration */}
+      <Card className="mb-8 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Play className="h-6 w-6 text-amber-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎥 {ts("Advanced Yoruba Philosophy & Ancient Wisdom", "Filosofi Yorùbá Gíga àti Ọgbọ́n Àtijọ́")}
+            </CardTitle>
+            <Badge className="bg-amber-600 text-white text-xs">PHILOSOPHY</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Explore profound philosophical concepts and ancient wisdom teachings from the Yoruba intellectual tradition",
+              "Ṣàwárí àwọn èrò ọgbọ́n jíjìn àti ẹ̀kọ́ ọgbọ́n àtijọ́ láti inú àṣà ọgbọ́n Yorùbá"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                {ts("Philosophical Foundations & Ancient Knowledge", "Ìpilẹ̀ Filosofi àti Ìmọ̀ Àtijọ́")}
+              </h3>
+              <p className="text-amber-700 dark:text-amber-200 text-sm mb-4">
+                {ts(
+                  "This enlightening video delves into the sophisticated philosophical systems and ancient knowledge traditions that have guided Yoruba thought for millennia, revealing timeless wisdom for modern understanding.",
+                  "Fídíò tí ó ń fún ni ní ìmọ̀lára yìí ń wọlé sí àwọn ètò ọgbọ́n tí ó ní ìmọ̀ràn àti àwọn àṣà ìmọ̀ àtijọ́ tí ó ti ń darí ìrònú Yorùbá fún ẹgbẹ̀rún ọdún, ó ń ṣàfihàn ọgbọ́n àìkú fún òye ode òní."
+                )}
+              </p>
+              
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/5ZLlTmojk1k"
+                  title="Advanced Yoruba Philosophy & Ancient Wisdom"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
+                ></iframe>
+              </div>
+              
+              <div className="bg-amber-100 dark:bg-amber-900/30 p-3 rounded border border-amber-300/20 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-amber-100 dark:bg-amber-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-amber-800 dark:text-amber-200">
+                      <strong>{ts('Ancient Philosophy:', 'Filosofi Àtijọ́:')}</strong> {ts('This video completes our comprehensive educational journey by exploring the deep philosophical foundations underlying all Yoruba spiritual practices. It connects the practical applications in our previous videos with the timeless wisdom that has shaped this ancient civilization for thousands of years.', 
+                        'Fídíò yìí ń parí ìrìn ẹ̀kọ́ wa tí ó ní ìdámọ̀ nípa ṣíṣàwárí àwọn ìpilẹ̀ ọgbọ́n jíjìn tí ó wà lábẹ́ gbogbo àwọn ìṣe ẹ̀mí Yorùbá. Ó ń so àwọn ìlò gidi nínú àwọn fídíò wa tẹ́lẹ̀ pọ̀ mọ́ ọgbọ́n àìkú tí ó ti ń ṣe ọlá yìí fún ẹgbẹ̀rún ọdún.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Ifá Divination Audio */}
       <Card className="mb-8 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20">
         <CardHeader className="pb-4">
