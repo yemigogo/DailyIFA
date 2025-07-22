@@ -415,6 +415,69 @@ export default function AudioManagement() {
         </CardContent>
       </Card>
 
+      {/* Fifth YouTube Video Integration */}
+      <Card className="mb-8 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Play className="h-6 w-6 text-rose-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎥 {ts("Yoruba Cultural Heritage & Spiritual Wisdom", "Ogún Àṣà Yorùbá àti Ọgbọ́n Ẹ̀mí")}
+            </CardTitle>
+            <Badge className="bg-rose-600 text-white text-xs">CULTURAL HERITAGE</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Discover the rich cultural heritage and profound spiritual wisdom of the Yoruba people through this enlightening documentary",
+              "Ṣàwárí ogún àṣà tí ó lọ́rọ̀ àti ọgbọ́n ẹ̀mí jíjìn ti àwọn ọmọ Yorùbá nípa àkọsílẹ̀ tí ó ń fún ni ní ìmọ̀lára yìí"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-rose-200 dark:border-rose-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-rose-900 dark:text-rose-100 mb-2">
+                {ts("Cultural Heritage & Wisdom Documentary", "Àkọsílẹ̀ Ogún Àṣà àti Ọgbọ́n")}
+              </h3>
+              <p className="text-rose-700 dark:text-rose-200 text-sm mb-4">
+                {ts(
+                  "This comprehensive documentary explores the deep cultural foundations and spiritual wisdom that form the cornerstone of Yoruba civilization, offering insights into traditional knowledge systems and cultural continuity.",
+                  "Àkọsílẹ̀ tí ó ní ìdámọ̀ yìí ń ṣàwárí àwọn ìpilẹ̀ àṣà jíjìn àti ọgbọ́n ẹ̀mí tí ó jẹ́ òkúta ìpilẹ̀ ọlá Yorùbá, ó ń fún wa ní òye sí àwọn ètò ìmọ̀ ìbílẹ̀ àti ìtẹ̀síwájú àṣà."
+                )}
+              </p>
+              
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/BldVL0wcSv8"
+                  title="Yoruba Cultural Heritage & Spiritual Wisdom"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
+                ></iframe>
+              </div>
+              
+              <div className="bg-rose-100 dark:bg-rose-900/30 p-3 rounded border border-rose-300/20 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-rose-100 dark:bg-rose-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-rose-600 dark:text-rose-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-rose-800 dark:text-rose-200">
+                      <strong>{ts('Heritage Documentation:', 'Àkọsílẹ̀ Ogún:')}</strong> {ts('This documentary serves as a comprehensive archive of Yoruba cultural heritage and spiritual wisdom. It provides essential context for understanding the historical foundations that inform our authentic audio collection and traditional spiritual practices featured throughout this platform.', 
+                        'Àkọsílẹ̀ yìí ń ṣiṣẹ́ gẹ́gẹ́ bí àkọjọ-ìkówé tí ó ní ìdámọ̀ ti ogún àṣà Yorùbá àti ọgbọ́n ẹ̀mí. Ó ń pèsè àyíká pàtàkì fún òye àwọn ìpilẹ̀ ìtàn tí ó ń kọ́ ìkójọ ohùn òtítọ́ wa àti àwọn ìṣe ẹ̀mí ìbílẹ̀ tí a ṣàfihàn nínú ètò yìí.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Ifá Divination Audio */}
       <Card className="mb-8 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20">
         <CardHeader className="pb-4">
