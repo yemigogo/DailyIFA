@@ -352,6 +352,69 @@ export default function AudioManagement() {
       </Card>
 
 
+      {/* Fourth YouTube Video Integration */}
+      <Card className="mb-8 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Play className="h-6 w-6 text-purple-600" />
+            <CardTitle className="text-gray-900 dark:text-white">
+              🎥 {ts("Yoruba Spiritual Practices & Traditional Wisdom", "Àwọn Ìṣe Ẹ̀mí Yorùbá àti Ọgbọ́n Ìbílẹ̀")}
+            </CardTitle>
+            <Badge className="bg-purple-600 text-white text-xs">SPIRITUAL PRACTICES</Badge>
+          </div>
+          <CardDescription className="text-lg">
+            {ts(
+              "Explore authentic Yoruba spiritual practices and traditional wisdom systems through this comprehensive educational video",
+              "Ṣàwárí àwọn ìṣe ẹ̀mí Yorùbá òtítọ́ àti ètò ọgbọ́n ìbílẹ̀ nípa fídíò ẹ̀kọ́ tí ó ní ìdámọ̀ yìí"
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="bg-white/50 dark:bg-black/30 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-purple-900 dark:text-purple-100 mb-2">
+                {ts("Traditional Spiritual Practices", "Àwọn Ìṣe Ẹ̀mí Ìbílẹ̀")}
+              </h3>
+              <p className="text-purple-700 dark:text-purple-200 text-sm mb-4">
+                {ts(
+                  "This video provides an in-depth exploration of traditional Yoruba spiritual practices, offering valuable insights into ancestral wisdom and cultural preservation.",
+                  "Fídíò yìí ń pèsè ìwádi jíjìn sí àwọn ìṣe ẹ̀mí Yorùbá ìbílẹ̀, ó ń fún wa ní òye pàtàkì sí ọgbọ́n àwọn baba ńlá àti ìtọ́jú àṣà."
+                )}
+              </p>
+              
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                  src="https://www.youtube.com/embed/cYIifliDmS4"
+                  title="Yoruba Spiritual Practices & Traditional Wisdom"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+                  }}
+                ></iframe>
+              </div>
+              
+              <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded border border-purple-300/20 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 bg-purple-100 dark:bg-purple-800 rounded-full flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="w-4 h-4 text-purple-600 dark:text-purple-300" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs text-purple-800 dark:text-purple-200">
+                      <strong>{ts('Cultural Preservation:', 'Ìtọ́jú Àṣà:')}</strong> {ts('This video serves as an important resource for understanding and preserving traditional Yoruba spiritual practices. It complements our authentic audio collection by providing comprehensive context about the cultural significance and practical applications of ancient wisdom traditions.', 
+                        'Fídíò yìí ń ṣiṣẹ́ gẹ́gẹ́ bí ohun èlò pàtàkì fún òye àti ìtọ́jú àwọn ìṣe ẹ̀mí Yorùbá ìbílẹ̀. Ó ń ṣàfikún sí ìkójọ ohùn òtítọ́ wa nípa fífún wa ní àyíká tí ó ní ìdámọ̀ nípa pàtàkì àṣà àti ìlò gidi ti àwọn ìṣe ọgbọ́n àtijọ́.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Ifá Divination Audio */}
       <Card className="mb-8 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20">
         <CardHeader className="pb-4">
