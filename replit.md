@@ -1,7 +1,23 @@
 # Ifá Daily Reading App
 
 ## Project Overview
-A comprehensive bilingual Yoruba spiritual guidance application providing authentic Ifá readings, Odu wisdom, and traditional spiritual practices. The app serves as a bridge between ancient Yoruba wisdom and modern digital accessibility.
+
+### Synopsis
+
+**Core Purpose & Features:**
+The Ifá Daily Reading app is a transformative digital platform that bridges ancient Yoruba spiritual traditions with modern interactive technology. At its core, the application provides authentic spiritual guidance through a comprehensive system featuring daily Ifá readings with 256 complete Odu interpretations, interactive 3D Yorùbá Cosmic Realms visualization, and an 8-Orisha healing system with sacred frequency therapy. The platform integrates authentic audio content including traditional Oriki praise chants, comprehensive multimedia educational resources with six progressive video series, and bilingual Yoruba-English support throughout all components.
+
+Key features include an Advanced Orisha Assessment system for personalized spiritual guidance, sacred frequency healing with authentic orchestral compositions, interactive water crystal visualization based on Dr. Masaru Emoto's research, comprehensive Odu visualization with search and filtering capabilities, traditional spiritual practice tracking, and authentic cultural preservation through documented heritage content. The app maintains strict authenticity standards with genuine Yoruba spiritual content, proper pronunciation guides, and traditional artwork while offering modern accessibility through mobile-first responsive design.
+
+**Target Users & Use Cases:**
+- **Spiritual Practitioners:** Individuals seeking authentic Yoruba spiritual guidance, daily Ifá readings, and traditional healing practices
+- **Cultural Enthusiasts:** People interested in learning about Yoruba heritage, philosophy, and traditional knowledge systems
+- **Students & Researchers:** Those studying African spirituality, traditional healing, or indigenous knowledge preservation
+- **Diaspora Communities:** Yoruba descendants worldwide reconnecting with ancestral traditions and cultural identity
+- **Wellness Seekers:** Individuals exploring alternative healing modalities through sacred frequency therapy and traditional practices
+- **Educators:** Teachers and cultural preservationists documenting and sharing authentic spiritual traditions
+
+The application serves as both a practical spiritual guidance tool for daily practice and a comprehensive educational platform for cultural preservation, making ancient Yoruba wisdom accessible to modern audiences while maintaining complete traditional authenticity.
 
 ## Recent Changes
 **July 22, 2025**
