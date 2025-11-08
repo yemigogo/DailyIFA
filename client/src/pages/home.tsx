@@ -44,7 +44,16 @@ export default function Home() {
 
   // Get today's Odu card number from the reading
   const getTodaysOduCardNumber = (): number => {
-    if (!reading?.odu) return 1;
+    // Log detailed information for debugging
+    console.log('🔍 HOME PAGE - getTodaysOduCardNumber called');
+    console.log('📦 Reading data:', reading);
+    console.log('🎴 Reading.odu:', reading?.odu);
+    
+    if (!reading?.odu) {
+      console.warn('⚠️ HOME PAGE WARNING: No reading or odu data available, defaulting to card 1');
+      console.log('Reading loading state:', readingLoading);
+      return 1;
+    }
     
     // Map Odu names to their correct card numbers 
     const oduNameToCardMap: Record<string, number> = {
@@ -71,7 +80,7 @@ export default function Home() {
     // Check if we have a specific mapping for this Odu name
     const mappedCard = oduNameToCardMap[reading.odu.name];
     if (mappedCard !== undefined) {
-      console.log(`🎯 HOME PAGE MAPPING: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${mappedCard}`);
+      console.log(`✅ HOME PAGE MAPPING SUCCESS: Date: ${reading.date}, Odu: "${reading.odu.name}" -> Mapped to card ${mappedCard}`);
       return mappedCard;
     }
     
@@ -85,7 +94,7 @@ export default function Home() {
     }
     
     // Final fallback
-    console.log(`Invalid card number ${cardNumber}, using default card 1`);
+    console.error(`❌ HOME PAGE ERROR: Invalid card number ${cardNumber} for Odu "${reading.odu.name}", using default card 1`);
     return 1;
   };
 
