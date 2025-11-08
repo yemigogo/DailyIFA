@@ -207,7 +207,14 @@ export default function AudioManagement() {
                 <audio 
                   controls 
                   preload="metadata"
+                  controlsList="nodownload"
                   className="w-full rounded-lg bg-purple-100 dark:bg-purple-800 border border-purple-300/30 h-12 mb-3"
+                  onError={(e) => {
+                    console.error('Sophie Oluwole audio error:', e);
+                    console.log('Audio source:', '/static/audio/sophie_oluwole_oro_isiti_combined.mp3');
+                  }}
+                  onLoadedMetadata={() => console.log('Sophie Oluwole audio loaded successfully')}
+                  data-testid="audio-sophie-oluwole"
                 >
                   <source src="/static/audio/sophie_oluwole_oro_isiti_combined.mp3" type="audio/mpeg" />
                   {ts('Your browser does not support the audio element.', 'Ayẹwo rẹ kò ṣe àtìlẹyìn orin yìí.')}
@@ -258,15 +265,17 @@ export default function AudioManagement() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/b4X4BgAh_0Q"
+                  src="https://www.youtube.com/embed/b4X4BgAh_0Q?enablejsapi=1&origin=https://replit.app"
                   title="Yoruba Spiritual Wisdom"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   style={{
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                   }}
+                  data-testid="video-yoruba-wisdom"
                 ></iframe>
               </div>
               
@@ -321,15 +330,17 @@ export default function AudioManagement() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/S7RvqBpqcNY"
+                  src="https://www.youtube.com/embed/S7RvqBpqcNY?enablejsapi=1&origin=https://replit.app"
                   title="Advanced Yoruba Knowledge Systems"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   style={{
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                   }}
+                  data-testid="video-advanced-yoruba"
                 ></iframe>
               </div>
               
@@ -385,15 +396,17 @@ export default function AudioManagement() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/cYIifliDmS4"
+                  src="https://www.youtube.com/embed/cYIifliDmS4?enablejsapi=1&origin=https://replit.app"
                   title="Yoruba Spiritual Practices & Traditional Wisdom"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   style={{
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                   }}
+                  data-testid="video-spiritual-practices"
                 ></iframe>
               </div>
               
@@ -448,15 +461,17 @@ export default function AudioManagement() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/BldVL0wcSv8"
+                  src="https://www.youtube.com/embed/BldVL0wcSv8?enablejsapi=1&origin=https://replit.app"
                   title="Yoruba Cultural Heritage & Spiritual Wisdom"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   style={{
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                   }}
+                  data-testid="video-cultural-heritage"
                 ></iframe>
               </div>
               
@@ -511,15 +526,17 @@ export default function AudioManagement() {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-                  src="https://www.youtube.com/embed/5ZLlTmojk1k"
+                  src="https://www.youtube.com/embed/5ZLlTmojk1k?enablejsapi=1&origin=https://replit.app"
                   title="Advanced Yoruba Philosophy & Ancient Wisdom"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                   style={{
                     border: 'none',
                     borderRadius: '8px',
                     boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
                   }}
+                  data-testid="video-philosophy"
                 ></iframe>
               </div>
               
@@ -576,6 +593,13 @@ export default function AudioManagement() {
                   controls 
                   className="w-full mb-4"
                   preload="metadata"
+                  controlsList="nodownload"
+                  onError={(e) => {
+                    console.error('Ifá divination audio error:', e);
+                    console.log('Audio source:', '/static/audio/ifa_divination_priests_spirit_world.mp3');
+                  }}
+                  onLoadedMetadata={() => console.log('Ifá divination audio loaded successfully')}
+                  data-testid="audio-ifa-divination"
                 >
                   <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
                   {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
