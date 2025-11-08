@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, BookOpen, Star, Lightbulb, Heart } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowLeft, BookOpen, Star, Lightbulb, Heart, Search, Filter } from "lucide-react";
 import { Odu, DailyReadingWithOdu } from "@shared/schema";
 import { useLocation } from "wouter";
 import OduPattern from "@/components/odu-pattern";
@@ -10,11 +11,20 @@ import OduIfaImage from "@/components/odu-ifa-image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import InteractiveYorubaText from "@/components/interactive-yoruba-text";
 import { formatDate } from "@/lib/date-utils";
+import { useState, useMemo, useEffect } from "react";
+import { 
+  generateOduCatalog, 
+  mergeCatalogWithApiData, 
+  filterByType, 
+  searchCatalog 
+} from "@/data/odu-catalog";
 
 export default function Learn() {
   const [, setLocation] = useLocation();
   const { language, ts } = useLanguage();
   const todayDate = formatDate(new Date());
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState<"all" | "major" | "minor">("all");
 
   const { data: odus = [], isLoading } = useQuery<Odu[]>({
     queryKey: ["/api/odus"],
@@ -24,6 +34,34 @@ export default function Learn() {
     queryKey: [`/api/readings/${todayDate}`],
     staleTime: 1000 * 60 * 60, // 1 hour
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 32; // Show 32 cards per page for better mobile performance
+
+  // Generate catalog and merge with API data
+  const catalogWithData = useMemo(() => {
+    const catalog = generateOduCatalog();
+    return mergeCatalogWithApiData(catalog, odus);
+  }, [odus]);
+
+  // Filter cards based on search and type
+  const filteredCards = useMemo(() => {
+    let filtered = filterByType(catalogWithData, filterType);
+    filtered = searchCatalog(filtered, searchQuery);
+    return filtered;
+  }, [catalogWithData, searchQuery, filterType]);
+
+  // Paginate filtered results
+  const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+  const paginatedCards = useMemo(() => {
+    const startIndex = (currentPage - 1) * cardsPerPage;
+    return filteredCards.slice(startIndex, startIndex + cardsPerPage);
+  }, [filteredCards, currentPage]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, filterType]);
 
   return (
     <div className="min-h-screen pb-20">
@@ -105,57 +143,161 @@ export default function Learn() {
           </CardContent>
         </Card>
 
-        {/* The 16 Major Odu */}
+        {/* Search and Filter Controls */}
+        <Card className="border-sacred-gold/10">
+          <CardContent className="p-4 space-y-4">
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                type="text"
+                placeholder={ts("Search Odu by name or number...", "Wa Odù nípa orúkọ tàbí nọ́mbà...")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+                data-testid="input-search-odu"
+              />
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex gap-2">
+              <Button
+                variant={filterType === "all" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setFilterType("all")}
+                className="flex-1"
+                data-testid="button-filter-all"
+              >
+                {ts("All", "Gbogbo")} ({catalogWithData.length})
+              </Button>
+              <Button
+                variant={filterType === "major" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setFilterType("major")}
+                className="flex-1"
+                data-testid="button-filter-major"
+              >
+                {ts("Major", "Àkọ́kọ́")} (16)
+              </Button>
+              <Button
+                variant={filterType === "minor" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setFilterType("minor")}
+                className="flex-1"
+                data-testid="button-filter-minor"
+              >
+                {ts("Combined", "Àpapọ̀")} (240)
+              </Button>
+            </div>
+
+            {/* Results Count */}
+            <p className="text-sm text-gray-600 text-center">
+              {ts(
+                `Showing ${filteredCards.length} Odu`,
+                `Ń fihàn ${filteredCards.length} Odù`
+              )}
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* The Complete 256 Odu Grid */}
         <Card className="border-sacred-gold/10">
           <CardContent className="p-6">
             <h3 className="font-crimson text-lg font-semibold text-spiritual-blue mb-4">
-              The 16 Major Odu
+              {filterType === "major" 
+                ? ts("The 16 Major Odu", "Àwọn Odù Àkọ́kọ́ 16") 
+                : filterType === "minor"
+                ? ts("The 240 Combined Odu", "Àwọn Odù Àpapọ̀ 240")
+                : ts("The Complete 256 Sacred Odu", "Àwọn Odù Mímọ́ 256 Pípé")
+              }
             </h3>
-            <p className="text-gray-700 text-sm mb-4">
-              The Odu are the sacred verses of Ifá, containing wisdom, stories, and guidance for every aspect of life. Each Odu has its own unique energy and message.
-            </p>
 
             {isLoading ? (
-              <div className="space-y-4">
-                {[...Array(4)].map((_, i) => (
-                  <div key={i} className="p-4 bg-gray-50 rounded-lg">
-                    <Skeleton className="h-5 w-32 mb-2" />
-                    <Skeleton className="h-4 w-full mb-2" />
-                    <Skeleton className="h-4 w-3/4" />
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {[...Array(12)].map((_, i) => (
+                  <div key={i} className="aspect-[3/4] bg-gray-100 rounded-lg">
+                    <Skeleton className="w-full h-full" />
                   </div>
                 ))}
+              </div>
+            ) : filteredCards.length === 0 ? (
+              <div className="text-center py-12" data-testid="text-no-results">
+                <BookOpen className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+                <p className="text-gray-500">
+                  {ts(
+                    "No Odu found matching your search",
+                    "Ko sí Odù tí o bamu pẹ̀lú ìwádìí rẹ"
+                  )}
+                </p>
               </div>
             ) : (
-              <div className="space-y-4">
-                {odus.map((odu) => (
-                  <div key={odu.id} className="p-4 bg-gray-50 rounded-lg">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <h4 className="font-crimson font-semibold text-spiritual-blue">
-                          {odu.name}
-                        </h4>
-                        <p className="text-sm text-gray-600">{odu.subtitle}</p>
+              <>
+                {/* Odu Cards Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6">
+                  {paginatedCards.map((odu) => (
+                    <div 
+                      key={odu.id} 
+                      className="group cursor-pointer"
+                      data-testid={`card-odu-${odu.id}`}
+                    >
+                      <div className="aspect-[3/4] rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow bg-black/5 relative">
+                        <img
+                          src={odu.imagePath}
+                          alt={`${odu.name} - ${odu.subtitle}`}
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+                            <p className="font-semibold text-sm mb-1">{odu.name}</p>
+                            <p className="text-xs opacity-90">{language === "english" ? odu.subtitle : odu.subtitleYoruba}</p>
+                          </div>
+                        </div>
+                        {/* Card Number Badge */}
+                        <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md font-semibold">
+                          {odu.id}
+                        </div>
+                        {/* Major Odu Badge */}
+                        {odu.isMajor && (
+                          <div className="absolute top-2 left-2 bg-sacred-gold text-white text-xs px-2 py-1 rounded-md font-semibold">
+                            {ts("Major", "Àkọ́kọ́")}
+                          </div>
+                        )}
                       </div>
-                      <OduPattern pattern={odu.pattern} className="ml-4" />
+                      <div className="mt-2 text-center">
+                        <p className="font-semibold text-xs text-spiritual-blue truncate">{odu.name}</p>
+                      </div>
                     </div>
-                    
-                    <p className="text-sm text-gray-700 mb-3">
-                      {odu.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {odu.keywords.map((keyword, index) => (
-                        <span
-                          key={index}
-                          className="px-2 py-1 bg-spiritual-blue/10 text-spiritual-blue text-xs rounded-full"
-                        >
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-2 pt-4 border-t">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      data-testid="button-page-prev"
+                    >
+                      {ts("Previous", "Ṣáájú")}
+                    </Button>
+                    <span className="text-sm text-gray-600 mx-4">
+                      {ts(`Page ${currentPage} of ${totalPages}`, `Ojú-ìwé ${currentPage} nínú ${totalPages}`)}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      data-testid="button-page-next"
+                    >
+                      {ts("Next", "Tókàn")}
+                    </Button>
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             )}
           </CardContent>
         </Card>
