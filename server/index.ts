@@ -7,13 +7,39 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// CORS headers for Android TWA and mobile apps
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Range');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Length, Content-Range');
+  next();
+});
+
 // Serve audio files statically
 app.use('/audio', express.static(path.join(process.cwd(), 'client/public/audio')));
 // Serve static files (Odu cards, etc.) - this must come first
 app.use('/static', express.static(path.join(process.cwd(), 'static'), {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.png')) {
+  setHeaders: (res, filePath) => {
+    // Set proper MIME types for all file types
+    if (filePath.endsWith('.png')) {
       res.setHeader('Content-Type', 'image/png');
+    } else if (filePath.endsWith('.mp3')) {
+      res.setHeader('Content-Type', 'audio/mpeg');
+      res.setHeader('Accept-Ranges', 'bytes');
+      res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+    } else if (filePath.endsWith('.wav')) {
+      res.setHeader('Content-Type', 'audio/wav');
+      res.setHeader('Accept-Ranges', 'bytes');
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    } else if (filePath.endsWith('.ogg') || filePath.endsWith('.opus')) {
+      res.setHeader('Content-Type', 'audio/ogg');
+      res.setHeader('Accept-Ranges', 'bytes');
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    } else if (filePath.endsWith('.m4a')) {
+      res.setHeader('Content-Type', 'audio/mp4');
+      res.setHeader('Accept-Ranges', 'bytes');
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
     }
   }
 }));
