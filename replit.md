@@ -30,6 +30,7 @@ The application is built on a modern full-stack architecture.
 
 **Technical Implementations & Feature Specifications:**
 - **Daily Ifá Readings:** Dynamic display of today's authentic Odu, unified card mapping, and comprehensive 256 Odu visualization system with search, filtering, and detailed views.
+- **Complete 256 Odu Catalog System:** Client-side catalog (`client/src/data/odu-catalog.ts`) providing all 256 Odu metadata (16 major + 240 combined), with intelligent merging of database records for enhanced content. Implements search by name/Yoruba name/card number, filter by type (All/Major/Minor), and pagination for optimal performance. Available on both `/learn` and `/odu-256` pages with mobile-responsive grid layouts.
 - **Orisha Healing Systems:**
     - Yemoja 432Hz Water Healing: Continuous water loop meditation, water crystal visualization, and authentic rituals.
     - Òbàtálá 963Hz Divine Healing: Divine connection frequencies and purification rituals.
