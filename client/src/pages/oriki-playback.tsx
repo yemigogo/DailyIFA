@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -140,6 +140,24 @@ export default function OrikiPlayback() {
 
   const weeklyOriki = getWeeklyOriki();
 
+  // Cleanup audio on component unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      // Pause and cleanup main audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current.load();
+      }
+      // Pause and cleanup weekly audio
+      if (weeklyAudioRef.current) {
+        weeklyAudioRef.current.pause();
+        weeklyAudioRef.current.src = '';
+        weeklyAudioRef.current.load();
+      }
+    };
+  }, []);
+
   const playOriki = (oriki: OrikiVerse) => {
     setSelectedOriki(oriki);
     setCurrentVerseIndex(0);
@@ -181,10 +199,12 @@ export default function OrikiPlayback() {
               ref={weeklyAudioRef}
               src={weeklyOriki.audioUrl}
               controls
+              preload="metadata"
               className="w-full rounded-lg"
               onPlay={() => setWeeklyIsPlaying(true)}
               onPause={() => setWeeklyIsPlaying(false)}
               onEnded={() => setWeeklyIsPlaying(false)}
+              onError={(e) => console.error('Weekly audio error:', e)}
             />
           </div>
           <div className="flex justify-center">
@@ -275,10 +295,12 @@ export default function OrikiPlayback() {
                 ref={audioRef}
                 src={selectedOriki.audioUrl}
                 controls
+                preload="metadata"
                 className="w-full mb-4 rounded-lg"
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
                 onEnded={() => setIsPlaying(false)}
+                onError={(e) => console.error('Main audio error:', selectedOriki.audioUrl, e)}
               />
               
               <div className="flex items-center justify-center gap-4 mb-4">
