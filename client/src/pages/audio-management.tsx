@@ -210,10 +210,22 @@ export default function AudioManagement() {
                   controlsList="nodownload"
                   className="w-full rounded-lg bg-purple-100 dark:bg-purple-800 border border-purple-300/30 h-12 mb-3"
                   onError={(e) => {
-                    console.error('Sophie Oluwole audio error:', e);
-                    console.log('Audio source:', '/static/audio/sophie_oluwole_oro_isiti_combined.mp3');
+                    const audio = e.currentTarget as HTMLAudioElement;
+                    console.error('❌ Sophie Oluwole audio ERROR');
+                    console.error('Error code:', audio.error?.code);
+                    console.error('Error message:', audio.error?.message);
+                    console.error('Network state:', audio.networkState);
+                    console.error('Ready state:', audio.readyState);
+                    console.error('Audio source:', '/static/audio/sophie_oluwole_oro_isiti_combined.mp3');
                   }}
-                  onLoadedMetadata={() => console.log('Sophie Oluwole audio loaded successfully')}
+                  onLoadedMetadata={(e) => {
+                    const audio = e.currentTarget as HTMLAudioElement;
+                    console.log('✅ Sophie Oluwole audio loaded successfully');
+                    console.log('Duration:', audio.duration, 'seconds');
+                  }}
+                  onCanPlay={() => console.log('🎵 Sophie Oluwole audio can play')}
+                  onStalled={() => console.warn('⚠️ Sophie Oluwole audio stalled')}
+                  onSuspend={() => console.log('⏸️ Sophie Oluwole audio suspended')}
                   data-testid="audio-sophie-oluwole"
                 >
                   <source src="/static/audio/sophie_oluwole_oro_isiti_combined.mp3" type="audio/mpeg" />
@@ -595,10 +607,22 @@ export default function AudioManagement() {
                   preload="metadata"
                   controlsList="nodownload"
                   onError={(e) => {
-                    console.error('Ifá divination audio error:', e);
-                    console.log('Audio source:', '/static/audio/ifa_divination_priests_spirit_world.mp3');
+                    const audio = e.currentTarget as HTMLAudioElement;
+                    console.error('❌ Ifá divination audio ERROR');
+                    console.error('Error code:', audio.error?.code);
+                    console.error('Error message:', audio.error?.message);
+                    console.error('Network state:', audio.networkState);
+                    console.error('Ready state:', audio.readyState);
+                    console.error('Audio source:', '/static/audio/ifa_divination_priests_spirit_world.mp3');
                   }}
-                  onLoadedMetadata={() => console.log('Ifá divination audio loaded successfully')}
+                  onLoadedMetadata={(e) => {
+                    const audio = e.currentTarget as HTMLAudioElement;
+                    console.log('✅ Ifá divination audio loaded successfully');
+                    console.log('Duration:', audio.duration, 'seconds');
+                  }}
+                  onCanPlay={() => console.log('🎵 Ifá divination audio can play')}
+                  onStalled={() => console.warn('⚠️ Ifá divination audio stalled')}
+                  onSuspend={() => console.log('⏸️ Ifá divination audio suspended')}
                   data-testid="audio-ifa-divination"
                 >
                   <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
