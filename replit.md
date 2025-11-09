@@ -45,6 +45,7 @@ The application is built on a modern full-stack architecture.
 - **Enhanced Profile System:** Spiritual journey tracking, advanced notification preferences, practice tracking, social features, and theme customization.
 - **Multimedia Educational Series:** Six progressive video series, authentic audio content, and comprehensive learning framework.
 - **Authentic Audio System:** Royalty-free audio support with 3-tier fallback, comprehensive recording workflow, and Nigerian authenticity requirements for all pronunciation.
+- **Sacred Divination Practices Audio:** 29-minute authentic audio guide (41.8 MB MP3) exploring Ifá divination and spiritual communication practices. Located on /audio page with prominent direct access link for browser compatibility. File served via Express static middleware at `/static/audio/ifa_divination_priests_spirit_world.mp3`. Includes comprehensive error logging and fallback UI for browsers with strict media policies.
 - **Batá Rhythm Visualizer:** Real-time ceremonial rhythm visualization with Web Audio API synthesis and AI-powered rhythm recommendations.
 - **Ifá Wisdom Archive:** Searchable repository of past readings, insights, and sacred verses.
 - **Personalized Diaspora Spiritual Practice Reminder:** Smart notification system with practice tracking and location-adapted reminders.

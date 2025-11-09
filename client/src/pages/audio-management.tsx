@@ -603,28 +603,37 @@ export default function AudioManagement() {
               </p>
               
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
+                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950 rounded border border-blue-300 dark:border-blue-700">
+                  <p className="text-xs text-blue-700 dark:text-blue-300 mb-2 font-semibold">
+                    🎧 {ts("Direct Audio Access:", "Ìwọlé Ohùn Tààrà:")}
+                  </p>
+                  <a 
+                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 underline hover:text-blue-800 font-medium"
+                    data-testid="link-direct-audio"
+                  >
+                    🔗 {ts("Open 29-minute audio file directly (41.8 MB)", "Ṣí fáìlì ohùn ìṣẹ́jú 29 tààrà (41.8 MB)")}
+                  </a>
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+                    {ts("(Click to play in new tab)", "(Tẹ́ láti ṣe ní táàbù tuntun)")}
+                  </p>
+                </div>
+                
                 {divinationAudioLoading && (
                   <div className="flex items-center gap-2 mb-3 p-2 bg-emerald-50 dark:bg-emerald-950 rounded border border-emerald-300 dark:border-emerald-700">
                     <Loader2 className="h-4 w-4 animate-spin text-emerald-600" />
                     <span className="text-xs text-emerald-700 dark:text-emerald-300">
-                      {ts("Loading 29-minute audio file (41.8 MB)...", "Ń ṣe ifáàyè fáìlì ohùn ìṣẹ́jú 29 (41.8 MB)...")}
+                      {ts("Loading audio player...", "Ń ṣe ifáàyè ẹ̀rọ orin...")}
                     </span>
                   </div>
                 )}
                 
                 {divinationAudioError && (
-                  <div className="mb-3 p-3 bg-red-50 dark:bg-red-950 rounded border border-red-300 dark:border-red-700">
-                    <p className="text-xs text-red-700 dark:text-red-300 mb-2">
-                      ❌ {ts("Audio failed to load. Please try the direct link below:", "Àṣìṣe ń ṣe fáìlì ohùn. Jọ̀wọ́ gbìyànjú ọ̀nà tààrà yìí:")}
+                  <div className="mb-3 p-2 bg-amber-50 dark:bg-amber-950 rounded border border-amber-300 dark:border-amber-700">
+                    <p className="text-xs text-amber-700 dark:text-amber-300">
+                      ⚠️ {ts("Audio player not supported on this browser. Please use the direct link above.", "Ẹ̀rọ orin kò ṣiṣẹ́ lórí awáriiwò yìí. Jọ̀wọ́ lo ọ̀nà tààrà lókè.")}
                     </p>
-                    <a 
-                      href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
-                      target="_blank"
-                      className="text-xs text-blue-600 dark:text-blue-400 underline hover:text-blue-800"
-                      data-testid="link-direct-audio"
-                    >
-                      🔗 {ts("Open audio file directly", "Ṣí fáìlì ohùn tààrà")}
-                    </a>
                   </div>
                 )}
                 
