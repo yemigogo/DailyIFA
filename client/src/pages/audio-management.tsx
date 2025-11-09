@@ -614,9 +614,17 @@ export default function AudioManagement() {
                 
                 {divinationAudioError && (
                   <div className="mb-3 p-3 bg-red-50 dark:bg-red-950 rounded border border-red-300 dark:border-red-700">
-                    <p className="text-xs text-red-700 dark:text-red-300">
-                      ❌ {ts("Audio failed to load. Please refresh the page or try again later.", "Àṣìṣe ń ṣe fáìlì ohùn. Jọ̀wọ́ tun ojú-ìwé náà ṣe tàbí gbìyànjú lẹ́ẹ̀kan si.")}
+                    <p className="text-xs text-red-700 dark:text-red-300 mb-2">
+                      ❌ {ts("Audio failed to load. Please try the direct link below:", "Àṣìṣe ń ṣe fáìlì ohùn. Jọ̀wọ́ gbìyànjú ọ̀nà tààrà yìí:")}
                     </p>
+                    <a 
+                      href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
+                      target="_blank"
+                      className="text-xs text-blue-600 dark:text-blue-400 underline hover:text-blue-800"
+                      data-testid="link-direct-audio"
+                    >
+                      🔗 {ts("Open audio file directly", "Ṣí fáìlì ohùn tààrà")}
+                    </a>
                   </div>
                 )}
                 
