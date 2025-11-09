@@ -98,8 +98,9 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
   const [volume, setVolume] = useState([0.5]);
   const [currentTime, setCurrentTime] = useState(0);
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
-  const [oscillator, setOscillator] = useState<OscillatorNode | null>(null);
-  const [gainNode, setGainNode] = useState<GainNode | null>(null);
+  const [activeOscillators, setActiveOscillators] = useState<OscillatorNode[]>([]);
+  const [activeGains, setActiveGains] = useState<GainNode[]>([]);
+  const [masterGain, setMasterGain] = useState<GainNode | null>(null);
   const [meditationTimer, setMeditationTimer] = useState(0);
   const [meditationDuration, setMeditationDuration] = useState(15); // minutes
   const [meditationLevel, setMeditationLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
@@ -161,6 +162,41 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
     return () => clearInterval(interval);
   }, [isMeditating, meditationDuration]);
 
+  // Helper function to create harmonically rich sound
+  const createHarmonicSound = (
+    ctx: AudioContext,
+    baseFreq: number, 
+    waveTypes: OscillatorType[], 
+    harmonicLevels: number[],
+    oscArray: OscillatorNode[],
+    gainArray: GainNode[],
+    masterGain: GainNode
+  ) => {
+    harmonicLevels.forEach((level, index) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      // Frequency: base frequency with harmonic overtones
+      osc.frequency.value = baseFreq * (index + 1);
+      
+      // Alternate wave types for richness
+      osc.type = waveTypes[index % waveTypes.length];
+      
+      // Volume decreases with each harmonic
+      const harmVolume = level * volume[0] * 0.15;
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(harmVolume, ctx.currentTime + 2);
+      
+      // Connect: oscillator → gain → master gain → destination
+      osc.connect(gain);
+      gain.connect(masterGain);
+      
+      osc.start();
+      oscArray.push(osc);
+      gainArray.push(gain);
+    });
+  };
+
   const playFrequency = (track: AudioTrack) => {
     if (!audioContext) return;
 
@@ -168,27 +204,60 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
       // Stop any existing audio
       stopAudio();
 
-      // Create new nodes
-      const osc = audioContext.createOscillator();
-      const gain = audioContext.createGain();
+      // Create frequency-specific soundscape with harmonics and unique characteristics
+      const oscillators: OscillatorNode[] = [];
+      const gains: GainNode[] = [];
+      const masterGain = audioContext.createGain();
 
-      // Connect nodes
-      osc.connect(gain);
-      gain.connect(audioContext.destination);
+      // Configure unique sound for each frequency
+      switch (track.id) {
+        case 'love': // 528Hz - Love & Healing - Warm, rich harmonics
+          createHarmonicSound(audioContext, 528, ['sine', 'triangle'], [1.0, 0.5, 0.3, 0.2], oscillators, gains, masterGain);
+          break;
+        
+        case 'healing': // 432Hz - Natural Healing - Deep, earthy resonance
+          createHarmonicSound(audioContext, 432, ['sine', 'sawtooth'], [1.0, 0.4, 0.25], oscillators, gains, masterGain);
+          break;
+        
+        case 'transformation': // 396Hz - Transformation - Dynamic, evolving pulse
+          createHarmonicSound(audioContext, 396, ['square', 'triangle'], [1.0, 0.6, 0.4, 0.3], oscillators, gains, masterGain);
+          // Add tremolo effect for transformation
+          const lfo = audioContext.createOscillator();
+          const lfoGain = audioContext.createGain();
+          lfo.frequency.value = 4; // 4Hz pulsation
+          lfoGain.gain.value = 0.3;
+          lfo.connect(lfoGain);
+          lfoGain.connect(masterGain.gain);
+          lfo.start();
+          oscillators.push(lfo);
+          break;
+        
+        case 'intuition': // 741Hz - Intuition - Bright, crystalline clarity
+          createHarmonicSound(audioContext, 741, ['sine', 'triangle'], [1.0, 0.7, 0.5, 0.4, 0.3], oscillators, gains, masterGain);
+          break;
+        
+        case 'connection': // 963Hz - Divine Connection - Ethereal, celestial shimmer
+          createHarmonicSound(audioContext, 963, ['sine'], [1.0, 0.6, 0.5, 0.4, 0.35, 0.3], oscillators, gains, masterGain);
+          // Add subtle vibrato for divine quality
+          const vibrato = audioContext.createOscillator();
+          const vibratoGain = audioContext.createGain();
+          vibrato.frequency.value = 6; // 6Hz vibrato
+          vibratoGain.gain.value = 10;
+          vibrato.connect(vibratoGain);
+          vibratoGain.connect(oscillators[0].frequency);
+          vibrato.start();
+          oscillators.push(vibrato);
+          break;
+      }
 
-      // Configure oscillator
-      osc.frequency.value = track.frequency;
-      osc.type = 'sine';
+      // Connect master gain to destination
+      masterGain.connect(audioContext.destination);
+      masterGain.gain.setValueAtTime(1, audioContext.currentTime);
 
-      // Configure gain with smooth envelope
-      gain.gain.setValueAtTime(0, audioContext.currentTime);
-      gain.gain.linearRampToValueAtTime(volume[0] * 0.1, audioContext.currentTime + 2);
-
-      // Start oscillator
-      osc.start();
-
-      setOscillator(osc);
-      setGainNode(gain);
+      // Store ALL oscillators, gains, and master gain for proper cleanup
+      setActiveOscillators(oscillators);
+      setActiveGains(gains);
+      setMasterGain(masterGain);
       setCurrentTrack(track);
       setIsPlaying(true);
       setCurrentTime(0);
@@ -209,17 +278,39 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
   };
 
   const stopAudio = () => {
-    if (oscillator) {
+    // Stop and disconnect ALL oscillators
+    activeOscillators.forEach(osc => {
       try {
-        oscillator.stop();
+        osc.stop();
+        osc.disconnect();
       } catch (e) {
-        // Oscillator already stopped
+        // Oscillator already stopped or disconnected
       }
-      setOscillator(null);
+    });
+    
+    // Disconnect all gain nodes
+    activeGains.forEach(gain => {
+      try {
+        gain.disconnect();
+      } catch (e) {
+        // Already disconnected
+      }
+    });
+    
+    // Clean up master gain
+    if (masterGain && audioContext) {
+      try {
+        masterGain.gain.cancelAndHoldAtTime(audioContext.currentTime);
+        masterGain.disconnect();
+      } catch (e) {
+        // Already disconnected
+      }
     }
-    if (gainNode) {
-      setGainNode(null);
-    }
+    
+    // Clear all references
+    setActiveOscillators([]);
+    setActiveGains([]);
+    setMasterGain(null);
     setIsPlaying(false);
     setCurrentTime(0);
   };
@@ -234,8 +325,19 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
 
   const updateVolume = (newVolume: number[]) => {
     setVolume(newVolume);
-    if (gainNode && audioContext) {
-      gainNode.gain.setValueAtTime(newVolume[0] * 0.1, audioContext.currentTime);
+    
+    // Update master gain if playing
+    if (masterGain && audioContext) {
+      masterGain.gain.setValueAtTime(newVolume[0], audioContext.currentTime);
+    }
+    
+    // Also update individual gain nodes for live adjustment
+    if (audioContext && activeGains.length > 0 && currentTrack) {
+      activeGains.forEach((gain, index) => {
+        const baseLevel = index === 0 ? 1.0 : 1.0 / (index + 1); // Decreasing harmonics
+        const harmVolume = baseLevel * newVolume[0] * 0.15;
+        gain.gain.setValueAtTime(harmVolume, audioContext.currentTime);
+      });
     }
   };
 
