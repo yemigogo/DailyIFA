@@ -614,15 +614,16 @@ export default function AudioManagement() {
                 <div className="mb-4">
                   <a 
                     href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
-                    download="ifa_divination_audio.mp3"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition-colors w-full justify-center"
-                    data-testid="button-download-audio"
+                    data-testid="button-open-audio"
                   >
-                    <Download className="w-5 h-5" />
-                    {ts("Download Audio (29 min, 41.8 MB)", "Ṣe Ìgbàsílẹ̀ Ohùn (29 ìṣẹ́jú, 41.8 MB)")}
+                    <Play className="w-5 h-5" />
+                    {ts("Open Audio in New Tab (29 min, 41.8 MB)", "Ṣí Ohùn Ní Táàbù Tuntun (29 ìṣẹ́jú, 41.8 MB)")}
                   </a>
                   <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-2 text-center">
-                    {ts("Download to play with your phone's media player", "Ṣe ìgbàsílẹ̀ láti ṣe pẹ̀lú ẹ̀rọ orin fóònù rẹ")}
+                    {ts("Opens in a new tab where you can play or download it", "Ṣí ní táàbù tuntun níbi tí o ti lè ṣe tàbí ṣe ìgbàsílẹ̀")}
                   </p>
                 </div>
                 
