@@ -30,6 +30,8 @@ export default function AudioManagement() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
+  const [divinationAudioLoading, setDivinationAudioLoading] = useState(true);
+  const [divinationAudioError, setDivinationAudioError] = useState(false);
   const [newAudio, setNewAudio] = useState({
     name: '',
     yorubaText: '',
@@ -601,11 +603,33 @@ export default function AudioManagement() {
               </p>
               
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
+                {divinationAudioLoading && (
+                  <div className="flex items-center gap-2 mb-3 p-2 bg-emerald-50 dark:bg-emerald-950 rounded border border-emerald-300 dark:border-emerald-700">
+                    <Loader2 className="h-4 w-4 animate-spin text-emerald-600" />
+                    <span className="text-xs text-emerald-700 dark:text-emerald-300">
+                      {ts("Loading 29-minute audio file (41.8 MB)...", "Ń ṣe ifáàyè fáìlì ohùn ìṣẹ́jú 29 (41.8 MB)...")}
+                    </span>
+                  </div>
+                )}
+                
+                {divinationAudioError && (
+                  <div className="mb-3 p-3 bg-red-50 dark:bg-red-950 rounded border border-red-300 dark:border-red-700">
+                    <p className="text-xs text-red-700 dark:text-red-300">
+                      ❌ {ts("Audio failed to load. Please refresh the page or try again later.", "Àṣìṣe ń ṣe fáìlì ohùn. Jọ̀wọ́ tun ojú-ìwé náà ṣe tàbí gbìyànjú lẹ́ẹ̀kan si.")}
+                    </p>
+                  </div>
+                )}
+                
                 <audio 
                   controls 
                   className="w-full mb-4"
                   preload="metadata"
                   controlsList="nodownload"
+                  onLoadStart={() => {
+                    console.log('📥 Ifá divination audio started loading');
+                    setDivinationAudioLoading(true);
+                    setDivinationAudioError(false);
+                  }}
                   onError={(e) => {
                     const audio = e.currentTarget as HTMLAudioElement;
                     console.error('❌ Ifá divination audio ERROR');
@@ -614,13 +638,20 @@ export default function AudioManagement() {
                     console.error('Network state:', audio.networkState);
                     console.error('Ready state:', audio.readyState);
                     console.error('Audio source:', '/static/audio/ifa_divination_priests_spirit_world.mp3');
+                    setDivinationAudioLoading(false);
+                    setDivinationAudioError(true);
                   }}
                   onLoadedMetadata={(e) => {
                     const audio = e.currentTarget as HTMLAudioElement;
                     console.log('✅ Ifá divination audio loaded successfully');
                     console.log('Duration:', audio.duration, 'seconds');
+                    setDivinationAudioLoading(false);
+                    setDivinationAudioError(false);
                   }}
-                  onCanPlay={() => console.log('🎵 Ifá divination audio can play')}
+                  onCanPlay={() => {
+                    console.log('🎵 Ifá divination audio can play');
+                    setDivinationAudioLoading(false);
+                  }}
                   onStalled={() => console.warn('⚠️ Ifá divination audio stalled')}
                   onSuspend={() => console.log('⏸️ Ifá divination audio suspended')}
                   data-testid="audio-ifa-divination"
