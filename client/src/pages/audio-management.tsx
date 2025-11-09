@@ -30,6 +30,7 @@ export default function AudioManagement() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
+  const [isDivinationPlaying, setIsDivinationPlaying] = useState(false);
   const [newAudio, setNewAudio] = useState({
     name: '',
     yorubaText: '',
@@ -38,6 +39,7 @@ export default function AudioManagement() {
   });
   
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
+  const divinationAudioRef = useRef<HTMLAudioElement>(null);
 
   // Fetch audio library from API
   const { data: audioFiles = [], isLoading } = useQuery({
@@ -611,11 +613,23 @@ export default function AudioManagement() {
                 </div>
                 
                 <audio 
+                  ref={divinationAudioRef}
                   controls 
-                  preload="auto"
+                  preload="metadata"
                   src="/static/audio/ifa_divination_priests_spirit_world.mp3"
-                  className="w-full h-10"
+                  className="w-full rounded-lg"
                   data-testid="audio-ifa-divination"
+                  onPlay={() => setIsDivinationPlaying(true)}
+                  onPause={() => setIsDivinationPlaying(false)}
+                  onEnded={() => setIsDivinationPlaying(false)}
+                  onError={(e) => {
+                    console.error('Divination audio error:', e);
+                    toast({
+                      title: "Audio Error",
+                      description: "Could not load the divination audio. Please try again.",
+                      variant: "destructive"
+                    });
+                  }}
                 >
                   {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
                 </audio>
