@@ -607,46 +607,21 @@ export default function AudioManagement() {
                   <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-1">
                     📱 {ts("Audio File: 29 minutes, 41.8 MB", "Fáìlì Ohùn: 29 ìṣẹ́jú, 41.8 MB")}
                   </p>
-                  <p className="text-xs text-blue-700 dark:text-blue-300 mb-2">
-                    {ts("Click the play button below to start listening", "Tẹ bọ́tínì ìṣiṣẹ́ ní ìsàlẹ̀ láti bẹ̀rẹ̀ ètí sílẹ̀")}
+                  <p className="text-xs text-blue-700 dark:text-blue-300">
+                    {ts("Large file: Click play to start streaming (audio will load as you listen)", "Fáìlì ńlá: Tẹ ìṣiṣẹ́ láti bẹ̀rẹ̀ (ohùn yóò ṣíṣẹ́ bí o ṣe ń gbọ́)")}
                   </p>
-                  <a 
-                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
-                    target="_blank"
-                    className="text-xs text-emerald-600 dark:text-emerald-400 underline hover:text-emerald-700"
-                    data-testid="link-test-audio-direct"
-                  >
-                    🔗 {ts("Test: Open audio file directly", "Ìdánwò: Ṣí fáìlì ohùn tààrà")}
-                  </a>
                 </div>
                 
                 <audio 
                   ref={divinationAudioRef}
                   controls 
-                  preload="metadata"
+                  preload="none"
                   src="/static/audio/ifa_divination_priests_spirit_world.mp3"
                   className="w-full rounded-lg"
                   data-testid="audio-ifa-divination"
                   onPlay={() => setIsDivinationPlaying(true)}
                   onPause={() => setIsDivinationPlaying(false)}
                   onEnded={() => setIsDivinationPlaying(false)}
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLAudioElement;
-                    const errorCode = target.error?.code;
-                    const errorMessage = target.error?.message;
-                    console.error('Divination audio error:', {
-                      code: errorCode,
-                      message: errorMessage,
-                      networkState: target.networkState,
-                      readyState: target.readyState,
-                      src: target.src
-                    });
-                    toast({
-                      title: "Audio Error",
-                      description: `Error code: ${errorCode}. ${errorMessage || 'Could not load audio.'}`,
-                      variant: "destructive"
-                    });
-                  }}
                 >
                   {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
                 </audio>
