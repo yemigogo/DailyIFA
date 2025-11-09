@@ -607,9 +607,17 @@ export default function AudioManagement() {
                   <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-1">
                     📱 {ts("Audio File: 29 minutes, 41.8 MB", "Fáìlì Ohùn: 29 ìṣẹ́jú, 41.8 MB")}
                   </p>
-                  <p className="text-xs text-blue-700 dark:text-blue-300">
+                  <p className="text-xs text-blue-700 dark:text-blue-300 mb-2">
                     {ts("Click the play button below to start listening", "Tẹ bọ́tínì ìṣiṣẹ́ ní ìsàlẹ̀ láti bẹ̀rẹ̀ ètí sílẹ̀")}
                   </p>
+                  <a 
+                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
+                    target="_blank"
+                    className="text-xs text-emerald-600 dark:text-emerald-400 underline hover:text-emerald-700"
+                    data-testid="link-test-audio-direct"
+                  >
+                    🔗 {ts("Test: Open audio file directly", "Ìdánwò: Ṣí fáìlì ohùn tààrà")}
+                  </a>
                 </div>
                 
                 <audio 
