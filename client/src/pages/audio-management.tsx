@@ -612,13 +612,12 @@ export default function AudioManagement() {
                 
                 <audio 
                   controls 
-                  className="w-full mb-4"
-                  preload="metadata"
+                  preload="auto"
+                  src="/static/audio/ifa_divination_priests_spirit_world.mp3"
+                  className="w-full h-10"
                   data-testid="audio-ifa-divination"
-                  style={{ minHeight: '54px' }}
                 >
-                  <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
-                  {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
+                  {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
                 </audio>
                 
                 <div className="flex items-start gap-3">
