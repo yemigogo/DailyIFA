@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Play, Pause, CheckCircle, Volume2, Mic, Loader2, BookOpen } from "lucide-react";
+import { Upload, Play, Pause, CheckCircle, Volume2, Mic, Loader2, BookOpen, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ResponsiveCard from "@/components/responsive-card";
 import { useToast } from "@/hooks/use-toast";
@@ -604,12 +604,27 @@ export default function AudioManagement() {
                 <audio 
                   controls 
                   className="w-full mb-4"
-                  preload="metadata"
+                  preload="none"
                   data-testid="audio-ifa-divination"
                 >
                   <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
                   {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
                 </audio>
+
+                <div className="mb-4">
+                  <a 
+                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
+                    download="ifa_divination_audio.mp3"
+                    className="inline-flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition-colors w-full justify-center"
+                    data-testid="button-download-audio"
+                  >
+                    <Download className="w-5 h-5" />
+                    {ts("Download Audio (29 min, 41.8 MB)", "Ṣe Ìgbàsílẹ̀ Ohùn (29 ìṣẹ́jú, 41.8 MB)")}
+                  </a>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-2 text-center">
+                    {ts("Download to play with your phone's media player", "Ṣe ìgbàsílẹ̀ láti ṣe pẹ̀lú ẹ̀rọ orin fóònù rẹ")}
+                  </p>
+                </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center flex-shrink-0">
