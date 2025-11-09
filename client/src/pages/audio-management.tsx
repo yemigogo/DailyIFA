@@ -30,7 +30,7 @@ export default function AudioManagement() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
-  const [divinationAudioLoading, setDivinationAudioLoading] = useState(true);
+  const [divinationAudioLoading, setDivinationAudioLoading] = useState(false);
   const [divinationAudioError, setDivinationAudioError] = useState(false);
   const [newAudio, setNewAudio] = useState({
     name: '',
