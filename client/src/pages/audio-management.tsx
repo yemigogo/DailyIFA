@@ -601,31 +601,25 @@ export default function AudioManagement() {
               </p>
               
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
+                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                  <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-1">
+                    📱 {ts("Audio File: 29 minutes, 41.8 MB", "Fáìlì Ohùn: 29 ìṣẹ́jú, 41.8 MB")}
+                  </p>
+                  <p className="text-xs text-blue-700 dark:text-blue-300">
+                    {ts("Click the play button below to start listening", "Tẹ bọ́tínì ìṣiṣẹ́ ní ìsàlẹ̀ láti bẹ̀rẹ̀ ètí sílẹ̀")}
+                  </p>
+                </div>
+                
                 <audio 
                   controls 
                   className="w-full mb-4"
-                  preload="none"
+                  preload="metadata"
                   data-testid="audio-ifa-divination"
+                  style={{ minHeight: '54px' }}
                 >
                   <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
                   {ts("Your browser does not support the audio element.", "Awáriiwò rẹ kò ṣàtìlẹ́yìn fún ohun ìgbọ́hùn yìí.")}
                 </audio>
-
-                <div className="mb-4">
-                  <a 
-                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition-colors w-full justify-center"
-                    data-testid="button-open-audio"
-                  >
-                    <Play className="w-5 h-5" />
-                    {ts("Open Audio in New Tab (29 min, 41.8 MB)", "Ṣí Ohùn Ní Táàbù Tuntun (29 ìṣẹ́jú, 41.8 MB)")}
-                  </a>
-                  <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-2 text-center">
-                    {ts("Opens in a new tab where you can play or download it", "Ṣí ní táàbù tuntun níbi tí o ti lè ṣe tàbí ṣe ìgbàsílẹ̀")}
-                  </p>
-                </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center flex-shrink-0">
