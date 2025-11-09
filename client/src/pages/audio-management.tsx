@@ -30,8 +30,6 @@ export default function AudioManagement() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
-  const [divinationAudioLoading, setDivinationAudioLoading] = useState(false);
-  const [divinationAudioError, setDivinationAudioError] = useState(false);
   const [newAudio, setNewAudio] = useState({
     name: '',
     yorubaText: '',
@@ -603,99 +601,10 @@ export default function AudioManagement() {
               </p>
               
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
-                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950 rounded border border-blue-300 dark:border-blue-700">
-                  <p className="text-xs text-blue-700 dark:text-blue-300 mb-2 font-semibold">
-                    🎧 {ts("Direct Audio Access:", "Ìwọlé Ohùn Tààrà:")}
-                  </p>
-                  <a 
-                    href="/static/audio/ifa_divination_priests_spirit_world.mp3" 
-                    target="_blank"
-                    className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 underline hover:text-blue-800 font-medium"
-                    data-testid="link-direct-audio"
-                  >
-                    🔗 {ts("Open 29-minute audio file directly (41.8 MB)", "Ṣí fáìlì ohùn ìṣẹ́jú 29 tààrà (41.8 MB)")}
-                  </a>
-                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
-                    {ts("(Click to play in new tab)", "(Tẹ́ láti ṣe ní táàbù tuntun)")}
-                  </p>
-                </div>
-                
-                {divinationAudioLoading && (
-                  <div className="flex items-center gap-2 mb-3 p-2 bg-emerald-50 dark:bg-emerald-950 rounded border border-emerald-300 dark:border-emerald-700">
-                    <Loader2 className="h-4 w-4 animate-spin text-emerald-600" />
-                    <span className="text-xs text-emerald-700 dark:text-emerald-300">
-                      {ts("Loading audio player...", "Ń ṣe ifáàyè ẹ̀rọ orin...")}
-                    </span>
-                  </div>
-                )}
-                
-                {divinationAudioError && (
-                  <div className="mb-3 p-2 bg-amber-50 dark:bg-amber-950 rounded border border-amber-300 dark:border-amber-700">
-                    <p className="text-xs text-amber-700 dark:text-amber-300">
-                      ⚠️ {ts("Audio player not supported on this browser. Please use the direct link above.", "Ẹ̀rọ orin kò ṣiṣẹ́ lórí awáriiwò yìí. Jọ̀wọ́ lo ọ̀nà tààrà lókè.")}
-                    </p>
-                  </div>
-                )}
-                
                 <audio 
                   controls 
                   className="w-full mb-4"
-                  preload="auto"
-                  controlsList="nodownload"
-                  crossOrigin="anonymous"
-                  onLoadStart={() => {
-                    console.log('📥 Ifá divination audio started loading');
-                    console.log('Current URL:', window.location.href);
-                    console.log('Audio src:', '/static/audio/ifa_divination_priests_spirit_world.mp3');
-                    setDivinationAudioLoading(true);
-                    setDivinationAudioError(false);
-                  }}
-                  onError={(e) => {
-                    const audio = e.currentTarget as HTMLAudioElement;
-                    console.error('❌ Ifá divination audio ERROR');
-                    console.error('Error code:', audio.error?.code);
-                    console.error('Error message:', audio.error?.message);
-                    console.error('Error MEDIA_ERR codes:');
-                    console.error('  1 = MEDIA_ERR_ABORTED (user aborted)');
-                    console.error('  2 = MEDIA_ERR_NETWORK (network error)');
-                    console.error('  3 = MEDIA_ERR_DECODE (decode error)');
-                    console.error('  4 = MEDIA_ERR_SRC_NOT_SUPPORTED (format not supported)');
-                    console.error('Network state:', audio.networkState, '(0=EMPTY, 1=IDLE, 2=LOADING, 3=NO_SOURCE)');
-                    console.error('Ready state:', audio.readyState, '(0=NOTHING, 1=METADATA, 2=CURRENT_DATA, 3=FUTURE_DATA, 4=ENOUGH_DATA)');
-                    console.error('Audio source:', audio.src);
-                    console.error('Current time:', audio.currentTime);
-                    setDivinationAudioLoading(false);
-                    setDivinationAudioError(true);
-                  }}
-                  onLoadedMetadata={(e) => {
-                    const audio = e.currentTarget as HTMLAudioElement;
-                    console.log('✅ Ifá divination audio metadata loaded successfully');
-                    console.log('Duration:', audio.duration, 'seconds (', Math.floor(audio.duration / 60), 'min', Math.floor(audio.duration % 60), 'sec)');
-                    console.log('Ready state:', audio.readyState);
-                    setDivinationAudioLoading(false);
-                    setDivinationAudioError(false);
-                  }}
-                  onCanPlay={() => {
-                    console.log('🎵 Ifá divination audio can play now');
-                    setDivinationAudioLoading(false);
-                  }}
-                  onCanPlayThrough={() => {
-                    console.log('✅ Ifá divination audio can play through without buffering');
-                  }}
-                  onProgress={(e) => {
-                    const audio = e.currentTarget as HTMLAudioElement;
-                    if (audio.buffered.length > 0) {
-                      const bufferedEnd = audio.buffered.end(audio.buffered.length - 1);
-                      const duration = audio.duration;
-                      if (duration > 0) {
-                        const percentBuffered = (bufferedEnd / duration) * 100;
-                        console.log(`📊 Buffered: ${percentBuffered.toFixed(1)}% (${Math.floor(bufferedEnd)}s of ${Math.floor(duration)}s)`);
-                      }
-                    }
-                  }}
-                  onStalled={() => console.warn('⚠️ Ifá divination audio stalled - waiting for data')}
-                  onSuspend={() => console.log('⏸️ Ifá divination audio suspended - browser stopped downloading')}
-                  onWaiting={() => console.log('⏳ Ifá divination audio waiting for data')}
+                  preload="metadata"
                   data-testid="audio-ifa-divination"
                 >
                   <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
