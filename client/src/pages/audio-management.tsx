@@ -631,10 +631,19 @@ export default function AudioManagement() {
                   onPause={() => setIsDivinationPlaying(false)}
                   onEnded={() => setIsDivinationPlaying(false)}
                   onError={(e) => {
-                    console.error('Divination audio error:', e);
+                    const target = e.currentTarget as HTMLAudioElement;
+                    const errorCode = target.error?.code;
+                    const errorMessage = target.error?.message;
+                    console.error('Divination audio error:', {
+                      code: errorCode,
+                      message: errorMessage,
+                      networkState: target.networkState,
+                      readyState: target.readyState,
+                      src: target.src
+                    });
                     toast({
                       title: "Audio Error",
-                      description: "Could not load the divination audio. Please try again.",
+                      description: `Error code: ${errorCode}. ${errorMessage || 'Could not load audio.'}`,
                       variant: "destructive"
                     });
                   }}
