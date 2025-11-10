@@ -603,13 +603,22 @@ export default function AudioManagement() {
               </p>
               
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
-                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                  <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-1">
+                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg space-y-2">
+                  <p className="text-sm font-medium text-blue-900 dark:text-blue-100">
                     📱 {ts("Audio File: 29 minutes, 41.8 MB", "Fáìlì Ohùn: 29 ìṣẹ́jú, 41.8 MB")}
                   </p>
                   <p className="text-xs text-blue-700 dark:text-blue-300">
-                    {ts("Large file: Click play to start streaming (audio will load as you listen)", "Fáìlì ńlá: Tẹ ìṣiṣẹ́ láti bẹ̀rẹ̀ (ohùn yóò ṣíṣẹ́ bí o ṣe ń gbọ́)")}
+                    {ts("Large file - Your browser may block inline playback. Use the button below to open in media player.", "Fáìlì ńlá - Ẹ̀rọ rẹ lè dínà ìṣiṣẹ́ nínú ojú-ìwé. Lo bọ́tínì ní ìsàlẹ̀ láti ṣí nínú olùṣiṣẹ́ ohùn.")}
                   </p>
+                  <a 
+                    href="/static/audio/ifa_divination_priests_spirit_world.mp3"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors"
+                    data-testid="link-open-divination-audio"
+                    download="ifa_divination_priests_spirit_world.mp3"
+                  >
+                    <Volume2 className="w-4 h-4" />
+                    {ts("Open Audio in Player", "Ṣí Ohùn Nínú Olùṣiṣẹ́")}
+                  </a>
                 </div>
                 
                 <audio 
