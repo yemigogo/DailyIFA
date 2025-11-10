@@ -40,6 +40,14 @@ export default function AudioManagement() {
   
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement }>({});
   const divinationAudioRef = useRef<HTMLAudioElement>(null);
+  
+  // Force load the audio when component mounts
+  useEffect(() => {
+    if (divinationAudioRef.current) {
+      // Set the source and force load
+      divinationAudioRef.current.load();
+    }
+  }, []);
 
   // Fetch audio library from API
   const { data: audioFiles = [], isLoading } = useQuery({
@@ -623,14 +631,21 @@ export default function AudioManagement() {
                 <audio 
                   ref={divinationAudioRef}
                   controls 
-                  preload="none"
-                  src="/static/audio/ifa_divination_priests_spirit_world.mp3"
+                  controlsList="nodownload"
                   className="w-full rounded-lg"
                   data-testid="audio-ifa-divination"
                   onPlay={() => setIsDivinationPlaying(true)}
                   onPause={() => setIsDivinationPlaying(false)}
                   onEnded={() => setIsDivinationPlaying(false)}
+                  onLoadStart={() => console.log('Audio load started')}
+                  onLoadedMetadata={() => console.log('Audio metadata loaded')}
+                  onCanPlay={() => console.log('Audio can play')}
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLAudioElement;
+                    console.error('Audio error:', target.error);
+                  }}
                 >
+                  <source src="/static/audio/ifa_divination_priests_spirit_world.mp3" type="audio/mpeg" />
                   {ts("Your browser does not support audio playback", "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn")}
                 </audio>
                 
