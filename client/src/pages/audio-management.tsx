@@ -614,10 +614,9 @@ export default function AudioManagement() {
                     href="/static/audio/ifa_divination_priests_spirit_world.mp3"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors"
                     data-testid="link-open-divination-audio"
-                    download="ifa_divination_priests_spirit_world.mp3"
                   >
                     <Volume2 className="w-4 h-4" />
-                    {ts("Open Audio in Player", "Ṣí Ohùn Nínú Olùṣiṣẹ́")}
+                    {ts("Play Audio", "Ṣiṣẹ́ Ohùn")}
                   </a>
                 </div>
                 
