@@ -744,7 +744,7 @@ export default function AudioManagement() {
               </p>
 
               <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-lg border border-emerald-200 dark:border-emerald-700">
-                <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg space-y-2">
+                <div className="mb-3 space-y-3">
                   <p className="text-sm font-medium text-blue-900 dark:text-blue-100">
                     📱{" "}
                     {ts(
@@ -752,48 +752,24 @@ export default function AudioManagement() {
                       "Fáìlì Ohùn: 29 ìṣẹ́jú, 41.8 MB",
                     )}
                   </p>
-                  <p className="text-xs text-blue-700 dark:text-blue-300">
+
+                  <iframe
+                    src="https://drive.google.com/file/d/1r_7Amx15rvsYGuUcogQTc6Az5GgirRiU/preview"
+                    width="100%"
+                    height="80"
+                    allow="autoplay"
+                    className="rounded-lg border-2 border-emerald-200 dark:border-emerald-700"
+                    title="Ifá Divination Audio"
+                    data-testid="iframe-divination-audio"
+                  ></iframe>
+
+                  <p className="text-xs text-emerald-700 dark:text-emerald-300">
                     {ts(
-                      "Large file - Your browser may block inline playback. Use the button below to open in media player.",
-                      "Fáìlì ńlá - Ẹ̀rọ rẹ lè dínà ìṣiṣẹ́ nínú ojú-ìwé. Lo bọ́tínì ní ìsàlẹ̀ láti ṣí nínú olùṣiṣẹ́ ohùn.",
+                      "Click play button above to listen. Audio streams directly from Google Drive.",
+                      "Tẹ bọ́tínì ṣiṣẹ́ lókè láti gbọ́. Ohùn ń ṣàn láti Google Drive.",
                     )}
                   </p>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1r_7Amx15rvsYGuUcogQTc6Az5GgirRiU"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors"
-                    data-testid="link-open-divination-audio"
-                  >
-                    <Volume2 className="w-4 h-4" />
-                    {ts("Play Audio", "Ṣiṣẹ́ Ohùn")}
-                  </a>
                 </div>
-
-                <audio
-                  ref={divinationAudioRef}
-                  controls
-                  controlsList="nodownload"
-                  className="w-full rounded-lg"
-                  data-testid="audio-ifa-divination"
-                  onPlay={() => setIsDivinationPlaying(true)}
-                  onPause={() => setIsDivinationPlaying(false)}
-                  onEnded={() => setIsDivinationPlaying(false)}
-                  onLoadStart={() => console.log("Audio load started")}
-                  onLoadedMetadata={() => console.log("Audio metadata loaded")}
-                  onCanPlay={() => console.log("Audio can play")}
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLAudioElement;
-                    console.error("Audio error:", target.error);
-                  }}
-                >
-                  <source
-                    src="https://drive.google.com/uc?export=download&id=1r_7Amx15rvsYGuUcogQTc6Az5GgirRiU"
-                    type="audio/mpeg"
-                  />
-                  {ts(
-                    "Your browser does not support audio playback",
-                    "Ẹ̀rọ rẹ kò ṣe àtìlẹ́yìn fún ṣíṣí ohùn",
-                  )}
-                </audio>
 
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center flex-shrink-0">
