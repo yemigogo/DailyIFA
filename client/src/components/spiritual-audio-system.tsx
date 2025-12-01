@@ -476,7 +476,7 @@ export const SpiritualAudioSystem: React.FC<SpiritualAudioSystemProps> = ({
 
                 {/* Controls */}
                 <div className="flex items-center justify-center gap-4">
-                  <Button onClick={togglePlayPause} size="lg" className="rounded-full">
+                 <Button onClick={togglePlayPause} size="lg" className="roun ded-full">
                     {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
                   </Button>
                   <Button onClick={stopAudio} variant="outline" size="lg" className="rounded-full">
