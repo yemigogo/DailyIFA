@@ -31,12 +31,12 @@ export const odus = pgTable("odus", {
       eseIfaYoruba: text("ese_ifa_yoruba").notNull().default(""),
     age: integer("age"),
     year: integer("year"),
-    youthAdvice: text("youth_advice"), // Keep this line
- }); // This bracket on Line 35 should be the ONLY one closing the table
+    youthAdvice: text("youth_advice"),
+});
 
-
+export const dailyReadings = pgTable("daily_readings", {
   id: serial("id").primaryKey(),
-  date: text("date").notNull().unique(), // YYYY-MM-DD format
+  date: text("date").notNull().unique(),
   oduId: integer("odu_id").notNull(),
   saved: boolean("saved").default(false),
 });
