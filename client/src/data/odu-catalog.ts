@@ -16,8 +16,8 @@ export interface OduCatalogEntry {
 }
 
 // Major Odu names (1-16)
-const majorOduNames: Record<number, { name: string; nameYoruba: string }> = {
-17  1: { 
+const majorOduNames: Record<number, { name: string; nameYoruba: string; description?: string; youthAdvice?: string; adultAdvice?: string; elderAdvice?: string }> = {
+  1: { 
       name: "Eji Ogbe", 
       nameYoruba: "Èjì Ogbè",
       description: "The father of all Odus, representing light and new beginnings.",
@@ -63,7 +63,6 @@ const majorOduNames: Record<number, { name: string; nameYoruba: string }> = {
       elderAdvice: "Focus on the basics of your health. Returning to simple, traditional ways of living will bring you the most peace and strength."
     },
   7: { 
-7: { 
       name: "Obara Meji", 
       nameYoruba: "Ọ̀bàrà Méjì",
       youthAdvice: "Avoid bragging about what you have. True strength is quiet. Let your good grades and kind actions speak for you.",
@@ -137,6 +136,7 @@ const majorOduNames: Record<number, { name: string; nameYoruba: string }> = {
       adultAdvice: "This Odu is the source of all wisdom. In your trading, look for the 'hidden' opportunities others miss. Success today comes from patience and following the quiet signals in the data.",
       elderAdvice: "You are a vessel of ancient light. Your presence alone brings blessings to your family. Continue to lead with purity, silence, and grace."
     },
+};
 
 // Generate complete 256 Odu catalog
 export const generateOduCatalog = (): OduCatalogEntry[] => {
