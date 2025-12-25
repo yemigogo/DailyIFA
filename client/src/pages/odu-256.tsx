@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,13 +14,21 @@ import {
 } from "@/data/odu-catalog";
 
 export default function Odu256Page() {
-  const [, setLocation] = useLocation();
+  const { user: profile } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"all" | "major" | "minor">("all");
   const cardsPerPage = 16;
+// This logic determines the life stage for a proper reading
+const getLifeStage = (age: number) => {
+  if (age <= 18) return "Youth"; // Wisdom for Isaiah
+  if (age > 18 && age < 60) return "Adult";
+  return "Elder";
+};
 
-  // Generate complete catalog
+// This uses the Year you just added to the profile
+const currentReadingYear = profile.year || "2025";
+  const lifeStage = getLifeStage(profile.age);
   const fullCatalog = useMemo(() => generateOduCatalog(), []);
 
   // Filter catalog based on search and category
@@ -177,6 +186,13 @@ export default function Odu256Page() {
                   <CardContent className="p-3">
                     <p className="font-semibold text-sm text-center truncate">{odu.name}</p>
                     <p className="text-xs text-gray-600 text-center truncate">{odu.nameYoruba || odu.subtitle}</p>
+         <div className="mt-2 pt-2 border-t border-amber-100/50">
+  <p className="text-xs text-amber-900/80 italic line-clamp-3">
+    {lifeStage === "Youth" ? (odu.youthAdvice || "Guidance for your journey...") : 
+     lifeStage === "Adult" ? (odu.adultAdvice || "Wisdom for your path...") : 
+     (odu.elderAdvice || odu.description || "Ancient wisdom...")}
+  </p>
+</div>     
                   </CardContent>
                 </Card>
               ))}

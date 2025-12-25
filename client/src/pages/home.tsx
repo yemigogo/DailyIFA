@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/use-auth";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +18,16 @@ import DemoInteractiveText from "@/components/demo-interactive-text";
 
 
 export default function Home() {
+const { user: profile } = useAuth();
+
+  const getLifeStage = (age: number) => {
+    if (!age) return "Adult"; // Default
+    if (age <= 18) return "Youth"; // Wisdom for Isaiah
+    if (age > 18 && age < 60) return "Adult";
+    return "Elder";
+  };
+
+  const lifeStage = getLifeStage(profile?.age);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
@@ -223,13 +234,11 @@ export default function Home() {
                     {reading?.odu?.name || `Odu ${currentOduCard}`}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    {reading?.odu?.meaning || t(
-                      "Today's sacred Odu card representing divine wisdom and spiritual guidance from traditional Yoruba practice.",
-                      "Káàdì Odù mímọ́ onì tí ó dúró fún ọgbọ́n òrìṣà àti ìtọ́sọ́nà ẹ̀mí láti àṣà Yorùbá àtijọ́."
-                    )}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-spiritual-blue/10 text-spiritual-blue px-3 py-1 rounded-full text-xs font-medium">
+ {lifeStage === "Youth" ? (reading?.odu?.youthAdvice || reading?.odu?.description) : 
+         lifeStage === "Adult" ? (reading?.odu?.adultAdvice || reading?.odu?.description) : 
+         (reading?.odu?.elderAdvice || reading?.odu?.description || t("Today's sacred Odu wisdom..."))}
+      </p>
+ 
                       {t("Authentic Cards", "Káàdì Tótọ́")}
                     </span>
                     <span className="bg-sacred-gold/10 text-sacred-gold px-3 py-1 rounded-full text-xs font-medium">

@@ -28,10 +28,13 @@ export const odus = pgTable("odus", {
   prayer: text("prayer").notNull().default(""),
   prayerYoruba: text("prayer_yoruba").notNull().default(""),
   eseIfa: text("ese_ifa").notNull().default(""),
-  eseIfaYoruba: text("ese_ifa_yoruba").notNull().default(""),
-});
+      eseIfaYoruba: text("ese_ifa_yoruba").notNull().default(""),
+    age: integer("age"),
+    year: integer("year"),
+    youthAdvice: text("youth_advice"), // Keep this line
+ }); // This bracket on Line 35 should be the ONLY one closing the table
 
-export const dailyReadings = pgTable("daily_readings", {
+
   id: serial("id").primaryKey(),
   date: text("date").notNull().unique(), // YYYY-MM-DD format
   oduId: integer("odu_id").notNull(),

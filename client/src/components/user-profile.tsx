@@ -71,12 +71,15 @@ const themes = [
 
 export default function UserProfile({ onThemeChange, currentTheme = "light" }: UserProfileProps) {
   const [profile, setProfile] = useState({
-    name: "",
-    orishaAlignment: "",
-    notifications: true,
-    dailyReminders: true,
-    theme: currentTheme
-  });
+  name: "",
+  orishaAlignment: "",
+  notifications: true,
+  dailyReminders: true,
+  theme: currentTheme,
+  age: "", // Add this line
+  year: "2025" // Add this line
+});
+  
   const { ts } = useLanguage();
 
   const getOrishaColor = (orisha: any) => {
@@ -143,7 +146,38 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
               </div>
             </CardContent>
           </Card>
-
+<Card className="mt-6">
+  <CardHeader>
+    <CardTitle>Personalize Your Daily Reading</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-4">
+    <div className="space-y-2">
+      <Label>Your Age</Label>
+      <Input 
+        type="number" 
+        placeholder="Enter age (e.g. 12 for Isaiah)..." 
+        value={profile.age}
+        onChange={(e) => setProfile({...profile, age: e.target.value})}
+      />
+    </div>
+    <div className="space-y-2">
+      <Label>Reading Year</Label>
+      <Select 
+        value={profile.year} 
+        onValueChange={(value) => setProfile({...profile, year: value})}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder="Select Year" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="2025">2025</SelectItem>
+          <SelectItem value="2026">2026</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </CardContent>
+</Card>
+          
           {/* Manual Orisha Selection */}
           <Card className="border-amber-200 dark:border-amber-800">
             <CardHeader>
