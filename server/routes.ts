@@ -874,12 +874,12 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
       const combinedGuidance = {
         question: question || "General spiritual guidance",
         selectedOdus: selectedOdus.map(odu => ({
-          name: odu.name,
-          nameYoruba: odu.nameYoruba,
-          guidance: odu.guidance,
-          guidanceYoruba: odu.guidanceYoruba
-        })),
-        overallGuidance: selectedOdus.map(odu => odu.guidance).join(' '),
+          877    name: odu.name,
+878    nameYoruba: odu.nameYoruba,
+879    // Update these to pull the age-appropriate advice based on user profile
+880    youthAdvice: odu.youthAdvice || odu.description,
+881    adultAdvice: odu.adultAdvice || odu.description,
+882    elderAdvice: odu.elderAdvice || odu.description,
         overallGuidanceYoruba: selectedOdus.map(odu => odu.guidanceYoruba).join(' '),
         spiritualFoci: [...new Set(selectedOdus.flatMap(odu => odu.spiritualFocus))],
         combinedProverb: selectedOdus.map(odu => odu.proverb).join(' • ')
