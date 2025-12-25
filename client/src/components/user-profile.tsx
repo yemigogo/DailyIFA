@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Crown, Palette, Bell, Moon, Sun, Star, Sparkles } from "lucide-react";
+import { User, Crown, Palette, Bell, Moon, Sun, Star } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -76,8 +76,9 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
   notifications: true,
   dailyReminders: true,
   theme: currentTheme,
-  age: "", // Add this line
-  year: "2025" // Add this line
+  age: "",
+  year: "2025",
+  gender: ""
 });
   
   const { ts } = useLanguage();
@@ -101,12 +102,8 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
 
   return (
     <div className="space-y-6">
-      <Tabs defaultValue="enhanced" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="enhanced" className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4" />
-            {ts("Enhanced", "Àfihàn")}
-          </TabsTrigger>
+      <Tabs defaultValue="basic" className="w-full">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="basic">
             {ts("Basic Info", "Àlàyé Ìpìlẹ̀")}
           </TabsTrigger>
@@ -117,13 +114,6 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
             {ts("Preferences", "Àwọn Ìfẹ́")}
           </TabsTrigger>
         </TabsList>
-
-        <TabsContent value="enhanced" className="mt-6">
-          {/* <EnhancedUserProfile onThemeChange={onThemeChange} currentTheme={currentTheme} /> */}
-          <div className="text-center py-8">
-            <p className="text-amber-700 dark:text-amber-300">Enhanced features temporarily disabled</p>
-          </div>
-        </TabsContent>
 
         <TabsContent value="basic" className="space-y-6">
           {/* Profile Basic Info */}
@@ -152,22 +142,39 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
   </CardHeader>
   <CardContent className="space-y-4">
     <div className="space-y-2">
-      <Label>Your Age</Label>
+      <Label>{ts("Your Age", "Ọjọ́ Orí Rẹ")}</Label>
       <Input 
         type="number" 
-        placeholder="Enter age (e.g. 12 for Isaiah)..." 
+        placeholder={ts("Enter your age...", "Tẹ ọjọ́ orí rẹ...")}
         value={profile.age}
         onChange={(e) => setProfile({...profile, age: e.target.value})}
+        data-testid="input-age"
       />
     </div>
     <div className="space-y-2">
-      <Label>Reading Year</Label>
+      <Label>{ts("Gender", "Akọ tàbí Abo")}</Label>
+      <Select 
+        value={profile.gender} 
+        onValueChange={(value) => setProfile({...profile, gender: value})}
+      >
+        <SelectTrigger data-testid="select-gender">
+          <SelectValue placeholder={ts("Select Gender", "Yan Akọ tàbí Abo")} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="male">{ts("Male", "Ọkùnrin")}</SelectItem>
+          <SelectItem value="female">{ts("Female", "Obìnrin")}</SelectItem>
+          <SelectItem value="other">{ts("Other", "Mìíràn")}</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+    <div className="space-y-2">
+      <Label>{ts("Reading Year", "Ọdún Kíkà")}</Label>
       <Select 
         value={profile.year} 
         onValueChange={(value) => setProfile({...profile, year: value})}
       >
-        <SelectTrigger>
-          <SelectValue placeholder="Select Year" />
+        <SelectTrigger data-testid="select-year">
+          <SelectValue placeholder={ts("Select Year", "Yan Ọdún")} />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="2025">2025</SelectItem>

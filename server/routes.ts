@@ -873,16 +873,16 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
       // Combine guidance from multiple Odu
       const combinedGuidance = {
         question: question || "General spiritual guidance",
-        selectedOdus: selectedOdus.map(odu => ({
-          877    name: odu.name,
-878    nameYoruba: odu.nameYoruba,
-879    // Update these to pull the age-appropriate advice based on user profile
-880    youthAdvice: odu.youthAdvice || odu.description,
-881    adultAdvice: odu.adultAdvice || odu.description,
-882    elderAdvice: odu.elderAdvice || odu.description,
-        overallGuidanceYoruba: selectedOdus.map(odu => odu.guidanceYoruba).join(' '),
-        spiritualFoci: [...new Set(selectedOdus.flatMap(odu => odu.spiritualFocus))],
-        combinedProverb: selectedOdus.map(odu => odu.proverb).join(' • ')
+        selectedOdus: selectedOdus.map((odu: any) => ({
+          name: odu.name,
+          nameYoruba: odu.nameYoruba,
+          youthAdvice: odu.youthAdvice || odu.description,
+          adultAdvice: odu.adultAdvice || odu.description,
+          elderAdvice: odu.elderAdvice || odu.description,
+        })),
+        overallGuidanceYoruba: selectedOdus.map((odu: any) => odu.guidanceYoruba).join(' '),
+        spiritualFoci: [...new Set(selectedOdus.flatMap((odu: any) => odu.spiritualFocus))] as string[],
+        combinedProverb: selectedOdus.map((odu: any) => odu.proverb).join(' • ')
       };
       
       res.json(combinedGuidance);
