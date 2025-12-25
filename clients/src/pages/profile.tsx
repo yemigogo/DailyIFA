@@ -1,3 +1,4 @@
+import React from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -17,19 +18,19 @@ export default function ProfilePage() {
       year: user?.year || 2025
     }
   });
-
-  const onSubmit = async (data: any) => {
+    const onSubmit = async (data: any) => {
     try {
-      await apiRequest("PATCH", "/api/user", data);
+      // This sends Isaiah's age (12) and the year (2025) to the server
+  await apiRequest("PATCH", "/api/user", data);
       queryClient.invalidateQueries({ queryKey: ["/api/user"] });
       toast({ 
         title: "Profile Updated", 
-        description: "Your age and reading year have been saved." 
+        description: "Your age and year have been saved." 
       });
     } catch (error) {
       toast({ 
-        title: "Update Failed", 
-        description: "Could not save your profile changes.", 
+        title: "Error", 
+        description: "Could not save your changes.", 
         variant: "destructive" 
       });
     }
