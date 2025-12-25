@@ -234,11 +234,12 @@ const { user: profile } = useAuth();
                     {reading?.odu?.name || `Odu ${currentOduCard}`}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
- {lifeStage === "Youth" ? (reading?.odu?.youthAdvice || reading?.odu?.description) : 
-         lifeStage === "Adult" ? (reading?.odu?.adultAdvice || reading?.odu?.description) : 
-         (reading?.odu?.elderAdvice || reading?.odu?.description || t("Today's sacred Odu wisdom..."))}
-      </p>
- 
+                    {lifeStage === "Youth" ? (reading?.odu?.youthAdvice || reading?.odu?.description) : 
+                     lifeStage === "Adult" ? (reading?.odu?.adultAdvice || reading?.odu?.description) : 
+                     (reading?.odu?.elderAdvice || reading?.odu?.description || t("Today's sacred Odu wisdom..."))}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3 justify-center md:justify-start">
+                    <span className="bg-spiritual-blue/10 text-spiritual-blue px-3 py-1 rounded-full text-xs font-medium">
                       {t("Authentic Cards", "Káàdì Tótọ́")}
                     </span>
                     <span className="bg-sacred-gold/10 text-sacred-gold px-3 py-1 rounded-full text-xs font-medium">

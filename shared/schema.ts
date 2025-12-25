@@ -32,6 +32,8 @@ export const odus = pgTable("odus", {
     age: integer("age"),
     year: integer("year"),
     youthAdvice: text("youth_advice"),
+    adultAdvice: text("adult_advice"),
+    elderAdvice: text("elder_advice"),
 });
 
 export const dailyReadings = pgTable("daily_readings", {
