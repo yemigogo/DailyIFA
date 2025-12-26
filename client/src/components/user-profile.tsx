@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { User, Crown, Palette, Bell, Moon, Sun, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+import { User, Crown, Palette, Bell, Moon, Sun, Star, Check } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,8 +9,8 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 import OrishaAssessment from "./orisha-assessment";
-// import EnhancedUserProfile from "./enhanced-user-profile";
 
 interface UserProfileProps {
   onThemeChange?: (theme: string) => void;
@@ -70,18 +70,53 @@ const themes = [
 ];
 
 export default function UserProfile({ onThemeChange, currentTheme = "light" }: UserProfileProps) {
+  const { toast } = useToast();
+  const [isSaving, setIsSaving] = useState(false);
   const [profile, setProfile] = useState({
-  name: "",
-  orishaAlignment: "",
-  notifications: true,
-  dailyReminders: true,
-  theme: currentTheme,
-  age: "",
-  year: "2025",
-  gender: ""
-});
+    name: "",
+    orishaAlignment: "",
+    notifications: true,
+    dailyReminders: true,
+    theme: currentTheme,
+    age: "",
+    year: "2025",
+    gender: ""
+  });
   
   const { ts } = useLanguage();
+
+  // Load saved profile from localStorage on mount
+  useEffect(() => {
+    const savedProfile = localStorage.getItem('ifaUserProfile');
+    if (savedProfile) {
+      try {
+        const parsed = JSON.parse(savedProfile);
+        setProfile(prev => ({ ...prev, ...parsed }));
+      } catch (e) {
+        console.error('Error loading saved profile:', e);
+      }
+    }
+  }, []);
+
+  // Save profile to localStorage
+  const handleSaveProfile = () => {
+    setIsSaving(true);
+    try {
+      localStorage.setItem('ifaUserProfile', JSON.stringify(profile));
+      toast({
+        title: ts("Profile Saved!", "A ti fi Àkọsílẹ̀ pamọ́!"),
+        description: ts("Your profile has been saved successfully.", "A ti fi àkọsílẹ̀ rẹ pamọ́ dáradára."),
+      });
+    } catch (e) {
+      toast({
+        title: ts("Error", "Àṣìṣe"),
+        description: ts("Failed to save profile.", "Kò lè fi àkọsílẹ̀ pamọ́."),
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const getOrishaColor = (orisha: any) => {
     const colors: { [key: string]: string } = {
@@ -332,8 +367,20 @@ export default function UserProfile({ onThemeChange, currentTheme = "light" }: U
 
       {/* Save Profile */}
       <div className="flex justify-end">
-        <Button className="bg-amber-600 hover:bg-amber-700 text-white">
-          {ts("Save Profile", "Fi Àkọsílẹ̀ Pamọ́")}
+        <Button 
+          className="bg-amber-600 hover:bg-amber-700 text-white"
+          onClick={handleSaveProfile}
+          disabled={isSaving}
+          data-testid="button-save-profile"
+        >
+          {isSaving ? (
+            ts("Saving...", "Ń fi pamọ́...")
+          ) : (
+            <>
+              <Check className="h-4 w-4 mr-2" />
+              {ts("Save Profile", "Fi Àkọsílẹ̀ Pamọ́")}
+            </>
+          )}
         </Button>
       </div>
     </div>
