@@ -881,7 +881,8 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
           elderAdvice: odu.elderAdvice || odu.description,
         })),
         overallGuidanceYoruba: selectedOdus.map((odu: any) => odu.guidanceYoruba).join(' '),
-        spiritualFoci: [...new Set(selectedOdus.flatMap((odu: any) => odu.spiritualFocus))] as string[],
+        spiritualFoci: [...new Set(selectedOdus.flatMap((odu: any) => odu.keywords || []))] as string[],
+        spiritualFociYoruba: [...new Set(selectedOdus.flatMap((odu: any) => odu.keywordsYoruba || []))] as string[],
         combinedProverb: selectedOdus.map((odu: any) => odu.proverb).join(' • ')
       };
       
@@ -898,7 +899,6 @@ Base your recommendations on authentic Yoruba spiritual traditions, the healing 
       const fs = await import('fs/promises');
       const path = await import('path');
       
-      // Get all PNG files from the odu_cards directory
       const cardsDir = path.join(process.cwd(), 'static/odu_cards');
       const files = await fs.readdir(cardsDir);
       const pngFiles = files.filter(file => file.endsWith('.png'));

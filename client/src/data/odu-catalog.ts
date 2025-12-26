@@ -122,7 +122,7 @@ const majorOduNames: Record<number, { name: string; nameYoruba: string; descript
       adultAdvice: "Scrub your charts clean. Remove unnecessary indicators and focus on pure price action. Overcoming a loss requires discipline and a clean, fresh start.",
       elderAdvice: "This is a time for spiritual cleansing. Let go of old grievances to make room for new blessings in your lineage."
     },
-15: { 
+  15: { 
       name: "Ose Meji", 
       nameYoruba: "Ọ̀ṣẹ́ Méjì",
       youthAdvice: "Victory is yours if you stay sweet and kind. Good character (*Ìwà Pẹ̀lẹ́*) will open doors for you that even your skills cannot.",
@@ -135,9 +135,8 @@ const majorOduNames: Record<number, { name: string; nameYoruba: string; descript
       youthAdvice: "Keep your heart and your room clean. Purity and organization will help you see the right answers in your AI coding projects and schoolwork.",
       adultAdvice: "This Odu is the source of all wisdom. In your trading, look for the 'hidden' opportunities others miss. Success today comes from patience and following the quiet signals in the data.",
       elderAdvice: "You are a vessel of ancient light. Your presence alone brings blessings to your family. Continue to lead with purity, silence, and grace."
-    },
+    }
 };
-
 // Generate complete 256 Odu catalog
 export const generateOduCatalog = (): OduCatalogEntry[] => {
   return Array.from({ length: 256 }, (_, index) => {
