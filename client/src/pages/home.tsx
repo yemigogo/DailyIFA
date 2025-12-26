@@ -234,15 +234,10 @@ const { user: profile } = useAuth();
                     {reading?.odu?.name || `Odu ${currentOduCard}`}
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    {lifeStage === "Youth" ? (reading?.odu?.youthAdvice || reading?.odu?.description) : 
-                     lifeStage === "Adult" ? (reading?.odu?.adultAdvice || reading?.odu?.description) : 
-                     (reading?.odu?.elderAdvice || reading?.odu?.description || t("Today's sacred Odu wisdom..."))}
+                    {reading?.odu?.description || t("Loading sacred wisdom...", "Ń gbé ọgbọ́n mímọ́...")}
                   </p>
-                  <div className="flex flex-wrap gap-2 mt-3 justify-center md:justify-start">
-                    <span className="bg-spiritual-blue/10 text-spiritual-blue px-3 py-1 rounded-full text-xs font-medium">
-                      {t("Authentic Cards", "Káàdì Tótọ́")}
-                    </span>
-                    <span className="bg-sacred-gold/10 text-sacred-gold px-3 py-1 rounded-full text-xs font-medium">
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium">
                       {currentOduCard <= 16 ? t("Major Odu", "Odù Àgbà") : t("Minor Odu", "Odù Kékeré")}
                     </span>
                     <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium">
@@ -251,31 +246,14 @@ const { user: profile } = useAuth();
                   </div>
                 </div>
               </div>
-              
-              {/* Today's date indicator */}
-              <div className="mt-4 text-center">
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  {t(`Today's Sacred Reading • ${formatDate(currentDate)}`, `Kíkà Mímọ́ Onì • ${formatDate(currentDate)}`)}
-                </span>
-              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Date Navigation */}
+        {/* Daily Reading Section */}
         <div className={`reveal-up ${isVisible ? 'visible' : ''}`} style={{animationDelay: '0.3s'}}>
-          <DateNavigation
-            currentDate={currentDate}
-            onPreviousDay={handlePreviousDay}
-            onNextDay={handleNextDay}
-            onDateSelect={handleDateSelect}
-          />
-        </div>
-
-        {/* Daily Reading */}
-        <div className={`reveal-up ${isVisible ? 'visible' : ''}`} style={{animationDelay: '0.4s'}}>
           {readingLoading ? (
-            <Card className="overflow-hidden border-sacred-gold/10 loading-shimmer">
+            <Card className="border-sacred-gold/10 card-smooth">
               <div className="bg-gradient-to-r from-spiritual-blue to-spiritual-blue/90 p-6">
                 <Skeleton className="h-8 w-48 mb-2 bg-white/20" />
                 <Skeleton className="h-4 w-32 bg-white/20" />
