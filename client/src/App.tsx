@@ -16,7 +16,6 @@ import DailyPrayers from "@/pages/daily-prayers";
 import DivinationLogsPage from "@/pages/divination-logs";
 import ProfilePage from "@/pages/profile";
 import OrikiPlayback from "@/pages/oriki-playback";
-import AudioManagement from "@/pages/audio-management";
 import OrishaProfiles from "@/pages/orisha-profiles";
 import Odu256Page from "@/pages/odu-256";
 import { Link } from "wouter";
@@ -36,7 +35,6 @@ function Router() {
       <Route path="/orisha-calendar" component={Learn} />
       <Route path="/diaspora" component={Learn} />
       <Route path="/oriki" component={OrikiPlayback} />
-      <Route path="/audio" component={AudioManagement} />
       <Route path="/orisha-profiles" component={OrishaProfiles} />
       <Route path="/odu-256" component={Odu256Page} />
       <Route path="/search" component={ProblemSearch} />

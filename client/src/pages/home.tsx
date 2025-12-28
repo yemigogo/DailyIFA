@@ -27,7 +27,7 @@ const { user: profile } = useAuth();
     return "Elder";
   };
 
-  const lifeStage = getLifeStage(profile?.age);
+  const lifeStage = getLifeStage(profile?.age || 30);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
@@ -220,7 +220,7 @@ const { user: profile } = useAuth();
                     />
                     {/* Overlay with card number */}
                     <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md font-semibold">
-                      {typeof currentOduCard === 'string' ? currentOduCard.split('_')[0] : currentOduCard}/256
+                      {currentOduCard}/256
                     </div>
                   </div>
                 </div>
@@ -240,28 +240,17 @@ const { user: profile } = useAuth();
                     <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium">
                       {currentOduCard <= 16 ? t("Major Odu", "Odù Àgbà") : t("Minor Odu", "Odù Kékeré")}
                     </span>
-                    <span className="bg-gradient-to-r from-spiritual-blue to-spiritual-blue/90 p-6">
-                <Skeleton className="h-8 w-48 mb-2 bg-white/20" />
-                <Skeleton className="h-4 w-32 bg-white/20" />
+                  </div>
+                </div>
               </div>
-              <CardContent className="p-6 space-y-4">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-3/4" />
-              </CardContent>
-            </Card>
-          ) : reading ? (
-            <div className="card-smooth">
+            </CardContent>
+          </Card>
+          
+          {/* Detailed Daily Reading */}
+          {reading && (
+            <div className="card-smooth mt-4">
               <DailyReading reading={reading} />
             </div>
-          ) : (
-            <Card className="border-sacred-gold/10 card-smooth">
-              <CardContent className="p-6 text-center">
-                <p className="text-gray-600 dark:text-gray-400 text-mobile-optimized">
-                  {t("No reading available for this date", "Kò sí kíkà fún ọjọ́ yìí")}
-                </p>
-              </CardContent>
-            </Card>
           )}
         </div>
 
