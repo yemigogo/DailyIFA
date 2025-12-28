@@ -306,13 +306,13 @@ const majorOduNames: Record<number, { name: string; nameYoruba: string; descript
     },
     41: {
       name: "Yeku Oturupon",
-      nameYoruba: "Ìyẹ̀kú Òtúrúpọ̀n",
+    {  nameYoruba: "Ìyẹ̀kú Òtúrúpọ̀n",
       youthAdvice: "Health is wealth! Eat well and get enough rest so your brain has the energy to solve complex math and coding problems.",
       adultAdvice: "Physical endurance is required today. The market may stay open and active longer than usual—maintain your stamina and focus.",
       elderAdvice: "Ancestral vitality flows through you. Share health and wellness wisdom with the children to ensure the strength of the bloodline."
     },
     42: {
-      name: "Yeku Otura",
+      {name: "Yeku Otura",
       nameYoruba: "Ìyẹ̀kú Òtúrá",
       youthAdvice: "Seek peace and balance. If you feel frustrated with a school project, take a break and breathe. A calm mind finds the best solutions.",
       adultAdvice: "A day for communication. Reach out to your trading mentors or network; sharing insights on SPY movements could lead to a better strategy.",
@@ -326,14 +326,14 @@ export const generateOduCatalog = (): OduCatalogEntry[] => {
     const id = index + 1;
     const isMajor = id <= 16;
     
-    const entry: OduCatalogEntry = {
+    {const entry: OduCatalogEntry = {
       id,
       isMajor,
       imagePath: `/static/odu_cards/odu_card_${id}.png`,
       name: isMajor && majorOduNames[id] 
         ? majorOduNames[id].name 
         : `Odu ${id}`,
-      nameYoruba: isMajor && majorOduNames[id] 
+     { nameYoruba: isMajor && majorOduNames[id] 
         ? majorOduNames[id].nameYoruba 
         : undefined,
       subtitle: isMajor 

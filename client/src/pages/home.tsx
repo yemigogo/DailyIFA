@@ -240,21 +240,7 @@ const { user: profile } = useAuth();
                     <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium">
                       {currentOduCard <= 16 ? t("Major Odu", "Odù Àgbà") : t("Minor Odu", "Odù Kékeré")}
                     </span>
-                    <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-medium">
-                      {t("Traditional Pattern", "Ilana Àtijọ́")}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Daily Reading Section */}
-        <div className={`reveal-up ${isVisible ? 'visible' : ''}`} style={{animationDelay: '0.3s'}}>
-          {readingLoading ? (
-            <Card className="border-sacred-gold/10 card-smooth">
-              <div className="bg-gradient-to-r from-spiritual-blue to-spiritual-blue/90 p-6">
+                    <span className="bg-gradient-to-r from-spiritual-blue to-spiritual-blue/90 p-6">
                 <Skeleton className="h-8 w-48 mb-2 bg-white/20" />
                 <Skeleton className="h-4 w-32 bg-white/20" />
               </div>
