@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Bookmark, Share, Eye, Star, Leaf, Volume2 } from "lucide-react";
 import { DailyReadingWithOdu } from "@shared/schema";
 import OduTraditionalImage from "./odu-traditional-image";
-import SimpleAudioPlayer from "./simple-audio-player";
 // import { AutoLinkText } from "./encyclopedia/auto-link-text";
 
 
@@ -268,11 +267,6 @@ export default function DailyReading({ reading }: DailyReadingProps) {
         </div>
       )}
 
-      {/* Audio Player */}
-      <SimpleAudioPlayer 
-        oduName={reading.odu.name} 
-        oduId={reading.odu.id} 
-      />
 
       {/* Traditional Herbs & Materials */}
       <HerbsMaterials oduId={reading.odu.id} oduName={reading.odu.name} />
