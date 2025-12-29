@@ -12,7 +12,7 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const savedProfile = localStorage.getItem("userProfile");
+    const savedProfile = localStorage.getItem("ifaUserProfile");
     if (savedProfile) {
       try {
         setUser(JSON.parse(savedProfile));
@@ -26,7 +26,7 @@ export function useAuth() {
   const updateProfile = (profile: Partial<UserProfile>) => {
     const updatedUser = { ...user, ...profile };
     setUser(updatedUser);
-    localStorage.setItem("userProfile", JSON.stringify(updatedUser));
+    localStorage.setItem("ifaUserProfile", JSON.stringify(updatedUser));
   };
 
   return {
