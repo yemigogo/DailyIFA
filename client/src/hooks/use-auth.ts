@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import type { User } from "@shared/models/auth";
 
 async function fetchUser(): Promise<User | null> {
@@ -23,6 +24,7 @@ async function logout(): Promise<void> {
 
 export function useAuth() {
   const queryClient = useQueryClient();
+  
   const { data: user, isLoading } = useQuery<User | null>({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
@@ -37,8 +39,22 @@ export function useAuth() {
     },
   });
 
+  // Also check localStorage for local profile data (for personalized readings)
+  const [localProfile, setLocalProfile] = useState<{age?: number; name?: string; gender?: string} | null>(null);
+  
+  useEffect(() => {
+    const savedProfile = localStorage.getItem("ifaUserProfile");
+    if (savedProfile) {
+      try {
+        setLocalProfile(JSON.parse(savedProfile));
+      } catch (e) {
+        console.error("Failed to parse local profile:", e);
+      }
+    }
+  }, []);
+
   return {
-    user,
+    user: user || localProfile,
     isLoading,
     isAuthenticated: !!user,
     logout: logoutMutation.mutate,
