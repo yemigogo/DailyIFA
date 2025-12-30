@@ -2,6 +2,7 @@ import type { Express } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { setupAuth, registerAuthRoutes } from "./replit_integrations/auth";
 
 import { oduDatabase } from "./data/odu-database";
 import { insertDailyReadingSchema, insertUserProfileSchema, insertNotificationSettingsSchema, 
@@ -56,6 +57,10 @@ const upload = multer({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup Replit Auth (must be before other routes)
+  await setupAuth(app);
+  registerAuthRoutes(app);
+  
   // Initialize the Odu database and Ifa lunar calendar
   await initializeOduDatabase();
   await initializeIfaLunarCalendar();

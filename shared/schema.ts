@@ -532,3 +532,6 @@ export type InsertCosmologyProgress = z.infer<typeof insertCosmologyProgressSche
 
 // Re-export encyclopedia types
 export * from "./encyclopedia-schema";
+
+// Re-export auth types for Replit Auth
+export * from "./models/auth";
