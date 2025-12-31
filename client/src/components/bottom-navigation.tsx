@@ -1,19 +1,28 @@
-import { Button } from "@/components/ui/button";
-import { Home, Scroll, Search, Heart, ScrollText, BookOpen, User, GraduationCap, Users } from "lucide-react";
+import { Home, Heart, ScrollText, User, GraduationCap, LogIn } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function BottomNavigation() {
   const [location, setLocation] = useLocation();
   const { ts } = useLanguage();
+  const { isAuthenticated } = useAuth();
 
   const navigation = [
     { id: "today", label: ts("Home", "Ilé"), icon: Home, path: "/" },
     { id: "prayers", label: ts("Prayers", "Ìwúre"), icon: Heart, path: "/prayers" },
     { id: "learning", label: ts("Learning", "Ẹ̀kọ́"), icon: GraduationCap, path: "/learning" },
     { id: "oriki", label: ts("Oríkì", "Oríkì"), icon: ScrollText, path: "/oriki" },
-    { id: "profile", label: ts("Profile", "Ìwé"), icon: User, path: "/profile" },
+    { id: "profile", label: isAuthenticated ? ts("Profile", "Ìwé") : ts("Login", "Wọlé"), icon: isAuthenticated ? User : LogIn, path: isAuthenticated ? "/profile" : "/api/login", isExternal: !isAuthenticated },
   ];
+
+  const handleNavClick = (item: typeof navigation[0]) => {
+    if (item.isExternal) {
+      window.location.href = item.path;
+    } else {
+      setLocation(item.path);
+    }
+  };
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 px-2 py-2 z-50 shadow-lg">
@@ -26,11 +35,11 @@ export default function BottomNavigation() {
             return (
               <button
                 key={item.id}
+                data-testid={`nav-${item.id}`}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  console.log(`Navigating to: ${item.path}`);
-                  setLocation(item.path);
+                  handleNavClick(item);
                 }}
                 style={{
                   display: "flex",
