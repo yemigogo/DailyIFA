@@ -1,0 +1,46 @@
+import React, { useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase Client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+export default function DailyReadingCard({ userId }) {
+  const [reading, setReading] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchReading() {
+      // 1. Get total number of Odus
+      const { count } = await supabase.from('odus').select('*', { count: 'exact', head: true });
+      
+      if (count) {
+        // 2. Pick a random one
+        const randomIndex = Math.floor(Math.random() * count);
+        
+        // 3. Fetch that specific Odu
+        const { data } = await supabase.from('odus').select('*').range(randomIndex, randomIndex).single();
+        setReading(data);
+      }
+      setLoading(false);
+    }
+
+    fetchReading();
+  }, [userId]);
+
+  if (loading) return <div className="p-4 text-center">Consulting the Oracle...</div>;
+  if (!reading) return <div className="p-4">No reading available.</div>;
+
+  return (
+    <div className="bg-orange-50 border-2 border-orange-200 p-6 rounded-xl shadow-lg max-w-md mx-auto my-4">
+      <h2 className="text-2xl font-bold text-orange-800 text-center mb-2">{reading.name}</h2>
+      <p className="text-gray-700 italic text-center mb-4">"{reading.verse_text}"</p>
+      
+      <div className="bg-white p-4 rounded-lg shadow-inner">
+        <h3 className="font-bold text-gray-800 border-b pb-1 mb-2">Guidance</h3>
+        <p className="text-gray-600">{reading.advice_general}</p>
+      </div>
+    </div>
+  );
+}
